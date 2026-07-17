@@ -34,15 +34,18 @@ python -m pip install -r ../../requirements-dev.txt
 uvicorn app.main:app --reload
 ```
 
-RAG answer generation uses OpenAI first and falls back to Gemini when both keys
-are present:
+RAG answer generation uses the FPT Cloud/OpenAI-compatible API first and falls
+back to Gemini when both keys are present:
 
 ```bash
 cp .env.example .env
 # Fill these in .env:
-LLM_PROVIDER=openai
+LLM_PROVIDER=fpt
 LLM_FALLBACK_PROVIDER=gemini
-OPENAI_API_KEY=...
+LLM_MODEL=your-fpt-chat-model
+OPEN_API_KEY=...
+OPEN_API_BASE_URL=https://mkp-api.fptcloud.com
+OPEN_API_EMBEDDING_MODEL=Vietnamese_Embedding
 GEMINI_API_KEY=...
 ```
 

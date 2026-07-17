@@ -48,7 +48,7 @@ class NoopLLMClient:
 
 
 class OpenAILLMClient:
-    """OpenAI chat-completion adapter."""
+    """OpenAI or OpenAI-compatible chat-completion adapter."""
 
     provider_name = "openai"
 
@@ -57,16 +57,22 @@ class OpenAILLMClient:
         *,
         api_key: str,
         model: str,
+        base_url: str | None = None,
+        provider_name: str = "openai",
         sdk_client: Any | None = None,
     ) -> None:
         self.model = model
+        self.provider_name = provider_name
         if sdk_client is not None:
             self._client = sdk_client
             return
 
         from openai import AsyncOpenAI
 
-        self._client = AsyncOpenAI(api_key=api_key)
+        if base_url:
+            self._client = AsyncOpenAI(api_key=api_key, base_url=base_url)
+        else:
+            self._client = AsyncOpenAI(api_key=api_key)
 
     async def generate(
         self,
@@ -200,8 +206,8 @@ class FallbackLLMClient:
 def build_llm_client(settings: Settings) -> LLMClient:
     """Build the configured LLM client.
 
-    OpenAI is the primary RAG generation provider. Gemini can be configured as a
-    fallback by setting GEMINI_API_KEY and LLM_FALLBACK_PROVIDER=gemini.
+    FPT Cloud is exposed as an OpenAI-compatible provider and uses OPEN_API_KEY.
+    Gemini can be configured as a fallback with GEMINI_API_KEY.
     """
 
     clients: list[LLMClient] = []
@@ -228,6 +234,16 @@ def _provider_order(settings: Settings) -> list[str]:
 
 
 def _build_provider_client(provider: str, settings: Settings) -> LLMClient | None:
+    if provider == "fpt":
+        if not settings.OPEN_API_KEY:
+            return None
+        return OpenAILLMClient(
+            api_key=settings.OPEN_API_KEY,
+            base_url=settings.OPEN_API_BASE_URL,
+            model=settings.LLM_MODEL,
+            provider_name="fpt",
+        )
+
     if provider == "openai":
         if not settings.OPENAI_API_KEY:
             return None

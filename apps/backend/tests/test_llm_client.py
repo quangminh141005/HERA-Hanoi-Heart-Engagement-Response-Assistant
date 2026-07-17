@@ -10,7 +10,7 @@ from app.core.config import Settings
 
 
 class FailingClient:
-    provider_name = "openai"
+    provider_name = "fpt"
 
     async def generate(self, messages, *, temperature=0.1, max_tokens=800):
         del messages, temperature, max_tokens
@@ -26,9 +26,18 @@ class StaticClient:
 
 
 class CapturedClient:
-    def __init__(self, *, api_key: str, model: str):
+    def __init__(
+        self,
+        *,
+        api_key: str,
+        model: str,
+        base_url: str | None = None,
+        provider_name: str = "openai",
+    ):
         self.api_key = api_key
+        self.base_url = base_url
         self.model = model
+        self.provider_name = provider_name
 
     async def generate(self, messages, *, temperature=0.1, max_tokens=800):
         del messages, temperature, max_tokens
@@ -37,9 +46,9 @@ class CapturedClient:
 
 def test_build_llm_client_without_keys_returns_noop() -> None:
     settings = Settings(
-        LLM_PROVIDER="openai",
+        LLM_PROVIDER="fpt",
         LLM_FALLBACK_PROVIDER="gemini",
-        OPENAI_API_KEY=None,
+        OPEN_API_KEY=None,
         GEMINI_API_KEY=None,
         _env_file=None,
     )
@@ -49,14 +58,15 @@ def test_build_llm_client_without_keys_returns_noop() -> None:
     assert isinstance(client, NoopLLMClient)
 
 
-def test_build_llm_client_uses_openai_then_gemini(monkeypatch) -> None:
+def test_build_llm_client_uses_fpt_then_gemini(monkeypatch) -> None:
     monkeypatch.setattr(llm_client_module, "OpenAILLMClient", CapturedClient)
     monkeypatch.setattr(llm_client_module, "GeminiLLMClient", CapturedClient)
     settings = Settings(
-        LLM_PROVIDER="openai",
+        LLM_PROVIDER="fpt",
         LLM_FALLBACK_PROVIDER="gemini",
-        OPENAI_API_KEY="openai-key",
-        OPENAI_MODEL="openai-model",
+        OPEN_API_KEY="open-api-key",
+        OPEN_API_BASE_URL="https://mkp-api.fptcloud.com",
+        LLM_MODEL="fpt-chat-model",
         GEMINI_API_KEY="gemini-key",
         GEMINI_MODEL="gemini-model",
         _env_file=None,
@@ -66,13 +76,14 @@ def test_build_llm_client_uses_openai_then_gemini(monkeypatch) -> None:
 
     assert isinstance(client, FallbackLLMClient)
     assert [provider.model for provider in client.clients] == [
-        "openai-model",
+        "fpt-chat-model",
         "gemini-model",
     ]
     assert [provider.api_key for provider in client.clients] == [
-        "openai-key",
+        "open-api-key",
         "gemini-key",
     ]
+    assert client.clients[0].base_url == "https://mkp-api.fptcloud.com"
 
 
 def test_fallback_llm_client_uses_gemini_when_openai_fails() -> None:
