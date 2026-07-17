@@ -10,7 +10,8 @@ from typing import Literal
 from pydantic import Field, field_validator, model_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
-PROJECT_ROOT = Path(__file__).resolve().parents[4]
+_parents = Path(__file__).resolve().parents
+PROJECT_ROOT = _parents[4] if len(_parents) > 4 else _parents[-1]
 BACKEND_ROOT = Path(__file__).resolve().parents[2]
 
 
