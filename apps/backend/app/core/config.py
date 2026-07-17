@@ -58,11 +58,14 @@ class Settings(BaseSettings):
     PROMETHEUS_METRICS_ENABLED: bool = True
     PROMETHEUS_METRICS_PATH: str = "/metrics"
 
-    LLM_PROVIDER: Literal["noop", "openai", "anthropic", "gemini"] = "openai"
-    LLM_FALLBACK_PROVIDER: Literal["none", "noop", "openai", "anthropic", "gemini"] = (
-        "gemini"
-    )
-    LLM_MODEL: str = "gpt-4o-mini"
+    LLM_PROVIDER: Literal["noop", "fpt", "openai", "anthropic", "gemini"] = "fpt"
+    LLM_FALLBACK_PROVIDER: Literal[
+        "none", "noop", "fpt", "openai", "anthropic", "gemini"
+    ] = "gemini"
+    LLM_MODEL: str = "your-fpt-chat-model"
+    OPEN_API_KEY: str | None = None
+    OPEN_API_BASE_URL: str = "https://mkp-api.fptcloud.com"
+    OPEN_API_EMBEDDING_MODEL: str = "Vietnamese_Embedding"
     OPENAI_API_KEY: str | None = None
     OPENAI_MODEL: str = "gpt-4o-mini"
     ANTHROPIC_API_KEY: str | None = None
@@ -70,8 +73,8 @@ class Settings(BaseSettings):
     GEMINI_API_KEY: str | None = None
     GEMINI_MODEL: str = "gemini-2.5-flash"
 
-    EMBEDDING_PROVIDER: Literal["noop", "openai"] = "noop"
-    EMBEDDING_MODEL: str = "text-embedding-3-small"
+    EMBEDDING_PROVIDER: Literal["noop", "fpt", "openai"] = "fpt"
+    EMBEDDING_MODEL: str = "Vietnamese_Embedding"
     EMBEDDING_DIMENSIONS: int = Field(default=1536, ge=1)
 
     VECTOR_STORE_PROVIDER: Literal["none", "pgvector"] = "none"
