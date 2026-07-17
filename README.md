@@ -34,6 +34,18 @@ python -m pip install -r ../../requirements-dev.txt
 uvicorn app.main:app --reload
 ```
 
+RAG answer generation uses OpenAI first and falls back to Gemini when both keys
+are present:
+
+```bash
+cp .env.example .env
+# Fill these in .env:
+LLM_PROVIDER=openai
+LLM_FALLBACK_PROVIDER=gemini
+OPENAI_API_KEY=...
+GEMINI_API_KEY=...
+```
+
 Health endpoints:
 
 - `GET /health`

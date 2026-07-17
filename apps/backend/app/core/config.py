@@ -58,8 +58,11 @@ class Settings(BaseSettings):
     PROMETHEUS_METRICS_ENABLED: bool = True
     PROMETHEUS_METRICS_PATH: str = "/metrics"
 
-    LLM_PROVIDER: Literal["noop", "openai", "anthropic", "gemini"] = "noop"
-    LLM_MODEL: str = "placeholder"
+    LLM_PROVIDER: Literal["noop", "openai", "anthropic", "gemini"] = "openai"
+    LLM_FALLBACK_PROVIDER: Literal["none", "noop", "openai", "anthropic", "gemini"] = (
+        "gemini"
+    )
+    LLM_MODEL: str = "gpt-4o-mini"
     OPENAI_API_KEY: str | None = None
     OPENAI_MODEL: str = "gpt-4o-mini"
     ANTHROPIC_API_KEY: str | None = None
@@ -151,4 +154,3 @@ def get_settings() -> Settings:
     """Return cached application settings."""
 
     return Settings()
-
