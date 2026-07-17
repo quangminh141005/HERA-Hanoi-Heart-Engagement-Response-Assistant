@@ -1,0 +1,90 @@
+name: hera
+
+services:
+  db:
+    image: pgvector/pgvector:pg15
+    container_name: hera_db
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-hera}
+      POSTGRES_USER: ${POSTGRES_USER:-hera}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in .env}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-hera} -d ${POSTGRES_DB:-hera}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - hera_network
+
+  redis:
+    image: redis:7-alpine
+    container_name: hera_redis
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+    networks:
+      - hera_network
+
+  backend:
+    build:
+      context: ./apps/backend
+      dockerfile: Dockerfile
+    container_name: hera_backend
+    environment:
+      DATABASE_URL: ${DOCKER_DATABASE_URL:-postgresql+psycopg://hera:hera_password@db:5432/hera}
+      APP_DEBUG: ${APP_DEBUG:-true}
+      ENVIRONMENT: ${ENVIRONMENT:-development}
+      LOG_LEVEL: ${LOG_LEVEL:-INFO}
+      LOG_FORMAT: ${LOG_FORMAT:-json}
+      CORS_ORIGINS: ${CORS_ORIGINS:-["http://localhost:5173","http://127.0.0.1:5173"]}
+      RATE_LIMIT_ENABLED: ${RATE_LIMIT_ENABLED:-true}
+      RATE_LIMIT_STORAGE: ${DOCKER_RATE_LIMIT_STORAGE:-redis}
+      REDIS_URL: ${DOCKER_REDIS_URL:-redis://redis:6379/0}
+      LLM_PROVIDER: ${LLM_PROVIDER:-noop}
+      OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY:-}
+      GEMINI_API_KEY: ${GEMINI_API_KEY:-}
+      EMBEDDING_PROVIDER: ${EMBEDDING_PROVIDER:-noop}
+      VECTOR_STORE_PROVIDER: ${VECTOR_STORE_PROVIDER:-none}
+      HOSPITAL_HOTLINE: ${HOSPITAL_HOTLINE:-}
+      EMERGENCY_HOTLINE: ${EMERGENCY_HOTLINE:-115}
+      HOSPITAL_API_BASE_URL: ${HOSPITAL_API_BASE_URL:-}
+      PROMETHEUS_METRICS_ENABLED: ${PROMETHEUS_METRICS_ENABLED:-true}
+      PROMETHEUS_METRICS_PATH: ${PROMETHEUS_METRICS_PATH:-/metrics}
+    ports:
+      - "8000:8000"
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    networks:
+      - hera_network
+
+  frontend:
+    build:
+      context: ./apps/frontend
+      dockerfile: Dockerfile
+      args:
+        VITE_API_BASE_URL: ${VITE_API_BASE_URL:-http://localhost:8000/api/v1}
+    container_name: hera_frontend
+    ports:
+      - "5173:80"
+    depends_on:
+      - backend
+    networks:
+      - hera_network
+
+volumes:
+  postgres_data:
+
+networks:
+  hera_network:
+    driver: bridge
+
