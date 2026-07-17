@@ -1,0 +1,66 @@
+SỞ Y TẾ HÀ NỘI
+BỆNH VIỆN TIM HÀ NỘI
+MÃ TƯƠNG
+STT DỊCH VỤ KỸ THUẬT CƠ SỞ 1 CƠ SỞ 2 GHI CHÚ
+ĐƯƠNG
+Nội soi phế quản ống mềm
+962 02.0045.0131 1.204.300
+[gây tê, có sinh thiết]
+Nội soi phế quản ống mềm
+963 02.0043.0131 sinh thiết niêm mạc phế quản 1.204.300
+[gây tê]
+Nội soi phế quản sinh thiết
+964 02.0040.0131 1.204.300
+xuyên vách phế quản [gây tê]
+Nội soi khí phế quản bằng
+965 03.0053.0131 1.204.300
+ống soi mềm [gây tê]
+Nội soi phế quản ống mềm
+966 03.1014.0131 1.204.300
+[gây tê, có sinh thiết]
+Nội soi phế quản ống mềm
+967 03.1007.0131 sinh thiết niêm mạc phế quản 1.204.300
+[gây tê]
+Nội soi phế quản sinh thiết
+968 03.1012.0131 1.204.300
+xuyên vách phế quản [gây tê]
+Nội soi phế quản ống cứng
+969 15.0254.0131 sinh thiết u gây tê/gây mê 1.204.300
+[gây tê]
+Nội soi phế quản ống mềm
+970 15.0255.0131 1.204.300
+sinh thiết u gây tê
+Nội soi khí - phế quản ống
+971 20.0022.0131 1.204.300
+mềm sinh thiết [gây tê]
+Nội soi khí - phế quản ống
+972 20.0017.0131 1.204.300
+mềm sinh thiết xuyên vách
+Nội soi phế quản lấy dị vật
+973 02.0050.0132 2.678.400
+(ống cứng, ống mềm) [gây tê]
+Nội soi phế quản ống cứng
+974 02.0046.0132 2.678.400
+[gây tê]
+Nội soi phế quản ống mềm
+975 02.0045.0132 2.678.400
+[gây tê, lấy dị vật]
+Nội soi khí phế quản lấy dị
+976 03.0073.0132 2.678.400
+vật [gây tê]
+Nội soi phế quản ống mềm
+977 15.0253.0132 2.678.400
+lấy dị vật gây tê/[gây tê]
+Nội soi khí - phế quản ống
+978 20.0031.0132 2.678.400
+mềm lấy dị vật [gây tê]
+Nội soi phế quản ống mềm:
+979 02.0041.0133 cắt đốt u, sẹo nội phế quản 2.938.400
+bằng điện đông cao tần
+Nội soi phế quản ống mềm
+980 03.1004.0133 cắt đốt trong lòng phế quản 2.938.400
+bằng điện đông cao tần
+981 02.0304.0134 Nội soi thực quản - dạ dày - 493.800 493.800 Đã bao gồm chi phí Test HP
+Ghi chú: Bảng giá áp dụng theo Phụ lục số 06 Nghị quyết số 45/2024/NQ-HĐND ngày 10/12/2024 của Hội đồng nhân dân
+Thành phố Hà Nội.
+Bảng giá áp dụng cho người bệnh có thẻ bảo hiểm y tế và không có thẻ bảo hiểm y tế.

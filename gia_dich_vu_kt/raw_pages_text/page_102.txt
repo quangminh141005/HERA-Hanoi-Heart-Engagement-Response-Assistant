@@ -1,0 +1,61 @@
+SỞ Y TẾ HÀ NỘI
+BỆNH VIỆN TIM HÀ NỘI
+MÃ TƯƠNG
+STT DỊCH VỤ KỸ THUẬT CƠ SỞ 1 CƠ SỞ 2 GHI CHÚ
+ĐƯƠNG
+dài dưới 10 cm [tổn thương
+nông]
+Khâu vết thương phần mềm
+1273 10.9005.0216 dài trên 10 cm [tổn thương 194.700
+nông chiều dài < l0 cm ]
+1274 15.0051.0216 Khâu vết rách vành tai 194.700
+Khâu vết thương đơn giản
+vùng đầu, mặt, cổ [tổn
+1275 15.0301.0216 194.700
+thương nông chiều dài < l0
+cm]
+Khâu vết thương phần mềm
+1276 03.3825.0217 dài trên 10 cm [tổn thương 269.500
+nông]
+Khâu vết thương phần mềm
+1277 10.9005.0217 dài trên 10 cm [tổn thương 269.500
+nông]
+Khâu vết thương đơn giản
+vùng đầu, mặt, cổ [tổn
+1278 15.0301.0217 269.500
+thương nông chiều dài ≥ l0
+cm]
+Khâu lại da vết phẫu thuật
+1279 03.3818.0218 289.500
+sau nhiễm khuẩn
+Khâu vết thương phần mềm
+1280 03.3827.0218 dài dưới 10 cm [tổn thương 289.500
+sâu]
+Khâu vết thương phần mềm
+1281 10.9005.0218 dài trên 10 cm [tổn thương 289.500
+sâu chiều dài < l0 cm ]
+Khâu vết thương đơn giản
+1282 15.0301.0218 vùng đầu, mặt, cổ [ tổn 289.500
+thương sâu chiều dài < l0 cm]
+Khâu vết thương phần mềm
+1283 03.3825.0219 dài trên 10 cm [tổn thương 354.200
+sâu]
+Khâu vết thương phần mềm
+1284 10.9005.0219 dài trên 10 cm [tổn thương 354.200
+sâu]
+Khâu vết thương đơn giản
+1285 15.0301.0219 vùng đầu, mặt, cổ [tổn 354.200
+thương sâu chiều dài ≥ l0 cm]
+1286 08.0008.2045 Ôn châm [kim dài] 83.300
+1287 03.0290.0224 Nhĩ châm 76.300
+1288 03.0291.0224 Ôn châm 76.300
+1289 08.0010.0224 Chích lể 76.300
+1290 08.0004.0224 Nhĩ châm 76.300
+1291 08.0008.0224 Ôn châm [kim ngắn] 76.300
+Cấy chỉ điều trị đau đầu, đau
+1292 03.0423.0227 156.400
+nửa đầu
+1293 03.0446.0227 Cấy chỉ điều trị đau lưng 156.400
+Ghi chú: Bảng giá áp dụng theo Phụ lục số 06 Nghị quyết số 45/2024/NQ-HĐND ngày 10/12/2024 của Hội đồng nhân dân
+Thành phố Hà Nội.
+Bảng giá áp dụng cho người bệnh có thẻ bảo hiểm y tế và không có thẻ bảo hiểm y tế.

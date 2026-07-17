@@ -1,0 +1,73 @@
+SỞ Y TẾ HÀ NỘI
+BỆNH VIỆN TIM HÀ NỘI
+MÃ TƯƠNG
+STT DỊCH VỤ KỸ THUẬT CƠ SỞ 1 CƠ SỞ 2 GHI CHÚ
+ĐƯƠNG
+thận
+Siêu âm doppler động mạch
+58 18.0037.0004 252.300 252.300
+tử cung
+Siêu âm doppler động mạch,
+59 18.0045.0004 252.300 252.300
+tĩnh mạch chi dưới
+Siêu âm doppler mạch máu ổ
+60 18.0023.0004 bụng (động mạch chủ, mạc 252.300 252.300
+treo tràng trên, thân tạng…)
+61 18.0052.0004 Siêu âm doppler tim, van tim 252.300 252.300
+Siêu âm doppler tĩnh mạch
+62 18.0029.0004 252.300 252.300
+chậu, chủ dưới
+Siêu âm doppler tử cung,
+63 18.0033.0004 buồng trứng qua đường âm 252.300 252.300
+đạo
+Siêu âm tim, màng tim qua
+64 18.0049.0004 252.300 252.300
+thành ngực
+Siêu âm tim cấp cứu tại
+65 09.0151.0004 252.300
+giường
+66 02.0115.0005 Siêu âm tim cản âm 286.300 286.300
+Siêu âm tim cản âm cấp cứu
+67 02.0444.0005 286.300 286.300
+tại giường
+Siêu âm tim, mạch máu có
+68 18.0051.0005 286.300 286.300
+cản âm
+Siêu âm doppler màu tim
+69 02.0457.0006 616.300 616.300
+gắng sức với Dobutamine
+Siêu âm doppler màu tim
+70 02.0458.0006 616.300 616.300
+gắng sức với xe đạp lực kế
+Siêu âm tim gắng sức (thảm
+71 02.0114.0006 616.300 616.300
+chạy, thuốc)
+Siêu âm doppler màu tim
+Chỉ áp dụng trong trường hợp
+72 02.0449.0007 3D/4D qua thành ngực trong 486.300 486.300 chỉ định để thực hiện các phẫu
+tim mạch can thiệp thuật hoặc can thiệp tim mạch.
+Chỉ áp dụng trong trường hợp
+73 02.0116.0007 Siêu âm tim 4D 486.300 486.300 chỉ định để thực hiện các phẫu
+thuật hoặc can thiệp tim mạch.
+Chỉ áp dụng trong trường hợp
+74 18.0053.0007 Siêu âm 3D/4D tim 486.300 486.300 chỉ định để thực hiện các phẫu
+thuật hoặc can thiệp tim mạch.
+Siêu âm doppler màu tim
+75 02.0446.0008 834.300 834.300
+3D/4D qua thực quản
+Siêu âm doppler màu tim
+76 02.0450.0008 3D/4D qua thực quản trong 834.300 834.300
+tim mạch can thiệp
+Siêu âm doppler màu tim qua
+77 02.0448.0008 thực quản trong tim mạch can 834.300 834.300
+thiệp
+78 02.0117.0008 Siêu âm tim qua thực quản 834.300 834.300
+Siêu âm tim qua thực quản
+79 02.0443.0008 834.300 834.300
+cấp cứu tại giường
+Siêu âm tim qua thực quản
+80 03.0015.0008 834.300 834.300
+cấp cứu
+Ghi chú: Bảng giá áp dụng theo Phụ lục số 06 Nghị quyết số 45/2024/NQ-HĐND ngày 10/12/2024 của Hội đồng nhân dân
+Thành phố Hà Nội.
+Bảng giá áp dụng cho người bệnh có thẻ bảo hiểm y tế và không có thẻ bảo hiểm y tế.

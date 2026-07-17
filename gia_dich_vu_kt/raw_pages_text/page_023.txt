@@ -1,0 +1,79 @@
+SỞ Y TẾ HÀ NỘI
+BỆNH VIỆN TIM HÀ NỘI
+MÃ TƯƠNG
+STT DỊCH VỤ KỸ THUẬT CƠ SỞ 1 CƠ SỞ 2 GHI CHÚ
+ĐƯƠNG
+(từ ≥ 256 dãy)
+Chụp cắt lớp vi tính mạch Chưa bao gồm thuốc cản
+348 18.0295.0046 3.035.600
+máu chi dưới (từ ≥256 dãy) quang.
+Chụp cắt lớp vi tính mạch Chưa bao gồm thuốc cản
+349 18.0294.0046 3.035.600
+máu chi trên (từ ≥256 dãy) quang.
+Chụp cắt lớp vi tính ruột non
+(entero-scan) có dùng sonde Chưa bao gồm thuốc cản
+350 18.0252.0046 3.035.600
+(từ ≥ 256 dãy) [có thuốc cản quang.
+quang]
+Chụp cắt lớp vi tính tạng
+khảo sát huyết động học khối Chưa bao gồm thuốc cản
+351 18.0250.0046 3.035.600
+u (CT perfusion) (từ ≥ 256 quang.
+dãy) [có thuốc cản quang]
+Chụp cắt lớp vi tính tầng trên
+ổ bụng có khảo sát mạch các
+Chưa bao gồm thuốc cản
+352 18.0247.0046 tạng (bao gồm mạch: gan, 3.035.600
+quang.
+tụy, lách và mạch khối u) (từ
+≥ 256 dãy)
+Chụp cắt lớp vi tính tầng trên
+ổ bụng thường quy (gồm:
+chụp cắt lớp vi tính gan - mật, Chưa bao gồm thuốc cản
+353 18.0243.0046 3.035.600
+tụy, lách, dạ dày - tá quang.
+tràng.v.v.) (từ ≥ 256 dãy) [có
+thuốc cản quang]
+Chụp cắt lớp vi tính tiểu
+khung thường quy (gồm:
+chụp cắt lớp vi tính tử cung-
+Chưa bao gồm thuốc cản
+354 18.0245.0046 buồng trứng, tiền liệt tuyến, 3.035.600
+quang.
+các khối u vùng tiểu
+khung.v.v.) [có thuốc cản
+quang, 256 dãy trở lên]
+Chụp cắt lớp vi tính xương
+Chưa bao gồm thuốc cản
+355 18.0292.0046 chi có tiêm thuốc cản quang 3.035.600
+quang.
+(từ ≥256 dãy)
+Chụp CLVT hàm - mặt có
+Chưa bao gồm thuốc cản
+356 18.0185.0046 tiêm thuốc cản quang (từ ≥ 3.035.600
+quang.
+256 dãy)
+Chụp CLVT hệ động mạch
+Chưa bao gồm thuốc cản
+357 18.0180.0046 cảnh có tiêm thuốc cản quang 3.035.600
+quang.
+(từ ≥ 256 dãy)
+Chụp CLVT mạch máu não Chưa bao gồm thuốc cản
+358 18.0182.0046 3.035.600
+(từ ≥ 256 dãy) quang.
+Chụp CLVT sọ não có tiêm
+Chưa bao gồm thuốc cản
+359 18.0179.0046 thuốc cản quang (từ ≥ 256 3.035.600
+quang.
+dãy)
+Chụp CLVT tai - xương đá có
+Chưa bao gồm thuốc cản
+360 18.0188.0046 tiêm thuốc cản quang (từ ≥ 3.035.600
+quang.
+256 dãy)
+Chụp CLVT tưới máu não Chưa bao gồm thuốc cản
+361 18.0181.0046 3.035.600
+(CT perfusion) (từ ≥ 256 dãy) quang.
+Ghi chú: Bảng giá áp dụng theo Phụ lục số 06 Nghị quyết số 45/2024/NQ-HĐND ngày 10/12/2024 của Hội đồng nhân dân
+Thành phố Hà Nội.
+Bảng giá áp dụng cho người bệnh có thẻ bảo hiểm y tế và không có thẻ bảo hiểm y tế.

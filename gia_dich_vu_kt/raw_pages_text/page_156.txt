@@ -1,0 +1,62 @@
+SỞ Y TẾ HÀ NỘI
+BỆNH VIỆN TIM HÀ NỘI
+MÃ TƯƠNG
+STT DỊCH VỤ KỸ THUẬT CƠ SỞ 1 CƠ SỞ 2 GHI CHÚ
+ĐƯƠNG
+Điều trị tủy răng và hàn kín
+hệ thống ống tủy bằng Gutta
+2035 16.0054.1013 percha nguội có sử dụng trâm 861.000
+xoay máy [răng số 6,7 hàm
+dưới]
+Điều trị tủy răng có sử dụng
+siêu âm và hàn kín hệ thống
+2036 03.1726.1014 455.500 455.500
+ống tủy bằng Gutta percha
+nguội [răng số 1, 2, 3]
+Điều trị tủy răng và hàn kín
+hệ thống ống tủy bằng Gutta
+2037 03.1848.1014 455.500
+percha có sử dụng trâm xoay
+máy [răng số 1, 2, 3]
+Điều trị tủy răng và hàn kín
+2038 03.1858.1014 hệ thống ống tủy bằng Gutta 455.500
+percha nguội [răng số 1, 2, 3]
+Điều trị tủy răng và hàn kín
+hệ thống ống tủy bằng Gutta
+2039 03.1859.1014 percha nguội có sử dụng 455.500
+châm xoay cầm tay [răng số
+1, 2, 3]
+Điều trị tủy răng có sử dụng
+siêu âm và hàn kín hệ thống
+2040 16.0044.1014 455.500
+ống tủy bằng Gutta percha
+nguội [răng số 1, 2, 3]
+Điều trị tủy răng và hàn kín
+2041 16.0050.1014 hệ thống ống tủy bằng Gutta 455.500
+percha nguội [răng số 1, 2, 3]
+Điều trị tủy răng và hàn kín
+hệ thống ống tủy bằng Gutta
+2042 16.0052.1014 455.500
+percha nguội có sử dụng trâm
+xoay cầm tay [răng số 1, 2, 3]
+Điều trị tủy răng và hàn kín
+hệ thống ống tủy bằng Gutta
+2043 16.0054.1014 455.500
+percha nguội có sử dụng trâm
+xoay máy [răng số 1, 2, 3]
+Điều trị tủy răng có sử dụng
+siêu âm và hàn kín hệ thống
+2044 03.1726.1015 991.000 991.000
+ống tủy bằng Gutta percha
+nguội [răng số 6,7 hàm trên]
+Điều trị tủy răng và hàn kín
+hệ thống ống tủy bằng Gutta
+2045 03.1848.1015 991.000
+percha có sử dụng trâm xoay
+máy [răng số 6,7 hàm trên]
+Điều trị tủy răng và hàn kín
+2046 03.1858.1015 991.000
+hệ thống ống tủy bằng Gutta
+Ghi chú: Bảng giá áp dụng theo Phụ lục số 06 Nghị quyết số 45/2024/NQ-HĐND ngày 10/12/2024 của Hội đồng nhân dân
+Thành phố Hà Nội.
+Bảng giá áp dụng cho người bệnh có thẻ bảo hiểm y tế và không có thẻ bảo hiểm y tế.

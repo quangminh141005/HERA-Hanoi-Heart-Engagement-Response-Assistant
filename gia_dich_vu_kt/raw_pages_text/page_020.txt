@@ -1,0 +1,70 @@
+SỞ Y TẾ HÀ NỘI
+BỆNH VIỆN TIM HÀ NỘI
+MÃ TƯƠNG
+STT DỊCH VỤ KỸ THUẬT CƠ SỞ 1 CƠ SỞ 2 GHI CHÚ
+ĐƯƠNG
+Chụp CLVT mạch máu não Chưa bao gồm thuốc cản
+304 18.0169.0042 1.732.400
+(từ 64-128 dãy) quang.
+Chụp CLVT sọ não có dựng
+Chưa bao gồm thuốc cản
+305 18.0170.0042 hình 3D (từ 64-128 dãy) [có 1.732.400
+quang.
+thuốc cản quang]
+Chụp CLVT sọ não có tiêm
+Chưa bao gồm thuốc cản
+306 18.0166.0042 thuốc cản quang (từ 64-128 1.732.400
+quang.
+dãy)
+Chụp CLVT tai - xương đá có
+Chưa bao gồm thuốc cản
+307 18.0175.0042 tiêm thuốc cản quang (từ 64- 1.732.400
+quang.
+128 dãy)
+Chụp CLVT tưới máu não
+Chưa bao gồm thuốc cản
+308 18.0168.0042 (CT perfusion) (từ 64-128 1.732.400
+quang.
+dãy)
+Chụp cắt lớp vi tính bụng-tiểu
+khung thường quy (từ 64-128
+309 18.0232.0043 1.486.800
+dãy) [không có thuốc cản
+quang]
+Chụp cắt lớp vi tính cột sống
+310 18.0268.0043 cổ không tiêm thuốc cản 1.486.800
+quang (từ 64-128 dãy)
+Chụp cắt lớp vi tính cột sống
+311 18.0270.0043 ngực không tiêm thuốc cản 1.486.800
+quang (từ 64-128 dãy)
+Chụp cắt lớp vi tính cột sống
+312 18.0272.0043 thắt lưng không tiêm thuốc 1.486.800
+cản quang (từ 64-128 dãy)
+Chụp cắt lớp vi tính hệ tiết
+niệu thường quy (từ 64-128
+313 18.0234.0043 1.486.800
+dãy) [không có thuốc cản
+quang]
+Chụp cắt lớp vi tính khớp
+314 18.0274.0043 thường quy không tiêm thuốc 1.486.800
+cản quang (từ 64-128 dãy)
+Chụp cắt lớp vi tính lồng
+315 18.0200.0043 ngực không tiêm thuốc cản 1.486.800
+quang (từ 64-128 dãy)
+Chụp cắt lớp vi tính nội soi
+ảo cây phế quản (từ 64-128
+316 18.0204.0043 1.486.800
+dãy) [không có thuốc cản
+quang]
+Chụp cắt lớp vi tính phổi độ
+317 18.0202.0043 phân giải cao (từ 64-128 dãy) 1.486.800
+[không có thuốc cản quang]
+Chụp cắt lớp vi tính ruột non
+(entero-scan) không dùng
+318 18.0239.0043 1.486.800
+sonde (từ 64-128 dãy) [không
+có thuốc cản quang]
+319 18.0231.0043 Chụp cắt lớp vi tính tầng trên 1.486.800
+Ghi chú: Bảng giá áp dụng theo Phụ lục số 06 Nghị quyết số 45/2024/NQ-HĐND ngày 10/12/2024 của Hội đồng nhân dân
+Thành phố Hà Nội.
+Bảng giá áp dụng cho người bệnh có thẻ bảo hiểm y tế và không có thẻ bảo hiểm y tế.

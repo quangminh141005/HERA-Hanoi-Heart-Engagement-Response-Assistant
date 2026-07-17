@@ -1,0 +1,66 @@
+SỞ Y TẾ HÀ NỘI
+BỆNH VIỆN TIM HÀ NỘI
+MÃ TƯƠNG
+STT DỊCH VỤ KỸ THUẬT CƠ SỞ 1 CƠ SỞ 2 GHI CHÚ
+ĐƯƠNG
+Định lượng IgG
+2457 23.0095.1527 67.300 67.300
+(Immunoglobuline G) [Máu]
+Định lượng IgM
+2458 23.0096.1527 67.300 67.300
+(Immunoglobuline M) [Máu]
+2459 23.0239.1528 Định lượng Inhibin A 246.400
+2460 23.0098.1529 Định lượng Insulin [Máu] 84.100 84.100
+2461 23.0101.1530 Định lượng Kappa [Máu] 100.900
+2462 01.0286.1531 Đo các chất khí trong máu 224.400 224.400
+2463 23.0103.1531 Xét nghiệm Khí máu [Máu] 224.400 224.400
+2464 01.0287.1532 Đo lactat trong máu 100.900 100.900
+2465 03.0216.1532 Đo lactat trong máu 100.900
+Định lượng Lactat (Acid
+2466 23.0104.1532 100.900 100.900
+Lactic) [Máu]
+2467 23.0105.1533 Định lượng Lambda [Máu] 100.900
+Đo hoạt độ LDH (Lactat
+2468 23.0218.1534 dehydrogenase) [dịch chọc 28.000 28.000
+dò]
+Đo hoạt độ LDH (Lactat
+2469 23.0111.1534 28.000 28.000
+dehydrogenase) [Máu]
+Định lượng LH (Luteinizing
+2470 23.0110.1535 84.100 84.100
+Hormone) [Máu]
+2471 23.0109.1536 Đo hoạt độ Lipase [Máu] 61.700 61.700
+2472 23.0240.1537 Maclagan 16.800
+2473 23.0117.1538 Định lượng Myoglobin [Máu] 95.300 95.300
+Định lượng NSE (Neuron
+2474 23.0120.1541 200.300 200.300
+Specific Enolase) [Máu]
+2475 23.0242.1542 Paracetamol 39.200
+2476 23.0243.1543 Phản ứng cố định bổ thể 33.600
+2477 23.0244.1544 Phản ứng CRP 22.400
+2478 23.0127.1545 Định lượng Phenytoin [Máu] 84.100
+Định lượng yếu tố tân tạo
+2479 23.0170.1546 mạch máu PLGF (Placental 761.300 761.300
+Growth Factor) [Máu]
+Định lượng Pre-albumin
+2480 23.0129.1547 100.900 100.900
+[Máu]
+Định lượng proBNP (NT-
+2481 23.0121.1548 424.700 424.700
+proBNP) [Máu]
+Định lượng Pro-calcitonin
+2482 23.0130.1549 414.700 414.700
+[Máu]
+Định lượng Progesteron
+2483 23.0134.1550 84.100 84.100
+[Máu]
+Định lượng IGFBP-3 (Insulin
+2484 23.0097.1551 like growth factor binding 363.600 363.600
+protein 3) [Máu]
+Định lượng Pro-GRP (Pro-
+2485 23.0137.1551 Gastrin-Releasing Peptide) 363.600 363.600
+[Máu]
+2486 23.0131.1552 Định lượng Prolactin [Máu] 78.500 78.500
+Ghi chú: Bảng giá áp dụng theo Phụ lục số 06 Nghị quyết số 45/2024/NQ-HĐND ngày 10/12/2024 của Hội đồng nhân dân
+Thành phố Hà Nội.
+Bảng giá áp dụng cho người bệnh có thẻ bảo hiểm y tế và không có thẻ bảo hiểm y tế.

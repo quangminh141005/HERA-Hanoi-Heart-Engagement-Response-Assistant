@@ -1,0 +1,68 @@
+SỞ Y TẾ HÀ NỘI
+BỆNH VIỆN TIM HÀ NỘI
+MÃ TƯƠNG
+STT DỊCH VỤ KỸ THUẬT CƠ SỞ 1 CƠ SỞ 2 GHI CHÚ
+ĐƯƠNG
+thuật Button hole)
+1049 02.0223.0155 Nối thông động - tĩnh mạch 1.176.100
+Nong niệu đạo và đặt sonde
+1050 02.0211.0156 273.500
+tiểu
+1051 01.0165.0158 Rửa bàng quang lấy máu cục 230.500 230.500 Chưa bao gồm hóa chất.
+Rửa bàng quang ở người
+1052 01.0336.0158 bệnh hồi sức cấp cứu và 230.500 230.500 Chưa bao gồm hóa chất.
+chống độc
+1053 02.0233.0158 Rửa bàng quang 230.500 230.500 Chưa bao gồm hóa chất.
+1054 02.0232.0158 Rửa bàng quang lấy máu cục 230.500 230.500 Chưa bao gồm hóa chất.
+1055 03.0131.0158 Rửa bàng quang lấy máu cục 230.500 Chưa bao gồm hóa chất.
+1056 01.0218.0159 Rửa dạ dày cấp cứu 152.000 152.000
+1057 02.0313.0159 Rửa dạ dày cấp cứu 152.000 152.000
+1058 03.0168.0159 Rửa dạ dày cấp cứu 152.000 152.000
+Rửa dạ dày loại bỏ chất độc
+1059 01.0219.0160 622.500 622.500
+bằng hệ thống kín
+Rửa dạ dày loại bỏ chất độc
+1060 03.0169.0160 622.500
+bằng hệ thống kín
+1061 02.0062.0161 Rửa phổi toàn bộ 8.858.800 Đã bao gồm thuốc gây mê
+Rửa toàn bộ hệ thống tiêu hóa
+1062 01.0220.0162 880.200 880.200
+(dạ dày, tiểu tràng, đại tràng)
+Rửa toàn bộ hệ thống tiêu hóa
+1063 03.0153.0162 880.200
+(dạ dày, tiểu tràng, đại tràng)
+1064 22.0499.0163 Rút máu để điều trị 289.400 289.400
+1065 02.0231.0164 Rút catheter đường hầm 194.700
+Rút ống dẫn lưu màng phổi,
+1066 02.0061.0164 194.700 194.700
+ống dẫn lưu ổ áp xe
+Rút sonde dẫn lưu bể thận
+1067 02.0227.0164 194.700
+qua da
+Rút sonde dẫn lưu tụ dịch -
+1068 02.0228.0164 194.700
+máu quanh thận
+Rút sonde dẫn lưu màng phổi,
+1069 03.2331.0164 194.700
+sonde dẫn lưu ổ áp xe
+Chọc dẫn lưu ổ áp xe dưới
+1070 01.0244.0165 659.900 659.900 Chưa bao gồm ống thông.
+siêu âm
+Chọc hút dẫn lưu nang giả tụy
+1071 01.0355.0165 dưới hướng dẫn của siêu âm 659.900 Chưa bao gồm ống thông.
+trong hồi sức cấp cứu
+Dẫn lưu bể thận qua da dưới
+1072 02.0182.0165 659.900 Chưa bao gồm ống thông.
+hướng dẫn của siêu âm
+Dẫn lưu nang thận dưới
+1073 02.0181.0165 659.900 Chưa bao gồm ống thông.
+hướng dẫn siêu âm
+Siêu âm can thiệp - đặt ống
+1074 02.0317.0165 659.900 Chưa bao gồm ống thông.
+thông dẫn lưu ổ áp xe
+Đặt dẫn lưu ổ dịch/áp xe ổ
+1075 03.2337.0165 659.900 Chưa bao gồm ống thông.
+bụng sau mổ dưới siêu âm
+Ghi chú: Bảng giá áp dụng theo Phụ lục số 06 Nghị quyết số 45/2024/NQ-HĐND ngày 10/12/2024 của Hội đồng nhân dân
+Thành phố Hà Nội.
+Bảng giá áp dụng cho người bệnh có thẻ bảo hiểm y tế và không có thẻ bảo hiểm y tế.

@@ -1,0 +1,72 @@
+SỞ Y TẾ HÀ NỘI
+BỆNH VIỆN TIM HÀ NỘI
+MÃ TƯƠNG
+STT DỊCH VỤ KỸ THUẬT CƠ SỞ 1 CƠ SỞ 2 GHI CHÚ
+ĐƯƠNG
+(ICD) máy phá rung.
+Cấy máy phá rung tự động Chưa bao gồm máy tạo nhịp,
+1535 02.0455.0391 1.879.900 1.879.900
+(ICD) loại 1 buồng máy phá rung.
+Cấy máy phá rung tự động Chưa bao gồm máy tạo nhịp,
+1536 02.0456.0391 1.879.900 1.879.900
+(ICD) loại 2 buồng máy phá rung.
+Cấy máy tạo nhịp vĩnh viễn
+Chưa bao gồm máy tạo nhịp,
+1537 02.0071.0391 điều trị các rối loạn nhịp 1.879.900 1.879.900
+máy phá rung.
+chậm
+Cấy máy tạo nhịp vĩnh viễn Chưa bao gồm máy tạo nhịp,
+1538 02.0072.0391 1.879.900 1.879.900
+điều trị tái đồng bộ tim (CRT) máy phá rung.
+Cấy máy tạo nhịp vĩnh viễn Chưa bao gồm máy tạo nhịp,
+1539 02.0452.0391 1.879.900 1.879.900
+loại 1 buồng máy phá rung.
+Cấy máy tạo nhịp vĩnh viễn Chưa bao gồm máy tạo nhịp,
+1540 02.0453.0391 1.879.900 1.879.900
+loại 2 buồng máy phá rung.
+Cấy máy tạo nhịp vĩnh viễn Chưa bao gồm máy tạo nhịp,
+1541 02.0454.0391 1.879.900 1.879.900
+loại 3 buồng máy phá rung.
+Đặt máy tạo nhịp tạm thời với Chưa bao gồm máy tạo nhịp,
+1542 02.0077.0391 1.879.900 1.879.900
+điện cực trong buồng tim máy phá rung.
+Kích thích tim vượt tần số
+1543 02.0098.0391 1.879.900 1.879.900
+điều trị loạn nhịp
+Tạo nhịp tim cấp cứu với điện
+1544 02.0460.0391 cực trong buồng tim dưới 1.879.900 1.879.900
+màn huỳnh quang
+Tạo nhịp tim cấp cứu với điện
+1545 02.0459.0391 cực trong buồng tim tại 1.879.900 1.879.900
+giường
+Thay máy tạo nhịp tim, cập Chưa bao gồm máy tạo nhịp,
+1546 02.0464.0391 1.879.900 1.879.900
+nhật máy tạo nhịp tim máy phá rung.
+Chưa bao gồm máy tạo nhịp,
+1547 03.2267.0391 Cấy máy tạo nhịp vĩnh viễn 1.879.900 1.879.900
+máy phá rung.
+Đặt máy tạo nhịp tạm thời Chưa bao gồm máy tạo nhịp,
+1548 03.2290.0391 1.879.900 1.879.900
+trong tim máy phá rung.
+Đặt máy tạo nhịp trong cơ
+Chưa bao gồm máy tạo nhịp,
+1549 03.2266.0391 thể, điện cực trong tim hoặc 1.879.900 1.879.900
+máy phá rung.
+điện cực màng trên tim
+Đặt, theo dõi, xử trí máy tạo
+Chưa bao gồm máy tạo nhịp,
+1550 03.0007.0391 nhịp tim vĩnh viễn bằng điện 1.879.900
+máy phá rung.
+cực trong tim (một ổ)
+Kích thích tim vượt tần số
+1551 03.2312.0391 1.879.900 1.879.900
+điều trị loạn nhịp
+Kích thích vĩnh viễn bằng
+Chưa bao gồm máy tạo nhịp,
+1552 03.0001.0391 máy tạo nhịp trong cơ thể (hai 1.879.900
+máy phá rung.
+ổ)
+1553 03.3119.0391 Phẫu thuật đặt máy tạo nhịp 1.879.900 Chưa bao gồm máy tạo nhịp,
+Ghi chú: Bảng giá áp dụng theo Phụ lục số 06 Nghị quyết số 45/2024/NQ-HĐND ngày 10/12/2024 của Hội đồng nhân dân
+Thành phố Hà Nội.
+Bảng giá áp dụng cho người bệnh có thẻ bảo hiểm y tế và không có thẻ bảo hiểm y tế.

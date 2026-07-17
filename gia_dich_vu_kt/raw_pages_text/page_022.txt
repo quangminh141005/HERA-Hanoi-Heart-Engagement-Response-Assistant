@@ -1,0 +1,80 @@
+SỞ Y TẾ HÀ NỘI
+BỆNH VIỆN TIM HÀ NỘI
+MÃ TƯƠNG
+STT DỊCH VỤ KỸ THUẬT CƠ SỞ 1 CƠ SỞ 2 GHI CHÚ
+ĐƯƠNG
+Chụp cắt lớp vi tính bụng -
+tiểu khung thường quy (từ ≥ Chưa bao gồm thuốc cản
+332 18.0244.0046 3.035.600
+256 dãy) [có thuốc cản quang.
+quang]
+Chụp cắt lớp vi tính cột sống
+Chưa bao gồm thuốc cản
+333 18.0283.0046 cổ có tiêm thuốc cản quang 3.035.600
+quang.
+(từ ≥256 dãy)
+Chụp cắt lớp vi tính cột sống
+Chưa bao gồm thuốc cản
+334 18.0285.0046 ngực có tiêm thuốc cản quang 3.035.600
+quang.
+(từ ≥256 dãy)
+Chụp cắt lớp vi tính cột sống
+Chưa bao gồm thuốc cản
+335 18.0287.0046 thắt lưng có tiêm thuốc cản 3.035.600
+quang.
+quang (từ ≥256 dãy)
+Chụp cắt lớp vi tính đại tràng
+(colo-scan) dùng dịch hoặc Chưa bao gồm thuốc cản
+336 18.0253.0046 3.035.600
+hơi có nội soi ảo (từ ≥ 256 quang.
+dãy) [có thuốc cản quang]
+Chụp cắt lớp vi tính động Chưa bao gồm thuốc cản
+337 18.0215.0046 3.035.600
+mạch chủ ngực (từ ≥ 256 dãy) quang.
+Chụp cắt lớp vi tính động Chưa bao gồm thuốc cản
+338 18.0254.0046 3.035.600
+mạch chủ-chậu (từ ≥ 256 dãy) quang.
+Chụp cắt lớp vi tính động Chưa bao gồm thuốc cản
+339 18.0214.0046 3.035.600
+mạch phổi (từ ≥ 256 dãy) quang.
+Chụp cắt lớp vi tính động
+mạch vành, tim có dùng Chưa bao gồm thuốc cản
+340 18.0216.0046 3.035.600
+thuốc beta block (từ ≥ 256 quang.
+dãy)
+Chụp cắt lớp vi tính động
+mạch vành, tim không dùng Chưa bao gồm thuốc cản
+341 18.0217.0046 3.035.600
+thuốc beta block (từ ≥ 256 quang.
+dãy)
+Chụp cắt lớp vi tính gan có
+dựng hình đường mật (từ ≥ Chưa bao gồm thuốc cản
+342 18.0249.0046 3.035.600
+256 dãy) [có thuốc cản quang.
+quang]
+Chụp cắt lớp vi tính hệ tiết
+niệu có khảo sát mạch thận Chưa bao gồm thuốc cản
+343 18.0248.0046 3.035.600
+và/hoặc dựng hình đường bài quang.
+xuất (từ ≥ 256 dãy)
+Chụp cắt lớp vi tính hệ tiết
+Chưa bao gồm thuốc cản
+344 18.0246.0046 niệu thường quy (từ ≥ 256 3.035.600
+quang.
+dãy) [có thuốc cản quang]
+Chụp cắt lớp vi tính khớp có
+Chưa bao gồm thuốc cản
+345 18.0290.0046 tiêm thuốc cản quang vào ổ 3.035.600
+quang.
+khớp (từ ≥256 dãy)
+Chụp cắt lớp vi tính khớp
+Chưa bao gồm thuốc cản
+346 18.0289.0046 thường quy có tiêm thuốc cản 3.035.600
+quang.
+quang (từ ≥256 dãy)
+Chụp cắt lớp vi tính lồng Chưa bao gồm thuốc cản
+347 18.0210.0046 3.035.600
+ngực có tiêm thuốc cản quang quang.
+Ghi chú: Bảng giá áp dụng theo Phụ lục số 06 Nghị quyết số 45/2024/NQ-HĐND ngày 10/12/2024 của Hội đồng nhân dân
+Thành phố Hà Nội.
+Bảng giá áp dụng cho người bệnh có thẻ bảo hiểm y tế và không có thẻ bảo hiểm y tế.

@@ -1,0 +1,67 @@
+SỞ Y TẾ HÀ NỘI
+BỆNH VIỆN TIM HÀ NỘI
+MÃ TƯƠNG
+STT DỊCH VỤ KỸ THUẬT CƠ SỞ 1 CƠ SỞ 2 GHI CHÚ
+ĐƯƠNG
+Định lượng CEA (Carcino
+2348 23.0039.1476 89.700 89.700
+Embryonic Antigen) [Máu]
+Định lượng Ceruloplasmin
+2349 23.0038.1477 72.900 72.900
+[Máu]
+Định lượng CK-MB mass
+2350 23.0044.1478 (Isozym MB of Creatine 39.200
+kinase mass) [Máu]
+Đo hoạt độ CK-MB ((Isozym
+2351 23.0043.1478 MB of Creatine kinase) 39.200 39.200
+[Máu]
+2352 23.0048.1479 Định lượng bổ thể C3 [Máu] 61.700 61.700
+2353 23.0049.1479 Định lượng bổ thể C4 [Máu] 61.700 61.700
+2354 23.0046.1480 Định lượng Cortisol (máu) 95.300 95.300
+2355 23.0183.1480 Định lượng Cortisol (niệu) 95.300 95.300
+Định lượng Fructosamin
+2356 23.0064.1480 95.300 95.300
+[Máu]
+2357 22.0094.1481 Định lượng Peptid - C 178.300
+2358 23.0227.1481 C-Peptid 178.300
+2359 23.0045.1481 Định lượng C-Peptid [Máu] 178.300 178.300
+Đo hoạt độ CK (Creatine
+2360 23.0042.1482 28.000 28.000
+kinase) [Máu]
+Định lượng CRP (C-Reactive
+2361 23.0228.1483 56.100 56.100
+Protein)
+Định lượng CRP hs (C-
+2362 23.0050.1484 Reactive Protein high 56.100 56.100
+sesitivity) [Máu]
+2363 22.0081.1485 Định lượng Cyclosporin A 336.600
+Định lượng Cyclosporin
+2364 23.0053.1485 336.600
+[Máu]
+2365 23.0052.1486 Định lượng Cyfra 21-1 [Máu] 100.900 100.900
+Áp dụng cho cả trường hợp
+Điện giải đồ (Na, K, Cl)
+2366 23.0058.1487 30.200 30.200 cho kết quả nhiều hơn 3 chỉ
+[Máu]
+số
+2367 23.0056.1488 Định lượng Digoxin [Máu] 89.700 89.700
+Định lượng 25OH Vitamin D
+2368 23.0055.1489 302.500 302.500
+(D3) [Máu]
+Định lượng Alpha1
+2369 23.0008.1490 67.300 67.300
+Antitrypsin [Máu]
+Định lượng Anti CCP (anti-
+2370 23.0013.1491 cyclic citrullinated peptide 324.500 324.500
+antibodies) [Máu]
+Định lượng Beta Crosslap
+2371 23.0023.1492 144.200 144.200
+[Máu]
+Không thanh toán đối với các
+Định lượng Bilirubin gián xét nghiệm Bilirubin gián tiếp;
+2372 23.0026.1493 22.400 22.400
+tiếp [Máu] Tỷ lệ A/G là những xét nghiệm
+có thể ngoại suy được.
+Ghi chú: Bảng giá áp dụng theo Phụ lục số 06 Nghị quyết số 45/2024/NQ-HĐND ngày 10/12/2024 của Hội đồng nhân dân
+Thành phố Hà Nội.
+Bảng giá áp dụng cho người bệnh có thẻ bảo hiểm y tế và không có thẻ bảo hiểm y tế.

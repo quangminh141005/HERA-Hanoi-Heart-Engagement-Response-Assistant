@@ -1,0 +1,64 @@
+SỞ Y TẾ HÀ NỘI
+BỆNH VIỆN TIM HÀ NỘI
+MÃ TƯƠNG
+STT DỊCH VỤ KỸ THUẬT CƠ SỞ 1 CƠ SỞ 2 GHI CHÚ
+ĐƯƠNG
+Định lượng PSA toàn phần
+2487 23.0139.1553 (Total prostate-Specific 95.300 95.300
+Antigen) [Máu]
+Định lượng PSA tự do (Free
+2488 23.0138.1554 prostate-Specific Antigen) 89.700 89.700
+[Máu]
+Định lượng PTH (Parathyroid
+2489 23.0140.1555 246.400 246.400
+Hormon) [Máu]
+2490 23.0245.1556 Quinin/Cloroquin/Mefloquin 84.100
+Định lượng RF (Rheumatoid
+2491 23.0142.1557 39.200 39.200
+Factor) [Máu]
+2492 23.0246.1558 Định lượng Salicylate 78.500
+Định lượng SCC (Squamous
+2493 23.0144.1559 cell carcinoma antigen) 212.300 212.300
+[Máu]
+Định lượng yếu tố kháng tân
+tạo mạch máu sFlt-1 (soluble
+2494 23.0171.1560 761.300 761.300
+FMS like tyrosine kinase-1)
+[Máu]
+Định lượng FT3 (Free
+2495 23.0068.1561 67.300 67.300
+Triiodothyronine) [Máu]
+Định lượng FT4 (Free
+2496 23.0069.1561 67.300 67.300
+Thyroxine) [Máu]
+Định lượng T3 (Tri
+2497 23.0147.1561 67.300 67.300
+iodothyronine) [Máu]
+Định lượng T4 (Thyroxine)
+2498 23.0148.1561 67.300 67.300
+[Máu]
+Định lượng Tacrolimus
+2499 23.0150.1562 754.300
+[Máu]
+2500 23.0151.1563 Định lượng Testosterol [Máu] 97.500 97.500
+Định lượng Theophylline
+2501 23.0155.1564 84.100 84.100
+[Máu]
+Định lượng Tg
+2502 23.0154.1565 183.300 183.300
+(Thyroglobulin) [Máu]
+Định lượng TRAb (TSH
+2503 23.0156.1566 424.700 424.700
+Receptor Antibodies) [Máu]
+2504 22.0089.1567 Định lượng Transferin 67.300 67.300
+2505 22.0087.1567 Độ bão hòa Transferin 67.300 67.300
+2506 23.0157.1567 Định lượng Transferrin [Máu] 67.300 67.300
+Định lượng Tricyclic anti
+2507 23.0247.1568 84.100
+depressant
+2508 23.0161.1569 Định lượng Troponin I [Máu] 78.500
+2509 23.0159.1569 Định lượng Troponin T [Máu] 78.500
+2510 23.0160.1569 Định lượng Troponin T hs 78.500 78.500
+Ghi chú: Bảng giá áp dụng theo Phụ lục số 06 Nghị quyết số 45/2024/NQ-HĐND ngày 10/12/2024 của Hội đồng nhân dân
+Thành phố Hà Nội.
+Bảng giá áp dụng cho người bệnh có thẻ bảo hiểm y tế và không có thẻ bảo hiểm y tế.

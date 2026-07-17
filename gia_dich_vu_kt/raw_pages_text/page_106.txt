@@ -1,0 +1,71 @@
+SỞ Y TẾ HÀ NỘI
+BỆNH VIỆN TIM HÀ NỘI
+MÃ TƯƠNG
+STT DỊCH VỤ KỸ THUẬT CƠ SỞ 1 CƠ SỞ 2 GHI CHÚ
+ĐƯƠNG
+người
+Kỹ thuật tập đứng và đi cho
+1376 17.0034.0267 59.300
+người bệnh liệt nửa người
+1377 17.0090.0267 Tập điều hợp vận động 59.300
+Tập ngồi thăng bằng tĩnh và
+1378 17.0037.0267 59.300
+động
+Tập tạo thuận thần kinh cơ
+1379 17.0062.0267 59.300
+cảm thụ bản thể chức năng
+1380 17.0056.0267 Tập vận động có kháng trở 59.300
+1381 17.0053.0267 Tập vận động có trợ giúp 59.300
+1382 17.0052.0267 Tập vận động thụ động 59.300
+Tập đi trên máy thảm lăn
+1383 17.0046.0268 33.400
+(Treadmill)
+1384 17.0044.0268 Tập đi với gậy 33.400
+Tập đi với nạng (nạng nách,
+1385 17.0043.0268 33.400
+nạng khuỷu)
+1386 17.0047.0268 Tập lên, xuống cầu thang 33.400
+Tập vận động với các dụng cụ
+1387 17.0251.0268 33.400
+trợ giúp
+1388 03.0903.0270 Tập với xe đạp tập 14.700
+1389 17.0071.0270 Tập với xe đạp tập 14.700
+Thuỷ châm điều trị đau đầu,
+1390 03.0549.0271 77.100 Chưa bao gồm thuốc.
+đau nửa đầu
+1391 03.0580.0271 Thuỷ châm điều trị đau lưng 77.100 Chưa bao gồm thuốc.
+1392 03.0550.0271 Thuỷ châm điều trị mất ngủ 77.100 Chưa bao gồm thuốc.
+Thuỷ châm điều trị viêm
+1393 03.0582.0271 77.100 Chưa bao gồm thuốc.
+quanh khớp vai
+1394 08.0006.0271 Thủy châm 77.100 Chưa bao gồm thuốc.
+Thuỷ châm điều trị đau đầu,
+1395 08.0323.0271 77.100 Chưa bao gồm thuốc.
+đau nửa đầu
+1396 08.0359.0271 Thuỷ châm điều trị đau dây V 77.100 Chưa bao gồm thuốc.
+Thuỷ châm điều trị đau do
+1397 08.0376.0271 77.100 Chưa bao gồm thuốc.
+thoái hóa khớp
+1398 08.0378.0271 Thuỷ châm điều trị đau lưng 77.100 Chưa bao gồm thuốc.
+Thuỷ châm điều trị hội chứng
+1399 08.0322.0271 77.100 Chưa bao gồm thuốc.
+thắt lưng- hông
+Thuỷ châm điều trị liệt dây
+1400 08.0356.0271 77.100 Chưa bao gồm thuốc.
+thần kinh VII ngoại biên
+Thuỷ châm điều trị liệt nửa
+1401 08.0330.0271 người do tai biến mạch máu 77.100 Chưa bao gồm thuốc.
+não
+1402 08.0324.0271 Thuỷ châm điều trị mất ngủ 77.100 Chưa bao gồm thuốc.
+Thuỷ châm điều trị viêm
+1403 08.0377.0271 77.100 Chưa bao gồm thuốc.
+quanh khớp vai
+Điều trị chứng co thắt nửa
+1404 02.0133.0274 mặt bằng tiêm Botulinum 1.260.800 Chưa bao gồm thuốc
+Toxin A
+Điều trị chứng giật cơ mi mắt
+1405 02.0139.0274 1.260.800 Chưa bao gồm thuốc
+bằng tiêm Botulinum Toxin
+Ghi chú: Bảng giá áp dụng theo Phụ lục số 06 Nghị quyết số 45/2024/NQ-HĐND ngày 10/12/2024 của Hội đồng nhân dân
+Thành phố Hà Nội.
+Bảng giá áp dụng cho người bệnh có thẻ bảo hiểm y tế và không có thẻ bảo hiểm y tế.

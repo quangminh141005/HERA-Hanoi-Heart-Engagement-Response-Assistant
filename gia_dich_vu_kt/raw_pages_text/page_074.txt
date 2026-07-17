@@ -1,0 +1,72 @@
+SỞ Y TẾ HÀ NỘI
+BỆNH VIỆN TIM HÀ NỘI
+MÃ TƯƠNG
+STT DỊCH VỤ KỸ THUẬT CƠ SỞ 1 CƠ SỞ 2 GHI CHÚ
+ĐƯƠNG
+680 03.0084.0077 Chọc thăm dò màng phổi 153.700 153.700
+681 03.2355.0077 Dẫn lưu dịch màng bụng 153.700
+682 03.0164.0077 Dẫn lưu ổ bụng cấp cứu 153.700
+Chọc hút dẫn lưu dịch ổ bụng
+683 01.0356.0078 dưới hướng dẫn của siêu âm 195.900 195.900
+trong điều trị viêm tụy cấp
+Chọc tháo dịch ổ bụng dưới
+684 01.0357.0078 hướng dẫn của siêu âm trong 195.900 195.900
+khoa hồi sức cấp cứu
+Chọc hút mủ màng phổi, ổ áp
+685 02.0432.0078 xe phổi dưới hướng dẫn của 195.900
+siêu âm
+Chọc tháo dịch màng phổi
+686 02.0008.0078 195.900 195.900
+dưới hướng dẫn của siêu âm
+Chọc tháo dịch ổ bụng điều
+687 02.0243.0078 195.900 195.900
+trị
+Siêu âm can thiệp - chọc dịch
+688 02.0322.0078 195.900 195.900
+ổ bụng xét nghiệm
+Siêu âm can thiệp - đặt ống
+689 02.0333.0078 thông dẫn lưu dịch màng 195.900 195.900
+bụng liên tục
+Chọc dò màng phổi dưới
+690 03.2332.0078 195.900
+hướng dẫn của siêu âm
+Chọc tháo dịch màng phổi
+691 03.2333.0078 195.900
+dưới hướng dẫn của siêu âm
+Chọc hút dịch - khí màng
+692 01.0093.0079 162.900 162.900
+phổi bằng kim hay catheter
+693 01.0098.0079 Chọc hút dịch, khí trung thất 162.900 162.900
+694 02.0011.0079 Chọc hút khí màng phổi 162.900 162.900
+Chọc hút dịch khí phế quản
+695 03.0098.0079 162.900
+qua màng nhẫn giáp
+Chọc hút/dẫn lưu khí màng
+696 03.0080.0079 162.900
+phổi áp lực thấp
+Chọc dò màng ngoài tim cấp
+697 01.0041.0081 280.500 280.500
+cứu
+Chọc hút dịch màng ngoài
+698 01.0040.0081 280.500 280.500
+tim dưới siêu âm
+699 02.0075.0081 Chọc dò màng ngoài tim 280.500 280.500
+Chọc dò trung thất dưới
+700 02.0005.0081 280.500 280.500
+hướng dẫn của siêu âm
+Chọc dò và dẫn lưu màng
+701 02.0074.0081 280.500 280.500
+ngoài tim
+702 02.0076.0081 Dẫn lưu màng ngoài tim 280.500 280.500
+Chọc dò màng ngoài tim cấp
+703 03.0039.0081 280.500
+cứu
+Chọc hút dịch màng ngoài
+704 03.0038.0081 280.500
+tim dưới siêu âm
+Dẫn lưu dịch màng ngoài tim
+705 03.0018.0081 280.500
+cấp cứu
+Ghi chú: Bảng giá áp dụng theo Phụ lục số 06 Nghị quyết số 45/2024/NQ-HĐND ngày 10/12/2024 của Hội đồng nhân dân
+Thành phố Hà Nội.
+Bảng giá áp dụng cho người bệnh có thẻ bảo hiểm y tế và không có thẻ bảo hiểm y tế.

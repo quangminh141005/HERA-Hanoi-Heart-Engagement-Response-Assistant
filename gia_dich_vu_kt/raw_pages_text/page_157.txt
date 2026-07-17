@@ -1,0 +1,65 @@
+SỞ Y TẾ HÀ NỘI
+BỆNH VIỆN TIM HÀ NỘI
+MÃ TƯƠNG
+STT DỊCH VỤ KỸ THUẬT CƠ SỞ 1 CƠ SỞ 2 GHI CHÚ
+ĐƯƠNG
+percha nguội [răng số 6,7
+hàm trên]
+Điều trị tủy răng và hàn kín
+hệ thống ống tủy bằng Gutta
+2047 03.1859.1015 percha nguội có sử dụng 991.000
+châm xoay cầm tay [răng số
+6,7 hàm trên]
+Điều trị tủy răng có sử dụng
+siêu âm và hàn kín hệ thống
+2048 16.0044.1015 991.000
+ống tủy bằng Gutta percha
+nguội [răng số 6,7 hàm trên]
+Điều trị tủy răng và hàn kín
+hệ thống ống tủy bằng Gutta
+2049 16.0050.1015 991.000
+percha nguội [răng số 6,7
+hàm trên]
+Điều trị tủy răng và hàn kín
+hệ thống ống tủy bằng Gutta
+2050 16.0052.1015 percha nguội có sử dụng trâm 991.000
+xoay cầm tay [răng số 6,7
+hàm trên]
+Điều trị tủy răng và hàn kín
+hệ thống ống tủy bằng Gutta
+2051 16.0054.1015 percha nguội có sử dụng trâm 991.000
+xoay máy [răng số 6,7 hàm
+trên]
+Điều trị tủy răng sữa [một
+2052 03.1944.1016 296.100 296.100
+chân]
+Điều trị tủy răng sữa [một
+2053 16.0232.1016 296.100
+chân]
+Điều trị tủy răng sữa [nhiều
+2054 03.1944.1017 415.500 415.500
+chân]
+Điều trị tủy răng sữa [nhiều
+2055 16.0232.1017 415.500
+chân]
+Phục hồi cổ răng bằng
+2056 03.1931.1018 369.500 369.500
+Composite
+Phục hồi cổ răng bằng
+2057 03.1930.1018 369.500
+Glassionomer Cement (GiC)
+Phục hồi cổ răng bằng
+2058 16.0072.1018 369.500
+Composite
+Phục hồi cổ răng bằng
+2059 16.0071.1018 369.500
+GlassIonomer Cement
+Điều trị răng sữa sâu ngà
+2060 03.1954.1019 phục hồi bằng Glassionomer 112.500
+Cement (GiC)
+Điều trị răng sữa sâu ngà
+2061 16.0236.1019 112.500
+phục hồi bằng GlassIonomer
+Ghi chú: Bảng giá áp dụng theo Phụ lục số 06 Nghị quyết số 45/2024/NQ-HĐND ngày 10/12/2024 của Hội đồng nhân dân
+Thành phố Hà Nội.
+Bảng giá áp dụng cho người bệnh có thẻ bảo hiểm y tế và không có thẻ bảo hiểm y tế.

@@ -1,0 +1,67 @@
+SỞ Y TẾ HÀ NỘI
+BỆNH VIỆN TIM HÀ NỘI
+MÃ TƯƠNG
+STT DỊCH VỤ KỸ THUẬT CƠ SỞ 1 CƠ SỞ 2 GHI CHÚ
+ĐƯƠNG
+tự động
+2674 24.0155.1696 HAV Ab test nhanh 130.500 130.500
+2675 24.0163.1696 HEV Ab test nhanh 130.500 130.500
+2676 24.0164.1696 HEV IgM test nhanh 130.500 130.500
+Rickettsia Ab miễn dịch tự
+2677 24.0091.1696 130.500 130.500
+động
+2678 24.0249.1697 Rotavirus test nhanh 194.700 194.700
+RSV Ab miễn dịch bán tự
+2679 24.0252.1698 156.600
+động
+Rubella virus IgG miễn dịch
+2680 24.0257.1699 130.500
+bán tự động
+Rubella virus IgG miễn dịch
+2681 24.0258.1699 130.500 130.500
+tự động
+Rubella virus IgM miễn dịch
+2682 24.0255.1700 156.600
+bán tự động
+Rubella virus IgM miễn dịch
+2683 24.0256.1700 156.600 156.600
+tự động
+2684 24.0254.1701 Rubella virus Ab test nhanh 163.600 163.600
+2685 24.0259.1702 Rubella virus Avidity 321.000 321.000
+Entamoeba histolytica(Amip)
+2686 24.0281.1703 194.700
+Ab miễn dịch tự động
+Fasciola (Sán lá gan lớn) Ab
+2687 24.0282.1703 194.700
+miễn dịch bán tự động
+Fasciola (Sán lá gan lớn) Ab
+2688 24.0283.1703 194.700
+miễn dịch tự động
+2689 24.0302.1704 Toxoplasma Avidity 270.800 270.800
+Toxoplasma IgG miễn dịch
+2690 24.0300.1705 130.500
+bán tự động
+Toxoplasma IgG miễn dịch tự
+2691 24.0301.1705 130.500 130.500
+động
+Toxoplasma IgM miễn dịch
+2692 24.0298.1706 130.500
+bán tự động
+Toxoplasma IgM miễn dịch
+2693 24.0299.1706 130.500 130.500
+tự động
+Treponema pallidum RPR
+2694 24.0099.1707 định tính và định lượng [định 95.100 95.100
+lượng]
+Treponema pallidum RPR
+2695 24.0099.1708 định tính và định lượng [định 41.700 41.700
+tính]
+Treponema pallidum TPHA
+2696 24.0100.1709 định tính và định lượng [định 194.700 194.700
+lượng]
+Treponema pallidum TPHA
+2697 24.0100.1710 định tính và định lượng [định 58.600 58.600
+tính]
+Ghi chú: Bảng giá áp dụng theo Phụ lục số 06 Nghị quyết số 45/2024/NQ-HĐND ngày 10/12/2024 của Hội đồng nhân dân
+Thành phố Hà Nội.
+Bảng giá áp dụng cho người bệnh có thẻ bảo hiểm y tế và không có thẻ bảo hiểm y tế.

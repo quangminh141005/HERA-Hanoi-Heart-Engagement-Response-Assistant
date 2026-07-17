@@ -1,0 +1,73 @@
+SỞ Y TẾ HÀ NỘI
+BỆNH VIỆN TIM HÀ NỘI
+BẢNG GIÁ DỊCH VỤ KỸ THUẬT
+DỊCH VỤ KỸ THUẬT VÀ XÉT NGHIỆM
+Đơn vị tính: đồng
+MÃ TƯƠNG
+STT DỊCH VỤ KỸ THUẬT CƠ SỞ 1 CƠ SỞ 2 GHI CHÚ
+ĐƯƠNG
+Siêu âm cấp cứu tại giường
+1 01.0303.0001 58.600 58.600
+bệnh
+Siêu âm dẫn đường đặt
+2 01.0021.0001 58.600 58.600
+catheter động mạch cấp cứu
+Siêu âm dẫn đường đặt
+3 01.0020.0001 58.600 58.600
+catheter tĩnh mạch cấp cứu
+4 01.0092.0001 Siêu âm màng phổi cấp cứu 58.600 58.600
+Siêu âm ổ bụng tại giường
+5 01.0239.0001 58.600 58.600
+cấp cứu
+6 02.0063.0001 Siêu âm màng phổi cấp cứu 58.600 58.600
+7 02.0314.0001 Siêu âm ổ bụng 58.600
+Siêu âm màng ngoài tim cấp
+8 03.0069.0001 58.600 58.600
+cứu
+9 03.0070.0001 Siêu âm màng phổi 58.600 58.600
+Siêu âm các khối u phổi
+10 18.0013.0001 58.600 58.600
+ngoại vi
+11 18.0002.0001 Siêu âm các tuyến nước bọt 58.600 58.600
+Siêu âm cơ phần mềm vùng
+12 18.0003.0001 58.600 58.600
+cổ mặt
+13 18.0059.0001 Siêu âm dương vật 58.600 58.600
+14 18.0004.0001 Siêu âm hạch vùng cổ 58.600 58.600
+Siêu âm hệ tiết niệu (thận,
+15 18.0016.0001 tuyến thượng thận, bàng 58.600 58.600
+quang, tiền liệt tuyến)
+16 18.0006.0001 Siêu âm hốc mắt 58.600 58.600
+Siêu âm khớp (gối, háng,
+17 18.0043.0001 58.600 58.600
+khuỷu, cổ tay….)
+18 18.0011.0001 Siêu âm màng phổi 58.600 58.600
+19 18.0008.0001 Siêu âm nhãn cầu 58.600 58.600
+Siêu âm ổ bụng (gan mật, tụy,
+20 18.0015.0001 58.600 58.600
+lách, thận, bàng quang)
+Siêu âm ống tiêu hóa (dạ dày,
+21 18.0019.0001 58.600 58.600
+ruột non, đại tràng)
+Siêu âm phần mềm (da, tổ
+22 18.0044.0001 58.600 58.600
+chức dưới da, cơ….)
+23 18.0007.0001 Siêu âm qua thóp 58.600 58.600
+Siêu âm thai (thai, nhau thai,
+24 18.0020.0001 58.600 58.600
+nước ối)
+Siêu âm thai nhi trong 3
+25 18.0036.0001 58.600 58.600
+tháng cuối
+Siêu âm thai nhi trong 3
+26 18.0034.0001 58.600 58.600
+tháng đầu
+Siêu âm thai nhi trong 3
+27 18.0035.0001 58.600 58.600
+tháng giữa
+Siêu âm thành ngực (cơ, phần
+28 18.0012.0001 58.600 58.600
+mềm thành ngực)
+Ghi chú: Bảng giá áp dụng theo Phụ lục số 06 Nghị quyết số 45/2024/NQ-HĐND ngày 10/12/2024 của Hội đồng nhân dân
+Thành phố Hà Nội.
+Bảng giá áp dụng cho người bệnh có thẻ bảo hiểm y tế và không có thẻ bảo hiểm y tế.

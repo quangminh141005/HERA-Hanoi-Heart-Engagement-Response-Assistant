@@ -1,0 +1,70 @@
+SỞ Y TẾ HÀ NỘI
+BỆNH VIỆN TIM HÀ NỘI
+MÃ TƯƠNG
+STT DỊCH VỤ KỸ THUẬT CƠ SỞ 1 CƠ SỞ 2 GHI CHÚ
+ĐƯƠNG
+tá tràng có sinh thiết
+Nội soi thực quản, dạ dày, tá
+982 03.1061.0134 tràng có thể kết hợp sinh thiết 493.800 493.800 Đã bao gồm chi phí Test HP
+[có sinh thiết]
+Nội soi thực quản, dạ dày, tá
+983 20.0079.0134 493.800 Đã bao gồm chi phí Test HP
+tràng kết hợp sinh thiết
+Nội soi can thiệp - làm Clo
+984 02.0272.2044 test chẩn đoán nhiễm 317.000 317.000
+H.Pylori
+Nội soi thực quản - dạ dày -
+985 02.0253.0135 276.500 276.500
+tá tràng cấp cứu
+Nội soi thực quản - dạ dày -
+986 02.0305.0135 276.500 276.500
+tá tràng không sinh thiết
+Nội soi thực quản, dạ dày, tá
+987 03.1061.0135 tràng có thể kết hợp sinh thiết 276.500 276.500
+[không sinh thiết]
+Nội soi thực quản ống cứng
+988 15.0232.0135 276.500
+chẩn đoán gây tê/gây mê
+Nội soi thực quản ống mềm
+989 15.0233.0135 276.500
+chẩn đoán gây tê/gây mê
+Nội soi thực quản, dạ dày, tá
+990 20.0080.0135 276.500
+tràng
+Nội soi đại trực tràng toàn bộ
+991 02.0262.0136 468.800
+ống mềm có sinh thiết
+Nội soi đại, trực tràng có thể
+992 03.1066.0136 468.800
+sinh thiết
+993 03.0161.0136 Soi đại tràng sinh thiết 468.800
+Nội soi đại, trực tràng có thể
+994 20.0073.0136 468.800
+sinh thiết
+Nội soi đại trực tràng toàn bộ
+995 02.0259.0137 352.100
+ống mềm không sinh thiết
+996 03.1062.0137 Nội soi đại tràng sigma 352.100
+Soi đại tràng chẩn đoán bằng
+997 03.0158.0137 352.100
+ống soi mềm
+998 20.0081.0137 Nội soi đại tràng sigma 352.100
+Nội soi trực tràng toàn bộ có
+999 02.0293.0138 323.500
+sinh thiết
+1000 02.0256.0139 Nội soi trực tràng ống mềm 215.200
+Nội soi trực tràng ống mềm
+1001 02.0257.0139 215.200
+cấp cứu
+1002 03.0162.0139 Nội soi trực tràng cấp cứu 215.200
+1003 03.1071.0139 Soi trực tràng 215.200
+Nội soi dạ dày - tá tràng điều
+Chưa bao gồm thuốc cầm
+trị chảy máu do ổ loét bằng
+1004 01.0351.0140 798.300 máu, dụng cụ cầm máu (clip,
+tiêm xơ tại đơn vị hồi sức tích
+bộ thắt tĩnh mạch thực quản...)
+cực
+Ghi chú: Bảng giá áp dụng theo Phụ lục số 06 Nghị quyết số 45/2024/NQ-HĐND ngày 10/12/2024 của Hội đồng nhân dân
+Thành phố Hà Nội.
+Bảng giá áp dụng cho người bệnh có thẻ bảo hiểm y tế và không có thẻ bảo hiểm y tế.
