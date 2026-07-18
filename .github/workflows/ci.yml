@@ -2,7 +2,7 @@ name: HERA CI
 
 on:
   push:
-    branches: [main]
+    branches: [main, dev]
   pull_request:
   workflow_dispatch:
 
@@ -198,19 +198,30 @@ jobs:
           severity: CRITICAL
           ignore-unfixed: true
           exit-code: "1"
-      - name: Log in to GHCR for a main-branch release
-        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+      - name: Log in to GHCR for branch images
+        if: github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/dev')
         uses: docker/login-action@v3
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
       - name: Publish the exact images that passed both scans
-        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        if: github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/dev')
         shell: bash
         run: |
           registry_base="ghcr.io/${GITHUB_REPOSITORY,,}"
-          docker tag hera-api:ci "$registry_base/hera-api:$GITHUB_SHA"
-          docker tag hera-web:ci "$registry_base/hera-web:$GITHUB_SHA"
-          docker push "$registry_base/hera-api:$GITHUB_SHA"
-          docker push "$registry_base/hera-web:$GITHUB_SHA"
+          if [[ "$GITHUB_REF" == "refs/heads/main" ]]; then
+            image_tag="$GITHUB_SHA"
+            moving_tag="main"
+          else
+            image_tag="dev-$GITHUB_SHA"
+            moving_tag="dev"
+          fi
+          docker tag hera-api:ci "$registry_base/hera-api:$image_tag"
+          docker tag hera-web:ci "$registry_base/hera-web:$image_tag"
+          docker tag hera-api:ci "$registry_base/hera-api:$moving_tag"
+          docker tag hera-web:ci "$registry_base/hera-web:$moving_tag"
+          docker push "$registry_base/hera-api:$image_tag"
+          docker push "$registry_base/hera-web:$image_tag"
+          docker push "$registry_base/hera-api:$moving_tag"
+          docker push "$registry_base/hera-web:$moving_tag"
