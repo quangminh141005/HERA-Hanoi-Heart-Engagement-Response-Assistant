@@ -84,7 +84,7 @@ Không sửa các dòng này khi mới chạy lần đầu:
 ```dotenv
 ENVIRONMENT=hackathon
 APP_DEBUG=false
-FPT_LLM_MODEL=gpt-oss-20b
+FPT_LLM_MODEL=gpt-oss-120b
 FPT_EMBEDDING_MODEL=Vietnamese_Embedding
 EMBEDDING_DIMENSIONS=1024
 BOOKING_PROVIDER=local_prototype
@@ -146,6 +146,20 @@ bash scripts/deploy.sh --monitoring --model-preflight
 ```
 
 Không lặp lệnh này trong test hoặc restart thường.
+
+Probe trên chỉ kiểm tra kết nối từng model. Trước demo hoặc sau khi đổi key/model,
+chạy thêm đúng một lượt RAG end-to-end có xác nhận rõ ràng:
+
+```bash
+make rag-live-check CONFIRM_RAG_LIVE_CHECK=YES
+```
+
+Lệnh này gửi một câu hỏi tổng hợp không chứa PII và có mã ngẫu nhiên để không ăn
+cache. Nó chỉ thành công khi `gpt-oss-120b` thực hiện routing và generation,
+`Vietnamese_Embedding` phát sinh token thật, câu trả lời có citation,
+`generation_mode=model_validated`, UTF-8 hợp lệ và không tăng metric lỗi provider.
+Nếu hệ thống rơi về deterministic fallback, lệnh trả exit code khác 0. Đây là gate
+RAG thật; không đưa lệnh này vào CI/restart vì nó gọi API trả phí.
 
 ## 3. Chạy nhanh trên Ubuntu server
 
@@ -297,7 +311,7 @@ phối replica và invariant không vượt capacity, sau đó dọn volume test
 
 ## 7. Model và cách dùng dữ liệu
 
-- LLM cố định: `gpt-oss-20b`.
+- LLM cố định: `gpt-oss-120b`.
 - Embedding cố định: `Vietnamese_Embedding`, 1024 chiều.
 - Endpoint: `https://mkp-api.fptcloud.com`, giao thức OpenAI-compatible.
 - Giá, BHYT, lịch và booking đi bằng truy vấn PostgreSQL có cấu trúc.

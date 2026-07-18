@@ -153,7 +153,7 @@ metadata = {
         "git_dirty": None if os.environ["GIT_DIRTY"] == "null" else os.environ["GIT_DIRTY"] == "true",
     },
     "application": {
-        "llm_model": "gpt-oss-20b",
+        "llm_model": "gpt-oss-120b",
         "embedding_model": "Vietnamese_Embedding",
         "embedding_dimensions": 1024,
     },

@@ -42,7 +42,7 @@ APP_DEBUG=false
 ENVIRONMENT=hackathon
 LLM_PROVIDER=openai
 EMBEDDING_PROVIDER=openai
-FPT_LLM_MODEL=gpt-oss-20b
+FPT_LLM_MODEL=gpt-oss-120b
 FPT_EMBEDDING_MODEL=Vietnamese_Embedding
 EMBEDDING_MODEL=Vietnamese_Embedding
 EMBEDDING_DIMENSIONS=1024
@@ -144,7 +144,7 @@ restart có thể làm mất context/cache/counter, không làm mất giá/BHYT/
 | Biến | Giá trị chốt | Quy tắc |
 |---|---|---|
 | `FPT_API_BASE_URL` | `https://mkp-api.fptcloud.com` | OpenAI-compatible endpoint |
-| `FPT_LLM_MODEL` | `gpt-oss-20b` | Không đổi model trong release này |
+| `FPT_LLM_MODEL` | `gpt-oss-120b` | Không đổi model trong release này |
 | `FPT_EMBEDDING_MODEL` | `Vietnamese_Embedding` | Phải khớp metadata seed |
 | `EMBEDDING_MODEL` | `Vietnamese_Embedding` | Tên logic đồng bộ |
 | `EMBEDDING_DIMENSIONS` | `1024` | Sai kích thước làm readiness fail |
@@ -156,14 +156,33 @@ restart có thể làm mất context/cache/counter, không làm mất giá/BHYT/
 | `LLM_RESPONSE_CACHE_MAX_ENTRIES` | `512` | Số entry cache LLM tối đa mỗi worker |
 | `EMBEDDING_TIMEOUT_SECONDS` | `10` | Budget embedding query |
 | `CHAT_OVERALL_TIMEOUT_SECONDS` | `35` | Deadline toàn pipeline chat |
-| `EMERGENCY_MODEL_ASSESSMENT_ENABLED` | `true` | Dùng LLM đánh giá nguy cấp trước khi fallback rule an toàn |
-| `EMERGENCY_MODEL_TIMEOUT_SECONDS` | `2.5` | Timeout riêng cho model emergency classifier |
-| `EMERGENCY_MODEL_MAX_TOKENS` | `80` | Output JSON nhỏ cho classifier nguy cấp |
-| `EMERGENCY_MODEL_CONFIDENCE_THRESHOLD` | `0.62` | Ngưỡng confidence để kích hoạt emergency handoff |
+| `MODEL_ROUTING_ENABLED` | `true` | Dùng một lần gọi LLM để đánh giá đồng thời nguy cấp và intent |
+| `MODEL_ROUTING_TIMEOUT_SECONDS` | `6` | Timeout riêng cho lần phân loại routing với model 120B |
+| `MODEL_ROUTING_MAX_TOKENS` | `1024` | Ngân sách output cho model 120B suy luận và trả JSON routing; không phải số token luôn bị sử dụng |
+| `MODEL_ROUTING_EMERGENCY_CONFIDENCE_THRESHOLD` | `0.62` | Ngưỡng kích hoạt emergency handoff từ model |
+| `MODEL_ROUTING_INTENT_CONFIDENCE_THRESHOLD` | `0.60` | Ngưỡng chấp nhận intent do model chọn |
 | `MODEL_TIMEOUT_SECONDS` | `45` | Chỉ dùng model gateway probe |
 | `MODEL_PROBE_LLM_MAX_TOKENS` | `8` | Token output tối đa cho live LLM probe; tăng nhẹ khi provider trả rỗng |
-| `RAG_TOP_K` | `5` | Số chunk tối đa |
+| `RAG_TOP_K` | `3` | Giới hạn evidence ở ba chunk phù hợp nhất để giảm prompt và latency |
 | `RAG_MIN_CONFIDENCE` | `0.55` | Ngưỡng evidence; không hạ để “cố trả lời” |
+| `RAG_GENERATION_MAX_TOKENS` | `512` | Trần output cho lượt diễn đạt grounded; provider chỉ tính token thực dùng |
+
+Khi `MODEL_ROUTING_ENABLED=true`, HERA che PII trước rồi gửi một request JSON nhỏ tới
+`gpt-oss-120b`. Request này trả về cả đánh giá nguy cấp và intent, vì vậy hệ thống không
+gọi riêng một model emergency rồi lại gọi thêm một model intent. Các intent giá dịch vụ,
+BHYT hộ gia đình và lịch bác sĩ chỉ dùng model để chọn tuyến; nội dung trả lời vẫn đọc từ
+PostgreSQL và được tạo theo dữ liệu có cấu trúc, không để model tự bịa số liệu.
+
+Nếu model routing timeout, lỗi, trả JSON sai hoặc confidence thấp, HERA dùng bộ phân loại
+xác định tại máy với `decision_source=deterministic_fallback`. Nếu model bỏ sót một cụm
+nguy cấp rõ ràng nhưng safety rule phát hiện được, hệ thống ưu tiên handoff và ghi
+`decision_source=deterministic_safety_fallback`. Kết quả model hợp lệ ghi
+`decision_source=model`, kèm `model_emergency_confidence` và
+`model_intent_confidence`. Langfuse nhận một observation metadata-only tên
+`hera.routing.model_assessment`; nội dung hội thoại và PII không nằm trong metadata.
+
+Luồng FAQ/RAG có thể phát sinh thêm một lần gọi LLM để diễn đạt câu trả lời sau bước
+routing. Đây là generation call độc lập, không phải lần phân loại intent thứ hai.
 
 Nginx có `proxy_read_timeout 40s` nên deadline chat 35 giây phải nhỏ hơn lớp proxy.
 Khi model timeout hoặc evidence không đạt, HERA trả fallback/handoff an toàn; không bịa.
@@ -172,14 +191,22 @@ Khi model timeout hoặc evidence không đạt, HERA trả fallback/handoff an 
 hoặc nhiều worker, tổng request tối đa đi vào model xấp xỉ bằng số worker nhân với biến này.
 Vì vậy khi scale ngang, tăng replica trước nhưng không tăng biến này nếu quota model thấp.
 
-Lệnh duy nhất cố ý gọi live model:
+Có hai lệnh cố ý gọi live model và đều yêu cầu xác nhận rõ:
 
 ```bash
+# Probe kết nối LLM và embedding với payload tối thiểu
 make model-preflight CONFIRM_MODEL_PREFLIGHT=YES
+
+# Gate end-to-end: model routing + embedding/RRF + model generation
+make rag-live-check CONFIRM_RAG_LIVE_CHECK=YES
 ```
 
-Nó chạy một probe LLM cực nhỏ theo `MODEL_PROBE_LLM_MAX_TOKENS` và một probe embedding đồng thời, không gửi nội dung người dùng và
-không in key. Deploy mặc định và unit/integration/smoke/stress/CI không gọi live gateway.
+`model-preflight` chạy một probe LLM cực nhỏ theo `MODEL_PROBE_LLM_MAX_TOKENS` và một
+probe embedding đồng thời; nó không gửi nội dung người dùng và không in key.
+`rag-live-check` dùng câu hỏi tổng hợp có mã ngẫu nhiên để tránh cache và chỉ đạt khi có
+`decision_source=model`, embedding token tăng, generation là `model_validated`, câu trả
+lời grounded có citation và không phát sinh lỗi provider. Deploy mặc định và
+unit/integration/smoke/stress/CI không gọi live gateway.
 
 ## 7. Dữ liệu và đồng hồ demo
 
@@ -264,6 +291,13 @@ giữ Compose bind loopback và chỉ mở firewall cần thiết.
 | `LANGFUSE_CAPTURE_CONTENT` | `false` | Không export prompt/answer |
 
 Metrics dùng label hữu hạn; không đưa raw URL, message, doctor name, user ID vào label.
+`hera_ai_tokens_total{provider,kind}` lấy đúng `response.usage` do gateway trả về. `kind`
+chỉ có `input` và `output`; các alias `prompt_tokens`/`completion_tokens` và
+`input_tokens`/`output_tokens` đều được hỗ trợ. Reasoning token được tính trong output mà
+không cộng lặp khi nó đã là một phần của completion. Langfuse observation
+`hera.llm.provider_call` chỉ nhận hai scalar `input_tokens` và `output_tokens`, không nhận
+prompt, câu trả lời hay PII. HERA không tự quy đổi token thành tiền vì giá/quota phải xem
+theo billing thực tế của tài khoản FPT.
 Repository chưa có Alertmanager/notifier, vì vậy alert chỉ được đánh giá và hiển thị.
 
 ## 12. Image và release metadata

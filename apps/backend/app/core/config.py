@@ -90,13 +90,13 @@ class Settings(BaseSettings):
     PROMETHEUS_METRICS_PATH: str = "/metrics"
 
     LLM_PROVIDER: Literal["noop", "openai"] = "openai"
-    LLM_MODEL: str = "gpt-oss-20b"
+    LLM_MODEL: str = "gpt-oss-120b"
     API_KEY: str | None = None
     FPT_API_BASE_URL: str = "https://mkp-api.fptcloud.com"
-    FPT_LLM_MODEL: str = "gpt-oss-20b"
+    FPT_LLM_MODEL: str = "gpt-oss-120b"
     FPT_EMBEDDING_MODEL: str = "Vietnamese_Embedding"
     OPENAI_API_KEY: str | None = None
-    OPENAI_MODEL: str = "gpt-oss-20b"
+    OPENAI_MODEL: str = "gpt-oss-120b"
     OPENAI_BASE_URL: str | None = None
     LLM_TIMEOUT_SECONDS: float = Field(default=30.0, gt=0)
     LLM_MAX_CONCURRENT_REQUESTS: int = Field(default=2, ge=1, le=100)
@@ -106,10 +106,19 @@ class Settings(BaseSettings):
     LLM_RESPONSE_CACHE_MAX_ENTRIES: int = Field(default=512, ge=1, le=100_000)
     EMBEDDING_TIMEOUT_SECONDS: float = Field(default=10.0, gt=0)
     CHAT_OVERALL_TIMEOUT_SECONDS: float = Field(default=35.0, gt=0)
-    EMERGENCY_MODEL_ASSESSMENT_ENABLED: bool = True
-    EMERGENCY_MODEL_TIMEOUT_SECONDS: float = Field(default=2.5, gt=0)
-    EMERGENCY_MODEL_MAX_TOKENS: int = Field(default=80, ge=16, le=256)
-    EMERGENCY_MODEL_CONFIDENCE_THRESHOLD: float = Field(default=0.62, ge=0.0, le=1.0)
+    MODEL_ROUTING_ENABLED: bool = True
+    MODEL_ROUTING_TIMEOUT_SECONDS: float = Field(default=6.0, gt=0)
+    MODEL_ROUTING_MAX_TOKENS: int = Field(default=1024, ge=32, le=4096)
+    MODEL_ROUTING_EMERGENCY_CONFIDENCE_THRESHOLD: float = Field(
+        default=0.62,
+        ge=0.0,
+        le=1.0,
+    )
+    MODEL_ROUTING_INTENT_CONFIDENCE_THRESHOLD: float = Field(
+        default=0.60,
+        ge=0.0,
+        le=1.0,
+    )
     # Reserved for the concurrent deployment connectivity probe.
     MODEL_TIMEOUT_SECONDS: float = Field(default=45.0, gt=0)
     MODEL_PROBE_LLM_MAX_TOKENS: int = Field(default=8, ge=1, le=128)
@@ -120,8 +129,9 @@ class Settings(BaseSettings):
 
     VECTOR_STORE_PROVIDER: Literal["none", "pgvector"] = "none"
     VECTOR_STORE_COLLECTION: str = "hera_official_knowledge"
-    RAG_TOP_K: int = Field(default=5, ge=1)
+    RAG_TOP_K: int = Field(default=3, ge=1)
     RAG_MIN_CONFIDENCE: float = Field(default=0.55, ge=0.0, le=1.0)
+    RAG_GENERATION_MAX_TOKENS: int = Field(default=512, ge=32, le=512)
 
     HOSPITAL_NAME: str = "Hanoi Heart Hospital"
     HOSPITAL_PUBLIC_BASE_URL: str = "https://benhvientimhanoi.vn"
@@ -146,6 +156,7 @@ class Settings(BaseSettings):
     LANGFUSE_PUBLIC_KEY: str | None = None
     LANGFUSE_SECRET_KEY: str | None = None
     LANGFUSE_HOST: str = "https://cloud.langfuse.com"
+    LANGFUSE_BASE_URL: str | None = None
     LANGFUSE_SAMPLE_RATE: float = Field(default=0.2, ge=0.0, le=1.0)
     LANGFUSE_CAPTURE_CONTENT: bool = False
     LANGFUSE_TRACE_INPUT_MAX_CHARS: int = Field(default=500, ge=0)
@@ -220,6 +231,17 @@ class Settings(BaseSettings):
         return self
 
     @model_validator(mode="after")
+    def normalize_langfuse_endpoint(self):
+        """Accept the SDK BASE_URL alias while keeping one internal host field."""
+
+        host = self.LANGFUSE_HOST.strip().rstrip("/")
+        base_url = (self.LANGFUSE_BASE_URL or "").strip().rstrip("/")
+        if base_url:
+            host = base_url
+        self.LANGFUSE_HOST = host
+        return self
+
+    @model_validator(mode="after")
     def require_shared_rate_limit_storage(self):
         if (
             self.RATE_LIMIT_ENABLED
@@ -256,19 +278,19 @@ class Settings(BaseSettings):
         if not self.BOOKING_PII_HASH_SECRET:
             problems.append("BOOKING_PII_HASH_SECRET is required in production")
         elif self.BOOKING_PII_HASH_SECRET == self.HOLD_TOKEN_SECRET:
-            problems.append("BOOKING_PII_HASH_SECRET must differ from HOLD_TOKEN_SECRET")
+            problems.append(
+                "BOOKING_PII_HASH_SECRET must differ from HOLD_TOKEN_SECRET"
+            )
         if self.LOG_RAW_MESSAGES:
             problems.append("LOG_RAW_MESSAGES must be false in production")
-        if self.LLM_PROVIDER == "openai" and not (
-            self.API_KEY or self.OPENAI_API_KEY
-        ):
+        if self.LLM_PROVIDER == "openai" and not (self.API_KEY or self.OPENAI_API_KEY):
             problems.append("An API key is required for the configured LLM provider")
         if self.EMBEDDING_PROVIDER == "openai" and not (
             self.API_KEY or self.OPENAI_API_KEY
         ):
             problems.append("An API key is required for Vietnamese_Embedding")
-        if self.API_KEY and self.FPT_LLM_MODEL != "gpt-oss-20b":
-            problems.append("FPT_LLM_MODEL must be gpt-oss-20b for this release")
+        if self.API_KEY and self.FPT_LLM_MODEL != "gpt-oss-120b":
+            problems.append("FPT_LLM_MODEL must be gpt-oss-120b for this release")
         if self.API_KEY and self.FPT_EMBEDDING_MODEL != "Vietnamese_Embedding":
             problems.append(
                 "FPT_EMBEDDING_MODEL must be Vietnamese_Embedding for this release"

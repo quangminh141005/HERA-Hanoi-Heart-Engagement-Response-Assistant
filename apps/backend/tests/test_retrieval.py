@@ -132,11 +132,12 @@ def test_embedding_failure_falls_back_to_lexical_fact() -> None:
 
 
 def test_unique_exact_lexical_fact_skips_embedding_and_marks_fast_path() -> None:
+    exact_claim = "Người bệnh nên có mặt trước giờ khám 15 phút."
     repository = StaticRepository(
         lexical=[
             {
                 "fact_id": "FACT-EXACT",
-                "claim_vi": "Người bệnh nên có mặt trước giờ khám 15 phút.",
+                "claim_vi": exact_claim,
                 "score": 3,
                 "source_id": "SRC-1",
                 "title": "Nguồn chính thức",
@@ -149,12 +150,50 @@ def test_unique_exact_lexical_fact_skips_embedding_and_marks_fast_path() -> None
     service = RetrievalService(repository, embedder=embedder)
 
     response = asyncio.run(
-        service.retrieve(RetrievalRequest(query="đến sớm bao lâu", top_k=3))
+        service.retrieve(RetrievalRequest(query=exact_claim, top_k=3))
     )
 
     assert response.chunks[0].source.document_type == "official_fact_exact"
     assert repository.semantic_reads == 0
     assert embedder.calls == 0
+
+
+def test_high_lexical_overlap_is_not_misclassified_as_exact() -> None:
+    repository = StaticRepository(
+        lexical=[
+            {
+                "fact_id": "FACT-ARRIVAL",
+                "claim_vi": "Người bệnh nên có mặt trước giờ khám 15 phút.",
+                "score": 4,
+                "source_id": "SRC-1",
+                "title": "Nguồn chính thức",
+                "url": None,
+            }
+        ],
+        semantic=[
+            {
+                "chunk_id": "CHUNK-FACT-ARRIVAL-001",
+                "fact_id": "FACT-ARRIVAL",
+                "source_id": "SRC-1",
+                "content_vi": "Người bệnh nên có mặt trước giờ khám 15 phút.",
+                "title": "Nguồn chính thức",
+                "url": None,
+                "score": 0.93,
+            }
+        ],
+    )
+    embedder = StaticEmbedder()
+    service = RetrievalService(repository, embedder=embedder)
+
+    response = asyncio.run(
+        service.retrieve(
+            RetrievalRequest(query="Tôi cần đến sớm trước giờ khám bao lâu?", top_k=3)
+        )
+    )
+
+    assert embedder.calls == 1
+    assert repository.semantic_reads == 1
+    assert response.chunks[0].source.document_type != "official_fact_exact"
 
 
 def test_query_vector_cache_is_shared_across_replicas() -> None:

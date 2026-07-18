@@ -10,8 +10,10 @@ import time
 from collections import OrderedDict
 from typing import Any, Protocol
 
+from app.ai.observability.tracing import start_observation
 from app.core.config import Settings
-from app.observability.prometheus import record_upstream_failure
+from app.observability.ai_usage import extract_openai_usage
+from app.observability.prometheus import record_ai_usage, record_upstream_failure
 
 logger = logging.getLogger(__name__)
 
@@ -70,9 +72,11 @@ class OpenAILLMClient:
         timeout_seconds: float = 8.0,
         provider_label: str = "openai_compatible",
         sdk_client: Any | None = None,
+        settings: Settings | None = None,
     ) -> None:
         self.model = model
         self.provider_label = provider_label
+        self.settings = settings
         if sdk_client is not None:
             self._client = sdk_client
             return
@@ -95,6 +99,51 @@ class OpenAILLMClient:
     ) -> str:
         """Generate a response with OpenAI."""
 
+        if self.settings is None:
+            return await self._generate_provider_response(
+                messages,
+                temperature=temperature,
+                max_tokens=max_tokens,
+                observation=None,
+            )
+
+        with start_observation(
+            "hera.llm.provider_call",
+            settings=self.settings,
+            as_type="generation",
+            metadata={
+                "provider": self.provider_label,
+                "model": self.model,
+                "max_tokens": max_tokens,
+                "content_capture": False,
+            },
+        ) as observation:
+            try:
+                result = await self._generate_provider_response(
+                    messages,
+                    temperature=temperature,
+                    max_tokens=max_tokens,
+                    observation=observation,
+                )
+            except Exception as exc:
+                observation.update(
+                    metadata={
+                        "result": "error",
+                        "error_type": exc.__class__.__name__,
+                    }
+                )
+                raise
+            observation.update(metadata={"result": "success"})
+            return result
+
+    async def _generate_provider_response(
+        self,
+        messages: list[ChatMessage],
+        *,
+        temperature: float,
+        max_tokens: int,
+        observation: Any | None,
+    ) -> str:
         try:
             response = await self._client.chat.completions.create(
                 model=self.model,
@@ -105,6 +154,19 @@ class OpenAILLMClient:
         except Exception as exc:
             record_upstream_failure(self.provider_label, exc)
             raise
+        usage = extract_openai_usage(response)
+        record_ai_usage(
+            self.provider_label,
+            input_tokens=usage.input_tokens,
+            output_tokens=usage.output_tokens,
+        )
+        if observation is not None:
+            observation.update(
+                metadata={
+                    "input_tokens": usage.input_tokens,
+                    "output_tokens": usage.output_tokens,
+                }
+            )
         content = _coerce_text(response.choices[0].message.content)
         if not content.strip():
             error = RuntimeError("OpenAI returned an empty response.")
@@ -197,6 +259,7 @@ class GuardedLLMClient:
         cache_enabled: bool,
         cache_ttl_seconds: int,
         cache_max_entries: int,
+        settings: Settings | None = None,
     ) -> None:
         self.client = client
         self._semaphore = asyncio.Semaphore(max_concurrent_requests)
@@ -208,6 +271,7 @@ class GuardedLLMClient:
         self._in_flight: dict[str, asyncio.Task[str]] = {}
         self._lock = asyncio.Lock()
         self._safe_client = NoopLLMClient()
+        self.settings = settings
 
     async def generate(
         self,
@@ -220,6 +284,17 @@ class GuardedLLMClient:
         if self._cache_enabled:
             cached = await self._get_cached(key)
             if cached is not None:
+                if self.settings is not None:
+                    with start_observation(
+                        "hera.llm.cache_hit",
+                        settings=self.settings,
+                        as_type="span",
+                        metadata={
+                            "cache": "process_memory",
+                            "ttl_seconds": self._cache_ttl_seconds,
+                        },
+                    ):
+                        pass
                 return cached
 
         async with self._lock:
@@ -322,6 +397,7 @@ def build_llm_client(settings: Settings) -> LLMClient:
         cache_enabled=settings.LLM_RESPONSE_CACHE_ENABLED,
         cache_ttl_seconds=settings.LLM_RESPONSE_CACHE_TTL_SECONDS,
         cache_max_entries=settings.LLM_RESPONSE_CACHE_MAX_ENTRIES,
+        settings=settings,
     )
 
 
@@ -343,6 +419,7 @@ def _build_provider_client(provider: str, settings: Settings) -> LLMClient | Non
             ),
             timeout_seconds=settings.LLM_TIMEOUT_SECONDS,
             provider_label="fpt_llm" if use_fpt else "openai",
+            settings=settings,
         )
 
     logger.warning(

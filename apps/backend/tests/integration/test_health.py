@@ -24,6 +24,7 @@ def test_health_check_returns_status_and_gateway_headers() -> None:
     payload = response.json()
     assert payload["status"] == "ok"
     assert payload["app"] == "HERA - Hanoi Heart Engagement Response Assistant"
+    assert response.headers["content-type"] == "application/json; charset=utf-8"
     assert response.headers["X-Request-ID"] == "test-request"
     assert "X-Process-Time-Ms" in response.headers
 

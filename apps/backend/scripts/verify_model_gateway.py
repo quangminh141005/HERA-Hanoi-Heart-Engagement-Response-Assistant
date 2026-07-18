@@ -33,8 +33,8 @@ async def verify_model_gateway(
 
     if not settings.API_KEY:
         raise ModelGatewayProbeError("API_KEY is not configured")
-    if settings.FPT_LLM_MODEL != "gpt-oss-20b":
-        raise ModelGatewayProbeError("FPT_LLM_MODEL must be gpt-oss-20b")
+    if settings.FPT_LLM_MODEL != "gpt-oss-120b":
+        raise ModelGatewayProbeError("FPT_LLM_MODEL must be gpt-oss-120b")
     if settings.FPT_EMBEDDING_MODEL != "Vietnamese_Embedding":
         raise ModelGatewayProbeError(
             "FPT_EMBEDDING_MODEL must be Vietnamese_Embedding"

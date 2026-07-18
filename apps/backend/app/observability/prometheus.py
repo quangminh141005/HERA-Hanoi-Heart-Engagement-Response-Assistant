@@ -121,6 +121,11 @@ STRUCTURED_CACHE_OPERATIONS_TOTAL = Counter(
     "Approved structured Redis-cache operations by bounded outcome.",
     ("result",),
 )
+AI_TOKENS_TOTAL = Counter(
+    "hera_ai_tokens_total",
+    "Provider-reported AI tokens by bounded provider and input/output kind.",
+    ("provider", "kind"),
+)
 
 _UPSTREAM_PROVIDER_LABELS: Final = frozenset(
     {
@@ -157,6 +162,28 @@ for _gate in (
 READINESS_STATUS.set(0)
 for _result in ("hit", "miss", "write", "skipped", "error"):
     STRUCTURED_CACHE_OPERATIONS_TOTAL.labels(result=_result)
+for _provider in ("fpt_llm", "fpt_embedding", "openai", "unknown"):
+    for _kind in ("input", "output"):
+        AI_TOKENS_TOTAL.labels(provider=_provider, kind=_kind)
+
+
+def record_ai_usage(
+    provider: str,
+    *,
+    input_tokens: int,
+    output_tokens: int,
+) -> None:
+    """Record provider-reported usage without unbounded metric labels."""
+
+    safe_provider = provider if provider in _UPSTREAM_PROVIDER_LABELS else "unknown"
+    if input_tokens > 0:
+        AI_TOKENS_TOTAL.labels(provider=safe_provider, kind="input").inc(
+            input_tokens
+        )
+    if output_tokens > 0:
+        AI_TOKENS_TOTAL.labels(provider=safe_provider, kind="output").inc(
+            output_tokens
+        )
 
 
 def record_upstream_failure(provider: str, exc: BaseException) -> None:

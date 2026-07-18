@@ -42,7 +42,7 @@ def test_fpt_clients_disable_hidden_sdk_retries(monkeypatch) -> None:
 
     OpenAILLMClient(
         api_key="mock",
-        model="gpt-oss-20b",
+        model="gpt-oss-120b",
         base_url="https://example.invalid",
         timeout_seconds=1,
     )

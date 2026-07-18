@@ -98,7 +98,7 @@ def test_fpt_shared_key_selects_required_models(monkeypatch) -> None:
 
     assert isinstance(client, GuardedLLMClient)
     assert isinstance(client.client, FallbackLLMClient)
-    assert client.client.clients[0].model == "gpt-oss-20b"
+    assert client.client.clients[0].model == "gpt-oss-120b"
     assert client.client.clients[0].kwargs["base_url"] == "https://mkp-api.fptcloud.com"
 
 

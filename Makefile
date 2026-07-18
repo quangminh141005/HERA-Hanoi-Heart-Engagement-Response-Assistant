@@ -16,6 +16,7 @@ CONFIRM_DATA_EXPORT ?= NO
 CONFIRM_DATA_REBIND ?= NO
 CONFIRM_DATA_RESET ?= NO
 CONFIRM_MODEL_PREFLIGHT ?= NO
+CONFIRM_RAG_LIVE_CHECK ?= NO
 DEV_PROJECT_NAME ?= hera-dev
 REPLICAS ?= 2
 
@@ -23,7 +24,7 @@ ENV_ARGS = $(if $(wildcard $(ENV_FILE)),--env-file $(ENV_FILE),)
 COMPOSE = docker compose $(ENV_ARGS) -p $(PROJECT_NAME) -f docker-compose.yml
 MONITORING_COMPOSE = $(COMPOSE) -f docker-compose.monitoring.yml
 
-.PHONY: help setup config-check lint unit integration test test-full data-generate generated-validate data-validate db-bootstrap migrate seed data-import data-export data-rebind-export data-reset-dev up down restart status logs scale smoke model-preflight stress stress-ci stress-extreme monitoring-up monitoring-down monitoring-status monitoring-logs package deploy release-check backup restore rollback
+.PHONY: help setup config-check lint unit integration test test-full data-generate generated-validate data-validate db-bootstrap migrate seed data-import data-export data-rebind-export data-reset-dev up down restart status logs scale smoke model-preflight rag-live-check langfuse-check stress stress-ci stress-extreme monitoring-up monitoring-down monitoring-status monitoring-logs package deploy release-check backup restore rollback
 
 help: ## Show every supported target and its purpose.
 	@awk 'BEGIN {FS = ":.*##"; printf "HERA commands:\n\n"} /^[a-zA-Z0-9_-]+:.*##/ {printf "  %-20s %s\n", $$1, $$2}' $(MAKEFILE_LIST)
@@ -135,6 +136,13 @@ smoke: ## Run same-origin readiness/structured/booking/emergency smoke checks.
 model-preflight: ## Spend exactly one LLM+embedding probe only with explicit confirmation.
 	@if [[ "$(CONFIRM_MODEL_PREFLIGHT)" != "YES" ]]; then echo "Refusing paid probe: rerun with CONFIRM_MODEL_PREFLIGHT=YES."; exit 2; fi
 	@$(COMPOSE) run --rm --no-deps backend python scripts/verify_model_gateway.py
+
+rag-live-check: ## Prove deployed routing, embedding and grounded generation use live models.
+	@if [[ "$(CONFIRM_RAG_LIVE_CHECK)" != "YES" ]]; then echo "Refusing paid RAG check: rerun with CONFIRM_RAG_LIVE_CHECK=YES."; exit 2; fi
+	@$(COMPOSE) exec -T backend python scripts/verify_live_rag.py --base-url http://frontend
+
+langfuse-check: ## Verify Langfuse auth and trace ingestion with zero model calls.
+	@$(COMPOSE) exec -T backend python scripts/verify_langfuse.py
 
 stress: ## Run standard mixed stress in an isolated loopback-only project; zero model calls.
 	@bash scripts/run-stress.sh --profile standard --scenario mixed --replicas 1 --min-replicas 1

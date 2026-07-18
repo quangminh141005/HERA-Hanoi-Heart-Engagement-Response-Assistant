@@ -9,8 +9,11 @@ import unicodedata
 from dataclasses import dataclass, field, replace
 from uuid import uuid4
 
-from app.ai.emergency.detector import EmergencyDetector, build_emergency_response
-from app.ai.emergency.model_assessor import ModelEmergencyAssessor
+from app.ai.emergency.detector import (
+    EmergencyAssessment,
+    EmergencyDetector,
+    build_emergency_response,
+)
 from app.ai.guardrails.pipeline import GuardrailPipeline
 from app.ai.handoff.service import HandoffService
 from app.ai.intent import HospitalIntent, IntentClassification, IntentClassifier
@@ -26,6 +29,7 @@ from app.ai.rag.embeddings.embedder import build_embedder
 from app.ai.rag.generation.service import GenerationService
 from app.ai.rag.pipeline import RAGPipeline
 from app.ai.rag.retrieval.service import RetrievalService
+from app.ai.routing import ModelRoutingAssessor
 from app.core.config import Settings
 from app.observability.prometheus import record_upstream_failure
 from app.services.structured import StructuredDataService
@@ -50,6 +54,15 @@ class OrchestratorResult:
     metadata: dict = field(default_factory=dict)
 
 
+@dataclass(frozen=True)
+class _RoutingDecision:
+    emergency: EmergencyAssessment
+    classification: IntentClassification
+    decision_source: str
+    model_emergency_confidence: float | None = None
+    model_intent_confidence: float | None = None
+
+
 class ConversationOrchestrator:
     """Route each chat turn through safety, tools, RAG, and handoff."""
 
@@ -64,7 +77,7 @@ class ConversationOrchestrator:
         handoff_service: HandoffService,
         structured_data_service: StructuredDataService,
         memory_store: EntityMemoryStore,
-        emergency_model_assessor: ModelEmergencyAssessor | None = None,
+        routing_model_assessor: ModelRoutingAssessor | None = None,
     ) -> None:
         self.settings = settings
         self.guardrails = guardrails
@@ -74,7 +87,7 @@ class ConversationOrchestrator:
         self.handoff_service = handoff_service
         self.structured_data_service = structured_data_service
         self.memory_store = memory_store
-        self.emergency_model_assessor = emergency_model_assessor
+        self.routing_model_assessor = routing_model_assessor
 
     async def handle(
         self,
@@ -89,8 +102,45 @@ class ConversationOrchestrator:
         del user_context
         cid = conversation_id or uuid4().hex
 
-        # Emergency wins over prompt-injection, privacy and every data lookup.
-        emergency = await self._assess_emergency(message)
+        # Redaction is the boundary before any safety check or external model call.
+        # An obvious emergency must win over prompt injection without contacting
+        # the model; every other blocked input must stop before model routing.
+        redaction = redact_pii(message)
+        emergency_precheck = self.emergency_detector.assess(redaction.text)
+        if emergency_precheck.is_emergency:
+            routing = _RoutingDecision(
+                emergency=emergency_precheck,
+                classification=IntentClassification(
+                    intent=HospitalIntent.EMERGENCY,
+                    confidence=emergency_precheck.confidence,
+                    reasons=emergency_precheck.matched_terms,
+                ),
+                decision_source="deterministic_safety_precheck",
+            )
+        else:
+            input_check = self.guardrails.validate_input(redaction.text)
+            if not input_check.allowed:
+                return self._refusal(
+                    cid,
+                    intent=HospitalIntent.UNSUPPORTED.value,
+                    response=(
+                        "HERA không thể thực hiện yêu cầu này. Vui lòng chỉ hỏi thông "
+                        "tin hành chính từ dữ liệu của Bệnh viện."
+                    ),
+                    metadata={
+                        "guardrail_violation": input_check.violation_type,
+                        "decision_source": "input_guardrail",
+                    },
+                )
+
+            sanitized = input_check.text
+            routing = await self._assess_routing(sanitized)
+
+        emergency = routing.emergency
+
+        def finish(result: OrchestratorResult) -> OrchestratorResult:
+            return _mark_routing_decision(result, routing)
+
         if emergency.is_emergency:
             await self.memory_store.clear(cid)
             template = self.structured_data_service.active_template("emergency")
@@ -112,42 +162,30 @@ class ConversationOrchestrator:
                         "excerpt": None,
                     }
                 )
-            return OrchestratorResult(
-                conversation_id=cid,
-                response=response,
-                intent=HospitalIntent.EMERGENCY.value,
-                response_type="emergency_handoff",
-                grounded=bool(citations),
-                data_classification="official_current",
-                citations=citations,
-                actions=[
-                    {
-                        "type": "call",
-                        "channel_id": "EMERGENCY-115",
-                        "label_vi": "Gọi cấp cứu 115",
-                        "target": self.settings.EMERGENCY_HOTLINE,
-                    }
-                ],
-                emergency=True,
-                requires_handoff=True,
-                metadata={"reasons": emergency.matched_terms},
+            return finish(
+                OrchestratorResult(
+                    conversation_id=cid,
+                    response=response,
+                    intent=HospitalIntent.EMERGENCY.value,
+                    response_type="emergency_handoff",
+                    grounded=bool(citations),
+                    data_classification="official_current",
+                    citations=citations,
+                    actions=[
+                        {
+                            "type": "call",
+                            "channel_id": "EMERGENCY-115",
+                            "label_vi": "Gọi cấp cứu 115",
+                            "target": self.settings.EMERGENCY_HOTLINE,
+                        }
+                    ],
+                    emergency=True,
+                    requires_handoff=True,
+                    metadata={"reasons": emergency.matched_terms},
+                )
             )
 
-        redaction = redact_pii(message)
-        input_check = self.guardrails.validate_input(redaction.text)
-        if not input_check.allowed:
-            return self._refusal(
-                cid,
-                intent=HospitalIntent.UNSUPPORTED.value,
-                response=(
-                    "HERA không thể thực hiện yêu cầu này. Vui lòng chỉ hỏi thông "
-                    "tin hành chính từ dữ liệu của Bệnh viện."
-                ),
-                metadata={"guardrail_violation": input_check.violation_type},
-            )
-
-        sanitized = input_check.text
-        classification = self.intent_classifier.classify(sanitized)
+        classification = routing.classification
         context = await self.memory_store.load(cid)
         sanitized, classification, context_applied = _apply_safe_context(
             sanitized,
@@ -164,53 +202,63 @@ class ConversationOrchestrator:
             await self.memory_store.clear(cid)
 
         if classification.intent is HospitalIntent.GREETING:
-            return OrchestratorResult(
-                conversation_id=cid,
-                response=(
-                    "Xin chào, mình là HERA. Mình có thể hỗ trợ thông tin hành chính, "
-                    "quy trình khám, BHYT, lịch khám và hướng dẫn liên hệ chính thức "
-                    "của Bệnh viện Tim Hà Nội."
-                ),
-                intent=classification.intent.value,
-                warnings=self._pii_warnings(redaction.categories),
+            return finish(
+                OrchestratorResult(
+                    conversation_id=cid,
+                    response=(
+                        "Xin chào, mình là HERA. Mình có thể hỗ trợ thông tin hành chính, "
+                        "quy trình khám, BHYT, lịch khám và hướng dẫn liên hệ chính thức "
+                        "của Bệnh viện Tim Hà Nội."
+                    ),
+                    intent=classification.intent.value,
+                    warnings=self._pii_warnings(redaction.categories),
+                )
             )
 
         if classification.intent is HospitalIntent.THANKS:
-            return OrchestratorResult(
-                conversation_id=cid,
-                response="Rất vui được hỗ trợ bạn.",
-                intent=classification.intent.value,
-                warnings=self._pii_warnings(redaction.categories),
+            return finish(
+                OrchestratorResult(
+                    conversation_id=cid,
+                    response="Rất vui được hỗ trợ bạn.",
+                    intent=classification.intent.value,
+                    warnings=self._pii_warnings(redaction.categories),
+                )
             )
 
         if classification.intent is HospitalIntent.HUMAN_HANDOFF:
-            return self._refusal(
-                cid,
-                intent=classification.intent.value,
-                response=(
-                    "Bạn có thể liên hệ trực tiếp các kênh hỗ trợ chính thức "
-                    "bên dưới."
-                ),
+            return finish(
+                self._refusal(
+                    cid,
+                    intent=classification.intent.value,
+                    response=(
+                        "Bạn có thể liên hệ trực tiếp các kênh hỗ trợ chính thức "
+                        "bên dưới."
+                    ),
+                )
             )
 
         if classification.intent is HospitalIntent.INSURANCE_PERSONAL_BENEFIT:
-            return self._refusal(
-                cid,
-                intent=classification.intent.value,
-                response=(
-                    "Dữ liệu hiện có chỉ gồm mức đóng BHYT hộ gia đình, không đủ "
-                    "để xác định quyền lợi, tỷ lệ chi trả hoặc mức hưởng cá nhân."
-                ),
+            return finish(
+                self._refusal(
+                    cid,
+                    intent=classification.intent.value,
+                    response=(
+                        "Dữ liệu hiện có chỉ gồm mức đóng BHYT hộ gia đình, không đủ "
+                        "để xác định quyền lợi, tỷ lệ chi trả hoặc mức hưởng cá nhân."
+                    ),
+                )
             )
 
         if classification.intent is HospitalIntent.PRICE_BHYT_CALCULATION:
-            return self._refusal(
-                cid,
-                intent=classification.intent.value,
-                response=(
-                    "HERA không ghép bảng giá với mức đóng BHYT để tính hóa đơn "
-                    "hoặc số tiền người bệnh phải trả."
-                ),
+            return finish(
+                self._refusal(
+                    cid,
+                    intent=classification.intent.value,
+                    response=(
+                        "HERA không ghép bảng giá với mức đóng BHYT để tính hóa đơn "
+                        "hoặc số tiền người bệnh phải trả."
+                    ),
+                )
             )
 
         if classification.intent is HospitalIntent.SERVICE_PRICE:
@@ -220,7 +268,7 @@ class ConversationOrchestrator:
             )
             response = self._structured_result(cid, result, redaction.categories)
             await self._remember_structured(cid, result)
-            return _mark_context_applied(response, context_applied)
+            return finish(_mark_context_applied(response, context_applied))
 
         if classification.intent is HospitalIntent.INSURANCE:
             result = await asyncio.to_thread(
@@ -229,7 +277,7 @@ class ConversationOrchestrator:
             )
             response = self._structured_result(cid, result, redaction.categories)
             await self._remember_structured(cid, result)
-            return _mark_context_applied(response, context_applied)
+            return finish(_mark_context_applied(response, context_applied))
 
         if classification.intent is HospitalIntent.DOCTOR_SCHEDULE:
             result = await asyncio.to_thread(
@@ -238,7 +286,7 @@ class ConversationOrchestrator:
             )
             response = self._structured_result(cid, result, redaction.categories)
             await self._remember_structured(cid, result)
-            return _mark_context_applied(response, context_applied)
+            return finish(_mark_context_applied(response, context_applied))
 
         try:
             async with asyncio.timeout(self.settings.CHAT_OVERALL_TIMEOUT_SECONDS):
@@ -250,14 +298,16 @@ class ConversationOrchestrator:
                 )
         except TimeoutError as exc:
             record_upstream_failure("rag_pipeline", exc)
-            return self._refusal(
-                cid,
-                intent=classification.intent.value,
-                response=(
-                    "HERA chưa thể hoàn tất tra cứu trong thời gian an toàn. "
-                    "Bạn vui lòng thử lại hoặc dùng kênh hỗ trợ chính thức."
-                ),
-                metadata={"upstream_timeout": "rag_pipeline"},
+            return finish(
+                self._refusal(
+                    cid,
+                    intent=classification.intent.value,
+                    response=(
+                        "HERA chưa thể hoàn tất tra cứu trong thời gian an toàn. "
+                        "Bạn vui lòng thử lại hoặc dùng kênh hỗ trợ chính thức."
+                    ),
+                    metadata={"upstream_timeout": "rag_pipeline"},
+                )
             )
         citations = []
         seen_source_ids: set[str] = set()
@@ -274,14 +324,16 @@ class ConversationOrchestrator:
                 }
             )
         if not citations:
-            return self._refusal(
-                cid,
-                intent=classification.intent.value,
-                response=(
-                    "Hiện HERA chưa có fact đủ phù hợp trong bộ dữ liệu đã duyệt "
-                    "để trả lời câu hỏi này."
-                ),
-                metadata={"retrieval_confidence": answer.confidence},
+            return finish(
+                self._refusal(
+                    cid,
+                    intent=classification.intent.value,
+                    response=(
+                        "Hiện HERA chưa có fact đủ phù hợp trong bộ dữ liệu đã duyệt "
+                        "để trả lời câu hỏi này."
+                    ),
+                    metadata={"retrieval_confidence": answer.confidence},
+                )
             )
 
         output_check = self.guardrails.validate_output(
@@ -290,16 +342,18 @@ class ConversationOrchestrator:
             requires_grounding=True,
         )
         if not output_check.allowed:
-            return self._refusal(
-                cid,
-                intent=classification.intent.value,
-                response=(
-                    "Câu trả lời chưa vượt qua kiểm tra nguồn nên HERA không "
-                    "hiển thị."
-                ),
-                metadata={
-                    "guardrail_violation": output_check.violation_type,
-                },
+            return finish(
+                self._refusal(
+                    cid,
+                    intent=classification.intent.value,
+                    response=(
+                        "Câu trả lời chưa vượt qua kiểm tra nguồn nên HERA không "
+                        "hiển thị."
+                    ),
+                    metadata={
+                        "guardrail_violation": output_check.violation_type,
+                    },
+                )
             )
 
         response = OrchestratorResult(
@@ -332,19 +386,70 @@ class ConversationOrchestrator:
                 record_ids=tuple(answer.record_ids),
             ),
         )
-        return _mark_context_applied(response, context_applied)
+        return finish(_mark_context_applied(response, context_applied))
 
-    async def _assess_emergency(self, message: str):
-        """Use model assessment when configured, with deterministic fallback."""
+    async def _assess_routing(self, message: str) -> _RoutingDecision:
+        """Use one model call for safety and intent, with deterministic fallback."""
 
-        if self.emergency_model_assessor is not None:
-            try:
-                model_assessment = await self.emergency_model_assessor.assess(message)
-                if model_assessment.is_emergency:
-                    return model_assessment
-            except Exception as exc:
-                record_upstream_failure("emergency_model_assessor", exc)
-        return self.emergency_detector.assess(message)
+        deterministic_emergency = self.emergency_detector.assess(message)
+        deterministic_classification = self.intent_classifier.classify(message)
+        if self.routing_model_assessor is None:
+            return _RoutingDecision(
+                emergency=deterministic_emergency,
+                classification=deterministic_classification,
+                decision_source="deterministic_fallback",
+            )
+
+        try:
+            model_assessment = await self.routing_model_assessor.assess(message)
+        except Exception as exc:
+            record_upstream_failure("routing_model_assessor", exc)
+            return _RoutingDecision(
+                emergency=deterministic_emergency,
+                classification=deterministic_classification,
+                decision_source="deterministic_fallback",
+            )
+
+        confidence_kwargs = {
+            "model_emergency_confidence": model_assessment.emergency_confidence,
+            "model_intent_confidence": model_assessment.intent_confidence,
+        }
+        if model_assessment.emergency.is_emergency:
+            classification = model_assessment.classification or IntentClassification(
+                intent=HospitalIntent.EMERGENCY,
+                confidence=model_assessment.emergency.confidence,
+                reasons=model_assessment.emergency.matched_terms,
+            )
+            return _RoutingDecision(
+                emergency=model_assessment.emergency,
+                classification=classification,
+                decision_source="model",
+                **confidence_kwargs,
+            )
+
+        # Keep a high-sensitivity local safety net if the model misses an obvious
+        # emergency phrase or the provider returns an overconfident false negative.
+        if deterministic_emergency.is_emergency:
+            return _RoutingDecision(
+                emergency=deterministic_emergency,
+                classification=deterministic_classification,
+                decision_source="deterministic_safety_fallback",
+                **confidence_kwargs,
+            )
+
+        if model_assessment.classification is not None:
+            return _RoutingDecision(
+                emergency=model_assessment.emergency,
+                classification=model_assessment.classification,
+                decision_source="model",
+                **confidence_kwargs,
+            )
+        return _RoutingDecision(
+            emergency=deterministic_emergency,
+            classification=deterministic_classification,
+            decision_source="deterministic_fallback",
+            **confidence_kwargs,
+        )
 
     async def close(self) -> None:
         """Close process-scoped Redis and model HTTP clients."""
@@ -484,8 +589,9 @@ def build_default_orchestrator(settings: Settings) -> ConversationOrchestrator:
                 shared_cache=structured_service.cache,
                 embedding_model=settings.FPT_EMBEDDING_MODEL,
                 expected_embedding_dimensions=settings.EMBEDDING_DIMENSIONS,
+                settings=settings,
             ),
-            generation_service=GenerationService(llm_client),
+            generation_service=GenerationService(llm_client, settings=settings),
         ),
         handoff_service=HandoffService(settings.HOSPITAL_HOTLINE),
         structured_data_service=structured_service,
@@ -499,15 +605,20 @@ def build_default_orchestrator(settings: Settings) -> ConversationOrchestrator:
                 ttl_minutes=settings.EPHEMERAL_CONTEXT_TTL_MINUTES,
             )
         ),
-        emergency_model_assessor=(
-            ModelEmergencyAssessor(
+        routing_model_assessor=(
+            ModelRoutingAssessor(
                 llm_client=llm_client,
-                timeout_seconds=settings.EMERGENCY_MODEL_TIMEOUT_SECONDS,
-                max_tokens=settings.EMERGENCY_MODEL_MAX_TOKENS,
-                confidence_threshold=settings.EMERGENCY_MODEL_CONFIDENCE_THRESHOLD,
+                settings=settings,
+                timeout_seconds=settings.MODEL_ROUTING_TIMEOUT_SECONDS,
+                max_tokens=settings.MODEL_ROUTING_MAX_TOKENS,
+                emergency_confidence_threshold=(
+                    settings.MODEL_ROUTING_EMERGENCY_CONFIDENCE_THRESHOLD
+                ),
+                intent_confidence_threshold=(
+                    settings.MODEL_ROUTING_INTENT_CONFIDENCE_THRESHOLD
+                ),
             )
-            if settings.EMERGENCY_MODEL_ASSESSMENT_ENABLED
-            and settings.LLM_PROVIDER != "noop"
+            if settings.MODEL_ROUTING_ENABLED and settings.LLM_PROVIDER != "noop"
             else None
         ),
     )
@@ -623,10 +734,7 @@ def _has_date_reference(message: str) -> bool:
     return bool(
         re.search(r"\b20\d{2}[-/]\d{1,2}[-/]\d{1,2}\b", folded)
         or re.search(r"\b\d{1,2}[-/]\d{1,2}[-/]20\d{2}\b", folded)
-        or any(
-            term in folded
-            for term in ("hom nay", "ngay mai", "ngay kia", "tuan")
-        )
+        or any(term in folded for term in ("hom nay", "ngay mai", "ngay kia", "tuan"))
     )
 
 
@@ -676,4 +784,23 @@ def _mark_context_applied(
     return replace(
         result,
         metadata={**result.metadata, "ephemeral_context_applied": True},
+    )
+
+
+def _mark_routing_decision(
+    result: OrchestratorResult,
+    routing: _RoutingDecision,
+) -> OrchestratorResult:
+    routing_metadata: dict[str, object] = {
+        "decision_source": routing.decision_source,
+    }
+    if routing.model_emergency_confidence is not None:
+        routing_metadata["model_emergency_confidence"] = (
+            routing.model_emergency_confidence
+        )
+    if routing.model_intent_confidence is not None:
+        routing_metadata["model_intent_confidence"] = routing.model_intent_confidence
+    return replace(
+        result,
+        metadata={**result.metadata, **routing_metadata},
     )

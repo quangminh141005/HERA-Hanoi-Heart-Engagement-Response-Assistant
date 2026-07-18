@@ -141,7 +141,29 @@ Deploy mặc định không tiêu API. Chỉ xác thực gateway lần cuối kh
 bash scripts/deploy.sh --monitoring --model-preflight
 ```
 
-Flag này chạy đúng một LLM probe cực nhỏ theo `MODEL_PROBE_LLM_MAX_TOKENS` trong `.env` + một embedding probe đồng thời. Restart thường không chạy
+Flag này chạy đúng một LLM probe cực nhỏ theo `MODEL_PROBE_LLM_MAX_TOKENS` trong
+`.env` và một embedding probe đồng thời.
+
+Sau khi probe kết nối đạt, trước khi mở demo hãy chứng minh toàn bộ RAG chạy bằng
+model thật trong container cuối cùng:
+
+```bash
+make rag-live-check CONFIRM_RAG_LIVE_CHECK=YES
+```
+
+Gate này tạo một truy vấn paraphrase có mã ngẫu nhiên để tránh cache, sau đó yêu cầu:
+
+- routing có `decision_source=model`;
+- generation có `generation_mode=model_validated`;
+- có evidence record và citation chính thức;
+- token LLM input/output và token embedding đều tăng so với trước request;
+- failure/timeout của FPT không tăng;
+- JSON response là UTF-8 và khai báo `charset=utf-8`.
+
+Thiếu bất kỳ điều kiện nào thì lệnh fail. Đây là paid release gate có chủ ý, không
+chạy trong CI, stress test, restart hoặc health check định kỳ.
+
+Restart thường không chạy
 deploy script:
 
 ```bash
@@ -175,7 +197,8 @@ make smoke
 ```
 
 Smoke kiểm health/readiness/runtime clock, giá hit/no-match, BHYT, lịch hit/no-match,
-FAQ exact, emergency, create/idempotent/release hold; `model_api_calls=0`.
+emergency và create/idempotent/release hold; `model_api_calls=0`. RAG/FAQ dùng model
+thật chỉ nằm trong gate trả phí `rag-live-check` có xác nhận riêng.
 
 ## 6. Network, TLS và firewall
 
@@ -245,6 +268,9 @@ Theo dõi:
 - release gates và schedule horizon;
 - booking occupied/capacity/hold result;
 - structured cache hit/miss/error.
+
+`HERA Overview` theo dõi tốc độ dùng token theo provider/loại token. Dashboard thanh toán của FPT
+là nguồn chính thức cho số tiền thực tế.
 
 Alert rules có sẵn cho API down, readiness/dependency/release gate, schedule/capacity,
 grounding/freshness/guardrail, upstream, 5xx và latency. Chưa có Alertmanager/notifier:

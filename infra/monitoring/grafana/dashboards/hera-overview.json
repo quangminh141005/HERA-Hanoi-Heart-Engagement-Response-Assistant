@@ -245,6 +245,22 @@
       ],
       "fieldConfig": {"defaults": {"unit": "s"}, "overrides": []},
       "options": {"legend": {"displayMode": "table", "placement": "bottom"}}
+    },
+    {
+      "type": "timeseries",
+      "title": "AI token usage by provider and kind",
+      "description": "Five-minute token rate derived from the cumulative token counters.",
+      "id": 20,
+      "gridPos": {"h": 8, "w": 24, "x": 0, "y": 54},
+      "targets": [
+        {
+          "expr": "sum by (provider, kind) (rate(hera_ai_tokens_total[5m]))",
+          "legendFormat": "{{provider}} / {{kind}}",
+          "refId": "A"
+        }
+      ],
+      "fieldConfig": {"defaults": {"unit": "ops"}, "overrides": []},
+      "options": {"legend": {"displayMode": "table", "placement": "bottom"}}
     }
   ],
   "refresh": "15s",

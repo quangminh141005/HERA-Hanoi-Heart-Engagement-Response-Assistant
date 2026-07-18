@@ -30,7 +30,7 @@ class FakeEmbedder:
 def _settings(**overrides) -> Settings:
     values = {
         "API_KEY": "test-key",
-        "FPT_LLM_MODEL": "gpt-oss-20b",
+        "FPT_LLM_MODEL": "gpt-oss-120b",
         "FPT_EMBEDDING_MODEL": "Vietnamese_Embedding",
         "EMBEDDING_DIMENSIONS": 1024,
         "RATE_LIMIT_ENABLED": False,
@@ -50,7 +50,7 @@ def test_probe_accepts_both_required_models() -> None:
     )
 
     assert result["status"] == "ok"
-    assert result["llm_model"] == "gpt-oss-20b"
+    assert result["llm_model"] == "gpt-oss-120b"
     assert result["embedding_model"] == "Vietnamese_Embedding"
     assert result["embedding_dimensions"] == 1024
     assert llm.calls[0]["max_tokens"] == 13

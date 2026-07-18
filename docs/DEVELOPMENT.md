@@ -24,7 +24,7 @@ Giới hạn cố định:
 
 - PostgreSQL + pgvector là database duy nhất;
 - Redis là shared cache/rate-limit/ephemeral memory;
-- LLM `gpt-oss-20b`, embedding `Vietnamese_Embedding` 1024 chiều;
+- LLM `gpt-oss-120b`, embedding `Vietnamese_Embedding` 1024 chiều;
 - không OCR, không ASR/TTS;
 - booking chỉ là hold prototype, không phải HIS confirmation;
 - không chẩn đoán hoặc tư vấn điều trị;
@@ -170,7 +170,7 @@ FAQ/thông tin chung:
 ```text
 input guardrail -> emergency gate -> intent
 -> embedding -> pgvector retrieval -> evidence validator
--> gpt-oss-20b -> output guardrail -> citation/handoff
+-> gpt-oss-120b -> output guardrail -> citation/handoff
 ```
 
 Không gọi LLM nếu exact structured/template path đã đủ. Không trả factual answer khi

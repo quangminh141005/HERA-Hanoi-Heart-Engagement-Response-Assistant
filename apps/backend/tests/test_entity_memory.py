@@ -17,47 +17,47 @@ from app.services.structured import StructuredChatResult
 class FakeStructuredDataService:
     def chat_service_price(self, message: str) -> StructuredChatResult:
         lowered = message.lower()
-        facility = 'CS2' if 'cs2' in lowered or 'cơ sở 2' in lowered else 'CS1'
+        facility = "CS2" if "cs2" in lowered or "cơ sở 2" in lowered else "CS1"
         return StructuredChatResult(
-            intent='service_price_current',
-            response='Kết quả giá đã kiểm thử.',
+            intent="service_price_current",
+            response="Kết quả giá đã kiểm thử.",
             citations=[],
             metadata={
-                'structured_action': {
-                    'facility_code': facility,
-                    'records': [
+                "structured_action": {
+                    "facility_code": facility,
+                    "records": [
                         {
-                            'facility_code': facility,
-                            'display_name': 'Giá Khám bệnh',
+                            "facility_code": facility,
+                            "display_name": "Giá Khám bệnh",
                         }
                     ],
                 }
             },
             grounded=False,
-            structured_record_ids=('PRICE-TEST',),
+            structured_record_ids=("PRICE-TEST",),
         )
 
     def chat_schedule(self, message: str) -> StructuredChatResult:
         lowered = message.lower()
-        facility = 'CS2' if 'cs2' in lowered or 'cơ sở 2' in lowered else 'CS1'
+        facility = "CS2" if "cs2" in lowered or "cơ sở 2" in lowered else "CS1"
         return StructuredChatResult(
-            intent='schedule',
-            response='Kết quả lịch đã kiểm thử.',
+            intent="schedule",
+            response="Kết quả lịch đã kiểm thử.",
             citations=[],
             metadata={
-                'structured_action': {
-                    'facility_code': facility,
-                    'records': [
+                "structured_action": {
+                    "facility_code": facility,
+                    "records": [
                         {
-                            'facility_code': facility,
-                            'service_date': '2026-07-17',
-                            'provider_text': 'Bác sĩ kiểm thử',
+                            "facility_code": facility,
+                            "service_date": "2026-07-17",
+                            "provider_text": "Bác sĩ kiểm thử",
                         }
                     ],
                 }
             },
             grounded=False,
-            structured_record_ids=('SCHEDULE-TEST',),
+            structured_record_ids=("SCHEDULE-TEST",),
         )
 
     def support_actions(self) -> tuple[dict, ...]:
@@ -99,6 +99,7 @@ def test_multiturn_uses_approved_entities_and_resets_on_intent_switch() -> None:
         LLM_PROVIDER="noop",
         EMBEDDING_PROVIDER="noop",
         RATE_LIMIT_ENABLED=False,
+        _env_file=None,
     )
     orchestrator = build_default_orchestrator(settings)
     orchestrator.structured_data_service = FakeStructuredDataService()
@@ -160,6 +161,7 @@ def test_rag_overall_deadline_returns_safe_handoff() -> None:
         EMBEDDING_PROVIDER="noop",
         CHAT_OVERALL_TIMEOUT_SECONDS=0.01,
         RATE_LIMIT_ENABLED=False,
+        _env_file=None,
     )
     orchestrator = build_default_orchestrator(settings)
     orchestrator.structured_data_service = FakeStructuredDataService()
@@ -183,7 +185,10 @@ def test_rag_overall_deadline_returns_safe_handoff() -> None:
 
     assert result.response_type == "refusal_and_handoff"
     assert result.requires_handoff is True
-    assert result.metadata == {"upstream_timeout": "rag_pipeline"}
+    assert result.metadata == {
+        "upstream_timeout": "rag_pipeline",
+        "decision_source": "deterministic_fallback",
+    }
 
 
 class _FakeRedis:

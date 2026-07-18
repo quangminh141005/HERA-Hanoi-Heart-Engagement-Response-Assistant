@@ -39,6 +39,8 @@ class ChatService:
             "request_id": request_id,
             "channel": _safe_trace_channel(request.client_context.get("channel")),
             "consent_to_store": request.consent_to_store,
+            "configured_llm_model": self.settings.FPT_LLM_MODEL,
+            "configured_embedding_model": self.settings.FPT_EMBEDDING_MODEL,
         }
         with start_observation(
             "hera.chat_turn",
@@ -120,6 +122,13 @@ class ChatService:
                     "response_type": result.response_type,
                     "grounded": bool(result.grounded),
                     "emergency": bool(result.emergency),
+                    "execution_path": _execution_path(result),
+                    "generation_mode": str(
+                        result.metadata.get("generation_mode", "not_applicable")
+                    )[:64],
+                    "decision_source": str(
+                        result.metadata.get("decision_source", "unknown")
+                    )[:64],
                 }
             )
             return response
@@ -172,4 +181,19 @@ def _grounding_failure_reason(result) -> str | None:
     if result.metadata.get("guardrail_violation"):
         return "output_guardrail"
     return None
+
+
+def _execution_path(result) -> str:
+    if result.emergency:
+        return "emergency_safety_handoff"
+    if result.response_type == "structured_action":
+        return "postgresql_structured_lookup"
+    generation_mode = str(result.metadata.get("generation_mode", ""))
+    if generation_mode == "model_validated":
+        return "rag_model_validated"
+    if generation_mode:
+        return f"rag_{generation_mode}"[:64]
+    if result.response_type == "refusal_and_handoff":
+        return "guardrail_or_handoff"
+    return "deterministic_control_message"
 

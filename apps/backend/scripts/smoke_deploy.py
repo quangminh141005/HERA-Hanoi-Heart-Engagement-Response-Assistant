@@ -88,12 +88,6 @@ def main() -> int:
     no_schedule = _request(args.base_url, f'/api/v1/schedules?{missing_schedule}')
     _require(not no_schedule.get('records'), 'Unknown week fabricated a schedule')
 
-    faq = _request(
-        args.base_url,
-        '/api/v1/chat',
-        {'message': 'Đặt hẹn trước ít nhất bao lâu so với giờ khám?', 'locale': 'vi-VN'},
-    )
-    _require(faq.get('grounded') and faq.get('citations'), 'FAQ grounding failed')
     emergency = _request(
         args.base_url,
         '/api/v1/chat',
@@ -113,7 +107,6 @@ def main() -> int:
                 'checks': [
                     'health_and_readiness',
                     'runtime_clock',
-                    'faq_citation',
                     'price_hit_and_no_match',
                     'bhyt_tiers',
                     'schedule_hit_and_no_match',

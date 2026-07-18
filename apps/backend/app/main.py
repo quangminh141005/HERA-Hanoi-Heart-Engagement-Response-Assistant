@@ -18,6 +18,7 @@ from app.core.gateway import GatewayMiddleware
 from app.core.logging import configure_logging
 from app.core.rate_limit import create_rate_limiter
 from app.middleware.logging import RequestLoggingMiddleware
+from app.middleware.utf8_json import Utf8JsonContentTypeMiddleware
 from app.observability.prometheus import READINESS_STATUS
 from app.routers.chat import close_chat_service
 from app.routers.structured import close_structured_service
@@ -65,6 +66,7 @@ app = FastAPI(
 )
 app.state.rate_limiter = rate_limiter
 
+app.add_middleware(Utf8JsonContentTypeMiddleware)
 app.add_middleware(GatewayMiddleware)
 app.add_middleware(
     CORSMiddleware,

@@ -5,7 +5,8 @@ from __future__ import annotations
 from typing import Any, Protocol
 
 from app.core.config import Settings
-from app.observability.prometheus import record_upstream_failure
+from app.observability.ai_usage import extract_openai_embedding_usage
+from app.observability.prometheus import record_ai_usage, record_upstream_failure
 
 
 class Embedder(Protocol):
@@ -70,6 +71,12 @@ class OpenAICompatibleEmbedder:
         except Exception as exc:
             record_upstream_failure(self.provider_label, exc)
             raise
+        usage = extract_openai_embedding_usage(response)
+        record_ai_usage(
+            self.provider_label,
+            input_tokens=usage.input_tokens,
+            output_tokens=0,
+        )
         ordered = sorted(response.data, key=lambda item: item.index)
         vectors = [list(item.embedding) for item in ordered]
         if self.expected_dimensions is not None and any(

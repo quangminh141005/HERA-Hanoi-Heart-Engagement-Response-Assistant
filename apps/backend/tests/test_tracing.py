@@ -45,6 +45,16 @@ def test_disabled_tracing_is_noop() -> None:
     assert isinstance(observation, tracing.NoopObservation)
 
 
+def test_langfuse_base_url_alias_overrides_default_host() -> None:
+    settings = Settings(
+        LANGFUSE_ENABLED=False,
+        LANGFUSE_BASE_URL="https://us.cloud.langfuse.com/",
+        _env_file=None,
+    )
+
+    assert settings.LANGFUSE_HOST == "https://us.cloud.langfuse.com"
+
+
 def test_tracing_drops_input_and_output_when_content_capture_is_disabled(
     monkeypatch,
 ) -> None:

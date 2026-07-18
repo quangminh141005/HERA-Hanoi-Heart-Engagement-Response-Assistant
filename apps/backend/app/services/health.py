@@ -395,7 +395,7 @@ def _model_configuration_ready(settings: Settings) -> bool:
         and settings.LLM_PROVIDER == "openai"
         and settings.EMBEDDING_PROVIDER == "openai"
         and settings.FPT_API_BASE_URL.startswith("https://")
-        and settings.FPT_LLM_MODEL == "gpt-oss-20b"
+        and settings.FPT_LLM_MODEL == "gpt-oss-120b"
         and settings.FPT_EMBEDDING_MODEL == "Vietnamese_Embedding"
         and settings.EMBEDDING_DIMENSIONS == 1024
     )

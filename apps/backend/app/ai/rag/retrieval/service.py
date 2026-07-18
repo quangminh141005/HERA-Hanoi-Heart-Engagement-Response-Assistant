@@ -5,9 +5,12 @@ from __future__ import annotations
 import asyncio
 import hashlib
 import logging
+import re
+import unicodedata
 from collections import OrderedDict
 from time import monotonic
 
+from app.ai.observability.tracing import start_observation
 from app.ai.rag.embeddings.embedder import Embedder
 from app.ai.rag.schemas import (
     KnowledgeSource,
@@ -15,6 +18,7 @@ from app.ai.rag.schemas import (
     RetrievalResponse,
     RetrievedChunk,
 )
+from app.core.config import Settings
 from app.structured.cache import StructuredQueryCache
 from app.structured.postgres_repository import StructuredReadRepository
 
@@ -36,6 +40,7 @@ class RetrievalService:
         shared_cache: StructuredQueryCache | None = None,
         embedding_model: str = "Vietnamese_Embedding",
         expected_embedding_dimensions: int | None = None,
+        settings: Settings | None = None,
     ):
         self.repository = repository
         self.embedder = embedder
@@ -46,6 +51,7 @@ class RetrievalService:
         self.shared_cache = shared_cache
         self.embedding_model = embedding_model
         self.expected_embedding_dimensions = expected_embedding_dimensions
+        self.settings = settings
         self._query_vector_cache: OrderedDict[
             str,
             tuple[float, list[float]],
@@ -76,7 +82,11 @@ class RetrievalService:
             )
 
         lexical_ordered = _ordered_chunks(lexical_ranked)
-        if _has_unique_exact_match(lexical_ordered, self.exact_lexical_score):
+        if _has_unique_exact_match(
+            request.query,
+            lexical_ordered,
+            self.exact_lexical_score,
+        ):
             exact = lexical_ordered[0]
             return RetrievalResponse(
                 query=request.query,
@@ -124,7 +134,7 @@ class RetrievalService:
                     },
                 )
 
-        ordered = _rrf_fuse(
+        ordered = self._fuse_with_trace(
             lexical_ordered,
             _ordered_chunks(semantic_ranked),
             top_k=request.top_k,
@@ -140,6 +150,31 @@ class RetrievalService:
         else:
             chunks = []
         return RetrievalResponse(query=request.query, chunks=chunks)
+
+    def _fuse_with_trace(
+        self,
+        lexical: list[RetrievedChunk],
+        semantic: list[RetrievedChunk],
+        *,
+        top_k: int,
+    ) -> list[RetrievedChunk]:
+        if self.settings is None:
+            return _rrf_fuse(lexical, semantic, top_k=top_k)
+
+        with start_observation(
+            "hera.rag.rrf_fusion",
+            settings=self.settings,
+            as_type="retriever",
+            metadata={
+                "algorithm": "reciprocal_rank_fusion",
+                "lexical_candidates": len(lexical),
+                "semantic_candidates": len(semantic),
+                "top_k": top_k,
+            },
+        ) as observation:
+            fused = _rrf_fuse(lexical, semantic, top_k=top_k)
+            observation.update(metadata={"fused_candidates": len(fused)})
+            return fused
 
     async def _embed_query(self, query: str) -> list[float]:
         if self.embedder is None:
@@ -170,7 +205,7 @@ class RetrievalService:
                 self._remember_query_vector(cache_key, shared_vector, now=now)
                 return shared_vector
 
-        query_vectors = await self.embedder.embed([query])
+        query_vectors = await self._embed_with_trace(query)
         if len(query_vectors) != 1 or not query_vectors[0]:
             raise ValueError("Embedding provider returned no query vector")
         query_vector = [float(value) for value in query_vectors[0]]
@@ -188,6 +223,42 @@ class RetrievalService:
             )
         self._remember_query_vector(cache_key, query_vector, now=now)
         return query_vector
+
+    async def _embed_with_trace(self, query: str) -> list[list[float]]:
+        if self.embedder is None:
+            raise ValueError("Embedding provider is not configured")
+        if self.settings is None:
+            return await self.embedder.embed([query])
+
+        with start_observation(
+            "hera.rag.embedding_query",
+            settings=self.settings,
+            as_type="embedding",
+            metadata={
+                "provider": self.settings.EMBEDDING_PROVIDER,
+                "model": self.embedding_model,
+                "expected_dimensions": self.expected_embedding_dimensions,
+                "batch_size": 1,
+                "content_capture": False,
+            },
+        ) as observation:
+            try:
+                vectors = await self.embedder.embed([query])
+            except Exception as exc:
+                observation.update(
+                    metadata={
+                        "result": "error",
+                        "error_type": exc.__class__.__name__,
+                    }
+                )
+                raise
+            observation.update(
+                metadata={
+                    "result": "success",
+                    "dimensions": len(vectors[0]) if vectors and vectors[0] else 0,
+                }
+            )
+            return vectors
 
     def _remember_query_vector(
         self,
@@ -279,10 +350,20 @@ def _rrf_fuse(
 
 
 def _has_unique_exact_match(
+    query: str,
     chunks: list[RetrievedChunk],
     threshold: float,
 ) -> bool:
     if not chunks or chunks[0].score < threshold:
         return False
-    return len(chunks) == 1 or chunks[0].score > chunks[1].score
+    if len(chunks) > 1 and chunks[0].score <= chunks[1].score:
+        return False
+    return _normalize_exact_text(query) == _normalize_exact_text(chunks[0].text)
+
+
+def _normalize_exact_text(value: str) -> str:
+    """Normalize presentation differences without treating token overlap as exact."""
+
+    normalized = unicodedata.normalize("NFKC", value).casefold()
+    return re.sub(r"[^\w]+", " ", normalized, flags=re.UNICODE).strip()
 

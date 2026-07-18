@@ -56,7 +56,21 @@ Giữ `LANGFUSE_CAPTURE_CONTENT=false` cho demo. Khi tắt capture content, HERA
 
 Không gửi raw prompt, raw answer, số điện thoại, CCCD hoặc mã BHYT.
 
-## 4. Restart backend
+## 4. Kiểm tra kết nối (không gọi model)
+
+Từ WSL, chạy probe sau trước khi restart backend:
+
+```bash
+make langfuse-check
+```
+
+Probe gọi `auth_check`, gửi một span có ID duy nhất chỉ chứa metadata kỹ thuật,
+`flush` rồi chờ tối đa 30 giây để API đọc lại trace đó. Probe không gọi
+LLM/embedding, không gửi prompt/answer hay dữ liệu bệnh nhân, và không in key.
+HERA dùng `LANGFUSE_HOST`; verifier cũng chấp nhận alias chuẩn SDK
+`LANGFUSE_BASE_URL` nếu `LANGFUSE_HOST` chưa được đặt.
+
+## 5. Restart backend
 
 Sau khi sửa `.env`:
 
@@ -70,7 +84,7 @@ Kiểm tra backend còn ready:
 curl -fsS http://127.0.0.1:8080/readyz
 ```
 
-## 5. Xem trace
+## 6. Xem trace
 
 1. Mở Langfuse project.
 2. Vào mục `Traces`.
@@ -88,7 +102,7 @@ Các trường nên nhìn:
 | `grounded` | Câu trả lời có nguồn hay không |
 | `emergency` | Có kích hoạt luồng cấp cứu hay không |
 
-## 6. Khi nào được bật capture content?
+## 7. Khi nào được bật capture content?
 
 Chỉ bật khi đã có phê duyệt privacy/security rõ ràng:
 
@@ -97,4 +111,3 @@ LANGFUSE_CAPTURE_CONTENT=true
 ```
 
 Không bật flag này trong demo public hoặc khi người dùng có thể nhập PII.
-
