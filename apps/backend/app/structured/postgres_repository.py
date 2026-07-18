@@ -1084,7 +1084,6 @@ def _service_price_query_tokens(value: str) -> list[str]:
         "tai",
         "la",
         "ma",
-        "bang",
     }
     tokens = re.split(r"[^0-9a-zA-Z]+", value)
     return [

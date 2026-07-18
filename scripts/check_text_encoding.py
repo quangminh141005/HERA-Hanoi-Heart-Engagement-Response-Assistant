@@ -12,7 +12,6 @@ import sys
 from collections.abc import Iterable
 from pathlib import Path
 
-
 TEXT_SUFFIXES = {
     "",
     ".conf",
