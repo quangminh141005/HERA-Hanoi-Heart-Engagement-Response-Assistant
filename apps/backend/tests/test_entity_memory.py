@@ -125,6 +125,15 @@ def test_multiturn_uses_approved_entities_and_resets_on_intent_switch() -> None:
         assert price_records
         assert price_records[0]["facility_code"] == "CS2"
 
+        short_follow_up = await orchestrator.handle(
+            message="Vậy bao nhiêu?",
+            conversation_id=conversation_id,
+            locale="vi",
+            user_context={},
+        )
+        assert short_follow_up.intent == "service_price_current"
+        assert short_follow_up.metadata["ephemeral_context_applied"] is True
+
         switched = await orchestrator.handle(
             message="Lịch bác sĩ cơ sở 1 ngày 2026-07-17",
             conversation_id=conversation_id,

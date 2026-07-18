@@ -156,6 +156,10 @@ restart có thể làm mất context/cache/counter, không làm mất giá/BHYT/
 | `LLM_RESPONSE_CACHE_MAX_ENTRIES` | `512` | Số entry cache LLM tối đa mỗi worker |
 | `EMBEDDING_TIMEOUT_SECONDS` | `10` | Budget embedding query |
 | `CHAT_OVERALL_TIMEOUT_SECONDS` | `35` | Deadline toàn pipeline chat |
+| `EMERGENCY_MODEL_ASSESSMENT_ENABLED` | `true` | Dùng LLM đánh giá nguy cấp trước khi fallback rule an toàn |
+| `EMERGENCY_MODEL_TIMEOUT_SECONDS` | `2.5` | Timeout riêng cho model emergency classifier |
+| `EMERGENCY_MODEL_MAX_TOKENS` | `80` | Output JSON nhỏ cho classifier nguy cấp |
+| `EMERGENCY_MODEL_CONFIDENCE_THRESHOLD` | `0.62` | Ngưỡng confidence để kích hoạt emergency handoff |
 | `MODEL_TIMEOUT_SECONDS` | `45` | Chỉ dùng model gateway probe |
 | `MODEL_PROBE_LLM_MAX_TOKENS` | `8` | Token output tối đa cho live LLM probe; tăng nhẹ khi provider trả rỗng |
 | `RAG_TOP_K` | `5` | Số chunk tối đa |

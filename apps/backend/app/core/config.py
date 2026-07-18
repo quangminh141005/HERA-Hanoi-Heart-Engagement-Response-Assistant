@@ -106,6 +106,10 @@ class Settings(BaseSettings):
     LLM_RESPONSE_CACHE_MAX_ENTRIES: int = Field(default=512, ge=1, le=100_000)
     EMBEDDING_TIMEOUT_SECONDS: float = Field(default=10.0, gt=0)
     CHAT_OVERALL_TIMEOUT_SECONDS: float = Field(default=35.0, gt=0)
+    EMERGENCY_MODEL_ASSESSMENT_ENABLED: bool = True
+    EMERGENCY_MODEL_TIMEOUT_SECONDS: float = Field(default=2.5, gt=0)
+    EMERGENCY_MODEL_MAX_TOKENS: int = Field(default=80, ge=16, le=256)
+    EMERGENCY_MODEL_CONFIDENCE_THRESHOLD: float = Field(default=0.62, ge=0.0, le=1.0)
     # Reserved for the concurrent deployment connectivity probe.
     MODEL_TIMEOUT_SECONDS: float = Field(default=45.0, gt=0)
     MODEL_PROBE_LLM_MAX_TOKENS: int = Field(default=8, ge=1, le=128)

@@ -974,6 +974,24 @@ select:focus-visible,
   color: #687a74;
 }
 
+.history-toggle {
+  width: fit-content;
+  align-self: center;
+  min-height: 34px;
+  padding: 6px 12px;
+  border: 1px solid #d4dfdc;
+  border-radius: 999px;
+  color: #285b4b;
+  background: #ffffff;
+  font-size: 0.78rem;
+  font-weight: 800;
+}
+
+.history-toggle:hover {
+  border-color: #86aa9e;
+  background: #eff7f4;
+}
+
 .composer-input {
   display: grid;
   gap: 4px;

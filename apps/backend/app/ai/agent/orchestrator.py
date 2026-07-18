@@ -10,6 +10,7 @@ from dataclasses import dataclass, field, replace
 from uuid import uuid4
 
 from app.ai.emergency.detector import EmergencyDetector, build_emergency_response
+from app.ai.emergency.model_assessor import ModelEmergencyAssessor
 from app.ai.guardrails.pipeline import GuardrailPipeline
 from app.ai.handoff.service import HandoffService
 from app.ai.intent import HospitalIntent, IntentClassification, IntentClassifier
@@ -63,6 +64,7 @@ class ConversationOrchestrator:
         handoff_service: HandoffService,
         structured_data_service: StructuredDataService,
         memory_store: EntityMemoryStore,
+        emergency_model_assessor: ModelEmergencyAssessor | None = None,
     ) -> None:
         self.settings = settings
         self.guardrails = guardrails
@@ -72,6 +74,7 @@ class ConversationOrchestrator:
         self.handoff_service = handoff_service
         self.structured_data_service = structured_data_service
         self.memory_store = memory_store
+        self.emergency_model_assessor = emergency_model_assessor
 
     async def handle(
         self,
@@ -87,7 +90,7 @@ class ConversationOrchestrator:
         cid = conversation_id or uuid4().hex
 
         # Emergency wins over prompt-injection, privacy and every data lookup.
-        emergency = self.emergency_detector.assess(message)
+        emergency = await self._assess_emergency(message)
         if emergency.is_emergency:
             await self.memory_store.clear(cid)
             template = self.structured_data_service.active_template("emergency")
@@ -331,6 +334,18 @@ class ConversationOrchestrator:
         )
         return _mark_context_applied(response, context_applied)
 
+    async def _assess_emergency(self, message: str):
+        """Use model assessment when configured, with deterministic fallback."""
+
+        if self.emergency_model_assessor is not None:
+            try:
+                model_assessment = await self.emergency_model_assessor.assess(message)
+                if model_assessment.is_emergency:
+                    return model_assessment
+            except Exception as exc:
+                record_upstream_failure("emergency_model_assessor", exc)
+        return self.emergency_detector.assess(message)
+
     async def close(self) -> None:
         """Close process-scoped Redis and model HTTP clients."""
 
@@ -484,21 +499,44 @@ def build_default_orchestrator(settings: Settings) -> ConversationOrchestrator:
                 ttl_minutes=settings.EPHEMERAL_CONTEXT_TTL_MINUTES,
             )
         ),
+        emergency_model_assessor=(
+            ModelEmergencyAssessor(
+                llm_client=llm_client,
+                timeout_seconds=settings.EMERGENCY_MODEL_TIMEOUT_SECONDS,
+                max_tokens=settings.EMERGENCY_MODEL_MAX_TOKENS,
+                confidence_threshold=settings.EMERGENCY_MODEL_CONFIDENCE_THRESHOLD,
+            )
+            if settings.EMERGENCY_MODEL_ASSESSMENT_ENABLED
+            and settings.LLM_PROVIDER != "noop"
+            else None
+        ),
     )
 
 
 _FOLLOW_UP_MARKERS = (
+    "ai ",
+    "bac si do",
+    "bao nhieu",
+    "ben do",
+    "ca do",
+    "cai do",
     "con ",
+    "cho do",
     "thi sao",
     "ngay mai",
     "ngay kia",
+    "ngay do",
+    "o do",
     "tuan sau",
     "tuan nay",
     "co so 1",
     "co so 2",
     "nguoi thu",
-    "bac si do",
     "dich vu do",
+    "luc nao",
+    "the con",
+    "the thi sao",
+    "vay",
 )
 _STRUCTURED_CONTEXT_INTENTS = {
     HospitalIntent.SERVICE_PRICE,
@@ -555,7 +593,25 @@ def _apply_safe_context(
 
 def _looks_like_follow_up(message: str) -> bool:
     folded = f"{_fold_text(message)} "
-    return any(marker in folded for marker in _FOLLOW_UP_MARKERS)
+    if any(marker in folded for marker in _FOLLOW_UP_MARKERS):
+        return True
+    tokens = re.findall(r"[a-z0-9]+", folded)
+    weak_words = {
+        "ai",
+        "bao",
+        "bao nhieu",
+        "co",
+        "con",
+        "khong",
+        "la",
+        "nao",
+        "o",
+        "sao",
+        "thi",
+        "the",
+        "vay",
+    }
+    return 0 < len(tokens) <= 5 and any(token in weak_words for token in tokens)
 
 
 def _has_facility(message: str) -> bool:

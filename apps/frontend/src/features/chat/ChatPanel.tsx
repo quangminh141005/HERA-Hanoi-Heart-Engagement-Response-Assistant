@@ -8,6 +8,7 @@ import { AssistantMessage } from './AssistantMessage';
 import { useChat } from './useChat';
 
 const CHAT_MAX_CHARS = 2_000;
+const COLLAPSED_MESSAGE_LIMIT = 10;
 const STARTER_MESSAGES = [
   'Dịch vụ “Giá Khám bệnh” đang niêm yết bao nhiêu?',
   'Mức đóng BHYT hộ gia đình hiện nay là bao nhiêu?',
@@ -38,16 +39,19 @@ function PromptButtons({ disabled, onSelect }: { disabled: boolean; onSelect: (m
 export function ChatPanel({ compact = false }: { compact?: boolean }) {
   const { messages, isSending, error, canRetry, sendMessage, retry, resetConversation } = useChat();
   const [draft, setDraft] = useState('');
+  const [showFullHistory, setShowFullHistory] = useState(false);
   const inputRef = useRef<HTMLTextAreaElement | null>(null);
   const endRef = useRef<HTMLDivElement | null>(null);
   const lastAssistant = useMemo(
     () => [...messages].reverse().find((message) => message.role === 'assistant'),
     [messages],
   );
+  const hiddenMessageCount = Math.max(0, messages.length - COLLAPSED_MESSAGE_LIMIT);
+  const visibleMessages = showFullHistory ? messages : messages.slice(-COLLAPSED_MESSAGE_LIMIT);
 
   useEffect(() => {
     endRef.current?.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
-  }, [messages, isSending, error]);
+  }, [visibleMessages, isSending, error]);
 
   function submitText(text: string) {
     const trimmed = text.trim();
@@ -55,6 +59,7 @@ export function ChatPanel({ compact = false }: { compact?: boolean }) {
       return;
     }
     setDraft('');
+    setShowFullHistory(false);
     void sendMessage(trimmed).finally(() => inputRef.current?.focus());
   }
 
@@ -68,6 +73,11 @@ export function ChatPanel({ compact = false }: { compact?: boolean }) {
       event.preventDefault();
       submitText(draft);
     }
+  }
+
+  function reset() {
+    setShowFullHistory(false);
+    resetConversation();
   }
 
   return (
@@ -104,7 +114,7 @@ export function ChatPanel({ compact = false }: { compact?: boolean }) {
               <StatusPill>Sẵn sàng</StatusPill>
             )}
             {messages.length > 0 ? (
-              <button className="reset-button" type="button" onClick={resetConversation}>
+              <button className="reset-button" type="button" onClick={reset}>
                 <RotateCcw size={15} aria-hidden="true" />
                 Cuộc trò chuyện mới
               </button>
@@ -121,18 +131,29 @@ export function ChatPanel({ compact = false }: { compact?: boolean }) {
               {compact ? <PromptButtons disabled={isSending} onSelect={submitText} /> : null}
             </div>
           ) : (
-            messages.map((message) =>
-              message.role === 'assistant' ? (
-                <AssistantMessage key={message.id} message={message} />
-              ) : (
-                <article className="message message-user" key={message.id}>
-                  <div className="message-meta">
-                    <strong><UserRound size={15} aria-hidden="true" /> Bạn</strong>
-                  </div>
-                  <p>{message.content}</p>
-                </article>
-              ),
-            )
+            <>
+              {hiddenMessageCount > 0 ? (
+                <button
+                  className="history-toggle"
+                  type="button"
+                  onClick={() => setShowFullHistory((value) => !value)}
+                >
+                  {showFullHistory ? 'Thu gọn lịch sử' : `Xem ${hiddenMessageCount} tin nhắn cũ hơn`}
+                </button>
+              ) : null}
+              {visibleMessages.map((message) =>
+                message.role === 'assistant' ? (
+                  <AssistantMessage key={message.id} message={message} />
+                ) : (
+                  <article className="message message-user" key={message.id}>
+                    <div className="message-meta">
+                      <strong><UserRound size={15} aria-hidden="true" /> Bạn</strong>
+                    </div>
+                    <p>{message.content}</p>
+                  </article>
+                ),
+              )}
+            </>
           )}
           {isSending ? <LoadingState label="HERA đang kiểm tra an toàn và nguồn dữ liệu..." /> : null}
           {error ? (

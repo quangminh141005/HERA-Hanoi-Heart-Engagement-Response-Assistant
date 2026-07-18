@@ -321,6 +321,7 @@ phối replica và invariant không vượt capacity, sau đó dọn volume test
 ## 9. Tài liệu tiếp theo
 
 - [Cấu hình cốt lõi](docs/CONFIGURATION.md)
+- [Bật và xem Langfuse](docs/LANGFUSE_QUICKSTART.md)
 - [Hướng dẫn developer](docs/DEVELOPMENT.md)
 - [Quản trị dữ liệu](docs/DATA_MANAGEMENT.md)
 - [Deploy và vận hành](docs/DEPLOYMENT.md)
