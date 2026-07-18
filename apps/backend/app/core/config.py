@@ -46,6 +46,11 @@ class Settings(BaseSettings):
     REFERENCE_DATE: date | None = None
     TREAT_PROVIDED_DATA_AS_LATEST: bool = True
     ALLOW_REVIEW_ONLY_DATA: bool = False
+    SCHEDULE_DOCTOR_MATCH_MIN_SCORE: float = Field(
+        default=0.60,
+        ge=0.0,
+        le=1.0,
+    )
     CHAT_MAX_CHARS: int = Field(default=2000, ge=100, le=10_000)
     EPHEMERAL_CONTEXT_TTL_MINUTES: int = Field(default=30, ge=1)
     CONVERSATION_MEMORY_BACKEND: Literal["memory", "redis"] = "memory"
@@ -135,6 +140,7 @@ class Settings(BaseSettings):
     VECTOR_STORE_COLLECTION: str = "hera_official_knowledge"
     RAG_TOP_K: int = Field(default=3, ge=1)
     RAG_MIN_CONFIDENCE: float = Field(default=0.55, ge=0.0, le=1.0)
+    RAG_CROSS_INTENT_RETRIEVAL_ENABLED: bool = True
     RAG_GENERATION_MAX_TOKENS: int = Field(default=1024, ge=1024, le=131_072)
     RAG_HYDE_ENABLED: bool = True
     RAG_HYDE_MAX_TOKENS: int = Field(default=1024, ge=1024, le=131_072)

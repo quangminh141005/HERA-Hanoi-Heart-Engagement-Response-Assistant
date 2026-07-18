@@ -152,6 +152,18 @@ def test_multiturn_uses_approved_entities_and_resets_on_intent_switch() -> None:
         assert schedule_follow_up.intent == "schedule"
         assert schedule_follow_up.metadata["ephemeral_context_applied"] is True
 
+        schedule_refinement = await orchestrator.handle(
+            message=(
+                "Hay chi dua ra thong tin cac ca kham co mo, "
+                "con cac ca nghi khong can dua"
+            ),
+            conversation_id=conversation_id,
+            locale="vi",
+            user_context={},
+        )
+        assert schedule_refinement.intent == "schedule"
+        assert schedule_refinement.metadata["ephemeral_context_applied"] is True
+
     asyncio.run(scenario())
 
 

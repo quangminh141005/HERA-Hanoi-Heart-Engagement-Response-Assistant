@@ -172,6 +172,7 @@ class PostgresStructuredRepository:
         self,
         session_factory: SessionFactory | None = None,
         *,
+        doctor_match_min_score: float = 0.60,
         approval_statuses: Sequence[str] = (
             "approved_for_hackathon",
             "approved_for_production",
@@ -188,6 +189,10 @@ class PostgresStructuredRepository:
             raise ValueError("At least one approval status is required")
         self._session_factory = session_factory
         self._approval_statuses = list(statuses)
+        self._doctor_match_min_score = min(
+            1.0,
+            max(0.0, float(doctor_match_min_score)),
+        )
 
     def exists(self) -> bool:
         """Return whether the migrated structured schema is reachable."""
@@ -359,6 +364,7 @@ class PostgresStructuredRepository:
               AND sd.runtime_eligible IS TRUE
               AND se.approval_status = ANY(CAST(:approval_statuses AS TEXT[]))
               AND se.runtime_eligible IS TRUE
+              AND se.duty_status = 'scheduled'
               AND (
                     CAST(:service_date AS DATE) IS NULL
                     OR se.service_date = CAST(:service_date AS DATE)
@@ -368,23 +374,49 @@ class PostgresStructuredRepository:
                     OR se.facility_code = CAST(:facility_code AS TEXT)
                   )
               AND (
-                    CAST(:doctor_pattern AS TEXT) IS NULL
+                    CAST(:doctor_folded AS TEXT) IS NULL
                     OR se.assignee_text_folded LIKE CAST(:doctor_pattern AS TEXT)
+                    OR word_similarity(
+                        se.assignee_text_folded,
+                        CAST(:doctor_folded AS TEXT)
+                    ) >= :doctor_match_min_score
+                    OR EXISTS (
+                        SELECT 1
+                        FROM schedule_entry_doctors sed
+                        JOIN doctors d ON d.doctor_id = sed.doctor_id
+                        WHERE sed.entry_id = se.schedule_entry_id
+                          AND (
+                            CAST(:doctor_folded AS TEXT)
+                              LIKE '%' || d.normalized_name || '%'
+                            OR d.normalized_name
+                              LIKE '%' || CAST(:doctor_folded AS TEXT) || '%'
+                            OR word_similarity(
+                                d.normalized_name,
+                                CAST(:doctor_folded AS TEXT)
+                              ) >= :doctor_match_min_score
+                          )
+                    )
                   )
               AND (
                     CAST(:room_pattern AS TEXT) IS NULL
                     OR se.room_label_folded LIKE CAST(:room_pattern AS TEXT)
                   )
-            ORDER BY se.service_date, se.room_label, se.schedule_entry_id
+            ORDER BY
+              CASE
+                WHEN CAST(:doctor_folded AS TEXT) IS NULL THEN 0
+                WHEN se.assignee_text_folded LIKE CAST(:doctor_pattern AS TEXT) THEN 2
+                ELSE 1
+              END DESC,
+              se.service_date, se.room_label, se.schedule_entry_id
             LIMIT :row_limit
             """,
             {
                 "week_start": week_start,
                 "service_date": service_date,
                 "facility_code": facility_code,
-                "doctor_pattern": (
-                    f"%{_fold_text(doctor_query)}%" if doctor_query else None
-                ),
+                "doctor_folded": _fold_text(doctor_query) if doctor_query else None,
+                "doctor_pattern": f"%{_fold_text(doctor_query)}%" if doctor_query else None,
+                "doctor_match_min_score": self._doctor_match_min_score,
                 "room_pattern": f"%{_fold_text(room_query)}%" if room_query else None,
                 "row_limit": _bounded_limit(limit, maximum=500),
                 "approval_statuses": self._approval_statuses,
@@ -1062,34 +1094,13 @@ def _service_price_token_weight(token: str) -> float:
 
 
 def _service_price_query_tokens(value: str) -> list[str]:
-    stopwords = {
-        "gia",
-        "tien",
-        "chi",
-        "phi",
-        "bang",
-        "dich",
-        "vu",
-        "bao",
-        "nhieu",
-        "cho",
-        "minh",
-        "ban",
-        "co",
-        "khong",
-        "cs1",
-        "cs2",
-        "so",
-        "o",
-        "tai",
-        "la",
-        "ma",
-    }
+    """Tokenize the model-extracted service phrase without language word lists."""
+
     tokens = re.split(r"[^0-9a-zA-Z]+", value)
     return [
         token
         for token in tokens
-        if (len(token) > 1 or token.isdigit()) and token not in stopwords
+        if len(token) > 1 or token.isdigit()
     ]
 
 

@@ -26,6 +26,8 @@ HARD_EVAL_LIVE_JUDGE ?= 0
 HARD_EVAL_JUDGE_ALL ?= 0
 HARD_EVAL_JUDGE_MAX_TOKENS ?= 1024
 HARD_EVAL_DELAY_SECONDS ?= 2.1
+HARDER_EVAL_CASE_FILE ?= data/test-fixtures/25-harder-rag-evaluation-500.json
+HARDER_EVAL_OUTPUT ?= reports/harder-live-eval-500.json
 DEV_PROJECT_NAME ?= hera-dev
 REPLICAS ?= 2
 
@@ -33,7 +35,7 @@ ENV_ARGS = $(if $(wildcard $(ENV_FILE)),--env-file $(ENV_FILE),)
 COMPOSE = docker compose $(ENV_ARGS) -p $(PROJECT_NAME) -f docker-compose.yml
 MONITORING_COMPOSE = $(COMPOSE) -f docker-compose.monitoring.yml
 
-.PHONY: help setup config-check encoding-check lint unit integration test test-full data-generate generated-validate data-validate db-bootstrap migrate seed data-import data-export data-rebind-export data-reset-dev up down restart status logs scale smoke model-preflight rag-live-check hard-live-eval langfuse-check stress stress-ci stress-extreme monitoring-up monitoring-down monitoring-status monitoring-logs package deploy release-check backup restore rollback
+.PHONY: help setup config-check encoding-check lint unit integration test test-full data-generate generated-validate data-validate harder-testset db-bootstrap migrate seed data-import data-export data-rebind-export data-reset-dev up down restart status logs scale smoke model-preflight rag-live-check hard-live-eval harder-live-eval langfuse-check stress stress-ci stress-extreme monitoring-up monitoring-down monitoring-status monitoring-logs package deploy release-check backup restore rollback
 
 help: ## Show every supported target and its purpose.
 	@awk 'BEGIN {FS = ":.*##"; printf "HERA commands:\n\n"} /^[a-zA-Z0-9_-]+:.*##/ {printf "  %-20s %s\n", $$1, $$2}' $(MAKEFILE_LIST)
@@ -156,6 +158,13 @@ rag-live-check: ## Prove deployed routing, embedding and grounded generation use
 hard-live-eval: ## Run hard live model/data evaluation; writes reports/hard-live-eval-report.json.
 	@if [[ "$(CONFIRM_HARD_LIVE_EVAL)" != "YES" ]]; then echo "Refusing paid hard eval: rerun with CONFIRM_HARD_LIVE_EVAL=YES HARD_EVAL_LIMIT=8."; exit 2; fi
 	@$(PYTHON) scripts/hard_live_eval.py --confirm YES --base-url "$(HARD_EVAL_BASE_URL)" --case-count "$(HARD_EVAL_CASE_COUNT)" --limit "$(HARD_EVAL_LIMIT)" --output "$(HARD_EVAL_OUTPUT)" --judge-max-tokens "$(HARD_EVAL_JUDGE_MAX_TOKENS)" --delay-seconds "$(HARD_EVAL_DELAY_SECONDS)" $(if $(filter 1 true TRUE yes YES,$(HARD_EVAL_LIVE_JUDGE)),--live-judge,) $(if $(filter 1 true TRUE yes YES,$(HARD_EVAL_JUDGE_ALL)),--judge-all,)
+
+harder-testset: ## Rebuild and verify the disjoint second 500-case fixture from the shipped seed.
+	@$(PYTHON) scripts/build_harder_rag_testset.py
+
+harder-live-eval: harder-testset ## Run the second disjoint 500-case live evaluation.
+	@if [[ "$(CONFIRM_HARD_LIVE_EVAL)" != "YES" ]]; then echo "Refusing paid eval: set CONFIRM_HARD_LIVE_EVAL=YES."; exit 2; fi
+	@$(PYTHON) scripts/hard_live_eval.py --confirm YES --base-url "$(HARD_EVAL_BASE_URL)" --case-file "$(HARDER_EVAL_CASE_FILE)" --limit "$(HARD_EVAL_LIMIT)" --output "$(HARDER_EVAL_OUTPUT)" --judge-max-tokens "$(HARD_EVAL_JUDGE_MAX_TOKENS)" --delay-seconds "$(HARD_EVAL_DELAY_SECONDS)" $(if $(filter 1 true TRUE yes YES,$(HARD_EVAL_LIVE_JUDGE)),--live-judge,) $(if $(filter 1 true TRUE yes YES,$(HARD_EVAL_JUDGE_ALL)),--judge-all,)
 
 langfuse-check: ## Verify Langfuse auth and trace ingestion with zero model calls.
 	@$(COMPOSE) exec -T backend python scripts/verify_langfuse.py

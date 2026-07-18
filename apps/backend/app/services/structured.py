@@ -7,6 +7,7 @@ import re
 from collections.abc import Callable
 from dataclasses import dataclass
 from datetime import date, timedelta
+from typing import Any
 
 from app.core.config import Settings
 from app.schemas.structured import (
@@ -61,6 +62,7 @@ class StructuredDataService:
             else ("approved_for_hackathon", "approved_for_production")
         )
         self.repository = repository or PostgresStructuredRepository(
+            doctor_match_min_score=settings.SCHEDULE_DOCTOR_MATCH_MIN_SCORE,
             approval_statuses=approval_statuses,
         )
 
@@ -212,7 +214,7 @@ class StructuredDataService:
         room_query: str | None,
     ) -> ScheduleLookupResponse:
         rows = self._cached_rows(
-            'schedules',
+            'open_schedules',
             {
                 'week_start': week_start,
                 'service_date': service_date,
@@ -228,6 +230,7 @@ class StructuredDataService:
                 room_query=room_query,
             ),
         )
+        rows = _deduplicate_schedule_rows(rows)
         source_ids = sorted({row["source_id"] for row in rows})
         source_map = self._source_map(source_ids)
         citations = [
@@ -287,8 +290,13 @@ class StructuredDataService:
         facility_code_override: str | None = None,
     ) -> StructuredChatResult:
         facility_code = facility_code_override or _extract_facility_code(message)
+        search_query = (
+            _preserve_bracketed_service_qualifiers(query_override, message)
+            if query_override
+            else _extract_search_phrase(message)
+        )
         rows = self.lookup_service_prices(
-            query=query_override or _extract_search_phrase(message),
+            query=search_query,
             facility_code=facility_code,
             as_of_date=None,
         )
@@ -335,12 +343,6 @@ class StructuredDataService:
             )
         top = rows.records[0]
         comparison_rows = rows
-        if facility_code is not None:
-            comparison_rows = self.lookup_service_prices(
-                query=top.display_name,
-                facility_code=None,
-                as_of_date=None,
-            )
         same_service = [
             record
             for record in comparison_rows.records
@@ -352,11 +354,7 @@ class StructuredDataService:
         amounts = {record.amount_vnd for record in same_service}
         if len(facility_codes) > 1 and len(amounts) == 1:
             facilities = ' và '.join(facility_codes)
-            prefix = (
-                f'Dịch vụ này đang có cùng mức giá ở {facilities}'
-                if facility_code is not None
-                else f'{top.display_name} tại {facilities}'
-            )
+            prefix = f'{top.display_name} tại {facilities}'
             return StructuredChatResult(
                 intent='service_price_current',
                 response=(
@@ -390,12 +388,20 @@ class StructuredDataService:
             structured_record_ids=(top.service_record_id, top.price_id),
         )
 
-    def chat_bhyt(self, message: str) -> StructuredChatResult:
+    def chat_bhyt(
+        self,
+        message: str,
+        tier_override: str | None = None,
+    ) -> StructuredChatResult:
         target_date = _extract_as_of_date(message) or self.reference_date()
         policy = self.lookup_bhyt(as_of_date=target_date)
         if not policy.tiers:
             raise LookupError("Không tìm thấy tier BHYT.")
-        requested_tier = _extract_bhyt_tier(message)
+        requested_tier = (
+            int(tier_override)
+            if tier_override in {"1", "2", "3", "4", "5"}
+            else _extract_bhyt_tier(message)
+        )
         selected = next(
             (tier for tier in policy.tiers if tier.tier_order == requested_tier),
             None,
@@ -424,17 +430,34 @@ class StructuredDataService:
             structured_record_ids=(policy.policy_id, *tier_ids),
         )
 
-    def chat_schedule(self, message: str) -> StructuredChatResult:
+    def chat_schedule(
+        self,
+        message: str,
+        date_override: str | None = None,
+        facility_code_override: str | None = None,
+        doctor_query_override: str | None = None,
+        room_query_override: str | None = None,
+    ) -> StructuredChatResult:
         reference_date = self.reference_date()
-        target_date = _resolve_schedule_date(message, reference_date)
+        # The user's explicit date is authoritative. A routing model may infer a
+        # wrong year for a short dd/mm date, so only use its normalized slot when
+        # deterministic parsing found no date in the original message.
+        target_date = _resolve_schedule_date(message, reference_date) or (
+            _extract_as_of_date(date_override or "")
+        )
         target_week = _monday(target_date or reference_date)
-        facility_code = _extract_facility_code(message)
+        facility_code = facility_code_override or _extract_facility_code(message)
+        normalized_room_override = (
+            _extract_room_query(room_query_override) or room_query_override
+            if room_query_override
+            else None
+        )
         schedule = self.lookup_schedules(
             week_start=target_week,
             service_date=target_date,
             facility_code=facility_code,
-            doctor_query=_extract_doctor_query(message),
-            room_query=_extract_room_query(message),
+            doctor_query=doctor_query_override or _extract_doctor_query(message),
+            room_query=normalized_room_override or _extract_room_query(message),
         )
         if not schedule.records:
             return StructuredChatResult(
@@ -591,6 +614,24 @@ def _extract_facility_code(message: str) -> str | None:
     return None
 
 
+def _preserve_bracketed_service_qualifiers(
+    model_query: str,
+    original_message: str,
+) -> str:
+    """Restore exact bracket qualifiers that a model extraction omitted."""
+
+    query = " ".join(model_query.split())
+    folded_query = _fold_text(query)
+    for qualifier in re.findall(r"\[([^\[\]]{1,160})\]", original_message):
+        cleaned = " ".join(qualifier.split())
+        if re.fullmatch(r"[A-Z0-9_]+_REDACTED", cleaned):
+            continue
+        if cleaned and _fold_text(cleaned) not in folded_query:
+            query = f"{query} [{cleaned}]"
+            folded_query = _fold_text(query)
+    return query
+
+
 def _format_vnd(value: int) -> str:
     return f"{value:,}".replace(",", ".")
 
@@ -712,10 +753,39 @@ def _monday(value: date) -> date:
     return value - timedelta(days=value.weekday())
 
 
+def _deduplicate_schedule_rows(
+    rows: list[dict[str, Any]],
+) -> list[dict[str, Any]]:
+    """Keep one deterministic record for each published open consultation slot."""
+
+    unique_rows: list[dict[str, Any]] = []
+    seen: set[tuple[str, ...]] = set()
+    for row in rows:
+        identity = tuple(
+            str(row.get(field) or "").strip().casefold()
+            for field in (
+                "service_date",
+                "facility_code",
+                "room_label",
+                "unit_label",
+                "assignee_text_raw",
+                "published_hours_raw",
+            )
+        )
+        if identity in seen:
+            continue
+        seen.add(identity)
+        unique_rows.append(row)
+    return unique_rows
+
+
 def _resolve_schedule_date(message: str, reference_date: date) -> date | None:
     explicit = _extract_as_of_date(message)
     if explicit is not None:
         return explicit
+    partial = _extract_day_month_date(message, default_year=reference_date.year)
+    if partial is not None:
+        return partial
     folded = _fold_text(message)
     if "ngay kia" in folded:
         return reference_date + timedelta(days=2)
@@ -728,6 +798,31 @@ def _resolve_schedule_date(message: str, reference_date: date) -> date | None:
     if "tuan nay" in folded:
         return None
     return None
+
+
+def _extract_day_month_date(message: str, *, default_year: int) -> date | None:
+    """Parse explicit Vietnamese day/month dates that omit the year.
+
+    Hospital schedule questions commonly use short forms such as ``09/06`` or
+    ``ngày 15-06``. Those are explicit dates in the dataset year, so they must
+    not fall back to the reference week. Full yyyy-mm-dd and dd/mm/yyyy parsing
+    stays in ``_extract_as_of_date``.
+    """
+
+    if re.search(r"\b(?:20\d{2})[-/]\d{1,2}[-/]\d{1,2}\b", message):
+        return None
+    if re.search(r"\b\d{1,2}[-/]\d{1,2}[-/](?:20\d{2})\b", message):
+        return None
+    folded = _fold_text(message)
+    match = re.search(r"(?:\bngay\s*)?\b(\d{1,2})[-/](\d{1,2})\b", folded)
+    if not match:
+        return None
+    day = int(match.group(1))
+    month = int(match.group(2))
+    try:
+        return date(default_year, month, day)
+    except ValueError:
+        return None
 
 
 def _fold_text(value: str) -> str:
@@ -785,11 +880,17 @@ def _trim_doctor_candidate(value: str) -> str:
 
 
 def _extract_room_query(message: str) -> str | None:
-    lowered = message.lower()
-    if "phòng khám số" in lowered or "phong kham so" in lowered:
-        return message.strip()
-    if "p4" in lowered:
-        return message.strip()
+    room_code = re.search(r"\bP\d{3}(?:\.[A-Za-z0-9]+)?\b", message, re.IGNORECASE)
+    if room_code:
+        return room_code.group(0)
+    folded = _fold_text(message)
+    room_label = re.search(
+        r"\bphong\s+(.+?)(?=\s+(?:tai|o|ngay|co)\b|[,.;?]|$)",
+        folded,
+    )
+    if room_label:
+        candidate = " ".join(room_label.group(1).split())
+        return candidate[:80] or None
     return None
 
 

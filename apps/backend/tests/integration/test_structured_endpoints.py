@@ -131,6 +131,30 @@ def test_price_chat_combines_equal_facilities_without_showing_year(
     assert 'hệ thống,' in result.response
 
 
+def test_price_chat_respects_explicit_facility_scope(
+    structured_service: StructuredDataService,
+) -> None:
+    result = structured_service.chat_service_price(
+        'Giá khám bệnh tại CS1 là bao nhiêu?',
+        'Giá Khám bệnh',
+        'CS1',
+    )
+
+    assert 'tại CS1 là 50.600 VND' in result.response
+    assert 'CS1 và CS2' not in result.response
+    records = result.metadata['structured_action']['records']
+    assert {record['facility_code'] for record in records} == {'CS1'}
+
+
+def test_bhyt_chat_uses_model_tier_override(
+    structured_service: StructuredDataService,
+) -> None:
+    result = structured_service.chat_bhyt('BHYT năm, bậc?', '4')
+
+    assert '683.100 VND' in result.response
+    assert result.structured_record_ids[-1].endswith('TIER-04')
+
+
 def test_ambiguous_duplicate_price_requires_user_selection(
     structured_service: StructuredDataService,
 ) -> None:

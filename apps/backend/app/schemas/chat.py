@@ -11,6 +11,7 @@ class Citation(BaseModel):
     """A grounded source citation for an assistant answer."""
 
     source_id: str
+    fact_id: str | None = None
     title: str
     url: str | None = None
     excerpt: str | None = None
