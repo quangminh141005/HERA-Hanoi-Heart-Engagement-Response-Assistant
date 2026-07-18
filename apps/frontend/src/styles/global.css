@@ -55,8 +55,8 @@ a {
   gap: 16px;
   min-height: 72px;
   padding: 12px clamp(16px, 5vw, 56px);
-  border-bottom: 1px solid #dfe7e4;
-  background: rgba(255, 255, 255, 0.92);
+  border-bottom: 1px solid #d3ddd9;
+  background: rgba(255, 255, 255, 0.97);
   backdrop-filter: blur(12px);
 }
 
@@ -90,11 +90,15 @@ a {
 }
 
 .brand strong {
+  color: #0e1a16;
   font-size: 1.02rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
 }
 
 .brand small {
-  color: #5d6f69;
+  color: #3d4f49;
+  font-weight: 500;
 }
 
 .trust-note,
