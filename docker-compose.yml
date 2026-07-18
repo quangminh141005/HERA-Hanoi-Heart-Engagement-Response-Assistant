@@ -96,7 +96,7 @@ x-api-environment: &api-environment
   LANGFUSE_HOST: ${LANGFUSE_HOST:-https://cloud.langfuse.com}
   LANGFUSE_BASE_URL: ${LANGFUSE_BASE_URL:-}
   LANGFUSE_SAMPLE_RATE: ${LANGFUSE_SAMPLE_RATE:-0.2}
-  LANGFUSE_CAPTURE_CONTENT: "false"
+  LANGFUSE_CAPTURE_CONTENT: "true"
 
 x-api-image: &api-image
   image: ${HERA_API_IMAGE_REPOSITORY:-hera-api}:${HERA_IMAGE_TAG:-local}
