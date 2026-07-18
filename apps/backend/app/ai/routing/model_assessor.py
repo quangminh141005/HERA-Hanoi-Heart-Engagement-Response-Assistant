@@ -46,6 +46,7 @@ class ModelRoutingAssessor:
             "model": self.settings.FPT_GUARD_MODEL,
             "max_tokens": self.max_tokens,
             "content_capture": self.settings.LANGFUSE_CAPTURE_CONTENT,
+            "content_captured": self.settings.LANGFUSE_CAPTURE_CONTENT,
             "streaming": False,
             "ttft_available": False,
         }
