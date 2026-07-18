@@ -11,6 +11,7 @@ from collections import OrderedDict
 from typing import Any, Protocol
 
 from app.ai.observability.tracing import start_observation
+from app.ai.providers.retry import retry_provider_call
 from app.core.config import Settings
 from app.observability.ai_usage import extract_openai_usage
 from app.observability.prometheus import record_ai_usage, record_upstream_failure
@@ -18,6 +19,15 @@ from app.observability.prometheus import record_ai_usage, record_upstream_failur
 logger = logging.getLogger(__name__)
 
 ChatMessage = dict[str, str]
+SAFE_LLM_FALLBACK_MESSAGE = (
+    "HERA ch\u01b0a \u0111\u01b0\u1ee3c c\u1ea5u h\u00ecnh LLM v\u00e0 "
+    "ch\u1ec9 c\u00f3 th\u1ec3 tr\u1ea3 l\u1eddi t\u1eeb c\u00e1c lu\u1ed3ng "
+    "an to\u00e0n ho\u1eb7c d\u1eef li\u1ec7u ch\u00ednh th\u1ee9c "
+    "\u0111\u00e3 \u0111\u01b0\u1ee3c t\u00edch h\u1ee3p."
+)
+SAFE_LLM_FALLBACK_PREFIX = (
+    "HERA ch\u01b0a \u0111\u01b0\u1ee3c c\u1ea5u h\u00ecnh LLM"
+)
 
 
 class LLMClient(Protocol):
@@ -28,7 +38,7 @@ class LLMClient(Protocol):
         messages: list[ChatMessage],
         *,
         temperature: float = 0.1,
-        max_tokens: int = 800,
+        max_tokens: int = 1024,
     ) -> str:
         """Generate one assistant response."""
 
@@ -43,16 +53,12 @@ class NoopLLMClient:
         messages: list[ChatMessage],
         *,
         temperature: float = 0.1,
-        max_tokens: int = 800,
+        max_tokens: int = 1024,
     ) -> str:
         """Return a safe non-factual fallback answer."""
 
         del messages, temperature, max_tokens
-        return (
-            "HERA chưa được cấu hình LLM và chỉ có thể trả lời từ các luồng an toàn "
-            "hoặc dữ liệu chính thức đã được tích hợp."
-        )
-
+        return SAFE_LLM_FALLBACK_MESSAGE
 
     async def close(self) -> None:
         return None
@@ -73,10 +79,16 @@ class OpenAILLMClient:
         provider_label: str = "openai_compatible",
         sdk_client: Any | None = None,
         settings: Settings | None = None,
+        retry_max_attempts: int = 1,
+        retry_base_delay_seconds: float = 0.25,
+        retry_max_delay_seconds: float = 2.0,
     ) -> None:
         self.model = model
         self.provider_label = provider_label
         self.settings = settings
+        self.retry_max_attempts = retry_max_attempts
+        self.retry_base_delay_seconds = retry_base_delay_seconds
+        self.retry_max_delay_seconds = retry_max_delay_seconds
         if sdk_client is not None:
             self._client = sdk_client
             return
@@ -95,7 +107,7 @@ class OpenAILLMClient:
         messages: list[ChatMessage],
         *,
         temperature: float = 0.1,
-        max_tokens: int = 800,
+        max_tokens: int = 1024,
     ) -> str:
         """Generate a response with OpenAI."""
 
@@ -145,11 +157,18 @@ class OpenAILLMClient:
         observation: Any | None,
     ) -> str:
         try:
-            response = await self._client.chat.completions.create(
-                model=self.model,
-                messages=messages,
-                temperature=temperature,
-                max_tokens=max_tokens,
+            response = await retry_provider_call(
+                lambda: self._client.chat.completions.create(
+                    model=self.model,
+                    messages=messages,
+                    temperature=temperature,
+                    max_tokens=max_tokens,
+                ),
+                label=self.provider_label,
+                max_attempts=self.retry_max_attempts,
+                base_delay_seconds=self.retry_base_delay_seconds,
+                max_delay_seconds=self.retry_max_delay_seconds,
+                retry_timeouts=False,
             )
         except Exception as exc:
             record_upstream_failure(self.provider_label, exc)
@@ -198,7 +217,7 @@ class FallbackLLMClient:
         messages: list[ChatMessage],
         *,
         temperature: float = 0.1,
-        max_tokens: int = 800,
+        max_tokens: int = 1024,
     ) -> str:
         """Generate with the first available provider."""
 
@@ -278,7 +297,7 @@ class GuardedLLMClient:
         messages: list[ChatMessage],
         *,
         temperature: float = 0.1,
-        max_tokens: int = 800,
+        max_tokens: int = 1024,
     ) -> str:
         key = _cache_key(messages, temperature=temperature, max_tokens=max_tokens)
         if self._cache_enabled:
@@ -381,12 +400,22 @@ class GuardedLLMClient:
                 await result
 
 
-def build_llm_client(settings: Settings) -> LLMClient:
+def build_llm_client(
+    settings: Settings,
+    *,
+    model_override: str | None = None,
+    provider_label_override: str | None = None,
+) -> LLMClient:
     """Build the fixed FPT/OpenAI-compatible client with safe local degradation."""
 
     if settings.LLM_PROVIDER == "noop":
         return NoopLLMClient()
-    client = _build_provider_client(settings.LLM_PROVIDER, settings)
+    client = _build_provider_client(
+        settings.LLM_PROVIDER,
+        settings,
+        model_override=model_override,
+        provider_label_override=provider_label_override,
+    )
     if client is None:
         return NoopLLMClient()
     fallback_client: LLMClient = FallbackLLMClient([client])
@@ -401,25 +430,38 @@ def build_llm_client(settings: Settings) -> LLMClient:
     )
 
 
-def _build_provider_client(provider: str, settings: Settings) -> LLMClient | None:
+def _build_provider_client(
+    provider: str,
+    settings: Settings,
+    *,
+    model_override: str | None = None,
+    provider_label_override: str | None = None,
+) -> LLMClient | None:
     if provider == "openai":
         use_fpt = bool(settings.API_KEY and settings.FPT_LLM_MODEL)
         api_key = settings.API_KEY if use_fpt else settings.OPENAI_API_KEY
         if not api_key:
             return None
+        model = model_override or (
+            settings.FPT_LLM_MODEL
+            if use_fpt
+            else (settings.OPENAI_MODEL or settings.LLM_MODEL)
+        )
+        provider_label = provider_label_override or (
+            "fpt_llm" if use_fpt else "openai"
+        )
         return OpenAILLMClient(
             api_key=api_key,
-            model=(
-                settings.FPT_LLM_MODEL
-                if use_fpt
-                else (settings.OPENAI_MODEL or settings.LLM_MODEL)
-            ),
+            model=model,
             base_url=(
                 settings.FPT_API_BASE_URL if use_fpt else settings.OPENAI_BASE_URL
             ),
             timeout_seconds=settings.LLM_TIMEOUT_SECONDS,
-            provider_label="fpt_llm" if use_fpt else "openai",
+            provider_label=provider_label,
             settings=settings,
+            retry_max_attempts=settings.AI_PROVIDER_RETRY_MAX_ATTEMPTS,
+            retry_base_delay_seconds=settings.AI_PROVIDER_RETRY_BASE_DELAY_SECONDS,
+            retry_max_delay_seconds=settings.AI_PROVIDER_RETRY_MAX_DELAY_SECONDS,
         )
 
     logger.warning(
@@ -463,4 +505,6 @@ def _cache_key(
 
 def _cacheable_response(value: str) -> bool:
     stripped = value.strip()
-    return bool(stripped) and not stripped.startswith("HERA chưa được cấu hình LLM")
+    if stripped.startswith(SAFE_LLM_FALLBACK_PREFIX):
+        return False
+    return bool(stripped)

@@ -225,7 +225,7 @@ a {
 
 .message-list {
   display: flex;
-  flex: 1;
+  flex: 1 1 0;
   flex-direction: column;
   gap: 14px;
   min-height: 0;

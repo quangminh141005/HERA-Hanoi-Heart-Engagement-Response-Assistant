@@ -185,10 +185,8 @@ def test_rag_overall_deadline_returns_safe_handoff() -> None:
 
     assert result.response_type == "refusal_and_handoff"
     assert result.requires_handoff is True
-    assert result.metadata == {
-        "upstream_timeout": "rag_pipeline",
-        "decision_source": "deterministic_fallback",
-    }
+    assert result.metadata["upstream_timeout"] == "rag_pipeline"
+    assert result.metadata["decision_source"] == "deterministic_fallback"
 
 
 class _FakeRedis:

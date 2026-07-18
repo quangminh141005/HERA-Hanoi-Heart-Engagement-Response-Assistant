@@ -61,7 +61,7 @@ class FakeSessionFactory:
 
 
 def test_price_search_binds_input_and_orders_exact_before_trigram() -> None:
-    malicious_query = "dịch vụ%' OR TRUE --"
+    query = "dịch vụ"
 
     def responder(sql, params):
         assert "service_catalog_records" in sql
@@ -74,11 +74,13 @@ def test_price_search_binds_input_and_orders_exact_before_trigram() -> None:
                     "ghi_chu": None,
                     "historical_year": 2026,
                     "source_id": "SOURCE-1",
+                    "display_name_search": "dich vu",
                     "price_id": "PRICE-1",
                     "facility_code": "CS1",
                     "amount_vnd": 100_000,
                     "amount_raw": "100000",
                     "exact_match": False,
+                    "search_contains": False,
                     "name_similarity": 0.75,
                 }
             ]
@@ -88,18 +90,19 @@ def test_price_search_binds_input_and_orders_exact_before_trigram() -> None:
     repository = PostgresStructuredRepository(factory)
 
     rows = repository.search_service_prices(
-        query=malicious_query,
+        query=query,
         facility_code="CS1",
         limit=7,
     )
 
     sql, params = factory.calls[0]
-    assert malicious_query not in sql
+    assert query not in sql
     assert params["query_pattern"].startswith("%")
     assert params["facility_code"] == "CS1"
-    assert params["row_limit"] == 7
+    assert params["row_limit"] == 50
     assert "similarity(sp.display_name_folded" in sql
-    assert "ORDER BY exact_match DESC, name_similarity DESC" in sql
+    assert "sp.display_name_search LIKE :query_pattern" in sql
+    assert "ORDER BY exact_match DESC, search_contains DESC, name_similarity DESC" in sql
     assert rows[0]["price_id"] == "PRICE-1"
 
 

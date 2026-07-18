@@ -1,18 +1,38 @@
 * text=auto eol=lf
 
+*.py text eol=lf
+*.ts text eol=lf
+*.tsx text eol=lf
+*.js text eol=lf
+*.mjs text eol=lf
+*.json text eol=lf
+*.md text eol=lf
+*.txt text eol=lf
 *.sh text eol=lf
 *.yml text eol=lf
 *.yaml text eol=lf
+*.toml text eol=lf
+*.ini text eol=lf
+*.conf text eol=lf
 Dockerfile text eol=lf
+Makefile text eol=lf
+.env.example text eol=lf
 
 # Raw hospital snapshots are checksum inputs and currently have mixed source
 # line endings. Preserve their bytes exactly on every OS so manifest hashes do
 # not break after clone/checkout. Generated/curated JSON is deterministic LF.
 data/BHYT.json -text
 data/gia_dich_vu_ky_thuat_2025.json -text
+data/gia_dich_vu_ky_thuat_2025_rag.json -text
 data/schedules/**/*.json -text
 data/source/**/*.json text eol=lf
 data/test-fixtures/**/*.json text eol=lf
 data/generated/**/*.json text eol=lf
 apps/backend/data/*.json.gz binary
 apps/backend/data/*.sha256 text eol=lf
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.pdf binary

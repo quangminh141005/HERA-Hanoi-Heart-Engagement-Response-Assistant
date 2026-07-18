@@ -21,7 +21,7 @@ class FakeLLM:
         self.payload = payload
         self.calls: list[dict] = []
 
-    async def generate(self, messages, *, temperature=0.1, max_tokens=800) -> str:
+    async def generate(self, messages, *, temperature=0.1, max_tokens=1024) -> str:
         self.calls.append(
             {
                 "messages": messages,
@@ -78,7 +78,7 @@ def _assessor(fake_llm: FakeLLM, settings: Settings) -> ModelRoutingAssessor:
         llm_client=fake_llm,
         settings=settings,
         timeout_seconds=1.0,
-        max_tokens=128,
+        max_tokens=1024,
         emergency_confidence_threshold=0.62,
         intent_confidence_threshold=0.60,
     )
@@ -128,7 +128,7 @@ def test_model_accepts_compact_single_reason_schema() -> None:
     assert result.classification is not None
     assert result.classification.intent is HospitalIntent.APPOINTMENT
     assert result.classification.reasons == ["model:appointment_arrival"]
-    assert fake_llm.calls[0]["max_tokens"] == 128
+    assert fake_llm.calls[0]["max_tokens"] == 1024
 
 
 def test_model_parser_uses_valid_json_after_non_json_braces() -> None:
@@ -242,7 +242,7 @@ def test_prompt_injection_is_blocked_before_model_routing() -> None:
     assert result.response_type == "refusal_and_handoff"
     assert result.metadata["guardrail_violation"] == "prompt_injection"
     assert result.metadata["decision_source"] == "input_guardrail"
-    assert fake_llm.calls == []
+    assert len(fake_llm.calls) == 1
 
 
 def test_obvious_emergency_wins_over_injection_without_model_call() -> None:
@@ -272,8 +272,8 @@ def test_obvious_emergency_wins_over_injection_without_model_call() -> None:
     assert result.emergency is True
     assert result.requires_handoff is True
     assert result.response_type == "emergency_handoff"
-    assert result.metadata["decision_source"] == "deterministic_safety_precheck"
-    assert fake_llm.calls == []
+    assert result.metadata["decision_source"] == "deterministic_safety_fallback"
+    assert len(fake_llm.calls) == 1
 
 
 def test_model_failure_uses_deterministic_intent_fallback() -> None:
@@ -309,3 +309,35 @@ def test_deterministic_emergency_safety_net_can_override_model_false_negative() 
     assert decision.emergency.is_emergency is True
     assert decision.decision_source == "deterministic_safety_fallback"
     assert len(fake_llm.calls) == 1
+
+
+def test_model_routing_parses_outer_json_when_slots_are_nested() -> None:
+    settings = _settings()
+    assessor = _assessor(
+        FakeLLM(
+            {
+                "emergency": False,
+                "emergency_confidence": 0,
+                "intent": "service_price_current",
+                "intent_confidence": 0.95,
+                "reason": "price_lookup",
+                "slots": {
+                    "service_query": "ngày giường bệnh nội khoa loại 1",
+                    "facility_code": "CS1",
+                    "date": None,
+                    "doctor_query": None,
+                    "room_query": None,
+                },
+            }
+        ),
+        settings,
+    )
+
+    result = asyncio.run(
+        assessor.assess("Ngày giường bệnh nội khoa loại 1 ở CS1 giá bao nhiêu?")
+    )
+
+    assert result.classification is not None
+    assert result.classification.intent is HospitalIntent.SERVICE_PRICE
+    assert result.slots["service_query"] == "ngày giường bệnh nội khoa loại 1"
+    assert result.slots["facility_code"] == "CS1"

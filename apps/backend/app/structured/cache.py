@@ -171,7 +171,7 @@ def _cache_key(namespace: str, identity: Mapping[str, object]) -> str:
     )
     digest = hashlib.sha256(canonical.encode('utf-8')).hexdigest()
     namespace_value = safe_namespace or 'query'
-    return f'hera:structured:v1:{namespace_value}:{digest}'
+    return f'hera:structured:v6:{namespace_value}:{digest}'
 
 
 def _json_default(value: object) -> str:

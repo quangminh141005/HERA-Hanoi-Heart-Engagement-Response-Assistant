@@ -76,7 +76,7 @@ Giải thích từng dòng cần nhìn trong `.env`:
 | `HOLD_TOKEN_SECRET=` | Có thể để trống | Script tự sinh secret ký token giữ chỗ |
 | `BOOKING_PII_HASH_SECRET=` | Có thể để trống | Script tự sinh secret hash tên/SĐT/CCCD/BHYT; phải khác hold secret |
 | `GRAFANA_ADMIN_PASSWORD=` | Có thể để trống khi bật monitoring | Script tự sinh password đăng nhập Grafana |
-| `MODEL_PROBE_LLM_MAX_TOKENS=8` | Giữ nguyên mặc định | Chỉ tăng nhẹ, ví dụ `16`, khi live model probe trả rỗng |
+| `MODEL_PROBE_LLM_MAX_TOKENS=1024` | Giữ nguyên mặc định | Giữ tối thiểu 1024; prompt probe vẫn yêu cầu câu trả lời rất ngắn nên provider chỉ tính token thực dùng |
 | `LANGFUSE_ENABLED=false` | Giữ nguyên | Chưa cần Langfuse để demo; bật sau khi hiểu privacy |
 
 Không sửa các dòng này khi mới chạy lần đầu:
@@ -85,8 +85,12 @@ Không sửa các dòng này khi mới chạy lần đầu:
 ENVIRONMENT=hackathon
 APP_DEBUG=false
 FPT_LLM_MODEL=gpt-oss-120b
+FPT_GUARD_MODEL=gpt-oss-20b
 FPT_EMBEDDING_MODEL=Vietnamese_Embedding
 EMBEDDING_DIMENSIONS=1024
+RERANK_ENABLED=true
+RERANK_MODEL=bge-reranker-v2-m3
+RERANK_TOP_N=3
 BOOKING_PROVIDER=local_prototype
 REFERENCE_DATE_MODE=dataset_start
 ```
@@ -138,8 +142,9 @@ curl -fsS http://127.0.0.1:8080/readyz
 
 Đọc trường `checks` trong JSON: check nào `false` thì xem log service liên quan.
 
-Chỉ khi cần xác thực key/model lần cuối, chạy đúng một probe LLM cực nhỏ
-(`MODEL_PROBE_LLM_MAX_TOKENS=8` trong `.env`) và một probe embedding:
+Chỉ khi cần xác thực key/model lần cuối, chạy đúng một preflight cực nhỏ:
+generation LLM, guard LLM, embedding và rerank. `MODEL_PROBE_LLM_MAX_TOKENS=1024`
+trong `.env` giữ output của hai LLM ở mức thấp:
 
 ```bash
 bash scripts/deploy.sh --monitoring --model-preflight
@@ -155,8 +160,9 @@ make rag-live-check CONFIRM_RAG_LIVE_CHECK=YES
 ```
 
 Lệnh này gửi một câu hỏi tổng hợp không chứa PII và có mã ngẫu nhiên để không ăn
-cache. Nó chỉ thành công khi `gpt-oss-120b` thực hiện routing và generation,
-`Vietnamese_Embedding` phát sinh token thật, câu trả lời có citation,
+cache. Nó chỉ thành công khi `gpt-oss-20b` thực hiện guard/routing,
+`Vietnamese_Embedding` phát sinh token thật, `bge-reranker-v2-m3` rerank evidence,
+`gpt-oss-120b` thực hiện generation, câu trả lời có citation,
 `generation_mode=model_validated`, UTF-8 hợp lệ và không tăng metric lỗi provider.
 Nếu hệ thống rơi về deterministic fallback, lệnh trả exit code khác 0. Đây là gate
 RAG thật; không đưa lệnh này vào CI/restart vì nó gọi API trả phí.
@@ -311,8 +317,10 @@ phối replica và invariant không vượt capacity, sau đó dọn volume test
 
 ## 7. Model và cách dùng dữ liệu
 
-- LLM cố định: `gpt-oss-120b`.
+- LLM generation cố định: `gpt-oss-120b`.
+- Guard/routing model cố định: `gpt-oss-20b`.
 - Embedding cố định: `Vietnamese_Embedding`, 1024 chiều.
+- Reranker cố định: `bge-reranker-v2-m3`.
 - Endpoint: `https://mkp-api.fptcloud.com`, giao thức OpenAI-compatible.
 - Giá, BHYT, lịch và booking đi bằng truy vấn PostgreSQL có cấu trúc.
 - pgvector chỉ dùng cho knowledge chunks/FAQ cần semantic retrieval.

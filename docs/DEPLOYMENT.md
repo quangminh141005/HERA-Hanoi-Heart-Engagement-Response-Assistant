@@ -141,7 +141,7 @@ Deploy mặc định không tiêu API. Chỉ xác thực gateway lần cuối kh
 bash scripts/deploy.sh --monitoring --model-preflight
 ```
 
-Flag này chạy đúng một LLM probe cực nhỏ theo `MODEL_PROBE_LLM_MAX_TOKENS` trong
+Flag này chạy đúng một LLM probe theo `MODEL_PROBE_LLM_MAX_TOKENS`, tối thiểu 1024 trong
 `.env` và một embedding probe đồng thời.
 
 Sau khi probe kết nối đạt, trước khi mở demo hãy chứng minh toàn bộ RAG chạy bằng

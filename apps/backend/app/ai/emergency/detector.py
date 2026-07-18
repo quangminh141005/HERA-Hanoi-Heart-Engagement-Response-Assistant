@@ -31,6 +31,11 @@ class EmergencyDetector:
         for label, patterns in _EMERGENCY_PATTERNS.items():
             if any(_has_non_negated_match(pattern, normalized) for pattern in patterns):
                 matched.append(label)
+        if _is_admin_or_service_lookup(normalized) and not _has_direct_symptom_context(
+            matched,
+            normalized,
+        ):
+            return EmergencyAssessment(False, 0.0, [])
         if not matched:
             return EmergencyAssessment(False, 0.0, [])
         confidence = min(0.99, 0.72 + (0.08 * len(matched)))
@@ -76,6 +81,41 @@ def _has_non_negated_match(pattern: str, text: str) -> bool:
     return False
 
 
+def _is_admin_or_service_lookup(text: str) -> bool:
+    """Return true when emergency wording is likely part of a lookup target."""
+
+    lookup_patterns = (
+        r"\b(gia|gia tien|bao nhieu|chi phi|muc gia|bang gia|don gia|phi)\b",
+        r"\b(dich vu|ky thuat|thu thuat|xet nghiem|sieu am|noi soi|chup|phau thuat)\b",
+        r"\b(ma dich vu|ma tuong duong|bhyt|bao hiem)\b",
+        r"\b(lich|ca kham|bac si|dat lich|booking)\b",
+        r"\b(price|cost|fee|service|procedure|schedule|appointment)\b",
+    )
+    return any(re.search(pattern, text) for pattern in lookup_patterns)
+
+
+def _has_direct_symptom_context(matched: list[str], text: str) -> bool:
+    """Keep true symptom emergencies, suppress emergency words inside service names."""
+
+    direct_symptom_labels = {
+        "severe_chest_pain",
+        "shortness_of_breath",
+        "fainting_or_shock",
+        "cyanosis",
+        "dangerous_palpitations",
+    }
+    if direct_symptom_labels.intersection(matched):
+        return True
+    if "suspected_heart_attack_or_stroke" not in matched:
+        return False
+    return bool(
+        re.search(
+            r"\b(hien tai|bay gio|vua|dang|nguoi nha|benh nhan|ba toi|me toi|toi nghi)\b",
+            text,
+        )
+    )
+
+
 _EMERGENCY_PATTERNS = {
     "explicit_emergency_request": (
         r"\b(cap cuu|khan cap|nguy cap|nguy kich|goi 115|goi cap cuu)\b",
@@ -106,8 +146,9 @@ _EMERGENCY_PATTERNS = {
         r"\bcollapse(d)?\b",
     ),
     "cyanosis": (
-        r"\btim tai\b",
-        r"\bmoi tim\b",
+        r"\b(?:benh nhan|nguoi benh|da|mat|moi|tay|chan)\s+tim\s+tai\b",
+        r"\btim\s+tai\s+(?:toan than|mat|moi|tay|chan)\b",
+        r"\bmoi\s+tim\b",
         r"\bblue lips\b",
     ),
     "dangerous_palpitations": (

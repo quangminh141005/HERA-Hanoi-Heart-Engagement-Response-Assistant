@@ -10,7 +10,9 @@ from __future__ import annotations
 
 import json
 import math
+import re
 import unicodedata
+from collections import Counter
 from collections.abc import Callable, Sequence
 from dataclasses import dataclass
 from datetime import date, datetime
@@ -227,7 +229,9 @@ class PostgresStructuredRepository:
         facility_code: str | None = None,
         limit: int = 10,
     ) -> list[dict[str, Any]]:
-        return self._all(
+        query_folded = _fold_text(query)
+        query_terms = _service_price_query_tokens(query_folded)
+        rows = self._all(
             """
             SELECT
                 sp.service_record_id,
@@ -236,21 +240,36 @@ class PostgresStructuredRepository:
                 sp.note_raw AS ghi_chu,
                 sp.historical_year,
                 sp.source_id,
+                sp.display_name_search,
                 spp.price_id,
                 spp.facility_code,
                 spp.amount_vnd,
                 spp.raw_value AS amount_raw,
                 sp.display_name_folded = :query_folded AS exact_match,
-                similarity(sp.display_name_folded, :query_folded)
-                    AS name_similarity
+                sp.display_name_search LIKE :query_pattern AS search_contains,
+                GREATEST(
+                    similarity(sp.display_name_folded, :query_folded),
+                    similarity(sp.display_name_search, :query_folded)
+                ) AS name_similarity
             FROM service_catalog_records sp
             JOIN service_price_snapshots spp
               ON spp.service_record_id = sp.service_record_id
             WHERE (
                     sp.display_name_folded = :query_folded
                     OR sp.display_name_folded LIKE :query_pattern
+                    OR sp.display_name_search LIKE :query_pattern
                     OR similarity(sp.display_name_folded, :query_folded)
                        >= :minimum_similarity
+                    OR similarity(sp.display_name_search, :query_folded)
+                       >= :minimum_similarity
+                    OR (
+                        cardinality(CAST(:query_terms AS TEXT[])) > 0
+                        AND NOT EXISTS (
+                            SELECT 1
+                            FROM unnest(CAST(:query_terms AS TEXT[])) AS term(value)
+                            WHERE sp.display_name_search NOT LIKE '%' || term.value || '%'
+                        )
+                    )
                   )
               AND sp.historical_lookup_eligible IS TRUE
               AND spp.historical_lookup_eligible IS TRUE
@@ -259,20 +278,22 @@ class PostgresStructuredRepository:
                     CAST(:facility_code AS TEXT) IS NULL
                     OR spp.facility_code = CAST(:facility_code AS TEXT)
                   )
-            ORDER BY exact_match DESC, name_similarity DESC,
+            ORDER BY exact_match DESC, search_contains DESC, name_similarity DESC,
                      LENGTH(sp.display_name_search), sp.service_record_id,
                      spp.facility_code, spp.price_id
             LIMIT :row_limit
             """,
             {
-                "query_pattern": f"%{_fold_text(query)}%",
-                "query_folded": _fold_text(query),
+                "query_pattern": f"%{query_folded}%",
+                "query_folded": query_folded,
+                "query_terms": query_terms,
                 "minimum_similarity": 0.25,
                 "facility_code": facility_code,
-                "row_limit": _bounded_limit(limit, maximum=100),
+                "row_limit": max(_bounded_limit(limit, maximum=100), 50),
                 "approval_statuses": self._approval_statuses,
             },
         )
+        return _rerank_service_price_rows(query, rows, limit=limit)
 
     def find_bhyt_policy(
         self,
@@ -847,6 +868,229 @@ def _bounded_limit(value: int, *, maximum: int) -> int:
     if isinstance(value, bool) or value < 1:
         raise ValueError("limit must be a positive integer")
     return min(int(value), maximum)
+
+
+def _rerank_service_price_rows(
+    query: str,
+    rows: list[dict[str, Any]],
+    *,
+    limit: int,
+) -> list[dict[str, Any]]:
+    """Prefer rows that cover meaningful query tokens before trigram similarity."""
+
+    if not rows:
+        return []
+    query_folded = _fold_text(query)
+    query_tokens = _service_price_query_tokens(query_folded)
+    if not query_tokens:
+        return rows[: _bounded_limit(limit, maximum=100)]
+    query_bigrams = _token_ngrams(query_tokens, size=2)
+    query_trigrams = _token_ngrams(query_tokens, size=3)
+    query_weight = sum(_service_price_token_weight(token) for token in query_tokens)
+    row_tokens: list[list[str]] = []
+    haystacks: list[str] = []
+    for row in rows:
+        haystack = _fold_text(
+            " ".join(
+                str(row.get(key) or "")
+                for key in ("display_name", "display_name_search", "section", "ghi_chu")
+            )
+        )
+        haystacks.append(haystack)
+        row_tokens.append(_service_price_query_tokens(haystack))
+    bm25_scores = _bm25_scores(query_tokens, row_tokens)
+    scored: list[tuple[float, dict[str, Any]]] = []
+    for index, row in enumerate(rows):
+        haystack = haystacks[index]
+        primary_haystack = _fold_text(
+            " ".join(
+                str(row.get(key) or "")
+                for key in ("display_name", "display_name_search")
+            )
+        )
+        haystack_tokens = set(row_tokens[index])
+        primary_tokens = set(_service_price_query_tokens(primary_haystack))
+        weighted_hits = sum(
+            _service_price_token_weight(token)
+            for token in query_tokens
+            if token in haystack_tokens
+        )
+        primary_weighted_hits = sum(
+            _service_price_token_weight(token)
+            for token in query_tokens
+            if token in primary_tokens
+        )
+        coverage = weighted_hits / max(0.01, query_weight)
+        primary_coverage = primary_weighted_hits / max(0.01, query_weight)
+        bigram_hits = sum(1 for ngram in query_bigrams if ngram in haystack)
+        trigram_hits = sum(1 for ngram in query_trigrams if ngram in haystack)
+        bigram_score = bigram_hits / max(1, len(query_bigrams))
+        trigram_score = trigram_hits / max(1, len(query_trigrams))
+        phrase_bonus = 1.0 if query_folded and query_folded in haystack else 0.0
+        exact_bonus = 1.0 if row.get("exact_match") else 0.0
+        similarity = float(row.get("name_similarity") or 0.0)
+        bm25_score = bm25_scores[index]
+        score = (
+            phrase_bonus * 5.0
+            + bm25_score * 3.0
+            + trigram_score * 3.0
+            + bigram_score * 2.0
+            + coverage * 2.0
+            + exact_bonus * 2.0
+            + similarity * 0.5
+        )
+        enriched = dict(row)
+        enriched["_token_coverage"] = coverage
+        enriched["_primary_token_coverage"] = primary_coverage
+        enriched["_bigram_score"] = bigram_score
+        enriched["_trigram_score"] = trigram_score
+        enriched["_bm25_score"] = bm25_score
+        enriched["_ranking_score"] = score
+        scored.append((score, enriched))
+    best_score = max(score for score, _ in scored)
+    best_coverage = max(row["_token_coverage"] for _, row in scored)
+    best_primary_coverage = max(row["_primary_token_coverage"] for _, row in scored)
+    minimum_primary_coverage = _minimum_primary_coverage(query_tokens)
+    if (
+        best_coverage < 0.7
+        or best_primary_coverage < minimum_primary_coverage
+        or best_score < 2.1
+    ):
+        return []
+    filtered = [
+        item
+        for item in scored
+        if item[0] >= max(2.1, best_score - 2.0)
+        and item[1]["_token_coverage"] >= max(0.65, best_coverage - 0.18)
+        and item[1]["_primary_token_coverage"]
+        >= max(minimum_primary_coverage - 0.05, best_primary_coverage - 0.2)
+    ]
+    filtered.sort(
+        key=lambda item: (
+            -item[0],
+            -float(item[1].get("name_similarity") or 0.0),
+            len(str(item[1].get("display_name") or "")),
+            str(item[1].get("service_record_id") or ""),
+            str(item[1].get("facility_code") or ""),
+        )
+    )
+    clean_rows: list[dict[str, Any]] = []
+    for _, row in filtered[: _bounded_limit(limit, maximum=100)]:
+        row.pop("_token_coverage", None)
+        row.pop("_primary_token_coverage", None)
+        row.pop("_bigram_score", None)
+        row.pop("_trigram_score", None)
+        row.pop("_bm25_score", None)
+        row.pop("_ranking_score", None)
+        clean_rows.append(row)
+    return clean_rows
+
+
+def _bm25_scores(
+    query_tokens: list[str],
+    document_tokens: list[list[str]],
+    *,
+    k1: float = 1.2,
+    b: float = 0.75,
+) -> list[float]:
+    """Return normalized Okapi BM25 scores for a small candidate set."""
+
+    if not query_tokens or not document_tokens:
+        return [0.0 for _ in document_tokens]
+    doc_count = len(document_tokens)
+    avgdl = sum(len(tokens) for tokens in document_tokens) / max(1, doc_count)
+    frequencies = [Counter(tokens) for tokens in document_tokens]
+    document_frequency: Counter[str] = Counter()
+    for frequencies_for_doc in frequencies:
+        for token in set(frequencies_for_doc):
+            document_frequency[token] += 1
+
+    scores: list[float] = []
+    for tokens, frequencies_for_doc in zip(document_tokens, frequencies, strict=True):
+        doc_len = max(1, len(tokens))
+        raw_score = 0.0
+        for token in query_tokens:
+            term_frequency = frequencies_for_doc.get(token, 0)
+            if term_frequency <= 0:
+                continue
+            idf = math.log(
+                1.0
+                + (doc_count - document_frequency[token] + 0.5)
+                / (document_frequency[token] + 0.5)
+            )
+            denominator = term_frequency + k1 * (1.0 - b + b * doc_len / max(1.0, avgdl))
+            raw_score += idf * (term_frequency * (k1 + 1.0)) / denominator
+        scores.append(raw_score)
+    best_score = max(scores, default=0.0)
+    if best_score <= 0:
+        return [0.0 for _ in scores]
+    return [score / best_score for score in scores]
+
+
+def _minimum_primary_coverage(query_tokens: list[str]) -> float:
+    """Require near-exact name coverage for short queries to avoid false positives."""
+
+    unique_terms = set(query_tokens)
+    if len(unique_terms) <= 3:
+        return 0.95
+    if len(unique_terms) <= 5:
+        return 0.75
+    return 0.65
+
+
+def _token_ngrams(tokens: list[str], *, size: int) -> list[str]:
+    if size < 2 or len(tokens) < size:
+        return []
+    return [" ".join(tokens[index : index + size]) for index in range(len(tokens) - size + 1)]
+
+
+def _service_price_token_weight(token: str) -> float:
+    """Downweight generic table words and preserve discriminative user terms.
+
+    This is not intent hardcoding. It is a generic lexical ranking rule: common
+    service-table words should not beat phrase continuity like "noi khoa" or
+    exact discriminators such as numeric type labels.
+    """
+
+    if token.isdigit():
+        return 1.4
+    if len(token) <= 2:
+        return 1.25
+    if len(token) <= 4:
+        return 1.0
+    return 0.75
+
+
+def _service_price_query_tokens(value: str) -> list[str]:
+    stopwords = {
+        "gia",
+        "tien",
+        "chi",
+        "phi",
+        "bang",
+        "dich",
+        "vu",
+        "bao",
+        "nhieu",
+        "cho",
+        "minh",
+        "ban",
+        "co",
+        "khong",
+        "cs1",
+        "cs2",
+        "so",
+        "o",
+        "tai",
+        "la",
+        "ma",
+    }
+    tokens = re.split(r"[^0-9a-zA-Z]+", value)
+    return [
+        token
+        for token in tokens
+        if (len(token) > 1 or token.isdigit()) and token not in stopwords
+    ]
 
 
 def _as_date(value: Any) -> date:
