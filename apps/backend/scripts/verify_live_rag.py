@@ -25,16 +25,15 @@ class LiveRagProbeError(RuntimeError):
 
 
 _MOJIBAKE_SIGNATURES = (
-    "áº",
-    "á»",
-    "Ä‘",
-    "Æ°",
-    "Æ¡",
-    "â€",
-    "â€¢",
+    "\u00e1\u00ba",
+    "\u00e1\u00bb",
+    "\u00c4\u2018",
+    "\u00c6\u00b0",
+    "\u00c6\u00a1",
+    "\u00e2\u20ac",
+    "\u00e2\u20ac\u00a2",
     "\ufffd",
 )
-
 
 def verify_live_rag(
     settings: Settings,
@@ -86,8 +85,10 @@ def verify_live_rag(
     return {
         "status": "ok",
         "llm_model": settings.FPT_LLM_MODEL,
+        "guard_model": settings.FPT_GUARD_MODEL,
         "embedding_model": settings.FPT_EMBEDDING_MODEL,
         "embedding_dimensions": settings.EMBEDDING_DIMENSIONS,
+        "rerank_model": settings.RERANK_MODEL if settings.RERANK_ENABLED else None,
         "decision_source": payload["metadata"]["decision_source"],
         "generation_mode": payload["metadata"]["generation_mode"],
         "grounded": payload["grounded"],
@@ -105,12 +106,16 @@ def _validate_model_configuration(settings: Settings) -> None:
         raise LiveRagProbeError("API_KEY is not configured")
     if settings.FPT_LLM_MODEL != "gpt-oss-120b":
         raise LiveRagProbeError("FPT_LLM_MODEL must be gpt-oss-120b")
+    if settings.FPT_GUARD_MODEL != "gpt-oss-20b":
+        raise LiveRagProbeError("FPT_GUARD_MODEL must be gpt-oss-20b")
     if settings.FPT_EMBEDDING_MODEL != "Vietnamese_Embedding":
         raise LiveRagProbeError(
             "FPT_EMBEDDING_MODEL must be Vietnamese_Embedding"
         )
     if settings.EMBEDDING_DIMENSIONS != 1024:
         raise LiveRagProbeError("EMBEDDING_DIMENSIONS must be 1024")
+    if settings.RERANK_ENABLED and settings.RERANK_MODEL != "bge-reranker-v2-m3":
+        raise LiveRagProbeError("RERANK_MODEL must be bge-reranker-v2-m3")
 
 
 def _validate_response(
@@ -169,6 +174,8 @@ def _fetch_metrics(url: str, *, timeout_seconds: float) -> str:
 
 def _provider_deltas(before: str, after: str) -> dict[str, float]:
     labels = (
+        ("guard_input_tokens", "fpt_guard", "input"),
+        ("guard_output_tokens", "fpt_guard", "output"),
         ("llm_input_tokens", "fpt_llm", "input"),
         ("llm_output_tokens", "fpt_llm", "output"),
         ("embedding_input_tokens", "fpt_embedding", "input"),
@@ -196,7 +203,7 @@ def _failure_delta(before: str, after: str) -> float:
         "hera_upstream_failures_total",
         "hera_upstream_timeouts_total",
     ):
-        for provider in ("fpt_llm", "fpt_embedding"):
+        for provider in ("fpt_guard", "fpt_llm", "fpt_embedding", "fpt_rerank"):
             total += _metric_value(after, metric, provider=provider) - _metric_value(
                 before,
                 metric,

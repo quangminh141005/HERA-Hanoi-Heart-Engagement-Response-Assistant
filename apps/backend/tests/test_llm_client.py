@@ -17,7 +17,7 @@ from app.core.config import Settings
 class FailingClient:
     provider_name = "openai"
 
-    async def generate(self, messages, *, temperature=0.1, max_tokens=800):
+    async def generate(self, messages, *, temperature=0.1, max_tokens=1024):
         del messages, temperature, max_tokens
         raise RuntimeError("provider unavailable")
 
@@ -28,7 +28,7 @@ class StaticClient:
     def __init__(self) -> None:
         self.calls = 0
 
-    async def generate(self, messages, *, temperature=0.1, max_tokens=800):
+    async def generate(self, messages, *, temperature=0.1, max_tokens=1024):
         del messages, temperature, max_tokens
         self.calls += 1
         return "fallback answer"
@@ -37,7 +37,7 @@ class StaticClient:
 class SlowClient:
     provider_name = "slow"
 
-    async def generate(self, messages, *, temperature=0.1, max_tokens=800):
+    async def generate(self, messages, *, temperature=0.1, max_tokens=1024):
         del messages, temperature, max_tokens
         await asyncio.sleep(0.05)
         return "slow answer"
@@ -49,7 +49,7 @@ class CapturedClient:
         self.model = model
         self.kwargs = kwargs
 
-    async def generate(self, messages, *, temperature=0.1, max_tokens=800):
+    async def generate(self, messages, *, temperature=0.1, max_tokens=1024):
         del messages, temperature, max_tokens
         return self.model
 
@@ -100,6 +100,27 @@ def test_fpt_shared_key_selects_required_models(monkeypatch) -> None:
     assert isinstance(client.client, FallbackLLMClient)
     assert client.client.clients[0].model == "gpt-oss-120b"
     assert client.client.clients[0].kwargs["base_url"] == "https://mkp-api.fptcloud.com"
+
+
+def test_fpt_shared_key_accepts_guard_model_override(monkeypatch) -> None:
+    monkeypatch.setattr(llm_client_module, "OpenAILLMClient", CapturedClient)
+    settings = Settings(
+        LLM_PROVIDER="openai",
+        API_KEY="shared-fpt-key",
+        OPENAI_API_KEY=None,
+        _env_file=None,
+    )
+
+    client = build_llm_client(
+        settings,
+        model_override="gpt-oss-20b",
+        provider_label_override="fpt_guard",
+    )
+
+    assert isinstance(client, GuardedLLMClient)
+    assert isinstance(client.client, FallbackLLMClient)
+    assert client.client.clients[0].model == "gpt-oss-20b"
+    assert client.client.clients[0].kwargs["provider_label"] == "fpt_guard"
 
 
 def test_fallback_llm_client_can_use_injected_secondary_client() -> None:

@@ -53,7 +53,7 @@ def test_cache_is_cross_replica_and_never_exposes_query_in_key_or_value() -> Non
 
     assert len(redis.values) == 1
     key, raw = next(iter(redis.values.items()))
-    assert key.startswith('hera:structured:v1:service-prices:')
+    assert key.startswith('hera:structured:v6:service-prices:')
     assert sensitive_query not in key
     assert '0912345678' not in key
     assert 'patient@example.com' not in key

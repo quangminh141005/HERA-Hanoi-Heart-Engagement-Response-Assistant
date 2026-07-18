@@ -311,7 +311,7 @@ def test_chat_and_feedback_store_only_redacted_content(
     assert conversation_count == 1
     assert phone not in stored
     assert email not in stored
-    assert "ĐÃ_ẨN" in stored
+    assert "REDACTED" in stored
 
 
 def test_expired_conversation_is_purged_transactionally(

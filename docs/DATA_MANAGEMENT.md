@@ -203,6 +203,16 @@ file set, byte count và hash.
 
 ## 7. Cập nhật hoặc bổ sung dữ liệu nguồn
 
+Với các loại dữ liệu dự án đã hỗ trợ, gồm bảng giá dịch vụ kỹ thuật, BHYT hộ gia
+đình, lịch bác sĩ và cấu hình capacity, dev không sửa backend theo từng dòng dữ
+liệu. Backend chỉ đọc PostgreSQL canonical. Khi dữ liệu nguồn thay đổi, luồng
+đúng là cập nhật raw/source, build lại `data/generated`, đóng lại seed
+PostgreSQL rồi chạy validation.
+
+Nói ngắn gọn: thêm một dòng giá hoặc thêm một tuần lịch không được kéo theo sửa
+code. Nếu sau khi thêm dữ liệu mà phải sửa code theo tên dịch vụ cụ thể, đó là
+lỗi ở pipeline chuẩn hóa/ranking và phải bổ sung test regression trước khi merge.
+
 ### 7.1. Quy trình bắt buộc
 
 1. Tạo branch/change request và ghi nguồn, owner, thời điểm nhận, phạm vi.
@@ -254,9 +264,24 @@ Repository hiện có:
 - `make data-rebind-export`: expert-only bind reviewed PG rows với manifest mới;
 - `make data-reset-dev`: backup rồi reset project dev/demo/test riêng.
 
-Chưa có generic importer tự động chuyển mọi generated runtime shard mới thành canonical
-PostgreSQL. Thay đổi reference data vẫn cần migration/ETL có review, stable ID và test
-trước khi export. Exporter cố ý không export conversation/feedback/hold/audit runtime.
+Importer hiện tại xử lý các lane đã được định nghĩa trong manifest: giá kỹ thuật,
+BHYT hộ gia đình, lịch bác sĩ, capacity, source/fact/template. Chỉ khi thêm một
+loại dữ liệu hoàn toàn mới, ví dụ danh mục khoa chính thức hoặc quyền lợi BHYT cá
+nhân, mới cần migration/ETL có review, stable ID và test trước khi export.
+Exporter cố ý không export conversation/feedback/hold/audit runtime.
+
+### 7.3. Không sửa code theo từng dòng dữ liệu
+
+Những phần sau phải sinh từ data hoặc chạy bằng truy vấn tổng quát:
+
+- tên dịch vụ, tên bác sĩ, cơ sở, phòng khám, ngày khám;
+- `display_name_search`, `retrieval_text`, source/citation và checksum;
+- ID bản ghi, ID giá theo cơ sở, booking session/capacity;
+- kết quả ranking dựa trên exact match, token coverage, BM25/trigram và reranker.
+
+Những phần được phép cố định trong code chỉ là contract chung: tên bảng, schema,
+ngưỡng an toàn, cache namespace, timeout và allowlist lane dữ liệu. Không được
+thêm điều kiện kiểu “nếu dịch vụ A thì trả dòng B”.
 
 ## 8. Validation và staging gates
 

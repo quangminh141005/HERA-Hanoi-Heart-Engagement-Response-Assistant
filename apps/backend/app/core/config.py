@@ -94,11 +94,15 @@ class Settings(BaseSettings):
     API_KEY: str | None = None
     FPT_API_BASE_URL: str = "https://mkp-api.fptcloud.com"
     FPT_LLM_MODEL: str = "gpt-oss-120b"
+    FPT_GUARD_MODEL: str = "gpt-oss-20b"
     FPT_EMBEDDING_MODEL: str = "Vietnamese_Embedding"
     OPENAI_API_KEY: str | None = None
     OPENAI_MODEL: str = "gpt-oss-120b"
     OPENAI_BASE_URL: str | None = None
     LLM_TIMEOUT_SECONDS: float = Field(default=30.0, gt=0)
+    AI_PROVIDER_RETRY_MAX_ATTEMPTS: int = Field(default=2, ge=1, le=5)
+    AI_PROVIDER_RETRY_BASE_DELAY_SECONDS: float = Field(default=0.25, ge=0.0, le=10.0)
+    AI_PROVIDER_RETRY_MAX_DELAY_SECONDS: float = Field(default=2.0, ge=0.0, le=30.0)
     LLM_MAX_CONCURRENT_REQUESTS: int = Field(default=2, ge=1, le=100)
     LLM_QUEUE_TIMEOUT_SECONDS: float = Field(default=2.0, gt=0)
     LLM_RESPONSE_CACHE_ENABLED: bool = True
@@ -108,7 +112,7 @@ class Settings(BaseSettings):
     CHAT_OVERALL_TIMEOUT_SECONDS: float = Field(default=35.0, gt=0)
     MODEL_ROUTING_ENABLED: bool = True
     MODEL_ROUTING_TIMEOUT_SECONDS: float = Field(default=6.0, gt=0)
-    MODEL_ROUTING_MAX_TOKENS: int = Field(default=1024, ge=32, le=4096)
+    MODEL_ROUTING_MAX_TOKENS: int = Field(default=1024, ge=1024, le=131_072)
     MODEL_ROUTING_EMERGENCY_CONFIDENCE_THRESHOLD: float = Field(
         default=0.62,
         ge=0.0,
@@ -121,7 +125,7 @@ class Settings(BaseSettings):
     )
     # Reserved for the concurrent deployment connectivity probe.
     MODEL_TIMEOUT_SECONDS: float = Field(default=45.0, gt=0)
-    MODEL_PROBE_LLM_MAX_TOKENS: int = Field(default=8, ge=1, le=128)
+    MODEL_PROBE_LLM_MAX_TOKENS: int = Field(default=1024, ge=1024, le=131_072)
     EMBEDDING_PROVIDER: Literal["noop", "openai"] = "openai"
     EMBEDDING_MODEL: str = "Vietnamese_Embedding"
     EMBEDDING_DIMENSIONS: int = Field(default=1024, ge=1)
@@ -131,7 +135,18 @@ class Settings(BaseSettings):
     VECTOR_STORE_COLLECTION: str = "hera_official_knowledge"
     RAG_TOP_K: int = Field(default=3, ge=1)
     RAG_MIN_CONFIDENCE: float = Field(default=0.55, ge=0.0, le=1.0)
-    RAG_GENERATION_MAX_TOKENS: int = Field(default=512, ge=32, le=512)
+    RAG_GENERATION_MAX_TOKENS: int = Field(default=1024, ge=1024, le=131_072)
+    RAG_HYDE_ENABLED: bool = True
+    RAG_HYDE_MAX_TOKENS: int = Field(default=1024, ge=1024, le=131_072)
+    RAG_HYDE_MAX_CHARS: int = Field(default=700, ge=80, le=2000)
+    RERANK_ENABLED: bool = True
+    RERANK_MODEL: str = "bge-reranker-v2-m3"
+    RERANK_TOP_N: int = Field(default=3, ge=1, le=20)
+    RERANK_TIMEOUT_SECONDS: float = Field(default=8.0, gt=0)
+    RERANK_MAX_CONCURRENT_REQUESTS: int = Field(default=4, ge=1, le=100)
+    RERANK_CACHE_ENABLED: bool = True
+    RERANK_CACHE_TTL_SECONDS: int = Field(default=300, ge=1, le=86_400)
+    RERANK_CACHE_MAX_ENTRIES: int = Field(default=512, ge=1, le=100_000)
 
     HOSPITAL_NAME: str = "Hanoi Heart Hospital"
     HOSPITAL_PUBLIC_BASE_URL: str = "https://benhvientimhanoi.vn"
@@ -290,7 +305,11 @@ class Settings(BaseSettings):
         ):
             problems.append("An API key is required for Vietnamese_Embedding")
         if self.API_KEY and self.FPT_LLM_MODEL != "gpt-oss-120b":
-            problems.append("FPT_LLM_MODEL must be gpt-oss-120b for this release")
+            problems.append("FPT_LLM_MODEL must be gpt-oss-120b for RAG generation")
+        if self.API_KEY and self.FPT_GUARD_MODEL != "gpt-oss-20b":
+            problems.append("FPT_GUARD_MODEL must be gpt-oss-20b for guard routing")
+        if self.API_KEY and self.RERANK_ENABLED and self.RERANK_MODEL != "bge-reranker-v2-m3":
+            problems.append("RERANK_MODEL must be bge-reranker-v2-m3")
         if self.API_KEY and self.FPT_EMBEDDING_MODEL != "Vietnamese_Embedding":
             problems.append(
                 "FPT_EMBEDDING_MODEL must be Vietnamese_Embedding for this release"

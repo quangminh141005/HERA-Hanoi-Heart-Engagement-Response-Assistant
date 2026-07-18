@@ -16,22 +16,22 @@ _PATTERNS: tuple[tuple[str, re.Pattern[str], str], ...] = (
     (
         "email",
         re.compile(r"(?<![\w.-])[\w.+-]+@[\w.-]+\.[A-Za-z]{2,}(?![\w.-])"),
-        "[EMAIL_ĐÃ_ẨN]",
+        "[EMAIL_REDACTED]",
     ),
     (
         "phone",
         re.compile(r"(?<!\d)(?:\+?84|0)(?:[\s.-]?\d){9,10}(?!\d)"),
-        "[SỐ_ĐIỆN_THOẠI_ĐÃ_ẨN]",
+        "[PHONE_REDACTED]",
     ),
     (
         "cccd",
         re.compile(r"(?<!\d)\d{12}(?!\d)"),
-        "[CCCD_ĐÃ_ẨN]",
+        "[CCCD_REDACTED]",
     ),
     (
         "bhyt_card",
         re.compile(r"(?<![A-Z0-9])[A-Z]{2}\d{13}(?![A-Z0-9])", re.IGNORECASE),
-        "[THẺ_BHYT_ĐÃ_ẨN]",
+        "[BHYT_CARD_REDACTED]",
     ),
 )
 

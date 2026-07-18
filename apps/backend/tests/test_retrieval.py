@@ -47,6 +47,23 @@ class FailingEmbedder:
         raise RuntimeError("provider unavailable")
 
 
+class StaticReranker:
+    def __init__(self, ranked_ids: list[str]) -> None:
+        self.ranked_ids = ranked_ids
+        self.calls: list[dict] = []
+
+    async def rerank(self, *, query: str, chunks: list, top_n: int) -> list:
+        self.calls.append({"query": query, "chunks": chunks, "top_n": top_n})
+        by_id = {chunk.chunk_id: chunk for chunk in chunks}
+        ranked = [
+            by_id[chunk_id]
+            for chunk_id in self.ranked_ids
+            if chunk_id in by_id
+        ]
+        ranked.extend(chunk for chunk in chunks if chunk.chunk_id not in self.ranked_ids)
+        return ranked[:top_n]
+
+
 class SharedCache:
     def __init__(self) -> None:
         self.values: dict[tuple[str, str], object] = {}
@@ -268,6 +285,56 @@ def test_retrieval_uses_rrf_to_promote_cross_lane_candidate() -> None:
 
     assert response.chunks[0].chunk_id == "CHUNK-FACT-SHARED-001"
     assert response.chunks[0].score > 0.9
+
+
+def test_retrieval_applies_reranker_after_rrf_candidates() -> None:
+    repository = StaticRepository(
+        lexical=[
+            {
+                "fact_id": "FACT-LOW",
+                "claim_vi": "Ket qua lexical dung tu khoa nhung kem lien quan.",
+                "score": 4,
+                "source_id": "SRC-1",
+                "title": "Nguon chinh thuc",
+                "url": None,
+            },
+            {
+                "fact_id": "FACT-BEST",
+                "claim_vi": "Ket qua tra loi dung y nguoi dung.",
+                "score": 1,
+                "source_id": "SRC-1",
+                "title": "Nguon chinh thuc",
+                "url": None,
+            },
+        ],
+        semantic=[
+            {
+                "chunk_id": "CHUNK-FACT-BEST-001",
+                "fact_id": "FACT-BEST",
+                "source_id": "SRC-1",
+                "content_vi": "Ket qua tra loi dung y nguoi dung.",
+                "title": "Nguon chinh thuc",
+                "url": None,
+                "score": 0.8,
+            }
+        ],
+    )
+    reranker = StaticReranker(["CHUNK-FACT-BEST-001"])
+    service = RetrievalService(
+        repository,
+        embedder=StaticEmbedder(),
+        exact_lexical_score=0.99,
+        reranker=reranker,
+        rerank_top_n=1,
+    )
+
+    response = asyncio.run(
+        service.retrieve(RetrievalRequest(query="cau hoi kho", top_k=1))
+    )
+
+    assert response.chunks[0].chunk_id == "CHUNK-FACT-BEST-001"
+    assert reranker.calls[0]["top_n"] == 1
+    assert len(reranker.calls[0]["chunks"]) > 1
 
 
 def test_query_vector_is_cached_while_pgvector_search_stays_fresh() -> None:

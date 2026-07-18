@@ -28,6 +28,8 @@ from app.ai.privacy import redact_pii
 from app.ai.rag.embeddings.embedder import build_embedder
 from app.ai.rag.generation.service import GenerationService
 from app.ai.rag.pipeline import RAGPipeline
+from app.ai.rag.query_expansion import HydeQueryExpander, NoopQueryExpander
+from app.ai.rag.rerank import build_reranker
 from app.ai.rag.retrieval.service import RetrievalService
 from app.ai.routing import ModelRoutingAssessor
 from app.core.config import Settings
@@ -61,6 +63,7 @@ class _RoutingDecision:
     decision_source: str
     model_emergency_confidence: float | None = None
     model_intent_confidence: float | None = None
+    slots: dict[str, str | None] = field(default_factory=dict)
 
 
 class ConversationOrchestrator:
@@ -103,21 +106,12 @@ class ConversationOrchestrator:
         cid = conversation_id or uuid4().hex
 
         # Redaction is the boundary before any safety check or external model call.
-        # An obvious emergency must win over prompt injection without contacting
-        # the model; every other blocked input must stop before model routing.
+        # The model-assisted guard decides emergency risk and intent first; prompt
+        # injection is blocked immediately after non-emergency routing.
         redaction = redact_pii(message)
-        emergency_precheck = self.emergency_detector.assess(redaction.text)
-        if emergency_precheck.is_emergency:
-            routing = _RoutingDecision(
-                emergency=emergency_precheck,
-                classification=IntentClassification(
-                    intent=HospitalIntent.EMERGENCY,
-                    confidence=emergency_precheck.confidence,
-                    reasons=emergency_precheck.matched_terms,
-                ),
-                decision_source="deterministic_safety_precheck",
-            )
-        else:
+        sanitized = redaction.text
+        routing = await self._assess_routing(sanitized)
+        if not routing.emergency.is_emergency:
             input_check = self.guardrails.validate_input(redaction.text)
             if not input_check.allowed:
                 return self._refusal(
@@ -134,7 +128,6 @@ class ConversationOrchestrator:
                 )
 
             sanitized = input_check.text
-            routing = await self._assess_routing(sanitized)
 
         emergency = routing.emergency
 
@@ -262,10 +255,21 @@ class ConversationOrchestrator:
             )
 
         if classification.intent is HospitalIntent.SERVICE_PRICE:
-            result = await asyncio.to_thread(
-                self.structured_data_service.chat_service_price,
-                sanitized,
+            price_slots = (
+                None,
+                routing.slots.get("facility_code"),
             )
+            if any(price_slots):
+                result = await asyncio.to_thread(
+                    self.structured_data_service.chat_service_price,
+                    sanitized,
+                    *price_slots,
+                )
+            else:
+                result = await asyncio.to_thread(
+                    self.structured_data_service.chat_service_price,
+                    sanitized,
+                )
             response = self._structured_result(cid, result, redaction.categories)
             await self._remember_structured(cid, result)
             return finish(_mark_context_applied(response, context_applied))
@@ -287,6 +291,21 @@ class ConversationOrchestrator:
             response = self._structured_result(cid, result, redaction.categories)
             await self._remember_structured(cid, result)
             return finish(_mark_context_applied(response, context_applied))
+
+        if _looks_like_image_or_ocr_request(sanitized):
+            return finish(
+                self._refusal(
+                    cid,
+                    intent=classification.intent.value,
+                    response=(
+                        "HERA không có OCR và không đọc được nội dung trong ảnh, "
+                        "giấy xét nghiệm hoặc file đính kèm. Bạn có thể nhập lại "
+                        "nội dung dạng chữ nếu đó là thông tin hành chính cần tra cứu; "
+                        "HERA cũng không diễn giải chỉ số xét nghiệm hay chẩn đoán qua chat."
+                    ),
+                    metadata={"unsupported_capability": "ocr"},
+                )
+            )
 
         try:
             async with asyncio.timeout(self.settings.CHAT_OVERALL_TIMEOUT_SECONDS):
@@ -424,6 +443,7 @@ class ConversationOrchestrator:
                 emergency=model_assessment.emergency,
                 classification=classification,
                 decision_source="model",
+                slots=model_assessment.slots,
                 **confidence_kwargs,
             )
 
@@ -458,6 +478,7 @@ class ConversationOrchestrator:
         resources = (
             self.memory_store,
             self.rag_pipeline.retrieval_service.embedder,
+            self.rag_pipeline.retrieval_service.reranker,
             self.rag_pipeline.generation_service.llm_client,
         )
         for resource in resources:
@@ -575,6 +596,11 @@ def build_default_orchestrator(settings: Settings) -> ConversationOrchestrator:
 
     emergency_detector = EmergencyDetector()
     llm_client = build_llm_client(settings)
+    guard_llm_client = build_llm_client(
+        settings,
+        model_override=settings.FPT_GUARD_MODEL,
+        provider_label_override="fpt_guard",
+    )
     structured_service = StructuredDataService(settings)
     return ConversationOrchestrator(
         settings=settings,
@@ -589,6 +615,17 @@ def build_default_orchestrator(settings: Settings) -> ConversationOrchestrator:
                 shared_cache=structured_service.cache,
                 embedding_model=settings.FPT_EMBEDDING_MODEL,
                 expected_embedding_dimensions=settings.EMBEDDING_DIMENSIONS,
+                reranker=build_reranker(settings),
+                rerank_top_n=settings.RERANK_TOP_N,
+                query_expander=(
+                    HydeQueryExpander(
+                        guard_llm_client,
+                        max_tokens=settings.RAG_HYDE_MAX_TOKENS,
+                        max_chars=settings.RAG_HYDE_MAX_CHARS,
+                    )
+                    if settings.RAG_HYDE_ENABLED and settings.LLM_PROVIDER != "noop"
+                    else NoopQueryExpander()
+                ),
                 settings=settings,
             ),
             generation_service=GenerationService(llm_client, settings=settings),
@@ -607,7 +644,7 @@ def build_default_orchestrator(settings: Settings) -> ConversationOrchestrator:
         ),
         routing_model_assessor=(
             ModelRoutingAssessor(
-                llm_client=llm_client,
+                llm_client=guard_llm_client,
                 settings=settings,
                 timeout_seconds=settings.MODEL_ROUTING_TIMEOUT_SECONDS,
                 max_tokens=settings.MODEL_ROUTING_MAX_TOKENS,
@@ -767,6 +804,14 @@ def _has_explicit_doctor(message: str) -> bool:
     return bool(re.search(r"\b(?:bac si|bs)\s+\w+\s+\w+", folded))
 
 
+def _looks_like_image_or_ocr_request(message: str) -> bool:
+    folded = _fold_text(message)
+    return bool(
+        re.search(r"\b(anh|hinh|file|dinh kem|giay xet nghiem|ocr)\b", folded)
+        and re.search(r"\b(doc|xem|trich|nhan dien|chi so)\b", folded)
+    )
+
+
 def _fold_text(value: str) -> str:
     decomposed = unicodedata.normalize("NFD", value.lower())
     without_marks = "".join(
@@ -800,6 +845,9 @@ def _mark_routing_decision(
         )
     if routing.model_intent_confidence is not None:
         routing_metadata["model_intent_confidence"] = routing.model_intent_confidence
+    routing_metadata["routing_slots_present"] = any(
+        value for value in routing.slots.values()
+    )
     return replace(
         result,
         metadata={**result.metadata, **routing_metadata},

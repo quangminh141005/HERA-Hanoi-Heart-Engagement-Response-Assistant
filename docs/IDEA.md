@@ -89,7 +89,8 @@ Thành phần chính:
 - Backend: FastAPI;
 - Database: PostgreSQL + pgvector;
 - Cache và state ngắn hạn: Redis;
-- AI model: `gpt-oss-120b` cho LLM;
+- AI model: `gpt-oss-120b` cho generation, `gpt-oss-20b` cho guard/routing;
+- Rerank: `bge-reranker-v2-m3` để chọn evidence tốt nhất sau retrieval;
 - Embedding: `Vietnamese_Embedding`;
 - Monitoring: Prometheus + Grafana;
 - CI/CD: GitHub Actions;
