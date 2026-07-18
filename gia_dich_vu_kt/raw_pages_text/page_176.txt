@@ -1,0 +1,69 @@
+SỞ Y TẾ HÀ NỘI
+BỆNH VIỆN TIM HÀ NỘI
+MÃ TƯƠNG
+STT DỊCH VỤ KỸ THUẬT CƠ SỞ 1 CƠ SỞ 2 GHI CHÚ
+ĐƯƠNG
+toàn thể (TIBC)
+Định lượng khả năng gắn sắt
+2427 23.0233.1509 78.500
+toàn thể (TIBC) [máu]
+Xét nghiệm đường máu mao
+2428 01.0281.1510 16.000 16.000
+mạch tại giường (một lần)
+Xét nghiệm đường máu mao
+2429 03.0191.1510 16.000 16.000
+mạch tại giường
+2430 23.0234.1510 Đường máu mao mạch 16.000
+Định lượng E3 không liên
+2431 23.0062.1511 hợp (Unconjugated Estriol) 190.300 190.300
+[Máu]
+2432 23.0235.1512 Định lượng Erythropoietin 84.100
+2433 23.0061.1513 Định lượng Estradiol [Máu] 84.100 84.100
+2434 22.0116.1514 Định lượng Ferritin 84.100
+2435 23.0063.1514 Định lượng Ferritin [Máu] 84.100 84.100
+2436 22.0079.1515 Định lượng Acid Folic 89.700
+2437 23.0067.1515 Định lượng Folate [Máu] 89.700 89.700
+Định lượng free bHCG (Free
+2438 23.0066.1516 Beta Human Chorionic 190.300 190.300
+Gonadotropin) [Máu]
+Định lượng FSH (Follicular
+2439 23.0065.1517 84.100 84.100
+Stimulating Hormone) [Máu]
+Đo hoạt độ GGT (Gama
+2440 23.0077.1518 20.000 20.000
+Glutamyl Transferase) [Máu]
+Định lượng GH (Growth
+2441 23.0073.1519 168.300 168.300
+Hormone) [Máu]
+Đo hoạt độ GLDH (Glutamat
+2442 23.0074.1520 100.900 100.900
+dehydrogenase) [Máu]
+2443 23.0237.1521 Gross 16.800
+2444 22.0096.1522 Định lượng Haptoglobin 100.900
+Định lượng Haptoglobulin
+2445 23.0080.1522 100.900 100.900
+[Máu]
+2446 23.0083.1523 Định lượng HbA1c [Máu] 105.300 105.300
+Đo hoạt độ HBDH (Hydroxy
+2447 23.0082.1524 butyrat dehydrogenase) 100.900 100.900
+[Máu]
+Định lượng HE4 (human
+2448 23.0085.1525 312.500 312.500
+epydidymal protein 4) [Máu]
+Định lượng Homocystein
+2449 23.0086.1526 151.200 151.200
+[Máu]
+2450 23.0238.1526 Homocysteine 151.200
+2451 22.0113.1527 Định lượng IgA 67.300
+2452 22.0115.1527 Định lượng IgE 67.300
+2453 22.0112.1527 Định lượng IgG 67.300
+2454 22.0114.1527 Định lượng IgM 67.300
+Định lượng IgA
+2455 23.0094.1527 67.300 67.300
+(Immunoglobuline A) [Máu]
+Định lượng IgE
+2456 23.0093.1527 67.300 67.300
+(Immunoglobuline E) [Máu]
+Ghi chú: Bảng giá áp dụng theo Phụ lục số 06 Nghị quyết số 45/2024/NQ-HĐND ngày 10/12/2024 của Hội đồng nhân dân
+Thành phố Hà Nội.
+Bảng giá áp dụng cho người bệnh có thẻ bảo hiểm y tế và không có thẻ bảo hiểm y tế.

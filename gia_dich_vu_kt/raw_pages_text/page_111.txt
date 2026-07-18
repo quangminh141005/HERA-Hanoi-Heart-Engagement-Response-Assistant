@@ -1,0 +1,68 @@
+SỞ Y TẾ HÀ NỘI
+BỆNH VIỆN TIM HÀ NỘI
+MÃ TƯƠNG
+STT DỊCH VỤ KỸ THUẬT CƠ SỞ 1 CƠ SỞ 2 GHI CHÚ
+ĐƯƠNG
+máy) (một lần hút)
+Hút đờm qua ống nội khí
+1487 03.0091.0300 373.600 373.600
+quản bằng catheter một lần
+Giảm mẫn cảm nhanh với
+1488 02.0600.0301 1.534.600
+thuốc
+1489 02.0604.0302 Giảm mẫn cảm với thức ăn 979.400
+Giảm mẫn cảm với thuốc
+1490 02.0601.0302 979.400
+đường tĩnh mạch
+Giảm mẫn cảm với thuốc
+1491 02.0602.0302 979.400
+đường uống
+Giảm mẫn cảm đường tiêm
+1492 03.2380.0302 979.400
+và dưới da
+1493 03.4208.0302 Giảm mẫn cảm với thức ăn 979.400
+Phản ứng phân hủy
+1494 03.2381.0305 307.800
+Mastocyte
+Test áp bì (Patch test) đặc
+1495 02.0594.0307 hiệu với thuốc (đối với 6 loại 546.100
+thuốc)
+Test áp (Patch test) với các
+1496 03.2384.0307 546.100 546.100
+loại thuốc
+1497 02.0610.0308 Test hồi phục phế quản 190.800
+Test giãn phế quản (broncho
+1498 21.0018.0308 190.800 190.800
+modilator test)
+Test kích thích với thuốc
+1499 02.0605.0311 892.500
+đường tĩnh mạch
+Test kích thích với thuốc
+1500 02.0606.0311 892.500
+đường uống
+1501 03.2379.0312 Test lẩy da với các dị nguyên 344.400 344.400
+Test lẩy da (Prick test) đặc
+1502 02.0588.0313 hiệu với các loại thuốc (Đối 394.800
+với 6 loại thuốc)
+Test lẩy da (Prick test) với
+1503 03.2382.0313 394.800 394.800
+các loại thuốc
+1504 03.2379.0313 Test lẩy da với các dị nguyên 394.800 394.800
+Test nội bì chậm đặc hiệu với
+1505 02.0592.0314 493.800
+thuốc
+1506 03.2383.0314 Test nội bì 493.800 493.800
+Test nội bì nhanh đặc hiệu
+1507 02.0590.0315 406.800
+với thuốc
+1508 03.2383.0315 Test nội bì 406.800 406.800
+Gây xơ tĩnh mạch điều trị
+1509 02.0093.0319 677.500 677.500
+suy, giãn tĩnh mạch mạn tính
+Nội soi đại trực tràng toàn bộ
+1510 02.0261.0319 ống mềm có dùng thuốc gây 677.500
+mê
+1511 02.0255.0319 Nội soi thực quản - dạ dày - 677.500 677.500
+Ghi chú: Bảng giá áp dụng theo Phụ lục số 06 Nghị quyết số 45/2024/NQ-HĐND ngày 10/12/2024 của Hội đồng nhân dân
+Thành phố Hà Nội.
+Bảng giá áp dụng cho người bệnh có thẻ bảo hiểm y tế và không có thẻ bảo hiểm y tế.

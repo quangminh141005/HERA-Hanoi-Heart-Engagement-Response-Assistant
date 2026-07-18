@@ -1,0 +1,74 @@
+SỞ Y TẾ HÀ NỘI
+BỆNH VIỆN TIM HÀ NỘI
+MÃ TƯƠNG
+STT DỊCH VỤ KỸ THUẬT CƠ SỞ 1 CƠ SỞ 2 GHI CHÚ
+ĐƯƠNG
+động
+2565 24.0126.1614 HBc IgM miễn dịch tự động 123.400 123.400
+HBeAb miễn dịch bán tự
+2566 24.0134.1615 104.400
+động
+2567 24.0135.1615 HBeAb miễn dịch tự động 104.400 104.400
+2568 24.0169.1616 HIV Ab test nhanh 58.600 58.600
+HIV Ab miễn dịch bán tự
+2569 24.0171.1617 116.400
+động
+2570 24.0172.1617 HIV Ab miễn dịch tự động 116.400 116.400
+HBc total miễn dịch bán tự
+2571 24.0128.1618 78.300
+động
+2572 24.0129.1618 HBc total miễn dịch tự động 78.300 78.300
+2573 24.0124.1619 HBsAb định lượng 126.400 126.400
+HBsAb miễn dịch bán tự
+2574 24.0123.1620 78.300
+động
+2575 24.0144.1621 HCV Ab test nhanh 58.600 58.600
+HCV Ab miễn dịch bán tự
+2576 24.0145.1622 130.500
+động
+2577 24.0146.1622 HCV Ab miễn dịch tự động 130.500 130.500
+HCV Ag/Ab miễn dịch bán tự
+2578 24.0147.1622 130.500
+động
+HCV Ag/Ab miễn dịch tự
+2579 24.0148.1622 130.500 130.500
+động
+2580 24.0094.1623 Streptococcus pyogenes ASO 45.500 45.500
+Chlamydia Ab miễn dịch bán
+2581 24.0062.1626 194.700
+tự động
+Chlamydia Ab miễn dịch tự
+2582 24.0063.1626 194.700
+động
+2583 24.0060.1627 Chlamydia test nhanh 78.300 78.300
+2584 24.0236.1627 Hantavirus test nhanh 78.300 78.300
+Clostridium difficile miễn
+2585 24.0069.1628 851.700
+dịch bán tự động
+Clostridium difficile miễn
+2586 24.0070.1628 851.700
+dịch tự động
+CMV IgG miễn dịch bán tự
+2587 24.0195.1631 123.400
+động
+2588 24.0196.1631 CMV IgG miễn dịch tự động 123.400 123.400
+CMV IgM miễn dịch bán tự
+2589 24.0193.1632 142.500
+động
+2590 24.0194.1632 CMV IgM miễn dịch tự động 142.500 142.500
+2591 24.0338.1634 Cryptococcus test nhanh 123.400
+Dengue virus IgG miễn dịch
+2592 24.0189.1635 168.600
+bán tự động
+Dengue virus NS1Ag miễn
+2593 24.0186.1635 168.600
+dịch bán tự động
+Dengue virus IgM miễn dịch
+2594 24.0188.1636 168.600
+bán tự động
+Xét nghiệm kháng thể kháng
+2595 22.0630.1637 Dengue IgG và IgM (phương 142.500
+pháp thấm miễn dịch)
+Ghi chú: Bảng giá áp dụng theo Phụ lục số 06 Nghị quyết số 45/2024/NQ-HĐND ngày 10/12/2024 của Hội đồng nhân dân
+Thành phố Hà Nội.
+Bảng giá áp dụng cho người bệnh có thẻ bảo hiểm y tế và không có thẻ bảo hiểm y tế.

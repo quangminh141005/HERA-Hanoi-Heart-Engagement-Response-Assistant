@@ -1,0 +1,68 @@
+SỞ Y TẾ HÀ NỘI
+BỆNH VIỆN TIM HÀ NỘI
+MÃ TƯƠNG
+STT DỊCH VỤ KỸ THUẬT CƠ SỞ 1 CƠ SỞ 2 GHI CHÚ
+ĐƯƠNG
+tai
+1951 15.0056.0882 Chọc hút dịch vành tai 64.300
+1952 01.0090.0883 Đặt stent khí phế quản 7.740.800 Chưa bao gồm stent.
+Nội soi phế quản ống cứng
+1953 02.0044.0883 cắt u trong lòng khí, phế quản 7.740.800 Chưa bao gồm stent.
+bằng điện đông cao tần
+Nội soi đặt stent khí - phế
+1954 03.1016.0883 7.740.800 Chưa bao gồm stent.
+quản
+Nội soi phế quản ống mềm
+1955 03.1005.0883 7.740.800 Chưa bao gồm stent.
+đặt stent khí quản
+1956 03.2154.0897 Làm Proetz 69.300
+1957 15.0139.0897 Phương pháp Proetz 69.300
+Khí dung thuốc cấp cứu (một
+1958 01.0086.0898 27.500 27.500 Chưa bao gồm thuốc khí dung.
+lần)
+Khí dung thuốc qua thở máy
+1959 01.0087.0898 27.500 27.500 Chưa bao gồm thuốc khí dung.
+(một lần)
+1960 02.0032.0898 Khí dung thuốc giãn phế quản 27.500 27.500 Chưa bao gồm thuốc khí dung.
+1961 03.2191.0898 Khí dung mũi họng 27.500 27.500 Chưa bao gồm thuốc khí dung.
+1962 03.0089.0898 Khí dung thuốc cấp cứu 27.500 27.500 Chưa bao gồm thuốc khí dung.
+1963 03.0090.0898 Khí dung thuốc thở máy 27.500 Chưa bao gồm thuốc khí dung.
+1964 15.0222.0898 Khí dung mũi họng 27.500 Chưa bao gồm thuốc khí dung.
+Khí dung đường thở ở người
+1965 09.0123.0898 27.500 Chưa bao gồm thuốc khí dung.
+bệnh nặng
+1966 03.2120.0899 Làm thuốc tai 22.000 22.000 Chưa bao gồm thuốc.
+Làm thuốc tai, mũi, thanh
+1967 03.2184.0899 22.000 Chưa bao gồm thuốc.
+quản
+1968 15.0218.0899 Bơm thuốc thanh quản 22.000 Chưa bao gồm thuốc.
+1969 15.0058.0899 Làm thuốc tai 22.000 Chưa bao gồm thuốc.
+1970 03.2178.0900 Lấy dị vật hạ họng 43.100 43.100
+1971 15.0213.0900 Lấy dị vật hạ họng 43.100
+1972 15.0212.0900 Lấy dị vật họng miệng 43.100
+1973 03.2117.0901 Lấy dị vật tai [đơn giản] 70.300
+Lấy dị vật tai [kính hiển vi,
+1974 03.2117.0902 530.700
+gây mê]
+Lấy dị vật tai [kính hiển vi,
+1975 15.0054.0902 530.700
+gây mê]
+Lấy dị vật tai [kính hiển vi,
+1976 03.2117.0903 170.600
+gây tê]
+Lấy dị vật tai [kính hiển vi,
+1977 15.0054.0903 170.600
+gây tê]
+1978 15.0059.0908 Lấy nút biểu bì ống tai ngoài 70.300
+1979 03.2149.0916 Nhét bấc mũi sau 139.000 139.000
+1980 03.2150.0916 Nhét bấc mũi trước 139.000 139.000
+Cầm máu đơn giản sau phẫu
+1981 15.0208.0916 139.000
+thuật cắt Amidan, nạo VA
+1982 15.0140.0916 Nhét bấc mũi sau 139.000
+1983 15.0141.0916 Nhét bấc mũi trước 139.000
+1984 15.0138.0920 Chọc rửa xoang hàm 310.500
+1985 15.0234.0925 Nội soi thực quản ống cứng 754.400
+Ghi chú: Bảng giá áp dụng theo Phụ lục số 06 Nghị quyết số 45/2024/NQ-HĐND ngày 10/12/2024 của Hội đồng nhân dân
+Thành phố Hà Nội.
+Bảng giá áp dụng cho người bệnh có thẻ bảo hiểm y tế và không có thẻ bảo hiểm y tế.

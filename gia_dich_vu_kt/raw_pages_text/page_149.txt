@@ -1,0 +1,78 @@
+SỞ Y TẾ HÀ NỘI
+BỆNH VIỆN TIM HÀ NỘI
+MÃ TƯƠNG
+STT DỊCH VỤ KỸ THUẬT CƠ SỞ 1 CƠ SỞ 2 GHI CHÚ
+ĐƯƠNG
+Phẫu thuật lại trong các bệnh
+1858 10.0268.0581 5.712.200
+lý mạch máu ngoại vi
+Phẫu thuật thắt hẹp động
+mạch phổi trong bệnh tim
+1859 10.0180.0581 5.712.200
+bẩm sinh có tăng áp lực động
+mạch phổi nặng
+Phẫu thuật bắc cầu điều trị Chưa bao gồm đoạn mạch
+1860 10.0249.0582 3.433.300
+thiếu máu mạn tính chi nhân tạo.
+Phẫu thuật bắc cầu động Chưa bao gồm đoạn mạch
+1861 10.0258.0582 3.433.300
+mạch nách - động mạch đùi nhân tạo.
+Phẫu thuật cắt đường thông
+động - tĩnh mạch chạy thận
+1862 10.0261.0582 3.433.300
+nhân tạo do biến chứng hoặc
+sau ghép thận
+Phẫu thuật điều trị bệnh suy -
+1863 10.0259.0582 3.433.300
+giãn tĩnh mạch chi dưới
+Phẫu thuật điều trị giả phồng
+1864 10.0263.0582 động mạch do tiêm chích ma 3.433.300
+túy
+Phẫu thuật điều trị lồi xương
+1865 10.0280.0582 3.433.300
+ức (ức gà)
+Phẫu thuật điều trị lõm ngực
+1866 10.0279.0582 3.433.300
+bẩm sinh
+Phẫu thuật điều trị nhão cơ
+1867 10.0694.0582 3.433.300
+hoành
+Phẫu thuật điều trị phồng, giả
+1868 10.0262.0582 3.433.300
+phồng động mạch chi
+Phẫu thuật điều trị tắc động Chưa bao gồm đoạn mạch
+1869 10.0251.0582 3.433.300
+mạch chi bán cấp tính nhân tạo.
+Phẫu thuật điều trị tắc động
+Chưa bao gồm đoạn mạch
+1870 10.0250.0582 mạch chi cấp tính do huyết 3.433.300
+nhân tạo.
+khối, mảnh sùi, dị vật
+Phẫu thuật điều trị thông
+1871 10.0266.0582 3.433.300
+động - tĩnh mạch chi
+Phẫu thuật điều trị vết thương Chưa bao gồm đoạn mạch
+1872 10.0167.0582 3.433.300
+- chấn thương mạch máu chi nhân tạo.
+Phẫu thuật khâu lỗ thủng cơ
+1873 10.0689.0582 3.433.300
+hoành do vết thương
+1874 10.0690.0582 Phẫu thuật khâu vỡ cơ hoành 3.433.300
+1875 10.1106.0582 Phẫu thuật tạo hình xương ức 3.433.300
+Phẫu thuật thắt các mạch máu
+1876 10.0172.0582 3.433.300
+lớn ngoại vi
+Khâu lại vết phẫu thuật lồng
+1877 03.3259.0583 2.396.200
+ngực bị nhiễm khuẩn
+Kỹ thuật đặt bóng đối xung
+1878 10.0241.0583 2.396.200
+động mạch chủ
+1879 10.0278.0583 Phẫu thuật cắt u thành ngực 2.396.200
+Phẫu thuật điều trị nhiễm
+1880 10.0288.0583 2.396.200
+trùng vết mổ ngực
+1881 12.0172.0583 Phẫu thuật bóc u thành ngực 2.396.200
+Ghi chú: Bảng giá áp dụng theo Phụ lục số 06 Nghị quyết số 45/2024/NQ-HĐND ngày 10/12/2024 của Hội đồng nhân dân
+Thành phố Hà Nội.
+Bảng giá áp dụng cho người bệnh có thẻ bảo hiểm y tế và không có thẻ bảo hiểm y tế.

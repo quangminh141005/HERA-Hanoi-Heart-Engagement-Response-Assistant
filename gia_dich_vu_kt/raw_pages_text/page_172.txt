@@ -1,0 +1,70 @@
+SỞ Y TẾ HÀ NỘI
+BỆNH VIỆN TIM HÀ NỘI
+MÃ TƯƠNG
+STT DỊCH VỤ KỸ THUẬT CƠ SỞ 1 CƠ SỞ 2 GHI CHÚ
+ĐƯƠNG
+Định lượng Amoniac (NH3)
+2326 23.0011.1459 78.500 78.500
+[Máu]
+Định lượng Anti-Tg
+2327 23.0014.1460 (Antibody- Thyroglobulin) 280.500 280.500
+[Máu]
+Định lượng Anti - TPO (Anti-
+2328 23.0015.1461 thyroid Peroxidase 212.300 212.300
+antibodies) [Máu]
+Định lượng Apo A₁
+2329 23.0016.1462 50.400 50.400
+(Apolypoprotein A₁) [Máu]
+Định lượng Apo B
+2330 23.0017.1462 50.400 50.400
+(Apolypoprotein B) [Máu]
+Định lượng Benzodiazepin
+2331 23.0178.1463 39.200
+[niệu]
+Định lượng bhCG (Beta
+2332 23.0024.1464 human Chorionic 89.700 89.700
+Gonadotropins) [Máu]
+Định lượng Beta 2
+2333 22.0080.1465 78.500
+Microglobulin
+Định lượng β2 microglobulin
+2334 23.0022.1465 78.500 78.500
+[Máu]
+Định lượng nhanh NT-
+2335 01.0298.1466 ProBNP trong máu toàn phần 605.100
+tại chỗ bằng máy cầm tay
+Định lượng Pepsinogen I
+2336 23.0124.1466 605.100 605.100
+[Máu]
+Định lượng Pepsinogen II
+2337 23.0125.1466 605.100 605.100
+[Máu]
+2338 23.0226.1467 Bổ thể trong huyết thanh 33.600
+Định lượng CA 125 (cancer
+2339 23.0032.1468 144.200 144.200
+antigen 125) [Máu]
+Định lượng CA 15-3 (Cancer
+2340 23.0034.1469 156.200 156.200
+Antigen 15-3) [Máu]
+Định lượng CA 19-9
+2341 23.0033.1470 (Carbohydrate Antigen 19-9) 144.200 144.200
+[Máu]
+Định lượng CA 72-4 (Cancer
+2342 23.0035.1471 139.200 139.200
+Antigen 72-4) [Máu]
+Định lượng Canxi ion hóa Chỉ thanh toán khi định lượng
+2343 23.0030.1472 16.800 16.800
+[Máu] trực tiếp.
+Định lượng Canxi ion hóa
+2344 23.0031.1473 13.400 13.400
+bằng điện cực chọn lọc [Máu]
+Định lượng Canxi toàn phần
+2345 23.0029.1473 13.400 13.400
+[Máu]
+2346 23.0036.1474 Định lượng Calcitonin [Máu] 139.200 139.200
+Định lượng Catecholamin
+2347 23.0181.1475 224.400
+(niệu)
+Ghi chú: Bảng giá áp dụng theo Phụ lục số 06 Nghị quyết số 45/2024/NQ-HĐND ngày 10/12/2024 của Hội đồng nhân dân
+Thành phố Hà Nội.
+Bảng giá áp dụng cho người bệnh có thẻ bảo hiểm y tế và không có thẻ bảo hiểm y tế.

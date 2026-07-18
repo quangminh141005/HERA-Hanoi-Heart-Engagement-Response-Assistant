@@ -1,0 +1,67 @@
+SỞ Y TẾ HÀ NỘI
+BỆNH VIỆN TIM HÀ NỘI
+MÃ TƯƠNG
+STT DỊCH VỤ KỸ THUẬT CƠ SỞ 1 CƠ SỞ 2 GHI CHÚ
+ĐƯƠNG
+Nội soi siêu âm đường tiêu
+1024 03.1045.0145 hóa trên kết hợp với chọc hút 1.196.400
+tế bào
+1025 03.1073.0145 Nội soi siêu âm trực tràng 1.196.400
+Siêu âm nội soi dạ dày, thực
+1026 03.1060.0145 1.196.400
+quản
+1027 18.0062.0145 Siêu âm nội soi 1.196.400
+1028 20.0078.0145 Nội soi siêu âm trực tràng 1.196.400
+Chọc hút, sinh thiết khối u
+1029 18.0627.0146 trung thất qua siêu âm thực 2.963.000
+quản
+Nội soi bàng quang có gây
+1030 02.0492.0147 911.900
+mê
+1031 02.0213.0148 Nội soi niệu quản chẩn đoán 975.300 Chưa bao gồm sonde JJ.
+Dẫn lưu bể thận ngược dòng
+1032 03.0124.0148 975.300 Chưa bao gồm sonde JJ.
+cấp cứu bằng nội soi
+1033 03.1078.0148 Nội soi bàng quang [nhi] 975.300 Chưa bao gồm sonde JJ.
+1034 03.1085.0148 Nội soi niệu quản chẩn đoán 975.300 Chưa bao gồm sonde JJ.
+1035 03.1087.0149 Nội soi bàng quang sinh thiết 720.300
+1036 02.0221.0150 Nội soi bàng quang 575.300
+Nội soi bàng quang chẩn
+1037 02.0212.0150 đoán (Nội soi bàng quang 575.300
+không sinh thiết)
+Nội soi bơm rửa bàng quang,
+1038 02.0219.0150 575.300 Chưa bao gồm hóa chất
+bơm hóa chất
+Nội soi bàng quang, lấy dị
+1039 02.0222.0152 953.800
+vật, sỏi
+Nội soi bơm rửa bàng quang,
+1040 02.0218.0152 953.800
+lấy máu cục
+Rút sonde JJ qua đường nội
+1041 02.0229.0152 953.800
+soi bàng quang
+Rút sonde modelage qua
+1042 02.0230.0152 953.800
+đường nội soi bàng quang
+Nội soi bàng quang, bơm rửa
+1043 03.1082.0152 953.800
+lấy máu cục tránh phẫu thuật
+Nội soi bàng quang, lấy dị
+1044 03.1079.0152 953.800
+vật, sỏi
+Soi bàng quang, lấy dị vật,
+1045 20.0087.0152 953.800
+sỏi
+Nối thông động - tĩnh mạch
+1046 02.0224.0153 1.376.100
+có dịch chuyển mạch
+Nối thông động - tĩnh mạch
+1047 02.0225.0154 1.406.600 Chưa bao gồm mạch nhân tạo.
+sử dụng mạch nhân tạo
+Kỹ thuật tạo đường hầm trên
+1048 02.0201.0155 cầu nối (AVF) để sử dụng 1.176.100
+kim đầu tù trong lọc máu (kỹ
+Ghi chú: Bảng giá áp dụng theo Phụ lục số 06 Nghị quyết số 45/2024/NQ-HĐND ngày 10/12/2024 của Hội đồng nhân dân
+Thành phố Hà Nội.
+Bảng giá áp dụng cho người bệnh có thẻ bảo hiểm y tế và không có thẻ bảo hiểm y tế.

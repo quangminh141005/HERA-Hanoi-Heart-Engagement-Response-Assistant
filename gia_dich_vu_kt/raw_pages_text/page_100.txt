@@ -1,0 +1,66 @@
+SỞ Y TẾ HÀ NỘI
+BỆNH VIỆN TIM HÀ NỘI
+MÃ TƯƠNG
+STT DỊCH VỤ KỸ THUẬT CƠ SỞ 1 CƠ SỞ 2 GHI CHÚ
+ĐƯƠNG
+ngoại trú; chưa bao gồm thuốc
+tiêm.
+Chỉ áp dụng với người bệnh
+Tiêm tĩnh mạch, truyền tĩnh
+1219 14.0291.0212 15.100 ngoại trú; chưa bao gồm thuốc
+mạch
+tiêm.
+Chỉ áp dụng với người bệnh
+Tiêm trong da; tiêm dưới da;
+1220 14.0290.0212 15.100 ngoại trú; chưa bao gồm thuốc
+tiêm bắp thịt
+tiêm.
+1221 02.0407.0213 Tiêm cân gan chân 104.400 104.400 Chưa bao gồm thuốc tiêm.
+1222 02.0408.0213 Tiêm cạnh cột sống cổ 104.400 104.400 Chưa bao gồm thuốc tiêm.
+1223 02.0410.0213 Tiêm cạnh cột sống ngực 104.400 104.400 Chưa bao gồm thuốc tiêm.
+1224 02.0409.0213 Tiêm cạnh cột sống thắt lưng 104.400 104.400 Chưa bao gồm thuốc tiêm.
+Tiêm điểm bám gân lồi cầu
+1225 02.0397.0213 trong (lồi cầu ngoài) xương 104.400 104.400 Chưa bao gồm thuốc tiêm.
+cánh tay
+Tiêm điểm bám gân mỏm
+1226 02.0404.0213 104.400 104.400 Chưa bao gồm thuốc tiêm.
+cùng vai
+Tiêm điểm bám gân mỏm
+1227 02.0396.0213 104.400 104.400 Chưa bao gồm thuốc tiêm.
+trâm quay (mỏm trâm trụ)
+Tiêm điểm bám gân mỏm
+1228 02.0405.0213 104.400 104.400 Chưa bao gồm thuốc tiêm.
+trâm quay (trâm trụ)
+Tiêm điểm bám gân quanh
+1229 02.0398.0213 104.400 104.400 Chưa bao gồm thuốc tiêm.
+khớp gối
+1230 02.0401.0213 Tiêm gân gấp ngón tay 104.400 104.400 Chưa bao gồm thuốc tiêm.
+1231 02.0406.0213 Tiêm gân gót 104.400 104.400 Chưa bao gồm thuốc tiêm.
+1232 02.0402.0213 Tiêm gân nhị đầu khớp vai 104.400 104.400 Chưa bao gồm thuốc tiêm.
+Tiêm gân trên gai (dưới gai,
+1233 02.0403.0213 104.400 104.400 Chưa bao gồm thuốc tiêm.
+gân bao xoay khớp vai)
+1234 02.0399.0213 Tiêm hội chứng DeQuervain 104.400 104.400 Chưa bao gồm thuốc tiêm.
+Tiêm hội chứng đường hầm
+1235 02.0400.0213 104.400 104.400 Chưa bao gồm thuốc tiêm.
+cổ tay
+1236 02.0384.0213 Tiêm khớp bàn ngón chân 104.400 104.400 Chưa bao gồm thuốc tiêm.
+1237 02.0386.0213 Tiêm khớp bàn ngón tay 104.400 104.400 Chưa bao gồm thuốc tiêm.
+1238 02.0383.0213 Tiêm khớp cổ chân 104.400 104.400 Chưa bao gồm thuốc tiêm.
+1239 02.0385.0213 Tiêm khớp cổ tay 104.400 104.400 Chưa bao gồm thuốc tiêm.
+1240 02.0395.0213 Tiêm khớp cùng chậu 104.400 104.400 Chưa bao gồm thuốc tiêm.
+1241 02.0392.0213 Tiêm khớp đòn - cùng vai 104.400 104.400 Chưa bao gồm thuốc tiêm.
+1242 02.0387.0213 Tiêm khớp đốt ngón tay 104.400 104.400 Chưa bao gồm thuốc tiêm.
+1243 02.0381.0213 Tiêm khớp gối 104.400 104.400 Chưa bao gồm thuốc tiêm.
+1244 02.0382.0213 Tiêm khớp háng 104.400 104.400 Chưa bao gồm thuốc tiêm.
+1245 02.0388.0213 Tiêm khớp khuỷu tay 104.400 104.400 Chưa bao gồm thuốc tiêm.
+1246 02.0393.0213 Tiêm khớp thái dương hàm 104.400 104.400 Chưa bao gồm thuốc tiêm.
+1247 02.0391.0213 Tiêm khớp ức - sườn 104.400 104.400 Chưa bao gồm thuốc tiêm.
+1248 02.0390.0213 Tiêm khớp ức đòn 104.400 104.400 Chưa bao gồm thuốc tiêm.
+1249 02.0389.0213 Tiêm khớp vai 104.400 104.400 Chưa bao gồm thuốc tiêm.
+Tiêm điểm bám gân mỏm
+1250 02.0429.0214 cùng vai dưới hướng dẫn của 148.700 148.700 Chưa bao gồm thuốc tiêm.
+siêu âm
+Ghi chú: Bảng giá áp dụng theo Phụ lục số 06 Nghị quyết số 45/2024/NQ-HĐND ngày 10/12/2024 của Hội đồng nhân dân
+Thành phố Hà Nội.
+Bảng giá áp dụng cho người bệnh có thẻ bảo hiểm y tế và không có thẻ bảo hiểm y tế.

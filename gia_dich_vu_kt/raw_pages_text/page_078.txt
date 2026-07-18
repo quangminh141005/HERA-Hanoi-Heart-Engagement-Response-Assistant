@@ -1,0 +1,80 @@
+SỞ Y TẾ HÀ NỘI
+BỆNH VIỆN TIM HÀ NỘI
+MÃ TƯƠNG
+STT DỊCH VỤ KỸ THUẬT CƠ SỞ 1 CƠ SỞ 2 GHI CHÚ
+ĐƯƠNG
+Chỉ áp dụng với trường hợp
+772 01.0172.0101 Đặt catheter lọc máu cấp cứu 1.158.500
+lọc máu.
+Đặt catheter hai nòng tĩnh Chỉ áp dụng với trường hợp
+773 02.0185.0101 1.158.500 1.158.500
+mạch cảnh trong để lọc máu lọc máu.
+Đặt catheter hai nòng tĩnh Chỉ áp dụng với trường hợp
+774 02.0186.0101 1.158.500 1.158.500
+mạch dưới đòn để lọc máu lọc máu.
+Đặt catheter một nòng hoặc
+Chỉ áp dụng với trường hợp
+775 02.0498.0101 hai nòng tĩnh mạch đùi để lọc 1.158.500
+lọc máu.
+máu
+Chỉ áp dụng với trường hợp
+776 03.0117.0101 Đặt catheter lọc máu cấp cứu 1.158.500
+lọc máu.
+Đặt catheter hai nòng có cuff,
+777 02.0184.0102 6.906.400
+tạo đường hầm để lọc máu
+778 01.0066.1888 Đặt nội khí quản 600.500 600.500
+Chưa bao gồm ống nội khí
+quản 2 nòng. Trường hợp sử
+dụng ống nội khí quản 2 nòng
+779 01.0067.1888 Đặt nội khí quản 2 nòng 600.500 600.500
+thì trừ 19.500 đồng chi phí
+ông nội khí quản thông
+thường.
+Chưa bao gồm ống Hi_low
+Đặt nội khí quản có cửa hút
+EVAC. Trường hợp sử dụng
+780 01.0070.1888 trên bóng chèn (Hi-low 600.500 ống Hi_low EVAC thì trừ
+EVAC) 19.500 đồng chi phí ông nội
+khí quản thông thường.
+781 01.0077.1888 Thay ống nội khí quản 600.500 600.500
+782 02.0017.1888 Đặt nội khí quản 2 nòng 600.500 600.500
+783 03.0077.1888 Đặt nội khí quản 600.500 600.500
+784 03.0099.1888 Đặt nội khí quản 2 nòng 600.500
+785 01.0216.0103 Đặt ống thông dạ dày 101.800 101.800
+786 02.0244.0103 Đặt ống thông dạ dày 101.800 101.800
+787 03.0167.0103 Đặt ống thông dạ dày 101.800 101.800
+Đặt ống thông niệu quản qua
+788 02.0190.0104 950.500 Chưa bao gồm Sonde JJ.
+nội soi (sonde JJ)
+Đặt ống thông niệu quản qua
+789 20.0083.0104 950.500 Chưa bao gồm Sonde JJ.
+nội soi (sonde JJ)
+Nội soi đặt bộ stent thực
+790 20.0053.0105 quản, dạ dày, tá tràng, đại 1.238.400 Chưa bao gồm stent.
+tràng, trực tràng
+Chưa bao gồm bộ dụng cụ
+điều trị rối loạn nhịp tim có sử
+Điều trị rối loạn nhịp tim
+791 02.0086.0106 3.638.300 3.638.300 dụng hệ thống lập bản đồ ba
+bằng sóng tần số radio
+chiều giải phẫu - điện học các
+buồng tim.
+Chưa bao gồm bộ dụng cụ
+điều trị rối loạn nhịp tim có sử
+Điều trị rối loạn nhịp tim
+792 02.0463.0106 3.638.300 dụng hệ thống lập bản đồ ba
+phức tạp bằng sóng cao tần
+chiều giải phẫu - điện học các
+buồng tim.
+Điều trị rối loạn nhịp tim
+Chưa bao gồm bộ dụng cụ
+phức tạp bằng sóng có tần số
+điều trị rối loạn nhịp tim có sử
+793 02.0438.0106 Radio có sử dụng hệ thống 3.638.300 3.638.300 dụng hệ thống lập bản đồ ba
+lập bản đồ ba chiều giải phẫu chiều giải phẫu - điện học các
+buồng tim.
+- điện học các buồng tim
+Ghi chú: Bảng giá áp dụng theo Phụ lục số 06 Nghị quyết số 45/2024/NQ-HĐND ngày 10/12/2024 của Hội đồng nhân dân
+Thành phố Hà Nội.
+Bảng giá áp dụng cho người bệnh có thẻ bảo hiểm y tế và không có thẻ bảo hiểm y tế.

@@ -1,0 +1,68 @@
+SỞ Y TẾ HÀ NỘI
+BỆNH VIỆN TIM HÀ NỘI
+MÃ TƯƠNG
+STT DỊCH VỤ KỸ THUẬT CƠ SỞ 1 CƠ SỞ 2 GHI CHÚ
+ĐƯƠNG
+918 03.0074.0125 Nội soi màng phổi sinh thiết 5.859.300 Đã bao gồm thuốc gây mê
+Chưa bao gồm: máy cắt nối tự
+Phẫu thuật nội soi cắt - khâu
+919 27.0082.0125 5.859.300 động, ghim khâu máy; hoặc
+kén khí phổi
+Stapler.
+Chưa bao gồm: máy cắt nối tự
+Phẫu thuật nội soi cắt u trung
+920 27.0090.0125 5.859.300 động, ghim khâu máy; hoặc
+thất nhỏ (< 5 cm)
+Stapler.
+Phẫu thuật nội soi gỡ dính -
+921 27.0077.0125 hút rửa màng phổi trong bệnh 5.859.300
+lý mủ màng phổi
+Phẫu thuật nội soi khâu rò
+922 27.0079.0125 5.859.300
+ống ngực
+Phẫu thuật nội soi xử trí tràn
+923 27.0075.0125 5.859.300
+máu, tràn khí màng phổi
+924 21.0047.0126 Đo niệu dòng đồ 74.000
+Nội soi phế quản chải phế
+925 02.0048.0127 1.808.100
+quản chẩn đoán [gây mê]
+Nội soi phế quản ống mềm
+926 02.0043.0127 sinh thiết niêm mạc phế quản 1.808.100
+[gây mê]
+Nội soi khí phế quản bằng
+927 03.0053.0127 1.808.100
+ống soi mềm [gây mê]
+Nội soi phế quản ống mềm
+928 03.1007.0127 sinh thiết niêm mạc phế quản 1.808.100
+[gây mê]
+Nội soi phế quản sinh thiết
+929 03.1012.0127 xuyên vách phế quản [gây 1.808.100
+mê]
+Nội soi phế quản ống cứng
+930 15.0254.0127 sinh thiết u gây tê/gây mê 1.808.100
+[gây mê]
+Nội soi khí - phế quản ống
+931 20.0022.0127 1.808.100
+mềm sinh thiết [gây mê]
+932 01.0112.0128 Bơm rửa phế quản 1.508.100
+933 01.0106.0128 Nội soi khí phế quản cấp cứu 1.508.100
+Nội soi rửa phế quản phế
+934 02.0049.0128 1.508.100
+nang chọn lọc [gây mê]
+Nội soi khí phế quản bằng
+935 03.0053.0128 1.508.100
+ống soi mềm [gây mê]
+936 03.0057.0128 Nội soi khí phế quản cấp cứu 1.508.100
+Nội soi khí phế quản hút đờm
+937 03.0056.0128 1.508.100
+[gây mê]
+Nội soi phế quản chải phế
+938 03.1018.0128 1.508.100
+quản chẩn đoán [gây mê]
+Nội soi phế quản ống mềm
+939 03.1014.0128 1.508.100
+[gây mê]
+Ghi chú: Bảng giá áp dụng theo Phụ lục số 06 Nghị quyết số 45/2024/NQ-HĐND ngày 10/12/2024 của Hội đồng nhân dân
+Thành phố Hà Nội.
+Bảng giá áp dụng cho người bệnh có thẻ bảo hiểm y tế và không có thẻ bảo hiểm y tế.

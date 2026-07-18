@@ -1,0 +1,74 @@
+SỞ Y TẾ HÀ NỘI
+BỆNH VIỆN TIM HÀ NỘI
+MÃ TƯƠNG
+STT DỊCH VỤ KỸ THUẬT CƠ SỞ 1 CƠ SỞ 2 GHI CHÚ
+ĐƯƠNG
+(Free kappa) [Máu]
+Định lượng Free lambda
+2400 22.0098.1498 543.000
+huyết thanh
+2401 22.0100.1498 Định lượng Free lambda niệu 543.000
+Định lượng Lambda tự do
+2402 23.0106.1498 543.000
+(Free Lambda) [Máu]
+Định lượng Renin activity
+2403 23.0141.1498 543.000 543.000
+[Máu]
+Định lượng Vancomycin
+2404 23.0168.1498 543.000 543.000
+[Máu]
+Định lượng Gentamicin
+2405 23.0079.1499 100.900 100.900
+[Máu]
+2406 22.0095.1500 Định lượng Methotrexat 414.700
+2407 23.0229.1500 Định lượng Methotrexat 414.700
+Định lượng p2PSA ([-2]pro-
+2408 23.0230.1501 717.300
+prostate-specific antigen)
+Định lượng sắt chưa bão hòa
+2409 22.0084.1502 78.500
+huyết thanh (UIBC)
+Định lượng khả năng gắn sắt
+2410 23.0231.1502 78.500
+chưa bão hòa (UIBC) [máu]
+2411 22.0117.1503 Định lượng sắt huyết thanh 33.600
+2412 23.0118.1503 Định lượng Mg [Máu] 33.600 33.600
+2413 23.0143.1503 Định lượng Sắt [Máu] 33.600 33.600
+Định lượng Tobramycin
+2414 23.0163.1504 100.900 100.900
+[Máu]
+Định lượng Transferin
+2415 22.0085.1505 112.200
+receptor hòa tan (TFR)
+Định lượng Tranferin
+2416 23.0232.1505 112.200
+Receptor
+Định lượng Cholesterol toàn
+2417 23.0041.1506 28.000 28.000
+phần (máu)
+Định lượng Cholesterol toàn
+2418 23.0215.1506 28.000 28.000
+phần [dịch chọc dò]
+Định lượng Dưỡng chấp
+2419 23.0185.1506 28.000 28.000
+[niệu]
+Định lượng HDL-C (High
+2420 23.0084.1506 density lipoprotein 28.000 28.000
+Cholesterol) [Máu]
+Định lượng LDL-C (Low
+2421 23.0112.1506 density lipoprotein 28.000 28.000
+Cholesterol) [Máu]
+Định lượng Triglycerid (máu)
+2422 23.0158.1506 28.000 28.000
+[Máu]
+Định lượng Triglycerid [dịch
+2423 23.0221.1506 28.000 28.000
+chọc dò]
+Đo hoạt độ Cholinesterase
+2424 23.0040.1507 28.000 28.000
+(ChE) [Máu]
+2425 23.0122.1508 Đo hoạt độ P-Amylase [Máu] 67.300 67.300
+2426 22.0082.1509 Định lượng khả năng gắn sắt 78.500
+Ghi chú: Bảng giá áp dụng theo Phụ lục số 06 Nghị quyết số 45/2024/NQ-HĐND ngày 10/12/2024 của Hội đồng nhân dân
+Thành phố Hà Nội.
+Bảng giá áp dụng cho người bệnh có thẻ bảo hiểm y tế và không có thẻ bảo hiểm y tế.

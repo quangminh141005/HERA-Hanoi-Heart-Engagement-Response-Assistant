@@ -1,0 +1,70 @@
+SỞ Y TẾ HÀ NỘI
+BỆNH VIỆN TIM HÀ NỘI
+MÃ TƯƠNG
+STT DỊCH VỤ KỸ THUẬT CƠ SỞ 1 CƠ SỞ 2 GHI CHÚ
+ĐƯƠNG
+chủ bụng dưới thận
+Phẫu thuật nội soi điều trị
+2115 27.0107.1209 4.343.300
+rung nhĩ
+Phẫu thuật nội soi hỗ trợ
+2116 27.0117.1209 (VATS) điều trị bệnh lý mạch 4.343.300
+máu
+Phẫu thuật nội soi hỗ trợ
+2117 27.0080.1209 (VATS) điều trị bệnh lý phổi, 4.343.300
+trung thất
+Phẫu thuật nội soi hỗ trợ
+2118 27.0108.1209 4.343.300
+(VATS) điều trị bệnh lý tim
+Phẫu thuật nội soi khâu gấp
+2119 27.0106.1209 nếp cơ hoành (điều trị liệt 4.343.300
+thần kinh hoành)
+Phẫu thuật nội soi thắt tuần
+2120 27.0110.1209 4.343.300
+hoàn bàng hệ chủ - phổi
+Phẫu thuật nội soi cắt màng
+2121 27.0105.1210 2.913.900
+ngoài tim
+Phẫu thuật nội soi dẫn lưu
+2122 27.0104.1210 2.913.900
+khoang màng tim
+Phẫu thuật nội soi đặt điện
+2123 27.0100.1210 2.913.900
+cực tạo nhịp thượng tâm mạc
+Phẫu thuật nội soi kẹp ống
+2124 27.0109.1210 2.913.900
+động mạch
+2125 03.4185.1894 Gây mê đặt canuyn ECMO 868.900
+2126 03.4186.1894 Gây mê rút canuyn ECMO 868.900
+2127 09.9000.1894 Gây mê khác 868.900
+Co cục máu đông (tên khác:
+2128 22.0021.1219 16.000 16.000
+Co cục máu)
+Đàn hồi đồ cục máu (TEG: Bao gồm cả pin và cup,
+2129 22.0054.1222 438.000
+Thrombo Elasto Graphy) kaolin.
+2130 22.0352.1227 Điện di huyết sắc tố 381.000
+2131 22.0353.1229 Điện di protein huyết thanh 400.300
+Định danh kháng thể kháng
+2132 22.0635.1232 3.782.400
+HLA bằng kỹ thuật luminex
+Định danh kháng thể bất
+2133 22.0256.1233 1.201.700
+thường (kỹ thuật ống nghiệm)
+Định danh kháng thể bất
+thường (kỹ thuật
+2134 22.0257.1233 1.201.700
+Scangel/Gelcard trên máy bán
+tự động)
+Định danh kháng thể bất
+thường (kỹ thuật
+2135 22.0258.1233 1.201.700
+Scangel/Gelcard trên máy tự
+động)
+Định lượng PIVKA (Proteins
+2136 22.0077.1233 Induced by Vitamin K 1.201.700
+Antagonism or Absence)
+2137 22.0636.1234 Định danh kháng thể kháng 4.451.400
+Ghi chú: Bảng giá áp dụng theo Phụ lục số 06 Nghị quyết số 45/2024/NQ-HĐND ngày 10/12/2024 của Hội đồng nhân dân
+Thành phố Hà Nội.
+Bảng giá áp dụng cho người bệnh có thẻ bảo hiểm y tế và không có thẻ bảo hiểm y tế.

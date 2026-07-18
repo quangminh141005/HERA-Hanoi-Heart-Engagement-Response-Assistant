@@ -1,0 +1,68 @@
+SỞ Y TẾ HÀ NỘI
+BỆNH VIỆN TIM HÀ NỘI
+MÃ TƯƠNG
+STT DỊCH VỤ KỸ THUẬT CƠ SỞ 1 CƠ SỞ 2 GHI CHÚ
+ĐƯƠNG
+Điện nhĩ châm điều trị liệt
+1348 08.0166.0230 78.300
+dây VII ngoại biên
+Điện nhĩ châm điều trị liệt
+1349 08.0177.0230 nửa người do tai biến mạch 78.300
+máu não
+Điện nhĩ châm điều trị mất
+1350 08.0170.0230 78.300
+ngủ
+1351 08.0173.0230 Điện nhĩ châm điều trị nấc 78.300
+Điện nhĩ châm điều trị rối
+1352 08.0222.0230 78.300
+loạn cảm giác nông
+Điện nhĩ châm điều trị rối
+1353 08.0196.0230 loạn thần kinh chức năng sau 78.300
+chấn thương sọ não
+Điện nhĩ châm điều trị rối
+1354 08.0188.0230 78.300
+loạn tiểu tiện
+Điện nhĩ châm điều trị tắc tia
+1355 08.0167.0230 78.300
+sữa
+Điện nhĩ châm điều trị thất
+1356 08.0193.0230 78.300
+vận ngôn
+Điện nhĩ châm điều trị viêm
+1357 08.0215.0230 78.300
+khớp dạng thấp
+Điện nhĩ châm điều trị viêm
+1358 08.0216.0230 78.300
+quanh khớp vai
+1359 08.0485.0235 Giác hơi 36.700
+Giác hơi điều trị các chứng
+1360 08.0481.0235 36.700
+đau
+1361 08.0482.0235 Giác hơi điều trị cảm cúm 36.700
+Giác hơi điều trị ngoại cảm
+1362 08.0479.0235 36.700
+phong hàn
+1363 03.0774.0237 Điều trị bằng tia hồng ngoại 40.900
+1364 17.0011.0237 Điều trị bằng tia hồng ngoại 40.900
+1365 03.0274.0238 Kéo nắn cột sống cổ 54.800
+1366 03.0275.0238 Kéo nắn cột sống thắt lưng 54.800
+1367 17.0078.0238 Kỹ thuật kéo nắn trị liệu 54.800
+1368 08.0013.0238 Kéo nắn cột sống cổ 54.800
+1369 08.0014.0238 Kéo nắn cột sống thắt lưng 54.800
+Điều trị mụn trứng cá bằng
+1370 05.0107.0254 41.100
+chiếu đèn LED
+1371 17.0250.0256 Tập do cứng khớp 56.200
+1372 08.0028.0259 Luyện tập dưỡng sinh 33.400
+1373 03.0130.0262 Vận động trị liệu bàng quang 318.700
+Nghiệm pháp đánh giá rối
+loạn nuốt tại giường cho
+1374 02.0479.0264 144.700 144.700
+người bệnh tai biến mạch
+máu não
+Kỹ thuật tập tay và bàn tay
+1375 17.0033.0266 51.800
+cho người bệnh liệt nửa
+Ghi chú: Bảng giá áp dụng theo Phụ lục số 06 Nghị quyết số 45/2024/NQ-HĐND ngày 10/12/2024 của Hội đồng nhân dân
+Thành phố Hà Nội.
+Bảng giá áp dụng cho người bệnh có thẻ bảo hiểm y tế và không có thẻ bảo hiểm y tế.

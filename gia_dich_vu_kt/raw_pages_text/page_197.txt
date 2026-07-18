@@ -1,0 +1,55 @@
+SỞ Y TẾ HÀ NỘI
+BỆNH VIỆN TIM HÀ NỘI
+BẢNG GIÁ DỊCH VỤ KỸ THUẬT
+DỊCH VỤ KỸ THUẬT THỰC HIỆN BẰNG PHƯƠNG PHÁP VÔ CẢM GÂY TÊ
+Đơn vị tính: đồng
+MÃ TƯƠNG
+STT DỊCH VỤ KỸ THUẬT CƠ SỞ 1 CƠ SỞ 2 GHI CHÚ
+ĐƯƠNG
+Phẫu thuật đặt Catheter
+1 10.1113.0398 ổ bụng để lọc màng 7.164.500 Chưa bao gồm thuốc và oxy
+bụng chu kỳ
+Phẫu thuật bắc cầu mạch
+Chưa bao gồm mạch máu
+2 03.3216.0399 máu để chạy thận nhân 2.093.600 nhân tạo, động mạch chủ nhân
+tạo tạo, thuốc và oxy
+Phẫu thuật bắc cầu động
+Chưa bao gồm mạch máu
+3 10.0252.0399 mạch chủ bụng - động 2.093.600 nhân tạo, động mạch chủ nhân
+mạch tạng tạo, thuốc và oxy
+Phẫu thuật tạo thông
+Chưa bao gồm mạch máu
+4 10.0260.0399 động - tĩnh mạch để 2.093.600 nhân tạo, động mạch chủ nhân
+chạy thận nhân tạo tạo, thuốc và oxy
+Mở lồng ngực thăm dò,
+5 03.2632.0400 2.718.800 Chưa bao gồm thuốc và oxy
+sinh thiết
+6 03.3234.0400 Mở lồng ngực thăm dò 2.718.800 Chưa bao gồm thuốc và oxy
+Phẫu thuật lấy dị vật
+7 03.3919.0400 lồng ngực, ổ bụng [lồng 2.718.800 Chưa bao gồm thuốc và oxy
+ngực]
+Phẫu thuật dẫn lưu dịch
+8 10.0238.0400 2.718.800 Chưa bao gồm thuốc và oxy
+khoang màng tim
+Mở ngực thăm dò, sinh
+9 10.0289.0400 2.718.800 Chưa bao gồm thuốc và oxy
+thiết
+10 10.0414.0400 Mở ngực thăm dò 2.718.800 Chưa bao gồm thuốc và oxy
+Mở ngực thăm dò, sinh
+11 10.0415.0400 2.718.800 Chưa bao gồm thuốc và oxy
+thiết
+Cắt u máu, u bạch huyết
+12 03.2640.0407 2.436.100 Chưa bao gồm thuốc và oxy
+đường kính 5 - 10 cm
+Phẫu thuật cắt u máu lớn
+13 10.0264.0407 2.436.100 Chưa bao gồm thuốc và oxy
+(đường kính ≥ 10 cm)
+Phẫu thuật cắt u máu
+14 10.0265.0407 nhỏ (đường kính < 10 2.436.100 Chưa bao gồm thuốc và oxy
+cm)
+Phẫu thuật dẫn lưu tối
+15 10.0152.0410 1.696.400 Chưa bao gồm thuốc và oxy
+thiểu khoang màng phổi
+Ghi chú: Bảng giá áp dụng theo Phụ lục số 06 Nghị quyết số 45/2024/NQ-HĐND ngày 10/12/2024 của Hội đồng nhân dân
+Thành phố Hà Nội.
+Bảng giá áp dụng cho người bệnh có thẻ bảo hiểm y tế và không có thẻ bảo hiểm y tế.

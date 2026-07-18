@@ -1,0 +1,80 @@
+SỞ Y TẾ HÀ NỘI
+BỆNH VIỆN TIM HÀ NỘI
+MÃ TƯƠNG
+STT DỊCH VỤ KỸ THUẬT CƠ SỞ 1 CƠ SỞ 2 GHI CHÚ
+ĐƯƠNG
+mạch tử cung)
+Siêu âm doppler tinh hoàn,
+651 18.0058.0069 89.300 89.300
+mào tinh hoàn hai bên
+Siêu âm doppler tử cung phần
+652 18.0025.0069 89.300 89.300
+phụ
+Siêu âm doppler tử cung,
+653 18.0032.0069 89.300 89.300
+buồng trứng qua đường bụng
+654 18.0055.0069 Siêu âm doppler tuyến vú 89.300 89.300
+Siêu âm doppler u tuyến,
+655 18.0010.0069 89.300 89.300
+hạch vùng cổ
+Đo mật độ xương bằng
+656 21.0102.0070 148.300 Bằng phương pháp DEXA
+phương pháp DEXA [2 vị trí]
+657 01.0065.0071 Bóp bóng ambu qua mặt nạ 248.500 248.500
+Chọc hút dịch khí phế quản
+658 01.0091.0071 248.500 248.500
+qua màng nhẫn giáp
+659 02.0002.0071 Bơm rửa khoang màng phổi 248.500 248.500
+Đặt catheter qua màng nhẫn
+660 02.0015.0071 248.500 248.500
+giáp lấy bệnh phẩm
+661 03.0081.0071 Bơm rửa màng phổi 248.500
+Bơm streptokinase vào
+662 02.0003.0073 1.048.500 1.048.500
+khoang màng phổi
+Cấp cứu ngừng tuần hoàn cho Bao gồm cả bóng dùng nhiều
+663 01.0362.0074 532.500 532.500
+người bệnh ngộ độc lần.
+Cấp cứu ngừng tuần hoàn hô Bao gồm cả bóng dùng nhiều
+664 01.0158.0074 532.500 532.500
+hấp cơ bản lần.
+Cấp cứu ngừng tuần hoàn hô Bao gồm cả bóng dùng nhiều
+665 03.0113.0074 532.500 532.500
+hấp lần.
+Đặt canuyn mũi hầu, miệng
+666 01.0053.0075 40.300 40.300
+hầu
+Chỉ áp dụng với người bệnh
+667 03.1690.0075 Cắt chỉ khâu kết mạc 40.300
+ngoại trú.
+Chỉ áp dụng với người bệnh
+668 03.3826.0075 Thay băng, cắt chỉ vết mổ 40.300
+ngoại trú.
+Chỉ áp dụng với người bệnh
+669 10.9004.0075 Cắt chỉ 40.300
+ngoại trú.
+Chỉ áp dụng với người bệnh
+670 14.0203.0075 Cắt chỉ khâu da mi đơn giản 40.300
+ngoại trú.
+Chỉ áp dụng với người bệnh
+671 14.0204.0075 Cắt chỉ khâu kết mạc 40.300
+ngoại trú.
+Chỉ áp dụng với người bệnh
+672 15.0302.0075 Cắt chỉ sau phẫu thuật 40.300
+ngoại trú.
+673 01.0240.0077 Chọc dò ổ bụng cấp cứu 153.700 153.700
+674 02.0009.0077 Chọc dò dịch màng phổi 153.700 153.700
+Chọc dò dịch ổ bụng xét
+675 02.0242.0077 153.700 153.700
+nghiệm
+Chọc tháo dịch ổ bụng điều
+676 02.0243.0077 153.700 153.700
+trị
+677 03.2354.0077 Chọc dịch màng bụng 153.700
+678 03.0165.0077 Chọc dò ổ bụng cấp cứu 153.700
+Chọc hút/dẫn lưu dịch màng
+679 03.0079.0077 153.700 153.700
+phổi
+Ghi chú: Bảng giá áp dụng theo Phụ lục số 06 Nghị quyết số 45/2024/NQ-HĐND ngày 10/12/2024 của Hội đồng nhân dân
+Thành phố Hà Nội.
+Bảng giá áp dụng cho người bệnh có thẻ bảo hiểm y tế và không có thẻ bảo hiểm y tế.
