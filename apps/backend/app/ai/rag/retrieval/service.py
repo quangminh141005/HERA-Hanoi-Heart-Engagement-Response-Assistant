@@ -60,10 +60,10 @@ class RetrievalService:
             allowed_intents=set(request.allowed_intents) or None,
             limit=max(request.top_k * 3, request.top_k),
         )
-        ranked: dict[str, RetrievedChunk] = {}
+        lexical_ranked: dict[str, RetrievedChunk] = {}
         for row in lexical_rows:
             chunk_id = f"CHUNK-{row['fact_id']}-001"
-            ranked[chunk_id] = RetrievedChunk(
+            lexical_ranked[chunk_id] = RetrievedChunk(
                 chunk_id=chunk_id,
                 text=row["claim_vi"],
                 score=min(1.0, 0.55 + (0.08 * int(row["score"]))),
@@ -75,7 +75,7 @@ class RetrievalService:
                 ),
             )
 
-        lexical_ordered = _ordered_chunks(ranked)
+        lexical_ordered = _ordered_chunks(lexical_ranked)
         if _has_unique_exact_match(lexical_ordered, self.exact_lexical_score):
             exact = lexical_ordered[0]
             return RetrievalResponse(
@@ -91,6 +91,7 @@ class RetrievalService:
                 ],
             )
 
+        semantic_ranked: dict[str, RetrievedChunk] = {}
         if self.embedder is not None:
             try:
                 query_vector = await self._embed_query(request.query)
@@ -103,7 +104,7 @@ class RetrievalService:
                 )
                 for row in semantic_rows:
                     score = float(row["score"])
-                    semantic_chunk = RetrievedChunk(
+                    semantic_ranked[row["chunk_id"]] = RetrievedChunk(
                         chunk_id=row["chunk_id"],
                         text=row["content_vi"],
                         score=score * 0.85,
@@ -114,18 +115,6 @@ class RetrievalService:
                             document_type="official_fact_embedding",
                         ),
                     )
-                    existing = ranked.get(row["chunk_id"])
-                    if existing is not None:
-                        ranked[row["chunk_id"]] = existing.model_copy(
-                            update={
-                                "score": min(
-                                    1.0,
-                                    max(existing.score, semantic_chunk.score) + 0.08,
-                                )
-                            }
-                        )
-                    else:
-                        ranked[row["chunk_id"]] = semantic_chunk
             except Exception as exc:
                 logger.warning(
                     "semantic retrieval failed; using approved lexical facts",
@@ -135,7 +124,11 @@ class RetrievalService:
                     },
                 )
 
-        ordered = _ordered_chunks(ranked)
+        ordered = _rrf_fuse(
+            lexical_ordered,
+            _ordered_chunks(semantic_ranked),
+            top_k=request.top_k,
+        )
         if ordered:
             relevance_floor = max(
                 self.minimum_semantic_score,
@@ -235,6 +228,54 @@ def _ordered_chunks(ranked: dict[str, RetrievedChunk]) -> list[RetrievedChunk]:
         ranked.values(),
         key=lambda chunk: (-chunk.score, chunk.chunk_id),
     )
+
+
+def _rrf_fuse(
+    lexical: list[RetrievedChunk],
+    semantic: list[RetrievedChunk],
+    *,
+    top_k: int,
+    rank_constant: int = 60,
+) -> list[RetrievedChunk]:
+    """Fuse lexical and semantic rankings with Reciprocal Rank Fusion."""
+
+    candidates: dict[str, RetrievedChunk] = {}
+    rrf_scores: dict[str, float] = {}
+    appearances: dict[str, int] = {}
+
+    for ranking in (lexical, semantic):
+        for rank, chunk in enumerate(ranking, start=1):
+            candidates.setdefault(chunk.chunk_id, chunk)
+            rrf_scores[chunk.chunk_id] = rrf_scores.get(chunk.chunk_id, 0.0) + (
+                1.0 / (rank_constant + rank)
+            )
+            appearances[chunk.chunk_id] = appearances.get(chunk.chunk_id, 0) + 1
+            existing = candidates[chunk.chunk_id]
+            if chunk.score > existing.score:
+                candidates[chunk.chunk_id] = chunk
+
+    if not candidates:
+        return []
+
+    max_rrf = max(rrf_scores.values())
+    fused: list[RetrievedChunk] = []
+    for chunk_id, chunk in candidates.items():
+        normalized_rrf = rrf_scores[chunk_id] / max_rrf if max_rrf else 0.0
+        duplicate_boost = 0.04 if appearances[chunk_id] > 1 else 0.0
+        fused_score = min(
+            1.0,
+            max(chunk.score, 0.55 + (0.4 * normalized_rrf)) + duplicate_boost,
+        )
+        fused.append(chunk.model_copy(update={"score": fused_score}))
+
+    return sorted(
+        fused,
+        key=lambda chunk: (
+            -rrf_scores[chunk.chunk_id],
+            -chunk.score,
+            chunk.chunk_id,
+        ),
+    )[:top_k]
 
 
 def _has_unique_exact_match(

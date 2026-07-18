@@ -185,6 +185,52 @@ def test_query_vector_cache_is_shared_across_replicas() -> None:
     assert second_embedder.calls == 0
 
 
+def test_retrieval_uses_rrf_to_promote_cross_lane_candidate() -> None:
+    repository = StaticRepository(
+        lexical=[
+            {
+                "fact_id": "FACT-ONLY-LEXICAL",
+                "claim_vi": "Ket qua chi khop tu khoa.",
+                "score": 2,
+                "source_id": "SRC-1",
+                "title": "Nguon chinh thuc",
+                "url": None,
+            },
+            {
+                "fact_id": "FACT-SHARED",
+                "claim_vi": "Ket qua xuat hien o ca lexical va semantic.",
+                "score": 1,
+                "source_id": "SRC-1",
+                "title": "Nguon chinh thuc",
+                "url": None,
+            },
+        ],
+        semantic=[
+            {
+                "chunk_id": "CHUNK-FACT-SHARED-001",
+                "fact_id": "FACT-SHARED",
+                "source_id": "SRC-1",
+                "content_vi": "Ket qua xuat hien o ca lexical va semantic.",
+                "title": "Nguon chinh thuc",
+                "url": None,
+                "score": 0.88,
+            }
+        ],
+    )
+    service = RetrievalService(
+        repository,
+        embedder=StaticEmbedder(),
+        exact_lexical_score=0.99,
+    )
+
+    response = asyncio.run(
+        service.retrieve(RetrievalRequest(query="lich hen", top_k=2))
+    )
+
+    assert response.chunks[0].chunk_id == "CHUNK-FACT-SHARED-001"
+    assert response.chunks[0].score > 0.9
+
+
 def test_query_vector_is_cached_while_pgvector_search_stays_fresh() -> None:
     repository = StaticRepository(
         semantic=[
