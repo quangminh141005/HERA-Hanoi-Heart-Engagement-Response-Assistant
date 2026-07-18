@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from typing import Any, Protocol
 
+from app.ai.providers.retry import retry_provider_call
 from app.core.config import Settings
 from app.observability.ai_usage import extract_openai_embedding_usage
 from app.observability.prometheus import record_ai_usage, record_upstream_failure
@@ -43,11 +44,17 @@ class OpenAICompatibleEmbedder:
         timeout_seconds: float,
         provider_label: str = "fpt_embedding",
         expected_dimensions: int | None = None,
+        retry_max_attempts: int = 1,
+        retry_base_delay_seconds: float = 0.25,
+        retry_max_delay_seconds: float = 2.0,
         sdk_client: Any | None = None,
     ) -> None:
         self.model = model
         self.provider_label = provider_label
         self.expected_dimensions = expected_dimensions
+        self.retry_max_attempts = retry_max_attempts
+        self.retry_base_delay_seconds = retry_base_delay_seconds
+        self.retry_max_delay_seconds = retry_max_delay_seconds
         if sdk_client is not None:
             self._client = sdk_client
             return
@@ -64,9 +71,16 @@ class OpenAICompatibleEmbedder:
         if not texts:
             return []
         try:
-            response = await self._client.embeddings.create(
-                model=self.model,
-                input=texts,
+            response = await retry_provider_call(
+                lambda: self._client.embeddings.create(
+                    model=self.model,
+                    input=texts,
+                ),
+                label=self.provider_label,
+                max_attempts=self.retry_max_attempts,
+                base_delay_seconds=self.retry_base_delay_seconds,
+                max_delay_seconds=self.retry_max_delay_seconds,
+                retry_timeouts=True,
             )
         except Exception as exc:
             record_upstream_failure(self.provider_label, exc)
@@ -112,5 +126,7 @@ def build_embedder(settings: Settings) -> Embedder:
         timeout_seconds=settings.EMBEDDING_TIMEOUT_SECONDS,
         provider_label="fpt_embedding",
         expected_dimensions=settings.EMBEDDING_DIMENSIONS,
+        retry_max_attempts=settings.AI_PROVIDER_RETRY_MAX_ATTEMPTS,
+        retry_base_delay_seconds=settings.AI_PROVIDER_RETRY_BASE_DELAY_SECONDS,
+        retry_max_delay_seconds=settings.AI_PROVIDER_RETRY_MAX_DELAY_SECONDS,
     )
-

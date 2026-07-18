@@ -18,9 +18,11 @@ const PRICE_SUPERSEDING_URL = "https://vbpl.vn/hanoi/Pages/ivbpq-toanvan.aspx?It
 const BHXH_2026_URL = "https://baohiemxahoi.gov.vn/tintuc/Pages/cai-cach-thu-tuc-hanh-chinh.aspx?CateID=0&ItemID=26780&OtItem=date";
 const SCHEDULE_2026_07_13_URL = "https://benhvientimhanoi.vn/vi/chi-tiet-lich-kham/lich-lam-viec-cua-bac-sy/lich-kham-benh-cua-cac-bac-si-benh-vien-tim-ha-noi-tuan-tu-13d07d2026-19d07d2026";
 
-const SERVICE_PRICE_DIR = path.join(DATA_DIR, "dich_vu_ky_thuat");
-const PRICE_SOURCE_FILE = path.join(SERVICE_PRICE_DIR, "gia_dich_vu_ky_thuat_2025.json");
-const PRICE_RAG_SOURCE_FILE = path.join(SERVICE_PRICE_DIR, "gia_dich_vu_ky_thuat_2025_rag.json");
+const PRICE_LEGACY_SOURCE_FILE = path.join(DATA_DIR, "gia_dich_vu_ky_thuat_2025.json");
+const PRICE_RAG_SOURCE_FILE = path.join(DATA_DIR, "gia_dich_vu_ky_thuat_2025_rag.json");
+const PRICE_SOURCE_FILE = fs.existsSync(PRICE_RAG_SOURCE_FILE)
+  ? PRICE_RAG_SOURCE_FILE
+  : PRICE_LEGACY_SOURCE_FILE;
 const BHYT_SOURCE_FILE = path.join(DATA_DIR, "BHYT.json");
 const OFFICIAL_KNOWLEDGE_FILE = path.join(DATA_DIR, "source", "official-knowledge.json");
 const TEST_FIXTURE_DIR = path.join(DATA_DIR, "test-fixtures");
@@ -84,54 +86,6 @@ function parseVnd(rawValue) {
 
 function formatVnd(amount) {
   return new Intl.NumberFormat("vi-VN").format(amount);
-}
-
-function amountRawFromRagPrice(price) {
-  if (!price || price.amount_vnd === null || price.amount_vnd === undefined) return "";
-  return normalizeWhitespace(price.display) || formatVnd(price.amount_vnd);
-}
-
-function normalizePriceRow(rawRow) {
-  if (!rawRow || rawRow.document_type !== "hospital_service_price") {
-    return rawRow;
-  }
-  const searchTerms = [
-    rawRow.service?.full_name,
-    rawRow.service?.name,
-    rawRow.metadata?.ma_tuong_duong,
-    ...(Array.isArray(rawRow.query_variants) ? rawRow.query_variants : []),
-  ].filter(Boolean);
-  return {
-    page: rawRow.source?.page,
-    section: rawRow.metadata?.section,
-    stt: rawRow.metadata?.stt,
-    ma_tuong_duong: rawRow.metadata?.ma_tuong_duong || "",
-    dich_vu_ky_thuat: rawRow.service?.full_name || rawRow.service?.name || "",
-    co_so_1: amountRawFromRagPrice(rawRow.prices?.co_so_1),
-    co_so_2: amountRawFromRagPrice(rawRow.prices?.co_so_2),
-    ghi_chu: rawRow.service?.note || "",
-    display_name_search: [...searchTerms, ...searchTerms.map(foldVietnamese)].join(" | "),
-    note_search: rawRow.service?.note || "",
-    item_type: rawRow.metadata?.item_type,
-    rag_id: rawRow.rag_id,
-    canonical_answer_vi: rawRow.canonical_answer_vi,
-    retrieval_text: rawRow.retrieval_text,
-    query_variants: rawRow.query_variants || [],
-    answer_policy: rawRow.answer_policy || {},
-    raw_rag_payload: rawRow,
-  };
-}
-
-function loadPriceRows() {
-  const sourceFile = fs.existsSync(PRICE_RAG_SOURCE_FILE)
-    ? PRICE_RAG_SOURCE_FILE
-    : PRICE_SOURCE_FILE;
-  const rows = readJson(sourceFile);
-  assert(Array.isArray(rows), "Price source must be a JSON array");
-  return {
-    sourceFile,
-    rows: rows.map(normalizePriceRow),
-  };
 }
 
 function isoDateFromParts(day, month, year) {
@@ -355,18 +309,10 @@ function buildExcludedScheduleInventory() {
 }
 
 function buildScheduleData() {
-  const activeSkipDirectories = new Set(["generated", "code_json_to_RAG"]);
-  const nonScheduleJsonFiles = new Set([
-    PRICE_SOURCE_FILE,
-    PRICE_RAG_SOURCE_FILE,
-    path.join(SERVICE_PRICE_DIR, "gia_dich_vu_ky_thuat_2025_clean.json"),
-    path.join(SERVICE_PRICE_DIR, "clean_json_summary.json"),
-    path.join(SERVICE_PRICE_DIR, "rag_json_summary.json"),
-    BHYT_SOURCE_FILE,
-  ]);
+  const activeSkipDirectories = new Set(["generated"]);
   const scheduleCandidates = walkFiles(DATA_DIR, { skipDirectories: activeSkipDirectories })
     .filter((filePath) => filePath.endsWith(".json"))
-    .filter((filePath) => !nonScheduleJsonFiles.has(filePath))
+    .filter((filePath) => filePath !== PRICE_SOURCE_FILE && filePath !== BHYT_SOURCE_FILE)
     .map((filePath) => {
       try {
         const raw = readJson(filePath);
@@ -606,11 +552,44 @@ assert(previousSourcePack, "Cannot find the reusable official source/fact seed p
 const generationSpec = readJson(GENERATION_SPEC_FILE);
 assert(typeof generationSpec.spec_version === "string", "data-generation-spec.json must declare spec_version");
 
-const { sourceFile: activePriceSourceFile, rows: priceRaw } = loadPriceRows();
+const priceInputRaw = readJson(PRICE_SOURCE_FILE);
 const bhytRaw = readJson(BHYT_SOURCE_FILE);
+function priceAmountDisplayFromRag(value) {
+  if (!value || value.amount_vnd === null || value.amount_vnd === undefined) return "";
+  return String(value.display || value.amount_vnd);
+}
+
+function normalizePriceRows(rawRows) {
+  assert(Array.isArray(rawRows), "Price source must contain an array");
+  return rawRows.map((row) => {
+    if (row && row.service && row.prices && row.metadata) {
+      const serviceName = normalizeWhitespace(row.service.full_name || row.service.name || "");
+      return {
+        page: row.source?.page ?? "",
+        section: row.metadata.section || "",
+        stt: row.metadata.stt || "",
+        ma_tuong_duong: row.metadata.ma_tuong_duong || "",
+        dich_vu_ky_thuat: serviceName,
+        co_so_1: priceAmountDisplayFromRag(row.prices.co_so_1),
+        co_so_2: priceAmountDisplayFromRag(row.prices.co_so_2),
+        ghi_chu: normalizeWhitespace(row.service.note || ""),
+        display_name_search: normalizeWhitespace([
+          serviceName,
+          row.metadata.parent_name || "",
+          ...(Array.isArray(row.query_variants) ? row.query_variants : []),
+        ].join(" ")),
+        source_rag_id: row.rag_id || "",
+        item_type: row.metadata.item_type || "",
+      };
+    }
+    return row;
+  });
+}
+
+const priceRaw = normalizePriceRows(priceInputRaw);
 assert(Array.isArray(priceRaw) && priceRaw.length === 2946, "Expected 2,946 price rows");
 
-const priceSourceHash = sha256File(activePriceSourceFile);
+const priceSourceHash = sha256File(PRICE_SOURCE_FILE);
 const bhytSourceHash = sha256File(BHYT_SOURCE_FILE);
 
 const priceRecords = priceRaw.map((rawRow, index) => {
@@ -629,9 +608,9 @@ const priceRecords = priceRaw.map((rawRow, index) => {
   }
   return {
     service_record_id: serviceRecordId,
-    record_type: rawRow.item_type === "group" || facilityPrices.length === 0 ? "group_header" : "priced_service",
+    record_type: facilityPrices.length === 0 ? "group_header" : "priced_service",
     source_id: "SRC-PRICE-2025",
-    source_file_path: relativeFromRoot(activePriceSourceFile),
+    source_file_path: relativeFromRoot(PRICE_SOURCE_FILE),
     source_file_sha256: priceSourceHash,
     source_row_number: index + 1,
     page: rawRow.page,
@@ -643,7 +622,7 @@ const priceRecords = priceRaw.map((rawRow, index) => {
     co_so_2: rawRow.co_so_2,
     ghi_chu: rawRow.ghi_chu,
     display_name_search: normalizeWhitespace(rawRow.display_name_search || rawRow.dich_vu_ky_thuat),
-    note_search: normalizeWhitespace(rawRow.note_search || rawRow.ghi_chu),
+    note_search: normalizeWhitespace(rawRow.ghi_chu),
     facility_prices: facilityPrices,
     missing_facility_price_codes: [["CS1", "co_so_1"], ["CS2", "co_so_2"]]
       .filter(([, field]) => !String(rawRow[field]).trim())
@@ -658,12 +637,7 @@ const priceRecords = priceRaw.map((rawRow, index) => {
     superseded_at: "2026-01-27",
     approval_status: "pending_human_review",
     production_eligible: false,
-    normalization_method: rawRow.raw_rag_payload ? "rag_json_payload_import" : "structured_json_direct_import",
-    canonical_answer_vi: rawRow.canonical_answer_vi,
-    retrieval_text: rawRow.retrieval_text,
-    query_variants: rawRow.query_variants,
-    answer_policy: rawRow.answer_policy,
-    raw_rag_payload: rawRow.raw_rag_payload,
+    normalization_method: "structured_json_direct_import",
   };
 });
 
@@ -908,7 +882,7 @@ upsertById(sources, "source_id", {
   retrieval_eligible: false,
   structured_historical_lookup_eligible: true,
   retrieval_eligible_for_current_price: false,
-  content_file: relativeFromRoot(activePriceSourceFile),
+  content_file: relativeFromRoot(PRICE_SOURCE_FILE),
   content_hash: priceSourceHash,
   is_current: false,
   superseded_by_source_id: "SRC-PRICE-NQ91-2026",
@@ -1098,7 +1072,7 @@ importIssues.push(
     issue_id: "ISSUE-PRICE-2025-NOT-CURRENT",
     severity: "warning",
     dataset: "historical_service_prices",
-    source_path: relativeFromRoot(activePriceSourceFile),
+    source_path: relativeFromRoot(PRICE_SOURCE_FILE),
     action: "current_price_lookup_disabled",
     resolved_for_safe_build: true,
     human_action_required: "Cung cấp bảng giá hiện hành đã được bệnh viện đối chiếu với Nghị quyết 91/2026/NQ-HĐND.",
@@ -1490,8 +1464,6 @@ for (let batchIndex = 0; batchIndex < 6; batchIndex += 1) {
     bundle_version: BUNDLE_VERSION,
     source_id: "SRC-PRICE-2025",
     source_file_sha256: priceSourceHash,
-    source_path: relativeFromRoot(activePriceSourceFile),
-    source_format: activePriceSourceFile === PRICE_RAG_SOURCE_FILE ? "rag_json_payload" : "flat_json",
     batch_number: batchIndex + 1,
     batch_count: 6,
     records,
@@ -1611,9 +1583,9 @@ const fileDescriptors = generatedDataFileNames.map((fileName) => {
 
 const localInputSources = [
   {
-    path: relativeFromRoot(activePriceSourceFile),
-    bytes: fs.statSync(activePriceSourceFile).size,
-    sha256: sha256File(activePriceSourceFile),
+    path: relativeFromRoot(PRICE_SOURCE_FILE),
+    bytes: fs.statSync(PRICE_SOURCE_FILE).size,
+    sha256: sha256File(PRICE_SOURCE_FILE),
     status: "accepted_historical_snapshot",
   },
   {

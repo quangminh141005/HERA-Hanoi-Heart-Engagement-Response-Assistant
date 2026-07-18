@@ -38,7 +38,7 @@ def test_current_generated_bundle_builds_complete_staged_seed() -> None:
         for table in payload["tables"]
         if table["name"] == "knowledge_chunks"
     )
-    assert len(chunks) == 11
+    assert len(chunks) == 34
     assert all(row["embedding_model"] == "Vietnamese_Embedding" for row in chunks)
     assert all(row["embedding_dimension"] == 1024 for row in chunks)
 

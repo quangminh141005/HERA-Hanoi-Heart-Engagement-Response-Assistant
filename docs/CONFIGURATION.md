@@ -43,6 +43,7 @@ ENVIRONMENT=hackathon
 LLM_PROVIDER=openai
 EMBEDDING_PROVIDER=openai
 FPT_LLM_MODEL=gpt-oss-120b
+FPT_GUARD_MODEL=gpt-oss-20b
 FPT_EMBEDDING_MODEL=Vietnamese_Embedding
 EMBEDDING_MODEL=Vietnamese_Embedding
 EMBEDDING_DIMENSIONS=1024
@@ -144,7 +145,8 @@ restart có thể làm mất context/cache/counter, không làm mất giá/BHYT/
 | Biến | Giá trị chốt | Quy tắc |
 |---|---|---|
 | `FPT_API_BASE_URL` | `https://mkp-api.fptcloud.com` | OpenAI-compatible endpoint |
-| `FPT_LLM_MODEL` | `gpt-oss-120b` | Không đổi model trong release này |
+| `FPT_LLM_MODEL` | `gpt-oss-120b` | Model generation cho RAG |
+| `FPT_GUARD_MODEL` | `gpt-oss-20b` | Model nhỏ cho guard/routing emergency + intent |
 | `FPT_EMBEDDING_MODEL` | `Vietnamese_Embedding` | Phải khớp metadata seed |
 | `EMBEDDING_MODEL` | `Vietnamese_Embedding` | Tên logic đồng bộ |
 | `EMBEDDING_DIMENSIONS` | `1024` | Sai kích thước làm readiness fail |
@@ -157,18 +159,26 @@ restart có thể làm mất context/cache/counter, không làm mất giá/BHYT/
 | `EMBEDDING_TIMEOUT_SECONDS` | `10` | Budget embedding query |
 | `CHAT_OVERALL_TIMEOUT_SECONDS` | `35` | Deadline toàn pipeline chat |
 | `MODEL_ROUTING_ENABLED` | `true` | Dùng một lần gọi LLM để đánh giá đồng thời nguy cấp và intent |
-| `MODEL_ROUTING_TIMEOUT_SECONDS` | `6` | Timeout riêng cho lần phân loại routing với model 120B |
-| `MODEL_ROUTING_MAX_TOKENS` | `1024` | Ngân sách output cho model 120B suy luận và trả JSON routing; không phải số token luôn bị sử dụng |
+| `MODEL_ROUTING_TIMEOUT_SECONDS` | `6` | Timeout riêng cho lần phân loại routing với model guard 20B |
+| `MODEL_ROUTING_MAX_TOKENS` | `1024` | Ngân sách output cho model guard trả JSON routing; không phải số token luôn bị sử dụng |
 | `MODEL_ROUTING_EMERGENCY_CONFIDENCE_THRESHOLD` | `0.62` | Ngưỡng kích hoạt emergency handoff từ model |
 | `MODEL_ROUTING_INTENT_CONFIDENCE_THRESHOLD` | `0.60` | Ngưỡng chấp nhận intent do model chọn |
+| `SCHEDULE_DOCTOR_MATCH_MIN_SCORE` | `0.60` | Ngưỡng `word_similarity` khi đối chiếu tên bác sĩ/phân ca với doctor index |
 | `MODEL_TIMEOUT_SECONDS` | `45` | Chỉ dùng model gateway probe |
-| `MODEL_PROBE_LLM_MAX_TOKENS` | `8` | Token output tối đa cho live LLM probe; tăng nhẹ khi provider trả rỗng |
+| `MODEL_PROBE_LLM_MAX_TOKENS` | `1024` | Token output tối đa cho live LLM probe; tối thiểu 1024, prompt vẫn ép trả lời ngắn |
+| `HARD_EVAL_JUDGE_MAX_TOKENS` | `1024` | Token output tối đa cho live judge `gpt-oss-20b`; không dùng giá trị 8 vì judge phải trả JSON có lý do |
+| `HARD_EVAL_DELAY_SECONDS` | `2.1` | Delay giữa các case hard eval để không đụng rate limit chat 30/phút |
 | `RAG_TOP_K` | `3` | Giới hạn evidence ở ba chunk phù hợp nhất để giảm prompt và latency |
+| `RAG_CROSS_INTENT_RETRIEVAL_ENABLED` | `true` | Bổ sung candidate không khóa intent trước RRF/rerank, tránh mất fact khi router chọn intent lân cận |
 | `RAG_MIN_CONFIDENCE` | `0.55` | Ngưỡng evidence; không hạ để “cố trả lời” |
-| `RAG_GENERATION_MAX_TOKENS` | `512` | Trần output cho lượt diễn đạt grounded; provider chỉ tính token thực dùng |
+| `RAG_GENERATION_MAX_TOKENS` | `1024` | Trần output cho lượt diễn đạt grounded; tối thiểu 1024, provider chỉ tính token thực dùng |
+| `RERANK_ENABLED` | `true` | Bật rerank sau lexical + pgvector + RRF |
+| `RERANK_MODEL` | `bge-reranker-v2-m3` | Model rerank evidence trước generation |
+| `RERANK_TOP_N` | `3` | Số evidence cuối cùng sau rerank |
+| `RERANK_TIMEOUT_SECONDS` | `8` | Timeout riêng cho rerank |
 
 Khi `MODEL_ROUTING_ENABLED=true`, HERA che PII trước rồi gửi một request JSON nhỏ tới
-`gpt-oss-120b`. Request này trả về cả đánh giá nguy cấp và intent, vì vậy hệ thống không
+`gpt-oss-20b`. Request này trả về cả đánh giá nguy cấp và intent, vì vậy hệ thống không
 gọi riêng một model emergency rồi lại gọi thêm một model intent. Các intent giá dịch vụ,
 BHYT hộ gia đình và lịch bác sĩ chỉ dùng model để chọn tuyến; nội dung trả lời vẫn đọc từ
 PostgreSQL và được tạo theo dữ liệu có cấu trúc, không để model tự bịa số liệu.
@@ -201,12 +211,20 @@ make model-preflight CONFIRM_MODEL_PREFLIGHT=YES
 make rag-live-check CONFIRM_RAG_LIVE_CHECK=YES
 ```
 
-`model-preflight` chạy một probe LLM cực nhỏ theo `MODEL_PROBE_LLM_MAX_TOKENS` và một
-probe embedding đồng thời; nó không gửi nội dung người dùng và không in key.
+`model-preflight` chạy một probe LLM bounded theo `MODEL_PROBE_LLM_MAX_TOKENS` tối thiểu 1024 và một probe embedding đồng thời; prompt vẫn yêu cầu output rất ngắn nên provider chỉ tính token thực sinh. Lệnh này không gửi nội dung người dùng và không in key.
 `rag-live-check` dùng câu hỏi tổng hợp có mã ngẫu nhiên để tránh cache và chỉ đạt khi có
 `decision_source=model`, embedding token tăng, generation là `model_validated`, câu trả
 lời grounded có citation và không phát sinh lỗi provider. Deploy mặc định và
 unit/integration/smoke/stress/CI không gọi live gateway.
+
+Hard eval 100 ca dùng cấu hình riêng. Nếu bật live judge, judge chạy bằng
+`gpt-oss-20b` và dùng `HARD_EVAL_JUDGE_MAX_TOKENS`, mặc định `1024`. Không hạ bất kỳ model max token nào dưới 1024. Judge/routing vẫn dùng prompt JSON ngắn để model tự dừng sớm; `MODEL_PROBE_LLM_MAX_TOKENS` chỉ dành cho preflight, còn hard eval judge dùng `HARD_EVAL_JUDGE_MAX_TOKENS`.
+Ví dụ:
+
+```bash
+make hard-live-eval CONFIRM_HARD_LIVE_EVAL=YES HARD_EVAL_LIMIT=100 \
+  HARD_EVAL_LIVE_JUDGE=1 HARD_EVAL_JUDGE_ALL=1
+```
 
 ## 7. Dữ liệu và đồng hồ demo
 

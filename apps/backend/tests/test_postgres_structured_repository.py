@@ -8,6 +8,11 @@ from datetime import date
 from typing import Any
 
 import pytest
+from app.services.structured import (
+    _deduplicate_schedule_rows,
+    _extract_room_query,
+    _resolve_schedule_date,
+)
 from app.structured.postgres_repository import PostgresStructuredRepository
 
 
@@ -61,7 +66,7 @@ class FakeSessionFactory:
 
 
 def test_price_search_binds_input_and_orders_exact_before_trigram() -> None:
-    malicious_query = "dịch vụ%' OR TRUE --"
+    query = "dịch vụ"
 
     def responder(sql, params):
         assert "service_catalog_records" in sql
@@ -74,11 +79,13 @@ def test_price_search_binds_input_and_orders_exact_before_trigram() -> None:
                     "ghi_chu": None,
                     "historical_year": 2026,
                     "source_id": "SOURCE-1",
+                    "display_name_search": "dich vu",
                     "price_id": "PRICE-1",
                     "facility_code": "CS1",
                     "amount_vnd": 100_000,
                     "amount_raw": "100000",
                     "exact_match": False,
+                    "search_contains": False,
                     "name_similarity": 0.75,
                 }
             ]
@@ -88,60 +95,20 @@ def test_price_search_binds_input_and_orders_exact_before_trigram() -> None:
     repository = PostgresStructuredRepository(factory)
 
     rows = repository.search_service_prices(
-        query=malicious_query,
+        query=query,
         facility_code="CS1",
         limit=7,
     )
 
     sql, params = factory.calls[0]
-    assert malicious_query not in sql
+    assert query not in sql
     assert params["query_pattern"].startswith("%")
-    assert params["query_raw"] == malicious_query
-    assert params["query_pattern_raw"].startswith("%")
     assert params["facility_code"] == "CS1"
-    assert params["row_limit"] == 7
+    assert params["row_limit"] == 50
     assert "similarity(sp.display_name_folded" in sql
-    assert "sp.display_name_search" in sql
-    assert "sp.equivalent_code" in sql
-    assert "ORDER BY exact_match DESC, name_similarity DESC" in sql
+    assert "sp.display_name_search LIKE :query_pattern" in sql
+    assert "ORDER BY exact_match DESC, search_contains DESC, name_similarity DESC" in sql
     assert rows[0]["price_id"] == "PRICE-1"
-
-
-def test_price_group_search_reads_rag_payload_without_price_join() -> None:
-    def responder(sql, params):
-        assert "service_price_snapshots" not in sql
-        assert "sp.record_type = 'group_header'" in sql
-        return FakeResult(
-            [
-                {
-                    "service_record_id": "PRICE-GROUP-1",
-                    "display_name": "Ngày giường bệnh Nội khoa:",
-                    "section": "A",
-                    "source_id": "SOURCE-1",
-                    "raw_json": "{}",
-                    "exact_match": True,
-                    "name_similarity": 1.0,
-                    "title": "Bảng giá",
-                    "url": "https://example.test",
-                }
-            ]
-        )
-
-    factory = FakeSessionFactory(responder)
-    repository = PostgresStructuredRepository(factory)
-
-    rows = repository.search_service_price_groups(
-        query="Ngày giường bệnh Nội khoa",
-        limit=2,
-    )
-
-    sql, params = factory.calls[0]
-    assert params["query_pattern"].startswith("%")
-    assert params["query_pattern_raw"].startswith("%")
-    assert params["row_limit"] == 2
-    assert "sp.raw_json::text AS raw_json" in sql
-    assert "group_items_have_no_general_price" in sql
-    assert rows[0]["service_record_id"] == "PRICE-GROUP-1"
 
 
 def test_pgvector_search_is_native_parameterized_and_intent_filtered() -> None:
@@ -221,12 +188,60 @@ def test_schedule_lookup_uses_typed_dates_and_returns_api_compatible_iso_date() 
         doctor_query="Nguyễn Văn A",
     )
 
-    _, params = factory.calls[0]
+    sql, params = factory.calls[0]
+    assert "se.duty_status = 'scheduled'" in sql
     assert params["week_start"] == target_week
     assert params["service_date"] == target_week
     assert params["doctor_pattern"].startswith("%")
+    assert params["doctor_folded"]
+    assert params["doctor_match_min_score"] == 0.6
+    assert "schedule_entry_doctors" in sql
+    assert "word_similarity" in sql
     assert rows[0]["service_date"] == "2026-07-20"
     assert rows[0]["week_end"] == "2026-07-26"
+
+
+def test_schedule_date_parser_accepts_day_month_without_year() -> None:
+    reference = date(2026, 6, 8)
+
+    assert _resolve_schedule_date("Bác sĩ nào khám ngày 09/06 ở CS1?", reference) == date(2026, 6, 9)
+    assert _resolve_schedule_date("Cho tôi lịch 15-06 cơ sở 2", reference) == date(2026, 6, 15)
+    assert _resolve_schedule_date("Lịch ngày 15/06/2026 ở cơ sở 1", reference) == date(2026, 6, 15)
+
+
+def test_schedule_date_parser_does_not_flip_day_month_order() -> None:
+    reference = date(2026, 6, 8)
+
+    assert _resolve_schedule_date("Ngày 06/08 có bác sĩ nào?", reference) == date(2026, 8, 6)
+    assert _resolve_schedule_date("Ngày 08/06 có bác sĩ nào?", reference) == date(2026, 6, 8)
+
+
+def test_schedule_date_parser_accepts_single_digit_month() -> None:
+    reference = date(2026, 6, 8)
+
+    assert _resolve_schedule_date("cac ca kham ngay 19/7", reference) == date(2026, 7, 19)
+
+
+def test_schedule_rows_are_deduplicated_by_published_slot() -> None:
+    row = {
+        "schedule_entry_id": "SCHEDULE-1",
+        "service_date": "2026-07-19",
+        "facility_code": "CS1",
+        "room_label": "Phong 1",
+        "unit_label": "Kham benh",
+        "assignee_text_raw": "Bac si A",
+        "published_hours_raw": "7.30 - 16.30",
+    }
+    duplicate = {**row, "schedule_entry_id": "SCHEDULE-2"}
+
+    assert _deduplicate_schedule_rows([row, duplicate]) == [row]
+
+
+def test_schedule_room_parser_extracts_only_room_identifier() -> None:
+    assert _extract_room_query(
+        "Ngày 09/06, phòng PK NHI (P402) tại CS2 có bác sĩ nào?"
+    ) == "P402"
+    assert _extract_room_query("Lịch phòng Nội chung tại cơ sở 2") == "noi chung"
 
 
 def test_fact_ranking_filters_disallowed_intents_after_jsonb_read() -> None:

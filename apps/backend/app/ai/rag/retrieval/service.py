@@ -12,6 +12,8 @@ from time import monotonic
 
 from app.ai.observability.tracing import start_observation
 from app.ai.rag.embeddings.embedder import Embedder
+from app.ai.rag.query_expansion import QueryExpander
+from app.ai.rag.rerank import Reranker
 from app.ai.rag.schemas import (
     KnowledgeSource,
     RetrievalRequest,
@@ -40,6 +42,9 @@ class RetrievalService:
         shared_cache: StructuredQueryCache | None = None,
         embedding_model: str = "Vietnamese_Embedding",
         expected_embedding_dimensions: int | None = None,
+        reranker: Reranker | None = None,
+        rerank_top_n: int = 3,
+        query_expander: QueryExpander | None = None,
         settings: Settings | None = None,
     ):
         self.repository = repository
@@ -51,6 +56,9 @@ class RetrievalService:
         self.shared_cache = shared_cache
         self.embedding_model = embedding_model
         self.expected_embedding_dimensions = expected_embedding_dimensions
+        self.reranker = reranker
+        self.rerank_top_n = rerank_top_n
+        self.query_expander = query_expander
         self.settings = settings
         self._query_vector_cache: OrderedDict[
             str,
@@ -60,12 +68,34 @@ class RetrievalService:
     async def retrieve(self, request: RetrievalRequest) -> RetrievalResponse:
         """Return deterministic lexical candidates with source provenance."""
 
-        lexical_rows = await asyncio.to_thread(
-            self.repository.search_facts,
-            query=request.query,
-            allowed_intents=set(request.allowed_intents) or None,
-            limit=max(request.top_k * 3, request.top_k),
-        )
+        expanded_query = await self._expand_query(request.query)
+        retrieval_queries = [request.query]
+        if expanded_query:
+            retrieval_queries.append(expanded_query)
+        lexical_rows = []
+        allowed_intents = set(request.allowed_intents) or None
+        for retrieval_query in retrieval_queries:
+            lexical_rows.extend(
+                await asyncio.to_thread(
+                    self.repository.search_facts,
+                    query=retrieval_query,
+                    allowed_intents=allowed_intents,
+                    limit=max(request.top_k * 3, request.top_k),
+                )
+            )
+            if (
+                allowed_intents
+                and self.settings is not None
+                and self.settings.RAG_CROSS_INTENT_RETRIEVAL_ENABLED
+            ):
+                lexical_rows.extend(
+                    await asyncio.to_thread(
+                        self.repository.search_facts,
+                        query=retrieval_query,
+                        allowed_intents=None,
+                        limit=max(request.top_k * 3, request.top_k),
+                    )
+                )
         lexical_ranked: dict[str, RetrievedChunk] = {}
         for row in lexical_rows:
             chunk_id = f"CHUNK-{row['fact_id']}-001"
@@ -75,6 +105,7 @@ class RetrievalService:
                 score=min(1.0, 0.55 + (0.08 * int(row["score"]))),
                 source=KnowledgeSource(
                     source_id=row["source_id"],
+                    fact_id=row["fact_id"],
                     title=row["title"],
                     url=row["url"],
                     document_type="official_fact",
@@ -104,14 +135,33 @@ class RetrievalService:
         semantic_ranked: dict[str, RetrievedChunk] = {}
         if self.embedder is not None:
             try:
-                query_vector = await self._embed_query(request.query)
+                semantic_query = (
+                    f"{request.query}\n{expanded_query}"
+                    if expanded_query
+                    else request.query
+                )
+                query_vector = await self._embed_query(semantic_query)
                 semantic_rows = await asyncio.to_thread(
                     self.repository.search_embedded_knowledge_chunks,
                     query_vector=query_vector,
-                    allowed_intents=set(request.allowed_intents) or None,
+                    allowed_intents=allowed_intents,
                     limit=max(request.top_k * 3, request.top_k),
                     minimum_score=self.minimum_semantic_score,
                 )
+                if (
+                    allowed_intents
+                    and self.settings is not None
+                    and self.settings.RAG_CROSS_INTENT_RETRIEVAL_ENABLED
+                ):
+                    semantic_rows.extend(
+                        await asyncio.to_thread(
+                            self.repository.search_embedded_knowledge_chunks,
+                            query_vector=query_vector,
+                            allowed_intents=None,
+                            limit=max(request.top_k * 3, request.top_k),
+                            minimum_score=self.minimum_semantic_score,
+                        )
+                    )
                 for row in semantic_rows:
                     score = float(row["score"])
                     semantic_ranked[row["chunk_id"]] = RetrievedChunk(
@@ -120,6 +170,7 @@ class RetrievalService:
                         score=score * 0.85,
                         source=KnowledgeSource(
                             source_id=row["source_id"],
+                            fact_id=row["fact_id"],
                             title=row["title"],
                             url=row["url"],
                             document_type="official_fact_embedding",
@@ -134,12 +185,23 @@ class RetrievalService:
                     },
                 )
 
+        candidate_limit = max(request.top_k * 3, request.top_k)
         ordered = self._fuse_with_trace(
             lexical_ordered,
             _ordered_chunks(semantic_ranked),
-            top_k=request.top_k,
+            top_k=candidate_limit,
         )
-        if ordered:
+        if self.reranker is not None and len(ordered) > 1:
+            chunks = await self.reranker.rerank(
+                query=(
+                    f"{request.query}\n{expanded_query}"
+                    if expanded_query
+                    else request.query
+                ),
+                chunks=ordered[:candidate_limit],
+                top_n=min(request.top_k, self.rerank_top_n),
+            )
+        elif ordered:
             relevance_floor = max(
                 self.minimum_semantic_score,
                 ordered[0].score - 0.08,
@@ -150,6 +212,11 @@ class RetrievalService:
         else:
             chunks = []
         return RetrievalResponse(query=request.query, chunks=chunks)
+
+    async def _expand_query(self, query: str) -> str | None:
+        if self.query_expander is None:
+            return None
+        return await self.query_expander.expand(query)
 
     def _fuse_with_trace(
         self,
@@ -366,4 +433,3 @@ def _normalize_exact_text(value: str) -> str:
 
     normalized = unicodedata.normalize("NFKC", value).casefold()
     return re.sub(r"[^\w]+", " ", normalized, flags=re.UNICODE).strip()
-

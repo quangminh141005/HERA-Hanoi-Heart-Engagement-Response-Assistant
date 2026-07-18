@@ -16,8 +16,8 @@
   "human_reviewer": null,
   "reviewed_at": null,
   "counts": {
-    "sources": 13,
-    "seed_facts": 11,
+    "sources": 24,
+    "seed_facts": 34,
     "historical_price_rows": 2946,
     "historical_price_group_headers": 2,
     "nested_facility_prices": 4051,
@@ -119,7 +119,7 @@
       "status": "accepted_historical_secondary_disabled"
     },
     {
-      "path": "data/dich_vu_ky_thuat/gia_dich_vu_ky_thuat_2025_rag.json",
+      "path": "data/gia_dich_vu_ky_thuat_2025_rag.json",
       "bytes": 9848845,
       "sha256": "437c1600965249f65bbce341869cdea0fdd65d55e7f47a9d1df43188e43550c9",
       "status": "accepted_historical_snapshot"
@@ -241,7 +241,7 @@
       "status": "accepted_historical_secondary_disabled"
     },
     {
-      "path": "data/dich_vu_ky_thuat/gia_dich_vu_ky_thuat_2025_rag.json",
+      "path": "data/gia_dich_vu_ky_thuat_2025_rag.json",
       "bytes": 9848845,
       "sha256": "437c1600965249f65bbce341869cdea0fdd65d55e7f47a9d1df43188e43550c9",
       "status": "accepted_historical_snapshot"
@@ -416,9 +416,9 @@
       "file": "01-sources-facts-and-templates.json",
       "kind": "sources_facts_templates",
       "lane": "reviewable_runtime_seed",
-      "record_count": 30,
-      "bytes": 16596,
-      "sha256": "953d9f7827427a177f4980a5f27ef2626f0407baf88257be7ff6618fd37a6e46"
+      "record_count": 64,
+      "bytes": 47200,
+      "sha256": "72667d7c899acfe8992942b56171c1848f68a9780672906c3ccc82277f7de053"
     },
     {
       "file": "02-service-prices-2025-batch-01.json",
@@ -426,8 +426,8 @@
       "lane": "historical_structured",
       "record_count": 500,
       "nested_facility_price_count": 838,
-      "bytes": 4337419,
-      "sha256": "9e003390c58b7ffa419b7d8c70da989c91db50fadba4108a5eb76c7d1df2a241"
+      "bytes": 1172415,
+      "sha256": "896eacd1dfa2ab8fe1aba927f44090408eb79638d7a409c554e67ccc24659864"
     },
     {
       "file": "03-service-prices-2025-batch-02.json",
@@ -435,8 +435,8 @@
       "lane": "historical_structured",
       "record_count": 500,
       "nested_facility_price_count": 667,
-      "bytes": 4193347,
-      "sha256": "ae04c1568a4811998611cabe19a9d962a8506a78b138ec2a828df1629f1801f6"
+      "bytes": 1107576,
+      "sha256": "fab8cefa9e96a79e54d9273f00ee14458d33ff1ba90ff909716fc06d2478846b"
     },
     {
       "file": "04-service-prices-2025-batch-03.json",
@@ -444,8 +444,8 @@
       "lane": "historical_structured",
       "record_count": 500,
       "nested_facility_price_count": 638,
-      "bytes": 3742308,
-      "sha256": "78b4e42238535f3c864834c465ed40d7500a2514e5b39a18fa5d8945d47af15c"
+      "bytes": 980855,
+      "sha256": "ef8489387e22234d336f43cbc70357c07a7d141788398d667bde850803ce0977"
     },
     {
       "file": "05-service-prices-2025-batch-04.json",
@@ -453,8 +453,8 @@
       "lane": "historical_structured",
       "record_count": 500,
       "nested_facility_price_count": 554,
-      "bytes": 4168447,
-      "sha256": "c577db7b28efc93e69790baeca34b57a22ab5bb544d064290c5d2c87164476be"
+      "bytes": 1082332,
+      "sha256": "f8d2a7fd2ab838071a2ed7b63d7c2fd1a25b22271c9ba9b9554330b189bfe5f3"
     },
     {
       "file": "06-service-prices-2025-batch-05.json",
@@ -462,8 +462,8 @@
       "lane": "historical_structured",
       "record_count": 500,
       "nested_facility_price_count": 731,
-      "bytes": 3776576,
-      "sha256": "42f96614fd1aeca54b07cfd4894c0f8c0a3bbd4f0a31c951d123da58d548e31c"
+      "bytes": 1004557,
+      "sha256": "79f89ff5d72ebcdff71c1f8f1986b3cfde7b7e09dcdb52a3e238bcc677dc2399"
     },
     {
       "file": "07-service-prices-2025-batch-06.json",
@@ -471,8 +471,8 @@
       "lane": "historical_structured",
       "record_count": 446,
       "nested_facility_price_count": 623,
-      "bytes": 3278951,
-      "sha256": "44e94bf6339cf8866e6639f63b58188459dd803f4ea90e75e1fa182f0469b82e"
+      "bytes": 871606,
+      "sha256": "1859dbd4c78295dbee3a4763a119b450c64038acf13ab0be12ae7634799bf083"
     },
     {
       "file": "08-bhyt-household-contributions.json",
@@ -511,8 +511,8 @@
       "kind": "import_issues",
       "lane": "data_owner_workflow",
       "record_count": 14,
-      "bytes": 9299,
-      "sha256": "aabaf68a26be79c2ce6dcde769b33b8826d1f6f96a72bcb9a46ee9b6617dafaa"
+      "bytes": 9282,
+      "sha256": "c154e944b2aa40b4425e1ad8762c6b9f5e013d532cc3c5b09a09b9ba321db050"
     },
     {
       "file": "13-faq-paraphrases-batch-01.json",

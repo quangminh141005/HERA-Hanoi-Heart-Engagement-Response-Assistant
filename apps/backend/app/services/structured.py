@@ -7,6 +7,7 @@ import re
 from collections.abc import Callable
 from dataclasses import dataclass
 from datetime import date, timedelta
+from typing import Any
 
 from app.core.config import Settings
 from app.schemas.structured import (
@@ -61,6 +62,7 @@ class StructuredDataService:
             else ("approved_for_hackathon", "approved_for_production")
         )
         self.repository = repository or PostgresStructuredRepository(
+            doctor_match_min_score=settings.SCHEDULE_DOCTOR_MATCH_MIN_SCORE,
             approval_statuses=approval_statuses,
         )
 
@@ -212,7 +214,7 @@ class StructuredDataService:
         room_query: str | None,
     ) -> ScheduleLookupResponse:
         rows = self._cached_rows(
-            'schedules',
+            'open_schedules',
             {
                 'week_start': week_start,
                 'service_date': service_date,
@@ -228,6 +230,7 @@ class StructuredDataService:
                 room_query=room_query,
             ),
         )
+        rows = _deduplicate_schedule_rows(rows)
         source_ids = sorted({row["source_id"] for row in rows})
         source_map = self._source_map(source_ids)
         citations = [
@@ -280,14 +283,20 @@ class StructuredDataService:
             coverage=coverage,
         )
 
-    def chat_service_price(self, message: str) -> StructuredChatResult:
-        facility_code = _extract_facility_code(message)
-        query = _extract_search_phrase(message)
-        group_result = self._lookup_service_price_group(query)
-        if group_result is not None:
-            return group_result
+    def chat_service_price(
+        self,
+        message: str,
+        query_override: str | None = None,
+        facility_code_override: str | None = None,
+    ) -> StructuredChatResult:
+        facility_code = facility_code_override or _extract_facility_code(message)
+        search_query = (
+            _preserve_bracketed_service_qualifiers(query_override, message)
+            if query_override
+            else _extract_search_phrase(message)
+        )
         rows = self.lookup_service_prices(
-            query=query,
+            query=search_query,
             facility_code=facility_code,
             as_of_date=None,
         )
@@ -305,14 +314,21 @@ class StructuredDataService:
                 data_classification="official_current",
                 warnings=(rows.warning,),
             )
-        if rows.requires_clarification:
+        if rows.requires_clarification and not _top_price_record_is_safe(rows.records):
             relevant = [record for record in rows.records if record.exact_match]
             relevant = relevant or rows.records
+            summary = _summarize_price_choices(relevant)
+            choices_text = (
+                f" Các dòng gần nhất trong dữ liệu gồm: {summary}."
+                if summary
+                else ""
+            )
             return StructuredChatResult(
                 intent="service_price_current",
                 response=(
                     "HERA tìm thấy nhiều dòng giá phù hợp nhưng không thể chọn an toàn "
-                    "một mức duy nhất. Vui lòng chọn đúng cơ sở hoặc đối chiếu các "
+                    "một mức duy nhất."
+                    f"{choices_text} Vui lòng chọn đúng cơ sở hoặc đối chiếu các "
                     "dòng dịch vụ trong bảng kết quả."
                 ),
                 citations=rows.citations,
@@ -327,12 +343,6 @@ class StructuredDataService:
             )
         top = rows.records[0]
         comparison_rows = rows
-        if facility_code is not None:
-            comparison_rows = self.lookup_service_prices(
-                query=top.display_name,
-                facility_code=None,
-                as_of_date=None,
-            )
         same_service = [
             record
             for record in comparison_rows.records
@@ -344,11 +354,7 @@ class StructuredDataService:
         amounts = {record.amount_vnd for record in same_service}
         if len(facility_codes) > 1 and len(amounts) == 1:
             facilities = ' và '.join(facility_codes)
-            prefix = (
-                f'Dịch vụ này đang có cùng mức giá ở {facilities}'
-                if facility_code is not None
-                else f'{top.display_name} tại {facilities}'
-            )
+            prefix = f'{top.display_name} tại {facilities}'
             return StructuredChatResult(
                 intent='service_price_current',
                 response=(
@@ -382,51 +388,20 @@ class StructuredDataService:
             structured_record_ids=(top.service_record_id, top.price_id),
         )
 
-    def _lookup_service_price_group(self, query: str) -> StructuredChatResult | None:
-        group_rows = self.repository.search_service_price_groups(query=query, limit=1)
-        if not group_rows:
-            return None
-        row = group_rows[0]
-        if not _confident_price_group_match(row, query):
-            return None
-        answer = _canonical_group_answer(row.get("raw_json"))
-        if answer is None:
-            return None
-        source = {
-            "source_id": row["source_id"],
-            "title": row.get("title") or "Bảng giá dịch vụ kỹ thuật",
-            "url": row.get("url"),
-        }
-        warning = (
-            "Mục này là mục nhóm trong bảng nguồn; không có giá chung cho cả nhóm, "
-            "chỉ dùng giá của từng mục con đã công bố."
-        )
-        return StructuredChatResult(
-            intent="service_price_current",
-            response=f"{answer} {warning}",
-            citations=[StructuredCitation(**source)],
-            metadata={
-                "structured_group_answer": {
-                    "query": query,
-                    "service_record_id": row["service_record_id"],
-                    "display_name": row["display_name"],
-                    "section": row.get("section"),
-                    "classification": "official_current",
-                    "warning": warning,
-                    "source": source,
-                }
-            },
-            data_classification="official_current",
-            warnings=(warning,),
-            structured_record_ids=(str(row["service_record_id"]),),
-        )
-
-    def chat_bhyt(self, message: str) -> StructuredChatResult:
+    def chat_bhyt(
+        self,
+        message: str,
+        tier_override: str | None = None,
+    ) -> StructuredChatResult:
         target_date = _extract_as_of_date(message) or self.reference_date()
         policy = self.lookup_bhyt(as_of_date=target_date)
         if not policy.tiers:
             raise LookupError("Không tìm thấy tier BHYT.")
-        requested_tier = _extract_bhyt_tier(message)
+        requested_tier = (
+            int(tier_override)
+            if tier_override in {"1", "2", "3", "4", "5"}
+            else _extract_bhyt_tier(message)
+        )
         selected = next(
             (tier for tier in policy.tiers if tier.tier_order == requested_tier),
             None,
@@ -455,17 +430,34 @@ class StructuredDataService:
             structured_record_ids=(policy.policy_id, *tier_ids),
         )
 
-    def chat_schedule(self, message: str) -> StructuredChatResult:
+    def chat_schedule(
+        self,
+        message: str,
+        date_override: str | None = None,
+        facility_code_override: str | None = None,
+        doctor_query_override: str | None = None,
+        room_query_override: str | None = None,
+    ) -> StructuredChatResult:
         reference_date = self.reference_date()
-        target_date = _resolve_schedule_date(message, reference_date)
+        # The user's explicit date is authoritative. A routing model may infer a
+        # wrong year for a short dd/mm date, so only use its normalized slot when
+        # deterministic parsing found no date in the original message.
+        target_date = _resolve_schedule_date(message, reference_date) or (
+            _extract_as_of_date(date_override or "")
+        )
         target_week = _monday(target_date or reference_date)
-        facility_code = _extract_facility_code(message)
+        facility_code = facility_code_override or _extract_facility_code(message)
+        normalized_room_override = (
+            _extract_room_query(room_query_override) or room_query_override
+            if room_query_override
+            else None
+        )
         schedule = self.lookup_schedules(
             week_start=target_week,
             service_date=target_date,
             facility_code=facility_code,
-            doctor_query=_extract_doctor_query(message),
-            room_query=_extract_room_query(message),
+            doctor_query=doctor_query_override or _extract_doctor_query(message),
+            room_query=normalized_room_override or _extract_room_query(message),
         )
         if not schedule.records:
             return StructuredChatResult(
@@ -562,8 +554,55 @@ def _price_records_require_clarification(
         choices = {
             (record.facility_code, record.amount_vnd) for record in exact_records
         }
-        return len(choices) > 1
+        return len(choices) > 1 and len({amount for _, amount in choices}) > 1
+    if not exact_records:
+        service_choices = {
+            (_fold_text(record.display_name), record.amount_vnd)
+            for record in candidates
+        }
+        return len({name for name, _ in service_choices}) > 1 and len(
+            {amount for _, amount in service_choices}
+        ) > 1
     return False
+
+
+def _top_price_record_is_safe(records: list[ServicePriceRecord]) -> bool:
+    """Allow a clear top service even when SQL returned lower-ranked neighbors."""
+
+    if not records:
+        return False
+    top = records[0]
+    if top.name_similarity < 0.65 and not top.exact_match:
+        return False
+    same_service = [
+        record for record in records if record.service_record_id == top.service_record_id
+    ]
+    if not same_service:
+        return False
+    top_amounts = {record.amount_vnd for record in same_service}
+    if len(top_amounts) != 1:
+        return False
+    competing = [
+        record
+        for record in records
+        if record.service_record_id != top.service_record_id
+        and record.name_similarity >= top.name_similarity - 0.05
+    ]
+    return not competing
+
+
+def _summarize_price_choices(records: list[ServicePriceRecord], *, limit: int = 4) -> str:
+    """Create a concise grounded summary of candidate price rows."""
+
+    choices: dict[tuple[str, int], set[str]] = {}
+    for record in records:
+        key = (record.display_name, record.amount_vnd)
+        choices.setdefault(key, set()).add(record.facility_code)
+    parts: list[str] = []
+    for (display_name, amount_vnd), facilities in list(choices.items())[:limit]:
+        facility_text = "/".join(sorted(facilities))
+        parts.append(f"{display_name} ({facility_text}: {_format_vnd(amount_vnd)} VND)")
+    return "; ".join(parts)
 
 
 def _extract_facility_code(message: str) -> str | None:
@@ -575,90 +614,123 @@ def _extract_facility_code(message: str) -> str | None:
     return None
 
 
+def _preserve_bracketed_service_qualifiers(
+    model_query: str,
+    original_message: str,
+) -> str:
+    """Restore exact bracket qualifiers that a model extraction omitted."""
+
+    query = " ".join(model_query.split())
+    folded_query = _fold_text(query)
+    for qualifier in re.findall(r"\[([^\[\]]{1,160})\]", original_message):
+        cleaned = " ".join(qualifier.split())
+        if re.fullmatch(r"[A-Z0-9_]+_REDACTED", cleaned):
+            continue
+        if cleaned and _fold_text(cleaned) not in folded_query:
+            query = f"{query} [{cleaned}]"
+            folded_query = _fold_text(query)
+    return query
+
+
 def _format_vnd(value: int) -> str:
     return f"{value:,}".replace(",", ".")
 
 
-def _canonical_group_answer(raw_json: object) -> str | None:
-    if isinstance(raw_json, str):
-        try:
-            payload = json.loads(raw_json)
-        except json.JSONDecodeError:
-            return None
-    elif isinstance(raw_json, dict):
-        payload = raw_json
-    else:
-        return None
-    rag_payload = payload.get("raw_rag_payload")
-    if not isinstance(rag_payload, dict):
-        return None
-    answer = rag_payload.get("canonical_answer_vi")
-    policy = rag_payload.get("answer_policy")
-    metadata = rag_payload.get("metadata")
-    if (
-        not isinstance(answer, str)
-        or not answer.strip()
-        or not isinstance(policy, dict)
-        or policy.get("group_items_have_no_general_price") is not True
-        or not isinstance(metadata, dict)
-        or metadata.get("item_type") != "group"
-    ):
-        return None
-    return " ".join(answer.split())
-
-
-def _confident_price_group_match(row: dict[str, object], query: str) -> bool:
-    if bool(row.get("exact_match")):
-        return True
-    similarity = float(row.get("name_similarity") or 0)
-    if similarity >= 0.72:
-        return True
-    folded_query = _fold_text(query).replace(":", "").strip()
-    folded_name = _fold_text(str(row.get("display_name") or "")).replace(":", "").strip()
-    if len(folded_query.split()) >= 3 and folded_query in folded_name:
-        return True
-    return False
-
-
 def _extract_search_phrase(message: str) -> str:
-    lowered = message.lower()
+    folded = _fold_text(message)
+    price_focused = _focus_price_query_region(folded)
+    if price_focused:
+        folded = price_focused
     canonical_pairs = (
-        ("khám bệnh", "khám bệnh"),
-        ("kham benh", "khám bệnh"),
-        ("bảo hiểm y tế", "bảo hiểm y tế"),
-        ("bao hiem y te", "bảo hiểm y tế"),
+        ("kham benh", "kham benh"),
+        ("bao hiem y te", "bao hiem y te"),
     )
     for needle, result in canonical_pairs:
-        if needle in lowered:
+        if needle in folded:
             return result
 
     cleanup_terms = (
-        "giá",
-        "gia",
-        "tra giá",
+        "ban co",
+        "ban cho minh",
+        "cho minh",
+        "minh can biet",
+        "neu lam",
+        "theo du lieu",
+        "bang gia ghi muc nao",
+        "bang gia",
+        "muc nao",
+        "khoang",
+        "gia tien",
         "tra gia",
-        "chi phí",
         "chi phi",
-        "cơ sở 1",
+        "bao nhieu tien",
+        "bao nhieu",
         "co so 1",
-        "cơ sở 2",
         "co so 2",
-        "là bao nhiêu",
+        "cs1",
+        "cs2",
+        "tai cs1",
+        "tai cs2",
+        "o cs1",
+        "o cs2",
         "la bao nhieu",
-        "còn",
-        "con",
-        "thì sao",
         "thi sao",
-        "dịch vụ đó",
+        "thi",
         "dich vu do",
+        "dich vu",
+        "gia",
+        "tien",
+        "cho",
+        "khong",
+        "nhe",
     )
-    cleaned = lowered
+    cleaned = folded
     for term in cleanup_terms:
-        cleaned = cleaned.replace(term, " ")
-    cleaned = re.sub(r"[?!.:;()\[\]{}]+", " ", cleaned)
+        cleaned = re.sub(rf"\b{re.escape(term)}\b", " ", cleaned)
+    cleaned = re.sub(r"[^0-9a-zA-Z]+", " ", cleaned)
     collapsed = " ".join(cleaned.split())
     return collapsed or message.strip()
 
+
+def _focus_price_query_region(folded_message: str) -> str | None:
+    """Extract the probable service-name span from a price question."""
+
+    markers = (
+        "muon biet gia",
+        "can biet gia",
+        "gia tien",
+        "chi phi",
+        "muc gia",
+        "don gia",
+        "gia",
+    )
+    candidates: list[tuple[int, str]] = []
+    for marker in markers:
+        index = folded_message.find(marker)
+        if index < 0:
+            continue
+        prefix = folded_message[:index].strip()
+        if len(prefix) > 20 and marker not in {"muon biet gia", "can biet gia"}:
+            continue
+        candidates.append((index + len(marker), marker))
+    if not candidates:
+        return None
+    region = folded_message[min(start for start, _ in candidates) :]
+    tail_markers = (
+        " nhung ",
+        " dong thoi ",
+        " truoc het ",
+        " sau do ",
+        " va me ",
+        " va toi ",
+    )
+    cut_at = len(region)
+    for marker in tail_markers:
+        index = region.find(marker)
+        if index >= 0:
+            cut_at = min(cut_at, index)
+    region = region[:cut_at].strip()
+    return region or None
 
 def _extract_as_of_date(message: str) -> date | None:
     iso = re.search(r"\b(20\d{2})[-/](\d{1,2})[-/](\d{1,2})\b", message)
@@ -681,10 +753,39 @@ def _monday(value: date) -> date:
     return value - timedelta(days=value.weekday())
 
 
+def _deduplicate_schedule_rows(
+    rows: list[dict[str, Any]],
+) -> list[dict[str, Any]]:
+    """Keep one deterministic record for each published open consultation slot."""
+
+    unique_rows: list[dict[str, Any]] = []
+    seen: set[tuple[str, ...]] = set()
+    for row in rows:
+        identity = tuple(
+            str(row.get(field) or "").strip().casefold()
+            for field in (
+                "service_date",
+                "facility_code",
+                "room_label",
+                "unit_label",
+                "assignee_text_raw",
+                "published_hours_raw",
+            )
+        )
+        if identity in seen:
+            continue
+        seen.add(identity)
+        unique_rows.append(row)
+    return unique_rows
+
+
 def _resolve_schedule_date(message: str, reference_date: date) -> date | None:
     explicit = _extract_as_of_date(message)
     if explicit is not None:
         return explicit
+    partial = _extract_day_month_date(message, default_year=reference_date.year)
+    if partial is not None:
+        return partial
     folded = _fold_text(message)
     if "ngay kia" in folded:
         return reference_date + timedelta(days=2)
@@ -699,6 +800,31 @@ def _resolve_schedule_date(message: str, reference_date: date) -> date | None:
     return None
 
 
+def _extract_day_month_date(message: str, *, default_year: int) -> date | None:
+    """Parse explicit Vietnamese day/month dates that omit the year.
+
+    Hospital schedule questions commonly use short forms such as ``09/06`` or
+    ``ngày 15-06``. Those are explicit dates in the dataset year, so they must
+    not fall back to the reference week. Full yyyy-mm-dd and dd/mm/yyyy parsing
+    stays in ``_extract_as_of_date``.
+    """
+
+    if re.search(r"\b(?:20\d{2})[-/]\d{1,2}[-/]\d{1,2}\b", message):
+        return None
+    if re.search(r"\b\d{1,2}[-/]\d{1,2}[-/](?:20\d{2})\b", message):
+        return None
+    folded = _fold_text(message)
+    match = re.search(r"(?:\bngay\s*)?\b(\d{1,2})[-/](\d{1,2})\b", folded)
+    if not match:
+        return None
+    day = int(match.group(1))
+    month = int(match.group(2))
+    try:
+        return date(default_year, month, day)
+    except ValueError:
+        return None
+
+
 def _fold_text(value: str) -> str:
     import unicodedata
 
@@ -710,16 +836,19 @@ def _fold_text(value: str) -> str:
 
 def _extract_doctor_query(message: str) -> str | None:
     patterns = (
-        r"bác sĩ\s+([^,.0-9]+)",
-        r"bac si\s+([^,.0-9]+)",
-        r"\bbs\.?\s*([^,.0-9]+)",
+        r"bác sĩ\s+(?:bsnt\.?|bs\.?|ths\.?\s*bs\.?|ts\.?\s*bs\.?)?\s*([^,.]+)",
+        r"bac si\s+(?:bsnt\.?|bs\.?|ths\.?\s*bs\.?|ts\.?\s*bs\.?)?\s*([^,.]+)",
+        r"bác sĩ\s+([^,.]+)",
+        r"bac si\s+([^,.]+)",
+        r"\bbs(?:nt|cki|ckii)?\.?\s*([^,.]+)",
+        r"\bths\.?\s*bs\.?\s*([^,.]+)",
     )
     rejected_prefixes = ("cơ sở", "co so", "ngày", "ngay", "tuần", "tuan")
     for pattern in patterns:
         match = re.search(pattern, message, re.IGNORECASE)
         if match:
-            candidate = match.group(1).strip()
-            folded = candidate.lower()
+            candidate = _trim_doctor_candidate(match.group(1).strip())
+            folded = _fold_text(candidate)
             if any(folded.startswith(prefix) for prefix in rejected_prefixes):
                 return None
             if len(candidate.split()) < 2:
@@ -728,12 +857,40 @@ def _extract_doctor_query(message: str) -> str | None:
     return None
 
 
+def _trim_doctor_candidate(value: str) -> str:
+    folded = _fold_text(value)
+    cut_markers = (
+        " co lich",
+        " kham tai",
+        " co kham",
+        " ngay ",
+        " o cs",
+        " o co so",
+        " tai cs",
+        " tai co so",
+    )
+    cut_at = len(value)
+    for marker in cut_markers:
+        index = folded.find(marker)
+        if index >= 0:
+            cut_at = min(cut_at, index)
+    candidate = value[:cut_at].strip(" -:;()")
+    candidate = re.sub(r"\s+", " ", candidate)
+    return candidate
+
+
 def _extract_room_query(message: str) -> str | None:
-    lowered = message.lower()
-    if "phòng khám số" in lowered or "phong kham so" in lowered:
-        return message.strip()
-    if "p4" in lowered:
-        return message.strip()
+    room_code = re.search(r"\bP\d{3}(?:\.[A-Za-z0-9]+)?\b", message, re.IGNORECASE)
+    if room_code:
+        return room_code.group(0)
+    folded = _fold_text(message)
+    room_label = re.search(
+        r"\bphong\s+(.+?)(?=\s+(?:tai|o|ngay|co)\b|[,.;?]|$)",
+        folded,
+    )
+    if room_label:
+        candidate = " ".join(room_label.group(1).split())
+        return candidate[:80] or None
     return None
 
 

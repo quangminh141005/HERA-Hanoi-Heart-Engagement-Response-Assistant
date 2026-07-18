@@ -13,8 +13,8 @@
   "reviewed_at": null,
   "manifest": {
     "file": "00-manifest.json",
-    "bytes": 23355,
-    "sha256": "1a74a16317e81b801d5c57019787913873fbe04ab0b33a18a571e75bea003b23"
+    "bytes": 23319,
+    "sha256": "2c43304a2bf8df70cb745b9b71a7c51bff9c990f303d51e2c1911f73cd7fc562"
   },
   "summary": {
     "data_files_checked": 22,
@@ -22,8 +22,8 @@
     "unhandled_errors": 0,
     "review_required_documents": 0,
     "warnings_and_information": 14,
-    "sources": 13,
-    "seed_facts": 11,
+    "sources": 24,
+    "seed_facts": 34,
     "historical_price_rows": 2946,
     "historical_price_group_headers": 2,
     "nested_facility_prices": 4051,
@@ -254,7 +254,7 @@
     "The official BHXH extract covers household contribution amounts only, not personal medical benefit entitlement.",
     "Automated structure validation does not replace hospital, clinical, legal, privacy or security approval."
   ],
-  "manifest_sha256": "1a74a16317e81b801d5c57019787913873fbe04ab0b33a18a571e75bea003b23",
+  "manifest_sha256": "2c43304a2bf8df70cb745b9b71a7c51bff9c990f303d51e2c1911f73cd7fc562",
   "checks": [
     {
       "check_id": "CHK-EXACT-FILE-SET",

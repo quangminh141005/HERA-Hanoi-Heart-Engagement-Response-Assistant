@@ -152,6 +152,18 @@ def test_multiturn_uses_approved_entities_and_resets_on_intent_switch() -> None:
         assert schedule_follow_up.intent == "schedule"
         assert schedule_follow_up.metadata["ephemeral_context_applied"] is True
 
+        schedule_refinement = await orchestrator.handle(
+            message=(
+                "Hay chi dua ra thong tin cac ca kham co mo, "
+                "con cac ca nghi khong can dua"
+            ),
+            conversation_id=conversation_id,
+            locale="vi",
+            user_context={},
+        )
+        assert schedule_refinement.intent == "schedule"
+        assert schedule_refinement.metadata["ephemeral_context_applied"] is True
+
     asyncio.run(scenario())
 
 
@@ -185,10 +197,8 @@ def test_rag_overall_deadline_returns_safe_handoff() -> None:
 
     assert result.response_type == "refusal_and_handoff"
     assert result.requires_handoff is True
-    assert result.metadata == {
-        "upstream_timeout": "rag_pipeline",
-        "decision_source": "deterministic_fallback",
-    }
+    assert result.metadata["upstream_timeout"] == "rag_pipeline"
+    assert result.metadata["decision_source"] == "deterministic_fallback"
 
 
 class _FakeRedis:

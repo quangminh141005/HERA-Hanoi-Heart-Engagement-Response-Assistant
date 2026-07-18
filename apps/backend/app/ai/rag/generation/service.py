@@ -1,6 +1,8 @@
-"""Grounded answer generation service."""
+﻿"""Grounded answer generation service."""
 
 from __future__ import annotations
+
+import re
 
 from app.ai.llm.client import LLMClient
 from app.ai.observability.tracing import start_observation
@@ -33,18 +35,23 @@ class GenerationService:
         if not chunks:
             return GroundedAnswer(
                 answer=(
-                    "Hiện tại HERA chưa có đủ nguồn chính thức để trả lời chắc chắn "
-                    "câu hỏi này. Vui lòng kiểm tra website chính thức của Bệnh viện "
-                    "Tim Hà Nội hoặc liên hệ hotline bệnh viện để được xác nhận."
+                    "Hi\u1ec7n t\u1ea1i HERA ch\u01b0a c\u00f3 \u0111\u1ee7 "
+                    "ngu\u1ed3n ch\u00ednh th\u1ee9c \u0111\u1ec3 tr\u1ea3 "
+                    "l\u1eddi ch\u1eafc ch\u1eafn c\u00e2u h\u1ecfi n\u00e0y. "
+                    "Vui l\u00f2ng ki\u1ec3m tra website ch\u00ednh th\u1ee9c "
+                    "c\u1ee7a B\u1ec7nh vi\u1ec7n Tim H\u00e0 N\u1ed9i "
+                    "ho\u1eb7c li\u00ean h\u1ec7 hotline b\u1ec7nh vi\u1ec7n "
+                    "\u0111\u1ec3 \u0111\u01b0\u1ee3c x\u00e1c nh\u1eadn."
                 ),
                 citations=[],
                 confidence=0.0,
             )
 
         context = "\n\n".join(
-            f"[{chunk.source.source_id}] {chunk.text}" for chunk in chunks
+            f"[{chunk.source.source_id}] {_neutralize_prompt_control_tokens(chunk.text)}"
+            for chunk in chunks
         )
-        deterministic_answer = "\n".join(f"• {chunk.text}" for chunk in chunks)
+        deterministic_answer = "\n".join(f"\u2022 {chunk.text}" for chunk in chunks)
         generation_mode = "deterministic"
         validation_issues: list[str] = []
         exact_approved_fact = (
@@ -61,18 +68,26 @@ class GenerationService:
                 {
                     "role": "system",
                     "content": (
-                        "Bạn là HERA. Trả lời đúng câu hỏi, ngắn gọn bằng "
-                        "tiếng Việt và chỉ dùng những fact liên quan trực tiếp "
+                        "B\u1ea1n l\u00e0 HERA. Tr\u1ea3 l\u1eddi \u0111\u00fang "
+                        "c\u00e2u h\u1ecfi, ng\u1eafn g\u1ecdn b\u1eb1ng "
+                        "ti\u1ebfng Vi\u1ec7t v\u00e0 ch\u1ec9 d\u00f9ng "
+                        "nh\u1eefng fact li\u00ean quan tr\u1ef1c ti\u1ebfp "
                         "trong context. "
-                        "Không liệt kê fact không liên quan; không thêm giá, lịch, "
-                        "bác sĩ, URL, số điện thoại, chẩn đoán hoặc lời khuyên "
-                        "điều trị ngoài context. Nếu context không đủ thì nói "
-                        "không đủ dữ liệu."
+                        "Kh\u00f4ng li\u1ec7t k\u00ea fact kh\u00f4ng li\u00ean "
+                        "quan; kh\u00f4ng th\u00eam gi\u00e1, l\u1ecbch, "
+                        "b\u00e1c s\u0129, URL, s\u1ed1 \u0111i\u1ec7n tho\u1ea1i, "
+                        "ch\u1ea9n \u0111o\u00e1n ho\u1eb7c l\u1eddi khuy\u00ean "
+                        "\u0111i\u1ec1u tr\u1ecb ngo\u00e0i context. N\u1ebfu "
+                        "context kh\u00f4ng \u0111\u1ee7 th\u00ec n\u00f3i "
+                        "kh\u00f4ng \u0111\u1ee7 d\u1eef li\u1ec7u."
                     ),
                 },
                 {
                     "role": "user",
-                    "content": f"Câu hỏi: {query}\n\nFact đã duyệt:\n{context}",
+                    "content": (
+                        f"C\u00e2u h\u1ecfi: {query}\n\n"
+                        f"Fact \u0111\u00e3 duy\u1ec7t:\n{context}"
+                    ),
                 },
             ]
             generated = await self._generate_with_trace(
@@ -89,7 +104,7 @@ class GenerationService:
                 query=query,
                 evidence=[chunk.text for chunk in chunks],
             )
-            if generated.startswith("HERA chưa được cấu hình LLM"):
+            if generated.startswith("HERA ch\u01b0a \u0111\u01b0\u1ee3c c\u1ea5u h\u00ecnh LLM"):
                 answer = deterministic_answer
                 validation_issues = ["provider_fallback"]
             elif validation.allowed:
@@ -152,3 +167,17 @@ class GenerationService:
             observation.update(metadata={"result": "success"})
             return result
 
+
+_SOURCE_MARKER_RE = re.compile(r"\[\s*(?:source|src|sources?)\b", re.IGNORECASE)
+_SOURCES_TAG_RE = re.compile(r"(?im)^([ \t]*)(sources?)(\s*:\s*)(\[?[\w,\-\s]+\]?)[ \t]*$")
+_SEPARATOR_RE = re.compile(r"-{4,}")
+
+
+def _neutralize_prompt_control_tokens(text: str) -> str:
+    """Defang source-control tokens embedded inside retrieved text."""
+
+    if not text:
+        return text
+    text = _SOURCE_MARKER_RE.sub("(source", text)
+    text = _SOURCES_TAG_RE.sub(r"\1\2 \4", text)
+    return _SEPARATOR_RE.sub("---", text)

@@ -4,10 +4,24 @@
   "spec_version": "3.0.0",
   "job_id": "hera-structured-data-2026-07-v2",
   "generated": false,
-  "normalized_at": "2026-07-17T23:45:00+07:00",
+  "normalized_at": "2026-07-18T12:00:00+07:00",
   "normalization_method": "structured_json_direct_import_and_curated_metadata",
   "reference_date": "2026-07-17",
   "sources": [
+    {
+      "source_id": "SRC-BHXH-BHYT-OUTPATIENT-2026-06-26",
+      "title": "Mở rộng quyền lợi BHYT khi khám ngoại trú trái tuyến từ ngày 01/7/2026",
+      "publisher": "Bảo hiểm xã hội Việt Nam",
+      "url": "https://baohiemxahoi.gov.vn/tintuc/Pages/linh-vuc-bao-hiem-y-te.aspx?CateID=169&ItemID=26712&OtItem=date",
+      "authority": "official_bhxh_vietnam",
+      "retrieved_at": "2026-07-18T00:00:00+07:00",
+      "verification_status": "review_only",
+      "retrieval_eligible": true,
+      "structured_lookup_only": false,
+      "content_file": "data/Thong_tin_khac.json",
+      "content_hash": "42f710a68a5f81506f3cfb53ec2583fb68b88c2652838cf286f38006279b9ee2",
+      "notes": "Nguồn fact bổ sung từ file Thong_tin_khac.json do data owner tổng hợp từ nguồn chính thức; dùng cho RAG trả lời các khoảng trống ngoài bảng giá và lịch."
+    },
     {
       "source_id": "SRC-BHYT-HOUSEHOLD-2026",
       "title": "Một số mức đóng, mức hưởng BHXH, BHYT thay đổi từ ngày 01/7/2026",
@@ -50,6 +64,150 @@
       "verification_status": "human_verified_summary",
       "retrieval_eligible": true,
       "notes": "Nguồn chính cho quy tắc đặt lịch, địa chỉ, giờ điện thoại đặt lịch, contact và hành động khi cấp cứu."
+    },
+    {
+      "valid_from": null,
+      "valid_to": null,
+      "production_eligible": false,
+      "source_id": "SRC-HHH-BHYT-PRICE-WEB-2024",
+      "title": "Bảng giá Bảo hiểm y tế tại Bệnh viện Tim Hà Nội",
+      "publisher": "Bệnh viện Tim Hà Nội",
+      "url": "https://benhvientimhanoi.vn/vi/chi-tiet/bang-gia-dich-vu/bang-gia-bao-hiem-y-te-tai-benh-vien-tim-ha-noi.",
+      "authority": "official_hospital",
+      "published_at": "2024-03-15",
+      "retrieved_at": "2026-07-18T00:00:00+07:00",
+      "verification_status": "official_page_web_verified",
+      "retrieval_eligible": true,
+      "notes": "Trang nguồn web xác nhận bảng giá BHYT áp dụng theo Thông tư 22/2023/TT-BYT; file OCR Gia_BHYT.json cần review trước khi bật tra giá chi tiết."
+    },
+    {
+      "source_id": "SRC-HHH-BOOKING-GUIDE-2026-07-18",
+      "title": "Hướng dẫn liên hệ đặt lịch khám",
+      "publisher": "Bệnh viện Tim Hà Nội",
+      "url": "https://benhvientimhanoi.vn/vn/cong/thong-tin/huong-dan-lien-he-dat-lich-kham",
+      "authority": "official_hospital",
+      "retrieved_at": "2026-07-18T00:00:00+07:00",
+      "verification_status": "review_only",
+      "retrieval_eligible": false,
+      "structured_lookup_only": false,
+      "content_file": "data/Thong_tin_khac.json",
+      "content_hash": "42f710a68a5f81506f3cfb53ec2583fb68b88c2652838cf286f38006279b9ee2",
+      "notes": "Nguồn fact bổ sung từ file Thong_tin_khac.json do data owner tổng hợp từ nguồn chính thức; dùng cho RAG trả lời các khoảng trống ngoài bảng giá và lịch."
+    },
+    {
+      "source_id": "SRC-HHH-GENERAL-INTRODUCTION-2026-07-18",
+      "title": "Giới thiệu chung",
+      "publisher": "Bệnh viện Tim Hà Nội",
+      "url": "https://benhvientimhanoi.vn/vn/cong/thong-tin/gioi-thieu-chung",
+      "authority": "official_hospital",
+      "retrieved_at": "2026-07-18T00:00:00+07:00",
+      "verification_status": "review_only",
+      "retrieval_eligible": true,
+      "structured_lookup_only": false,
+      "content_file": "data/Thong_tin_khac.json",
+      "content_hash": "42f710a68a5f81506f3cfb53ec2583fb68b88c2652838cf286f38006279b9ee2",
+      "notes": "Nguồn fact bổ sung từ file Thong_tin_khac.json do data owner tổng hợp từ nguồn chính thức; dùng cho RAG trả lời các khoảng trống ngoài bảng giá và lịch."
+    },
+    {
+      "valid_from": null,
+      "valid_to": null,
+      "production_eligible": false,
+      "source_id": "SRC-HHH-HOTLINE-19001082-2025",
+      "title": "Thông báo gọi số tổng đài chăm sóc khách hàng 19001082",
+      "publisher": "Bệnh viện Tim Hà Nội",
+      "url": "https://www.benhvientimhanoi.vn/vi/chi-tiet/danh-cho-nguoi-benh/thong-bao-goi-so-tong-dai-cham-soc-khach-hang-19001082",
+      "authority": "official_hospital",
+      "published_at": "2025-03-03",
+      "retrieved_at": "2026-07-18T00:00:00+07:00",
+      "verification_status": "official_page_web_verified",
+      "retrieval_eligible": true,
+      "notes": "Nguồn xác nhận gọi 19001082 để đặt lịch và cước 1.000 đồng mỗi phút; footer ghi hotline 24h/7."
+    },
+    {
+      "source_id": "SRC-HHH-LEADERSHIP-2026-07-18",
+      "title": "Ban lãnh đạo bệnh viện",
+      "publisher": "Bệnh viện Tim Hà Nội",
+      "url": "https://benhvientimhanoi.vn/vn/cong/thong-tin/ban-lanh-dao",
+      "authority": "official_hospital",
+      "retrieved_at": "2026-07-18T00:00:00+07:00",
+      "verification_status": "review_only",
+      "retrieval_eligible": true,
+      "structured_lookup_only": false,
+      "content_file": "data/Thong_tin_khac.json",
+      "content_hash": "42f710a68a5f81506f3cfb53ec2583fb68b88c2652838cf286f38006279b9ee2",
+      "notes": "Nguồn fact bổ sung từ file Thong_tin_khac.json do data owner tổng hợp từ nguồn chính thức; dùng cho RAG trả lời các khoảng trống ngoài bảng giá và lịch."
+    },
+    {
+      "valid_from": null,
+      "valid_to": null,
+      "production_eligible": false,
+      "source_id": "SRC-HHH-ON-DEMAND-PRICE-WEB-2024",
+      "title": "Bảng báo giá dịch vụ kỹ thuật theo yêu cầu tại Bệnh viện Tim Hà Nội",
+      "publisher": "Bệnh viện Tim Hà Nội",
+      "url": "https://benhvientimhanoi.vn/vi/chi-tiet/bang-gia-dich-vu/bang-bao-gia-dich-vu-ky-thuat-theo-yeu-cau-tai-benh-vien-tim-ha-noi.",
+      "authority": "official_hospital",
+      "published_at": "2024-03-15",
+      "retrieved_at": "2026-07-18T00:00:00+07:00",
+      "verification_status": "official_page_web_verified",
+      "retrieval_eligible": true,
+      "notes": "Trang nguồn web công bố bảng giá theo yêu cầu; file OCR GIA_THEO_NHU_CAU.json cần review trước khi bật tra giá chi tiết."
+    },
+    {
+      "valid_from": null,
+      "valid_to": null,
+      "production_eligible": false,
+      "source_id": "SRC-HHH-ONLINE-BOOKING-FORM-2026-07-18",
+      "title": "Đặt lịch khám - Bệnh viện Tim Hà Nội",
+      "publisher": "Bệnh viện Tim Hà Nội",
+      "url": "https://benhvientimhanoi.vn/he-thong/hen-kham/index.html",
+      "authority": "official_hospital",
+      "retrieved_at": "2026-07-18T00:00:00+07:00",
+      "verification_status": "official_page_web_verified",
+      "retrieval_eligible": true,
+      "notes": "Trang form đặt lịch online; có cơ sở, trường thông tin, quy tắc xác nhận lịch, đặt trước 24 giờ và cảnh báo cấp cứu."
+    },
+    {
+      "valid_from": null,
+      "valid_to": null,
+      "production_eligible": false,
+      "source_id": "SRC-HHH-SERVICE-PRICE-2025-WEB",
+      "title": "Giá dịch vụ kỹ thuật áp dụng tại Bệnh viện Tim Hà Nội 2025",
+      "publisher": "Bệnh viện Tim Hà Nội",
+      "url": "https://benhvientimhanoi.vn/vi/chi-tiet/bang-gia-dich-vu/gia-dich-vu-ky-thuat-ap-dung-tai-benh-vien-tim-ha-noi-2025",
+      "authority": "official_hospital",
+      "published_at": "2025-01-20",
+      "retrieved_at": "2026-07-18T00:00:00+07:00",
+      "verification_status": "official_page_web_verified",
+      "retrieval_eligible": true,
+      "notes": "Trang nguồn web công bố bảng giá kỹ thuật; dữ liệu chi tiết lấy từ file gia_dich_vu_ky_thuat_2025_rag.json."
+    },
+    {
+      "source_id": "SRC-HHH-VOLUNTARY-CLINIC-2026-07-18",
+      "title": "Khoa Khám bệnh tự nguyện",
+      "publisher": "Bệnh viện Tim Hà Nội",
+      "url": "https://benhvientimhanoi.vn/vn/cong/thong-tin/khoa-kham-benh-tu-nguyen",
+      "authority": "official_hospital",
+      "retrieved_at": "2026-07-18T00:00:00+07:00",
+      "verification_status": "review_only",
+      "retrieval_eligible": true,
+      "structured_lookup_only": false,
+      "content_file": "data/Thong_tin_khac.json",
+      "content_hash": "42f710a68a5f81506f3cfb53ec2583fb68b88c2652838cf286f38006279b9ee2",
+      "notes": "Nguồn fact bổ sung từ file Thong_tin_khac.json do data owner tổng hợp từ nguồn chính thức; dùng cho RAG trả lời các khoảng trống ngoài bảng giá và lịch."
+    },
+    {
+      "source_id": "SRC-HHH-ZALO-GUIDE-2026-07-18",
+      "title": "Hướng dẫn truy cập và đặt lịch hẹn trên Zalo Bệnh viện Tim Hà Nội",
+      "publisher": "Bệnh viện Tim Hà Nội",
+      "url": "https://www.benhvientimhanoi.vn/vi/thu-vien-video/chi-tiet/huong-dan-truy-cap-zalo-benh-vien-tim-ha-noi",
+      "authority": "official_hospital",
+      "retrieved_at": "2026-07-18T00:00:00+07:00",
+      "verification_status": "approved_for_hackathon",
+      "retrieval_eligible": true,
+      "structured_lookup_only": false,
+      "content_file": "data/Thong_tin_khac.json",
+      "content_hash": "42f710a68a5f81506f3cfb53ec2583fb68b88c2652838cf286f38006279b9ee2",
+      "notes": "Nguồn fact bổ sung từ file Thong_tin_khac.json do data owner tổng hợp từ nguồn chính thức; dùng cho RAG trả lời các khoảng trống ngoài bảng giá và lịch."
     },
     {
       "source_id": "SRC-PDPL-2025",
@@ -193,30 +351,12 @@
   ],
   "facts": [
     {
-      "fact_id": "FACT-BOOKING-NONEMERGENCY",
-      "claim_vi": "Đặt hẹn khám chỉ dành cho các trường hợp không cấp cứu, không khẩn cấp.",
+      "fact_id": "FACT-BOOKING-ARRIVAL",
+      "claim_vi": "Người dùng được hướng dẫn có mặt trước giờ dự định khám ít nhất 15 phút để làm thủ tục và đo các chỉ số ban đầu.",
       "source_id": "SRC-BOOKING-GUIDE",
       "allowed_intents": [
         "booking",
-        "emergency"
-      ],
-      "verified_at": "2026-07-17T00:00:00+07:00"
-    },
-    {
-      "fact_id": "FACT-EMERGENCY-ACTION",
-      "claim_vi": "Trong trường hợp cấp cứu, hướng dẫn chính thức yêu cầu gọi số cấp cứu theo tỉnh/thành của người dùng (mã vùng + 115) hoặc đến thẳng cơ sở cấp cứu gần nhất.",
-      "source_id": "SRC-BOOKING-GUIDE",
-      "allowed_intents": [
-        "emergency"
-      ],
-      "verified_at": "2026-07-17T00:00:00+07:00"
-    },
-    {
-      "fact_id": "FACT-BOOKING-LEAD-TIME",
-      "claim_vi": "Người dùng được hướng dẫn đặt hẹn trước ít nhất 24 giờ so với giờ dự định khám.",
-      "source_id": "SRC-BOOKING-GUIDE",
-      "allowed_intents": [
-        "booking"
+        "procedure"
       ],
       "verified_at": "2026-07-17T00:00:00+07:00"
     },
@@ -230,36 +370,41 @@
       "verified_at": "2026-07-17T00:00:00+07:00"
     },
     {
-      "fact_id": "FACT-BOOKING-ARRIVAL",
-      "claim_vi": "Người dùng được hướng dẫn có mặt trước giờ dự định khám ít nhất 15 phút để làm thủ tục và đo các chỉ số ban đầu.",
+      "fact_id": "FACT-BOOKING-LEAD-TIME",
+      "claim_vi": "Người dùng được hướng dẫn đặt hẹn trước ít nhất 24 giờ so với giờ dự định khám.",
       "source_id": "SRC-BOOKING-GUIDE",
       "allowed_intents": [
-        "booking",
-        "procedure"
+        "booking"
       ],
       "verified_at": "2026-07-17T00:00:00+07:00"
     },
     {
-      "fact_id": "FACT-PHONE-BOOKING-HOURS",
-      "claim_vi": "Giờ nhận đặt lịch qua điện thoại được công bố là thứ Hai đến thứ Bảy, từ 08:00 đến 16:00; nghỉ Chủ nhật và các ngày Lễ, Tết.",
+      "fact_id": "FACT-BOOKING-NONEMERGENCY",
+      "claim_vi": "Đặt hẹn khám chỉ dành cho các trường hợp không cấp cứu, không khẩn cấp.",
       "source_id": "SRC-BOOKING-GUIDE",
       "allowed_intents": [
         "booking",
-        "working_hours"
+        "emergency"
       ],
       "verified_at": "2026-07-17T00:00:00+07:00"
     },
     {
-      "fact_id": "FACT-HOTLINE",
-      "claim_vi": "Số liên hệ đăng ký khám và giải đáp thủ tục/BHYT được công bố là 19001082; footer của website hiển thị hotline này là 24h/7.",
+      "fact_id": "FACT-BOOKING-URL",
+      "claim_vi": "Link đặt khám được công bố là https://benhvientimhanoi.vn/he-thong/hen-kham/index.html.",
       "source_id": "SRC-BOOKING-GUIDE",
       "allowed_intents": [
-        "booking",
-        "insurance_general",
-        "hospital_contact"
+        "booking"
       ],
-      "verified_at": "2026-07-17T00:00:00+07:00",
-      "usage_note": "Không gọi đây là số cấp cứu; khi nói về đặt lịch qua điện thoại phải đồng thời áp dụng FACT-PHONE-BOOKING-HOURS."
+      "verified_at": "2026-07-17T00:00:00+07:00"
+    },
+    {
+      "fact_id": "FACT-EMERGENCY-ACTION",
+      "claim_vi": "Trong trường hợp cấp cứu, hướng dẫn chính thức yêu cầu gọi số cấp cứu theo tỉnh/thành của người dùng (mã vùng + 115) hoặc đến thẳng cơ sở cấp cứu gần nhất.",
+      "source_id": "SRC-BOOKING-GUIDE",
+      "allowed_intents": [
+        "emergency"
+      ],
+      "verified_at": "2026-07-17T00:00:00+07:00"
     },
     {
       "fact_id": "FACT-FACILITY-1",
@@ -280,11 +425,307 @@
       "verified_at": "2026-07-17T00:00:00+07:00"
     },
     {
-      "fact_id": "FACT-BOOKING-URL",
-      "claim_vi": "Link đặt khám được công bố là https://benhvientimhanoi.vn/he-thong/hen-kham/index.html.",
-      "source_id": "SRC-BOOKING-GUIDE",
+      "fact_id": "FACT-GAP-ADMISSION-PROCEDURE-UNRESOLVED",
+      "claim_vi": "Chưa có nguồn chính thức đã extract trong dataset này về thủ tục nhập viện chi tiết của Bệnh viện Tim Hà Nội. Nếu người dùng hỏi thủ tục nhập viện, hệ thống nên nói chưa có dữ liệu xác thực và chuyển sang kênh chính thức: hotline 19001082 hoặc quầy bệnh viện; không tự suy luận giấy tờ, bước làm thủ tục hoặc điều kiện nhập viện.",
+      "source_id": "SRC-HHH-BOOKING-GUIDE-2026-07-18",
+      "allowed_intents": [
+        "admission",
+        "human_handoff"
+      ],
+      "usage_note": "Đây là fact về khoảng trống dữ liệu: phải nói chưa có nguồn xác thực và chuyển sang kênh chính thức, không tự suy luận.",
+      "valid_from": null,
+      "valid_to": null,
+      "verified_at": "2026-07-18T00:00:00+07:00",
+      "query_variants": [
+        "thủ tục nhập viện bệnh viện tim hà nội",
+        "vào viện cần giấy tờ gì",
+        "quy trình nhập viện bệnh viện tim hà nội"
+      ]
+    },
+    {
+      "fact_id": "FACT-GAP-BHYT-OUTPATIENT-CROSSTIER-2026",
+      "claim_vi": "Từ ngày 01/07/2026, BHXH Việt Nam nêu rằng người tham gia BHYT tự đi khám chữa bệnh ngoại trú tại một số cơ sở cấp cơ bản và cấp chuyên sâu có thể được quỹ BHYT thanh toán 50% mức hưởng đối với các bệnh, nhóm bệnh trước đây chưa được thanh toán. Chính sách không áp dụng cho mọi bệnh viện hoặc mọi trường hợp; còn phụ thuộc cấp chuyên môn kỹ thuật của cơ sở, bệnh/nhóm bệnh được chẩn đoán, mức hưởng và phạm vi chi phí được quỹ BHYT thanh toán.",
+      "source_id": "SRC-BHXH-BHYT-OUTPATIENT-2026-06-26",
+      "allowed_intents": [
+        "insurance_general"
+      ],
+      "usage_note": "Không tính quyền lợi cá nhân hoặc số tiền phải trả; cần xác nhận tại bệnh viện hoặc cơ quan BHXH.",
+      "valid_from": "2026-07-01",
+      "valid_to": null,
+      "verified_at": "2026-07-18T00:00:00+07:00",
+      "query_variants": [
+        "bhyt ngoại trú trái tuyến từ 1/7/2026",
+        "50% mức hưởng bhyt là gì",
+        "tự đi khám ngoại trú trái tuyến có được bhyt không"
+      ]
+    },
+    {
+      "fact_id": "FACT-GAP-BOOKING-CONTACTS",
+      "claim_vi": "Bệnh viện Tim Hà Nội công bố hotline 19001082 cho đăng ký khám bệnh tại cơ sở 1 và cơ sở 2, đồng thời dùng 19001082 để giải đáp thủ tục hành chính và tư vấn BHYT. Phòng khám đa khoa có số 0243.758.9090 hoặc 096.197.2097 trong giờ hành chính. Link đặt khám website là https://benhvientimhanoi.vn/he-thong/hen-kham/index.html.",
+      "source_id": "SRC-HHH-BOOKING-GUIDE-2026-07-18",
+      "allowed_intents": [
+        "booking",
+        "hospital_contact"
+      ],
+      "usage_note": null,
+      "valid_from": null,
+      "valid_to": null,
+      "verified_at": "2026-07-18T00:00:00+07:00",
+      "query_variants": [
+        "số điện thoại đặt lịch bệnh viện tim hà nội",
+        "hotline đặt khám",
+        "đăng ký khám online ở đâu",
+        "liên hệ bảo hiểm y tế bệnh viện tim hà nội"
+      ]
+    },
+    {
+      "fact_id": "FACT-GAP-BOOKING-LEAD-TIME-CONFIRMATION",
+      "claim_vi": "Người bệnh được hướng dẫn đặt hẹn trước ít nhất 24 giờ so với giờ dự định khám. Lịch hẹn chỉ có giá trị sau khi Bệnh viện xác nhận. Người bệnh cần có mặt trước giờ hẹn ít nhất 15 phút để làm thủ tục đăng ký và đo mạch, huyết áp trước khi gặp bác sĩ.",
+      "source_id": "SRC-HHH-BOOKING-GUIDE-2026-07-18",
       "allowed_intents": [
         "booking"
+      ],
+      "usage_note": null,
+      "valid_from": null,
+      "valid_to": null,
+      "verified_at": "2026-07-18T00:00:00+07:00",
+      "query_variants": [
+        "cần đặt lịch trước bao lâu",
+        "lịch hẹn có hiệu lực khi nào",
+        "đến trước giờ khám bao lâu"
+      ]
+    },
+    {
+      "fact_id": "FACT-GAP-BOOKING-NON-EMERGENCY",
+      "claim_vi": "Đặt hẹn khám của Bệnh viện Tim Hà Nội chỉ dành cho trường hợp không cấp cứu, không khẩn cấp. Nếu cấp cứu, người bệnh cần gọi số cấp cứu theo tỉnh/thành theo dạng mã vùng + 115 hoặc đến thẳng cơ sở cấp cứu gần nhất.",
+      "source_id": "SRC-HHH-BOOKING-GUIDE-2026-07-18",
+      "allowed_intents": [
+        "booking"
+      ],
+      "usage_note": null,
+      "valid_from": null,
+      "valid_to": null,
+      "verified_at": "2026-07-18T00:00:00+07:00",
+      "query_variants": [
+        "đặt lịch khám có dùng cho cấp cứu không",
+        "trường hợp nào không nên đặt hẹn khám",
+        "cấp cứu thì đặt lịch hay gọi ai"
+      ]
+    },
+    {
+      "fact_id": "FACT-GAP-BOOKING-SCOPE-FACILITIES",
+      "claim_vi": "Theo hướng dẫn đặt lịch, bệnh viện đang nhận đặt hẹn cho Khám Tự nguyện 1 và 2 ở cơ sở 1 và khám Tự nguyện cơ sở 2. Khám Tự nguyện 3 cơ sở 1 và khám Thường cơ sở 2 được nêu là sẽ triển khai đặt khám theo hẹn sau.",
+      "source_id": "SRC-HHH-BOOKING-GUIDE-2026-07-18",
+      "allowed_intents": [
+        "booking"
+      ],
+      "usage_note": null,
+      "valid_from": null,
+      "valid_to": null,
+      "verified_at": "2026-07-18T00:00:00+07:00",
+      "query_variants": [
+        "đặt lịch áp dụng khu nào",
+        "khám tự nguyện nào đặt lịch được",
+        "khám thường cơ sở 2 đặt hẹn được chưa"
+      ]
+    },
+    {
+      "fact_id": "FACT-GAP-EMERGENCY-HOSPITAL-NOTE",
+      "claim_vi": "Nguồn hiện có của Bệnh viện Tim Hà Nội chỉ cho phép trả lời an toàn rằng đặt hẹn khám không dành cho trường hợp cấp cứu, không khẩn cấp; khi cấp cứu cần gọi số cấp cứu theo tỉnh/thành dạng mã vùng + 115 hoặc đến thẳng cơ sở cấp cứu gần nhất. Trang Giới thiệu chung có nêu bệnh viện có Khoa Cấp cứu và các bệnh nhân cần can thiệp cấp cứu sẽ được thực hiện trong vòng 1 tiếng từ khi đến bệnh viện, nhưng chưa có trang quy trình cấp cứu chi tiết để hướng dẫn luồng xử trí.",
+      "source_id": "SRC-HHH-GENERAL-INTRODUCTION-2026-07-18",
+      "allowed_intents": [
+        "emergency"
+      ],
+      "usage_note": "Không thay thế gọi cấp cứu hoặc đánh giá trực tiếp; không hướng dẫn tự xử trí triệu chứng cấp cứu qua chat.",
+      "valid_from": null,
+      "valid_to": null,
+      "verified_at": "2026-07-18T00:00:00+07:00",
+      "query_variants": [
+        "cấp cứu bệnh viện tim hà nội",
+        "quy trình cấp cứu bệnh viện tim hà nội",
+        "can thiệp cấp cứu mất bao lâu"
+      ]
+    },
+    {
+      "fact_id": "FACT-GAP-EXAM-FLOW-CS1-CS2-LINKED",
+      "claim_vi": "Trang Khoa Khám bệnh tự nguyện của Bệnh viện Tim Hà Nội có mục Quy trình khám chữa bệnh và liên kết tới hai sơ đồ: Quy trình khám chữa bệnh tại Bệnh viện Tim Hà Nội cơ sở 1 và Quy trình khám chữa bệnh tại Bệnh viện Tim Hà Nội cơ sở II. Nội dung sơ đồ hiện nằm trong ảnh/link nguồn; dataset này chưa OCR được các bước chi tiết, nên khi trả lời không được tự dựng thứ tự bước nếu chưa có bản text đã kiểm chứng.",
+      "source_id": "SRC-HHH-VOLUNTARY-CLINIC-2026-07-18",
+      "allowed_intents": [
+        "procedure"
+      ],
+      "usage_note": "Chỉ dùng như chỉ dẫn nguồn quy trình; chưa đủ để trả lời chi tiết từng bước khám.",
+      "valid_from": null,
+      "valid_to": null,
+      "verified_at": "2026-07-18T00:00:00+07:00",
+      "query_variants": [
+        "quy trình khám chữa bệnh cơ sở 1",
+        "quy trình khám chữa bệnh cơ sở 2",
+        "bệnh viện tim hà nội có flow khám bệnh không"
+      ]
+    },
+    {
+      "fact_id": "FACT-GAP-FOLLOW-UP-GUIDANCE-UNRESOLVED",
+      "claim_vi": "Dataset hiện chỉ thấy widget thống kê 'Số bệnh nhân hẹn tái khám' trên website Bệnh viện Tim Hà Nội, chưa có policy/hướng dẫn tái khám chi tiết đã extract. Nếu người dùng hỏi hướng dẫn tái khám, hệ thống nên nói chưa có dữ liệu xác thực và khuyến nghị liên hệ hotline 19001082, kiểm tra giấy hẹn/phiếu ra viện hoặc hỏi quầy bệnh viện.",
+      "source_id": "SRC-HHH-BOOKING-GUIDE-2026-07-18",
+      "allowed_intents": [
+        "follow_up",
+        "human_handoff"
+      ],
+      "usage_note": "Đây là fact về khoảng trống dữ liệu: phải nói chưa có nguồn xác thực và chuyển sang kênh chính thức, không tự suy luận.",
+      "valid_from": null,
+      "valid_to": null,
+      "verified_at": "2026-07-18T00:00:00+07:00",
+      "query_variants": [
+        "hướng dẫn tái khám bệnh viện tim hà nội",
+        "hẹn tái khám như thế nào",
+        "số bệnh nhân hẹn tái khám có nghĩa gì"
+      ]
+    },
+    {
+      "fact_id": "FACT-GAP-HOSPITAL-FACILITY-MASTER",
+      "claim_vi": "Trang Giới thiệu chung nêu Bệnh viện Tim Hà Nội có hai cơ sở: số 92 Trần Hưng Đạo, phường Cửa Nam, Hà Nội và số 695 Lạc Long Quân, phường Tây Hồ, Hà Nội. Trang này nêu bệnh viện có 30 khoa/phòng/ban, gồm 16 khoa lâm sàng, 3 khoa cận lâm sàng, 11 khoa/phòng/ban chức năng và hậu cần; phần liệt kê hiện có 11 khoa lâm sàng: Khám bệnh, Nội, Nội Nhi, Tim mạch chuyển hóa, Hồi sức tích cực nhi, Gây mê hồi sức, Hồi sức tích cực, Ngoại, Tim mạch can thiệp, Cấp cứu, Các bệnh mạch máu; 5 khoa cận lâm sàng: Xét nghiệm, Dược, Kiểm soát nhiễm khuẩn, Chẩn đoán hình ảnh, Dinh dưỡng; và 6 đơn nguyên: Khám và điều trị tự nguyện, Thăm dò điện sinh lý và rối loạn nhịp, Sơ sinh, Tim mạch can thiệp cơ sở 2, Can thiệp tĩnh mạch, chẩn đoán hình ảnh kỹ thuật cao.",
+      "source_id": "SRC-HHH-GENERAL-INTRODUCTION-2026-07-18",
+      "allowed_intents": [
+        "doctor_department",
+        "hospital_contact",
+        "booking"
+      ],
+      "usage_note": "Trang nguồn có chênh giữa số tổng hợp và danh sách chi tiết, nên giữ review_only trước khi dùng như master production.",
+      "valid_from": null,
+      "valid_to": null,
+      "verified_at": "2026-07-18T00:00:00+07:00",
+      "query_variants": [
+        "bệnh viện tim hà nội có mấy cơ sở",
+        "cơ cấu khoa phòng bệnh viện tim hà nội",
+        "các khoa lâm sàng bệnh viện tim hà nội"
+      ]
+    },
+    {
+      "fact_id": "FACT-GAP-HOSPITAL-LEADERSHIP-MASTER",
+      "claim_vi": "Trang Ban lãnh đạo bệnh viện liệt kê bốn tên: PGS.TS.BS Nguyễn Sinh Hiền, TS.BS Vũ Quỳnh Nga, TS.BS Phạm Như Hùng và TS.Bs Hoàng Văn. Trang nguồn không hiển thị chức vụ dạng text trong phần đã extract, nên dataset không gán chức danh cụ thể cho từng người.",
+      "source_id": "SRC-HHH-LEADERSHIP-2026-07-18",
+      "allowed_intents": [
+        "doctor_department"
+      ],
+      "usage_note": "Không suy luận chức danh từ thứ tự ảnh hoặc kiến thức ngoài trang nguồn.",
+      "valid_from": null,
+      "valid_to": null,
+      "verified_at": "2026-07-18T00:00:00+07:00",
+      "query_variants": [
+        "ban lãnh đạo bệnh viện tim hà nội",
+        "lãnh đạo bệnh viện tim hà nội gồm ai",
+        "giám đốc phó giám đốc bệnh viện tim hà nội"
+      ]
+    },
+    {
+      "fact_id": "FACT-GAP-SPECIALIZED-SERVICES-GENERAL",
+      "claim_vi": "Trang Giới thiệu chung nêu Bệnh viện Tim Hà Nội là trung tâm tim mạch với 5 mũi nhọn: nội khoa, ngoại khoa, nhi khoa, tim mạch can thiệp và tim mạch chuyển hóa. Trang liệt kê các nhóm kỹ thuật như chẩn đoán và điều trị nội khoa tim mạch - chuyển hóa, siêu âm tim Doppler 2D/4D, siêu âm tim qua thực quản, siêu âm tim cản âm, siêu âm Dobutamin, siêu âm tim thai, Holter điện tim, Holter huyết áp, nghiệm pháp gắng sức, MSCT 128 dãy, cộng hưởng từ 1.5 Tesla, can thiệp động mạch vành, nong van hai lá, stent graft, thay van động mạch chủ qua da, điện sinh lý tim, phẫu thuật tim nhi khoa, phẫu thuật sửa/thay van tim và bắc cầu động mạch vành.",
+      "source_id": "SRC-HHH-GENERAL-INTRODUCTION-2026-07-18",
+      "allowed_intents": [
+        "specialized_service",
+        "doctor_department"
+      ],
+      "usage_note": null,
+      "valid_from": null,
+      "valid_to": null,
+      "verified_at": "2026-07-18T00:00:00+07:00",
+      "query_variants": [
+        "dịch vụ chuyên khoa bệnh viện tim hà nội",
+        "bệnh viện tim hà nội mạnh về kỹ thuật gì",
+        "các mũi nhọn chuyên môn bệnh viện tim hà nội"
+      ]
+    },
+    {
+      "fact_id": "FACT-GAP-VOLUNTARY-CLINIC-BHYT-INPATIENT",
+      "claim_vi": "Trang Khoa Khám bệnh tự nguyện nêu rằng bệnh nhân có thẻ BHYT và giấy chuyển viện đúng tuyến có thể lựa chọn một trong hai khu Tự nguyện. Khi vào viện điều trị nội trú, trường hợp cấp cứu được hưởng BHYT cấp cứu; trường hợp không cấp cứu cần xin chuyển tuyến theo quy định BHYT.",
+      "source_id": "SRC-HHH-VOLUNTARY-CLINIC-2026-07-18",
+      "allowed_intents": [
+        "insurance_general",
+        "procedure"
+      ],
+      "usage_note": "Không thay thế xác nhận quyền lợi BHYT cá nhân tại quầy bệnh viện hoặc cơ quan BHXH.",
+      "valid_from": null,
+      "valid_to": null,
+      "verified_at": "2026-07-18T00:00:00+07:00",
+      "query_variants": [
+        "khám tự nguyện có dùng bảo hiểm y tế không",
+        "vào viện nội trú từ khoa tự nguyện có bhyt không",
+        "cần chuyển tuyến khi vào viện không cấp cứu không"
+      ]
+    },
+    {
+      "fact_id": "FACT-GAP-VOLUNTARY-CLINIC-SERVICES",
+      "claim_vi": "Trang Khoa Khám bệnh tự nguyện liệt kê các dịch vụ/thăm dò như điện tim đồ, X-quang tim phổi, siêu âm Doppler tim thường quy, xét nghiệm cơ bản, siêu âm ổ bụng, nghiệm pháp gắng sức, siêu âm tim Dobutamine, Holter huyết áp 24 giờ, Holter điện tim 24 giờ, siêu âm tim qua thực quản, siêu âm tim 4D, siêu âm Doppler mạch máu, đo ABI, xét nghiệm máu chuyên sâu, chụp cộng hưởng từ, chụp CT động mạch vành và siêu âm tim thai từ tuần thai thứ 18.",
+      "source_id": "SRC-HHH-VOLUNTARY-CLINIC-2026-07-18",
+      "allowed_intents": [
+        "specialized_service",
+        "doctor_department"
+      ],
+      "usage_note": null,
+      "valid_from": null,
+      "valid_to": null,
+      "verified_at": "2026-07-18T00:00:00+07:00",
+      "query_variants": [
+        "dịch vụ chuyên sâu khoa tự nguyện",
+        "có holter huyết áp không",
+        "có siêu âm tim thai không",
+        "khám tim chuyên sâu gồm gì"
+      ]
+    },
+    {
+      "fact_id": "FACT-GAP-VOLUNTARY-CLINIC-SUMMARY",
+      "claim_vi": "Khoa Khám bệnh Tự nguyện được thành lập tháng 10/2013 và có 2 khu khám bệnh: Khám bệnh tự nguyện 1 và Khám bệnh tự nguyện 3. Khoa có các phòng khám chuyên khoa tim mạch, phòng khám tĩnh mạch chi dưới, phòng siêu âm và hệ thống tài chính riêng để giảm thời gian chờ thủ tục tài chính.",
+      "source_id": "SRC-HHH-VOLUNTARY-CLINIC-2026-07-18",
+      "allowed_intents": [
+        "doctor_department",
+        "specialized_service"
+      ],
+      "usage_note": null,
+      "valid_from": null,
+      "valid_to": null,
+      "verified_at": "2026-07-18T00:00:00+07:00",
+      "query_variants": [
+        "khoa khám bệnh tự nguyện có gì",
+        "khám tự nguyện bệnh viện tim hà nội",
+        "khoa tự nguyện có mấy khu"
+      ]
+    },
+    {
+      "fact_id": "FACT-GAP-ZALO-BOOKING-GUIDE-VIDEO",
+      "claim_vi": "Bệnh viện Tim Hà Nội có trang video chính thức tên 'Hướng dẫn truy cập và đặt lịch hẹn trên Zalo Bệnh viện Tim Hà Nội', ngày đăng 27/01/2026. Trang website cũng đặt link Zalo công khai dạng https://zalo.me/s/2972821668579995579/ trong khu vực đăng ký lịch khám online.",
+      "source_id": "SRC-HHH-ZALO-GUIDE-2026-07-18",
+      "allowed_intents": [
+        "booking"
+      ],
+      "usage_note": null,
+      "valid_from": null,
+      "valid_to": null,
+      "verified_at": "2026-07-18T00:00:00+07:00",
+      "query_variants": [
+        "đặt lịch qua zalo bệnh viện tim hà nội",
+        "zalo mini app bệnh viện tim hà nội",
+        "hướng dẫn truy cập zalo bệnh viện tim hà nội"
+      ]
+    },
+    {
+      "fact_id": "FACT-HOTLINE",
+      "claim_vi": "Số liên hệ đăng ký khám và giải đáp thủ tục/BHYT được công bố là 19001082; footer của website hiển thị hotline này là 24h/7.",
+      "source_id": "SRC-BOOKING-GUIDE",
+      "allowed_intents": [
+        "booking",
+        "insurance_general",
+        "hospital_contact"
+      ],
+      "verified_at": "2026-07-17T00:00:00+07:00",
+      "usage_note": "Không gọi đây là số cấp cứu; khi nói về đặt lịch qua điện thoại phải đồng thời áp dụng FACT-PHONE-BOOKING-HOURS."
+    },
+    {
+      "fact_id": "FACT-PHONE-BOOKING-HOURS",
+      "claim_vi": "Giờ nhận đặt lịch qua điện thoại được công bố là thứ Hai đến thứ Bảy, từ 08:00 đến 16:00; nghỉ Chủ nhật và các ngày Lễ, Tết.",
+      "source_id": "SRC-BOOKING-GUIDE",
+      "allowed_intents": [
+        "booking",
+        "working_hours"
       ],
       "verified_at": "2026-07-17T00:00:00+07:00"
     },
@@ -293,11 +734,94 @@
       "claim_vi": "Trang giá dịch vụ kỹ thuật 2025 được đăng ngày 20/01/2025 và dẫn chiếu Phụ lục số 06 Nghị quyết số 45/2024/NQ-HĐND ngày 10/12/2024; trang nêu phạm vi cho người có và không có thẻ BHYT.",
       "source_id": "SRC-PRICE-2025",
       "allowed_intents": [
-        "service_price",
+        "service_price_current",
         "insurance_general"
       ],
       "verified_at": "2026-07-17T00:00:00+07:00",
       "usage_note": "Có thể tra đúng dòng giá trong snapshot 2025 bằng structured lookup và phải nói rõ đây là dữ liệu lịch sử. Không dùng để khẳng định giá hiện hành hoặc tính phần bệnh nhân phải trả."
+    },
+    {
+      "fact_id": "FACT-WEB-HOSPITAL-CONTACTS",
+      "claim_vi": "Bệnh viện Tim Hà Nội công bố cơ sở 1 tại số 92 Trần Hưng Đạo, phường Cửa Nam, Hà Nội; cơ sở 2 tại số 695 Lạc Long Quân, phường Tây Hồ, Hà Nội; email cskh@timhanoi.vn và hotline 19001082 hoạt động 24h/7.",
+      "source_id": "SRC-HHH-ONLINE-BOOKING-FORM-2026-07-18",
+      "allowed_intents": [
+        "hospital_contact",
+        "booking"
+      ],
+      "verified_at": "2026-07-18T00:00:00+07:00",
+      "valid_from": null,
+      "valid_to": null
+    },
+    {
+      "fact_id": "FACT-WEB-HOTLINE-BOOKING-FEE",
+      "claim_vi": "Bệnh viện Tim Hà Nội thông báo người bệnh có thể gọi tổng đài chăm sóc khách hàng 19001082 để đặt lịch khám; cuộc gọi có thu phí 1.000 đồng mỗi phút.",
+      "source_id": "SRC-HHH-HOTLINE-19001082-2025",
+      "allowed_intents": [
+        "booking",
+        "hospital_contact"
+      ],
+      "verified_at": "2026-07-18T00:00:00+07:00",
+      "valid_from": null,
+      "valid_to": null
+    },
+    {
+      "fact_id": "FACT-WEB-ONLINE-BOOKING-EMERGENCY",
+      "claim_vi": "Trang đặt lịch online nêu rằng trong trường hợp khẩn cấp hoặc nghi ngờ triệu chứng nguy hiểm, người bệnh nên đến trực tiếp bệnh viện hoặc trung tâm y tế gần nhất để xử lý kịp thời, không chờ đặt lịch online.",
+      "source_id": "SRC-HHH-ONLINE-BOOKING-FORM-2026-07-18",
+      "allowed_intents": [
+        "booking",
+        "emergency"
+      ],
+      "verified_at": "2026-07-18T00:00:00+07:00",
+      "valid_from": null,
+      "valid_to": null
+    },
+    {
+      "fact_id": "FACT-WEB-ONLINE-BOOKING-FORM-FIELDS",
+      "claim_vi": "Trang đặt lịch online của Bệnh viện Tim Hà Nội cho phép chọn cơ sở 1 hoặc cơ sở 2 và có các trường họ tên, ngày sinh, địa chỉ, điện thoại, email, tên bác sĩ, dịch vụ, ngày khám, khung giờ hẹn, phân loại tái khám hoặc khám mới và mã xác nhận.",
+      "source_id": "SRC-HHH-ONLINE-BOOKING-FORM-2026-07-18",
+      "allowed_intents": [
+        "booking"
+      ],
+      "verified_at": "2026-07-18T00:00:00+07:00",
+      "valid_from": null,
+      "valid_to": null
+    },
+    {
+      "fact_id": "FACT-WEB-ONLINE-BOOKING-VALIDITY",
+      "claim_vi": "Lịch hẹn online chỉ có hiệu lực sau khi được bộ phận chăm sóc khách hàng của Bệnh viện Tim Hà Nội xác nhận chính thức; người dùng cần đặt trước ít nhất 24 giờ.",
+      "source_id": "SRC-HHH-ONLINE-BOOKING-FORM-2026-07-18",
+      "allowed_intents": [
+        "booking"
+      ],
+      "verified_at": "2026-07-18T00:00:00+07:00",
+      "valid_from": null,
+      "valid_to": null
+    },
+    {
+      "fact_id": "FACT-WEB-VOLUNTARY-CLINIC-BHYT",
+      "claim_vi": "Trang Khoa Khám bệnh Tự nguyện nêu bệnh nhân có thẻ BHYT và giấy chuyển viện đúng tuyến có thể lựa chọn một trong hai khu Tự nguyện; nội trú cấp cứu được hưởng BHYT cấp cứu, trường hợp không cấp cứu cần chuyển tuyến theo quy định BHYT.",
+      "source_id": "SRC-HHH-VOLUNTARY-CLINIC-2026-07-18",
+      "allowed_intents": [
+        "insurance_general",
+        "procedure"
+      ],
+      "verified_at": "2026-07-18T00:00:00+07:00",
+      "valid_from": null,
+      "valid_to": null
+    },
+    {
+      "fact_id": "FACT-WEB-VOLUNTARY-CLINIC-PROCEDURE",
+      "claim_vi": "Khoa Khám bệnh Tự nguyện có quầy tư vấn hướng dẫn thủ tục khám chữa bệnh, thủ tục BHYT, chọn bác sĩ khám và liên hệ đưa người bệnh đi làm các thăm dò tim mạch không nằm tại khoa.",
+      "source_id": "SRC-HHH-VOLUNTARY-CLINIC-2026-07-18",
+      "allowed_intents": [
+        "procedure",
+        "booking",
+        "insurance_general"
+      ],
+      "verified_at": "2026-07-18T00:00:00+07:00",
+      "valid_from": null,
+      "valid_to": null
     }
   ],
   "fixed_response_templates": {

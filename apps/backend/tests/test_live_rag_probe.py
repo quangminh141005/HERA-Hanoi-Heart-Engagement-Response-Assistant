@@ -12,11 +12,15 @@ from scripts.verify_live_rag import (
 
 def test_metric_parser_and_provider_deltas() -> None:
     before = (
+        'hera_ai_tokens_total{kind="input",provider="fpt_guard"} 1\n'
+        'hera_ai_tokens_total{kind="output",provider="fpt_guard"} 1\n'
         'hera_ai_tokens_total{kind="input",provider="fpt_llm"} 10\n'
         'hera_ai_tokens_total{kind="output",provider="fpt_llm"} 4\n'
         'hera_ai_tokens_total{kind="input",provider="fpt_embedding"} 2\n'
     )
     after = (
+        'hera_ai_tokens_total{kind="input",provider="fpt_guard"} 21\n'
+        'hera_ai_tokens_total{kind="output",provider="fpt_guard"} 6\n'
         'hera_ai_tokens_total{kind="input",provider="fpt_llm"} 110\n'
         'hera_ai_tokens_total{kind="output",provider="fpt_llm"} 34\n'
         'hera_ai_tokens_total{kind="input",provider="fpt_embedding"} 12\n'
@@ -29,6 +33,8 @@ def test_metric_parser_and_provider_deltas() -> None:
         kind="input",
     ) == 110
     assert _provider_deltas(before, after) == {
+        "guard_input_tokens_delta": 20,
+        "guard_output_tokens_delta": 5,
         "llm_input_tokens_delta": 100,
         "llm_output_tokens_delta": 30,
         "embedding_input_tokens_delta": 10,

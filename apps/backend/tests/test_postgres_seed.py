@@ -100,7 +100,7 @@ def test_knowledge_embedding_maps_to_pgvector_contract() -> None:
     )
 
     assert "embedding" in columns
-    assert len(rows) == 11
+    assert len(rows) == 34
     assert rows[0]["embedding_model"] == "Vietnamese_Embedding"
     assert rows[0]["embedding_dimension"] == 1024
     assert len(json.loads(rows[0]["embedding"])) == 1024
