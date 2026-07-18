@@ -1,6 +1,7 @@
 from __future__ import annotations
 
-from stress_test import PROFILES, RequestResult, _summary
+from app.schemas.booking import BookingPatientIdentity
+from stress_test import PROFILES, RequestResult, _summary, _synthetic_patient
 
 
 def test_stress_profiles_are_monotonic_and_extreme_is_large() -> None:
@@ -35,3 +36,12 @@ def test_stress_summary_reports_tail_latency_and_failures() -> None:
     assert report["error_codes"] == {"RATE_LIMITED": 1}
     assert report["replicas"] == ["replica-a"]
     assert report["replica_count"] == 1
+
+
+def test_stress_booking_payload_uses_valid_synthetic_patient_identity() -> None:
+    patient = BookingPatientIdentity(**_synthetic_patient(42))
+
+    assert patient.full_name == "Stress Test 000042"
+    assert patient.phone_number.startswith("090")
+    assert patient.cccd_number is not None
+    assert patient.bhyt_card_number is not None

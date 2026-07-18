@@ -190,6 +190,18 @@ def _session_records(payload: dict[str, Any] | None) -> list[dict[str, Any]]:
     return [item for item in records if isinstance(item, dict)]
 
 
+def _synthetic_patient(index: int) -> dict[str, str]:
+    """Return a valid non-real patient identity for local hold stress tests."""
+
+    serial = f"{index:06d}"
+    return {
+        "full_name": f"Stress Test {serial}",
+        "phone_number": f"090{index % 10_000_000:07d}",
+        "cccd_number": f"001{index % 1_000_000_000:09d}",
+        "bhyt_card_number": f"ST{index % 1_000_000_000:09d}",
+    }
+
+
 async def _run_booking(
     client: httpx.AsyncClient,
     *,
@@ -223,6 +235,7 @@ async def _run_booking(
             json_body={
                 "booking_session_id": session_id,
                 "idempotency_key": f"stress-idempotency-{unique}",
+                "patient": _synthetic_patient(index),
             },
             headers={"X-Anonymous-Session-ID": f"stress-owner-{unique}"},
         )
