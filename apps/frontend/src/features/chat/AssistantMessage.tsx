@@ -1,5 +1,3 @@
-import { Bot } from 'lucide-react';
-
 import { CitationDrawer } from '../../components/CitationDrawer';
 import { ClassificationBadge } from '../../components/ClassificationBadge';
 import { EmergencyCard } from '../../components/results/EmergencyCard';
@@ -55,7 +53,7 @@ export function AssistantMessage({ message }: { message: ChatMessage }) {
   return (
     <article className="message message-assistant">
       <div className="message-meta">
-        <strong><Bot size={15} aria-hidden="true" /> HERA</strong>
+        <strong><img className="agent-icon" src="/icons/hera-agent-192.png" alt="" /> HERA</strong>
         {message.intent ? <span>{INTENT_LABELS[message.intent] ?? message.intent}</span> : null}
         {message.dataClassification ? (
           <ClassificationBadge value={currentDataset ? 'official_current' : message.dataClassification} />

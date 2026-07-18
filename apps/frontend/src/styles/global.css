@@ -78,6 +78,12 @@ a {
   background: #b4232a;
 }
 
+.brand-mark img {
+  width: 34px;
+  height: 34px;
+  object-fit: contain;
+}
+
 .brand strong,
 .brand small {
   display: block;
@@ -461,6 +467,12 @@ select:focus-visible,
 
 .message-meta strong {
   gap: 6px;
+}
+
+.agent-icon {
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
 }
 
 .context-panel h1 {
@@ -1687,4 +1699,3 @@ select:focus-visible,
   color: #b4232a;
   flex-basis: 100%;
 }
-

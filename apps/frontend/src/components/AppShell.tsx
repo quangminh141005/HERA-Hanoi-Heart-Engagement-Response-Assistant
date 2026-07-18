@@ -1,4 +1,4 @@
-import { HeartPulse, ShieldCheck } from 'lucide-react';
+import { ShieldCheck } from 'lucide-react';
 import { ReactNode } from 'react';
 
 export function AppShell({
@@ -13,7 +13,7 @@ export function AppShell({
       <header className="topbar">
         <a className="brand" href={compact ? '/widget/v1' : '/'} aria-label="HERA - trang chính">
           <span className="brand-mark" aria-hidden="true">
-            <HeartPulse size={22} />
+            <img src="/icons/hera-agent-192.png" alt="" />
           </span>
           <span>
             <strong>HERA</strong>
