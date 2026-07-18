@@ -1,0 +1,4930 @@
+[
+  {
+    "id": "hht_on_demand_ocr_2024__0001__stt_page_3_row_1__kham_theo_yeu_cau_murc_1",
+    "document_type": "hospital_service_price_on_demand",
+    "price_kind": "on_demand",
+    "page": 3,
+    "stt": "page-3-row-1",
+    "ma_tuong_duong": "",
+    "service_name": "Kham theo yeu cau (murc 1)",
+    "service_name_single_line": "Kham theo yeu cau (murc 1)",
+    "ghi_chu": "Cos1",
+    "ghi_chu_single_line": "Cos1",
+    "has_price": true,
+    "prices": {
+      "primary": {
+        "field": "gia_dich_vu_y_te",
+        "label": "gia dich vu y te",
+        "display": "500,000",
+        "amount_vnd": 500000,
+        "status": "published_ocr_review"
+      },
+      "gia_dich_vu_y_te": {
+        "label": "gia dich vu y te",
+        "display": "500,000",
+        "amount_vnd": 500000,
+        "status": "published_ocr_review"
+      },
+      "gia_kham_benh": {
+        "label": "gia kham benh",
+        "display": "200,000",
+        "amount_vnd": 200000,
+        "status": "published_ocr_review"
+      },
+      "gia_dich_vu_theo_yeu_cau": {
+        "label": "gia dich vu theo yeu cau",
+        "display": "300,000",
+        "amount_vnd": 300000,
+        "status": "published_ocr_review"
+      },
+      "all": [
+        {
+          "field": "gia_dich_vu_y_te",
+          "label": "gia dich vu y te",
+          "display": "500,000",
+          "amount_vnd": 500000
+        },
+        {
+          "field": "gia_kham_benh",
+          "label": "gia kham benh",
+          "display": "200,000",
+          "amount_vnd": 200000
+        },
+        {
+          "field": "gia_dich_vu_theo_yeu_cau",
+          "label": "gia dich vu theo yeu cau",
+          "display": "300,000",
+          "amount_vnd": 300000
+        }
+      ]
+    },
+    "ocr": {
+      "confidence_min": 0.8316802382469177,
+      "confidence_avg": 0.9484187111040175,
+      "token_count": 6,
+      "requires_human_review": true
+    },
+    "approval_status": "review_only",
+    "verified_at": "2026-07-18T00:00:00+07:00",
+    "raw_columns": {
+      "stt": "page-3-row-1",
+      "ghi_chu": "Cos1",
+      "dich_vu_ky_thuat": "Kham theo yeu cau (murc 1)",
+      "gia_dich_vu_y_te": "500,000",
+      "gia_kham_benh": "200,000",
+      "gia_dich_vu_theo_yeu_cau": "300,000"
+    }
+  },
+  {
+    "id": "hht_on_demand_ocr_2024__0002__stt_page_3_row_2__kham_theo_yeu_cau_murc",
+    "document_type": "hospital_service_price_on_demand",
+    "price_kind": "on_demand",
+    "page": 3,
+    "stt": "page-3-row-2",
+    "ma_tuong_duong": "",
+    "service_name": "Kham theo yeu cau (murc",
+    "service_name_single_line": "Kham theo yeu cau (murc",
+    "ghi_chu": "2)",
+    "ghi_chu_single_line": "2)",
+    "has_price": true,
+    "prices": {
+      "primary": {
+        "field": "gia_dich_vu_y_te",
+        "label": "gia dich vu y te",
+        "display": "300,000",
+        "amount_vnd": 300000,
+        "status": "published_ocr_review"
+      },
+      "gia_dich_vu_y_te": {
+        "label": "gia dich vu y te",
+        "display": "300,000",
+        "amount_vnd": 300000,
+        "status": "published_ocr_review"
+      },
+      "gia_kham_benh": {
+        "label": "gia kham benh",
+        "display": "100,000",
+        "amount_vnd": 100000,
+        "status": "published_ocr_review"
+      },
+      "gia_dich_vu_theo_yeu_cau": {
+        "label": "gia dich vu theo yeu cau",
+        "display": "200,000",
+        "amount_vnd": 200000,
+        "status": "published_ocr_review"
+      },
+      "all": [
+        {
+          "field": "gia_dich_vu_y_te",
+          "label": "gia dich vu y te",
+          "display": "300,000",
+          "amount_vnd": 300000
+        },
+        {
+          "field": "gia_kham_benh",
+          "label": "gia kham benh",
+          "display": "100,000",
+          "amount_vnd": 100000
+        },
+        {
+          "field": "gia_dich_vu_theo_yeu_cau",
+          "label": "gia dich vu theo yeu cau",
+          "display": "200,000",
+          "amount_vnd": 200000
+        }
+      ]
+    },
+    "ocr": {
+      "confidence_min": 0.5276662707328796,
+      "confidence_avg": 0.8838609936709095,
+      "token_count": 7,
+      "requires_human_review": true
+    },
+    "approval_status": "review_only",
+    "verified_at": "2026-07-18T00:00:00+07:00",
+    "raw_columns": {
+      "stt": "page-3-row-2",
+      "ghi_chu": "2)",
+      "dich_vu_ky_thuat": "Kham theo yeu cau (murc",
+      "gia_dich_vu_y_te": "300,000",
+      "gia_kham_benh": "100,000",
+      "gia_dich_vu_theo_yeu_cau": "200,000"
+    }
+  },
+  {
+    "id": "hht_on_demand_ocr_2024__0003__stt_2__kham_theo_yeu_cau_murc_1",
+    "document_type": "hospital_service_price_on_demand",
+    "price_kind": "on_demand",
+    "page": 3,
+    "stt": "2",
+    "ma_tuong_duong": "",
+    "service_name": "Kham theo yeu cau (murc 1)",
+    "service_name_single_line": "Kham theo yeu cau (murc 1)",
+    "ghi_chu": "Co s2",
+    "ghi_chu_single_line": "Co s2",
+    "has_price": true,
+    "prices": {
+      "primary": {
+        "field": "gia_dich_vu_y_te",
+        "label": "gia dich vu y te",
+        "display": "500,000",
+        "amount_vnd": 500000,
+        "status": "published_ocr_review"
+      },
+      "gia_dich_vu_y_te": {
+        "label": "gia dich vu y te",
+        "display": "500,000",
+        "amount_vnd": 500000,
+        "status": "published_ocr_review"
+      },
+      "gia_kham_benh": {
+        "label": "gia kham benh",
+        "display": "200,000",
+        "amount_vnd": 200000,
+        "status": "published_ocr_review"
+      },
+      "gia_dich_vu_theo_yeu_cau": {
+        "label": "gia dich vu theo yeu cau",
+        "display": "300,000",
+        "amount_vnd": 300000,
+        "status": "published_ocr_review"
+      },
+      "all": [
+        {
+          "field": "gia_dich_vu_y_te",
+          "label": "gia dich vu y te",
+          "display": "500,000",
+          "amount_vnd": 500000
+        },
+        {
+          "field": "gia_kham_benh",
+          "label": "gia kham benh",
+          "display": "200,000",
+          "amount_vnd": 200000
+        },
+        {
+          "field": "gia_dich_vu_theo_yeu_cau",
+          "label": "gia dich vu theo yeu cau",
+          "display": "300,000",
+          "amount_vnd": 300000
+        }
+      ]
+    },
+    "ocr": {
+      "confidence_min": 0.8731012940406799,
+      "confidence_avg": 0.9720079649000003,
+      "token_count": 7,
+      "requires_human_review": true
+    },
+    "approval_status": "review_only",
+    "verified_at": "2026-07-18T00:00:00+07:00",
+    "raw_columns": {
+      "stt": "2",
+      "ghi_chu": "Co s2",
+      "dich_vu_ky_thuat": "Kham theo yeu cau (murc 1)",
+      "gia_dich_vu_y_te": "500,000",
+      "gia_kham_benh": "200,000",
+      "gia_dich_vu_theo_yeu_cau": "300,000"
+    }
+  },
+  {
+    "id": "hht_on_demand_ocr_2024__0004__stt_2__kham_theo_yeu_cau_murc",
+    "document_type": "hospital_service_price_on_demand",
+    "price_kind": "on_demand",
+    "page": 3,
+    "stt": "2",
+    "ma_tuong_duong": "",
+    "service_name": "Kham theo yeu cau (murc",
+    "service_name_single_line": "Kham theo yeu cau (murc",
+    "ghi_chu": "2)",
+    "ghi_chu_single_line": "2)",
+    "has_price": true,
+    "prices": {
+      "primary": {
+        "field": "gia_dich_vu_y_te",
+        "label": "gia dich vu y te",
+        "display": "300,000",
+        "amount_vnd": 300000,
+        "status": "published_ocr_review"
+      },
+      "gia_dich_vu_y_te": {
+        "label": "gia dich vu y te",
+        "display": "300,000",
+        "amount_vnd": 300000,
+        "status": "published_ocr_review"
+      },
+      "gia_kham_benh": {
+        "label": "gia kham benh",
+        "display": "100,000",
+        "amount_vnd": 100000,
+        "status": "published_ocr_review"
+      },
+      "gia_dich_vu_theo_yeu_cau": {
+        "label": "gia dich vu theo yeu cau",
+        "display": "200,000",
+        "amount_vnd": 200000,
+        "status": "published_ocr_review"
+      },
+      "all": [
+        {
+          "field": "gia_dich_vu_y_te",
+          "label": "gia dich vu y te",
+          "display": "300,000",
+          "amount_vnd": 300000
+        },
+        {
+          "field": "gia_kham_benh",
+          "label": "gia kham benh",
+          "display": "100,000",
+          "amount_vnd": 100000
+        },
+        {
+          "field": "gia_dich_vu_theo_yeu_cau",
+          "label": "gia dich vu theo yeu cau",
+          "display": "200,000",
+          "amount_vnd": 200000
+        }
+      ]
+    },
+    "ocr": {
+      "confidence_min": 0.9056535065174103,
+      "confidence_avg": 0.9750095956443999,
+      "token_count": 5,
+      "requires_human_review": true
+    },
+    "approval_status": "review_only",
+    "verified_at": "2026-07-18T00:00:00+07:00",
+    "raw_columns": {
+      "stt": "2",
+      "ghi_chu": "2)",
+      "dich_vu_ky_thuat": "Kham theo yeu cau (murc",
+      "gia_dich_vu_y_te": "300,000",
+      "gia_kham_benh": "100,000",
+      "gia_dich_vu_theo_yeu_cau": "200,000"
+    }
+  },
+  {
+    "id": "hht_on_demand_ocr_2024__0005__stt_2__dich_vu_cham_soc_y_te_duoi_4_gio_ngay_phong_3_giuong",
+    "document_type": "hospital_service_price_on_demand",
+    "price_kind": "on_demand",
+    "page": 3,
+    "stt": "2",
+    "ma_tuong_duong": "",
+    "service_name": "Dich vu cham soc y te duoi 4 gio/ngay (Phong 3 giuong)",
+    "service_name_single_line": "Dich vu cham soc y te duoi 4 gio/ngay (Phong 3 giuong)",
+    "ghi_chu": "2)",
+    "ghi_chu_single_line": "2)",
+    "has_price": true,
+    "prices": {
+      "primary": {
+        "field": "gia_dich_vu_y_te",
+        "label": "gia dich vu y te",
+        "display": "300,000",
+        "amount_vnd": 300000,
+        "status": "published_ocr_review"
+      },
+      "gia_dich_vu_y_te": {
+        "label": "gia dich vu y te",
+        "display": "300,000",
+        "amount_vnd": 300000,
+        "status": "published_ocr_review"
+      },
+      "gia_dich_vu_theo_yeu_cau": {
+        "label": "gia dich vu theo yeu cau",
+        "display": "300,000",
+        "amount_vnd": 300000,
+        "status": "published_ocr_review"
+      },
+      "all": [
+        {
+          "field": "gia_dich_vu_y_te",
+          "label": "gia dich vu y te",
+          "display": "300,000",
+          "amount_vnd": 300000
+        },
+        {
+          "field": "gia_dich_vu_theo_yeu_cau",
+          "label": "gia dich vu theo yeu cau",
+          "display": "300,000",
+          "amount_vnd": 300000
+        }
+      ]
+    },
+    "ocr": {
+      "confidence_min": 0.917536050081253,
+      "confidence_avg": 0.9678642389021421,
+      "token_count": 5,
+      "requires_human_review": true
+    },
+    "approval_status": "review_only",
+    "verified_at": "2026-07-18T00:00:00+07:00",
+    "raw_columns": {
+      "stt": "2",
+      "ghi_chu": "2)",
+      "dich_vu_ky_thuat": "Dich vu cham soc y te duoi 4 gio/ngay (Phong 3 giuong)",
+      "gia_dich_vu_y_te": "300,000",
+      "gia_kham_benh": "",
+      "gia_dich_vu_theo_yeu_cau": "300,000"
+    }
+  },
+  {
+    "id": "hht_on_demand_ocr_2024__0006__stt_4__dich_vu_cham_soc_y_t_tren_4_gio_ngay_phong_3_giurong",
+    "document_type": "hospital_service_price_on_demand",
+    "price_kind": "on_demand",
+    "page": 3,
+    "stt": "4",
+    "ma_tuong_duong": "",
+    "service_name": "Dich vu cham soc y té tren 4 gio/ngay (Phong 3 giurong)",
+    "service_name_single_line": "Dich vu cham soc y té tren 4 gio/ngay (Phong 3 giurong)",
+    "ghi_chu": "Khoa",
+    "ghi_chu_single_line": "Khoa",
+    "has_price": true,
+    "prices": {
+      "primary": {
+        "field": "gia_dich_vu_y_te",
+        "label": "gia dich vu y te",
+        "display": "500,000",
+        "amount_vnd": 500000,
+        "status": "published_ocr_review"
+      },
+      "gia_dich_vu_y_te": {
+        "label": "gia dich vu y te",
+        "display": "500,000",
+        "amount_vnd": 500000,
+        "status": "published_ocr_review"
+      },
+      "gia_dich_vu_theo_yeu_cau": {
+        "label": "gia dich vu theo yeu cau",
+        "display": "500,000",
+        "amount_vnd": 500000,
+        "status": "published_ocr_review"
+      },
+      "all": [
+        {
+          "field": "gia_dich_vu_y_te",
+          "label": "gia dich vu y te",
+          "display": "500,000",
+          "amount_vnd": 500000
+        },
+        {
+          "field": "gia_dich_vu_theo_yeu_cau",
+          "label": "gia dich vu theo yeu cau",
+          "display": "500,000",
+          "amount_vnd": 500000
+        }
+      ]
+    },
+    "ocr": {
+      "confidence_min": 0.9405533106703508,
+      "confidence_avg": 0.9765884436855954,
+      "token_count": 7,
+      "requires_human_review": true
+    },
+    "approval_status": "review_only",
+    "verified_at": "2026-07-18T00:00:00+07:00",
+    "raw_columns": {
+      "stt": "4",
+      "ghi_chu": "Khoa",
+      "dich_vu_ky_thuat": "Dich vu cham soc y té tren 4 gio/ngay (Phong 3 giurong)",
+      "gia_dich_vu_y_te": "500,000",
+      "gia_kham_benh": "",
+      "gia_dich_vu_theo_yeu_cau": "500,000"
+    }
+  },
+  {
+    "id": "hht_on_demand_ocr_2024__0007__stt_4__dichvuchamsocyteduoi_4_gio_ngay_phong_13_giurong",
+    "document_type": "hospital_service_price_on_demand",
+    "price_kind": "on_demand",
+    "page": 3,
+    "stt": "4",
+    "ma_tuong_duong": "",
+    "service_name": "Dichvuchamsocyteduoi 4 gio/ngay (Phong 13 giurong)",
+    "service_name_single_line": "Dichvuchamsocyteduoi 4 gio/ngay (Phong 13 giurong)",
+    "ghi_chu": "DTBN",
+    "ghi_chu_single_line": "DTBN",
+    "has_price": true,
+    "prices": {
+      "primary": {
+        "field": "gia_dich_vu_y_te",
+        "label": "gia dich vu y te",
+        "display": "150,000",
+        "amount_vnd": 150000,
+        "status": "published_ocr_review"
+      },
+      "gia_dich_vu_y_te": {
+        "label": "gia dich vu y te",
+        "display": "150,000",
+        "amount_vnd": 150000,
+        "status": "published_ocr_review"
+      },
+      "gia_dich_vu_theo_yeu_cau": {
+        "label": "gia dich vu theo yeu cau",
+        "display": "150,000",
+        "amount_vnd": 150000,
+        "status": "published_ocr_review"
+      },
+      "all": [
+        {
+          "field": "gia_dich_vu_y_te",
+          "label": "gia dich vu y te",
+          "display": "150,000",
+          "amount_vnd": 150000
+        },
+        {
+          "field": "gia_dich_vu_theo_yeu_cau",
+          "label": "gia dich vu theo yeu cau",
+          "display": "150,000",
+          "amount_vnd": 150000
+        }
+      ]
+    },
+    "ocr": {
+      "confidence_min": 0.9574015289545059,
+      "confidence_avg": 0.9804094214524541,
+      "token_count": 6,
+      "requires_human_review": true
+    },
+    "approval_status": "review_only",
+    "verified_at": "2026-07-18T00:00:00+07:00",
+    "raw_columns": {
+      "stt": "4",
+      "ghi_chu": "DTBN",
+      "dich_vu_ky_thuat": "Dichvuchamsocyteduoi 4 gio/ngay (Phong 13 giurong)",
+      "gia_dich_vu_y_te": "150,000",
+      "gia_kham_benh": "",
+      "gia_dich_vu_theo_yeu_cau": "150,000"
+    }
+  },
+  {
+    "id": "hht_on_demand_ocr_2024__0008__stt_4__dichvuchamsocytetren_4_gio_ngay_phong_13_giurong",
+    "document_type": "hospital_service_price_on_demand",
+    "price_kind": "on_demand",
+    "page": 3,
+    "stt": "4",
+    "ma_tuong_duong": "",
+    "service_name": "Dichvuchamsocytetren 4 gio/ngay (Phong 13 giurong)",
+    "service_name_single_line": "Dichvuchamsocytetren 4 gio/ngay (Phong 13 giurong)",
+    "ghi_chu": "DTBN",
+    "ghi_chu_single_line": "DTBN",
+    "has_price": true,
+    "prices": {
+      "primary": {
+        "field": "gia_dich_vu_y_te",
+        "label": "gia dich vu y te",
+        "display": "200,000",
+        "amount_vnd": 200000,
+        "status": "published_ocr_review"
+      },
+      "gia_dich_vu_y_te": {
+        "label": "gia dich vu y te",
+        "display": "200,000",
+        "amount_vnd": 200000,
+        "status": "published_ocr_review"
+      },
+      "gia_dich_vu_theo_yeu_cau": {
+        "label": "gia dich vu theo yeu cau",
+        "display": "200,000",
+        "amount_vnd": 200000,
+        "status": "published_ocr_review"
+      },
+      "all": [
+        {
+          "field": "gia_dich_vu_y_te",
+          "label": "gia dich vu y te",
+          "display": "200,000",
+          "amount_vnd": 200000
+        },
+        {
+          "field": "gia_dich_vu_theo_yeu_cau",
+          "label": "gia dich vu theo yeu cau",
+          "display": "200,000",
+          "amount_vnd": 200000
+        }
+      ]
+    },
+    "ocr": {
+      "confidence_min": 0.9598581850528717,
+      "confidence_avg": 0.9792862941537586,
+      "token_count": 5,
+      "requires_human_review": true
+    },
+    "approval_status": "review_only",
+    "verified_at": "2026-07-18T00:00:00+07:00",
+    "raw_columns": {
+      "stt": "4",
+      "ghi_chu": "DTBN",
+      "dich_vu_ky_thuat": "Dichvuchamsocytetren 4 gio/ngay (Phong 13 giurong)",
+      "gia_dich_vu_y_te": "200,000",
+      "gia_kham_benh": "",
+      "gia_dich_vu_theo_yeu_cau": "200,000"
+    }
+  },
+  {
+    "id": "hht_on_demand_ocr_2024__0009__stt_page_4_row_1__chup_cong_huong_tir_tim_danh_gia_qua_tai_sat",
+    "document_type": "hospital_service_price_on_demand",
+    "price_kind": "on_demand",
+    "page": 4,
+    "stt": "page-4-row-1",
+    "ma_tuong_duong": "",
+    "service_name": "Chup cong huong tir tim danh gia qua tai sat",
+    "service_name_single_line": "Chup cong huong tir tim danh gia qua tai sat",
+    "ghi_chu": "18.0700.0066",
+    "ghi_chu_single_line": "18.0700.0066",
+    "has_price": true,
+    "prices": {
+      "primary": {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "2,300,000",
+        "amount_vnd": 2300000,
+        "status": "published_ocr_review"
+      },
+      "gia_kham_benh": {
+        "label": "gia kham benh",
+        "display": "2,300,000",
+        "amount_vnd": 2300000,
+        "status": "published_ocr_review"
+      },
+      "all": [
+        {
+          "field": "gia_kham_benh",
+          "label": "gia kham benh",
+          "display": "2,300,000",
+          "amount_vnd": 2300000
+        }
+      ]
+    },
+    "ocr": {
+      "confidence_min": 0.6242527365684509,
+      "confidence_avg": 0.9197042932775286,
+      "token_count": 5,
+      "requires_human_review": true
+    },
+    "approval_status": "review_only",
+    "verified_at": "2026-07-18T00:00:00+07:00",
+    "raw_columns": {
+      "stt": "page-4-row-1",
+      "ghi_chu": "18.0700.0066",
+      "dich_vu_ky_thuat": "Chup cong huong tir tim danh gia qua tai sat",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "2,300,000",
+      "gia_dich_vu_theo_yeu_cau": ""
+    }
+  },
+  {
+    "id": "hht_on_demand_ocr_2024__0010__stt_2__chup_cong_huong_tir_cot_song_nguc_co_tiem_turong_phan_0_2_1_5t",
+    "document_type": "hospital_service_price_on_demand",
+    "price_kind": "on_demand",
+    "page": 4,
+    "stt": "2",
+    "ma_tuong_duong": "",
+    "service_name": "Chup cong huong tir cot song nguc co tiem turong phan (0.2-1.5T)",
+    "service_name_single_line": "Chup cong huong tir cot song nguc co tiem turong phan (0.2-1.5T)",
+    "ghi_chu": "18.0337.0065",
+    "ghi_chu_single_line": "18.0337.0065",
+    "has_price": true,
+    "prices": {
+      "primary": {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "3,700,000",
+        "amount_vnd": 3700000,
+        "status": "published_ocr_review"
+      },
+      "gia_kham_benh": {
+        "label": "gia kham benh",
+        "display": "3,700,000",
+        "amount_vnd": 3700000,
+        "status": "published_ocr_review"
+      },
+      "all": [
+        {
+          "field": "gia_kham_benh",
+          "label": "gia kham benh",
+          "display": "3,700,000",
+          "amount_vnd": 3700000
+        }
+      ]
+    },
+    "ocr": {
+      "confidence_min": 0.7556969523429871,
+      "confidence_avg": 0.9459597813310446,
+      "token_count": 6,
+      "requires_human_review": true
+    },
+    "approval_status": "review_only",
+    "verified_at": "2026-07-18T00:00:00+07:00",
+    "raw_columns": {
+      "stt": "2",
+      "ghi_chu": "18.0337.0065",
+      "dich_vu_ky_thuat": "Chup cong huong tir cot song nguc co tiem turong phan (0.2-1.5T)",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "3,700,000",
+      "gia_dich_vu_theo_yeu_cau": ""
+    }
+  },
+  {
+    "id": "hht_on_demand_ocr_2024__0011__stt_3__chup_cong_huong_tir_so_nao_co_tiem_chat_tuong_phan_0_2_1_5t",
+    "document_type": "hospital_service_price_on_demand",
+    "price_kind": "on_demand",
+    "page": 4,
+    "stt": "3",
+    "ma_tuong_duong": "",
+    "service_name": "Chup cong huong tir so nao co tiem chat tuong phan (0.2-1.5T)",
+    "service_name_single_line": "Chup cong huong tir so nao co tiem chat tuong phan (0.2-1.5T)",
+    "ghi_chu": "18.0297.0065",
+    "ghi_chu_single_line": "18.0297.0065",
+    "has_price": true,
+    "prices": {
+      "primary": {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "3,700,000",
+        "amount_vnd": 3700000,
+        "status": "published_ocr_review"
+      },
+      "gia_kham_benh": {
+        "label": "gia kham benh",
+        "display": "3,700,000",
+        "amount_vnd": 3700000,
+        "status": "published_ocr_review"
+      },
+      "all": [
+        {
+          "field": "gia_kham_benh",
+          "label": "gia kham benh",
+          "display": "3,700,000",
+          "amount_vnd": 3700000
+        }
+      ]
+    },
+    "ocr": {
+      "confidence_min": 0.6057455539703369,
+      "confidence_avg": 0.9213863214706084,
+      "token_count": 6,
+      "requires_human_review": true
+    },
+    "approval_status": "review_only",
+    "verified_at": "2026-07-18T00:00:00+07:00",
+    "raw_columns": {
+      "stt": "3",
+      "ghi_chu": "18.0297.0065",
+      "dich_vu_ky_thuat": "Chup cong huong tir so nao co tiem chat tuong phan (0.2-1.5T)",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "3,700,000",
+      "gia_dich_vu_theo_yeu_cau": ""
+    }
+  },
+  {
+    "id": "hht_on_demand_ocr_2024__0012__stt_4__chup_cong_huong_tir_cot_song_nguc_0_2_1_5t",
+    "document_type": "hospital_service_price_on_demand",
+    "price_kind": "on_demand",
+    "page": 4,
+    "stt": "4",
+    "ma_tuong_duong": "",
+    "service_name": "Chup cong huong tir cot song nguc (0.2- 1.5T)",
+    "service_name_single_line": "Chup cong huong tir cot song nguc (0.2- 1.5T)",
+    "ghi_chu": "18.0336.0066",
+    "ghi_chu_single_line": "18.0336.0066",
+    "has_price": true,
+    "prices": {
+      "primary": {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "2,300,000",
+        "amount_vnd": 2300000,
+        "status": "published_ocr_review"
+      },
+      "gia_kham_benh": {
+        "label": "gia kham benh",
+        "display": "2,300,000",
+        "amount_vnd": 2300000,
+        "status": "published_ocr_review"
+      },
+      "all": [
+        {
+          "field": "gia_kham_benh",
+          "label": "gia kham benh",
+          "display": "2,300,000",
+          "amount_vnd": 2300000
+        }
+      ]
+    },
+    "ocr": {
+      "confidence_min": 0.9802976250648499,
+      "confidence_avg": 0.9924141299775524,
+      "token_count": 5,
+      "requires_human_review": true
+    },
+    "approval_status": "review_only",
+    "verified_at": "2026-07-18T00:00:00+07:00",
+    "raw_columns": {
+      "stt": "4",
+      "ghi_chu": "18.0336.0066",
+      "dich_vu_ky_thuat": "Chup cong huong tir cot song nguc (0.2- 1.5T)",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "2,300,000",
+      "gia_dich_vu_theo_yeu_cau": ""
+    }
+  },
+  {
+    "id": "hht_on_demand_ocr_2024__0013__stt_5__chup_cong_huong_tir_cot_song_that_lung_cung_c6_ti_m_tuong_phan_0_2_1_5t",
+    "document_type": "hospital_service_price_on_demand",
+    "price_kind": "on_demand",
+    "page": 4,
+    "stt": "5",
+    "ma_tuong_duong": "",
+    "service_name": "Chup cong huong tir cot song that lung cung c6 tiém tuong phan (0.2-1.5T)",
+    "service_name_single_line": "Chup cong huong tir cot song that lung cung c6 tiém tuong phan (0.2-1.5T)",
+    "ghi_chu": "18.0339.0065",
+    "ghi_chu_single_line": "18.0339.0065",
+    "has_price": true,
+    "prices": {
+      "primary": {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "3,700,000",
+        "amount_vnd": 3700000,
+        "status": "published_ocr_review"
+      },
+      "gia_kham_benh": {
+        "label": "gia kham benh",
+        "display": "3,700,000",
+        "amount_vnd": 3700000,
+        "status": "published_ocr_review"
+      },
+      "all": [
+        {
+          "field": "gia_kham_benh",
+          "label": "gia kham benh",
+          "display": "3,700,000",
+          "amount_vnd": 3700000
+        }
+      ]
+    },
+    "ocr": {
+      "confidence_min": 0.9518544046502364,
+      "confidence_avg": 0.9816292500338031,
+      "token_count": 5,
+      "requires_human_review": true
+    },
+    "approval_status": "review_only",
+    "verified_at": "2026-07-18T00:00:00+07:00",
+    "raw_columns": {
+      "stt": "5",
+      "ghi_chu": "18.0339.0065",
+      "dich_vu_ky_thuat": "Chup cong huong tir cot song that lung cung c6 tiém tuong phan (0.2-1.5T)",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "3,700,000",
+      "gia_dich_vu_theo_yeu_cau": ""
+    }
+  },
+  {
+    "id": "hht_on_demand_ocr_2024__0014__stt_6__chup_cong_huong_tir_dong_mach_chi_tren_c6_tiem_tuong_phan_1_5t",
+    "document_type": "hospital_service_price_on_demand",
+    "price_kind": "on_demand",
+    "page": 4,
+    "stt": "6",
+    "ma_tuong_duong": "",
+    "service_name": "Chup cong huong tir dong mach chi tren c6 tiem tuong phan (1.5T)",
+    "service_name_single_line": "Chup cong huong tir dong mach chi tren c6 tiem tuong phan (1.5T)",
+    "ghi_chu": "18.0353.0065",
+    "ghi_chu_single_line": "18.0353.0065",
+    "has_price": true,
+    "prices": {
+      "primary": {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "3,700,000",
+        "amount_vnd": 3700000,
+        "status": "published_ocr_review"
+      },
+      "gia_kham_benh": {
+        "label": "gia kham benh",
+        "display": "3,700,000",
+        "amount_vnd": 3700000,
+        "status": "published_ocr_review"
+      },
+      "all": [
+        {
+          "field": "gia_kham_benh",
+          "label": "gia kham benh",
+          "display": "3,700,000",
+          "amount_vnd": 3700000
+        }
+      ]
+    },
+    "ocr": {
+      "confidence_min": 0.9538727214461878,
+      "confidence_avg": 0.9791730796998006,
+      "token_count": 5,
+      "requires_human_review": true
+    },
+    "approval_status": "review_only",
+    "verified_at": "2026-07-18T00:00:00+07:00",
+    "raw_columns": {
+      "stt": "6",
+      "ghi_chu": "18.0353.0065",
+      "dich_vu_ky_thuat": "Chup cong huong tir dong mach chi tren c6 tiem tuong phan (1.5T)",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "3,700,000",
+      "gia_dich_vu_theo_yeu_cau": ""
+    }
+  },
+  {
+    "id": "hht_on_demand_ocr_2024__0015__stt_7__chup_cong_huong_tir_he_mach_co_co_tiem_chat_tuong_phan_0_2_1_5t",
+    "document_type": "hospital_service_price_on_demand",
+    "price_kind": "on_demand",
+    "page": 4,
+    "stt": "7",
+    "ma_tuong_duong": "",
+    "service_name": "Chup cong huong tir he mach co co tiem chat tuong phan (0.2-1.5T)",
+    "service_name_single_line": "Chup cong huong tir he mach co co tiem chat tuong phan (0.2-1.5T)",
+    "ghi_chu": "18.0301.0065",
+    "ghi_chu_single_line": "18.0301.0065",
+    "has_price": true,
+    "prices": {
+      "primary": {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "3,700,000",
+        "amount_vnd": 3700000,
+        "status": "published_ocr_review"
+      },
+      "gia_kham_benh": {
+        "label": "gia kham benh",
+        "display": "3,700,000",
+        "amount_vnd": 3700000,
+        "status": "published_ocr_review"
+      },
+      "all": [
+        {
+          "field": "gia_kham_benh",
+          "label": "gia kham benh",
+          "display": "3,700,000",
+          "amount_vnd": 3700000
+        }
+      ]
+    },
+    "ocr": {
+      "confidence_min": 0.5846745371818542,
+      "confidence_avg": 0.9085628858752508,
+      "token_count": 6,
+      "requires_human_review": true
+    },
+    "approval_status": "review_only",
+    "verified_at": "2026-07-18T00:00:00+07:00",
+    "raw_columns": {
+      "stt": "7",
+      "ghi_chu": "18.0301.0065",
+      "dich_vu_ky_thuat": "Chup cong huong tir he mach co co tiem chat tuong phan (0.2-1.5T)",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "3,700,000",
+      "gia_dich_vu_theo_yeu_cau": ""
+    }
+  },
+  {
+    "id": "hht_on_demand_ocr_2024__0016__stt_8__chup_cong_huong_tur_nao_mach_nao_khong_tiem_chat_tuong_phan_0_2_1_5t",
+    "document_type": "hospital_service_price_on_demand",
+    "price_kind": "on_demand",
+    "page": 4,
+    "stt": "8",
+    "ma_tuong_duong": "",
+    "service_name": "Chup cong huong tur nao- mach nao khong tiem chat tuong phan (0.2-1.5T)",
+    "service_name_single_line": "Chup cong huong tur nao- mach nao khong tiem chat tuong phan (0.2-1.5T)",
+    "ghi_chu": "18.0298.0066",
+    "ghi_chu_single_line": "18.0298.0066",
+    "has_price": true,
+    "prices": {
+      "primary": {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "2,300,000",
+        "amount_vnd": 2300000,
+        "status": "published_ocr_review"
+      },
+      "gia_kham_benh": {
+        "label": "gia kham benh",
+        "display": "2,300,000",
+        "amount_vnd": 2300000,
+        "status": "published_ocr_review"
+      },
+      "all": [
+        {
+          "field": "gia_kham_benh",
+          "label": "gia kham benh",
+          "display": "2,300,000",
+          "amount_vnd": 2300000
+        }
+      ]
+    },
+    "ocr": {
+      "confidence_min": 0.9680357268362334,
+      "confidence_avg": 0.9866877796039404,
+      "token_count": 5,
+      "requires_human_review": true
+    },
+    "approval_status": "review_only",
+    "verified_at": "2026-07-18T00:00:00+07:00",
+    "raw_columns": {
+      "stt": "8",
+      "ghi_chu": "18.0298.0066",
+      "dich_vu_ky_thuat": "Chup cong huong tur nao- mach nao khong tiem chat tuong phan (0.2-1.5T)",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "2,300,000",
+      "gia_dich_vu_theo_yeu_cau": ""
+    }
+  },
+  {
+    "id": "hht_on_demand_ocr_2024__0017__stt_9__chup_cong_huong_tir_cot_song_that_lung_cung_0_2_1_5t",
+    "document_type": "hospital_service_price_on_demand",
+    "price_kind": "on_demand",
+    "page": 4,
+    "stt": "9",
+    "ma_tuong_duong": "",
+    "service_name": "Chup cong huong tir cot song that lung cung (0.2-1.5T)",
+    "service_name_single_line": "Chup cong huong tir cot song that lung cung (0.2-1.5T)",
+    "ghi_chu": "18.0338.0066",
+    "ghi_chu_single_line": "18.0338.0066",
+    "has_price": true,
+    "prices": {
+      "primary": {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "2,300,000",
+        "amount_vnd": 2300000,
+        "status": "published_ocr_review"
+      },
+      "gia_kham_benh": {
+        "label": "gia kham benh",
+        "display": "2,300,000",
+        "amount_vnd": 2300000,
+        "status": "published_ocr_review"
+      },
+      "all": [
+        {
+          "field": "gia_kham_benh",
+          "label": "gia kham benh",
+          "display": "2,300,000",
+          "amount_vnd": 2300000
+        }
+      ]
+    },
+    "ocr": {
+      "confidence_min": 0.948133014534649,
+      "confidence_avg": 0.9804287836739892,
+      "token_count": 5,
+      "requires_human_review": true
+    },
+    "approval_status": "review_only",
+    "verified_at": "2026-07-18T00:00:00+07:00",
+    "raw_columns": {
+      "stt": "9",
+      "ghi_chu": "18.0338.0066",
+      "dich_vu_ky_thuat": "Chup cong huong tir cot song that lung cung (0.2-1.5T)",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "2,300,000",
+      "gia_dich_vu_theo_yeu_cau": ""
+    }
+  },
+  {
+    "id": "hht_on_demand_ocr_2024__0018__stt_10__chup_cong_huong_tur_hoc_mat_va_than_kinh_thi_giac_0_2_1_5t",
+    "document_type": "hospital_service_price_on_demand",
+    "price_kind": "on_demand",
+    "page": 4,
+    "stt": "10",
+    "ma_tuong_duong": "",
+    "service_name": "Chup cong huong tur hoc mat va than kinh thi giac (0.2-1.5T)",
+    "service_name_single_line": "Chup cong huong tur hoc mat va than kinh thi giac (0.2-1.5T)",
+    "ghi_chu": "18.0303.0066",
+    "ghi_chu_single_line": "18.0303.0066",
+    "has_price": true,
+    "prices": {
+      "primary": {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "2,300,000",
+        "amount_vnd": 2300000,
+        "status": "published_ocr_review"
+      },
+      "gia_kham_benh": {
+        "label": "gia kham benh",
+        "display": "2,300,000",
+        "amount_vnd": 2300000,
+        "status": "published_ocr_review"
+      },
+      "all": [
+        {
+          "field": "gia_kham_benh",
+          "label": "gia kham benh",
+          "display": "2,300,000",
+          "amount_vnd": 2300000
+        }
+      ]
+    },
+    "ocr": {
+      "confidence_min": 0.9566071629524231,
+      "confidence_avg": 0.9845006106628311,
+      "token_count": 5,
+      "requires_human_review": true
+    },
+    "approval_status": "review_only",
+    "verified_at": "2026-07-18T00:00:00+07:00",
+    "raw_columns": {
+      "stt": "10",
+      "ghi_chu": "18.0303.0066",
+      "dich_vu_ky_thuat": "Chup cong huong tur hoc mat va than kinh thi giac (0.2-1.5T)",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "2,300,000",
+      "gia_dich_vu_theo_yeu_cau": ""
+    }
+  },
+  {
+    "id": "hht_on_demand_ocr_2024__0019__stt_11__chup_cong_huong_tir_cot_song_co_0_2_1_5t",
+    "document_type": "hospital_service_price_on_demand",
+    "price_kind": "on_demand",
+    "page": 4,
+    "stt": "11",
+    "ma_tuong_duong": "",
+    "service_name": "Chup cong huong tir cot song co (0.2- 1.5T)",
+    "service_name_single_line": "Chup cong huong tir cot song co (0.2- 1.5T)",
+    "ghi_chu": "18.0334.0066",
+    "ghi_chu_single_line": "18.0334.0066",
+    "has_price": true,
+    "prices": {
+      "primary": {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "2,300,000",
+        "amount_vnd": 2300000,
+        "status": "published_ocr_review"
+      },
+      "gia_kham_benh": {
+        "label": "gia kham benh",
+        "display": "2,300,000",
+        "amount_vnd": 2300000,
+        "status": "published_ocr_review"
+      },
+      "all": [
+        {
+          "field": "gia_kham_benh",
+          "label": "gia kham benh",
+          "display": "2,300,000",
+          "amount_vnd": 2300000
+        }
+      ]
+    },
+    "ocr": {
+      "confidence_min": 0.9836471757373294,
+      "confidence_avg": 0.9938985571811149,
+      "token_count": 5,
+      "requires_human_review": true
+    },
+    "approval_status": "review_only",
+    "verified_at": "2026-07-18T00:00:00+07:00",
+    "raw_columns": {
+      "stt": "11",
+      "ghi_chu": "18.0334.0066",
+      "dich_vu_ky_thuat": "Chup cong huong tir cot song co (0.2- 1.5T)",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "2,300,000",
+      "gia_dich_vu_theo_yeu_cau": ""
+    }
+  },
+  {
+    "id": "hht_on_demand_ocr_2024__0020__stt_12__chup_cong_huong_tir_xuong_va_tuy_xuong_c6_tiem_tuong_phan_0_2_1_5t",
+    "document_type": "hospital_service_price_on_demand",
+    "price_kind": "on_demand",
+    "page": 4,
+    "stt": "12",
+    "ma_tuong_duong": "",
+    "service_name": "Chup cong huong tir xuong va tuy xuong c6 tiem tuong phan (0.2-1.5T)",
+    "service_name_single_line": "Chup cong huong tir xuong va tuy xuong c6 tiem tuong phan (0.2-1.5T)",
+    "ghi_chu": "18.0344.0065",
+    "ghi_chu_single_line": "18.0344.0065",
+    "has_price": true,
+    "prices": {
+      "primary": {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "3,700,000",
+        "amount_vnd": 3700000,
+        "status": "published_ocr_review"
+      },
+      "gia_kham_benh": {
+        "label": "gia kham benh",
+        "display": "3,700,000",
+        "amount_vnd": 3700000,
+        "status": "published_ocr_review"
+      },
+      "all": [
+        {
+          "field": "gia_kham_benh",
+          "label": "gia kham benh",
+          "display": "3,700,000",
+          "amount_vnd": 3700000
+        }
+      ]
+    },
+    "ocr": {
+      "confidence_min": 0.9453115351498127,
+      "confidence_avg": 0.9755351322487232,
+      "token_count": 5,
+      "requires_human_review": true
+    },
+    "approval_status": "review_only",
+    "verified_at": "2026-07-18T00:00:00+07:00",
+    "raw_columns": {
+      "stt": "12",
+      "ghi_chu": "18.0344.0065",
+      "dich_vu_ky_thuat": "Chup cong huong tir xuong va tuy xuong c6 tiem tuong phan (0.2-1.5T)",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "3,700,000",
+      "gia_dich_vu_theo_yeu_cau": ""
+    }
+  },
+  {
+    "id": "hht_on_demand_ocr_2024__0021__stt_13__chup_cong_huong_tur_tang_tren_o_bung_co_khao_sat_mach_cac_tang_bao_gom_mach_gan_",
+    "document_type": "hospital_service_price_on_demand",
+    "price_kind": "on_demand",
+    "page": 4,
+    "stt": "13",
+    "ma_tuong_duong": "",
+    "service_name": "Chup cong huong tur tang tren o bung co khao sat mach cac tang (bao gom mach: gan, tuy, lach va mach khoi u) (1.5T)",
+    "service_name_single_line": "Chup cong huong tur tang tren o bung co khao sat mach cac tang (bao gom mach: gan, tuy, lach va mach khoi u) (1.5T)",
+    "ghi_chu": "18.0351.0065",
+    "ghi_chu_single_line": "18.0351.0065",
+    "has_price": true,
+    "prices": {
+      "primary": {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "3,700,000",
+        "amount_vnd": 3700000,
+        "status": "published_ocr_review"
+      },
+      "gia_kham_benh": {
+        "label": "gia kham benh",
+        "display": "3,700,000",
+        "amount_vnd": 3700000,
+        "status": "published_ocr_review"
+      },
+      "all": [
+        {
+          "field": "gia_kham_benh",
+          "label": "gia kham benh",
+          "display": "3,700,000",
+          "amount_vnd": 3700000
+        }
+      ]
+    },
+    "ocr": {
+      "confidence_min": 0.9493504189527951,
+      "confidence_avg": 0.9845953925611047,
+      "token_count": 6,
+      "requires_human_review": true
+    },
+    "approval_status": "review_only",
+    "verified_at": "2026-07-18T00:00:00+07:00",
+    "raw_columns": {
+      "stt": "13",
+      "ghi_chu": "18.0351.0065",
+      "dich_vu_ky_thuat": "Chup cong huong tur tang tren o bung co khao sat mach cac tang (bao gom mach: gan, tuy, lach va mach khoi u) (1.5T)",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "3,700,000",
+      "gia_dich_vu_theo_yeu_cau": ""
+    }
+  },
+  {
+    "id": "hht_on_demand_ocr_2024__0022__stt_14__chup_cong_huong_tir_tim_danh_gia_cac_benh_ly_timbam_sinh",
+    "document_type": "hospital_service_price_on_demand",
+    "price_kind": "on_demand",
+    "page": 4,
+    "stt": "14",
+    "ma_tuong_duong": "",
+    "service_name": "Chup cong huong tir tim danh gia cac benh ly timbam sinh",
+    "service_name_single_line": "Chup cong huong tir tim danh gia cac benh ly timbam sinh",
+    "ghi_chu": "18.0699.0065",
+    "ghi_chu_single_line": "18.0699.0065",
+    "has_price": true,
+    "prices": {
+      "primary": {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "3,700,000",
+        "amount_vnd": 3700000,
+        "status": "published_ocr_review"
+      },
+      "gia_kham_benh": {
+        "label": "gia kham benh",
+        "display": "3,700,000",
+        "amount_vnd": 3700000,
+        "status": "published_ocr_review"
+      },
+      "all": [
+        {
+          "field": "gia_kham_benh",
+          "label": "gia kham benh",
+          "display": "3,700,000",
+          "amount_vnd": 3700000
+        }
+      ]
+    },
+    "ocr": {
+      "confidence_min": 0.9563986941387779,
+      "confidence_avg": 0.9848461412895493,
+      "token_count": 5,
+      "requires_human_review": true
+    },
+    "approval_status": "review_only",
+    "verified_at": "2026-07-18T00:00:00+07:00",
+    "raw_columns": {
+      "stt": "14",
+      "ghi_chu": "18.0699.0065",
+      "dich_vu_ky_thuat": "Chup cong huong tir tim danh gia cac benh ly timbam sinh",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "3,700,000",
+      "gia_dich_vu_theo_yeu_cau": ""
+    }
+  },
+  {
+    "id": "hht_on_demand_ocr_2024__0023__stt_16__chup_conghuong_tir_tim_danh_gia_cac_khoi_u_tim_c6_tiem_thuoc_tuong_phan",
+    "document_type": "hospital_service_price_on_demand",
+    "price_kind": "on_demand",
+    "page": 5,
+    "stt": "16",
+    "ma_tuong_duong": "",
+    "service_name": "Chup conghuong tir tim danh gia cac khoi u tim c6 tiem thuoc tuong phan",
+    "service_name_single_line": "Chup conghuong tir tim danh gia cac khoi u tim c6 tiem thuoc tuong phan",
+    "ghi_chu": "18.0697.0065",
+    "ghi_chu_single_line": "18.0697.0065",
+    "has_price": true,
+    "prices": {
+      "primary": {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "3,700,000",
+        "amount_vnd": 3700000,
+        "status": "published_ocr_review"
+      },
+      "gia_kham_benh": {
+        "label": "gia kham benh",
+        "display": "3,700,000",
+        "amount_vnd": 3700000,
+        "status": "published_ocr_review"
+      },
+      "all": [
+        {
+          "field": "gia_kham_benh",
+          "label": "gia kham benh",
+          "display": "3,700,000",
+          "amount_vnd": 3700000
+        }
+      ]
+    },
+    "ocr": {
+      "confidence_min": 0.9324391910008022,
+      "confidence_avg": 0.9817916699250538,
+      "token_count": 5,
+      "requires_human_review": true
+    },
+    "approval_status": "review_only",
+    "verified_at": "2026-07-18T00:00:00+07:00",
+    "raw_columns": {
+      "stt": "16",
+      "ghi_chu": "18.0697.0065",
+      "dich_vu_ky_thuat": "Chup conghuong tir tim danh gia cac khoi u tim c6 tiem thuoc tuong phan",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "3,700,000",
+      "gia_dich_vu_theo_yeu_cau": ""
+    }
+  },
+  {
+    "id": "hht_on_demand_ocr_2024__0024__stt_17__chup_cong_huong_tur_tim_danh_gia_khu_ch_tan_surc_cang_dti_diffusion_tensor_imagi",
+    "document_type": "hospital_service_price_on_demand",
+    "price_kind": "on_demand",
+    "page": 5,
+    "stt": "17",
+    "ma_tuong_duong": "",
+    "service_name": "Chup cong huong tur tim danh gia khuéch tan surc cang (DTI - Diffusion Tensor Imaging)",
+    "service_name_single_line": "Chup cong huong tur tim danh gia khuéch tan surc cang (DTI - Diffusion Tensor Imaging)",
+    "ghi_chu": "18.0701.0065",
+    "ghi_chu_single_line": "18.0701.0065",
+    "has_price": true,
+    "prices": {
+      "primary": {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "3,700,000",
+        "amount_vnd": 3700000,
+        "status": "published_ocr_review"
+      },
+      "gia_kham_benh": {
+        "label": "gia kham benh",
+        "display": "3,700,000",
+        "amount_vnd": 3700000,
+        "status": "published_ocr_review"
+      },
+      "all": [
+        {
+          "field": "gia_kham_benh",
+          "label": "gia kham benh",
+          "display": "3,700,000",
+          "amount_vnd": 3700000
+        }
+      ]
+    },
+    "ocr": {
+      "confidence_min": 0.9546636752784252,
+      "confidence_avg": 0.9862257099019605,
+      "token_count": 6,
+      "requires_human_review": true
+    },
+    "approval_status": "review_only",
+    "verified_at": "2026-07-18T00:00:00+07:00",
+    "raw_columns": {
+      "stt": "17",
+      "ghi_chu": "18.0701.0065",
+      "dich_vu_ky_thuat": "Chup cong huong tur tim danh gia khuéch tan surc cang (DTI - Diffusion Tensor Imaging)",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "3,700,000",
+      "gia_dich_vu_theo_yeu_cau": ""
+    }
+  },
+  {
+    "id": "hht_on_demand_ocr_2024__0025__stt_18__chup_cong_huong_tur_biu_duong_vat_co_tiem_chat_turong_phan_0_2_1_5t",
+    "document_type": "hospital_service_price_on_demand",
+    "price_kind": "on_demand",
+    "page": 5,
+    "stt": "18",
+    "ma_tuong_duong": "",
+    "service_name": "Chup cong huong tur biu, duong vat co tiem chat turong phan (0.2-1.5T)",
+    "service_name_single_line": "Chup cong huong tur biu, duong vat co tiem chat turong phan (0.2-1.5T)",
+    "ghi_chu": "18.0325.0065",
+    "ghi_chu_single_line": "18.0325.0065",
+    "has_price": true,
+    "prices": {
+      "primary": {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "3,700,000",
+        "amount_vnd": 3700000,
+        "status": "published_ocr_review"
+      },
+      "gia_kham_benh": {
+        "label": "gia kham benh",
+        "display": "3,700,000",
+        "amount_vnd": 3700000,
+        "status": "published_ocr_review"
+      },
+      "all": [
+        {
+          "field": "gia_kham_benh",
+          "label": "gia kham benh",
+          "display": "3,700,000",
+          "amount_vnd": 3700000
+        }
+      ]
+    },
+    "ocr": {
+      "confidence_min": 0.9461346397528777,
+      "confidence_avg": 0.9838723851686663,
+      "token_count": 5,
+      "requires_human_review": true
+    },
+    "approval_status": "review_only",
+    "verified_at": "2026-07-18T00:00:00+07:00",
+    "raw_columns": {
+      "stt": "18",
+      "ghi_chu": "18.0325.0065",
+      "dich_vu_ky_thuat": "Chup cong huong tur biu, duong vat co tiem chat turong phan (0.2-1.5T)",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "3,700,000",
+      "gia_dich_vu_theo_yeu_cau": ""
+    }
+  },
+  {
+    "id": "hht_on_demand_ocr_2024__0026__stt_19__chup_cong_huong_tir_he_mach_co_khong_tiem_chat_tuong_phan_0_2_1_5t",
+    "document_type": "hospital_service_price_on_demand",
+    "price_kind": "on_demand",
+    "page": 5,
+    "stt": "19",
+    "ma_tuong_duong": "",
+    "service_name": "Chup cong huong tir he mach co khong tiem chat tuong phan (0.2-1.5T)",
+    "service_name_single_line": "Chup cong huong tir he mach co khong tiem chat tuong phan (0.2-1.5T)",
+    "ghi_chu": "18.0300.0066",
+    "ghi_chu_single_line": "18.0300.0066",
+    "has_price": true,
+    "prices": {
+      "primary": {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "2,300,000",
+        "amount_vnd": 2300000,
+        "status": "published_ocr_review"
+      },
+      "gia_kham_benh": {
+        "label": "gia kham benh",
+        "display": "2,300,000",
+        "amount_vnd": 2300000,
+        "status": "published_ocr_review"
+      },
+      "all": [
+        {
+          "field": "gia_kham_benh",
+          "label": "gia kham benh",
+          "display": "2,300,000",
+          "amount_vnd": 2300000
+        }
+      ]
+    },
+    "ocr": {
+      "confidence_min": 0.9738759199778239,
+      "confidence_avg": 0.9907746979839913,
+      "token_count": 5,
+      "requires_human_review": true
+    },
+    "approval_status": "review_only",
+    "verified_at": "2026-07-18T00:00:00+07:00",
+    "raw_columns": {
+      "stt": "19",
+      "ghi_chu": "18.0300.0066",
+      "dich_vu_ky_thuat": "Chup cong huong tir he mach co khong tiem chat tuong phan (0.2-1.5T)",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "2,300,000",
+      "gia_dich_vu_theo_yeu_cau": ""
+    }
+  },
+  {
+    "id": "hht_on_demand_ocr_2024__0027__stt_20__chup_cong_huong_tir_tinh_mach_co_tiem_tuong_phan_1_5t",
+    "document_type": "hospital_service_price_on_demand",
+    "price_kind": "on_demand",
+    "page": 5,
+    "stt": "20",
+    "ma_tuong_duong": "",
+    "service_name": "Chup cong huong tir tinh mach co tiem tuong phan (1.5T)",
+    "service_name_single_line": "Chup cong huong tir tinh mach co tiem tuong phan (1.5T)",
+    "ghi_chu": "18.0359.0065",
+    "ghi_chu_single_line": "18.0359.0065",
+    "has_price": true,
+    "prices": {
+      "primary": {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "3,700,000",
+        "amount_vnd": 3700000,
+        "status": "published_ocr_review"
+      },
+      "gia_kham_benh": {
+        "label": "gia kham benh",
+        "display": "3,700,000",
+        "amount_vnd": 3700000,
+        "status": "published_ocr_review"
+      },
+      "all": [
+        {
+          "field": "gia_kham_benh",
+          "label": "gia kham benh",
+          "display": "3,700,000",
+          "amount_vnd": 3700000
+        }
+      ]
+    },
+    "ocr": {
+      "confidence_min": 0.9499361756685618,
+      "confidence_avg": 0.9802869318573325,
+      "token_count": 5,
+      "requires_human_review": true
+    },
+    "approval_status": "review_only",
+    "verified_at": "2026-07-18T00:00:00+07:00",
+    "raw_columns": {
+      "stt": "20",
+      "ghi_chu": "18.0359.0065",
+      "dich_vu_ky_thuat": "Chup cong huong tir tinh mach co tiem tuong phan (1.5T)",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "3,700,000",
+      "gia_dich_vu_theo_yeu_cau": ""
+    }
+  },
+  {
+    "id": "hht_on_demand_ocr_2024__0028__stt_21__chupconghuongtirdongmachchi_tren_1_5t",
+    "document_type": "hospital_service_price_on_demand",
+    "price_kind": "on_demand",
+    "page": 5,
+    "stt": "21",
+    "ma_tuong_duong": "",
+    "service_name": "Chupconghuongtirdongmachchi tren (1.5T)",
+    "service_name_single_line": "Chupconghuongtirdongmachchi tren (1.5T)",
+    "ghi_chu": "18.0352.0066",
+    "ghi_chu_single_line": "18.0352.0066",
+    "has_price": true,
+    "prices": {
+      "primary": {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "2,300,000",
+        "amount_vnd": 2300000,
+        "status": "published_ocr_review"
+      },
+      "gia_kham_benh": {
+        "label": "gia kham benh",
+        "display": "2,300,000",
+        "amount_vnd": 2300000,
+        "status": "published_ocr_review"
+      },
+      "all": [
+        {
+          "field": "gia_kham_benh",
+          "label": "gia kham benh",
+          "display": "2,300,000",
+          "amount_vnd": 2300000
+        }
+      ]
+    },
+    "ocr": {
+      "confidence_min": 0.9758501499891281,
+      "confidence_avg": 0.9938827428552839,
+      "token_count": 5,
+      "requires_human_review": true
+    },
+    "approval_status": "review_only",
+    "verified_at": "2026-07-18T00:00:00+07:00",
+    "raw_columns": {
+      "stt": "21",
+      "ghi_chu": "18.0352.0066",
+      "dich_vu_ky_thuat": "Chupconghuongtirdongmachchi tren (1.5T)",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "2,300,000",
+      "gia_dich_vu_theo_yeu_cau": ""
+    }
+  },
+  {
+    "id": "hht_on_demand_ocr_2024__0029__stt_22__chup_cong_huong_tur_biu_duong_vat_0_2_1_5t",
+    "document_type": "hospital_service_price_on_demand",
+    "price_kind": "on_demand",
+    "page": 5,
+    "stt": "22",
+    "ma_tuong_duong": "",
+    "service_name": "Chup cong huong tur biu, duong vat (0.2- 1.5T)",
+    "service_name_single_line": "Chup cong huong tur biu, duong vat (0.2- 1.5T)",
+    "ghi_chu": "18.0324.0066",
+    "ghi_chu_single_line": "18.0324.0066",
+    "has_price": true,
+    "prices": {
+      "primary": {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "2,300,000",
+        "amount_vnd": 2300000,
+        "status": "published_ocr_review"
+      },
+      "gia_kham_benh": {
+        "label": "gia kham benh",
+        "display": "2,300,000",
+        "amount_vnd": 2300000,
+        "status": "published_ocr_review"
+      },
+      "all": [
+        {
+          "field": "gia_kham_benh",
+          "label": "gia kham benh",
+          "display": "2,300,000",
+          "amount_vnd": 2300000
+        }
+      ]
+    },
+    "ocr": {
+      "confidence_min": 0.9802473247051239,
+      "confidence_avg": 0.9941657965050803,
+      "token_count": 5,
+      "requires_human_review": true
+    },
+    "approval_status": "review_only",
+    "verified_at": "2026-07-18T00:00:00+07:00",
+    "raw_columns": {
+      "stt": "22",
+      "ghi_chu": "18.0324.0066",
+      "dich_vu_ky_thuat": "Chup cong huong tur biu, duong vat (0.2- 1.5T)",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "2,300,000",
+      "gia_dich_vu_theo_yeu_cau": ""
+    }
+  },
+  {
+    "id": "hht_on_demand_ocr_2024__0030__stt_23__chup_cong_huong_tiur_tinh_mach_1_5t",
+    "document_type": "hospital_service_price_on_demand",
+    "price_kind": "on_demand",
+    "page": 5,
+    "stt": "23",
+    "ma_tuong_duong": "",
+    "service_name": "Chup cong huong tiur tinh mach (1.5T)",
+    "service_name_single_line": "Chup cong huong tiur tinh mach (1.5T)",
+    "ghi_chu": "18.0358.0066",
+    "ghi_chu_single_line": "18.0358.0066",
+    "has_price": true,
+    "prices": {
+      "primary": {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "2,300,000",
+        "amount_vnd": 2300000,
+        "status": "published_ocr_review"
+      },
+      "gia_kham_benh": {
+        "label": "gia kham benh",
+        "display": "2,300,000",
+        "amount_vnd": 2300000,
+        "status": "published_ocr_review"
+      },
+      "all": [
+        {
+          "field": "gia_kham_benh",
+          "label": "gia kham benh",
+          "display": "2,300,000",
+          "amount_vnd": 2300000
+        }
+      ]
+    },
+    "ocr": {
+      "confidence_min": 0.9338625854737049,
+      "confidence_avg": 0.9825077757194594,
+      "token_count": 4,
+      "requires_human_review": true
+    },
+    "approval_status": "review_only",
+    "verified_at": "2026-07-18T00:00:00+07:00",
+    "raw_columns": {
+      "stt": "23",
+      "ghi_chu": "18.0358.0066",
+      "dich_vu_ky_thuat": "Chup cong huong tiur tinh mach (1.5T)",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "2,300,000",
+      "gia_dich_vu_theo_yeu_cau": ""
+    }
+  },
+  {
+    "id": "hht_on_demand_ocr_2024__0031__stt_24__chup_cong_huong_tur_vung_mat_co_0_2_1_5t",
+    "document_type": "hospital_service_price_on_demand",
+    "price_kind": "on_demand",
+    "page": 5,
+    "stt": "24",
+    "ma_tuong_duong": "",
+    "service_name": "Chup cong huong tur vung mat - co (0.2- 1.5T)",
+    "service_name_single_line": "Chup cong huong tur vung mat - co (0.2- 1.5T)",
+    "ghi_chu": "18.0310.0066",
+    "ghi_chu_single_line": "18.0310.0066",
+    "has_price": true,
+    "prices": {
+      "primary": {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "2,300,000",
+        "amount_vnd": 2300000,
+        "status": "published_ocr_review"
+      },
+      "gia_kham_benh": {
+        "label": "gia kham benh",
+        "display": "2,300,000",
+        "amount_vnd": 2300000,
+        "status": "published_ocr_review"
+      },
+      "all": [
+        {
+          "field": "gia_kham_benh",
+          "label": "gia kham benh",
+          "display": "2,300,000",
+          "amount_vnd": 2300000
+        }
+      ]
+    },
+    "ocr": {
+      "confidence_min": 0.9605262065545107,
+      "confidence_avg": 0.9904577243582816,
+      "token_count": 5,
+      "requires_human_review": true
+    },
+    "approval_status": "review_only",
+    "verified_at": "2026-07-18T00:00:00+07:00",
+    "raw_columns": {
+      "stt": "24",
+      "ghi_chu": "18.0310.0066",
+      "dich_vu_ky_thuat": "Chup cong huong tur vung mat - co (0.2- 1.5T)",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "2,300,000",
+      "gia_dich_vu_theo_yeu_cau": ""
+    }
+  },
+  {
+    "id": "hht_on_demand_ocr_2024__0032__stt_25__chupconghuongtirkhopcotiemturong_phan_tinh_mach_0_2_1_5t",
+    "document_type": "hospital_service_price_on_demand",
+    "price_kind": "on_demand",
+    "page": 5,
+    "stt": "25",
+    "ma_tuong_duong": "",
+    "service_name": "Chupconghuongtirkhopcotiemturong phan tinh mach (0.2-1.5T)",
+    "service_name_single_line": "Chupconghuongtirkhopcotiemturong phan tinh mach (0.2-1.5T)",
+    "ghi_chu": "18.0341.0065",
+    "ghi_chu_single_line": "18.0341.0065",
+    "has_price": true,
+    "prices": {
+      "primary": {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "3,700,000",
+        "amount_vnd": 3700000,
+        "status": "published_ocr_review"
+      },
+      "gia_kham_benh": {
+        "label": "gia kham benh",
+        "display": "3,700,000",
+        "amount_vnd": 3700000,
+        "status": "published_ocr_review"
+      },
+      "all": [
+        {
+          "field": "gia_kham_benh",
+          "label": "gia kham benh",
+          "display": "3,700,000",
+          "amount_vnd": 3700000
+        }
+      ]
+    },
+    "ocr": {
+      "confidence_min": 0.9527163244783878,
+      "confidence_avg": 0.9814490631851885,
+      "token_count": 5,
+      "requires_human_review": true
+    },
+    "approval_status": "review_only",
+    "verified_at": "2026-07-18T00:00:00+07:00",
+    "raw_columns": {
+      "stt": "25",
+      "ghi_chu": "18.0341.0065",
+      "dich_vu_ky_thuat": "Chupconghuongtirkhopcotiemturong phan tinh mach (0.2-1.5T)",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "3,700,000",
+      "gia_dich_vu_theo_yeu_cau": ""
+    }
+  },
+  {
+    "id": "hht_on_demand_ocr_2024__0033__stt_26__chup_cong_huong_tur_hoc_mat_va_than_kinh_thi_giac_co_tiem_chat_turong_phan_0_2_1",
+    "document_type": "hospital_service_price_on_demand",
+    "price_kind": "on_demand",
+    "page": 5,
+    "stt": "26",
+    "ma_tuong_duong": "",
+    "service_name": "Chup cong huong tur hoc mat va than kinh thi giac co tiem chat turong phan (0.2-1.5T)",
+    "service_name_single_line": "Chup cong huong tur hoc mat va than kinh thi giac co tiem chat turong phan (0.2-1.5T)",
+    "ghi_chu": "18.0304.0065",
+    "ghi_chu_single_line": "18.0304.0065",
+    "has_price": true,
+    "prices": {
+      "primary": {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "3,700,000",
+        "amount_vnd": 3700000,
+        "status": "published_ocr_review"
+      },
+      "gia_kham_benh": {
+        "label": "gia kham benh",
+        "display": "3,700,000",
+        "amount_vnd": 3700000,
+        "status": "published_ocr_review"
+      },
+      "all": [
+        {
+          "field": "gia_kham_benh",
+          "label": "gia kham benh",
+          "display": "3,700,000",
+          "amount_vnd": 3700000
+        }
+      ]
+    },
+    "ocr": {
+      "confidence_min": 0.9621572051729474,
+      "confidence_avg": 0.9884784552856628,
+      "token_count": 6,
+      "requires_human_review": true
+    },
+    "approval_status": "review_only",
+    "verified_at": "2026-07-18T00:00:00+07:00",
+    "raw_columns": {
+      "stt": "26",
+      "ghi_chu": "18.0304.0065",
+      "dich_vu_ky_thuat": "Chup cong huong tur hoc mat va than kinh thi giac co tiem chat turong phan (0.2-1.5T)",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "3,700,000",
+      "gia_dich_vu_theo_yeu_cau": ""
+    }
+  },
+  {
+    "id": "hht_on_demand_ocr_2024__0034__stt_27__chup_cong_huong_tur_day_so_va_xurong_da_0_2_1_5t",
+    "document_type": "hospital_service_price_on_demand",
+    "price_kind": "on_demand",
+    "page": 5,
+    "stt": "27",
+    "ma_tuong_duong": "",
+    "service_name": "Chup cong huong tur day so va xurong da (0.2-1.5T)",
+    "service_name_single_line": "Chup cong huong tur day so va xurong da (0.2-1.5T)",
+    "ghi_chu": "18.0309.0065",
+    "ghi_chu_single_line": "18.0309.0065",
+    "has_price": true,
+    "prices": {
+      "primary": {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "3,700,000",
+        "amount_vnd": 3700000,
+        "status": "published_ocr_review"
+      },
+      "gia_kham_benh": {
+        "label": "gia kham benh",
+        "display": "3,700,000",
+        "amount_vnd": 3700000,
+        "status": "published_ocr_review"
+      },
+      "all": [
+        {
+          "field": "gia_kham_benh",
+          "label": "gia kham benh",
+          "display": "3,700,000",
+          "amount_vnd": 3700000
+        }
+      ]
+    },
+    "ocr": {
+      "confidence_min": 0.9636996143903488,
+      "confidence_avg": 0.9908086802001692,
+      "token_count": 5,
+      "requires_human_review": true
+    },
+    "approval_status": "review_only",
+    "verified_at": "2026-07-18T00:00:00+07:00",
+    "raw_columns": {
+      "stt": "27",
+      "ghi_chu": "18.0309.0065",
+      "dich_vu_ky_thuat": "Chup cong huong tur day so va xurong da (0.2-1.5T)",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "3,700,000",
+      "gia_dich_vu_theo_yeu_cau": ""
+    }
+  },
+  {
+    "id": "hht_on_demand_ocr_2024__0035__stt_28__chup_cong_huong_tur_so_nao_0_2_1_5t",
+    "document_type": "hospital_service_price_on_demand",
+    "price_kind": "on_demand",
+    "page": 5,
+    "stt": "28",
+    "ma_tuong_duong": "",
+    "service_name": "Chup cong huong tur so nao (0.2-1.5T)",
+    "service_name_single_line": "Chup cong huong tur so nao (0.2-1.5T)",
+    "ghi_chu": "18.0296.0066",
+    "ghi_chu_single_line": "18.0296.0066",
+    "has_price": true,
+    "prices": {
+      "primary": {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "2,300,000",
+        "amount_vnd": 2300000,
+        "status": "published_ocr_review"
+      },
+      "gia_kham_benh": {
+        "label": "gia kham benh",
+        "display": "2,300,000",
+        "amount_vnd": 2300000,
+        "status": "published_ocr_review"
+      },
+      "all": [
+        {
+          "field": "gia_kham_benh",
+          "label": "gia kham benh",
+          "display": "2,300,000",
+          "amount_vnd": 2300000
+        }
+      ]
+    },
+    "ocr": {
+      "confidence_min": 0.9774548653009776,
+      "confidence_avg": 0.9927380964965433,
+      "token_count": 4,
+      "requires_human_review": true
+    },
+    "approval_status": "review_only",
+    "verified_at": "2026-07-18T00:00:00+07:00",
+    "raw_columns": {
+      "stt": "28",
+      "ghi_chu": "18.0296.0066",
+      "dich_vu_ky_thuat": "Chup cong huong tur so nao (0.2-1.5T)",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "2,300,000",
+      "gia_dich_vu_theo_yeu_cau": ""
+    }
+  },
+  {
+    "id": "hht_on_demand_ocr_2024__0036__stt_29__chup_cong_huong_tiu_tuoi_mau_nao_perfusion_0_2_1_5t",
+    "document_type": "hospital_service_price_on_demand",
+    "price_kind": "on_demand",
+    "page": 5,
+    "stt": "29",
+    "ma_tuong_duong": "",
+    "service_name": "Chup cong huong tiu tuoi mau nao (perfusion)(0.2-1.5T)",
+    "service_name_single_line": "Chup cong huong tiu tuoi mau nao (perfusion)(0.2-1.5T)",
+    "ghi_chu": "18.0305.0065",
+    "ghi_chu_single_line": "18.0305.0065",
+    "has_price": true,
+    "prices": {
+      "primary": {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "3,700,000",
+        "amount_vnd": 3700000,
+        "status": "published_ocr_review"
+      },
+      "gia_kham_benh": {
+        "label": "gia kham benh",
+        "display": "3,700,000",
+        "amount_vnd": 3700000,
+        "status": "published_ocr_review"
+      },
+      "all": [
+        {
+          "field": "gia_kham_benh",
+          "label": "gia kham benh",
+          "display": "3,700,000",
+          "amount_vnd": 3700000
+        }
+      ]
+    },
+    "ocr": {
+      "confidence_min": 0.9505175035446882,
+      "confidence_avg": 0.9830563088317239,
+      "token_count": 5,
+      "requires_human_review": true
+    },
+    "approval_status": "review_only",
+    "verified_at": "2026-07-18T00:00:00+07:00",
+    "raw_columns": {
+      "stt": "29",
+      "ghi_chu": "18.0305.0065",
+      "dich_vu_ky_thuat": "Chup cong huong tiu tuoi mau nao (perfusion)(0.2-1.5T)",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "3,700,000",
+      "gia_dich_vu_theo_yeu_cau": ""
+    }
+  },
+  {
+    "id": "hht_on_demand_ocr_2024__0037__stt_30__chup_cong_huong_tir_tim_1_5t_chupconghuongtirtangbungkhong",
+    "document_type": "hospital_service_price_on_demand",
+    "price_kind": "on_demand",
+    "page": 5,
+    "stt": "30",
+    "ma_tuong_duong": "",
+    "service_name": "Chup cong huong tir tim (1.5T) Chupconghuongtirtangbungkhong",
+    "service_name_single_line": "Chup cong huong tir tim (1.5T) Chupconghuongtirtangbungkhong",
+    "ghi_chu": "18.0350.0065",
+    "ghi_chu_single_line": "18.0350.0065",
+    "has_price": true,
+    "prices": {
+      "primary": {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "3,700,000",
+        "amount_vnd": 3700000,
+        "status": "published_ocr_review"
+      },
+      "gia_kham_benh": {
+        "label": "gia kham benh",
+        "display": "3,700,000",
+        "amount_vnd": 3700000,
+        "status": "published_ocr_review"
+      },
+      "all": [
+        {
+          "field": "gia_kham_benh",
+          "label": "gia kham benh",
+          "display": "3,700,000",
+          "amount_vnd": 3700000
+        }
+      ]
+    },
+    "ocr": {
+      "confidence_min": 0.9612951227303209,
+      "confidence_avg": 0.9850421781992089,
+      "token_count": 5,
+      "requires_human_review": true
+    },
+    "approval_status": "review_only",
+    "verified_at": "2026-07-18T00:00:00+07:00",
+    "raw_columns": {
+      "stt": "30",
+      "ghi_chu": "18.0350.0065",
+      "dich_vu_ky_thuat": "Chup cong huong tir tim (1.5T) Chupconghuongtirtangbungkhong",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "3,700,000",
+      "gia_dich_vu_theo_yeu_cau": ""
+    }
+  },
+  {
+    "id": "hht_on_demand_ocr_2024__0038__stt_31__tiem_chat_turong_phan_gom_chup_cong_huong_tir_gan_mat_tuy_lach_than_da_day",
+    "document_type": "hospital_service_price_on_demand",
+    "price_kind": "on_demand",
+    "page": 5,
+    "stt": "31",
+    "ma_tuong_duong": "",
+    "service_name": "tiem chat turong phan (gom: chup cong huong tir gan-mat,tuy,lach,than,da day",
+    "service_name_single_line": "tiem chat turong phan (gom: chup cong huong tir gan-mat,tuy,lach,than,da day",
+    "ghi_chu": "18.0319.0066",
+    "ghi_chu_single_line": "18.0319.0066",
+    "has_price": true,
+    "prices": {
+      "primary": {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "2,300,000",
+        "amount_vnd": 2300000,
+        "status": "published_ocr_review"
+      },
+      "gia_kham_benh": {
+        "label": "gia kham benh",
+        "display": "2,300,000",
+        "amount_vnd": 2300000,
+        "status": "published_ocr_review"
+      },
+      "all": [
+        {
+          "field": "gia_kham_benh",
+          "label": "gia kham benh",
+          "display": "2,300,000",
+          "amount_vnd": 2300000
+        }
+      ]
+    },
+    "ocr": {
+      "confidence_min": 0.9494766796890058,
+      "confidence_avg": 0.9835337322725209,
+      "token_count": 5,
+      "requires_human_review": true
+    },
+    "approval_status": "review_only",
+    "verified_at": "2026-07-18T00:00:00+07:00",
+    "raw_columns": {
+      "stt": "31",
+      "ghi_chu": "18.0319.0066",
+      "dich_vu_ky_thuat": "tiem chat turong phan (gom: chup cong huong tir gan-mat,tuy,lach,than,da day",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "2,300,000",
+      "gia_dich_vu_theo_yeu_cau": ""
+    }
+  },
+  {
+    "id": "hht_on_demand_ocr_2024__0039__stt_33__chup_cong_huong_tur_vung_mat_co_co_tiem_tuong_phan_0_2_1_5t",
+    "document_type": "hospital_service_price_on_demand",
+    "price_kind": "on_demand",
+    "page": 6,
+    "stt": "33",
+    "ma_tuong_duong": "",
+    "service_name": "Chup cong huong tur vung mat - co co tiem tuong phan (0.2-1.5T)",
+    "service_name_single_line": "Chup cong huong tur vung mat - co co tiem tuong phan (0.2-1.5T)",
+    "ghi_chu": "18.0311.0065",
+    "ghi_chu_single_line": "18.0311.0065",
+    "has_price": true,
+    "prices": {
+      "primary": {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "3,700,000",
+        "amount_vnd": 3700000,
+        "status": "published_ocr_review"
+      },
+      "gia_kham_benh": {
+        "label": "gia kham benh",
+        "display": "3,700,000",
+        "amount_vnd": 3700000,
+        "status": "published_ocr_review"
+      },
+      "all": [
+        {
+          "field": "gia_kham_benh",
+          "label": "gia kham benh",
+          "display": "3,700,000",
+          "amount_vnd": 3700000
+        }
+      ]
+    },
+    "ocr": {
+      "confidence_min": 0.9445329937669966,
+      "confidence_avg": 0.9850904285143584,
+      "token_count": 5,
+      "requires_human_review": true
+    },
+    "approval_status": "review_only",
+    "verified_at": "2026-07-18T00:00:00+07:00",
+    "raw_columns": {
+      "stt": "33",
+      "ghi_chu": "18.0311.0065",
+      "dich_vu_ky_thuat": "Chup cong huong tur vung mat - co co tiem tuong phan (0.2-1.5T)",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "3,700,000",
+      "gia_dich_vu_theo_yeu_cau": ""
+    }
+  },
+  {
+    "id": "hht_on_demand_ocr_2024__0040__stt_34__chupconghuongtirbachmachcotiem_tuong_phan_dac_hieu_1_5t",
+    "document_type": "hospital_service_price_on_demand",
+    "price_kind": "on_demand",
+    "page": 6,
+    "stt": "34",
+    "ma_tuong_duong": "",
+    "service_name": "Chupconghuongtirbachmachcotiem tuong phan dac hieu (1.5T)",
+    "service_name_single_line": "Chupconghuongtirbachmachcotiem tuong phan dac hieu (1.5T)",
+    "ghi_chu": "18.0361.0065",
+    "ghi_chu_single_line": "18.0361.0065",
+    "has_price": true,
+    "prices": {
+      "primary": {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "3,700,000",
+        "amount_vnd": 3700000,
+        "status": "published_ocr_review"
+      },
+      "gia_kham_benh": {
+        "label": "gia kham benh",
+        "display": "3,700,000",
+        "amount_vnd": 3700000,
+        "status": "published_ocr_review"
+      },
+      "all": [
+        {
+          "field": "gia_kham_benh",
+          "label": "gia kham benh",
+          "display": "3,700,000",
+          "amount_vnd": 3700000
+        }
+      ]
+    },
+    "ocr": {
+      "confidence_min": 0.956177301131762,
+      "confidence_avg": 0.9831187971942444,
+      "token_count": 5,
+      "requires_human_review": true
+    },
+    "approval_status": "review_only",
+    "verified_at": "2026-07-18T00:00:00+07:00",
+    "raw_columns": {
+      "stt": "34",
+      "ghi_chu": "18.0361.0065",
+      "dich_vu_ky_thuat": "Chupconghuongtirbachmachcotiem tuong phan dac hieu (1.5T)",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "3,700,000",
+      "gia_dich_vu_theo_yeu_cau": ""
+    }
+  },
+  {
+    "id": "hht_on_demand_ocr_2024__0041__stt_35__chup_cong_huong_tir_tuy_n_yen_co_tiem_chat_tuong_phan_khao_sat_dong_hoc_0_2_1_5t",
+    "document_type": "hospital_service_price_on_demand",
+    "price_kind": "on_demand",
+    "page": 6,
+    "stt": "35",
+    "ma_tuong_duong": "",
+    "service_name": "Chup cong huong tir tuyén yen co tiem chat tuong phan (khao sat dong hoc) (0.2-1.5T)",
+    "service_name_single_line": "Chup cong huong tir tuyén yen co tiem chat tuong phan (khao sat dong hoc) (0.2-1.5T)",
+    "ghi_chu": "18.0302.0065",
+    "ghi_chu_single_line": "18.0302.0065",
+    "has_price": true,
+    "prices": {
+      "primary": {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "3,700,000",
+        "amount_vnd": 3700000,
+        "status": "published_ocr_review"
+      },
+      "gia_kham_benh": {
+        "label": "gia kham benh",
+        "display": "3,700,000",
+        "amount_vnd": 3700000,
+        "status": "published_ocr_review"
+      },
+      "all": [
+        {
+          "field": "gia_kham_benh",
+          "label": "gia kham benh",
+          "display": "3,700,000",
+          "amount_vnd": 3700000
+        }
+      ]
+    },
+    "ocr": {
+      "confidence_min": 0.6995148658752441,
+      "confidence_avg": 0.9463999615353302,
+      "token_count": 7,
+      "requires_human_review": true
+    },
+    "approval_status": "review_only",
+    "verified_at": "2026-07-18T00:00:00+07:00",
+    "raw_columns": {
+      "stt": "35",
+      "ghi_chu": "18.0302.0065",
+      "dich_vu_ky_thuat": "Chup cong huong tir tuyén yen co tiem chat tuong phan (khao sat dong hoc) (0.2-1.5T)",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "3,700,000",
+      "gia_dich_vu_theo_yeu_cau": ""
+    }
+  },
+  {
+    "id": "hht_on_demand_ocr_2024__0042__stt_36__chup_cong_huong_tir_phan_mem_chi_o_2_1_5t",
+    "document_type": "hospital_service_price_on_demand",
+    "price_kind": "on_demand",
+    "page": 6,
+    "stt": "36",
+    "ma_tuong_duong": "",
+    "service_name": "Chup cong huong tir phan mem chi (O.2- 1.5T)",
+    "service_name_single_line": "Chup cong huong tir phan mem chi (O.2- 1.5T)",
+    "ghi_chu": "18.0345.0066",
+    "ghi_chu_single_line": "18.0345.0066",
+    "has_price": true,
+    "prices": {
+      "primary": {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "2,300,000",
+        "amount_vnd": 2300000,
+        "status": "published_ocr_review"
+      },
+      "gia_kham_benh": {
+        "label": "gia kham benh",
+        "display": "2,300,000",
+        "amount_vnd": 2300000,
+        "status": "published_ocr_review"
+      },
+      "all": [
+        {
+          "field": "gia_kham_benh",
+          "label": "gia kham benh",
+          "display": "2,300,000",
+          "amount_vnd": 2300000
+        }
+      ]
+    },
+    "ocr": {
+      "confidence_min": 0.9308795372122213,
+      "confidence_avg": 0.9830259833628672,
+      "token_count": 5,
+      "requires_human_review": true
+    },
+    "approval_status": "review_only",
+    "verified_at": "2026-07-18T00:00:00+07:00",
+    "raw_columns": {
+      "stt": "36",
+      "ghi_chu": "18.0345.0066",
+      "dich_vu_ky_thuat": "Chup cong huong tir phan mem chi (O.2- 1.5T)",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "2,300,000",
+      "gia_dich_vu_theo_yeu_cau": ""
+    }
+  },
+  {
+    "id": "hht_on_demand_ocr_2024__0043__stt_37__chup_cong_huong_tir_dong_mach_chi_duoi_c6_tiem_turong_phan_1_5t",
+    "document_type": "hospital_service_price_on_demand",
+    "price_kind": "on_demand",
+    "page": 6,
+    "stt": "37",
+    "ma_tuong_duong": "",
+    "service_name": "Chup cong huong tir dong mach chi duoi c6 tiem turong phan (1.5T)",
+    "service_name_single_line": "Chup cong huong tir dong mach chi duoi c6 tiem turong phan (1.5T)",
+    "ghi_chu": "18.0355.0065",
+    "ghi_chu_single_line": "18.0355.0065",
+    "has_price": true,
+    "prices": {
+      "primary": {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "3,700,000",
+        "amount_vnd": 3700000,
+        "status": "published_ocr_review"
+      },
+      "gia_kham_benh": {
+        "label": "gia kham benh",
+        "display": "3,700,000",
+        "amount_vnd": 3700000,
+        "status": "published_ocr_review"
+      },
+      "all": [
+        {
+          "field": "gia_kham_benh",
+          "label": "gia kham benh",
+          "display": "3,700,000",
+          "amount_vnd": 3700000
+        }
+      ]
+    },
+    "ocr": {
+      "confidence_min": 0.6321389675140381,
+      "confidence_avg": 0.9176854256613772,
+      "token_count": 6,
+      "requires_human_review": true
+    },
+    "approval_status": "review_only",
+    "verified_at": "2026-07-18T00:00:00+07:00",
+    "raw_columns": {
+      "stt": "37",
+      "ghi_chu": "18.0355.0065",
+      "dich_vu_ky_thuat": "Chup cong huong tir dong mach chi duoi c6 tiem turong phan (1.5T)",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "3,700,000",
+      "gia_dich_vu_theo_yeu_cau": ""
+    }
+  },
+  {
+    "id": "hht_on_demand_ocr_2024__0044__stt_38__chup_cong_huong_tur_dong_mach_vanh_1_5t",
+    "document_type": "hospital_service_price_on_demand",
+    "price_kind": "on_demand",
+    "page": 6,
+    "stt": "38",
+    "ma_tuong_duong": "",
+    "service_name": "Chup cong huong tur dong mach vanh (1.5T)",
+    "service_name_single_line": "Chup cong huong tur dong mach vanh (1.5T)",
+    "ghi_chu": "18.0349.0065",
+    "ghi_chu_single_line": "18.0349.0065",
+    "has_price": true,
+    "prices": {
+      "primary": {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "3,700,000",
+        "amount_vnd": 3700000,
+        "status": "published_ocr_review"
+      },
+      "gia_kham_benh": {
+        "label": "gia kham benh",
+        "display": "3,700,000",
+        "amount_vnd": 3700000,
+        "status": "published_ocr_review"
+      },
+      "all": [
+        {
+          "field": "gia_kham_benh",
+          "label": "gia kham benh",
+          "display": "3,700,000",
+          "amount_vnd": 3700000
+        }
+      ]
+    },
+    "ocr": {
+      "confidence_min": 0.6913537383079529,
+      "confidence_avg": 0.9355771270680012,
+      "token_count": 6,
+      "requires_human_review": true
+    },
+    "approval_status": "review_only",
+    "verified_at": "2026-07-18T00:00:00+07:00",
+    "raw_columns": {
+      "stt": "38",
+      "ghi_chu": "18.0349.0065",
+      "dich_vu_ky_thuat": "Chup cong huong tur dong mach vanh (1.5T)",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "3,700,000",
+      "gia_dich_vu_theo_yeu_cau": ""
+    }
+  },
+  {
+    "id": "hht_on_demand_ocr_2024__0045__stt_39__chup_cong_huong_tir_tuyen_tienliet_co_tiem_tuong_phan_0_2_1_5t",
+    "document_type": "hospital_service_price_on_demand",
+    "price_kind": "on_demand",
+    "page": 6,
+    "stt": "39",
+    "ma_tuong_duong": "",
+    "service_name": "Chup cong huong tir tuyen tienliet co tiem tuong phan (0.2-1.5T)",
+    "service_name_single_line": "Chup cong huong tir tuyen tienliet co tiem tuong phan (0.2-1.5T)",
+    "ghi_chu": "18.0329.0065",
+    "ghi_chu_single_line": "18.0329.0065",
+    "has_price": true,
+    "prices": {
+      "primary": {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "3,700,000",
+        "amount_vnd": 3700000,
+        "status": "published_ocr_review"
+      },
+      "gia_kham_benh": {
+        "label": "gia kham benh",
+        "display": "3,700,000",
+        "amount_vnd": 3700000,
+        "status": "published_ocr_review"
+      },
+      "all": [
+        {
+          "field": "gia_kham_benh",
+          "label": "gia kham benh",
+          "display": "3,700,000",
+          "amount_vnd": 3700000
+        }
+      ]
+    },
+    "ocr": {
+      "confidence_min": 0.9276095064910682,
+      "confidence_avg": 0.9820626839943752,
+      "token_count": 5,
+      "requires_human_review": true
+    },
+    "approval_status": "review_only",
+    "verified_at": "2026-07-18T00:00:00+07:00",
+    "raw_columns": {
+      "stt": "39",
+      "ghi_chu": "18.0329.0065",
+      "dich_vu_ky_thuat": "Chup cong huong tir tuyen tienliet co tiem tuong phan (0.2-1.5T)",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "3,700,000",
+      "gia_dich_vu_theo_yeu_cau": ""
+    }
+  },
+  {
+    "id": "hht_on_demand_ocr_2024__0046__stt_40__chup_cong_huong_tur_cot_song_co_co_tiem_tuong_phan_0_2_1_5t",
+    "document_type": "hospital_service_price_on_demand",
+    "price_kind": "on_demand",
+    "page": 6,
+    "stt": "40",
+    "ma_tuong_duong": "",
+    "service_name": "Chup cong huong tur cot song co co tiem tuong phan (0.2-1.5T)",
+    "service_name_single_line": "Chup cong huong tur cot song co co tiem tuong phan (0.2-1.5T)",
+    "ghi_chu": "18.0335.0065",
+    "ghi_chu_single_line": "18.0335.0065",
+    "has_price": true,
+    "prices": {
+      "primary": {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "3,700,000",
+        "amount_vnd": 3700000,
+        "status": "published_ocr_review"
+      },
+      "gia_kham_benh": {
+        "label": "gia kham benh",
+        "display": "3,700,000",
+        "amount_vnd": 3700000,
+        "status": "published_ocr_review"
+      },
+      "all": [
+        {
+          "field": "gia_kham_benh",
+          "label": "gia kham benh",
+          "display": "3,700,000",
+          "amount_vnd": 3700000
+        }
+      ]
+    },
+    "ocr": {
+      "confidence_min": 0.9465700067006625,
+      "confidence_avg": 0.987664973088091,
+      "token_count": 5,
+      "requires_human_review": true
+    },
+    "approval_status": "review_only",
+    "verified_at": "2026-07-18T00:00:00+07:00",
+    "raw_columns": {
+      "stt": "40",
+      "ghi_chu": "18.0335.0065",
+      "dich_vu_ky_thuat": "Chup cong huong tur cot song co co tiem tuong phan (0.2-1.5T)",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "3,700,000",
+      "gia_dich_vu_theo_yeu_cau": ""
+    }
+  },
+  {
+    "id": "hht_on_demand_ocr_2024__0047__stt_41__chup_cong_huong_tir_tim_danh_gia_cac_benh_ly_tim_bam_sinh_c6_tiem_thuoc_tuong_ph",
+    "document_type": "hospital_service_price_on_demand",
+    "price_kind": "on_demand",
+    "page": 6,
+    "stt": "41",
+    "ma_tuong_duong": "",
+    "service_name": "Chup cong huong tir tim danh gia cac benh ly tim bam sinh c6 tiem thuoc tuong phan",
+    "service_name_single_line": "Chup cong huong tir tim danh gia cac benh ly tim bam sinh c6 tiem thuoc tuong phan",
+    "ghi_chu": "18.0698.0065",
+    "ghi_chu_single_line": "18.0698.0065",
+    "has_price": true,
+    "prices": {
+      "primary": {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "3,700,000",
+        "amount_vnd": 3700000,
+        "status": "published_ocr_review"
+      },
+      "gia_kham_benh": {
+        "label": "gia kham benh",
+        "display": "3,700,000",
+        "amount_vnd": 3700000,
+        "status": "published_ocr_review"
+      },
+      "all": [
+        {
+          "field": "gia_kham_benh",
+          "label": "gia kham benh",
+          "display": "3,700,000",
+          "amount_vnd": 3700000
+        }
+      ]
+    },
+    "ocr": {
+      "confidence_min": 0.6634715795516968,
+      "confidence_avg": 0.918739692452881,
+      "token_count": 8,
+      "requires_human_review": true
+    },
+    "approval_status": "review_only",
+    "verified_at": "2026-07-18T00:00:00+07:00",
+    "raw_columns": {
+      "stt": "41",
+      "ghi_chu": "18.0698.0065",
+      "dich_vu_ky_thuat": "Chup cong huong tir tim danh gia cac benh ly tim bam sinh c6 tiem thuoc tuong phan",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "3,700,000",
+      "gia_dich_vu_theo_yeu_cau": ""
+    }
+  },
+  {
+    "id": "hht_on_demand_ocr_2024__0048__stt_42__chup_cong_huong_tur_dong_mach_chi_duoi_1_5t",
+    "document_type": "hospital_service_price_on_demand",
+    "price_kind": "on_demand",
+    "page": 6,
+    "stt": "42",
+    "ma_tuong_duong": "",
+    "service_name": "Chup cong huong tur dong mach chi duoi (1.5T)",
+    "service_name_single_line": "Chup cong huong tur dong mach chi duoi (1.5T)",
+    "ghi_chu": "18.0354.0066",
+    "ghi_chu_single_line": "18.0354.0066",
+    "has_price": true,
+    "prices": {
+      "primary": {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "2,300,000",
+        "amount_vnd": 2300000,
+        "status": "published_ocr_review"
+      },
+      "gia_kham_benh": {
+        "label": "gia kham benh",
+        "display": "2,300,000",
+        "amount_vnd": 2300000,
+        "status": "published_ocr_review"
+      },
+      "all": [
+        {
+          "field": "gia_kham_benh",
+          "label": "gia kham benh",
+          "display": "2,300,000",
+          "amount_vnd": 2300000
+        }
+      ]
+    },
+    "ocr": {
+      "confidence_min": 0.9450492732452623,
+      "confidence_avg": 0.9786626881421213,
+      "token_count": 5,
+      "requires_human_review": true
+    },
+    "approval_status": "review_only",
+    "verified_at": "2026-07-18T00:00:00+07:00",
+    "raw_columns": {
+      "stt": "42",
+      "ghi_chu": "18.0354.0066",
+      "dich_vu_ky_thuat": "Chup cong huong tur dong mach chi duoi (1.5T)",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "2,300,000",
+      "gia_dich_vu_theo_yeu_cau": ""
+    }
+  },
+  {
+    "id": "hht_on_demand_ocr_2024__0049__stt_43__chup_cong_huong_tur_vung_chau_do_hau_mon_0_2_1_5t",
+    "document_type": "hospital_service_price_on_demand",
+    "price_kind": "on_demand",
+    "page": 6,
+    "stt": "43",
+    "ma_tuong_duong": "",
+    "service_name": "Chup cong huong tur vung chau do hau mon (0.2-1.5T)",
+    "service_name_single_line": "Chup cong huong tur vung chau do hau mon (0.2-1.5T)",
+    "ghi_chu": "18.0322.0065",
+    "ghi_chu_single_line": "18.0322.0065",
+    "has_price": true,
+    "prices": {
+      "primary": {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "3,700,000",
+        "amount_vnd": 3700000,
+        "status": "published_ocr_review"
+      },
+      "gia_kham_benh": {
+        "label": "gia kham benh",
+        "display": "3,700,000",
+        "amount_vnd": 3700000,
+        "status": "published_ocr_review"
+      },
+      "all": [
+        {
+          "field": "gia_kham_benh",
+          "label": "gia kham benh",
+          "display": "3,700,000",
+          "amount_vnd": 3700000
+        }
+      ]
+    },
+    "ocr": {
+      "confidence_min": 0.9706517713410514,
+      "confidence_avg": 0.9877212015882371,
+      "token_count": 5,
+      "requires_human_review": true
+    },
+    "approval_status": "review_only",
+    "verified_at": "2026-07-18T00:00:00+07:00",
+    "raw_columns": {
+      "stt": "43",
+      "ghi_chu": "18.0322.0065",
+      "dich_vu_ky_thuat": "Chup cong huong tur vung chau do hau mon (0.2-1.5T)",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "3,700,000",
+      "gia_dich_vu_theo_yeu_cau": ""
+    }
+  },
+  {
+    "id": "hht_on_demand_ocr_2024__0050__stt_44__chup_cong_huong_tur_khop_0_2_1_5t_chup_cong_huong_tir_vung_chau_co_tiem",
+    "document_type": "hospital_service_price_on_demand",
+    "price_kind": "on_demand",
+    "page": 6,
+    "stt": "44",
+    "ma_tuong_duong": "",
+    "service_name": "Chup cong huong tur khop (0.2-1.5T) Chup cong huong tir vung chau co tiem",
+    "service_name_single_line": "Chup cong huong tur khop (0.2-1.5T) Chup cong huong tir vung chau co tiem",
+    "ghi_chu": "18.0340.0066",
+    "ghi_chu_single_line": "18.0340.0066",
+    "has_price": true,
+    "prices": {
+      "primary": {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "2,300,000",
+        "amount_vnd": 2300000,
+        "status": "published_ocr_review"
+      },
+      "gia_kham_benh": {
+        "label": "gia kham benh",
+        "display": "2,300,000",
+        "amount_vnd": 2300000,
+        "status": "published_ocr_review"
+      },
+      "all": [
+        {
+          "field": "gia_kham_benh",
+          "label": "gia kham benh",
+          "display": "2,300,000",
+          "amount_vnd": 2300000
+        }
+      ]
+    },
+    "ocr": {
+      "confidence_min": 0.9430909720627038,
+      "confidence_avg": 0.9799570556566062,
+      "token_count": 5,
+      "requires_human_review": true
+    },
+    "approval_status": "review_only",
+    "verified_at": "2026-07-18T00:00:00+07:00",
+    "raw_columns": {
+      "stt": "44",
+      "ghi_chu": "18.0340.0066",
+      "dich_vu_ky_thuat": "Chup cong huong tur khop (0.2-1.5T) Chup cong huong tir vung chau co tiem",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "2,300,000",
+      "gia_dich_vu_theo_yeu_cau": ""
+    }
+  },
+  {
+    "id": "hht_on_demand_ocr_2024__0051__stt_45__chat_tuong_phan_gom_chup_cong_huong_tur_tr_cung_phan_phu_tien_liet_tuyen_dai_tra",
+    "document_type": "hospital_service_price_on_demand",
+    "price_kind": "on_demand",
+    "page": 6,
+    "stt": "45",
+    "ma_tuong_duong": "",
+    "service_name": "chat tuong phan (gom: chup cong huong tur tr cung-phan phu, tien liet tuyen, dai trang chau hong,truc trang,cackhoi u",
+    "service_name_single_line": "chat tuong phan (gom: chup cong huong tur tr cung-phan phu, tien liet tuyen, dai trang chau hong,truc trang,cackhoi u",
+    "ghi_chu": "18.0323.0065",
+    "ghi_chu_single_line": "18.0323.0065",
+    "has_price": true,
+    "prices": {
+      "primary": {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "3,700,000",
+        "amount_vnd": 3700000,
+        "status": "published_ocr_review"
+      },
+      "gia_kham_benh": {
+        "label": "gia kham benh",
+        "display": "3,700,000",
+        "amount_vnd": 3700000,
+        "status": "published_ocr_review"
+      },
+      "all": [
+        {
+          "field": "gia_kham_benh",
+          "label": "gia kham benh",
+          "display": "3,700,000",
+          "amount_vnd": 3700000
+        }
+      ]
+    },
+    "ocr": {
+      "confidence_min": 0.9371105954051018,
+      "confidence_avg": 0.9798170556649235,
+      "token_count": 6,
+      "requires_human_review": true
+    },
+    "approval_status": "review_only",
+    "verified_at": "2026-07-18T00:00:00+07:00",
+    "raw_columns": {
+      "stt": "45",
+      "ghi_chu": "18.0323.0065",
+      "dich_vu_ky_thuat": "chat tuong phan (gom: chup cong huong tur tr cung-phan phu, tien liet tuyen, dai trang chau hong,truc trang,cackhoi u",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "3,700,000",
+      "gia_dich_vu_theo_yeu_cau": ""
+    }
+  },
+  {
+    "id": "hht_on_demand_ocr_2024__0052__stt_46__vung_chau_0_2_1_5t_chup_cong_huong_tir_phan_mem_chi_co_tiem_turong_phan_0_2_1_5t",
+    "document_type": "hospital_service_price_on_demand",
+    "price_kind": "on_demand",
+    "page": 6,
+    "stt": "46",
+    "ma_tuong_duong": "",
+    "service_name": "vung chau...) (0.2-1.5T) Chup cong huong tir phan mem chi co tiem turong phan (0.2-1.5T)",
+    "service_name_single_line": "vung chau...) (0.2-1.5T) Chup cong huong tir phan mem chi co tiem turong phan (0.2-1.5T)",
+    "ghi_chu": "18.0346.0065",
+    "ghi_chu_single_line": "18.0346.0065",
+    "has_price": true,
+    "prices": {
+      "primary": {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "3,700,000",
+        "amount_vnd": 3700000,
+        "status": "published_ocr_review"
+      },
+      "gia_kham_benh": {
+        "label": "gia kham benh",
+        "display": "3,700,000",
+        "amount_vnd": 3700000,
+        "status": "published_ocr_review"
+      },
+      "all": [
+        {
+          "field": "gia_kham_benh",
+          "label": "gia kham benh",
+          "display": "3,700,000",
+          "amount_vnd": 3700000
+        }
+      ]
+    },
+    "ocr": {
+      "confidence_min": 0.9573041575926321,
+      "confidence_avg": 0.9832008102057892,
+      "token_count": 6,
+      "requires_human_review": true
+    },
+    "approval_status": "review_only",
+    "verified_at": "2026-07-18T00:00:00+07:00",
+    "raw_columns": {
+      "stt": "46",
+      "ghi_chu": "18.0346.0065",
+      "dich_vu_ky_thuat": "vung chau...) (0.2-1.5T) Chup cong huong tir phan mem chi co tiem turong phan (0.2-1.5T)",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "3,700,000",
+      "gia_dich_vu_theo_yeu_cau": ""
+    }
+  },
+  {
+    "id": "hht_on_demand_ocr_2024__0053__stt_47__chup_cong_huong_tir_xuong_va_tuy_xuong_0_2_1_5t",
+    "document_type": "hospital_service_price_on_demand",
+    "price_kind": "on_demand",
+    "page": 6,
+    "stt": "47",
+    "ma_tuong_duong": "",
+    "service_name": "Chup cong huong tir xuong va tuy xuong (0.2-1.5T)",
+    "service_name_single_line": "Chup cong huong tir xuong va tuy xuong (0.2-1.5T)",
+    "ghi_chu": "18.0343.0066",
+    "ghi_chu_single_line": "18.0343.0066",
+    "has_price": true,
+    "prices": {
+      "primary": {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "2,300,000",
+        "amount_vnd": 2300000,
+        "status": "published_ocr_review"
+      },
+      "gia_kham_benh": {
+        "label": "gia kham benh",
+        "display": "2,300,000",
+        "amount_vnd": 2300000,
+        "status": "published_ocr_review"
+      },
+      "all": [
+        {
+          "field": "gia_kham_benh",
+          "label": "gia kham benh",
+          "display": "2,300,000",
+          "amount_vnd": 2300000
+        }
+      ]
+    },
+    "ocr": {
+      "confidence_min": 0.9573861304670572,
+      "confidence_avg": 0.9836702756997612,
+      "token_count": 5,
+      "requires_human_review": true
+    },
+    "approval_status": "review_only",
+    "verified_at": "2026-07-18T00:00:00+07:00",
+    "raw_columns": {
+      "stt": "47",
+      "ghi_chu": "18.0343.0066",
+      "dich_vu_ky_thuat": "Chup cong huong tir xuong va tuy xuong (0.2-1.5T)",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "2,300,000",
+      "gia_dich_vu_theo_yeu_cau": ""
+    }
+  },
+  {
+    "id": "hht_on_demand_ocr_2024__0054__stt_49__chup_cong_huong_tir_dong_mach_chu_chau_1_5t",
+    "document_type": "hospital_service_price_on_demand",
+    "price_kind": "on_demand",
+    "page": 7,
+    "stt": "49",
+    "ma_tuong_duong": "",
+    "service_name": "Chup cong huong tir dong mach chu- chau (1.5T)",
+    "service_name_single_line": "Chup cong huong tir dong mach chu- chau (1.5T)",
+    "ghi_chu": "18.0347.0065",
+    "ghi_chu_single_line": "18.0347.0065",
+    "has_price": true,
+    "prices": {
+      "primary": {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "3,700,000",
+        "amount_vnd": 3700000,
+        "status": "published_ocr_review"
+      },
+      "gia_kham_benh": {
+        "label": "gia kham benh",
+        "display": "3,700,000",
+        "amount_vnd": 3700000,
+        "status": "published_ocr_review"
+      },
+      "all": [
+        {
+          "field": "gia_kham_benh",
+          "label": "gia kham benh",
+          "display": "3,700,000",
+          "amount_vnd": 3700000
+        }
+      ]
+    },
+    "ocr": {
+      "confidence_min": 0.977362234802807,
+      "confidence_avg": 0.9932408932518972,
+      "token_count": 5,
+      "requires_human_review": true
+    },
+    "approval_status": "review_only",
+    "verified_at": "2026-07-18T00:00:00+07:00",
+    "raw_columns": {
+      "stt": "49",
+      "ghi_chu": "18.0347.0065",
+      "dich_vu_ky_thuat": "Chup cong huong tir dong mach chu- chau (1.5T)",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "3,700,000",
+      "gia_dich_vu_theo_yeu_cau": ""
+    }
+  },
+  {
+    "id": "hht_on_demand_ocr_2024__0055__stt_page_8_row_1__chup_clvt_so_nao_khong_tiem_thuoc_can_quang_tir_256_day",
+    "document_type": "hospital_service_price_on_demand",
+    "price_kind": "on_demand",
+    "page": 8,
+    "stt": "page-8-row-1",
+    "ma_tuong_duong": "",
+    "service_name": "Chup CLVT so nao khong tiem thuoc can quang (tir ≥ 256 day)",
+    "service_name_single_line": "Chup CLVT so nao khong tiem thuoc can quang (tir ≥ 256 day)",
+    "ghi_chu": "18.0178.0047",
+    "ghi_chu_single_line": "18.0178.0047",
+    "has_price": true,
+    "prices": {
+      "primary": {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "3,500,000",
+        "amount_vnd": 3500000,
+        "status": "published_ocr_review"
+      },
+      "gia_kham_benh": {
+        "label": "gia kham benh",
+        "display": "3,500,000",
+        "amount_vnd": 3500000,
+        "status": "published_ocr_review"
+      },
+      "all": [
+        {
+          "field": "gia_kham_benh",
+          "label": "gia kham benh",
+          "display": "3,500,000",
+          "amount_vnd": 3500000
+        }
+      ]
+    },
+    "ocr": {
+      "confidence_min": 0.8211111426353455,
+      "confidence_avg": 0.9464989892577613,
+      "token_count": 5,
+      "requires_human_review": true
+    },
+    "approval_status": "review_only",
+    "verified_at": "2026-07-18T00:00:00+07:00",
+    "raw_columns": {
+      "stt": "page-8-row-1",
+      "ghi_chu": "18.0178.0047",
+      "dich_vu_ky_thuat": "Chup CLVT so nao khong tiem thuoc can quang (tir ≥ 256 day)",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "3,500,000",
+      "gia_dich_vu_theo_yeu_cau": ""
+    }
+  },
+  {
+    "id": "hht_on_demand_ocr_2024__0056__stt_2__chup_clvt_so_nao_co_tiem_thuoc_can_quang_tir_256_day",
+    "document_type": "hospital_service_price_on_demand",
+    "price_kind": "on_demand",
+    "page": 8,
+    "stt": "2",
+    "ma_tuong_duong": "",
+    "service_name": "Chup CLVT so nao co tiem thuoc can quang (tir ≥ 256 day)",
+    "service_name_single_line": "Chup CLVT so nao co tiem thuoc can quang (tir ≥ 256 day)",
+    "ghi_chu": "18.0179.0046",
+    "ghi_chu_single_line": "18.0179.0046",
+    "has_price": true,
+    "prices": {
+      "primary": {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "5,000,000",
+        "amount_vnd": 5000000,
+        "status": "published_ocr_review"
+      },
+      "gia_kham_benh": {
+        "label": "gia kham benh",
+        "display": "5,000,000",
+        "amount_vnd": 5000000,
+        "status": "published_ocr_review"
+      },
+      "all": [
+        {
+          "field": "gia_kham_benh",
+          "label": "gia kham benh",
+          "display": "5,000,000",
+          "amount_vnd": 5000000
+        }
+      ]
+    },
+    "ocr": {
+      "confidence_min": 0.9502879452705383,
+      "confidence_avg": 0.9814675451401207,
+      "token_count": 8,
+      "requires_human_review": true
+    },
+    "approval_status": "review_only",
+    "verified_at": "2026-07-18T00:00:00+07:00",
+    "raw_columns": {
+      "stt": "2",
+      "ghi_chu": "18.0179.0046",
+      "dich_vu_ky_thuat": "Chup CLVT so nao co tiem thuoc can quang (tir ≥ 256 day)",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "5,000,000",
+      "gia_dich_vu_theo_yeu_cau": "Chua bao gom thuoc can quang"
+    }
+  },
+  {
+    "id": "hht_on_demand_ocr_2024__0057__stt_3__chupclvthedongmach_canh_co_tiem_thuoc_can_quang_tir_256_day",
+    "document_type": "hospital_service_price_on_demand",
+    "price_kind": "on_demand",
+    "page": 8,
+    "stt": "3",
+    "ma_tuong_duong": "",
+    "service_name": "ChupCLVThedongmach canh co tiem thuoc can quang (tir ≥ 256 day)",
+    "service_name_single_line": "ChupCLVThedongmach canh co tiem thuoc can quang (tir ≥ 256 day)",
+    "ghi_chu": "18.0180.0046",
+    "ghi_chu_single_line": "18.0180.0046",
+    "has_price": true,
+    "prices": {
+      "primary": {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "5,000,000",
+        "amount_vnd": 5000000,
+        "status": "published_ocr_review"
+      },
+      "gia_kham_benh": {
+        "label": "gia kham benh",
+        "display": "5,000,000",
+        "amount_vnd": 5000000,
+        "status": "published_ocr_review"
+      },
+      "all": [
+        {
+          "field": "gia_kham_benh",
+          "label": "gia kham benh",
+          "display": "5,000,000",
+          "amount_vnd": 5000000
+        }
+      ]
+    },
+    "ocr": {
+      "confidence_min": 0.9370800646451803,
+      "confidence_avg": 0.9789558129290449,
+      "token_count": 9,
+      "requires_human_review": true
+    },
+    "approval_status": "review_only",
+    "verified_at": "2026-07-18T00:00:00+07:00",
+    "raw_columns": {
+      "stt": "3",
+      "ghi_chu": "18.0180.0046",
+      "dich_vu_ky_thuat": "ChupCLVThedongmach canh co tiem thuoc can quang (tir ≥ 256 day)",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "5,000,000",
+      "gia_dich_vu_theo_yeu_cau": "Chua bao gom thuoc can quang"
+    }
+  },
+  {
+    "id": "hht_on_demand_ocr_2024__0058__stt_4__chup_clvt_tuoi_mau_nao_ct_perfusion",
+    "document_type": "hospital_service_price_on_demand",
+    "price_kind": "on_demand",
+    "page": 8,
+    "stt": "4",
+    "ma_tuong_duong": "",
+    "service_name": "Chup CLVT tuoi mau nao (CT perfusion)",
+    "service_name_single_line": "Chup CLVT tuoi mau nao (CT perfusion)",
+    "ghi_chu": "18.0181.0046",
+    "ghi_chu_single_line": "18.0181.0046",
+    "has_price": true,
+    "prices": {
+      "primary": {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "5,000,000",
+        "amount_vnd": 5000000,
+        "status": "published_ocr_review"
+      },
+      "gia_kham_benh": {
+        "label": "gia kham benh",
+        "display": "5,000,000",
+        "amount_vnd": 5000000,
+        "status": "published_ocr_review"
+      },
+      "all": [
+        {
+          "field": "gia_kham_benh",
+          "label": "gia kham benh",
+          "display": "5,000,000",
+          "amount_vnd": 5000000
+        }
+      ]
+    },
+    "ocr": {
+      "confidence_min": 0.9021881818771362,
+      "confidence_avg": 0.9779921489818144,
+      "token_count": 9,
+      "requires_human_review": true
+    },
+    "approval_status": "review_only",
+    "verified_at": "2026-07-18T00:00:00+07:00",
+    "raw_columns": {
+      "stt": "4",
+      "ghi_chu": "18.0181.0046",
+      "dich_vu_ky_thuat": "Chup CLVT tuoi mau nao (CT perfusion)",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "5,000,000",
+      "gia_dich_vu_theo_yeu_cau": "Chua bao gom thuoc can quang"
+    }
+  },
+  {
+    "id": "hht_on_demand_ocr_2024__0059__stt_5__chup_clvt_mach_mau_nao_tiu_256_day",
+    "document_type": "hospital_service_price_on_demand",
+    "price_kind": "on_demand",
+    "page": 8,
+    "stt": "5",
+    "ma_tuong_duong": "",
+    "service_name": "Chup CLVT mach mau nao (tiu ≥ 256 day)",
+    "service_name_single_line": "Chup CLVT mach mau nao (tiu ≥ 256 day)",
+    "ghi_chu": "18.0182.0046",
+    "ghi_chu_single_line": "18.0182.0046",
+    "has_price": true,
+    "prices": {
+      "primary": {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "5,000,000",
+        "amount_vnd": 5000000,
+        "status": "published_ocr_review"
+      },
+      "gia_kham_benh": {
+        "label": "gia kham benh",
+        "display": "5,000,000",
+        "amount_vnd": 5000000,
+        "status": "published_ocr_review"
+      },
+      "all": [
+        {
+          "field": "gia_kham_benh",
+          "label": "gia kham benh",
+          "display": "5,000,000",
+          "amount_vnd": 5000000
+        }
+      ]
+    },
+    "ocr": {
+      "confidence_min": 0.9431999849862066,
+      "confidence_avg": 0.9870831904840082,
+      "token_count": 8,
+      "requires_human_review": true
+    },
+    "approval_status": "review_only",
+    "verified_at": "2026-07-18T00:00:00+07:00",
+    "raw_columns": {
+      "stt": "5",
+      "ghi_chu": "18.0182.0046",
+      "dich_vu_ky_thuat": "Chup CLVT mach mau nao (tiu ≥ 256 day)",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "5,000,000",
+      "gia_dich_vu_theo_yeu_cau": "Chua bao gom thuoc can quang"
+    }
+  },
+  {
+    "id": "hht_on_demand_ocr_2024__0060__stt_6__chup_clvt_so_nao_co_dung_hinh_3d_tur_256_day",
+    "document_type": "hospital_service_price_on_demand",
+    "price_kind": "on_demand",
+    "page": 8,
+    "stt": "6",
+    "ma_tuong_duong": "",
+    "service_name": "Chup CLVT so nao co dung hinh 3D (tur ≥ 256 day)",
+    "service_name_single_line": "Chup CLVT so nao co dung hinh 3D (tur ≥ 256 day)",
+    "ghi_chu": "18.0183.0047",
+    "ghi_chu_single_line": "18.0183.0047",
+    "has_price": true,
+    "prices": {
+      "primary": {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "3,500,000",
+        "amount_vnd": 3500000,
+        "status": "published_ocr_review"
+      },
+      "gia_kham_benh": {
+        "label": "gia kham benh",
+        "display": "3,500,000",
+        "amount_vnd": 3500000,
+        "status": "published_ocr_review"
+      },
+      "all": [
+        {
+          "field": "gia_kham_benh",
+          "label": "gia kham benh",
+          "display": "3,500,000",
+          "amount_vnd": 3500000
+        }
+      ]
+    },
+    "ocr": {
+      "confidence_min": 0.8848724067211151,
+      "confidence_avg": 0.9567139787292572,
+      "token_count": 6,
+      "requires_human_review": true
+    },
+    "approval_status": "review_only",
+    "verified_at": "2026-07-18T00:00:00+07:00",
+    "raw_columns": {
+      "stt": "6",
+      "ghi_chu": "18.0183.0047",
+      "dich_vu_ky_thuat": "Chup CLVT so nao co dung hinh 3D (tur ≥ 256 day)",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "3,500,000",
+      "gia_dich_vu_theo_yeu_cau": ""
+    }
+  },
+  {
+    "id": "hht_on_demand_ocr_2024__0061__stt_6__chup_clvt_ham_mat_khong_tiem_thuoc_can_quang_tir_256_day",
+    "document_type": "hospital_service_price_on_demand",
+    "price_kind": "on_demand",
+    "page": 8,
+    "stt": "6",
+    "ma_tuong_duong": "",
+    "service_name": "Chup CLVT ham-mat khong tiem thuoc can quang (tir ≥ 256 day)",
+    "service_name_single_line": "Chup CLVT ham-mat khong tiem thuoc can quang (tir ≥ 256 day)",
+    "ghi_chu": "18.0184.0047",
+    "ghi_chu_single_line": "18.0184.0047",
+    "has_price": true,
+    "prices": {
+      "primary": {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "3,500,000",
+        "amount_vnd": 3500000,
+        "status": "published_ocr_review"
+      },
+      "gia_kham_benh": {
+        "label": "gia kham benh",
+        "display": "3,500,000",
+        "amount_vnd": 3500000,
+        "status": "published_ocr_review"
+      },
+      "all": [
+        {
+          "field": "gia_kham_benh",
+          "label": "gia kham benh",
+          "display": "3,500,000",
+          "amount_vnd": 3500000
+        }
+      ]
+    },
+    "ocr": {
+      "confidence_min": 0.9575572148446114,
+      "confidence_avg": 0.9736039929389496,
+      "token_count": 4,
+      "requires_human_review": true
+    },
+    "approval_status": "review_only",
+    "verified_at": "2026-07-18T00:00:00+07:00",
+    "raw_columns": {
+      "stt": "6",
+      "ghi_chu": "18.0184.0047",
+      "dich_vu_ky_thuat": "Chup CLVT ham-mat khong tiem thuoc can quang (tir ≥ 256 day)",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "3,500,000",
+      "gia_dich_vu_theo_yeu_cau": ""
+    }
+  },
+  {
+    "id": "hht_on_demand_ocr_2024__0062__stt_8__chup_clvt_ham_mat_co_tiem_thuoc_can_quang_tu_256_day",
+    "document_type": "hospital_service_price_on_demand",
+    "price_kind": "on_demand",
+    "page": 8,
+    "stt": "8",
+    "ma_tuong_duong": "",
+    "service_name": "Chup CLVT ham-mat co tiem thuoc can quang (tu ≥ 256 day)",
+    "service_name_single_line": "Chup CLVT ham-mat co tiem thuoc can quang (tu ≥ 256 day)",
+    "ghi_chu": "18.0185.0046",
+    "ghi_chu_single_line": "18.0185.0046",
+    "has_price": true,
+    "prices": {
+      "primary": {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "5,000,000",
+        "amount_vnd": 5000000,
+        "status": "published_ocr_review"
+      },
+      "gia_kham_benh": {
+        "label": "gia kham benh",
+        "display": "5,000,000",
+        "amount_vnd": 5000000,
+        "status": "published_ocr_review"
+      },
+      "all": [
+        {
+          "field": "gia_kham_benh",
+          "label": "gia kham benh",
+          "display": "5,000,000",
+          "amount_vnd": 5000000
+        }
+      ]
+    },
+    "ocr": {
+      "confidence_min": 0.5386272072792053,
+      "confidence_avg": 0.9299643702786646,
+      "token_count": 9,
+      "requires_human_review": true
+    },
+    "approval_status": "review_only",
+    "verified_at": "2026-07-18T00:00:00+07:00",
+    "raw_columns": {
+      "stt": "8",
+      "ghi_chu": "18.0185.0046",
+      "dich_vu_ky_thuat": "Chup CLVT ham-mat co tiem thuoc can quang (tu ≥ 256 day)",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "5,000,000",
+      "gia_dich_vu_theo_yeu_cau": "Chua bao gom thuoc can quang"
+    }
+  },
+  {
+    "id": "hht_on_demand_ocr_2024__0063__stt_8__chup_clvt_tai_xuong_da_khong_tiem_thuoc_can_quang_tir_256_day",
+    "document_type": "hospital_service_price_on_demand",
+    "price_kind": "on_demand",
+    "page": 8,
+    "stt": "8",
+    "ma_tuong_duong": "",
+    "service_name": "Chup CLVT tai-xuong da khong tiem thuoc can quang (tir ≥ 256 day)",
+    "service_name_single_line": "Chup CLVT tai-xuong da khong tiem thuoc can quang (tir ≥ 256 day)",
+    "ghi_chu": "18.0187.0047",
+    "ghi_chu_single_line": "18.0187.0047",
+    "has_price": true,
+    "prices": {
+      "primary": {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "3,500,000",
+        "amount_vnd": 3500000,
+        "status": "published_ocr_review"
+      },
+      "gia_kham_benh": {
+        "label": "gia kham benh",
+        "display": "3,500,000",
+        "amount_vnd": 3500000,
+        "status": "published_ocr_review"
+      },
+      "all": [
+        {
+          "field": "gia_kham_benh",
+          "label": "gia kham benh",
+          "display": "3,500,000",
+          "amount_vnd": 3500000
+        }
+      ]
+    },
+    "ocr": {
+      "confidence_min": 0.9644313435400685,
+      "confidence_avg": 0.9858593897626026,
+      "token_count": 5,
+      "requires_human_review": true
+    },
+    "approval_status": "review_only",
+    "verified_at": "2026-07-18T00:00:00+07:00",
+    "raw_columns": {
+      "stt": "8",
+      "ghi_chu": "18.0187.0047",
+      "dich_vu_ky_thuat": "Chup CLVT tai-xuong da khong tiem thuoc can quang (tir ≥ 256 day)",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "3,500,000",
+      "gia_dich_vu_theo_yeu_cau": ""
+    }
+  },
+  {
+    "id": "hht_on_demand_ocr_2024__0064__stt_10__chup_clvt_tai_xuong_da_c6_tiem_thuoc_can_quang_tiur_256_day",
+    "document_type": "hospital_service_price_on_demand",
+    "price_kind": "on_demand",
+    "page": 8,
+    "stt": "10",
+    "ma_tuong_duong": "",
+    "service_name": "Chup CLVT tai-xuong da c6 tiem thuoc can quang (tiur ≥ 256 day)",
+    "service_name_single_line": "Chup CLVT tai-xuong da c6 tiem thuoc can quang (tiur ≥ 256 day)",
+    "ghi_chu": "18.0188.0046",
+    "ghi_chu_single_line": "18.0188.0046",
+    "has_price": true,
+    "prices": {
+      "primary": {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "5,000,000",
+        "amount_vnd": 5000000,
+        "status": "published_ocr_review"
+      },
+      "gia_kham_benh": {
+        "label": "gia kham benh",
+        "display": "5,000,000",
+        "amount_vnd": 5000000,
+        "status": "published_ocr_review"
+      },
+      "all": [
+        {
+          "field": "gia_kham_benh",
+          "label": "gia kham benh",
+          "display": "5,000,000",
+          "amount_vnd": 5000000
+        }
+      ]
+    },
+    "ocr": {
+      "confidence_min": 0.9458577593167623,
+      "confidence_avg": 0.9825121765335401,
+      "token_count": 8,
+      "requires_human_review": true
+    },
+    "approval_status": "review_only",
+    "verified_at": "2026-07-18T00:00:00+07:00",
+    "raw_columns": {
+      "stt": "10",
+      "ghi_chu": "18.0188.0046",
+      "dich_vu_ky_thuat": "Chup CLVT tai-xuong da c6 tiem thuoc can quang (tiur ≥ 256 day)",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "5,000,000",
+      "gia_dich_vu_theo_yeu_cau": "Chua bao gom thuoc can quang"
+    }
+  },
+  {
+    "id": "hht_on_demand_ocr_2024__0065__stt_11__chup_clvt_hoc_mat_tur_256_day",
+    "document_type": "hospital_service_price_on_demand",
+    "price_kind": "on_demand",
+    "page": 8,
+    "stt": "11",
+    "ma_tuong_duong": "",
+    "service_name": "Chup CLVT hoc mat (tur ≥ 256 day)",
+    "service_name_single_line": "Chup CLVT hoc mat (tur ≥ 256 day)",
+    "ghi_chu": "18.0189.0047",
+    "ghi_chu_single_line": "18.0189.0047",
+    "has_price": true,
+    "prices": {
+      "primary": {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "3,500,000",
+        "amount_vnd": 3500000,
+        "status": "published_ocr_review"
+      },
+      "gia_kham_benh": {
+        "label": "gia kham benh",
+        "display": "3,500,000",
+        "amount_vnd": 3500000,
+        "status": "published_ocr_review"
+      },
+      "all": [
+        {
+          "field": "gia_kham_benh",
+          "label": "gia kham benh",
+          "display": "3,500,000",
+          "amount_vnd": 3500000
+        }
+      ]
+    },
+    "ocr": {
+      "confidence_min": 0.956211371081216,
+      "confidence_avg": 0.9873342470044182,
+      "token_count": 5,
+      "requires_human_review": true
+    },
+    "approval_status": "review_only",
+    "verified_at": "2026-07-18T00:00:00+07:00",
+    "raw_columns": {
+      "stt": "11",
+      "ghi_chu": "18.0189.0047",
+      "dich_vu_ky_thuat": "Chup CLVT hoc mat (tur ≥ 256 day)",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "3,500,000",
+      "gia_dich_vu_theo_yeu_cau": ""
+    }
+  },
+  {
+    "id": "hht_on_demand_ocr_2024__0066__stt_12__chupclvthammatcodurnghinh_3d_tir_256_day",
+    "document_type": "hospital_service_price_on_demand",
+    "price_kind": "on_demand",
+    "page": 8,
+    "stt": "12",
+    "ma_tuong_duong": "",
+    "service_name": "ChupCLVThammatcodurnghinh 3D (tir ≥ 256 day)",
+    "service_name_single_line": "ChupCLVThammatcodurnghinh 3D (tir ≥ 256 day)",
+    "ghi_chu": "18.0190.0047",
+    "ghi_chu_single_line": "18.0190.0047",
+    "has_price": true,
+    "prices": {
+      "primary": {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "3,500,000",
+        "amount_vnd": 3500000,
+        "status": "published_ocr_review"
+      },
+      "gia_kham_benh": {
+        "label": "gia kham benh",
+        "display": "3,500,000",
+        "amount_vnd": 3500000,
+        "status": "published_ocr_review"
+      },
+      "all": [
+        {
+          "field": "gia_kham_benh",
+          "label": "gia kham benh",
+          "display": "3,500,000",
+          "amount_vnd": 3500000
+        }
+      ]
+    },
+    "ocr": {
+      "confidence_min": 0.5170333981513977,
+      "confidence_avg": 0.891210207078192,
+      "token_count": 6,
+      "requires_human_review": true
+    },
+    "approval_status": "review_only",
+    "verified_at": "2026-07-18T00:00:00+07:00",
+    "raw_columns": {
+      "stt": "12",
+      "ghi_chu": "18.0190.0047",
+      "dich_vu_ky_thuat": "ChupCLVThammatcodurnghinh 3D (tir ≥ 256 day)",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "3,500,000",
+      "gia_dich_vu_theo_yeu_cau": ""
+    }
+  },
+  {
+    "id": "hht_on_demand_ocr_2024__0067__stt_14__tiem_thuoc_can_quang_tiur_256_day",
+    "document_type": "hospital_service_price_on_demand",
+    "price_kind": "on_demand",
+    "page": 9,
+    "stt": "14",
+    "ma_tuong_duong": "",
+    "service_name": "tiem thuoc can quang (tiur ≥ 256 day)",
+    "service_name_single_line": "tiem thuoc can quang (tiur ≥ 256 day)",
+    "ghi_chu": "18.0210.0046",
+    "ghi_chu_single_line": "18.0210.0046",
+    "has_price": true,
+    "prices": {
+      "primary": {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "5,000,000",
+        "amount_vnd": 5000000,
+        "status": "published_ocr_review"
+      },
+      "gia_kham_benh": {
+        "label": "gia kham benh",
+        "display": "5,000,000",
+        "amount_vnd": 5000000,
+        "status": "published_ocr_review"
+      },
+      "all": [
+        {
+          "field": "gia_kham_benh",
+          "label": "gia kham benh",
+          "display": "5,000,000",
+          "amount_vnd": 5000000
+        }
+      ]
+    },
+    "ocr": {
+      "confidence_min": 0.9303544797003269,
+      "confidence_avg": 0.9874655527846208,
+      "token_count": 7,
+      "requires_human_review": true
+    },
+    "approval_status": "review_only",
+    "verified_at": "2026-07-18T00:00:00+07:00",
+    "raw_columns": {
+      "stt": "14",
+      "ghi_chu": "18.0210.0046",
+      "dich_vu_ky_thuat": "tiem thuoc can quang (tiur ≥ 256 day)",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "5,000,000",
+      "gia_dich_vu_theo_yeu_cau": "thuoc can quang"
+    }
+  },
+  {
+    "id": "hht_on_demand_ocr_2024__0068__stt_15__chup_cat_1op_vi_tinh_phoi_do_phan_giai_cao_tir_256_day",
+    "document_type": "hospital_service_price_on_demand",
+    "price_kind": "on_demand",
+    "page": 9,
+    "stt": "15",
+    "ma_tuong_duong": "",
+    "service_name": "Chup cat 1op vi tinh phoi do phan giai cao (tir ≥ 256 day)",
+    "service_name_single_line": "Chup cat 1op vi tinh phoi do phan giai cao (tir ≥ 256 day)",
+    "ghi_chu": "18.0211.0047",
+    "ghi_chu_single_line": "18.0211.0047",
+    "has_price": true,
+    "prices": {
+      "primary": {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "3,500,000",
+        "amount_vnd": 3500000,
+        "status": "published_ocr_review"
+      },
+      "gia_kham_benh": {
+        "label": "gia kham benh",
+        "display": "3,500,000",
+        "amount_vnd": 3500000,
+        "status": "published_ocr_review"
+      },
+      "all": [
+        {
+          "field": "gia_kham_benh",
+          "label": "gia kham benh",
+          "display": "3,500,000",
+          "amount_vnd": 3500000
+        }
+      ]
+    },
+    "ocr": {
+      "confidence_min": 0.9514631032943726,
+      "confidence_avg": 0.9778825075864189,
+      "token_count": 6,
+      "requires_human_review": true
+    },
+    "approval_status": "review_only",
+    "verified_at": "2026-07-18T00:00:00+07:00",
+    "raw_columns": {
+      "stt": "15",
+      "ghi_chu": "18.0211.0047",
+      "dich_vu_ky_thuat": "Chup cat 1op vi tinh phoi do phan giai cao (tir ≥ 256 day)",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "3,500,000",
+      "gia_dich_vu_theo_yeu_cau": ""
+    }
+  },
+  {
+    "id": "hht_on_demand_ocr_2024__0069__stt_16__chup_cat_1op_vi_tinh_dong_mach_phoi_tur_256_day",
+    "document_type": "hospital_service_price_on_demand",
+    "price_kind": "on_demand",
+    "page": 9,
+    "stt": "16",
+    "ma_tuong_duong": "",
+    "service_name": "Chup cat 1op vi tinh dong mach phoi (tur ≥ 256 day)",
+    "service_name_single_line": "Chup cat 1op vi tinh dong mach phoi (tur ≥ 256 day)",
+    "ghi_chu": "18.0214.0046",
+    "ghi_chu_single_line": "18.0214.0046",
+    "has_price": true,
+    "prices": {
+      "primary": {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "5,000,000",
+        "amount_vnd": 5000000,
+        "status": "published_ocr_review"
+      },
+      "gia_kham_benh": {
+        "label": "gia kham benh",
+        "display": "5,000,000",
+        "amount_vnd": 5000000,
+        "status": "published_ocr_review"
+      },
+      "all": [
+        {
+          "field": "gia_kham_benh",
+          "label": "gia kham benh",
+          "display": "5,000,000",
+          "amount_vnd": 5000000
+        }
+      ]
+    },
+    "ocr": {
+      "confidence_min": 0.9419818669557571,
+      "confidence_avg": 0.9825264167454507,
+      "token_count": 8,
+      "requires_human_review": true
+    },
+    "approval_status": "review_only",
+    "verified_at": "2026-07-18T00:00:00+07:00",
+    "raw_columns": {
+      "stt": "16",
+      "ghi_chu": "18.0214.0046",
+      "dich_vu_ky_thuat": "Chup cat 1op vi tinh dong mach phoi (tur ≥ 256 day)",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "5,000,000",
+      "gia_dich_vu_theo_yeu_cau": "Chua bao gom thuoc can quang"
+    }
+  },
+  {
+    "id": "hht_on_demand_ocr_2024__0070__stt_17__chup_cat_lop_vi_tinh_dong_mach_chu_nguc_tur_256_day",
+    "document_type": "hospital_service_price_on_demand",
+    "price_kind": "on_demand",
+    "page": 9,
+    "stt": "17",
+    "ma_tuong_duong": "",
+    "service_name": "Chup cat lop vi tinh dong mach chu nguc (tur ≥256 day)",
+    "service_name_single_line": "Chup cat lop vi tinh dong mach chu nguc (tur ≥256 day)",
+    "ghi_chu": "18.0215.0046",
+    "ghi_chu_single_line": "18.0215.0046",
+    "has_price": true,
+    "prices": {
+      "primary": {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "5,000,000",
+        "amount_vnd": 5000000,
+        "status": "published_ocr_review"
+      },
+      "gia_kham_benh": {
+        "label": "gia kham benh",
+        "display": "5,000,000",
+        "amount_vnd": 5000000,
+        "status": "published_ocr_review"
+      },
+      "all": [
+        {
+          "field": "gia_kham_benh",
+          "label": "gia kham benh",
+          "display": "5,000,000",
+          "amount_vnd": 5000000
+        }
+      ]
+    },
+    "ocr": {
+      "confidence_min": 0.6418402194976807,
+      "confidence_avg": 0.9400320661272773,
+      "token_count": 9,
+      "requires_human_review": true
+    },
+    "approval_status": "review_only",
+    "verified_at": "2026-07-18T00:00:00+07:00",
+    "raw_columns": {
+      "stt": "17",
+      "ghi_chu": "18.0215.0046",
+      "dich_vu_ky_thuat": "Chup cat lop vi tinh dong mach chu nguc (tur ≥256 day)",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "5,000,000",
+      "gia_dich_vu_theo_yeu_cau": "Chua bao gom thuoc can quang"
+    }
+  },
+  {
+    "id": "hht_on_demand_ocr_2024__0071__stt_18__chup_cat_1op_vi_tinh_dong_mach_vanh_timcodungthuocbetablock_tir_256_day",
+    "document_type": "hospital_service_price_on_demand",
+    "price_kind": "on_demand",
+    "page": 9,
+    "stt": "18",
+    "ma_tuong_duong": "",
+    "service_name": "Chup cat 1op vi tinh dong mach vanh,timcodungthuocbetablock (tir ≥ 256 day)",
+    "service_name_single_line": "Chup cat 1op vi tinh dong mach vanh,timcodungthuocbetablock (tir ≥ 256 day)",
+    "ghi_chu": "18.0216.0046",
+    "ghi_chu_single_line": "18.0216.0046",
+    "has_price": true,
+    "prices": {
+      "primary": {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "5,000,000",
+        "amount_vnd": 5000000,
+        "status": "published_ocr_review"
+      },
+      "gia_kham_benh": {
+        "label": "gia kham benh",
+        "display": "5,000,000",
+        "amount_vnd": 5000000,
+        "status": "published_ocr_review"
+      },
+      "all": [
+        {
+          "field": "gia_kham_benh",
+          "label": "gia kham benh",
+          "display": "5,000,000",
+          "amount_vnd": 5000000
+        }
+      ]
+    },
+    "ocr": {
+      "confidence_min": 0.8873832106590271,
+      "confidence_avg": 0.9777247591781868,
+      "token_count": 9,
+      "requires_human_review": true
+    },
+    "approval_status": "review_only",
+    "verified_at": "2026-07-18T00:00:00+07:00",
+    "raw_columns": {
+      "stt": "18",
+      "ghi_chu": "18.0216.0046",
+      "dich_vu_ky_thuat": "Chup cat 1op vi tinh dong mach vanh,timcodungthuocbetablock (tir ≥ 256 day)",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "5,000,000",
+      "gia_dich_vu_theo_yeu_cau": "Chua bao gom thuoc can quang"
+    }
+  },
+  {
+    "id": "hht_on_demand_ocr_2024__0072__stt_19__chup_cat_lop_vi_tinh_dong_mach_vanh_tim_khong_dung_thuoc_beta_block_tur_256day",
+    "document_type": "hospital_service_price_on_demand",
+    "price_kind": "on_demand",
+    "page": 9,
+    "stt": "19",
+    "ma_tuong_duong": "",
+    "service_name": "Chup cat lop vi tinh dong mach vanh, tim khong dung thuoc beta block(tur≥256day)",
+    "service_name_single_line": "Chup cat lop vi tinh dong mach vanh, tim khong dung thuoc beta block(tur≥256day)",
+    "ghi_chu": "18.0217.0046",
+    "ghi_chu_single_line": "18.0217.0046",
+    "has_price": true,
+    "prices": {
+      "primary": {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "5,000,000",
+        "amount_vnd": 5000000,
+        "status": "published_ocr_review"
+      },
+      "gia_kham_benh": {
+        "label": "gia kham benh",
+        "display": "5,000,000",
+        "amount_vnd": 5000000,
+        "status": "published_ocr_review"
+      },
+      "all": [
+        {
+          "field": "gia_kham_benh",
+          "label": "gia kham benh",
+          "display": "5,000,000",
+          "amount_vnd": 5000000
+        }
+      ]
+    },
+    "ocr": {
+      "confidence_min": 0.9541793048381806,
+      "confidence_avg": 0.985462928187834,
+      "token_count": 9,
+      "requires_human_review": true
+    },
+    "approval_status": "review_only",
+    "verified_at": "2026-07-18T00:00:00+07:00",
+    "raw_columns": {
+      "stt": "19",
+      "ghi_chu": "18.0217.0046",
+      "dich_vu_ky_thuat": "Chup cat lop vi tinh dong mach vanh, tim khong dung thuoc beta block(tur≥256day)",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "5,000,000",
+      "gia_dich_vu_theo_yeu_cau": "Chua bao gom thuoc can quang"
+    }
+  },
+  {
+    "id": "hht_on_demand_ocr_2024__0073__stt_20__chup_cat_lop_vi_tinh_tinh_diem_voi_hoa_mach_vanh_tur_256_day",
+    "document_type": "hospital_service_price_on_demand",
+    "price_kind": "on_demand",
+    "page": 9,
+    "stt": "20",
+    "ma_tuong_duong": "",
+    "service_name": "Chup cat lop vi tinh tinh diem voi hoa mach vanh (tur ≥ 256 day)",
+    "service_name_single_line": "Chup cat lop vi tinh tinh diem voi hoa mach vanh (tur ≥ 256 day)",
+    "ghi_chu": "18.0218.0047",
+    "ghi_chu_single_line": "18.0218.0047",
+    "has_price": true,
+    "prices": {
+      "primary": {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "3,500,000",
+        "amount_vnd": 3500000,
+        "status": "published_ocr_review"
+      },
+      "gia_kham_benh": {
+        "label": "gia kham benh",
+        "display": "3,500,000",
+        "amount_vnd": 3500000,
+        "status": "published_ocr_review"
+      },
+      "all": [
+        {
+          "field": "gia_kham_benh",
+          "label": "gia kham benh",
+          "display": "3,500,000",
+          "amount_vnd": 3500000
+        }
+      ]
+    },
+    "ocr": {
+      "confidence_min": 0.9506667009715376,
+      "confidence_avg": 0.9796883467513483,
+      "token_count": 5,
+      "requires_human_review": true
+    },
+    "approval_status": "review_only",
+    "verified_at": "2026-07-18T00:00:00+07:00",
+    "raw_columns": {
+      "stt": "20",
+      "ghi_chu": "18.0218.0047",
+      "dich_vu_ky_thuat": "Chup cat lop vi tinh tinh diem voi hoa mach vanh (tur ≥ 256 day)",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "3,500,000",
+      "gia_dich_vu_theo_yeu_cau": ""
+    }
+  },
+  {
+    "id": "hht_on_demand_ocr_2024__0074__stt_21__chup_cat_lop_vi_tinh_tang_tren_bung_thuong_quy_gom_chup_cat_16p_vi_tinh_gan_mat_",
+    "document_type": "hospital_service_price_on_demand",
+    "price_kind": "on_demand",
+    "page": 9,
+    "stt": "21",
+    "ma_tuong_duong": "",
+    "service_name": "Chup cat lop vi tinh tang tren ? bung thuong quy (gom: chup Cat 16p vi tinh gan-mat, tuy, lach, da day-ta trang.v.v.) (tur ≥ 256 day)",
+    "service_name_single_line": "Chup cat lop vi tinh tang tren ? bung thuong quy (gom: chup Cat 16p vi tinh gan-mat, tuy, lach, da day-ta trang.v.v.) (tur ≥ 256 day)",
+    "ghi_chu": "18.0243.0047",
+    "ghi_chu_single_line": "18.0243.0047",
+    "has_price": true,
+    "prices": {
+      "primary": {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "3,500,000",
+        "amount_vnd": 3500000,
+        "status": "published_ocr_review"
+      },
+      "gia_kham_benh": {
+        "label": "gia kham benh",
+        "display": "3,500,000",
+        "amount_vnd": 3500000,
+        "status": "published_ocr_review"
+      },
+      "all": [
+        {
+          "field": "gia_kham_benh",
+          "label": "gia kham benh",
+          "display": "3,500,000",
+          "amount_vnd": 3500000
+        }
+      ]
+    },
+    "ocr": {
+      "confidence_min": 0.9312791982117821,
+      "confidence_avg": 0.971607785460467,
+      "token_count": 7,
+      "requires_human_review": true
+    },
+    "approval_status": "review_only",
+    "verified_at": "2026-07-18T00:00:00+07:00",
+    "raw_columns": {
+      "stt": "21",
+      "ghi_chu": "18.0243.0047",
+      "dich_vu_ky_thuat": "Chup cat lop vi tinh tang tren ? bung thuong quy (gom: chup Cat 16p vi tinh gan-mat, tuy, lach, da day-ta trang.v.v.) (tur ≥ 256 day)",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "3,500,000",
+      "gia_dich_vu_theo_yeu_cau": ""
+    }
+  },
+  {
+    "id": "hht_on_demand_ocr_2024__0075__stt_22__chup_cat_1op_vi_tinh_tang_tren_bung_thuong_quy_gom_chup_cat_lopvitinhgan_mat_tuy",
+    "document_type": "hospital_service_price_on_demand",
+    "price_kind": "on_demand",
+    "page": 9,
+    "stt": "22",
+    "ma_tuong_duong": "",
+    "service_name": "Chup cat 1op vi tinh tang tren ? bung thuong quy (gom: chup Cat lopvitinhgan-mat,tuy,lach,da day-ta trang.v.v.) (tir ≥256 day)",
+    "service_name_single_line": "Chup cat 1op vi tinh tang tren ? bung thuong quy (gom: chup Cat lopvitinhgan-mat,tuy,lach,da day-ta trang.v.v.) (tir ≥256 day)",
+    "ghi_chu": "18.0243.0046",
+    "ghi_chu_single_line": "18.0243.0046",
+    "has_price": true,
+    "prices": {
+      "primary": {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "5,000,000",
+        "amount_vnd": 5000000,
+        "status": "published_ocr_review"
+      },
+      "gia_kham_benh": {
+        "label": "gia kham benh",
+        "display": "5,000,000",
+        "amount_vnd": 5000000,
+        "status": "published_ocr_review"
+      },
+      "all": [
+        {
+          "field": "gia_kham_benh",
+          "label": "gia kham benh",
+          "display": "5,000,000",
+          "amount_vnd": 5000000
+        }
+      ]
+    },
+    "ocr": {
+      "confidence_min": 0.9661337227532358,
+      "confidence_avg": 0.9863668252334193,
+      "token_count": 10,
+      "requires_human_review": true
+    },
+    "approval_status": "review_only",
+    "verified_at": "2026-07-18T00:00:00+07:00",
+    "raw_columns": {
+      "stt": "22",
+      "ghi_chu": "18.0243.0046",
+      "dich_vu_ky_thuat": "Chup cat 1op vi tinh tang tren ? bung thuong quy (gom: chup Cat lopvitinhgan-mat,tuy,lach,da day-ta trang.v.v.) (tir ≥256 day)",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "5,000,000",
+      "gia_dich_vu_theo_yeu_cau": "Chua bao gom thuoc can quang"
+    }
+  },
+  {
+    "id": "hht_on_demand_ocr_2024__0076__stt_23__chup_cat_1op_vi_tinh_bung_tieu_khungthurongquy_tir_256day_khong_thuoc",
+    "document_type": "hospital_service_price_on_demand",
+    "price_kind": "on_demand",
+    "page": 9,
+    "stt": "23",
+    "ma_tuong_duong": "",
+    "service_name": "Chup cat 1op vi tinh bung-tieu khungthurongquy(tir≥256day) (khong thuoc)",
+    "service_name_single_line": "Chup cat 1op vi tinh bung-tieu khungthurongquy(tir≥256day) (khong thuoc)",
+    "ghi_chu": "18.0244.0047",
+    "ghi_chu_single_line": "18.0244.0047",
+    "has_price": true,
+    "prices": {
+      "primary": {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "3,500,000",
+        "amount_vnd": 3500000,
+        "status": "published_ocr_review"
+      },
+      "gia_kham_benh": {
+        "label": "gia kham benh",
+        "display": "3,500,000",
+        "amount_vnd": 3500000,
+        "status": "published_ocr_review"
+      },
+      "all": [
+        {
+          "field": "gia_kham_benh",
+          "label": "gia kham benh",
+          "display": "3,500,000",
+          "amount_vnd": 3500000
+        }
+      ]
+    },
+    "ocr": {
+      "confidence_min": 0.939274752581561,
+      "confidence_avg": 0.9835372982937612,
+      "token_count": 6,
+      "requires_human_review": true
+    },
+    "approval_status": "review_only",
+    "verified_at": "2026-07-18T00:00:00+07:00",
+    "raw_columns": {
+      "stt": "23",
+      "ghi_chu": "18.0244.0047",
+      "dich_vu_ky_thuat": "Chup cat 1op vi tinh bung-tieu khungthurongquy(tir≥256day) (khong thuoc)",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "3,500,000",
+      "gia_dich_vu_theo_yeu_cau": ""
+    }
+  },
+  {
+    "id": "hht_on_demand_ocr_2024__0077__stt_24__chup_cat_1op_vi_tinh_bung_tieu_khung_thuong_quy_tir_256_day_co_thuoc",
+    "document_type": "hospital_service_price_on_demand",
+    "price_kind": "on_demand",
+    "page": 9,
+    "stt": "24",
+    "ma_tuong_duong": "",
+    "service_name": "Chup cat 1op vi tinh bung-tieu khung thuong quy (tir ≥ 256 day) (co thuoc)",
+    "service_name_single_line": "Chup cat 1op vi tinh bung-tieu khung thuong quy (tir ≥ 256 day) (co thuoc)",
+    "ghi_chu": "18.0244.0046",
+    "ghi_chu_single_line": "18.0244.0046",
+    "has_price": true,
+    "prices": {
+      "primary": {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "5,000,000",
+        "amount_vnd": 5000000,
+        "status": "published_ocr_review"
+      },
+      "gia_kham_benh": {
+        "label": "gia kham benh",
+        "display": "5,000,000",
+        "amount_vnd": 5000000,
+        "status": "published_ocr_review"
+      },
+      "all": [
+        {
+          "field": "gia_kham_benh",
+          "label": "gia kham benh",
+          "display": "5,000,000",
+          "amount_vnd": 5000000
+        }
+      ]
+    },
+    "ocr": {
+      "confidence_min": 0.9306792318820953,
+      "confidence_avg": 0.9823257528383422,
+      "token_count": 9,
+      "requires_human_review": true
+    },
+    "approval_status": "review_only",
+    "verified_at": "2026-07-18T00:00:00+07:00",
+    "raw_columns": {
+      "stt": "24",
+      "ghi_chu": "18.0244.0046",
+      "dich_vu_ky_thuat": "Chup cat 1op vi tinh bung-tieu khung thuong quy (tir ≥ 256 day) (co thuoc)",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "5,000,000",
+      "gia_dich_vu_theo_yeu_cau": "Chua bao gom thuoc can quang"
+    }
+  },
+  {
+    "id": "hht_on_demand_ocr_2024__0078__stt_26__thuong_quy_gom_chup_cat_1op_vi_tinh_t_r_cung_buong_trung_tien_liet_tuyen_cac_kho",
+    "document_type": "hospital_service_price_on_demand",
+    "price_kind": "on_demand",
+    "page": 10,
+    "stt": "26",
+    "ma_tuong_duong": "",
+    "service_name": "thuong quy (gom: chup cat 1op vi tinh t’r cung-buong trung, tien liet tuyen, cac khoi u vung tieu khung.v.v.)",
+    "service_name_single_line": "thuong quy (gom: chup cat 1op vi tinh t’r cung-buong trung, tien liet tuyen, cac khoi u vung tieu khung.v.v.)",
+    "ghi_chu": "18.0245.0046",
+    "ghi_chu_single_line": "18.0245.0046",
+    "has_price": true,
+    "prices": {
+      "primary": {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "5,000,000",
+        "amount_vnd": 5000000,
+        "status": "published_ocr_review"
+      },
+      "gia_kham_benh": {
+        "label": "gia kham benh",
+        "display": "5,000,000",
+        "amount_vnd": 5000000,
+        "status": "published_ocr_review"
+      },
+      "all": [
+        {
+          "field": "gia_kham_benh",
+          "label": "gia kham benh",
+          "display": "5,000,000",
+          "amount_vnd": 5000000
+        }
+      ]
+    },
+    "ocr": {
+      "confidence_min": 0.5369324088096619,
+      "confidence_avg": 0.9340484471156579,
+      "token_count": 13,
+      "requires_human_review": true
+    },
+    "approval_status": "review_only",
+    "verified_at": "2026-07-18T00:00:00+07:00",
+    "raw_columns": {
+      "stt": "26",
+      "ghi_chu": "18.0245.0046",
+      "dich_vu_ky_thuat": "thuong quy (gom: chup cat 1op vi tinh t’r cung-buong trung, tien liet tuyen, cac khoi u vung tieu khung.v.v.)",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "5,000,000",
+      "gia_dich_vu_theo_yeu_cau": "Chua bao gom thuoc can quang"
+    }
+  },
+  {
+    "id": "hht_on_demand_ocr_2024__0079__stt_27__chup_cat_lop_vi_tinh_he_tiet_nieu_thuong_quy_tur_256_day",
+    "document_type": "hospital_service_price_on_demand",
+    "price_kind": "on_demand",
+    "page": 10,
+    "stt": "27",
+    "ma_tuong_duong": "",
+    "service_name": "Chup cat lop vi tinh he tiet nieu thuong quy (tur ≥ 256 day)",
+    "service_name_single_line": "Chup cat lop vi tinh he tiet nieu thuong quy (tur ≥ 256 day)",
+    "ghi_chu": "18.0246.0047",
+    "ghi_chu_single_line": "18.0246.0047",
+    "has_price": true,
+    "prices": {
+      "primary": {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "3,500,000",
+        "amount_vnd": 3500000,
+        "status": "published_ocr_review"
+      },
+      "gia_kham_benh": {
+        "label": "gia kham benh",
+        "display": "3,500,000",
+        "amount_vnd": 3500000,
+        "status": "published_ocr_review"
+      },
+      "all": [
+        {
+          "field": "gia_kham_benh",
+          "label": "gia kham benh",
+          "display": "3,500,000",
+          "amount_vnd": 3500000
+        }
+      ]
+    },
+    "ocr": {
+      "confidence_min": 0.6032024025917053,
+      "confidence_avg": 0.9162631859084819,
+      "token_count": 6,
+      "requires_human_review": true
+    },
+    "approval_status": "review_only",
+    "verified_at": "2026-07-18T00:00:00+07:00",
+    "raw_columns": {
+      "stt": "27",
+      "ghi_chu": "18.0246.0047",
+      "dich_vu_ky_thuat": "Chup cat lop vi tinh he tiet nieu thuong quy (tur ≥ 256 day)",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "3,500,000",
+      "gia_dich_vu_theo_yeu_cau": ""
+    }
+  },
+  {
+    "id": "hht_on_demand_ocr_2024__0080__stt_28__chup_catlopvi_tinhheti_tnieu_thuong_quy_tur_256_day",
+    "document_type": "hospital_service_price_on_demand",
+    "price_kind": "on_demand",
+    "page": 10,
+    "stt": "28",
+    "ma_tuong_duong": "",
+    "service_name": "Chup catlopvi tinhhetiétnieu thuong quy (tur ≥ 256 day)",
+    "service_name_single_line": "Chup catlopvi tinhhetiétnieu thuong quy (tur ≥ 256 day)",
+    "ghi_chu": "18.0246.0046",
+    "ghi_chu_single_line": "18.0246.0046",
+    "has_price": true,
+    "prices": {
+      "primary": {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "5,000,000",
+        "amount_vnd": 5000000,
+        "status": "published_ocr_review"
+      },
+      "gia_kham_benh": {
+        "label": "gia kham benh",
+        "display": "5,000,000",
+        "amount_vnd": 5000000,
+        "status": "published_ocr_review"
+      },
+      "all": [
+        {
+          "field": "gia_kham_benh",
+          "label": "gia kham benh",
+          "display": "5,000,000",
+          "amount_vnd": 5000000
+        }
+      ]
+    },
+    "ocr": {
+      "confidence_min": 0.9355369316680091,
+      "confidence_avg": 0.9871394113274757,
+      "token_count": 8,
+      "requires_human_review": true
+    },
+    "approval_status": "review_only",
+    "verified_at": "2026-07-18T00:00:00+07:00",
+    "raw_columns": {
+      "stt": "28",
+      "ghi_chu": "18.0246.0046",
+      "dich_vu_ky_thuat": "Chup catlopvi tinhhetiétnieu thuong quy (tur ≥ 256 day)",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "5,000,000",
+      "gia_dich_vu_theo_yeu_cau": "Chua bao gom thuoc can quang"
+    }
+  },
+  {
+    "id": "hht_on_demand_ocr_2024__0081__stt_29__chup_cat_lop_vi_tinh_tang_tren_bung_co_khao_sat_mach_cac_tang_bao_gom_mach_gan_t",
+    "document_type": "hospital_service_price_on_demand",
+    "price_kind": "on_demand",
+    "page": 10,
+    "stt": "29",
+    "ma_tuong_duong": "",
+    "service_name": "Chup cat lop vi tinh tang tren ? bung co khao sat mach cac tang (bao gom mach: gan, tuy, lach va mach kh6i u) (tur ≥ 256 day)",
+    "service_name_single_line": "Chup cat lop vi tinh tang tren ? bung co khao sat mach cac tang (bao gom mach: gan, tuy, lach va mach kh6i u) (tur ≥ 256 day)",
+    "ghi_chu": "18.0247.0046",
+    "ghi_chu_single_line": "18.0247.0046",
+    "has_price": true,
+    "prices": {
+      "primary": {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "5,000,000",
+        "amount_vnd": 5000000,
+        "status": "published_ocr_review"
+      },
+      "gia_kham_benh": {
+        "label": "gia kham benh",
+        "display": "5,000,000",
+        "amount_vnd": 5000000,
+        "status": "published_ocr_review"
+      },
+      "all": [
+        {
+          "field": "gia_kham_benh",
+          "label": "gia kham benh",
+          "display": "5,000,000",
+          "amount_vnd": 5000000
+        }
+      ]
+    },
+    "ocr": {
+      "confidence_min": 0.5264550447463989,
+      "confidence_avg": 0.9374572022830123,
+      "token_count": 11,
+      "requires_human_review": true
+    },
+    "approval_status": "review_only",
+    "verified_at": "2026-07-18T00:00:00+07:00",
+    "raw_columns": {
+      "stt": "29",
+      "ghi_chu": "18.0247.0046",
+      "dich_vu_ky_thuat": "Chup cat lop vi tinh tang tren ? bung co khao sat mach cac tang (bao gom mach: gan, tuy, lach va mach kh6i u) (tur ≥ 256 day)",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "5,000,000",
+      "gia_dich_vu_theo_yeu_cau": "Chua bao gom thuoc can quang"
+    }
+  },
+  {
+    "id": "hht_on_demand_ocr_2024__0082__stt_30__chup_catlopvitinh_he_tietnieu_co_khao_sat_mach_than_va_hoac_dung_hinh_duong_bai_",
+    "document_type": "hospital_service_price_on_demand",
+    "price_kind": "on_demand",
+    "page": 10,
+    "stt": "30",
+    "ma_tuong_duong": "",
+    "service_name": "Chup catlopvitinh he tietnieu co khao sat mach than va/hoac dung hinh duong bai xuat (tur ≥ 256 day)",
+    "service_name_single_line": "Chup catlopvitinh he tietnieu co khao sat mach than va/hoac dung hinh duong bai xuat (tur ≥ 256 day)",
+    "ghi_chu": "18.0248.0046",
+    "ghi_chu_single_line": "18.0248.0046",
+    "has_price": true,
+    "prices": {
+      "primary": {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "5,000,000",
+        "amount_vnd": 5000000,
+        "status": "published_ocr_review"
+      },
+      "gia_kham_benh": {
+        "label": "gia kham benh",
+        "display": "5,000,000",
+        "amount_vnd": 5000000,
+        "status": "published_ocr_review"
+      },
+      "all": [
+        {
+          "field": "gia_kham_benh",
+          "label": "gia kham benh",
+          "display": "5,000,000",
+          "amount_vnd": 5000000
+        }
+      ]
+    },
+    "ocr": {
+      "confidence_min": 0.8976925183087587,
+      "confidence_avg": 0.975650992640028,
+      "token_count": 9,
+      "requires_human_review": true
+    },
+    "approval_status": "review_only",
+    "verified_at": "2026-07-18T00:00:00+07:00",
+    "raw_columns": {
+      "stt": "30",
+      "ghi_chu": "18.0248.0046",
+      "dich_vu_ky_thuat": "Chup catlopvitinh he tietnieu co khao sat mach than va/hoac dung hinh duong bai xuat (tur ≥ 256 day)",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "5,000,000",
+      "gia_dich_vu_theo_yeu_cau": "Chua bao gom thuoc can quang"
+    }
+  },
+  {
+    "id": "hht_on_demand_ocr_2024__0083__stt_31__chup_cat_lop_vi_tinh_gan_c6_dung_hinh_duong_mat_tur_256_day",
+    "document_type": "hospital_service_price_on_demand",
+    "price_kind": "on_demand",
+    "page": 10,
+    "stt": "31",
+    "ma_tuong_duong": "",
+    "service_name": "Chup cat lop vi tinh gan c6 dung hinh duong mat (tur ≥ 256 day)",
+    "service_name_single_line": "Chup cat lop vi tinh gan c6 dung hinh duong mat (tur ≥ 256 day)",
+    "ghi_chu": "18.0249.0046",
+    "ghi_chu_single_line": "18.0249.0046",
+    "has_price": true,
+    "prices": {
+      "primary": {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "5,000,000",
+        "amount_vnd": 5000000,
+        "status": "published_ocr_review"
+      },
+      "gia_kham_benh": {
+        "label": "gia kham benh",
+        "display": "5,000,000",
+        "amount_vnd": 5000000,
+        "status": "published_ocr_review"
+      },
+      "all": [
+        {
+          "field": "gia_kham_benh",
+          "label": "gia kham benh",
+          "display": "5,000,000",
+          "amount_vnd": 5000000
+        }
+      ]
+    },
+    "ocr": {
+      "confidence_min": 0.943025889992714,
+      "confidence_avg": 0.9799849143303517,
+      "token_count": 8,
+      "requires_human_review": true
+    },
+    "approval_status": "review_only",
+    "verified_at": "2026-07-18T00:00:00+07:00",
+    "raw_columns": {
+      "stt": "31",
+      "ghi_chu": "18.0249.0046",
+      "dich_vu_ky_thuat": "Chup cat lop vi tinh gan c6 dung hinh duong mat (tur ≥ 256 day)",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "5,000,000",
+      "gia_dich_vu_theo_yeu_cau": "Chua bao gom thuoc can quang"
+    }
+  },
+  {
+    "id": "hht_on_demand_ocr_2024__0084__stt_32__chup_cat_lop_vi_tinh_tang_khao_sat_huy_t_dong_hoc_khoi_u_ct_perfusion_tir_256_da",
+    "document_type": "hospital_service_price_on_demand",
+    "price_kind": "on_demand",
+    "page": 10,
+    "stt": "32",
+    "ma_tuong_duong": "",
+    "service_name": "Chup cat lop vi tinh tang khao sat huyét dong hoc khoi u (CT perfusion) (tir ≥ 256 day)",
+    "service_name_single_line": "Chup cat lop vi tinh tang khao sat huyét dong hoc khoi u (CT perfusion) (tir ≥ 256 day)",
+    "ghi_chu": "18.0250.0046",
+    "ghi_chu_single_line": "18.0250.0046",
+    "has_price": true,
+    "prices": {
+      "primary": {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "5,000,000",
+        "amount_vnd": 5000000,
+        "status": "published_ocr_review"
+      },
+      "gia_kham_benh": {
+        "label": "gia kham benh",
+        "display": "5,000,000",
+        "amount_vnd": 5000000,
+        "status": "published_ocr_review"
+      },
+      "all": [
+        {
+          "field": "gia_kham_benh",
+          "label": "gia kham benh",
+          "display": "5,000,000",
+          "amount_vnd": 5000000
+        }
+      ]
+    },
+    "ocr": {
+      "confidence_min": 0.7283154129981995,
+      "confidence_avg": 0.9472201661169078,
+      "token_count": 10,
+      "requires_human_review": true
+    },
+    "approval_status": "review_only",
+    "verified_at": "2026-07-18T00:00:00+07:00",
+    "raw_columns": {
+      "stt": "32",
+      "ghi_chu": "18.0250.0046",
+      "dich_vu_ky_thuat": "Chup cat lop vi tinh tang khao sat huyét dong hoc khoi u (CT perfusion) (tir ≥ 256 day)",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "5,000,000",
+      "gia_dich_vu_theo_yeu_cau": "Chua bao gom thuoc can quang"
+    }
+  },
+  {
+    "id": "hht_on_demand_ocr_2024__0085__stt_33__chup_cat_1op_vi_tinh_dong_mach_chu_chau_tur_256_day",
+    "document_type": "hospital_service_price_on_demand",
+    "price_kind": "on_demand",
+    "page": 10,
+    "stt": "33",
+    "ma_tuong_duong": "",
+    "service_name": "Chup cat 1op vi tinh dong mach chu chau (tur≥256 day)",
+    "service_name_single_line": "Chup cat 1op vi tinh dong mach chu chau (tur≥256 day)",
+    "ghi_chu": "18.0254.0046",
+    "ghi_chu_single_line": "18.0254.0046",
+    "has_price": true,
+    "prices": {
+      "primary": {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "5,000,000",
+        "amount_vnd": 5000000,
+        "status": "published_ocr_review"
+      },
+      "gia_kham_benh": {
+        "label": "gia kham benh",
+        "display": "5,000,000",
+        "amount_vnd": 5000000,
+        "status": "published_ocr_review"
+      },
+      "all": [
+        {
+          "field": "gia_kham_benh",
+          "label": "gia kham benh",
+          "display": "5,000,000",
+          "amount_vnd": 5000000
+        }
+      ]
+    },
+    "ocr": {
+      "confidence_min": 0.6462338864803314,
+      "confidence_avg": 0.9364024019825692,
+      "token_count": 10,
+      "requires_human_review": true
+    },
+    "approval_status": "review_only",
+    "verified_at": "2026-07-18T00:00:00+07:00",
+    "raw_columns": {
+      "stt": "33",
+      "ghi_chu": "18.0254.0046",
+      "dich_vu_ky_thuat": "Chup cat 1op vi tinh dong mach chu chau (tur≥256 day)",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "5,000,000",
+      "gia_dich_vu_theo_yeu_cau": "Chua bao gom thuoc can quang"
+    }
+  },
+  {
+    "id": "hht_on_demand_ocr_2024__0086__stt_34__chup_cat_1op_vi_tinh_mach_mau_chi_tren_tir_256_day",
+    "document_type": "hospital_service_price_on_demand",
+    "price_kind": "on_demand",
+    "page": 10,
+    "stt": "34",
+    "ma_tuong_duong": "",
+    "service_name": "Chup cat 1op vi tinh mach mau chi tren (tir ≥256 day)",
+    "service_name_single_line": "Chup cat 1op vi tinh mach mau chi tren (tir ≥256 day)",
+    "ghi_chu": "18.0294.0046",
+    "ghi_chu_single_line": "18.0294.0046",
+    "has_price": true,
+    "prices": {
+      "primary": {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "5,000,000",
+        "amount_vnd": 5000000,
+        "status": "published_ocr_review"
+      },
+      "gia_kham_benh": {
+        "label": "gia kham benh",
+        "display": "5,000,000",
+        "amount_vnd": 5000000,
+        "status": "published_ocr_review"
+      },
+      "all": [
+        {
+          "field": "gia_kham_benh",
+          "label": "gia kham benh",
+          "display": "5,000,000",
+          "amount_vnd": 5000000
+        }
+      ]
+    },
+    "ocr": {
+      "confidence_min": 0.8971693500092155,
+      "confidence_avg": 0.9771185541916629,
+      "token_count": 8,
+      "requires_human_review": true
+    },
+    "approval_status": "review_only",
+    "verified_at": "2026-07-18T00:00:00+07:00",
+    "raw_columns": {
+      "stt": "34",
+      "ghi_chu": "18.0294.0046",
+      "dich_vu_ky_thuat": "Chup cat 1op vi tinh mach mau chi tren (tir ≥256 day)",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "5,000,000",
+      "gia_dich_vu_theo_yeu_cau": "Chua bao gom thuoc can quang"
+    }
+  },
+  {
+    "id": "hht_on_demand_ocr_2024__0087__stt_35__chup_catlop_vi_tinh_machmau_chi_duoi_tir_256_day",
+    "document_type": "hospital_service_price_on_demand",
+    "price_kind": "on_demand",
+    "page": 10,
+    "stt": "35",
+    "ma_tuong_duong": "",
+    "service_name": "Chup catlop vi tinh machmau chi duoi (tir ≥256 day)",
+    "service_name_single_line": "Chup catlop vi tinh machmau chi duoi (tir ≥256 day)",
+    "ghi_chu": "18.0295.0046",
+    "ghi_chu_single_line": "18.0295.0046",
+    "has_price": true,
+    "prices": {
+      "primary": {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "5,000,000",
+        "amount_vnd": 5000000,
+        "status": "published_ocr_review"
+      },
+      "gia_kham_benh": {
+        "label": "gia kham benh",
+        "display": "5,000,000",
+        "amount_vnd": 5000000,
+        "status": "published_ocr_review"
+      },
+      "all": [
+        {
+          "field": "gia_kham_benh",
+          "label": "gia kham benh",
+          "display": "5,000,000",
+          "amount_vnd": 5000000
+        }
+      ]
+    },
+    "ocr": {
+      "confidence_min": 0.9194942963750738,
+      "confidence_avg": 0.9794224207446055,
+      "token_count": 8,
+      "requires_human_review": true
+    },
+    "approval_status": "review_only",
+    "verified_at": "2026-07-18T00:00:00+07:00",
+    "raw_columns": {
+      "stt": "35",
+      "ghi_chu": "18.0295.0046",
+      "dich_vu_ky_thuat": "Chup catlop vi tinh machmau chi duoi (tir ≥256 day)",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "5,000,000",
+      "gia_dich_vu_theo_yeu_cau": "Chua bao gom thuoc can quang"
+    }
+  },
+  {
+    "id": "hht_on_demand_ocr_2024__0088__stt_37__tiemthuoccanquang_tir_256_day",
+    "document_type": "hospital_service_price_on_demand",
+    "price_kind": "on_demand",
+    "page": 11,
+    "stt": "37",
+    "ma_tuong_duong": "",
+    "service_name": "tiemthuoccanquang（tir≥256 day)",
+    "service_name_single_line": "tiemthuoccanquang（tir≥256 day)",
+    "ghi_chu": "18.0283.0046",
+    "ghi_chu_single_line": "18.0283.0046",
+    "has_price": true,
+    "prices": {
+      "primary": {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "5,000,000",
+        "amount_vnd": 5000000,
+        "status": "published_ocr_review"
+      },
+      "gia_kham_benh": {
+        "label": "gia kham benh",
+        "display": "5,000,000",
+        "amount_vnd": 5000000,
+        "status": "published_ocr_review"
+      },
+      "all": [
+        {
+          "field": "gia_kham_benh",
+          "label": "gia kham benh",
+          "display": "5,000,000",
+          "amount_vnd": 5000000
+        }
+      ]
+    },
+    "ocr": {
+      "confidence_min": 0.9439892649650574,
+      "confidence_avg": 0.9906520114531593,
+      "token_count": 7,
+      "requires_human_review": true
+    },
+    "approval_status": "review_only",
+    "verified_at": "2026-07-18T00:00:00+07:00",
+    "raw_columns": {
+      "stt": "37",
+      "ghi_chu": "18.0283.0046",
+      "dich_vu_ky_thuat": "tiemthuoccanquang（tir≥256 day)",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "5,000,000",
+      "gia_dich_vu_theo_yeu_cau": "thuoc can quang"
+    }
+  },
+  {
+    "id": "hht_on_demand_ocr_2024__0089__stt_38__chup_cat_1op_vi_tinh_cot_song_nguc_khong_tiem_thuoc_can_quang_tiur_256_day",
+    "document_type": "hospital_service_price_on_demand",
+    "price_kind": "on_demand",
+    "page": 11,
+    "stt": "38",
+    "ma_tuong_duong": "",
+    "service_name": "Chup cat 1op vi tinh cot song nguc khong tiem thuoc can quang (tiur ≥ 256 day)",
+    "service_name_single_line": "Chup cat 1op vi tinh cot song nguc khong tiem thuoc can quang (tiur ≥ 256 day)",
+    "ghi_chu": "18.0284.0047",
+    "ghi_chu_single_line": "18.0284.0047",
+    "has_price": true,
+    "prices": {
+      "primary": {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "3,500,000",
+        "amount_vnd": 3500000,
+        "status": "published_ocr_review"
+      },
+      "gia_kham_benh": {
+        "label": "gia kham benh",
+        "display": "3,500,000",
+        "amount_vnd": 3500000,
+        "status": "published_ocr_review"
+      },
+      "all": [
+        {
+          "field": "gia_kham_benh",
+          "label": "gia kham benh",
+          "display": "3,500,000",
+          "amount_vnd": 3500000
+        }
+      ]
+    },
+    "ocr": {
+      "confidence_min": 0.9411971849553725,
+      "confidence_avg": 0.9835912220764395,
+      "token_count": 6,
+      "requires_human_review": true
+    },
+    "approval_status": "review_only",
+    "verified_at": "2026-07-18T00:00:00+07:00",
+    "raw_columns": {
+      "stt": "38",
+      "ghi_chu": "18.0284.0047",
+      "dich_vu_ky_thuat": "Chup cat 1op vi tinh cot song nguc khong tiem thuoc can quang (tiur ≥ 256 day)",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "3,500,000",
+      "gia_dich_vu_theo_yeu_cau": ""
+    }
+  },
+  {
+    "id": "hht_on_demand_ocr_2024__0090__stt_39__chup_cat_lop_vi_tinh_cot_song_nguc_cotiemthuoccanquang_tir_256_day",
+    "document_type": "hospital_service_price_on_demand",
+    "price_kind": "on_demand",
+    "page": 11,
+    "stt": "39",
+    "ma_tuong_duong": "",
+    "service_name": "Chup cat lop vi tinh cot song nguc cotiemthuoccanquang（tir≥256 day)",
+    "service_name_single_line": "Chup cat lop vi tinh cot song nguc cotiemthuoccanquang（tir≥256 day)",
+    "ghi_chu": "18.0285.0046",
+    "ghi_chu_single_line": "18.0285.0046",
+    "has_price": true,
+    "prices": {
+      "primary": {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "5,000,000",
+        "amount_vnd": 5000000,
+        "status": "published_ocr_review"
+      },
+      "gia_kham_benh": {
+        "label": "gia kham benh",
+        "display": "5,000,000",
+        "amount_vnd": 5000000,
+        "status": "published_ocr_review"
+      },
+      "all": [
+        {
+          "field": "gia_kham_benh",
+          "label": "gia kham benh",
+          "display": "5,000,000",
+          "amount_vnd": 5000000
+        }
+      ]
+    },
+    "ocr": {
+      "confidence_min": 0.936509519815445,
+      "confidence_avg": 0.9854933445035502,
+      "token_count": 9,
+      "requires_human_review": true
+    },
+    "approval_status": "review_only",
+    "verified_at": "2026-07-18T00:00:00+07:00",
+    "raw_columns": {
+      "stt": "39",
+      "ghi_chu": "18.0285.0046",
+      "dich_vu_ky_thuat": "Chup cat lop vi tinh cot song nguc cotiemthuoccanquang（tir≥256 day)",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "5,000,000",
+      "gia_dich_vu_theo_yeu_cau": "Chua bao gom thuoc can quang"
+    }
+  },
+  {
+    "id": "hht_on_demand_ocr_2024__0091__stt_40__chup_cat_1op_vi_tinh_cot_song_that_lung_khong_tiem_thuoc_can_quang_tir_256_day",
+    "document_type": "hospital_service_price_on_demand",
+    "price_kind": "on_demand",
+    "page": 11,
+    "stt": "40",
+    "ma_tuong_duong": "",
+    "service_name": "Chup cat 1op vi tinh cot song that lung khong tiem thuoc can quang (tir ≥ 256 day)",
+    "service_name_single_line": "Chup cat 1op vi tinh cot song that lung khong tiem thuoc can quang (tir ≥ 256 day)",
+    "ghi_chu": "18.0286.0047",
+    "ghi_chu_single_line": "18.0286.0047",
+    "has_price": true,
+    "prices": {
+      "primary": {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "3,500,000",
+        "amount_vnd": 3500000,
+        "status": "published_ocr_review"
+      },
+      "gia_kham_benh": {
+        "label": "gia kham benh",
+        "display": "3,500,000",
+        "amount_vnd": 3500000,
+        "status": "published_ocr_review"
+      },
+      "all": [
+        {
+          "field": "gia_kham_benh",
+          "label": "gia kham benh",
+          "display": "3,500,000",
+          "amount_vnd": 3500000
+        }
+      ]
+    },
+    "ocr": {
+      "confidence_min": 0.9422512849171957,
+      "confidence_avg": 0.9768417731379874,
+      "token_count": 6,
+      "requires_human_review": true
+    },
+    "approval_status": "review_only",
+    "verified_at": "2026-07-18T00:00:00+07:00",
+    "raw_columns": {
+      "stt": "40",
+      "ghi_chu": "18.0286.0047",
+      "dich_vu_ky_thuat": "Chup cat 1op vi tinh cot song that lung khong tiem thuoc can quang (tir ≥ 256 day)",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "3,500,000",
+      "gia_dich_vu_theo_yeu_cau": ""
+    }
+  },
+  {
+    "id": "hht_on_demand_ocr_2024__0092__stt_41__chup_cat_1op_vi_tinh_cot_song_that_lurngcotiemthuoccanquang_tir_256_day",
+    "document_type": "hospital_service_price_on_demand",
+    "price_kind": "on_demand",
+    "page": 11,
+    "stt": "41",
+    "ma_tuong_duong": "",
+    "service_name": "Chup cat 1op vi tinh cot song that lurngcotiemthuoccanquang(tir≥ 256 day)",
+    "service_name_single_line": "Chup cat 1op vi tinh cot song that lurngcotiemthuoccanquang(tir≥ 256 day)",
+    "ghi_chu": "18.0287.0046",
+    "ghi_chu_single_line": "18.0287.0046",
+    "has_price": true,
+    "prices": {
+      "primary": {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "5,000,000",
+        "amount_vnd": 5000000,
+        "status": "published_ocr_review"
+      },
+      "gia_kham_benh": {
+        "label": "gia kham benh",
+        "display": "5,000,000",
+        "amount_vnd": 5000000,
+        "status": "published_ocr_review"
+      },
+      "all": [
+        {
+          "field": "gia_kham_benh",
+          "label": "gia kham benh",
+          "display": "5,000,000",
+          "amount_vnd": 5000000
+        }
+      ]
+    },
+    "ocr": {
+      "confidence_min": 0.9480354333746022,
+      "confidence_avg": 0.9899217899439569,
+      "token_count": 9,
+      "requires_human_review": true
+    },
+    "approval_status": "review_only",
+    "verified_at": "2026-07-18T00:00:00+07:00",
+    "raw_columns": {
+      "stt": "41",
+      "ghi_chu": "18.0287.0046",
+      "dich_vu_ky_thuat": "Chup cat 1op vi tinh cot song that lurngcotiemthuoccanquang(tir≥ 256 day)",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "5,000,000",
+      "gia_dich_vu_theo_yeu_cau": "Chua bao gom thuoc can quang"
+    }
+  }
+]

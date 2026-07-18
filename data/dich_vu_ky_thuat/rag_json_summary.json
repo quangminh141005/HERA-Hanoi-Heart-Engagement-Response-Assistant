@@ -1,0 +1,15 @@
+{
+  "input": "/mnt/d/Desktop_informations/Competitions_2026/HERA-Hanoi-Heart-Engagement-Response-Assistant/gia_dich_vu_kt/gia_dich_vu_ky_thuat_2025_clean.json",
+  "outputs": {
+    "rag_jsonl": "/mnt/d/Desktop_informations/Competitions_2026/HERA-Hanoi-Heart-Engagement-Response-Assistant/gia_dich_vu_kt/gia_dich_vu_ky_thuat_2025_rag.jsonl",
+    "rag_json": "/mnt/d/Desktop_informations/Competitions_2026/HERA-Hanoi-Heart-Engagement-Response-Assistant/gia_dich_vu_kt/gia_dich_vu_ky_thuat_2025_rag.json"
+  },
+  "rag_record_count": 2946,
+  "group_record_count": 2,
+  "service_record_count": 2944,
+  "records_with_any_price": 2944,
+  "records_with_children": 2,
+  "recommended_embedding_field": "retrieval_text",
+  "recommended_answer_field": "canonical_answer_vi",
+  "warning": "Do not embed only raw JSON keys. Embed retrieval_text and keep prices/metadata as structured payload."
+}

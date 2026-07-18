@@ -16,7 +16,7 @@
       "runtime_rule": "Chỉ sinh lại FAQ/conversation/evaluation fixtures; tuyệt đối không nạp vào knowledge runtime."
     },
     "price_2025": {
-      "path": "data/gia_dich_vu_ky_thuat_2025.json",
+      "path": "data/dich_vu_ky_thuat/gia_dich_vu_ky_thuat_2025.json",
       "role": "historical_service_price_catalog",
       "expected_raw_rows": 2946,
       "expected_facility_price_points": 4051,

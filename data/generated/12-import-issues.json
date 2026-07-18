@@ -186,7 +186,7 @@
       "issue_id": "ISSUE-PRICE-2025-NOT-CURRENT",
       "severity": "warning",
       "dataset": "historical_service_prices",
-      "source_path": "data/gia_dich_vu_ky_thuat_2025.json",
+      "source_path": "data/dich_vu_ky_thuat/gia_dich_vu_ky_thuat_2025_rag.json",
       "action": "current_price_lookup_disabled",
       "resolved_for_safe_build": true,
       "human_action_required": "Cung cấp bảng giá hiện hành đã được bệnh viện đối chiếu với Nghị quyết 91/2026/NQ-HĐND."

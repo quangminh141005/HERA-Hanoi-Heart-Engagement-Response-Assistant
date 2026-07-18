@@ -1,0 +1,2558 @@
+[
+  {
+    "page": 3,
+    "stt": "page-3-row-1",
+    "ma_tuong_duong": "",
+    "dich_vu_ky_thuat": "Kham theo yeu cau (murc 1)",
+    "ghi_chu": "Cos1",
+    "price_kind": "on_demand",
+    "price_points": [
+      {
+        "field": "gia_dich_vu_y_te",
+        "label": "gia dich vu y te",
+        "display": "500,000",
+        "amount_vnd": 500000
+      },
+      {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "200,000",
+        "amount_vnd": 200000
+      },
+      {
+        "field": "gia_dich_vu_theo_yeu_cau",
+        "label": "gia dich vu theo yeu cau",
+        "display": "300,000",
+        "amount_vnd": 300000
+      }
+    ],
+    "ocr_confidence_min": 0.8316802382469177,
+    "ocr_confidence_avg": 0.9484187111040175,
+    "ocr_token_count": 6,
+    "raw_columns": {
+      "stt": "page-3-row-1",
+      "ghi_chu": "Cos1",
+      "dich_vu_ky_thuat": "Kham theo yeu cau (murc 1)",
+      "gia_dich_vu_y_te": "500,000",
+      "gia_kham_benh": "200,000",
+      "gia_dich_vu_theo_yeu_cau": "300,000"
+    }
+  },
+  {
+    "page": 3,
+    "stt": "page-3-row-2",
+    "ma_tuong_duong": "",
+    "dich_vu_ky_thuat": "Kham theo yeu cau (murc",
+    "ghi_chu": "2)",
+    "price_kind": "on_demand",
+    "price_points": [
+      {
+        "field": "gia_dich_vu_y_te",
+        "label": "gia dich vu y te",
+        "display": "300,000",
+        "amount_vnd": 300000
+      },
+      {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "100,000",
+        "amount_vnd": 100000
+      },
+      {
+        "field": "gia_dich_vu_theo_yeu_cau",
+        "label": "gia dich vu theo yeu cau",
+        "display": "200,000",
+        "amount_vnd": 200000
+      }
+    ],
+    "ocr_confidence_min": 0.5276662707328796,
+    "ocr_confidence_avg": 0.8838609936709095,
+    "ocr_token_count": 7,
+    "raw_columns": {
+      "stt": "page-3-row-2",
+      "ghi_chu": "2)",
+      "dich_vu_ky_thuat": "Kham theo yeu cau (murc",
+      "gia_dich_vu_y_te": "300,000",
+      "gia_kham_benh": "100,000",
+      "gia_dich_vu_theo_yeu_cau": "200,000"
+    }
+  },
+  {
+    "page": 3,
+    "stt": "2",
+    "ma_tuong_duong": "",
+    "dich_vu_ky_thuat": "Kham theo yeu cau (murc 1)",
+    "ghi_chu": "Co s2",
+    "price_kind": "on_demand",
+    "price_points": [
+      {
+        "field": "gia_dich_vu_y_te",
+        "label": "gia dich vu y te",
+        "display": "500,000",
+        "amount_vnd": 500000
+      },
+      {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "200,000",
+        "amount_vnd": 200000
+      },
+      {
+        "field": "gia_dich_vu_theo_yeu_cau",
+        "label": "gia dich vu theo yeu cau",
+        "display": "300,000",
+        "amount_vnd": 300000
+      }
+    ],
+    "ocr_confidence_min": 0.8731012940406799,
+    "ocr_confidence_avg": 0.9720079649000003,
+    "ocr_token_count": 7,
+    "raw_columns": {
+      "stt": "2",
+      "ghi_chu": "Co s2",
+      "dich_vu_ky_thuat": "Kham theo yeu cau (murc 1)",
+      "gia_dich_vu_y_te": "500,000",
+      "gia_kham_benh": "200,000",
+      "gia_dich_vu_theo_yeu_cau": "300,000"
+    }
+  },
+  {
+    "page": 3,
+    "stt": "2",
+    "ma_tuong_duong": "",
+    "dich_vu_ky_thuat": "Kham theo yeu cau (murc",
+    "ghi_chu": "2)",
+    "price_kind": "on_demand",
+    "price_points": [
+      {
+        "field": "gia_dich_vu_y_te",
+        "label": "gia dich vu y te",
+        "display": "300,000",
+        "amount_vnd": 300000
+      },
+      {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "100,000",
+        "amount_vnd": 100000
+      },
+      {
+        "field": "gia_dich_vu_theo_yeu_cau",
+        "label": "gia dich vu theo yeu cau",
+        "display": "200,000",
+        "amount_vnd": 200000
+      }
+    ],
+    "ocr_confidence_min": 0.9056535065174103,
+    "ocr_confidence_avg": 0.9750095956443999,
+    "ocr_token_count": 5,
+    "raw_columns": {
+      "stt": "2",
+      "ghi_chu": "2)",
+      "dich_vu_ky_thuat": "Kham theo yeu cau (murc",
+      "gia_dich_vu_y_te": "300,000",
+      "gia_kham_benh": "100,000",
+      "gia_dich_vu_theo_yeu_cau": "200,000"
+    }
+  },
+  {
+    "page": 3,
+    "stt": "2",
+    "ma_tuong_duong": "",
+    "dich_vu_ky_thuat": "Dich vu cham soc y te duoi 4 gio/ngay (Phong 3 giuong)",
+    "ghi_chu": "2)",
+    "price_kind": "on_demand",
+    "price_points": [
+      {
+        "field": "gia_dich_vu_y_te",
+        "label": "gia dich vu y te",
+        "display": "300,000",
+        "amount_vnd": 300000
+      },
+      {
+        "field": "gia_dich_vu_theo_yeu_cau",
+        "label": "gia dich vu theo yeu cau",
+        "display": "300,000",
+        "amount_vnd": 300000
+      }
+    ],
+    "ocr_confidence_min": 0.917536050081253,
+    "ocr_confidence_avg": 0.9678642389021421,
+    "ocr_token_count": 5,
+    "raw_columns": {
+      "stt": "2",
+      "ghi_chu": "2)",
+      "dich_vu_ky_thuat": "Dich vu cham soc y te duoi 4 gio/ngay (Phong 3 giuong)",
+      "gia_dich_vu_y_te": "300,000",
+      "gia_kham_benh": "",
+      "gia_dich_vu_theo_yeu_cau": "300,000"
+    }
+  },
+  {
+    "page": 3,
+    "stt": "4",
+    "ma_tuong_duong": "",
+    "dich_vu_ky_thuat": "Dich vu cham soc y té tren 4 gio/ngay (Phong 3 giurong)",
+    "ghi_chu": "Khoa",
+    "price_kind": "on_demand",
+    "price_points": [
+      {
+        "field": "gia_dich_vu_y_te",
+        "label": "gia dich vu y te",
+        "display": "500,000",
+        "amount_vnd": 500000
+      },
+      {
+        "field": "gia_dich_vu_theo_yeu_cau",
+        "label": "gia dich vu theo yeu cau",
+        "display": "500,000",
+        "amount_vnd": 500000
+      }
+    ],
+    "ocr_confidence_min": 0.9405533106703508,
+    "ocr_confidence_avg": 0.9765884436855954,
+    "ocr_token_count": 7,
+    "raw_columns": {
+      "stt": "4",
+      "ghi_chu": "Khoa",
+      "dich_vu_ky_thuat": "Dich vu cham soc y té tren 4 gio/ngay (Phong 3 giurong)",
+      "gia_dich_vu_y_te": "500,000",
+      "gia_kham_benh": "",
+      "gia_dich_vu_theo_yeu_cau": "500,000"
+    }
+  },
+  {
+    "page": 3,
+    "stt": "4",
+    "ma_tuong_duong": "",
+    "dich_vu_ky_thuat": "Dichvuchamsocyteduoi 4 gio/ngay (Phong 13 giurong)",
+    "ghi_chu": "DTBN",
+    "price_kind": "on_demand",
+    "price_points": [
+      {
+        "field": "gia_dich_vu_y_te",
+        "label": "gia dich vu y te",
+        "display": "150,000",
+        "amount_vnd": 150000
+      },
+      {
+        "field": "gia_dich_vu_theo_yeu_cau",
+        "label": "gia dich vu theo yeu cau",
+        "display": "150,000",
+        "amount_vnd": 150000
+      }
+    ],
+    "ocr_confidence_min": 0.9574015289545059,
+    "ocr_confidence_avg": 0.9804094214524541,
+    "ocr_token_count": 6,
+    "raw_columns": {
+      "stt": "4",
+      "ghi_chu": "DTBN",
+      "dich_vu_ky_thuat": "Dichvuchamsocyteduoi 4 gio/ngay (Phong 13 giurong)",
+      "gia_dich_vu_y_te": "150,000",
+      "gia_kham_benh": "",
+      "gia_dich_vu_theo_yeu_cau": "150,000"
+    }
+  },
+  {
+    "page": 3,
+    "stt": "4",
+    "ma_tuong_duong": "",
+    "dich_vu_ky_thuat": "Dichvuchamsocytetren 4 gio/ngay (Phong 13 giurong)",
+    "ghi_chu": "DTBN",
+    "price_kind": "on_demand",
+    "price_points": [
+      {
+        "field": "gia_dich_vu_y_te",
+        "label": "gia dich vu y te",
+        "display": "200,000",
+        "amount_vnd": 200000
+      },
+      {
+        "field": "gia_dich_vu_theo_yeu_cau",
+        "label": "gia dich vu theo yeu cau",
+        "display": "200,000",
+        "amount_vnd": 200000
+      }
+    ],
+    "ocr_confidence_min": 0.9598581850528717,
+    "ocr_confidence_avg": 0.9792862941537586,
+    "ocr_token_count": 5,
+    "raw_columns": {
+      "stt": "4",
+      "ghi_chu": "DTBN",
+      "dich_vu_ky_thuat": "Dichvuchamsocytetren 4 gio/ngay (Phong 13 giurong)",
+      "gia_dich_vu_y_te": "200,000",
+      "gia_kham_benh": "",
+      "gia_dich_vu_theo_yeu_cau": "200,000"
+    }
+  },
+  {
+    "page": 4,
+    "stt": "page-4-row-1",
+    "ma_tuong_duong": "",
+    "dich_vu_ky_thuat": "Chup cong huong tir tim danh gia qua tai sat",
+    "ghi_chu": "18.0700.0066",
+    "price_kind": "on_demand",
+    "price_points": [
+      {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "2,300,000",
+        "amount_vnd": 2300000
+      }
+    ],
+    "ocr_confidence_min": 0.6242527365684509,
+    "ocr_confidence_avg": 0.9197042932775286,
+    "ocr_token_count": 5,
+    "raw_columns": {
+      "stt": "page-4-row-1",
+      "ghi_chu": "18.0700.0066",
+      "dich_vu_ky_thuat": "Chup cong huong tir tim danh gia qua tai sat",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "2,300,000",
+      "gia_dich_vu_theo_yeu_cau": ""
+    }
+  },
+  {
+    "page": 4,
+    "stt": "2",
+    "ma_tuong_duong": "",
+    "dich_vu_ky_thuat": "Chup cong huong tir cot song nguc co tiem turong phan (0.2-1.5T)",
+    "ghi_chu": "18.0337.0065",
+    "price_kind": "on_demand",
+    "price_points": [
+      {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "3,700,000",
+        "amount_vnd": 3700000
+      }
+    ],
+    "ocr_confidence_min": 0.7556969523429871,
+    "ocr_confidence_avg": 0.9459597813310446,
+    "ocr_token_count": 6,
+    "raw_columns": {
+      "stt": "2",
+      "ghi_chu": "18.0337.0065",
+      "dich_vu_ky_thuat": "Chup cong huong tir cot song nguc co tiem turong phan (0.2-1.5T)",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "3,700,000",
+      "gia_dich_vu_theo_yeu_cau": ""
+    }
+  },
+  {
+    "page": 4,
+    "stt": "3",
+    "ma_tuong_duong": "",
+    "dich_vu_ky_thuat": "Chup cong huong tir so nao co tiem chat tuong phan (0.2-1.5T)",
+    "ghi_chu": "18.0297.0065",
+    "price_kind": "on_demand",
+    "price_points": [
+      {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "3,700,000",
+        "amount_vnd": 3700000
+      }
+    ],
+    "ocr_confidence_min": 0.6057455539703369,
+    "ocr_confidence_avg": 0.9213863214706084,
+    "ocr_token_count": 6,
+    "raw_columns": {
+      "stt": "3",
+      "ghi_chu": "18.0297.0065",
+      "dich_vu_ky_thuat": "Chup cong huong tir so nao co tiem chat tuong phan (0.2-1.5T)",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "3,700,000",
+      "gia_dich_vu_theo_yeu_cau": ""
+    }
+  },
+  {
+    "page": 4,
+    "stt": "4",
+    "ma_tuong_duong": "",
+    "dich_vu_ky_thuat": "Chup cong huong tir cot song nguc (0.2- 1.5T)",
+    "ghi_chu": "18.0336.0066",
+    "price_kind": "on_demand",
+    "price_points": [
+      {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "2,300,000",
+        "amount_vnd": 2300000
+      }
+    ],
+    "ocr_confidence_min": 0.9802976250648499,
+    "ocr_confidence_avg": 0.9924141299775524,
+    "ocr_token_count": 5,
+    "raw_columns": {
+      "stt": "4",
+      "ghi_chu": "18.0336.0066",
+      "dich_vu_ky_thuat": "Chup cong huong tir cot song nguc (0.2- 1.5T)",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "2,300,000",
+      "gia_dich_vu_theo_yeu_cau": ""
+    }
+  },
+  {
+    "page": 4,
+    "stt": "5",
+    "ma_tuong_duong": "",
+    "dich_vu_ky_thuat": "Chup cong huong tir cot song that lung cung c6 tiém tuong phan (0.2-1.5T)",
+    "ghi_chu": "18.0339.0065",
+    "price_kind": "on_demand",
+    "price_points": [
+      {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "3,700,000",
+        "amount_vnd": 3700000
+      }
+    ],
+    "ocr_confidence_min": 0.9518544046502364,
+    "ocr_confidence_avg": 0.9816292500338031,
+    "ocr_token_count": 5,
+    "raw_columns": {
+      "stt": "5",
+      "ghi_chu": "18.0339.0065",
+      "dich_vu_ky_thuat": "Chup cong huong tir cot song that lung cung c6 tiém tuong phan (0.2-1.5T)",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "3,700,000",
+      "gia_dich_vu_theo_yeu_cau": ""
+    }
+  },
+  {
+    "page": 4,
+    "stt": "6",
+    "ma_tuong_duong": "",
+    "dich_vu_ky_thuat": "Chup cong huong tir dong mach chi tren c6 tiem tuong phan (1.5T)",
+    "ghi_chu": "18.0353.0065",
+    "price_kind": "on_demand",
+    "price_points": [
+      {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "3,700,000",
+        "amount_vnd": 3700000
+      }
+    ],
+    "ocr_confidence_min": 0.9538727214461878,
+    "ocr_confidence_avg": 0.9791730796998006,
+    "ocr_token_count": 5,
+    "raw_columns": {
+      "stt": "6",
+      "ghi_chu": "18.0353.0065",
+      "dich_vu_ky_thuat": "Chup cong huong tir dong mach chi tren c6 tiem tuong phan (1.5T)",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "3,700,000",
+      "gia_dich_vu_theo_yeu_cau": ""
+    }
+  },
+  {
+    "page": 4,
+    "stt": "7",
+    "ma_tuong_duong": "",
+    "dich_vu_ky_thuat": "Chup cong huong tir he mach co co tiem chat tuong phan (0.2-1.5T)",
+    "ghi_chu": "18.0301.0065",
+    "price_kind": "on_demand",
+    "price_points": [
+      {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "3,700,000",
+        "amount_vnd": 3700000
+      }
+    ],
+    "ocr_confidence_min": 0.5846745371818542,
+    "ocr_confidence_avg": 0.9085628858752508,
+    "ocr_token_count": 6,
+    "raw_columns": {
+      "stt": "7",
+      "ghi_chu": "18.0301.0065",
+      "dich_vu_ky_thuat": "Chup cong huong tir he mach co co tiem chat tuong phan (0.2-1.5T)",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "3,700,000",
+      "gia_dich_vu_theo_yeu_cau": ""
+    }
+  },
+  {
+    "page": 4,
+    "stt": "8",
+    "ma_tuong_duong": "",
+    "dich_vu_ky_thuat": "Chup cong huong tur nao- mach nao khong tiem chat tuong phan (0.2-1.5T)",
+    "ghi_chu": "18.0298.0066",
+    "price_kind": "on_demand",
+    "price_points": [
+      {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "2,300,000",
+        "amount_vnd": 2300000
+      }
+    ],
+    "ocr_confidence_min": 0.9680357268362334,
+    "ocr_confidence_avg": 0.9866877796039404,
+    "ocr_token_count": 5,
+    "raw_columns": {
+      "stt": "8",
+      "ghi_chu": "18.0298.0066",
+      "dich_vu_ky_thuat": "Chup cong huong tur nao- mach nao khong tiem chat tuong phan (0.2-1.5T)",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "2,300,000",
+      "gia_dich_vu_theo_yeu_cau": ""
+    }
+  },
+  {
+    "page": 4,
+    "stt": "9",
+    "ma_tuong_duong": "",
+    "dich_vu_ky_thuat": "Chup cong huong tir cot song that lung cung (0.2-1.5T)",
+    "ghi_chu": "18.0338.0066",
+    "price_kind": "on_demand",
+    "price_points": [
+      {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "2,300,000",
+        "amount_vnd": 2300000
+      }
+    ],
+    "ocr_confidence_min": 0.948133014534649,
+    "ocr_confidence_avg": 0.9804287836739892,
+    "ocr_token_count": 5,
+    "raw_columns": {
+      "stt": "9",
+      "ghi_chu": "18.0338.0066",
+      "dich_vu_ky_thuat": "Chup cong huong tir cot song that lung cung (0.2-1.5T)",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "2,300,000",
+      "gia_dich_vu_theo_yeu_cau": ""
+    }
+  },
+  {
+    "page": 4,
+    "stt": "10",
+    "ma_tuong_duong": "",
+    "dich_vu_ky_thuat": "Chup cong huong tur hoc mat va than kinh thi giac (0.2-1.5T)",
+    "ghi_chu": "18.0303.0066",
+    "price_kind": "on_demand",
+    "price_points": [
+      {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "2,300,000",
+        "amount_vnd": 2300000
+      }
+    ],
+    "ocr_confidence_min": 0.9566071629524231,
+    "ocr_confidence_avg": 0.9845006106628311,
+    "ocr_token_count": 5,
+    "raw_columns": {
+      "stt": "10",
+      "ghi_chu": "18.0303.0066",
+      "dich_vu_ky_thuat": "Chup cong huong tur hoc mat va than kinh thi giac (0.2-1.5T)",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "2,300,000",
+      "gia_dich_vu_theo_yeu_cau": ""
+    }
+  },
+  {
+    "page": 4,
+    "stt": "11",
+    "ma_tuong_duong": "",
+    "dich_vu_ky_thuat": "Chup cong huong tir cot song co (0.2- 1.5T)",
+    "ghi_chu": "18.0334.0066",
+    "price_kind": "on_demand",
+    "price_points": [
+      {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "2,300,000",
+        "amount_vnd": 2300000
+      }
+    ],
+    "ocr_confidence_min": 0.9836471757373294,
+    "ocr_confidence_avg": 0.9938985571811149,
+    "ocr_token_count": 5,
+    "raw_columns": {
+      "stt": "11",
+      "ghi_chu": "18.0334.0066",
+      "dich_vu_ky_thuat": "Chup cong huong tir cot song co (0.2- 1.5T)",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "2,300,000",
+      "gia_dich_vu_theo_yeu_cau": ""
+    }
+  },
+  {
+    "page": 4,
+    "stt": "12",
+    "ma_tuong_duong": "",
+    "dich_vu_ky_thuat": "Chup cong huong tir xuong va tuy xuong c6 tiem tuong phan (0.2-1.5T)",
+    "ghi_chu": "18.0344.0065",
+    "price_kind": "on_demand",
+    "price_points": [
+      {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "3,700,000",
+        "amount_vnd": 3700000
+      }
+    ],
+    "ocr_confidence_min": 0.9453115351498127,
+    "ocr_confidence_avg": 0.9755351322487232,
+    "ocr_token_count": 5,
+    "raw_columns": {
+      "stt": "12",
+      "ghi_chu": "18.0344.0065",
+      "dich_vu_ky_thuat": "Chup cong huong tir xuong va tuy xuong c6 tiem tuong phan (0.2-1.5T)",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "3,700,000",
+      "gia_dich_vu_theo_yeu_cau": ""
+    }
+  },
+  {
+    "page": 4,
+    "stt": "13",
+    "ma_tuong_duong": "",
+    "dich_vu_ky_thuat": "Chup cong huong tur tang tren o bung co khao sat mach cac tang (bao gom mach: gan, tuy, lach va mach khoi u) (1.5T)",
+    "ghi_chu": "18.0351.0065",
+    "price_kind": "on_demand",
+    "price_points": [
+      {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "3,700,000",
+        "amount_vnd": 3700000
+      }
+    ],
+    "ocr_confidence_min": 0.9493504189527951,
+    "ocr_confidence_avg": 0.9845953925611047,
+    "ocr_token_count": 6,
+    "raw_columns": {
+      "stt": "13",
+      "ghi_chu": "18.0351.0065",
+      "dich_vu_ky_thuat": "Chup cong huong tur tang tren o bung co khao sat mach cac tang (bao gom mach: gan, tuy, lach va mach khoi u) (1.5T)",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "3,700,000",
+      "gia_dich_vu_theo_yeu_cau": ""
+    }
+  },
+  {
+    "page": 4,
+    "stt": "14",
+    "ma_tuong_duong": "",
+    "dich_vu_ky_thuat": "Chup cong huong tir tim danh gia cac benh ly timbam sinh",
+    "ghi_chu": "18.0699.0065",
+    "price_kind": "on_demand",
+    "price_points": [
+      {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "3,700,000",
+        "amount_vnd": 3700000
+      }
+    ],
+    "ocr_confidence_min": 0.9563986941387779,
+    "ocr_confidence_avg": 0.9848461412895493,
+    "ocr_token_count": 5,
+    "raw_columns": {
+      "stt": "14",
+      "ghi_chu": "18.0699.0065",
+      "dich_vu_ky_thuat": "Chup cong huong tir tim danh gia cac benh ly timbam sinh",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "3,700,000",
+      "gia_dich_vu_theo_yeu_cau": ""
+    }
+  },
+  {
+    "page": 5,
+    "stt": "16",
+    "ma_tuong_duong": "",
+    "dich_vu_ky_thuat": "Chup conghuong tir tim danh gia cac khoi u tim c6 tiem thuoc tuong phan",
+    "ghi_chu": "18.0697.0065",
+    "price_kind": "on_demand",
+    "price_points": [
+      {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "3,700,000",
+        "amount_vnd": 3700000
+      }
+    ],
+    "ocr_confidence_min": 0.9324391910008022,
+    "ocr_confidence_avg": 0.9817916699250538,
+    "ocr_token_count": 5,
+    "raw_columns": {
+      "stt": "16",
+      "ghi_chu": "18.0697.0065",
+      "dich_vu_ky_thuat": "Chup conghuong tir tim danh gia cac khoi u tim c6 tiem thuoc tuong phan",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "3,700,000",
+      "gia_dich_vu_theo_yeu_cau": ""
+    }
+  },
+  {
+    "page": 5,
+    "stt": "17",
+    "ma_tuong_duong": "",
+    "dich_vu_ky_thuat": "Chup cong huong tur tim danh gia khuéch tan surc cang (DTI - Diffusion Tensor Imaging)",
+    "ghi_chu": "18.0701.0065",
+    "price_kind": "on_demand",
+    "price_points": [
+      {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "3,700,000",
+        "amount_vnd": 3700000
+      }
+    ],
+    "ocr_confidence_min": 0.9546636752784252,
+    "ocr_confidence_avg": 0.9862257099019605,
+    "ocr_token_count": 6,
+    "raw_columns": {
+      "stt": "17",
+      "ghi_chu": "18.0701.0065",
+      "dich_vu_ky_thuat": "Chup cong huong tur tim danh gia khuéch tan surc cang (DTI - Diffusion Tensor Imaging)",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "3,700,000",
+      "gia_dich_vu_theo_yeu_cau": ""
+    }
+  },
+  {
+    "page": 5,
+    "stt": "18",
+    "ma_tuong_duong": "",
+    "dich_vu_ky_thuat": "Chup cong huong tur biu, duong vat co tiem chat turong phan (0.2-1.5T)",
+    "ghi_chu": "18.0325.0065",
+    "price_kind": "on_demand",
+    "price_points": [
+      {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "3,700,000",
+        "amount_vnd": 3700000
+      }
+    ],
+    "ocr_confidence_min": 0.9461346397528777,
+    "ocr_confidence_avg": 0.9838723851686663,
+    "ocr_token_count": 5,
+    "raw_columns": {
+      "stt": "18",
+      "ghi_chu": "18.0325.0065",
+      "dich_vu_ky_thuat": "Chup cong huong tur biu, duong vat co tiem chat turong phan (0.2-1.5T)",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "3,700,000",
+      "gia_dich_vu_theo_yeu_cau": ""
+    }
+  },
+  {
+    "page": 5,
+    "stt": "19",
+    "ma_tuong_duong": "",
+    "dich_vu_ky_thuat": "Chup cong huong tir he mach co khong tiem chat tuong phan (0.2-1.5T)",
+    "ghi_chu": "18.0300.0066",
+    "price_kind": "on_demand",
+    "price_points": [
+      {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "2,300,000",
+        "amount_vnd": 2300000
+      }
+    ],
+    "ocr_confidence_min": 0.9738759199778239,
+    "ocr_confidence_avg": 0.9907746979839913,
+    "ocr_token_count": 5,
+    "raw_columns": {
+      "stt": "19",
+      "ghi_chu": "18.0300.0066",
+      "dich_vu_ky_thuat": "Chup cong huong tir he mach co khong tiem chat tuong phan (0.2-1.5T)",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "2,300,000",
+      "gia_dich_vu_theo_yeu_cau": ""
+    }
+  },
+  {
+    "page": 5,
+    "stt": "20",
+    "ma_tuong_duong": "",
+    "dich_vu_ky_thuat": "Chup cong huong tir tinh mach co tiem tuong phan (1.5T)",
+    "ghi_chu": "18.0359.0065",
+    "price_kind": "on_demand",
+    "price_points": [
+      {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "3,700,000",
+        "amount_vnd": 3700000
+      }
+    ],
+    "ocr_confidence_min": 0.9499361756685618,
+    "ocr_confidence_avg": 0.9802869318573325,
+    "ocr_token_count": 5,
+    "raw_columns": {
+      "stt": "20",
+      "ghi_chu": "18.0359.0065",
+      "dich_vu_ky_thuat": "Chup cong huong tir tinh mach co tiem tuong phan (1.5T)",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "3,700,000",
+      "gia_dich_vu_theo_yeu_cau": ""
+    }
+  },
+  {
+    "page": 5,
+    "stt": "21",
+    "ma_tuong_duong": "",
+    "dich_vu_ky_thuat": "Chupconghuongtirdongmachchi tren (1.5T)",
+    "ghi_chu": "18.0352.0066",
+    "price_kind": "on_demand",
+    "price_points": [
+      {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "2,300,000",
+        "amount_vnd": 2300000
+      }
+    ],
+    "ocr_confidence_min": 0.9758501499891281,
+    "ocr_confidence_avg": 0.9938827428552839,
+    "ocr_token_count": 5,
+    "raw_columns": {
+      "stt": "21",
+      "ghi_chu": "18.0352.0066",
+      "dich_vu_ky_thuat": "Chupconghuongtirdongmachchi tren (1.5T)",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "2,300,000",
+      "gia_dich_vu_theo_yeu_cau": ""
+    }
+  },
+  {
+    "page": 5,
+    "stt": "22",
+    "ma_tuong_duong": "",
+    "dich_vu_ky_thuat": "Chup cong huong tur biu, duong vat (0.2- 1.5T)",
+    "ghi_chu": "18.0324.0066",
+    "price_kind": "on_demand",
+    "price_points": [
+      {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "2,300,000",
+        "amount_vnd": 2300000
+      }
+    ],
+    "ocr_confidence_min": 0.9802473247051239,
+    "ocr_confidence_avg": 0.9941657965050803,
+    "ocr_token_count": 5,
+    "raw_columns": {
+      "stt": "22",
+      "ghi_chu": "18.0324.0066",
+      "dich_vu_ky_thuat": "Chup cong huong tur biu, duong vat (0.2- 1.5T)",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "2,300,000",
+      "gia_dich_vu_theo_yeu_cau": ""
+    }
+  },
+  {
+    "page": 5,
+    "stt": "23",
+    "ma_tuong_duong": "",
+    "dich_vu_ky_thuat": "Chup cong huong tiur tinh mach (1.5T)",
+    "ghi_chu": "18.0358.0066",
+    "price_kind": "on_demand",
+    "price_points": [
+      {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "2,300,000",
+        "amount_vnd": 2300000
+      }
+    ],
+    "ocr_confidence_min": 0.9338625854737049,
+    "ocr_confidence_avg": 0.9825077757194594,
+    "ocr_token_count": 4,
+    "raw_columns": {
+      "stt": "23",
+      "ghi_chu": "18.0358.0066",
+      "dich_vu_ky_thuat": "Chup cong huong tiur tinh mach (1.5T)",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "2,300,000",
+      "gia_dich_vu_theo_yeu_cau": ""
+    }
+  },
+  {
+    "page": 5,
+    "stt": "24",
+    "ma_tuong_duong": "",
+    "dich_vu_ky_thuat": "Chup cong huong tur vung mat - co (0.2- 1.5T)",
+    "ghi_chu": "18.0310.0066",
+    "price_kind": "on_demand",
+    "price_points": [
+      {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "2,300,000",
+        "amount_vnd": 2300000
+      }
+    ],
+    "ocr_confidence_min": 0.9605262065545107,
+    "ocr_confidence_avg": 0.9904577243582816,
+    "ocr_token_count": 5,
+    "raw_columns": {
+      "stt": "24",
+      "ghi_chu": "18.0310.0066",
+      "dich_vu_ky_thuat": "Chup cong huong tur vung mat - co (0.2- 1.5T)",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "2,300,000",
+      "gia_dich_vu_theo_yeu_cau": ""
+    }
+  },
+  {
+    "page": 5,
+    "stt": "25",
+    "ma_tuong_duong": "",
+    "dich_vu_ky_thuat": "Chupconghuongtirkhopcotiemturong phan tinh mach (0.2-1.5T)",
+    "ghi_chu": "18.0341.0065",
+    "price_kind": "on_demand",
+    "price_points": [
+      {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "3,700,000",
+        "amount_vnd": 3700000
+      }
+    ],
+    "ocr_confidence_min": 0.9527163244783878,
+    "ocr_confidence_avg": 0.9814490631851885,
+    "ocr_token_count": 5,
+    "raw_columns": {
+      "stt": "25",
+      "ghi_chu": "18.0341.0065",
+      "dich_vu_ky_thuat": "Chupconghuongtirkhopcotiemturong phan tinh mach (0.2-1.5T)",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "3,700,000",
+      "gia_dich_vu_theo_yeu_cau": ""
+    }
+  },
+  {
+    "page": 5,
+    "stt": "26",
+    "ma_tuong_duong": "",
+    "dich_vu_ky_thuat": "Chup cong huong tur hoc mat va than kinh thi giac co tiem chat turong phan (0.2-1.5T)",
+    "ghi_chu": "18.0304.0065",
+    "price_kind": "on_demand",
+    "price_points": [
+      {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "3,700,000",
+        "amount_vnd": 3700000
+      }
+    ],
+    "ocr_confidence_min": 0.9621572051729474,
+    "ocr_confidence_avg": 0.9884784552856628,
+    "ocr_token_count": 6,
+    "raw_columns": {
+      "stt": "26",
+      "ghi_chu": "18.0304.0065",
+      "dich_vu_ky_thuat": "Chup cong huong tur hoc mat va than kinh thi giac co tiem chat turong phan (0.2-1.5T)",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "3,700,000",
+      "gia_dich_vu_theo_yeu_cau": ""
+    }
+  },
+  {
+    "page": 5,
+    "stt": "27",
+    "ma_tuong_duong": "",
+    "dich_vu_ky_thuat": "Chup cong huong tur day so va xurong da (0.2-1.5T)",
+    "ghi_chu": "18.0309.0065",
+    "price_kind": "on_demand",
+    "price_points": [
+      {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "3,700,000",
+        "amount_vnd": 3700000
+      }
+    ],
+    "ocr_confidence_min": 0.9636996143903488,
+    "ocr_confidence_avg": 0.9908086802001692,
+    "ocr_token_count": 5,
+    "raw_columns": {
+      "stt": "27",
+      "ghi_chu": "18.0309.0065",
+      "dich_vu_ky_thuat": "Chup cong huong tur day so va xurong da (0.2-1.5T)",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "3,700,000",
+      "gia_dich_vu_theo_yeu_cau": ""
+    }
+  },
+  {
+    "page": 5,
+    "stt": "28",
+    "ma_tuong_duong": "",
+    "dich_vu_ky_thuat": "Chup cong huong tur so nao (0.2-1.5T)",
+    "ghi_chu": "18.0296.0066",
+    "price_kind": "on_demand",
+    "price_points": [
+      {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "2,300,000",
+        "amount_vnd": 2300000
+      }
+    ],
+    "ocr_confidence_min": 0.9774548653009776,
+    "ocr_confidence_avg": 0.9927380964965433,
+    "ocr_token_count": 4,
+    "raw_columns": {
+      "stt": "28",
+      "ghi_chu": "18.0296.0066",
+      "dich_vu_ky_thuat": "Chup cong huong tur so nao (0.2-1.5T)",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "2,300,000",
+      "gia_dich_vu_theo_yeu_cau": ""
+    }
+  },
+  {
+    "page": 5,
+    "stt": "29",
+    "ma_tuong_duong": "",
+    "dich_vu_ky_thuat": "Chup cong huong tiu tuoi mau nao (perfusion)(0.2-1.5T)",
+    "ghi_chu": "18.0305.0065",
+    "price_kind": "on_demand",
+    "price_points": [
+      {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "3,700,000",
+        "amount_vnd": 3700000
+      }
+    ],
+    "ocr_confidence_min": 0.9505175035446882,
+    "ocr_confidence_avg": 0.9830563088317239,
+    "ocr_token_count": 5,
+    "raw_columns": {
+      "stt": "29",
+      "ghi_chu": "18.0305.0065",
+      "dich_vu_ky_thuat": "Chup cong huong tiu tuoi mau nao (perfusion)(0.2-1.5T)",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "3,700,000",
+      "gia_dich_vu_theo_yeu_cau": ""
+    }
+  },
+  {
+    "page": 5,
+    "stt": "30",
+    "ma_tuong_duong": "",
+    "dich_vu_ky_thuat": "Chup cong huong tir tim (1.5T) Chupconghuongtirtangbungkhong",
+    "ghi_chu": "18.0350.0065",
+    "price_kind": "on_demand",
+    "price_points": [
+      {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "3,700,000",
+        "amount_vnd": 3700000
+      }
+    ],
+    "ocr_confidence_min": 0.9612951227303209,
+    "ocr_confidence_avg": 0.9850421781992089,
+    "ocr_token_count": 5,
+    "raw_columns": {
+      "stt": "30",
+      "ghi_chu": "18.0350.0065",
+      "dich_vu_ky_thuat": "Chup cong huong tir tim (1.5T) Chupconghuongtirtangbungkhong",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "3,700,000",
+      "gia_dich_vu_theo_yeu_cau": ""
+    }
+  },
+  {
+    "page": 5,
+    "stt": "31",
+    "ma_tuong_duong": "",
+    "dich_vu_ky_thuat": "tiem chat turong phan (gom: chup cong huong tir gan-mat,tuy,lach,than,da day",
+    "ghi_chu": "18.0319.0066",
+    "price_kind": "on_demand",
+    "price_points": [
+      {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "2,300,000",
+        "amount_vnd": 2300000
+      }
+    ],
+    "ocr_confidence_min": 0.9494766796890058,
+    "ocr_confidence_avg": 0.9835337322725209,
+    "ocr_token_count": 5,
+    "raw_columns": {
+      "stt": "31",
+      "ghi_chu": "18.0319.0066",
+      "dich_vu_ky_thuat": "tiem chat turong phan (gom: chup cong huong tir gan-mat,tuy,lach,than,da day",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "2,300,000",
+      "gia_dich_vu_theo_yeu_cau": ""
+    }
+  },
+  {
+    "page": 6,
+    "stt": "33",
+    "ma_tuong_duong": "",
+    "dich_vu_ky_thuat": "Chup cong huong tur vung mat - co co tiem tuong phan (0.2-1.5T)",
+    "ghi_chu": "18.0311.0065",
+    "price_kind": "on_demand",
+    "price_points": [
+      {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "3,700,000",
+        "amount_vnd": 3700000
+      }
+    ],
+    "ocr_confidence_min": 0.9445329937669966,
+    "ocr_confidence_avg": 0.9850904285143584,
+    "ocr_token_count": 5,
+    "raw_columns": {
+      "stt": "33",
+      "ghi_chu": "18.0311.0065",
+      "dich_vu_ky_thuat": "Chup cong huong tur vung mat - co co tiem tuong phan (0.2-1.5T)",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "3,700,000",
+      "gia_dich_vu_theo_yeu_cau": ""
+    }
+  },
+  {
+    "page": 6,
+    "stt": "34",
+    "ma_tuong_duong": "",
+    "dich_vu_ky_thuat": "Chupconghuongtirbachmachcotiem tuong phan dac hieu (1.5T)",
+    "ghi_chu": "18.0361.0065",
+    "price_kind": "on_demand",
+    "price_points": [
+      {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "3,700,000",
+        "amount_vnd": 3700000
+      }
+    ],
+    "ocr_confidence_min": 0.956177301131762,
+    "ocr_confidence_avg": 0.9831187971942444,
+    "ocr_token_count": 5,
+    "raw_columns": {
+      "stt": "34",
+      "ghi_chu": "18.0361.0065",
+      "dich_vu_ky_thuat": "Chupconghuongtirbachmachcotiem tuong phan dac hieu (1.5T)",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "3,700,000",
+      "gia_dich_vu_theo_yeu_cau": ""
+    }
+  },
+  {
+    "page": 6,
+    "stt": "35",
+    "ma_tuong_duong": "",
+    "dich_vu_ky_thuat": "Chup cong huong tir tuyén yen co tiem chat tuong phan (khao sat dong hoc) (0.2-1.5T)",
+    "ghi_chu": "18.0302.0065",
+    "price_kind": "on_demand",
+    "price_points": [
+      {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "3,700,000",
+        "amount_vnd": 3700000
+      }
+    ],
+    "ocr_confidence_min": 0.6995148658752441,
+    "ocr_confidence_avg": 0.9463999615353302,
+    "ocr_token_count": 7,
+    "raw_columns": {
+      "stt": "35",
+      "ghi_chu": "18.0302.0065",
+      "dich_vu_ky_thuat": "Chup cong huong tir tuyén yen co tiem chat tuong phan (khao sat dong hoc) (0.2-1.5T)",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "3,700,000",
+      "gia_dich_vu_theo_yeu_cau": ""
+    }
+  },
+  {
+    "page": 6,
+    "stt": "36",
+    "ma_tuong_duong": "",
+    "dich_vu_ky_thuat": "Chup cong huong tir phan mem chi (O.2- 1.5T)",
+    "ghi_chu": "18.0345.0066",
+    "price_kind": "on_demand",
+    "price_points": [
+      {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "2,300,000",
+        "amount_vnd": 2300000
+      }
+    ],
+    "ocr_confidence_min": 0.9308795372122213,
+    "ocr_confidence_avg": 0.9830259833628672,
+    "ocr_token_count": 5,
+    "raw_columns": {
+      "stt": "36",
+      "ghi_chu": "18.0345.0066",
+      "dich_vu_ky_thuat": "Chup cong huong tir phan mem chi (O.2- 1.5T)",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "2,300,000",
+      "gia_dich_vu_theo_yeu_cau": ""
+    }
+  },
+  {
+    "page": 6,
+    "stt": "37",
+    "ma_tuong_duong": "",
+    "dich_vu_ky_thuat": "Chup cong huong tir dong mach chi duoi c6 tiem turong phan (1.5T)",
+    "ghi_chu": "18.0355.0065",
+    "price_kind": "on_demand",
+    "price_points": [
+      {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "3,700,000",
+        "amount_vnd": 3700000
+      }
+    ],
+    "ocr_confidence_min": 0.6321389675140381,
+    "ocr_confidence_avg": 0.9176854256613772,
+    "ocr_token_count": 6,
+    "raw_columns": {
+      "stt": "37",
+      "ghi_chu": "18.0355.0065",
+      "dich_vu_ky_thuat": "Chup cong huong tir dong mach chi duoi c6 tiem turong phan (1.5T)",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "3,700,000",
+      "gia_dich_vu_theo_yeu_cau": ""
+    }
+  },
+  {
+    "page": 6,
+    "stt": "38",
+    "ma_tuong_duong": "",
+    "dich_vu_ky_thuat": "Chup cong huong tur dong mach vanh (1.5T)",
+    "ghi_chu": "18.0349.0065",
+    "price_kind": "on_demand",
+    "price_points": [
+      {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "3,700,000",
+        "amount_vnd": 3700000
+      }
+    ],
+    "ocr_confidence_min": 0.6913537383079529,
+    "ocr_confidence_avg": 0.9355771270680012,
+    "ocr_token_count": 6,
+    "raw_columns": {
+      "stt": "38",
+      "ghi_chu": "18.0349.0065",
+      "dich_vu_ky_thuat": "Chup cong huong tur dong mach vanh (1.5T)",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "3,700,000",
+      "gia_dich_vu_theo_yeu_cau": ""
+    }
+  },
+  {
+    "page": 6,
+    "stt": "39",
+    "ma_tuong_duong": "",
+    "dich_vu_ky_thuat": "Chup cong huong tir tuyen tienliet co tiem tuong phan (0.2-1.5T)",
+    "ghi_chu": "18.0329.0065",
+    "price_kind": "on_demand",
+    "price_points": [
+      {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "3,700,000",
+        "amount_vnd": 3700000
+      }
+    ],
+    "ocr_confidence_min": 0.9276095064910682,
+    "ocr_confidence_avg": 0.9820626839943752,
+    "ocr_token_count": 5,
+    "raw_columns": {
+      "stt": "39",
+      "ghi_chu": "18.0329.0065",
+      "dich_vu_ky_thuat": "Chup cong huong tir tuyen tienliet co tiem tuong phan (0.2-1.5T)",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "3,700,000",
+      "gia_dich_vu_theo_yeu_cau": ""
+    }
+  },
+  {
+    "page": 6,
+    "stt": "40",
+    "ma_tuong_duong": "",
+    "dich_vu_ky_thuat": "Chup cong huong tur cot song co co tiem tuong phan (0.2-1.5T)",
+    "ghi_chu": "18.0335.0065",
+    "price_kind": "on_demand",
+    "price_points": [
+      {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "3,700,000",
+        "amount_vnd": 3700000
+      }
+    ],
+    "ocr_confidence_min": 0.9465700067006625,
+    "ocr_confidence_avg": 0.987664973088091,
+    "ocr_token_count": 5,
+    "raw_columns": {
+      "stt": "40",
+      "ghi_chu": "18.0335.0065",
+      "dich_vu_ky_thuat": "Chup cong huong tur cot song co co tiem tuong phan (0.2-1.5T)",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "3,700,000",
+      "gia_dich_vu_theo_yeu_cau": ""
+    }
+  },
+  {
+    "page": 6,
+    "stt": "41",
+    "ma_tuong_duong": "",
+    "dich_vu_ky_thuat": "Chup cong huong tir tim danh gia cac benh ly tim bam sinh c6 tiem thuoc tuong phan",
+    "ghi_chu": "18.0698.0065",
+    "price_kind": "on_demand",
+    "price_points": [
+      {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "3,700,000",
+        "amount_vnd": 3700000
+      }
+    ],
+    "ocr_confidence_min": 0.6634715795516968,
+    "ocr_confidence_avg": 0.918739692452881,
+    "ocr_token_count": 8,
+    "raw_columns": {
+      "stt": "41",
+      "ghi_chu": "18.0698.0065",
+      "dich_vu_ky_thuat": "Chup cong huong tir tim danh gia cac benh ly tim bam sinh c6 tiem thuoc tuong phan",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "3,700,000",
+      "gia_dich_vu_theo_yeu_cau": ""
+    }
+  },
+  {
+    "page": 6,
+    "stt": "42",
+    "ma_tuong_duong": "",
+    "dich_vu_ky_thuat": "Chup cong huong tur dong mach chi duoi (1.5T)",
+    "ghi_chu": "18.0354.0066",
+    "price_kind": "on_demand",
+    "price_points": [
+      {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "2,300,000",
+        "amount_vnd": 2300000
+      }
+    ],
+    "ocr_confidence_min": 0.9450492732452623,
+    "ocr_confidence_avg": 0.9786626881421213,
+    "ocr_token_count": 5,
+    "raw_columns": {
+      "stt": "42",
+      "ghi_chu": "18.0354.0066",
+      "dich_vu_ky_thuat": "Chup cong huong tur dong mach chi duoi (1.5T)",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "2,300,000",
+      "gia_dich_vu_theo_yeu_cau": ""
+    }
+  },
+  {
+    "page": 6,
+    "stt": "43",
+    "ma_tuong_duong": "",
+    "dich_vu_ky_thuat": "Chup cong huong tur vung chau do hau mon (0.2-1.5T)",
+    "ghi_chu": "18.0322.0065",
+    "price_kind": "on_demand",
+    "price_points": [
+      {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "3,700,000",
+        "amount_vnd": 3700000
+      }
+    ],
+    "ocr_confidence_min": 0.9706517713410514,
+    "ocr_confidence_avg": 0.9877212015882371,
+    "ocr_token_count": 5,
+    "raw_columns": {
+      "stt": "43",
+      "ghi_chu": "18.0322.0065",
+      "dich_vu_ky_thuat": "Chup cong huong tur vung chau do hau mon (0.2-1.5T)",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "3,700,000",
+      "gia_dich_vu_theo_yeu_cau": ""
+    }
+  },
+  {
+    "page": 6,
+    "stt": "44",
+    "ma_tuong_duong": "",
+    "dich_vu_ky_thuat": "Chup cong huong tur khop (0.2-1.5T) Chup cong huong tir vung chau co tiem",
+    "ghi_chu": "18.0340.0066",
+    "price_kind": "on_demand",
+    "price_points": [
+      {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "2,300,000",
+        "amount_vnd": 2300000
+      }
+    ],
+    "ocr_confidence_min": 0.9430909720627038,
+    "ocr_confidence_avg": 0.9799570556566062,
+    "ocr_token_count": 5,
+    "raw_columns": {
+      "stt": "44",
+      "ghi_chu": "18.0340.0066",
+      "dich_vu_ky_thuat": "Chup cong huong tur khop (0.2-1.5T) Chup cong huong tir vung chau co tiem",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "2,300,000",
+      "gia_dich_vu_theo_yeu_cau": ""
+    }
+  },
+  {
+    "page": 6,
+    "stt": "45",
+    "ma_tuong_duong": "",
+    "dich_vu_ky_thuat": "chat tuong phan (gom: chup cong huong tur tr cung-phan phu, tien liet tuyen, dai trang chau hong,truc trang,cackhoi u",
+    "ghi_chu": "18.0323.0065",
+    "price_kind": "on_demand",
+    "price_points": [
+      {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "3,700,000",
+        "amount_vnd": 3700000
+      }
+    ],
+    "ocr_confidence_min": 0.9371105954051018,
+    "ocr_confidence_avg": 0.9798170556649235,
+    "ocr_token_count": 6,
+    "raw_columns": {
+      "stt": "45",
+      "ghi_chu": "18.0323.0065",
+      "dich_vu_ky_thuat": "chat tuong phan (gom: chup cong huong tur tr cung-phan phu, tien liet tuyen, dai trang chau hong,truc trang,cackhoi u",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "3,700,000",
+      "gia_dich_vu_theo_yeu_cau": ""
+    }
+  },
+  {
+    "page": 6,
+    "stt": "46",
+    "ma_tuong_duong": "",
+    "dich_vu_ky_thuat": "vung chau...) (0.2-1.5T) Chup cong huong tir phan mem chi co tiem turong phan (0.2-1.5T)",
+    "ghi_chu": "18.0346.0065",
+    "price_kind": "on_demand",
+    "price_points": [
+      {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "3,700,000",
+        "amount_vnd": 3700000
+      }
+    ],
+    "ocr_confidence_min": 0.9573041575926321,
+    "ocr_confidence_avg": 0.9832008102057892,
+    "ocr_token_count": 6,
+    "raw_columns": {
+      "stt": "46",
+      "ghi_chu": "18.0346.0065",
+      "dich_vu_ky_thuat": "vung chau...) (0.2-1.5T) Chup cong huong tir phan mem chi co tiem turong phan (0.2-1.5T)",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "3,700,000",
+      "gia_dich_vu_theo_yeu_cau": ""
+    }
+  },
+  {
+    "page": 6,
+    "stt": "47",
+    "ma_tuong_duong": "",
+    "dich_vu_ky_thuat": "Chup cong huong tir xuong va tuy xuong (0.2-1.5T)",
+    "ghi_chu": "18.0343.0066",
+    "price_kind": "on_demand",
+    "price_points": [
+      {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "2,300,000",
+        "amount_vnd": 2300000
+      }
+    ],
+    "ocr_confidence_min": 0.9573861304670572,
+    "ocr_confidence_avg": 0.9836702756997612,
+    "ocr_token_count": 5,
+    "raw_columns": {
+      "stt": "47",
+      "ghi_chu": "18.0343.0066",
+      "dich_vu_ky_thuat": "Chup cong huong tir xuong va tuy xuong (0.2-1.5T)",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "2,300,000",
+      "gia_dich_vu_theo_yeu_cau": ""
+    }
+  },
+  {
+    "page": 7,
+    "stt": "49",
+    "ma_tuong_duong": "",
+    "dich_vu_ky_thuat": "Chup cong huong tir dong mach chu- chau (1.5T)",
+    "ghi_chu": "18.0347.0065",
+    "price_kind": "on_demand",
+    "price_points": [
+      {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "3,700,000",
+        "amount_vnd": 3700000
+      }
+    ],
+    "ocr_confidence_min": 0.977362234802807,
+    "ocr_confidence_avg": 0.9932408932518972,
+    "ocr_token_count": 5,
+    "raw_columns": {
+      "stt": "49",
+      "ghi_chu": "18.0347.0065",
+      "dich_vu_ky_thuat": "Chup cong huong tir dong mach chu- chau (1.5T)",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "3,700,000",
+      "gia_dich_vu_theo_yeu_cau": ""
+    }
+  },
+  {
+    "page": 8,
+    "stt": "page-8-row-1",
+    "ma_tuong_duong": "",
+    "dich_vu_ky_thuat": "Chup CLVT so nao khong tiem thuoc can quang (tir ≥ 256 day)",
+    "ghi_chu": "18.0178.0047",
+    "price_kind": "on_demand",
+    "price_points": [
+      {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "3,500,000",
+        "amount_vnd": 3500000
+      }
+    ],
+    "ocr_confidence_min": 0.8211111426353455,
+    "ocr_confidence_avg": 0.9464989892577613,
+    "ocr_token_count": 5,
+    "raw_columns": {
+      "stt": "page-8-row-1",
+      "ghi_chu": "18.0178.0047",
+      "dich_vu_ky_thuat": "Chup CLVT so nao khong tiem thuoc can quang (tir ≥ 256 day)",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "3,500,000",
+      "gia_dich_vu_theo_yeu_cau": ""
+    }
+  },
+  {
+    "page": 8,
+    "stt": "2",
+    "ma_tuong_duong": "",
+    "dich_vu_ky_thuat": "Chup CLVT so nao co tiem thuoc can quang (tir ≥ 256 day)",
+    "ghi_chu": "18.0179.0046",
+    "price_kind": "on_demand",
+    "price_points": [
+      {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "5,000,000",
+        "amount_vnd": 5000000
+      }
+    ],
+    "ocr_confidence_min": 0.9502879452705383,
+    "ocr_confidence_avg": 0.9814675451401207,
+    "ocr_token_count": 8,
+    "raw_columns": {
+      "stt": "2",
+      "ghi_chu": "18.0179.0046",
+      "dich_vu_ky_thuat": "Chup CLVT so nao co tiem thuoc can quang (tir ≥ 256 day)",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "5,000,000",
+      "gia_dich_vu_theo_yeu_cau": "Chua bao gom thuoc can quang"
+    }
+  },
+  {
+    "page": 8,
+    "stt": "3",
+    "ma_tuong_duong": "",
+    "dich_vu_ky_thuat": "ChupCLVThedongmach canh co tiem thuoc can quang (tir ≥ 256 day)",
+    "ghi_chu": "18.0180.0046",
+    "price_kind": "on_demand",
+    "price_points": [
+      {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "5,000,000",
+        "amount_vnd": 5000000
+      }
+    ],
+    "ocr_confidence_min": 0.9370800646451803,
+    "ocr_confidence_avg": 0.9789558129290449,
+    "ocr_token_count": 9,
+    "raw_columns": {
+      "stt": "3",
+      "ghi_chu": "18.0180.0046",
+      "dich_vu_ky_thuat": "ChupCLVThedongmach canh co tiem thuoc can quang (tir ≥ 256 day)",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "5,000,000",
+      "gia_dich_vu_theo_yeu_cau": "Chua bao gom thuoc can quang"
+    }
+  },
+  {
+    "page": 8,
+    "stt": "4",
+    "ma_tuong_duong": "",
+    "dich_vu_ky_thuat": "Chup CLVT tuoi mau nao (CT perfusion)",
+    "ghi_chu": "18.0181.0046",
+    "price_kind": "on_demand",
+    "price_points": [
+      {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "5,000,000",
+        "amount_vnd": 5000000
+      }
+    ],
+    "ocr_confidence_min": 0.9021881818771362,
+    "ocr_confidence_avg": 0.9779921489818144,
+    "ocr_token_count": 9,
+    "raw_columns": {
+      "stt": "4",
+      "ghi_chu": "18.0181.0046",
+      "dich_vu_ky_thuat": "Chup CLVT tuoi mau nao (CT perfusion)",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "5,000,000",
+      "gia_dich_vu_theo_yeu_cau": "Chua bao gom thuoc can quang"
+    }
+  },
+  {
+    "page": 8,
+    "stt": "5",
+    "ma_tuong_duong": "",
+    "dich_vu_ky_thuat": "Chup CLVT mach mau nao (tiu ≥ 256 day)",
+    "ghi_chu": "18.0182.0046",
+    "price_kind": "on_demand",
+    "price_points": [
+      {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "5,000,000",
+        "amount_vnd": 5000000
+      }
+    ],
+    "ocr_confidence_min": 0.9431999849862066,
+    "ocr_confidence_avg": 0.9870831904840082,
+    "ocr_token_count": 8,
+    "raw_columns": {
+      "stt": "5",
+      "ghi_chu": "18.0182.0046",
+      "dich_vu_ky_thuat": "Chup CLVT mach mau nao (tiu ≥ 256 day)",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "5,000,000",
+      "gia_dich_vu_theo_yeu_cau": "Chua bao gom thuoc can quang"
+    }
+  },
+  {
+    "page": 8,
+    "stt": "6",
+    "ma_tuong_duong": "",
+    "dich_vu_ky_thuat": "Chup CLVT so nao co dung hinh 3D (tur ≥ 256 day)",
+    "ghi_chu": "18.0183.0047",
+    "price_kind": "on_demand",
+    "price_points": [
+      {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "3,500,000",
+        "amount_vnd": 3500000
+      }
+    ],
+    "ocr_confidence_min": 0.8848724067211151,
+    "ocr_confidence_avg": 0.9567139787292572,
+    "ocr_token_count": 6,
+    "raw_columns": {
+      "stt": "6",
+      "ghi_chu": "18.0183.0047",
+      "dich_vu_ky_thuat": "Chup CLVT so nao co dung hinh 3D (tur ≥ 256 day)",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "3,500,000",
+      "gia_dich_vu_theo_yeu_cau": ""
+    }
+  },
+  {
+    "page": 8,
+    "stt": "6",
+    "ma_tuong_duong": "",
+    "dich_vu_ky_thuat": "Chup CLVT ham-mat khong tiem thuoc can quang (tir ≥ 256 day)",
+    "ghi_chu": "18.0184.0047",
+    "price_kind": "on_demand",
+    "price_points": [
+      {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "3,500,000",
+        "amount_vnd": 3500000
+      }
+    ],
+    "ocr_confidence_min": 0.9575572148446114,
+    "ocr_confidence_avg": 0.9736039929389496,
+    "ocr_token_count": 4,
+    "raw_columns": {
+      "stt": "6",
+      "ghi_chu": "18.0184.0047",
+      "dich_vu_ky_thuat": "Chup CLVT ham-mat khong tiem thuoc can quang (tir ≥ 256 day)",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "3,500,000",
+      "gia_dich_vu_theo_yeu_cau": ""
+    }
+  },
+  {
+    "page": 8,
+    "stt": "8",
+    "ma_tuong_duong": "",
+    "dich_vu_ky_thuat": "Chup CLVT ham-mat co tiem thuoc can quang (tu ≥ 256 day)",
+    "ghi_chu": "18.0185.0046",
+    "price_kind": "on_demand",
+    "price_points": [
+      {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "5,000,000",
+        "amount_vnd": 5000000
+      }
+    ],
+    "ocr_confidence_min": 0.5386272072792053,
+    "ocr_confidence_avg": 0.9299643702786646,
+    "ocr_token_count": 9,
+    "raw_columns": {
+      "stt": "8",
+      "ghi_chu": "18.0185.0046",
+      "dich_vu_ky_thuat": "Chup CLVT ham-mat co tiem thuoc can quang (tu ≥ 256 day)",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "5,000,000",
+      "gia_dich_vu_theo_yeu_cau": "Chua bao gom thuoc can quang"
+    }
+  },
+  {
+    "page": 8,
+    "stt": "8",
+    "ma_tuong_duong": "",
+    "dich_vu_ky_thuat": "Chup CLVT tai-xuong da khong tiem thuoc can quang (tir ≥ 256 day)",
+    "ghi_chu": "18.0187.0047",
+    "price_kind": "on_demand",
+    "price_points": [
+      {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "3,500,000",
+        "amount_vnd": 3500000
+      }
+    ],
+    "ocr_confidence_min": 0.9644313435400685,
+    "ocr_confidence_avg": 0.9858593897626026,
+    "ocr_token_count": 5,
+    "raw_columns": {
+      "stt": "8",
+      "ghi_chu": "18.0187.0047",
+      "dich_vu_ky_thuat": "Chup CLVT tai-xuong da khong tiem thuoc can quang (tir ≥ 256 day)",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "3,500,000",
+      "gia_dich_vu_theo_yeu_cau": ""
+    }
+  },
+  {
+    "page": 8,
+    "stt": "10",
+    "ma_tuong_duong": "",
+    "dich_vu_ky_thuat": "Chup CLVT tai-xuong da c6 tiem thuoc can quang (tiur ≥ 256 day)",
+    "ghi_chu": "18.0188.0046",
+    "price_kind": "on_demand",
+    "price_points": [
+      {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "5,000,000",
+        "amount_vnd": 5000000
+      }
+    ],
+    "ocr_confidence_min": 0.9458577593167623,
+    "ocr_confidence_avg": 0.9825121765335401,
+    "ocr_token_count": 8,
+    "raw_columns": {
+      "stt": "10",
+      "ghi_chu": "18.0188.0046",
+      "dich_vu_ky_thuat": "Chup CLVT tai-xuong da c6 tiem thuoc can quang (tiur ≥ 256 day)",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "5,000,000",
+      "gia_dich_vu_theo_yeu_cau": "Chua bao gom thuoc can quang"
+    }
+  },
+  {
+    "page": 8,
+    "stt": "11",
+    "ma_tuong_duong": "",
+    "dich_vu_ky_thuat": "Chup CLVT hoc mat (tur ≥ 256 day)",
+    "ghi_chu": "18.0189.0047",
+    "price_kind": "on_demand",
+    "price_points": [
+      {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "3,500,000",
+        "amount_vnd": 3500000
+      }
+    ],
+    "ocr_confidence_min": 0.956211371081216,
+    "ocr_confidence_avg": 0.9873342470044182,
+    "ocr_token_count": 5,
+    "raw_columns": {
+      "stt": "11",
+      "ghi_chu": "18.0189.0047",
+      "dich_vu_ky_thuat": "Chup CLVT hoc mat (tur ≥ 256 day)",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "3,500,000",
+      "gia_dich_vu_theo_yeu_cau": ""
+    }
+  },
+  {
+    "page": 8,
+    "stt": "12",
+    "ma_tuong_duong": "",
+    "dich_vu_ky_thuat": "ChupCLVThammatcodurnghinh 3D (tir ≥ 256 day)",
+    "ghi_chu": "18.0190.0047",
+    "price_kind": "on_demand",
+    "price_points": [
+      {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "3,500,000",
+        "amount_vnd": 3500000
+      }
+    ],
+    "ocr_confidence_min": 0.5170333981513977,
+    "ocr_confidence_avg": 0.891210207078192,
+    "ocr_token_count": 6,
+    "raw_columns": {
+      "stt": "12",
+      "ghi_chu": "18.0190.0047",
+      "dich_vu_ky_thuat": "ChupCLVThammatcodurnghinh 3D (tir ≥ 256 day)",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "3,500,000",
+      "gia_dich_vu_theo_yeu_cau": ""
+    }
+  },
+  {
+    "page": 9,
+    "stt": "14",
+    "ma_tuong_duong": "",
+    "dich_vu_ky_thuat": "tiem thuoc can quang (tiur ≥ 256 day)",
+    "ghi_chu": "18.0210.0046",
+    "price_kind": "on_demand",
+    "price_points": [
+      {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "5,000,000",
+        "amount_vnd": 5000000
+      }
+    ],
+    "ocr_confidence_min": 0.9303544797003269,
+    "ocr_confidence_avg": 0.9874655527846208,
+    "ocr_token_count": 7,
+    "raw_columns": {
+      "stt": "14",
+      "ghi_chu": "18.0210.0046",
+      "dich_vu_ky_thuat": "tiem thuoc can quang (tiur ≥ 256 day)",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "5,000,000",
+      "gia_dich_vu_theo_yeu_cau": "thuoc can quang"
+    }
+  },
+  {
+    "page": 9,
+    "stt": "15",
+    "ma_tuong_duong": "",
+    "dich_vu_ky_thuat": "Chup cat 1op vi tinh phoi do phan giai cao (tir ≥ 256 day)",
+    "ghi_chu": "18.0211.0047",
+    "price_kind": "on_demand",
+    "price_points": [
+      {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "3,500,000",
+        "amount_vnd": 3500000
+      }
+    ],
+    "ocr_confidence_min": 0.9514631032943726,
+    "ocr_confidence_avg": 0.9778825075864189,
+    "ocr_token_count": 6,
+    "raw_columns": {
+      "stt": "15",
+      "ghi_chu": "18.0211.0047",
+      "dich_vu_ky_thuat": "Chup cat 1op vi tinh phoi do phan giai cao (tir ≥ 256 day)",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "3,500,000",
+      "gia_dich_vu_theo_yeu_cau": ""
+    }
+  },
+  {
+    "page": 9,
+    "stt": "16",
+    "ma_tuong_duong": "",
+    "dich_vu_ky_thuat": "Chup cat 1op vi tinh dong mach phoi (tur ≥ 256 day)",
+    "ghi_chu": "18.0214.0046",
+    "price_kind": "on_demand",
+    "price_points": [
+      {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "5,000,000",
+        "amount_vnd": 5000000
+      }
+    ],
+    "ocr_confidence_min": 0.9419818669557571,
+    "ocr_confidence_avg": 0.9825264167454507,
+    "ocr_token_count": 8,
+    "raw_columns": {
+      "stt": "16",
+      "ghi_chu": "18.0214.0046",
+      "dich_vu_ky_thuat": "Chup cat 1op vi tinh dong mach phoi (tur ≥ 256 day)",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "5,000,000",
+      "gia_dich_vu_theo_yeu_cau": "Chua bao gom thuoc can quang"
+    }
+  },
+  {
+    "page": 9,
+    "stt": "17",
+    "ma_tuong_duong": "",
+    "dich_vu_ky_thuat": "Chup cat lop vi tinh dong mach chu nguc (tur ≥256 day)",
+    "ghi_chu": "18.0215.0046",
+    "price_kind": "on_demand",
+    "price_points": [
+      {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "5,000,000",
+        "amount_vnd": 5000000
+      }
+    ],
+    "ocr_confidence_min": 0.6418402194976807,
+    "ocr_confidence_avg": 0.9400320661272773,
+    "ocr_token_count": 9,
+    "raw_columns": {
+      "stt": "17",
+      "ghi_chu": "18.0215.0046",
+      "dich_vu_ky_thuat": "Chup cat lop vi tinh dong mach chu nguc (tur ≥256 day)",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "5,000,000",
+      "gia_dich_vu_theo_yeu_cau": "Chua bao gom thuoc can quang"
+    }
+  },
+  {
+    "page": 9,
+    "stt": "18",
+    "ma_tuong_duong": "",
+    "dich_vu_ky_thuat": "Chup cat 1op vi tinh dong mach vanh,timcodungthuocbetablock (tir ≥ 256 day)",
+    "ghi_chu": "18.0216.0046",
+    "price_kind": "on_demand",
+    "price_points": [
+      {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "5,000,000",
+        "amount_vnd": 5000000
+      }
+    ],
+    "ocr_confidence_min": 0.8873832106590271,
+    "ocr_confidence_avg": 0.9777247591781868,
+    "ocr_token_count": 9,
+    "raw_columns": {
+      "stt": "18",
+      "ghi_chu": "18.0216.0046",
+      "dich_vu_ky_thuat": "Chup cat 1op vi tinh dong mach vanh,timcodungthuocbetablock (tir ≥ 256 day)",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "5,000,000",
+      "gia_dich_vu_theo_yeu_cau": "Chua bao gom thuoc can quang"
+    }
+  },
+  {
+    "page": 9,
+    "stt": "19",
+    "ma_tuong_duong": "",
+    "dich_vu_ky_thuat": "Chup cat lop vi tinh dong mach vanh, tim khong dung thuoc beta block(tur≥256day)",
+    "ghi_chu": "18.0217.0046",
+    "price_kind": "on_demand",
+    "price_points": [
+      {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "5,000,000",
+        "amount_vnd": 5000000
+      }
+    ],
+    "ocr_confidence_min": 0.9541793048381806,
+    "ocr_confidence_avg": 0.985462928187834,
+    "ocr_token_count": 9,
+    "raw_columns": {
+      "stt": "19",
+      "ghi_chu": "18.0217.0046",
+      "dich_vu_ky_thuat": "Chup cat lop vi tinh dong mach vanh, tim khong dung thuoc beta block(tur≥256day)",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "5,000,000",
+      "gia_dich_vu_theo_yeu_cau": "Chua bao gom thuoc can quang"
+    }
+  },
+  {
+    "page": 9,
+    "stt": "20",
+    "ma_tuong_duong": "",
+    "dich_vu_ky_thuat": "Chup cat lop vi tinh tinh diem voi hoa mach vanh (tur ≥ 256 day)",
+    "ghi_chu": "18.0218.0047",
+    "price_kind": "on_demand",
+    "price_points": [
+      {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "3,500,000",
+        "amount_vnd": 3500000
+      }
+    ],
+    "ocr_confidence_min": 0.9506667009715376,
+    "ocr_confidence_avg": 0.9796883467513483,
+    "ocr_token_count": 5,
+    "raw_columns": {
+      "stt": "20",
+      "ghi_chu": "18.0218.0047",
+      "dich_vu_ky_thuat": "Chup cat lop vi tinh tinh diem voi hoa mach vanh (tur ≥ 256 day)",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "3,500,000",
+      "gia_dich_vu_theo_yeu_cau": ""
+    }
+  },
+  {
+    "page": 9,
+    "stt": "21",
+    "ma_tuong_duong": "",
+    "dich_vu_ky_thuat": "Chup cat lop vi tinh tang tren ? bung thuong quy (gom: chup Cat 16p vi tinh gan-mat, tuy, lach, da day-ta trang.v.v.) (tur ≥ 256 day)",
+    "ghi_chu": "18.0243.0047",
+    "price_kind": "on_demand",
+    "price_points": [
+      {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "3,500,000",
+        "amount_vnd": 3500000
+      }
+    ],
+    "ocr_confidence_min": 0.9312791982117821,
+    "ocr_confidence_avg": 0.971607785460467,
+    "ocr_token_count": 7,
+    "raw_columns": {
+      "stt": "21",
+      "ghi_chu": "18.0243.0047",
+      "dich_vu_ky_thuat": "Chup cat lop vi tinh tang tren ? bung thuong quy (gom: chup Cat 16p vi tinh gan-mat, tuy, lach, da day-ta trang.v.v.) (tur ≥ 256 day)",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "3,500,000",
+      "gia_dich_vu_theo_yeu_cau": ""
+    }
+  },
+  {
+    "page": 9,
+    "stt": "22",
+    "ma_tuong_duong": "",
+    "dich_vu_ky_thuat": "Chup cat 1op vi tinh tang tren ? bung thuong quy (gom: chup Cat lopvitinhgan-mat,tuy,lach,da day-ta trang.v.v.) (tir ≥256 day)",
+    "ghi_chu": "18.0243.0046",
+    "price_kind": "on_demand",
+    "price_points": [
+      {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "5,000,000",
+        "amount_vnd": 5000000
+      }
+    ],
+    "ocr_confidence_min": 0.9661337227532358,
+    "ocr_confidence_avg": 0.9863668252334193,
+    "ocr_token_count": 10,
+    "raw_columns": {
+      "stt": "22",
+      "ghi_chu": "18.0243.0046",
+      "dich_vu_ky_thuat": "Chup cat 1op vi tinh tang tren ? bung thuong quy (gom: chup Cat lopvitinhgan-mat,tuy,lach,da day-ta trang.v.v.) (tir ≥256 day)",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "5,000,000",
+      "gia_dich_vu_theo_yeu_cau": "Chua bao gom thuoc can quang"
+    }
+  },
+  {
+    "page": 9,
+    "stt": "23",
+    "ma_tuong_duong": "",
+    "dich_vu_ky_thuat": "Chup cat 1op vi tinh bung-tieu khungthurongquy(tir≥256day) (khong thuoc)",
+    "ghi_chu": "18.0244.0047",
+    "price_kind": "on_demand",
+    "price_points": [
+      {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "3,500,000",
+        "amount_vnd": 3500000
+      }
+    ],
+    "ocr_confidence_min": 0.939274752581561,
+    "ocr_confidence_avg": 0.9835372982937612,
+    "ocr_token_count": 6,
+    "raw_columns": {
+      "stt": "23",
+      "ghi_chu": "18.0244.0047",
+      "dich_vu_ky_thuat": "Chup cat 1op vi tinh bung-tieu khungthurongquy(tir≥256day) (khong thuoc)",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "3,500,000",
+      "gia_dich_vu_theo_yeu_cau": ""
+    }
+  },
+  {
+    "page": 9,
+    "stt": "24",
+    "ma_tuong_duong": "",
+    "dich_vu_ky_thuat": "Chup cat 1op vi tinh bung-tieu khung thuong quy (tir ≥ 256 day) (co thuoc)",
+    "ghi_chu": "18.0244.0046",
+    "price_kind": "on_demand",
+    "price_points": [
+      {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "5,000,000",
+        "amount_vnd": 5000000
+      }
+    ],
+    "ocr_confidence_min": 0.9306792318820953,
+    "ocr_confidence_avg": 0.9823257528383422,
+    "ocr_token_count": 9,
+    "raw_columns": {
+      "stt": "24",
+      "ghi_chu": "18.0244.0046",
+      "dich_vu_ky_thuat": "Chup cat 1op vi tinh bung-tieu khung thuong quy (tir ≥ 256 day) (co thuoc)",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "5,000,000",
+      "gia_dich_vu_theo_yeu_cau": "Chua bao gom thuoc can quang"
+    }
+  },
+  {
+    "page": 10,
+    "stt": "26",
+    "ma_tuong_duong": "",
+    "dich_vu_ky_thuat": "thuong quy (gom: chup cat 1op vi tinh t’r cung-buong trung, tien liet tuyen, cac khoi u vung tieu khung.v.v.)",
+    "ghi_chu": "18.0245.0046",
+    "price_kind": "on_demand",
+    "price_points": [
+      {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "5,000,000",
+        "amount_vnd": 5000000
+      }
+    ],
+    "ocr_confidence_min": 0.5369324088096619,
+    "ocr_confidence_avg": 0.9340484471156579,
+    "ocr_token_count": 13,
+    "raw_columns": {
+      "stt": "26",
+      "ghi_chu": "18.0245.0046",
+      "dich_vu_ky_thuat": "thuong quy (gom: chup cat 1op vi tinh t’r cung-buong trung, tien liet tuyen, cac khoi u vung tieu khung.v.v.)",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "5,000,000",
+      "gia_dich_vu_theo_yeu_cau": "Chua bao gom thuoc can quang"
+    }
+  },
+  {
+    "page": 10,
+    "stt": "27",
+    "ma_tuong_duong": "",
+    "dich_vu_ky_thuat": "Chup cat lop vi tinh he tiet nieu thuong quy (tur ≥ 256 day)",
+    "ghi_chu": "18.0246.0047",
+    "price_kind": "on_demand",
+    "price_points": [
+      {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "3,500,000",
+        "amount_vnd": 3500000
+      }
+    ],
+    "ocr_confidence_min": 0.6032024025917053,
+    "ocr_confidence_avg": 0.9162631859084819,
+    "ocr_token_count": 6,
+    "raw_columns": {
+      "stt": "27",
+      "ghi_chu": "18.0246.0047",
+      "dich_vu_ky_thuat": "Chup cat lop vi tinh he tiet nieu thuong quy (tur ≥ 256 day)",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "3,500,000",
+      "gia_dich_vu_theo_yeu_cau": ""
+    }
+  },
+  {
+    "page": 10,
+    "stt": "28",
+    "ma_tuong_duong": "",
+    "dich_vu_ky_thuat": "Chup catlopvi tinhhetiétnieu thuong quy (tur ≥ 256 day)",
+    "ghi_chu": "18.0246.0046",
+    "price_kind": "on_demand",
+    "price_points": [
+      {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "5,000,000",
+        "amount_vnd": 5000000
+      }
+    ],
+    "ocr_confidence_min": 0.9355369316680091,
+    "ocr_confidence_avg": 0.9871394113274757,
+    "ocr_token_count": 8,
+    "raw_columns": {
+      "stt": "28",
+      "ghi_chu": "18.0246.0046",
+      "dich_vu_ky_thuat": "Chup catlopvi tinhhetiétnieu thuong quy (tur ≥ 256 day)",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "5,000,000",
+      "gia_dich_vu_theo_yeu_cau": "Chua bao gom thuoc can quang"
+    }
+  },
+  {
+    "page": 10,
+    "stt": "29",
+    "ma_tuong_duong": "",
+    "dich_vu_ky_thuat": "Chup cat lop vi tinh tang tren ? bung co khao sat mach cac tang (bao gom mach: gan, tuy, lach va mach kh6i u) (tur ≥ 256 day)",
+    "ghi_chu": "18.0247.0046",
+    "price_kind": "on_demand",
+    "price_points": [
+      {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "5,000,000",
+        "amount_vnd": 5000000
+      }
+    ],
+    "ocr_confidence_min": 0.5264550447463989,
+    "ocr_confidence_avg": 0.9374572022830123,
+    "ocr_token_count": 11,
+    "raw_columns": {
+      "stt": "29",
+      "ghi_chu": "18.0247.0046",
+      "dich_vu_ky_thuat": "Chup cat lop vi tinh tang tren ? bung co khao sat mach cac tang (bao gom mach: gan, tuy, lach va mach kh6i u) (tur ≥ 256 day)",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "5,000,000",
+      "gia_dich_vu_theo_yeu_cau": "Chua bao gom thuoc can quang"
+    }
+  },
+  {
+    "page": 10,
+    "stt": "30",
+    "ma_tuong_duong": "",
+    "dich_vu_ky_thuat": "Chup catlopvitinh he tietnieu co khao sat mach than va/hoac dung hinh duong bai xuat (tur ≥ 256 day)",
+    "ghi_chu": "18.0248.0046",
+    "price_kind": "on_demand",
+    "price_points": [
+      {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "5,000,000",
+        "amount_vnd": 5000000
+      }
+    ],
+    "ocr_confidence_min": 0.8976925183087587,
+    "ocr_confidence_avg": 0.975650992640028,
+    "ocr_token_count": 9,
+    "raw_columns": {
+      "stt": "30",
+      "ghi_chu": "18.0248.0046",
+      "dich_vu_ky_thuat": "Chup catlopvitinh he tietnieu co khao sat mach than va/hoac dung hinh duong bai xuat (tur ≥ 256 day)",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "5,000,000",
+      "gia_dich_vu_theo_yeu_cau": "Chua bao gom thuoc can quang"
+    }
+  },
+  {
+    "page": 10,
+    "stt": "31",
+    "ma_tuong_duong": "",
+    "dich_vu_ky_thuat": "Chup cat lop vi tinh gan c6 dung hinh duong mat (tur ≥ 256 day)",
+    "ghi_chu": "18.0249.0046",
+    "price_kind": "on_demand",
+    "price_points": [
+      {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "5,000,000",
+        "amount_vnd": 5000000
+      }
+    ],
+    "ocr_confidence_min": 0.943025889992714,
+    "ocr_confidence_avg": 0.9799849143303517,
+    "ocr_token_count": 8,
+    "raw_columns": {
+      "stt": "31",
+      "ghi_chu": "18.0249.0046",
+      "dich_vu_ky_thuat": "Chup cat lop vi tinh gan c6 dung hinh duong mat (tur ≥ 256 day)",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "5,000,000",
+      "gia_dich_vu_theo_yeu_cau": "Chua bao gom thuoc can quang"
+    }
+  },
+  {
+    "page": 10,
+    "stt": "32",
+    "ma_tuong_duong": "",
+    "dich_vu_ky_thuat": "Chup cat lop vi tinh tang khao sat huyét dong hoc khoi u (CT perfusion) (tir ≥ 256 day)",
+    "ghi_chu": "18.0250.0046",
+    "price_kind": "on_demand",
+    "price_points": [
+      {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "5,000,000",
+        "amount_vnd": 5000000
+      }
+    ],
+    "ocr_confidence_min": 0.7283154129981995,
+    "ocr_confidence_avg": 0.9472201661169078,
+    "ocr_token_count": 10,
+    "raw_columns": {
+      "stt": "32",
+      "ghi_chu": "18.0250.0046",
+      "dich_vu_ky_thuat": "Chup cat lop vi tinh tang khao sat huyét dong hoc khoi u (CT perfusion) (tir ≥ 256 day)",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "5,000,000",
+      "gia_dich_vu_theo_yeu_cau": "Chua bao gom thuoc can quang"
+    }
+  },
+  {
+    "page": 10,
+    "stt": "33",
+    "ma_tuong_duong": "",
+    "dich_vu_ky_thuat": "Chup cat 1op vi tinh dong mach chu chau (tur≥256 day)",
+    "ghi_chu": "18.0254.0046",
+    "price_kind": "on_demand",
+    "price_points": [
+      {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "5,000,000",
+        "amount_vnd": 5000000
+      }
+    ],
+    "ocr_confidence_min": 0.6462338864803314,
+    "ocr_confidence_avg": 0.9364024019825692,
+    "ocr_token_count": 10,
+    "raw_columns": {
+      "stt": "33",
+      "ghi_chu": "18.0254.0046",
+      "dich_vu_ky_thuat": "Chup cat 1op vi tinh dong mach chu chau (tur≥256 day)",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "5,000,000",
+      "gia_dich_vu_theo_yeu_cau": "Chua bao gom thuoc can quang"
+    }
+  },
+  {
+    "page": 10,
+    "stt": "34",
+    "ma_tuong_duong": "",
+    "dich_vu_ky_thuat": "Chup cat 1op vi tinh mach mau chi tren (tir ≥256 day)",
+    "ghi_chu": "18.0294.0046",
+    "price_kind": "on_demand",
+    "price_points": [
+      {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "5,000,000",
+        "amount_vnd": 5000000
+      }
+    ],
+    "ocr_confidence_min": 0.8971693500092155,
+    "ocr_confidence_avg": 0.9771185541916629,
+    "ocr_token_count": 8,
+    "raw_columns": {
+      "stt": "34",
+      "ghi_chu": "18.0294.0046",
+      "dich_vu_ky_thuat": "Chup cat 1op vi tinh mach mau chi tren (tir ≥256 day)",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "5,000,000",
+      "gia_dich_vu_theo_yeu_cau": "Chua bao gom thuoc can quang"
+    }
+  },
+  {
+    "page": 10,
+    "stt": "35",
+    "ma_tuong_duong": "",
+    "dich_vu_ky_thuat": "Chup catlop vi tinh machmau chi duoi (tir ≥256 day)",
+    "ghi_chu": "18.0295.0046",
+    "price_kind": "on_demand",
+    "price_points": [
+      {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "5,000,000",
+        "amount_vnd": 5000000
+      }
+    ],
+    "ocr_confidence_min": 0.9194942963750738,
+    "ocr_confidence_avg": 0.9794224207446055,
+    "ocr_token_count": 8,
+    "raw_columns": {
+      "stt": "35",
+      "ghi_chu": "18.0295.0046",
+      "dich_vu_ky_thuat": "Chup catlop vi tinh machmau chi duoi (tir ≥256 day)",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "5,000,000",
+      "gia_dich_vu_theo_yeu_cau": "Chua bao gom thuoc can quang"
+    }
+  },
+  {
+    "page": 11,
+    "stt": "37",
+    "ma_tuong_duong": "",
+    "dich_vu_ky_thuat": "tiemthuoccanquang（tir≥256 day)",
+    "ghi_chu": "18.0283.0046",
+    "price_kind": "on_demand",
+    "price_points": [
+      {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "5,000,000",
+        "amount_vnd": 5000000
+      }
+    ],
+    "ocr_confidence_min": 0.9439892649650574,
+    "ocr_confidence_avg": 0.9906520114531593,
+    "ocr_token_count": 7,
+    "raw_columns": {
+      "stt": "37",
+      "ghi_chu": "18.0283.0046",
+      "dich_vu_ky_thuat": "tiemthuoccanquang（tir≥256 day)",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "5,000,000",
+      "gia_dich_vu_theo_yeu_cau": "thuoc can quang"
+    }
+  },
+  {
+    "page": 11,
+    "stt": "38",
+    "ma_tuong_duong": "",
+    "dich_vu_ky_thuat": "Chup cat 1op vi tinh cot song nguc khong tiem thuoc can quang (tiur ≥ 256 day)",
+    "ghi_chu": "18.0284.0047",
+    "price_kind": "on_demand",
+    "price_points": [
+      {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "3,500,000",
+        "amount_vnd": 3500000
+      }
+    ],
+    "ocr_confidence_min": 0.9411971849553725,
+    "ocr_confidence_avg": 0.9835912220764395,
+    "ocr_token_count": 6,
+    "raw_columns": {
+      "stt": "38",
+      "ghi_chu": "18.0284.0047",
+      "dich_vu_ky_thuat": "Chup cat 1op vi tinh cot song nguc khong tiem thuoc can quang (tiur ≥ 256 day)",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "3,500,000",
+      "gia_dich_vu_theo_yeu_cau": ""
+    }
+  },
+  {
+    "page": 11,
+    "stt": "39",
+    "ma_tuong_duong": "",
+    "dich_vu_ky_thuat": "Chup cat lop vi tinh cot song nguc cotiemthuoccanquang（tir≥256 day)",
+    "ghi_chu": "18.0285.0046",
+    "price_kind": "on_demand",
+    "price_points": [
+      {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "5,000,000",
+        "amount_vnd": 5000000
+      }
+    ],
+    "ocr_confidence_min": 0.936509519815445,
+    "ocr_confidence_avg": 0.9854933445035502,
+    "ocr_token_count": 9,
+    "raw_columns": {
+      "stt": "39",
+      "ghi_chu": "18.0285.0046",
+      "dich_vu_ky_thuat": "Chup cat lop vi tinh cot song nguc cotiemthuoccanquang（tir≥256 day)",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "5,000,000",
+      "gia_dich_vu_theo_yeu_cau": "Chua bao gom thuoc can quang"
+    }
+  },
+  {
+    "page": 11,
+    "stt": "40",
+    "ma_tuong_duong": "",
+    "dich_vu_ky_thuat": "Chup cat 1op vi tinh cot song that lung khong tiem thuoc can quang (tir ≥ 256 day)",
+    "ghi_chu": "18.0286.0047",
+    "price_kind": "on_demand",
+    "price_points": [
+      {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "3,500,000",
+        "amount_vnd": 3500000
+      }
+    ],
+    "ocr_confidence_min": 0.9422512849171957,
+    "ocr_confidence_avg": 0.9768417731379874,
+    "ocr_token_count": 6,
+    "raw_columns": {
+      "stt": "40",
+      "ghi_chu": "18.0286.0047",
+      "dich_vu_ky_thuat": "Chup cat 1op vi tinh cot song that lung khong tiem thuoc can quang (tir ≥ 256 day)",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "3,500,000",
+      "gia_dich_vu_theo_yeu_cau": ""
+    }
+  },
+  {
+    "page": 11,
+    "stt": "41",
+    "ma_tuong_duong": "",
+    "dich_vu_ky_thuat": "Chup cat 1op vi tinh cot song that lurngcotiemthuoccanquang(tir≥ 256 day)",
+    "ghi_chu": "18.0287.0046",
+    "price_kind": "on_demand",
+    "price_points": [
+      {
+        "field": "gia_kham_benh",
+        "label": "gia kham benh",
+        "display": "5,000,000",
+        "amount_vnd": 5000000
+      }
+    ],
+    "ocr_confidence_min": 0.9480354333746022,
+    "ocr_confidence_avg": 0.9899217899439569,
+    "ocr_token_count": 9,
+    "raw_columns": {
+      "stt": "41",
+      "ghi_chu": "18.0287.0046",
+      "dich_vu_ky_thuat": "Chup cat 1op vi tinh cot song that lurngcotiemthuoccanquang(tir≥ 256 day)",
+      "gia_dich_vu_y_te": "",
+      "gia_kham_benh": "5,000,000",
+      "gia_dich_vu_theo_yeu_cau": "Chua bao gom thuoc can quang"
+    }
+  }
+]

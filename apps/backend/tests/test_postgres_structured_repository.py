@@ -96,11 +96,52 @@ def test_price_search_binds_input_and_orders_exact_before_trigram() -> None:
     sql, params = factory.calls[0]
     assert malicious_query not in sql
     assert params["query_pattern"].startswith("%")
+    assert params["query_raw"] == malicious_query
+    assert params["query_pattern_raw"].startswith("%")
     assert params["facility_code"] == "CS1"
     assert params["row_limit"] == 7
     assert "similarity(sp.display_name_folded" in sql
+    assert "sp.display_name_search" in sql
+    assert "sp.equivalent_code" in sql
     assert "ORDER BY exact_match DESC, name_similarity DESC" in sql
     assert rows[0]["price_id"] == "PRICE-1"
+
+
+def test_price_group_search_reads_rag_payload_without_price_join() -> None:
+    def responder(sql, params):
+        assert "service_price_snapshots" not in sql
+        assert "sp.record_type = 'group_header'" in sql
+        return FakeResult(
+            [
+                {
+                    "service_record_id": "PRICE-GROUP-1",
+                    "display_name": "Ngày giường bệnh Nội khoa:",
+                    "section": "A",
+                    "source_id": "SOURCE-1",
+                    "raw_json": "{}",
+                    "exact_match": True,
+                    "name_similarity": 1.0,
+                    "title": "Bảng giá",
+                    "url": "https://example.test",
+                }
+            ]
+        )
+
+    factory = FakeSessionFactory(responder)
+    repository = PostgresStructuredRepository(factory)
+
+    rows = repository.search_service_price_groups(
+        query="Ngày giường bệnh Nội khoa",
+        limit=2,
+    )
+
+    sql, params = factory.calls[0]
+    assert params["query_pattern"].startswith("%")
+    assert params["query_pattern_raw"].startswith("%")
+    assert params["row_limit"] == 2
+    assert "sp.raw_json::text AS raw_json" in sql
+    assert "group_items_have_no_general_price" in sql
+    assert rows[0]["service_record_id"] == "PRICE-GROUP-1"
 
 
 def test_pgvector_search_is_native_parameterized_and_intent_filtered() -> None:

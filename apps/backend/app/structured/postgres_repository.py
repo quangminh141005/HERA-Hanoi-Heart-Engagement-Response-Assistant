@@ -101,6 +101,13 @@ class StructuredReadRepository(Protocol):
         limit: int = 10,
     ) -> list[dict[str, Any]]: ...
 
+    def search_service_price_groups(
+        self,
+        *,
+        query: str,
+        limit: int = 3,
+    ) -> list[dict[str, Any]]: ...
+
     def find_bhyt_policy(
         self,
         *,
@@ -241,15 +248,27 @@ class PostgresStructuredRepository:
                 spp.amount_vnd,
                 spp.raw_value AS amount_raw,
                 sp.display_name_folded = :query_folded AS exact_match,
-                similarity(sp.display_name_folded, :query_folded)
-                    AS name_similarity
+                GREATEST(
+                    similarity(sp.display_name_folded, :query_folded),
+                    similarity(sp.display_name_search, :query_folded),
+                    similarity(COALESCE(sp.equivalent_code, ''), :query_raw),
+                    similarity(COALESCE(sp.note_search, ''), :query_raw)
+                ) AS name_similarity
             FROM service_catalog_records sp
             JOIN service_price_snapshots spp
               ON spp.service_record_id = sp.service_record_id
             WHERE (
                     sp.display_name_folded = :query_folded
                     OR sp.display_name_folded LIKE :query_pattern
+                    OR sp.display_name_search ILIKE :query_pattern_raw
+                    OR sp.display_name_search LIKE :query_pattern
+                    OR COALESCE(sp.equivalent_code, '') ILIKE :query_pattern_raw
+                    OR COALESCE(sp.note_search, '') ILIKE :query_pattern_raw
                     OR similarity(sp.display_name_folded, :query_folded)
+                       >= :minimum_similarity
+                    OR similarity(sp.display_name_search, :query_folded)
+                       >= :minimum_similarity
+                    OR similarity(COALESCE(sp.equivalent_code, ''), :query_raw)
                        >= :minimum_similarity
                   )
               AND sp.historical_lookup_eligible IS TRUE
@@ -265,11 +284,63 @@ class PostgresStructuredRepository:
             LIMIT :row_limit
             """,
             {
+                "query_raw": query,
+                "query_pattern_raw": f"%{query}%",
                 "query_pattern": f"%{_fold_text(query)}%",
                 "query_folded": _fold_text(query),
                 "minimum_similarity": 0.25,
                 "facility_code": facility_code,
                 "row_limit": _bounded_limit(limit, maximum=100),
+                "approval_statuses": self._approval_statuses,
+            },
+        )
+
+    def search_service_price_groups(
+        self,
+        *,
+        query: str,
+        limit: int = 3,
+    ) -> list[dict[str, Any]]:
+        return self._all(
+            """
+            SELECT
+                sp.service_record_id,
+                sp.display_name_raw AS display_name,
+                sp.source_section AS section,
+                sp.source_id,
+                sp.raw_json::text AS raw_json,
+                sp.display_name_folded = :query_folded AS exact_match,
+                GREATEST(
+                    similarity(sp.display_name_folded, :query_folded),
+                    similarity(sp.display_name_search, :query_folded)
+                ) AS name_similarity,
+                s.title,
+                s.canonical_url AS url
+            FROM service_catalog_records sp
+            JOIN official_sources s ON s.source_id = sp.source_id
+            WHERE sp.record_type = 'group_header'
+              AND sp.raw_json->'answer_policy'->>'group_items_have_no_general_price' = 'true'
+              AND sp.approval_status = ANY(CAST(:approval_statuses AS TEXT[]))
+              AND (
+                    sp.display_name_folded = :query_folded
+                    OR sp.display_name_folded LIKE :query_pattern
+                    OR sp.display_name_search ILIKE :query_pattern_raw
+                    OR sp.display_name_search LIKE :query_pattern
+                    OR similarity(sp.display_name_folded, :query_folded)
+                       >= :minimum_similarity
+                    OR similarity(sp.display_name_search, :query_folded)
+                       >= :minimum_similarity
+                  )
+            ORDER BY exact_match DESC, name_similarity DESC,
+                     LENGTH(sp.display_name_search), sp.service_record_id
+            LIMIT :row_limit
+            """,
+            {
+                "query_pattern_raw": f"%{query}%",
+                "query_pattern": f"%{_fold_text(query)}%",
+                "query_folded": _fold_text(query),
+                "minimum_similarity": 0.45,
+                "row_limit": _bounded_limit(limit, maximum=20),
                 "approval_statuses": self._approval_statuses,
             },
         )

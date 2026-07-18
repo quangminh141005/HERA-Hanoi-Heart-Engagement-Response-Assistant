@@ -163,7 +163,10 @@ demo và không hiển thị năm. Lịch luôn dựa vào ngày thật trong re
 
 | Source | Vai trò |
 |---|---|
-| `data/gia_dich_vu_ky_thuat_2025.json` | Bảng giá theo dịch vụ và CS1/CS2; normalize thành catalog + price point |
+| `data/dich_vu_ky_thuat/gia_dich_vu_ky_thuat_2025.json` | Bảng giá phẳng theo dịch vụ và CS1/CS2; giữ để đối chiếu pipeline |
+| `data/dich_vu_ky_thuat/gia_dich_vu_ky_thuat_2025_clean.json` | Bảng giá đã clean dạng cây, có `item_type`, `availability`, tên đầy đủ và giá số |
+| `data/dich_vu_ky_thuat/gia_dich_vu_ky_thuat_2025_rag.json` / `.jsonl` | Nguồn build ưu tiên cho giá; embed `retrieval_text`, giữ `prices`, `canonical_answer_vi`, `answer_policy` làm payload structured |
+| `data/dich_vu_ky_thuat/code_json_to_RAG/` | Pipeline PDF -> flat JSON -> clean JSON -> RAG JSON để tái tạo bảng giá |
 | `data/BHYT.json` | Quy tắc/tier BHYT hộ gia đình; không suy luận quyền lợi cá nhân |
 | `data/source/official-knowledge.json` | Nguồn/fact/template/channel curated để clean clone tự generate |
 | `data/schedules/<năm>/<week>/Lịch khám bệnh Bác sĩ khu TN1 Cơ Sở 1.json` | Lịch CS1 khu TN1 |

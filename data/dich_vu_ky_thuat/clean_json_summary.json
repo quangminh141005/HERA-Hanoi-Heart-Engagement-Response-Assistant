@@ -1,0 +1,19 @@
+{
+  "flat_record_count": 2946,
+  "tree_root_count": 2940,
+  "tree_total_count": 2946,
+  "tree_child_count": 6,
+  "group_count": 2,
+  "service_count": 2944,
+  "section_counts": {
+    "KHÁM BỆNH VÀ NGÀY GIƯỜNG ĐIỀU TRỊ": 12,
+    "DỊCH VỤ KỸ THUẬT VÀ XÉT NGHIỆM": 2898,
+    "KHÁM SỨC KHỎE TOÀN DIỆN LAO ĐỘNG, LÁI XE, KHÁM SỨC KHỎE ĐỊNH KỲ": 1,
+    "DỊCH VỤ KỸ THUẬT THỰC HIỆN BẰNG PHƯƠNG PHÁP VÔ CẢM GÂY TÊ": 35
+  },
+  "input": "/mnt/d/Desktop_informations/Competitions_2026/HERA-Hanoi-Heart-Engagement-Response-Assistant/gia_dich_vu_kt/gia_dich_vu_ky_thuat_2025_flat.json",
+  "outputs": {
+    "clean_json": "/mnt/d/Desktop_informations/Competitions_2026/HERA-Hanoi-Heart-Engagement-Response-Assistant/gia_dich_vu_kt/gia_dich_vu_ky_thuat_2025_clean.json",
+    "compat_json": "/mnt/d/Desktop_informations/Competitions_2026/HERA-Hanoi-Heart-Engagement-Response-Assistant/gia_dich_vu_kt/gia_dich_vu_ky_thuat_2025.json"
+  }
+}

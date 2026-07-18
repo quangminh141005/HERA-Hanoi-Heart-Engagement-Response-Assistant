@@ -282,8 +282,12 @@ class StructuredDataService:
 
     def chat_service_price(self, message: str) -> StructuredChatResult:
         facility_code = _extract_facility_code(message)
+        query = _extract_search_phrase(message)
+        group_result = self._lookup_service_price_group(query)
+        if group_result is not None:
+            return group_result
         rows = self.lookup_service_prices(
-            query=_extract_search_phrase(message),
+            query=query,
             facility_code=facility_code,
             as_of_date=None,
         )
@@ -376,6 +380,45 @@ class StructuredDataService:
             data_classification=rows.classification,
             warnings=(rows.warning,),
             structured_record_ids=(top.service_record_id, top.price_id),
+        )
+
+    def _lookup_service_price_group(self, query: str) -> StructuredChatResult | None:
+        group_rows = self.repository.search_service_price_groups(query=query, limit=1)
+        if not group_rows:
+            return None
+        row = group_rows[0]
+        if not _confident_price_group_match(row, query):
+            return None
+        answer = _canonical_group_answer(row.get("raw_json"))
+        if answer is None:
+            return None
+        source = {
+            "source_id": row["source_id"],
+            "title": row.get("title") or "Bảng giá dịch vụ kỹ thuật",
+            "url": row.get("url"),
+        }
+        warning = (
+            "Mục này là mục nhóm trong bảng nguồn; không có giá chung cho cả nhóm, "
+            "chỉ dùng giá của từng mục con đã công bố."
+        )
+        return StructuredChatResult(
+            intent="service_price_current",
+            response=f"{answer} {warning}",
+            citations=[StructuredCitation(**source)],
+            metadata={
+                "structured_group_answer": {
+                    "query": query,
+                    "service_record_id": row["service_record_id"],
+                    "display_name": row["display_name"],
+                    "section": row.get("section"),
+                    "classification": "official_current",
+                    "warning": warning,
+                    "source": source,
+                }
+            },
+            data_classification="official_current",
+            warnings=(warning,),
+            structured_record_ids=(str(row["service_record_id"]),),
         )
 
     def chat_bhyt(self, message: str) -> StructuredChatResult:
@@ -536,6 +579,47 @@ def _format_vnd(value: int) -> str:
     return f"{value:,}".replace(",", ".")
 
 
+def _canonical_group_answer(raw_json: object) -> str | None:
+    if isinstance(raw_json, str):
+        try:
+            payload = json.loads(raw_json)
+        except json.JSONDecodeError:
+            return None
+    elif isinstance(raw_json, dict):
+        payload = raw_json
+    else:
+        return None
+    rag_payload = payload.get("raw_rag_payload")
+    if not isinstance(rag_payload, dict):
+        return None
+    answer = rag_payload.get("canonical_answer_vi")
+    policy = rag_payload.get("answer_policy")
+    metadata = rag_payload.get("metadata")
+    if (
+        not isinstance(answer, str)
+        or not answer.strip()
+        or not isinstance(policy, dict)
+        or policy.get("group_items_have_no_general_price") is not True
+        or not isinstance(metadata, dict)
+        or metadata.get("item_type") != "group"
+    ):
+        return None
+    return " ".join(answer.split())
+
+
+def _confident_price_group_match(row: dict[str, object], query: str) -> bool:
+    if bool(row.get("exact_match")):
+        return True
+    similarity = float(row.get("name_similarity") or 0)
+    if similarity >= 0.72:
+        return True
+    folded_query = _fold_text(query).replace(":", "").strip()
+    folded_name = _fold_text(str(row.get("display_name") or "")).replace(":", "").strip()
+    if len(folded_query.split()) >= 3 and folded_query in folded_name:
+        return True
+    return False
+
+
 def _extract_search_phrase(message: str) -> str:
     lowered = message.lower()
     canonical_pairs = (
@@ -571,6 +655,7 @@ def _extract_search_phrase(message: str) -> str:
     cleaned = lowered
     for term in cleanup_terms:
         cleaned = cleaned.replace(term, " ")
+    cleaned = re.sub(r"[?!.:;()\[\]{}]+", " ", cleaned)
     collapsed = " ".join(cleaned.split())
     return collapsed or message.strip()
 

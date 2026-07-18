@@ -1,0 +1,36 @@
+[
+  {
+    "source_id": "SRC-HHH-BOOKING-GUIDE-2026-07-18",
+    "source_title": "Hướng dẫn liên hệ đặt lịch khám",
+    "publisher": "Bệnh viện Tim Hà Nội",
+    "authority": "official_hospital",
+    "source_url": "https://benhvientimhanoi.vn/vn/cong/thong-tin/huong-dan-lien-he-dat-lich-kham",
+    "retrieved_at": "2026-07-18T00:00:00+07:00",
+    "raw_file": "data/source/raw/hanoi-heart-hospital-booking-guide-2026-07-18.html",
+    "raw_sha256": "09be778014210b53d256ef4572e7badfddc4f396262b199dcda6e1bf0340364a",
+    "usable_for_runtime": true
+  },
+  {
+    "source_id": "SRC-HHH-VOLUNTARY-CLINIC-2026-07-18",
+    "source_title": "Khoa Khám bệnh tự nguyện",
+    "publisher": "Bệnh viện Tim Hà Nội",
+    "authority": "official_hospital",
+    "source_url": "https://benhvientimhanoi.vn/vn/cong/thong-tin/khoa-kham-benh-tu-nguyen",
+    "retrieved_at": "2026-07-18T00:00:00+07:00",
+    "raw_file": "data/source/raw/hanoi-heart-hospital-voluntary-clinic-2026-07-18.html",
+    "raw_sha256": "1d8f486ede8f362bdd9403970910dffffcabc26d4e1e9add0fbaa1d3721495fb",
+    "usable_for_runtime": true
+  },
+  {
+    "source_id": "SRC-BHXH-BHYT-OUTPATIENT-2026-06-26",
+    "source_title": "Mở rộng quyền lợi BHYT khi khám ngoại trú trái tuyến từ ngày 01/7/2026",
+    "publisher": "Bảo hiểm xã hội Việt Nam",
+    "authority": "official_bhxh_vietnam",
+    "source_url": "https://baohiemxahoi.gov.vn/tintuc/Pages/linh-vuc-bao-hiem-y-te.aspx?CateID=169&ItemID=26712&OtItem=date",
+    "published_at": "2026-06-26T14:14:00+07:00",
+    "retrieved_at": "2026-07-18T00:00:00+07:00",
+    "raw_file": "data/source/raw/bhxh-bhyt-outpatient-crosstier-2026-06-26.html",
+    "raw_sha256": "29bd6a33ce2b293e89e129e2f6ac65ec6b6cf37dc8a6b2cb668ada381d9b5ce8",
+    "usable_for_runtime": true
+  }
+]
