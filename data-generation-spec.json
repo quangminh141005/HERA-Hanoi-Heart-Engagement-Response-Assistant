@@ -1,0 +1,166 @@
+{
+  "spec_version": "3.0.0",
+  "project": "HERA",
+  "language": "vi-VN",
+  "timezone": "Asia/Ho_Chi_Minh",
+  "purpose": "Quy định cách build bộ data/generated từ dữ liệu JSON có cấu trúc để team có thể seed database, test API và demo hackathon.",
+  "source_inputs": {
+    "official_knowledge": {
+      "path": "data/source/official-knowledge.json",
+      "role": "curated_official_sources_facts_and_fixed_templates",
+      "runtime_rule": "Đây là source được review; generator không được tự sáng tác fact hoặc đọc ngược từ data/generated."
+    },
+    "test_fixtures": {
+      "root": "data/test-fixtures",
+      "role": "curated_synthetic_test_inputs_only",
+      "runtime_rule": "Chỉ sinh lại FAQ/conversation/evaluation fixtures; tuyệt đối không nạp vào knowledge runtime."
+    },
+    "price_2025": {
+      "path": "data/gia_dich_vu_ky_thuat_2025.json",
+      "role": "historical_service_price_catalog",
+      "expected_raw_rows": 2946,
+      "expected_facility_price_points": 4051,
+      "runtime_rule": "Chỉ trả như bảng giá lịch sử năm 2025; không dùng để khẳng định giá hiện hành."
+    },
+    "bhyt": {
+      "path": "data/BHYT.json",
+      "role": "secondary_historical_household_contribution_snapshot",
+      "runtime_rule": "Giữ để audit lịch sử; policy current 2026 trong generated phải lấy từ nguồn BHXH Việt Nam đã pin."
+    },
+    "weekly_schedules": {
+      "root": "data/schedules/2026",
+      "folder_format": "YYYY-MM-DD_to_YYYY-MM-DD",
+      "current_snapshot": {
+        "weeks": 6,
+        "active_documents": 18,
+        "accepted_documents": 18,
+        "review_required_documents": 0,
+        "staging_entries": 1382,
+        "runtime_eligible_entries_before_owner_approval": 0
+      },
+      "expected_document_types_per_week": [
+        "CS1 voluntary schedule",
+        "CS2 voluntary schedule",
+        "CS2 general schedule"
+      ],
+      "target_week_2026_07_13": {
+        "documents": 3,
+        "entries": 245,
+        "named_assignments": 172,
+        "generic_assignments": 10,
+        "closed_entries": 60
+      },
+      "runtime_rule": "Lịch làm việc không đồng nghĩa còn suất khám. Chỉ public sau owner approval."
+    }
+  },
+  "generation_rules": {
+    "deterministic": true,
+    "manual_raw_edits_by_generator": false,
+    "llm_may_create_domain_facts": false,
+    "exact_output_set": true,
+    "output_directory": "data/generated",
+    "schedule_discovery": [
+      "Chỉ quét data/schedules và bỏ qua data/generated.",
+      "Nếu có canonical folder và legacy folder cùng tuần/loại, canonical thắng.",
+      "Mỗi document lưu source_path, source_sha256, folder_week, internal_week và approval_status."
+    ],
+    "schedule_range_policy": [
+      "full_range: internal_week bằng folder week.",
+      "partial_range: internal_week bắt đầu cùng ngày với folder week, kết thúc sớm hơn, và các ô sau ngày kết thúc chỉ trống hoặc Nghỉ.",
+      "File không đạt gate phải có validation_status=review_required và không tạo runtime entry.",
+      "Không sửa metadata ngày trong raw file để ép pass."
+    ],
+    "booking_capacity_policy": {
+      "default_threshold": 20,
+      "scope": "doctor_id + service_date + session_key",
+      "across_all_rooms": true,
+      "room_is_not_capacity_key": true,
+      "hospital_approved": false,
+      "production_eligible": false,
+      "generated_capacity_records": 0,
+      "rule": "Không tạo slot/availability từ roster. Capacity chỉ mở khi có explicit reviewed booking session hoặc upstream thật."
+    },
+    "safety_boundaries": [
+      "Không chẩn đoán, kê thuốc hoặc tính quyền lợi BHYT cá nhân.",
+      "Không tính hóa đơn bằng cách ghép price và BHYT.",
+      "Không tự tạo bác sĩ, lịch, giá, URL, hotline hoặc source.",
+      "Không biến dữ liệu historical thành current.",
+      "Không đưa expected_answer/test fixture vào knowledge runtime."
+    ]
+  },
+  "generated_files": [
+    "00-manifest.json",
+    "01-sources-facts-and-templates.json",
+    "02-service-prices-2025-batch-01.json",
+    "03-service-prices-2025-batch-02.json",
+    "04-service-prices-2025-batch-03.json",
+    "05-service-prices-2025-batch-04.json",
+    "06-service-prices-2025-batch-05.json",
+    "07-service-prices-2025-batch-06.json",
+    "08-bhyt-household-contributions.json",
+    "09-schedule-document-registry.json",
+    "10-schedule-entries.json",
+    "11-booking-capacity-config.json",
+    "12-import-issues.json",
+    "13-faq-paraphrases-batch-01.json",
+    "14-faq-paraphrases-batch-02.json",
+    "15-faq-paraphrases-batch-03.json",
+    "16-conversation-scenarios-batch-01.json",
+    "17-conversation-scenarios-batch-02.json",
+    "18-evaluation-cases-batch-01.json",
+    "19-evaluation-cases-batch-02.json",
+    "20-evaluation-cases-batch-03.json",
+    "21-evaluation-cases-batch-04.json",
+    "22-evaluation-cases-batch-05.json",
+    "23-validation-report.json"
+  ],
+  "validation_rules": [
+    {
+      "rule_id": "VAL-JSON-PARSE",
+      "severity": "error",
+      "assertion": "Mọi file JSON input và output parse được."
+    },
+    {
+      "rule_id": "VAL-EXACT-FILE-SET",
+      "severity": "error",
+      "assertion": "data/generated chỉ chứa đúng 24 file trong generated_files."
+    },
+    {
+      "rule_id": "VAL-MANIFEST-HASH",
+      "severity": "error",
+      "assertion": "Hash/byte trong 00-manifest.json khớp file trên disk; 23-validation-report.json ghi hash của manifest."
+    },
+    {
+      "rule_id": "VAL-PRICE",
+      "severity": "error",
+      "assertion": "Bảng giá giữ 2.946 rows, 4.051 facility price points, không đổi ô trống thành 0 và không copy giá giữa cơ sở."
+    },
+    {
+      "rule_id": "VAL-BHYT",
+      "severity": "error",
+      "assertion": "BHYT có policy historical local và policy household-contribution 2026 tách biệt; không trả lời quyền lợi cá nhân."
+    },
+    {
+      "rule_id": "VAL-SCHEDULE",
+      "severity": "error",
+      "assertion": "Snapshot hiện tại có 18 schedule documents accepted, 1.382 staging entries, 0 runtime-eligible entries trước owner approval."
+    },
+    {
+      "rule_id": "VAL-BOOKING-CAPACITY",
+      "severity": "error",
+      "assertion": "Threshold 20 áp dụng theo doctor/date/session, gộp qua mọi phòng; không sinh capacity record từ roster."
+    },
+    {
+      "rule_id": "VAL-NO-LEGACY",
+      "severity": "error",
+      "assertion": "Không giữ file generated cũ ngoài exact set và không dùng legacy fixture làm knowledge."
+    }
+  ],
+  "build_command": "node scripts/build-generated-data.mjs",
+  "last_verified_snapshot": {
+    "schedule_documents": 18,
+    "schedule_entries": 1382,
+    "manifest_sha256": "b9befe2b5ef8e3dbeb97075f1f8846a2037f87fde21dfcbeadea6ebb521c2bc4",
+    "report_sha256": "f95c69b2523837fb5624517c0611a77240f5e3182c9e341aad08b901c79063ad"
+  }
+}

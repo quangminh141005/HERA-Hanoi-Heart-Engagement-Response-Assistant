@@ -1,0 +1,424 @@
+{
+  "dataset": "generated_bundle_validation_report",
+  "report_id": "HERA-VALIDATION-2026-07-17-V2",
+  "job_id": "hera-structured-data-2026-07-v2",
+  "bundle_version": "2.0.0",
+  "validated_at": "2026-07-17T23:45:00+07:00",
+  "validator": "scripts/build-generated-data.mjs deterministic validation",
+  "status": "automated_validation_completed_with_review_required_gate",
+  "ready_to_seed_local_prototype": true,
+  "ready_to_seed_staging": true,
+  "ready_for_production": false,
+  "human_reviewer": null,
+  "reviewed_at": null,
+  "manifest": {
+    "file": "00-manifest.json",
+    "bytes": 23307,
+    "sha256": "b9befe2b5ef8e3dbeb97075f1f8846a2037f87fde21dfcbeadea6ebb521c2bc4"
+  },
+  "summary": {
+    "data_files_checked": 22,
+    "json_parse_failures": 0,
+    "unhandled_errors": 0,
+    "review_required_documents": 0,
+    "warnings_and_information": 14,
+    "sources": 13,
+    "seed_facts": 11,
+    "historical_price_rows": 2946,
+    "historical_price_group_headers": 2,
+    "nested_facility_prices": 4051,
+    "bhyt_policies": 2,
+    "current_bhyt_household_tiers": 5,
+    "schedule_documents": 18,
+    "schedule_documents_accepted": 18,
+    "schedule_documents_review_required": 0,
+    "schedule_duplicate_sources_excluded": 0,
+    "schedule_entries": 1382,
+    "schedule_named_assignments": 1008,
+    "schedule_generic_assignments": 60,
+    "schedule_closed_entries": 271,
+    "generated_capacity_records": 0,
+    "import_issues": 14,
+    "faq_paraphrases": 60,
+    "conversation_scenarios": 24,
+    "evaluation_cases": 100
+  },
+  "schedule_week_summaries": [
+    {
+      "week_start": "2026-06-08",
+      "week_end": "2026-06-14",
+      "documents_discovered": 3,
+      "documents_validation_accepted": 3,
+      "documents_review_required": 0,
+      "entries_published_to_review_dataset": 223,
+      "named_assignments": 168,
+      "generic_assignments": 10,
+      "closed_entries": 37,
+      "runtime_eligible_entries": 0
+    },
+    {
+      "week_start": "2026-06-15",
+      "week_end": "2026-06-21",
+      "documents_discovered": 3,
+      "documents_validation_accepted": 3,
+      "documents_review_required": 0,
+      "entries_published_to_review_dataset": 223,
+      "named_assignments": 165,
+      "generic_assignments": 10,
+      "closed_entries": 37,
+      "runtime_eligible_entries": 0
+    },
+    {
+      "week_start": "2026-06-22",
+      "week_end": "2026-06-28",
+      "documents_discovered": 3,
+      "documents_validation_accepted": 3,
+      "documents_review_required": 0,
+      "entries_published_to_review_dataset": 245,
+      "named_assignments": 165,
+      "generic_assignments": 10,
+      "closed_entries": 57,
+      "runtime_eligible_entries": 0
+    },
+    {
+      "week_start": "2026-06-29",
+      "week_end": "2026-07-05",
+      "documents_discovered": 3,
+      "documents_validation_accepted": 3,
+      "documents_review_required": 0,
+      "entries_published_to_review_dataset": 223,
+      "named_assignments": 170,
+      "generic_assignments": 10,
+      "closed_entries": 37,
+      "runtime_eligible_entries": 0
+    },
+    {
+      "week_start": "2026-07-06",
+      "week_end": "2026-07-12",
+      "documents_discovered": 3,
+      "documents_validation_accepted": 3,
+      "documents_review_required": 0,
+      "entries_published_to_review_dataset": 223,
+      "named_assignments": 168,
+      "generic_assignments": 10,
+      "closed_entries": 43,
+      "runtime_eligible_entries": 0
+    },
+    {
+      "week_start": "2026-07-13",
+      "week_end": "2026-07-19",
+      "documents_discovered": 3,
+      "documents_validation_accepted": 3,
+      "documents_review_required": 0,
+      "entries_published_to_review_dataset": 245,
+      "named_assignments": 172,
+      "generic_assignments": 10,
+      "closed_entries": 60,
+      "runtime_eligible_entries": 0
+    }
+  ],
+  "target_week_audit": {
+    "week_start": "2026-07-13",
+    "week_end": "2026-07-19",
+    "documents_discovered": 3,
+    "documents_validation_accepted": 3,
+    "documents_review_required": 0,
+    "entries": 245,
+    "named_assignments": 172,
+    "generic_assignments": 10,
+    "closed_entries": 60,
+    "runtime_eligible_entries": 0
+  },
+  "automated_checks": [
+    {
+      "check_id": "CHK-EXACT-FILE-SET",
+      "status": "pass",
+      "result": "Only manifest v2 files are retained after generation."
+    },
+    {
+      "check_id": "CHK-INPUT-HASHES",
+      "status": "pass",
+      "result": "Verified 20 local input hashes before normalization."
+    },
+    {
+      "check_id": "CHK-PRICE-ROWS",
+      "status": "pass",
+      "result": "2,946 raw price rows preserved across six batches: 500/500/500/500/500/446."
+    },
+    {
+      "check_id": "CHK-PRICE-POINTS",
+      "status": "pass",
+      "result": "4,051 non-empty facility price values parsed exactly; two no-price rows remain group headers."
+    },
+    {
+      "check_id": "CHK-PRICE-CURRENTNESS",
+      "status": "pass",
+      "result": "Every 2025 price record has is_current=false and current-price lookup disabled."
+    },
+    {
+      "check_id": "CHK-BHYT-SCOPE",
+      "status": "pass",
+      "result": "Historical secondary policy is disabled; official 01/07/2026 tiers are limited to household contributions."
+    },
+    {
+      "check_id": "CHK-SCHEDULE-DOCUMENTS",
+      "status": "pass",
+      "result": "For 13–19/07/2026, 3 active documents were accepted and 0 documents require review."
+    },
+    {
+      "check_id": "CHK-SCHEDULE-DISCOVERY-SCOPE",
+      "status": "pass",
+      "result": "Active discovery reads schedule source folders and excludes generated output."
+    },
+    {
+      "check_id": "CHK-SCHEDULE-CANONICAL-PREFERENCE",
+      "status": "pass",
+      "result": "Canonical schedules/YYYY/YYYY-MM-DD_to_YYYY-MM-DD sources take precedence over legacy paths for the same week and type; 0 duplicate sources were excluded."
+    },
+    {
+      "check_id": "CHK-SCHEDULE-PARTIAL-RANGE",
+      "status": "pass",
+      "result": "A same-start partial document is accepted only when every source cell after its source end date is Nghỉ or blank; no out-of-range assignment is silently dropped."
+    },
+    {
+      "check_id": "CHK-SCHEDULE-ENTRIES",
+      "status": "pass",
+      "result": "The accepted week has 245 entries: 172 named, 10 generic and 60 closed."
+    },
+    {
+      "check_id": "CHK-NO-BOOKING-INFERENCE",
+      "status": "pass",
+      "result": "Schedule entries are not slots; zero capacity or booking-state records were generated from roster data."
+    },
+    {
+      "check_id": "CHK-PROTOTYPE-CAPACITY",
+      "status": "pass",
+      "result": "Default 20 is isolated as an overridable, unapproved, non-production prototype config."
+    },
+    {
+      "check_id": "CHK-FIXTURE-REFERENCES",
+      "status": "pass",
+      "result": "All source-fact and structured-record references in FAQ, conversation and evaluation fixtures resolve."
+    },
+    {
+      "check_id": "CHK-NO-LEGACY-FIXTURE",
+      "status": "pass",
+      "result": "No legacy synthetic identifier, label or reference field remains in generated JSON."
+    },
+    {
+      "check_id": "CHK-MANIFEST-HASHES",
+      "status": "pass",
+      "result": "All 22 manifest file hashes and byte counts match."
+    }
+  ],
+  "human_review_gates": [
+    {
+      "gate_id": "HUMAN-PRICE-01",
+      "status": "pending",
+      "requirement": "Match the 2025 local price file to the hospital publication and approve historical-only display wording."
+    },
+    {
+      "gate_id": "HUMAN-PRICE-02",
+      "status": "pending",
+      "requirement": "Provide and approve the current hospital price appendix before enabling current-price answers."
+    },
+    {
+      "gate_id": "HUMAN-BHYT-01",
+      "status": "pending",
+      "requirement": "Hospital data owner confirms the official BHXH household-contribution extract and its narrow scope."
+    },
+    {
+      "gate_id": "HUMAN-SCHEDULE-01",
+      "status": "pending",
+      "requirement": "Review schedule source ownership, week range and approval status before runtime exposure."
+    },
+    {
+      "gate_id": "HUMAN-SCHEDULE-02",
+      "status": "pending",
+      "requirement": "Review generic assignments, multi-room duplicates and cross-facility notes before production."
+    },
+    {
+      "gate_id": "HUMAN-CAPACITY-01",
+      "status": "pending",
+      "requirement": "The hospital must approve a capacity model; the project default of 20 is never production eligible."
+    },
+    {
+      "gate_id": "HUMAN-EVAL-01",
+      "status": "pending",
+      "requirement": "Review all 100 expected evaluation outcomes, especially emergency, stale-price and BHYT boundaries."
+    }
+  ],
+  "limitations": [
+    "The price dataset is a historical 2025 snapshot and cannot answer current-price questions.",
+    "The schedule dataset is a weekly working roster, not an appointment inventory or booking confirmation system.",
+    "The official BHXH extract covers household contribution amounts only, not personal medical benefit entitlement.",
+    "Automated structure validation does not replace hospital, clinical, legal, privacy or security approval."
+  ],
+  "manifest_sha256": "b9befe2b5ef8e3dbeb97075f1f8846a2037f87fde21dfcbeadea6ebb521c2bc4",
+  "checks": [
+    {
+      "check_id": "CHK-EXACT-FILE-SET",
+      "status": "pass",
+      "result": "Only manifest v2 files are retained after generation."
+    },
+    {
+      "check_id": "CHK-INPUT-HASHES",
+      "status": "pass",
+      "result": "Verified 20 local input hashes before normalization."
+    },
+    {
+      "check_id": "CHK-PRICE-ROWS",
+      "status": "pass",
+      "result": "2,946 raw price rows preserved across six batches: 500/500/500/500/500/446."
+    },
+    {
+      "check_id": "CHK-PRICE-POINTS",
+      "status": "pass",
+      "result": "4,051 non-empty facility price values parsed exactly; two no-price rows remain group headers."
+    },
+    {
+      "check_id": "CHK-PRICE-CURRENTNESS",
+      "status": "pass",
+      "result": "Every 2025 price record has is_current=false and current-price lookup disabled."
+    },
+    {
+      "check_id": "CHK-BHYT-SCOPE",
+      "status": "pass",
+      "result": "Historical secondary policy is disabled; official 01/07/2026 tiers are limited to household contributions."
+    },
+    {
+      "check_id": "CHK-SCHEDULE-DOCUMENTS",
+      "status": "pass",
+      "result": "For 13–19/07/2026, 3 active documents were accepted and 0 documents require review."
+    },
+    {
+      "check_id": "CHK-SCHEDULE-DISCOVERY-SCOPE",
+      "status": "pass",
+      "result": "Active discovery reads schedule source folders and excludes generated output."
+    },
+    {
+      "check_id": "CHK-SCHEDULE-CANONICAL-PREFERENCE",
+      "status": "pass",
+      "result": "Canonical schedules/YYYY/YYYY-MM-DD_to_YYYY-MM-DD sources take precedence over legacy paths for the same week and type; 0 duplicate sources were excluded."
+    },
+    {
+      "check_id": "CHK-SCHEDULE-PARTIAL-RANGE",
+      "status": "pass",
+      "result": "A same-start partial document is accepted only when every source cell after its source end date is Nghỉ or blank; no out-of-range assignment is silently dropped."
+    },
+    {
+      "check_id": "CHK-SCHEDULE-ENTRIES",
+      "status": "pass",
+      "result": "The accepted week has 245 entries: 172 named, 10 generic and 60 closed."
+    },
+    {
+      "check_id": "CHK-NO-BOOKING-INFERENCE",
+      "status": "pass",
+      "result": "Schedule entries are not slots; zero capacity or booking-state records were generated from roster data."
+    },
+    {
+      "check_id": "CHK-PROTOTYPE-CAPACITY",
+      "status": "pass",
+      "result": "Default 20 is isolated as an overridable, unapproved, non-production prototype config."
+    },
+    {
+      "check_id": "CHK-FIXTURE-REFERENCES",
+      "status": "pass",
+      "result": "All source-fact and structured-record references in FAQ, conversation and evaluation fixtures resolve."
+    },
+    {
+      "check_id": "CHK-NO-LEGACY-FIXTURE",
+      "status": "pass",
+      "result": "No legacy synthetic identifier, label or reference field remains in generated JSON."
+    },
+    {
+      "check_id": "CHK-MANIFEST-HASHES",
+      "status": "pass",
+      "result": "All 22 manifest file hashes and byte counts match."
+    }
+  ],
+  "warnings": [
+    {
+      "issue_id": "ISSUE-SCHEDULE-MULTIROOM-DCC55017E9",
+      "severity": "warning",
+      "dataset": "schedule_entries"
+    },
+    {
+      "issue_id": "ISSUE-SCHEDULE-MULTIROOM-DAA2548F1D",
+      "severity": "warning",
+      "dataset": "schedule_entries"
+    },
+    {
+      "issue_id": "ISSUE-SCHEDULE-MULTIROOM-3605A66C58",
+      "severity": "warning",
+      "dataset": "schedule_entries"
+    },
+    {
+      "issue_id": "ISSUE-SCHEDULE-MULTIROOM-CDBD9B1AC4",
+      "severity": "warning",
+      "dataset": "schedule_entries"
+    },
+    {
+      "issue_id": "ISSUE-SCHEDULE-MULTIROOM-2C66A5CC80",
+      "severity": "warning",
+      "dataset": "schedule_entries"
+    },
+    {
+      "issue_id": "ISSUE-SCHEDULE-MULTIROOM-21E04ADADF",
+      "severity": "warning",
+      "dataset": "schedule_entries"
+    },
+    {
+      "issue_id": "ISSUE-PRICE-2025-NOT-CURRENT",
+      "severity": "warning",
+      "dataset": "historical_service_prices"
+    },
+    {
+      "issue_id": "ISSUE-BHYT-SECONDARY-HISTORICAL-DISABLED",
+      "severity": "warning",
+      "dataset": "bhyt_household_contribution_policies"
+    },
+    {
+      "issue_id": "ISSUE-CAPACITY-NOT-HOSPITAL-APPROVED",
+      "severity": "warning",
+      "dataset": "booking_capacity_prototype_config"
+    }
+  ],
+  "human_gates": [
+    {
+      "gate_id": "HUMAN-PRICE-01",
+      "status": "pending",
+      "requirement": "Match the 2025 local price file to the hospital publication and approve historical-only display wording."
+    },
+    {
+      "gate_id": "HUMAN-PRICE-02",
+      "status": "pending",
+      "requirement": "Provide and approve the current hospital price appendix before enabling current-price answers."
+    },
+    {
+      "gate_id": "HUMAN-BHYT-01",
+      "status": "pending",
+      "requirement": "Hospital data owner confirms the official BHXH household-contribution extract and its narrow scope."
+    },
+    {
+      "gate_id": "HUMAN-SCHEDULE-01",
+      "status": "pending",
+      "requirement": "Review schedule source ownership, week range and approval status before runtime exposure."
+    },
+    {
+      "gate_id": "HUMAN-SCHEDULE-02",
+      "status": "pending",
+      "requirement": "Review generic assignments, multi-room duplicates and cross-facility notes before production."
+    },
+    {
+      "gate_id": "HUMAN-CAPACITY-01",
+      "status": "pending",
+      "requirement": "The hospital must approve a capacity model; the project default of 20 is never production eligible."
+    },
+    {
+      "gate_id": "HUMAN-EVAL-01",
+      "status": "pending",
+      "requirement": "Review all 100 expected evaluation outcomes, especially emergency, stale-price and BHYT boundaries."
+    }
+  ]
+}

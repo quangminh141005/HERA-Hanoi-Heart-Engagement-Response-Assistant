@@ -50,6 +50,18 @@ def test_prometheus_metrics_endpoint_exposes_backend_metrics() -> None:
 
     assert response.status_code == 200
     assert response.headers["content-type"].startswith("text/plain")
-    assert "hera_app_info" in response.text
-    assert "hera_http_requests_total" in response.text
+    for metric_name in (
+        "hera_app_info",
+        "hera_http_requests_total",
+        "hera_requests_total",
+        "hera_grounding_failures_total",
+        "hera_data_freshness_rejections_total",
+        "hera_schedule_coverage",
+        "hera_booking_holds_total",
+        "hera_booking_occupied",
+        "hera_latency_seconds",
+        "hera_upstream_failures_total",
+        "hera_structured_cache_operations_total",
+    ):
+        assert metric_name in response.text
 

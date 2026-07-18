@@ -31,6 +31,7 @@ class RetrievalRequest(BaseModel):
     query: str
     top_k: int = Field(default=5, ge=1)
     locale: str = "vi"
+    allowed_intents: list[str] = Field(default_factory=list)
 
 
 class RetrievalResponse(BaseModel):
@@ -45,5 +46,8 @@ class GroundedAnswer(BaseModel):
 
     answer: str
     citations: list[KnowledgeSource] = Field(default_factory=list)
+    record_ids: list[str] = Field(default_factory=list)
     confidence: float = 0.0
+    generation_mode: str = "deterministic"
+    validation_issues: list[str] = Field(default_factory=list)
 

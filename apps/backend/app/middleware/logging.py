@@ -4,15 +4,21 @@ from __future__ import annotations
 
 import logging
 from time import perf_counter
-from uuid import uuid4
 
 from fastapi import Request
 from starlette.middleware.base import BaseHTTPMiddleware
 
-from app.core.request_context import bind_context, reset_context
+from app.core.request_context import bind_context, normalize_request_id, reset_context
 
 logger = logging.getLogger("app.access")
-QUIET_SUCCESS_PATHS = {"/health", "/metrics"}
+QUIET_SUCCESS_PATHS = {
+    "/health",
+    "/healthz",
+    "/readyz",
+    "/metrics",
+    "/api/v1/health",
+    "/api/v1/health/ready",
+}
 
 
 class RequestLoggingMiddleware(BaseHTTPMiddleware):
@@ -21,8 +27,7 @@ class RequestLoggingMiddleware(BaseHTTPMiddleware):
     async def dispatch(self, request: Request, call_next):
         request_id = getattr(request.state, "request_id", None)
         if not request_id:
-            request_id = request.headers.get("X-Request-ID", "").strip()
-            request_id = request_id[:128] if request_id else uuid4().hex
+            request_id = normalize_request_id(request.headers.get("X-Request-ID"))
             request.state.request_id = request_id
 
         tokens = bind_context(request_id=request_id, conversation_id=None)
@@ -33,10 +38,13 @@ class RequestLoggingMiddleware(BaseHTTPMiddleware):
             status_code = response.status_code
             response.headers["X-Request-ID"] = request_id
             return response
-        except Exception:
-            logger.exception(
+        except Exception as exc:
+            logger.error(
                 "http request failed",
-                extra=_request_log_extra(request, status_code, started_at),
+                extra={
+                    **_request_log_extra(request, status_code, started_at),
+                    "error_type": exc.__class__.__name__,
+                },
             )
             raise
         finally:
@@ -55,14 +63,13 @@ def _request_log_extra(
     status_code: int,
     started_at: float,
 ) -> dict[str, object]:
+    route = request.scope.get("route")
+    route_path = getattr(route, "path", None) or "unmatched"
     return {
         "event": "http_request",
         "method": request.method,
-        "path": request.url.path,
-        "route": f"{request.method} {request.url.path}",
+        "route": f"{request.method} {route_path}",
         "status_code": status_code,
         "duration_ms": round((perf_counter() - started_at) * 1000, 2),
-        "client_host": request.client.host if request.client else None,
-        "user_agent": request.headers.get("user-agent"),
     }
 

@@ -1,174 +1,178 @@
-import { ExternalLink, PhoneCall, Send, ShieldAlert } from 'lucide-react';
-import { FormEvent, useMemo, useRef, useState } from 'react';
+import { CalendarCheck, PhoneCall, RotateCcw, Send, UserRound } from 'lucide-react';
+import { FormEvent, KeyboardEvent, useEffect, useMemo, useRef, useState } from 'react';
 
-import { ErrorState, EmptyState, LoadingState } from '../../components/FeedbackStates';
+import { EmptyState, ErrorState, LoadingState } from '../../components/FeedbackStates';
 import { StatusPill } from '../../components/StatusPill';
-import { postChat } from '../../lib/api';
-import { ChatMessage } from '../../types';
+import { WelcomeDisclaimer } from '../../components/WelcomeDisclaimer';
+import { AssistantMessage } from './AssistantMessage';
+import { useChat } from './useChat';
 
+const CHAT_MAX_CHARS = 2_000;
 const STARTER_MESSAGES = [
-  'Quy trình khám ngoại trú tại Khu Tự nguyện 1 như thế nào?',
-  'Tôi muốn đặt lịch khám tim mạch',
-  'BHYT cần giấy tờ gì khi đi khám?',
+  'Dịch vụ “Giá Khám bệnh” đang niêm yết bao nhiêu?',
+  'Mức đóng BHYT hộ gia đình hiện nay là bao nhiêu?',
+  'Lịch bác sĩ cơ sở 1 hôm nay',
+  'Tuần sau bác sĩ nào có lịch tại cơ sở 2?',
+  'Tôi cần chuẩn bị giấy tờ gì khi đi khám?',
+  'Thủ tục tái khám tại bệnh viện như thế nào?',
 ];
 
-export function ChatPanel() {
-  const [conversationId, setConversationId] = useState<string | null>(null);
-  const [messages, setMessages] = useState<ChatMessage[]>([]);
-  const [draft, setDraft] = useState('');
-  const [isSending, setIsSending] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-  const inputRef = useRef<HTMLTextAreaElement | null>(null);
+function PromptButtons({ disabled, onSelect }: { disabled: boolean; onSelect: (message: string) => void }) {
+  return (
+    <div className="quick-prompts" aria-label="Câu hỏi gợi ý">
+      {STARTER_MESSAGES.map((message) => (
+        <button
+          className="quick-prompt"
+          disabled={disabled}
+          key={message}
+          type="button"
+          onClick={() => onSelect(message)}
+        >
+          {message}
+        </button>
+      ))}
+    </div>
+  );
+}
 
+export function ChatPanel({ compact = false }: { compact?: boolean }) {
+  const { messages, isSending, error, canRetry, sendMessage, retry, resetConversation } = useChat();
+  const [draft, setDraft] = useState('');
+  const inputRef = useRef<HTMLTextAreaElement | null>(null);
+  const endRef = useRef<HTMLDivElement | null>(null);
   const lastAssistant = useMemo(
     () => [...messages].reverse().find((message) => message.role === 'assistant'),
     [messages],
   );
 
-  async function sendMessage(text: string) {
+  useEffect(() => {
+    endRef.current?.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+  }, [messages, isSending, error]);
+
+  function submitText(text: string) {
     const trimmed = text.trim();
     if (!trimmed || isSending) {
       return;
     }
-
-    const userMessage: ChatMessage = {
-      id: crypto.randomUUID(),
-      role: 'user',
-      content: trimmed,
-    };
-
-    setMessages((current) => [...current, userMessage]);
     setDraft('');
-    setError(null);
-    setIsSending(true);
-
-    try {
-      const response = await postChat({
-        message: trimmed,
-        conversation_id: conversationId,
-        locale: 'vi',
-      });
-      setConversationId(response.conversation_id);
-      setMessages((current) => [
-        ...current,
-        {
-          id: crypto.randomUUID(),
-          role: 'assistant',
-          content: response.response,
-          citations: response.citations,
-          intent: response.intent,
-          emergency: response.emergency,
-          requiresHandoff: response.requires_handoff,
-        },
-      ]);
-    } catch (caught) {
-      setError(caught instanceof Error ? caught.message : 'Unable to send message.');
-    } finally {
-      setIsSending(false);
-      inputRef.current?.focus();
-    }
+    void sendMessage(trimmed).finally(() => inputRef.current?.focus());
   }
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    void sendMessage(draft);
+    submitText(draft);
+  }
+
+  function handleKeyDown(event: KeyboardEvent<HTMLTextAreaElement>) {
+    if (event.key === 'Enter' && !event.shiftKey && !event.nativeEvent.isComposing) {
+      event.preventDefault();
+      submitText(draft);
+    }
   }
 
   return (
-    <section className="chat-layout" aria-label="HERA chat">
-      <aside className="context-panel">
-        <StatusPill tone="safe">MVP shell</StatusPill>
-        <h1>HERA customer-care assistant</h1>
-        <p>
-          A safe chat surface for official hospital QA, emergency detection,
-          appointment handoff, and future hospital API integrations.
-        </p>
-        <div className="quick-prompts" aria-label="Suggested prompts">
-          {STARTER_MESSAGES.map((message) => (
-            <button
-              className="quick-prompt"
-              key={message}
-              type="button"
-              onClick={() => void sendMessage(message)}
-            >
-              {message}
-            </button>
-          ))}
-        </div>
-        <a className="contact-link" href="tel:115">
-          <PhoneCall size={18} aria-hidden="true" />
-          <span>Emergency 115</span>
-        </a>
-      </aside>
+    <section className={`chat-layout${compact ? ' chat-layout-compact' : ''}`} aria-label="Trò chuyện với HERA">
+      {!compact ? (
+        <aside className="context-panel">
+          <StatusPill tone="safe">Trợ lý thông tin</StatusPill>
+          <h1>Hỏi thông tin Bệnh viện Tim Hà Nội</h1>
+          <p>
+            Tra bảng giá đã cung cấp, mức đóng BHYT hộ gia đình và lịch làm việc từ dữ liệu có nguồn.
+          </p>
+          <PromptButtons disabled={isSending} onSelect={submitText} />
+          <a className="booking-jump-link" href="#booking">
+            <CalendarCheck size={18} aria-hidden="true" />
+            <span>Xem ca và giữ chỗ bản demo</span>
+          </a>
+          <a className="contact-link" href="tel:115">
+            <PhoneCall size={18} aria-hidden="true" />
+            <span>Trường hợp cấp cứu: gọi 115</span>
+          </a>
+        </aside>
+      ) : null}
 
       <section className="chat-panel">
         <div className="chat-header">
           <div>
-            <h2>Conversation</h2>
-            <p>Vietnamese-first support with grounded-answer safeguards.</p>
+            <h2>HERA</h2>
+            <p>Trả lời tiếng Việt, hiển thị nguồn và cảnh báo dữ liệu.</p>
           </div>
-          {lastAssistant?.emergency ? (
-            <StatusPill tone="warning">Emergency detected</StatusPill>
-          ) : (
-            <StatusPill>Ready</StatusPill>
-          )}
+          <div className="chat-header-actions">
+            {lastAssistant?.emergency ? (
+              <StatusPill tone="warning">Ưu tiên cấp cứu</StatusPill>
+            ) : (
+              <StatusPill>Sẵn sàng</StatusPill>
+            )}
+            {messages.length > 0 ? (
+              <button className="reset-button" type="button" onClick={resetConversation}>
+                <RotateCcw size={15} aria-hidden="true" />
+                Cuộc trò chuyện mới
+              </button>
+            ) : null}
+          </div>
         </div>
 
-        <div className="message-list" aria-live="polite">
+        <WelcomeDisclaimer compact={compact} />
+
+        <div className="message-list" aria-live="polite" aria-busy={isSending}>
           {messages.length === 0 ? (
-            <EmptyState message="Start with a hospital process, BHYT, appointment, or emergency-symptom question." />
+            <div className="empty-conversation">
+              <EmptyState message="Hãy chọn một câu hỏi mẫu hoặc nhập câu hỏi hành chính của bạn." />
+              {compact ? <PromptButtons disabled={isSending} onSelect={submitText} /> : null}
+            </div>
           ) : (
-            messages.map((message) => (
-              <article className={`message message-${message.role}`} key={message.id}>
-                <div className="message-meta">
-                  <strong>{message.role === 'user' ? 'You' : 'HERA'}</strong>
-                  {message.intent ? <span>{message.intent}</span> : null}
-                </div>
-                <p>{message.content}</p>
-                {message.emergency ? (
-                  <div className="safety-callout">
-                    <ShieldAlert size={18} aria-hidden="true" />
-                    <span>Emergency routing is prioritized over normal QA.</span>
+            messages.map((message) =>
+              message.role === 'assistant' ? (
+                <AssistantMessage key={message.id} message={message} />
+              ) : (
+                <article className="message message-user" key={message.id}>
+                  <div className="message-meta">
+                    <strong><UserRound size={15} aria-hidden="true" /> Bạn</strong>
                   </div>
-                ) : null}
-                {message.citations && message.citations.length > 0 ? (
-                  <div className="citations">
-                    {message.citations.map((citation) => (
-                      <a
-                        href={citation.url ?? '#'}
-                        key={citation.source_id}
-                        rel="noreferrer"
-                        target={citation.url ? '_blank' : undefined}
-                      >
-                        <ExternalLink size={14} aria-hidden="true" />
-                        {citation.title}
-                      </a>
-                    ))}
-                  </div>
-                ) : null}
-              </article>
-            ))
+                  <p>{message.content}</p>
+                </article>
+              ),
+            )
           )}
-          {isSending ? <LoadingState label="HERA is checking safety and sources" /> : null}
-          {error ? <ErrorState message={error} /> : null}
+          {isSending ? <LoadingState label="HERA đang kiểm tra an toàn và nguồn dữ liệu..." /> : null}
+          {error ? (
+            <div className="request-error">
+              <ErrorState message={error.message} />
+              {canRetry ? (
+                <button type="button" onClick={() => void retry()}>
+                  Thử gửi lại
+                </button>
+              ) : null}
+              {error.requestId ? <small>Mã yêu cầu: {error.requestId}</small> : null}
+            </div>
+          ) : null}
+          <div ref={endRef} />
         </div>
 
         <form className="composer" onSubmit={handleSubmit}>
-          <textarea
-            aria-label="Message"
-            onChange={(event) => setDraft(event.target.value)}
-            placeholder="Nhập câu hỏi của bạn..."
-            ref={inputRef}
-            rows={3}
-            value={draft}
-          />
+          <div className="composer-input">
+            <textarea
+              aria-describedby="composer-help"
+              aria-label="Nhập câu hỏi"
+              maxLength={CHAT_MAX_CHARS}
+              onChange={(event) => setDraft(event.target.value)}
+              onKeyDown={handleKeyDown}
+              placeholder="Nhập câu hỏi hành chính của bạn..."
+              ref={inputRef}
+              rows={3}
+              value={draft}
+            />
+            <div className="composer-help" id="composer-help">
+              <span>Enter để gửi, Shift + Enter để xuống dòng</span>
+              <span>{draft.length}/{CHAT_MAX_CHARS}</span>
+            </div>
+          </div>
           <button disabled={!draft.trim() || isSending} type="submit">
             <Send size={18} aria-hidden="true" />
-            <span>Send</span>
+            <span>Gửi</span>
           </button>
         </form>
       </section>
     </section>
   );
 }
-

@@ -27,11 +27,10 @@ class EmergencyDetector:
         """Return a conservative emergency assessment."""
 
         normalized = _normalize(text)
-        matched = [
-            label
-            for label, patterns in _EMERGENCY_PATTERNS.items()
-            if any(re.search(pattern, normalized) for pattern in patterns)
-        ]
+        matched = []
+        for label, patterns in _EMERGENCY_PATTERNS.items():
+            if any(_has_non_negated_match(pattern, normalized) for pattern in patterns):
+                matched.append(label)
         if not matched:
             return EmergencyAssessment(False, 0.0, [])
         confidence = min(0.99, 0.72 + (0.08 * len(matched)))
@@ -64,6 +63,18 @@ def _normalize(text: str) -> str:
     )
     without_marks = without_marks.replace("đ", "d")
     return re.sub(r"\s+", " ", without_marks).strip()
+
+
+def _has_non_negated_match(pattern: str, text: str) -> bool:
+    for match in re.finditer(pattern, text):
+        prefix = text[max(0, match.start() - 40) : match.start()]
+        if re.search(
+            r"\b(?:khong|chua|het|khong con)(?:\s+[a-z]+){0,3}\s+$",
+            prefix,
+        ):
+            continue
+        return True
+    return False
 
 
 _EMERGENCY_PATTERNS = {

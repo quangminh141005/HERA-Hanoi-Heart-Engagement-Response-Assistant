@@ -1,2 +1,2 @@
-"""Embedding provider placeholders."""
+"""Embedding providers for Vietnamese semantic retrieval."""
 

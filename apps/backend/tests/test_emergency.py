@@ -18,3 +18,11 @@ def test_non_emergency_admin_question_is_not_flagged() -> None:
 
     assert assessment.is_emergency is False
 
+
+def test_negated_symptom_is_not_flagged() -> None:
+    assessment = EmergencyDetector().assess(
+        "Tôi không bị khó thở, chỉ muốn hỏi lịch bác sĩ."
+    )
+
+    assert assessment.is_emergency is False
+

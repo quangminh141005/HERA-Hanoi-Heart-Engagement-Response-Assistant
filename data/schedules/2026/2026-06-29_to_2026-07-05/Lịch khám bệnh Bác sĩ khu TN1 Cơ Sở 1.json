@@ -1,0 +1,235 @@
+{
+  "tieu_de": "LỊCH KHÁM BỆNH CỦA CÁC BÁC SỸ KHOA KHÁM BỆNH TỰ NGUYỆN",
+  "dia_diem": "TẠI BỆNH VIỆN TIM HÀ NỘI - CƠ SỞ 1 - 92 TRẦN HƯNG ĐẠO, HOÀN KIẾM, HÀ NỘI",
+  "thoi_gian": "Tuần từ ngày 29.6-5.7.2026",
+  "thong_tin_lien_he": {
+    "dat_lich_va_tu_van_24_24": "1900.1082",
+    "tu_van_hanh_chinh": "0869032338",
+    "website": [
+      "benhvientimhanoi.vn",
+      "benhvientimhanoi.com.vn"
+    ],
+    "fanpage": "fb.com/BenhVienTimHaNoi.vn"
+  },
+  "lich_kham": [
+    {
+      "khoa": "Khoa khám bệnh Tự nguyện 1",
+      "danh_sach_phong": [
+        {
+          "phong_kham": "Phòng khám số 1",
+          "thoi_gian": "7.30 - 16.30",
+          "thu_2": "TS.BS Phạm Như Hùng",
+          "thu_3": "TS.BS Phạm Như Hùng",
+          "thu_4": "TS.BS Phạm Như Hùng",
+          "thu_5": "TS.BS Phạm Như Hùng",
+          "thu_6": "TS.BS Phạm Như Hùng",
+          "thu_7": "Nghỉ",
+          "chu_nhat": "ThS.BS Trần Ngọc Dũng"
+        },
+        {
+          "phong_kham": "Phòng khám số 2",
+          "thoi_gian": "7.30 - 16.30",
+          "thu_2": "TS.BS Vũ Quỳnh Nga",
+          "thu_3": "TS.BS Vũ Quỳnh Nga",
+          "thu_4": "TS.BS Vũ Quỳnh Nga",
+          "thu_5": "TS.BS Vũ Quỳnh Nga",
+          "thu_6": "TS.BS Vũ Quỳnh Nga",
+          "thu_7": "Nghỉ",
+          "chu_nhat": "SAT: ThS.BS Trần Sinh Cường"
+        },
+        {
+          "phong_kham": "Phòng khám số 3",
+          "thoi_gian": "7.00 - 16.30",
+          "thu_2": "TS.BS Bùi Thị Thanh Hà",
+          "thu_3": "TS.BS Nguyễn Xuân Tuấn",
+          "thu_4": "TS.BS Bùi Thị Thanh Hà",
+          "thu_5": "TS.BS Đinh Quang Huy",
+          "thu_6": "TS.BS Bùi Thị Thanh Hà",
+          "thu_7": "Nghỉ",
+          "chu_nhat": "Nghỉ"
+        },
+        {
+          "phong_kham": "Phòng khám số 4",
+          "thoi_gian": "7.30 - 16.30",
+          "thu_2": "Sáng: TS.BS Hoàng Văn\nChiều: BSCKII Phạm Thị An",
+          "thu_3": "TS.BS Hà Mai Hương",
+          "thu_4": "Sáng: TS.BS Hoàng Văn\nChiều: ThS.BS Nguyễn Thị Quỳnh Trang",
+          "thu_5": "TS.BS Hà Mai Hương",
+          "thu_6": "Sáng: TS.BS Hoàng Văn\nChiều: TS.BS Trần Thị Ngọc Lan",
+          "thu_7": "Nghỉ",
+          "chu_nhat": "Nghỉ"
+        },
+        {
+          "phong_kham": "Phòng khám số 5",
+          "thoi_gian": "7.00 - 16.30",
+          "thu_2": "TS.BS Trần Thị Ngọc Lan",
+          "thu_3": "ThS.BS Nguyễn Xuân Từ",
+          "thu_4": "BSCKII Nguyễn Văn Dần",
+          "thu_5": "Sáng: ThS.BS Nguyễn Thị Việt Nga\nChiều: TS.BS Ngô Văn Thanh",
+          "thu_6": "TS.BS Hà Mai Hương",
+          "thu_7": "Nghỉ",
+          "chu_nhat": "Nghỉ"
+        },
+        {
+          "phong_kham": "Phòng khám số 6",
+          "thoi_gian": "7.30 - 16.30",
+          "thu_2": "ThS.BS Nguyễn Thị Việt Nga",
+          "thu_3": "BSCKII Phạm Thị An",
+          "thu_4": "TS.BS Nguyễn Thị Thu Thủy",
+          "thu_5": "BSCKII Nguyễn Văn Thực",
+          "thu_6": "ThS.BS Nguyễn Thị Quỳnh Trang",
+          "thu_7": "Nghỉ",
+          "chu_nhat": "Nghỉ"
+        },
+        {
+          "phong_kham": "Phòng khám số 7",
+          "thoi_gian": "7.00 - 16.00",
+          "thu_2": "TS.BS Nguyễn Xuân Tuấn",
+          "thu_3": "TS.BS Trần Thị An",
+          "thu_4": "ThS.BS Nguyễn Xuân Từ",
+          "thu_5": "TS.BS Trần Thị Ngọc Lan",
+          "thu_6": "BSCKII Vũ Thị Trang",
+          "thu_7": "Nghỉ",
+          "chu_nhat": "Nghỉ"
+        },
+        {
+          "phong_kham": "Phòng khám số 8",
+          "thoi_gian": "7.00 - 16.00",
+          "thu_2": "TS.BS Đinh Quang Huy",
+          "thu_3": "TS.BS Nguyễn Thị Thu Thủy",
+          "thu_4": "Sáng: TS.BS Trần Thị An\nChiều: BSCKII Vũ Thị Trang",
+          "thu_5": "Sáng: BS CKII Phạm Quang Huy\nChiều: ThS.BS Nguyễn Thị Quỳnh Trang",
+          "thu_6": "TS.BS Trần Thị An",
+          "thu_7": "Nghỉ",
+          "chu_nhat": "Nghỉ"
+        }
+      ]
+    },
+    {
+      "khoa": "Khoa khám bệnh Tự nguyện 3",
+      "danh_sach_phong": [
+        {
+          "phong_kham": "Phòng khám số 1",
+          "thoi_gian": "7.30 - 16.30",
+          "thu_2": "ThS.BS Võ Thị Ngọc Anh",
+          "thu_3": "ThS.BS Nguyễn Danh Sen",
+          "thu_4": "ThS.BS Võ Thị Ngọc Anh",
+          "thu_5": "ThS.BS Lê Thế Kiên",
+          "thu_6": "BS CKII Trần Thị Thanh Hà",
+          "thu_7": "ThS.BS Nguyễn Thế Nam Huy",
+          "chu_nhat": "Nghỉ"
+        },
+        {
+          "phong_kham": "Phòng khám số 2",
+          "thoi_gian": "7.30 - 16.30",
+          "thu_2": "ThS.BS Nguyễn Xuân Từ",
+          "thu_3": "BS Đinh Hải Nam",
+          "thu_4": "ThS.BS. Phạm Đăng Anh",
+          "thu_5": "Sáng: ThS.BS Trần Sinh Cường\nChiều: ThS.BS. Phạm Đăng Anh",
+          "thu_6": "Sáng: BSCKII Phạm Thị An\nChiều: ThS.BS. Phạm Đăng Anh",
+          "thu_7": "BSCKI Nguyễn Trung Hiếu",
+          "chu_nhat": "Nghỉ"
+        },
+        {
+          "phong_kham": "Phòng khám số 3",
+          "thoi_gian": "7.30 - 16.30",
+          "thu_2": "ThS.BS Nguyễn Toàn Thắng",
+          "thu_3": "ThS. Bs Trần Đắc Long",
+          "thu_4": "ThS.BS Nguyễn Quốc Hùng",
+          "thu_5": "ThS.BS Nguyễn Toàn Thắng",
+          "thu_6": "BSCKI Đào Thị Thu Hà",
+          "thu_7": "SAT: TS.BS Trần Thị Ngọc Lan",
+          "chu_nhat": "Nghỉ"
+        },
+        {
+          "phong_kham": "Phòng khám số 4",
+          "thoi_gian": "7.30 - 16.30",
+          "thu_2": "Sáng: ThS.BS Trần Sinh Cường\nChiều: BS Trần Thanh Hoa",
+          "thu_3": "BS Trần Thanh Hoa",
+          "thu_4": "Sáng: BSCKII Vũ Thị Trang\nChiều: ThS.BS Nguyễn Đình Hồng Phúc",
+          "thu_5": "Sáng: ThS.BS Lê Thị Thảo\nChiều: ThS.BS Nguyễn Thị Minh Nguyệt",
+          "thu_6": "Sáng: ThS.BS Nguyễn Phương Liên\nChiều: ThS.BS Lê Thị Thảo",
+          "thu_7": "Khám TC\nThS.BS Lê Thế Kiên",
+          "chu_nhat": "Nghỉ"
+        },
+        {
+          "phong_kham": "Phòng khám số 5",
+          "thoi_gian": "6.30 - 16.30",
+          "thu_2": "BSCKII Nguyễn Văn Thực",
+          "thu_3": "ThS.BS Nguyễn Thế Nam Huy",
+          "thu_4": "ThS.BS Lê Quang Huy",
+          "thu_5": "Sáng: ThS.BS Nguyễn Đình Hồng Phúc\nChiều: BS. Nguyễn Ngọc Tân",
+          "thu_6": "ThS.BS Nguyễn Thế Nam Huy",
+          "thu_7": "Nghỉ",
+          "chu_nhat": "Nghỉ"
+        },
+        {
+          "phong_kham": "Phòng khám số 6",
+          "thoi_gian": "6.30 - 16.30",
+          "thu_2": "Sáng: ThS.BS Lê Thị Thảo\nChiều: BS CKII Trần Thị Thanh Hà",
+          "thu_3": "Sáng: ThS.BS Hoàng Minh Lợi\nChiều: ThS.BS Đỗ Thị Vân Anh",
+          "thu_4": "Sáng: BS Trần Thanh Hoa\nChiều: BS Đinh Hải Nam",
+          "thu_5": "Sáng: ThS.BS Nguyễn Danh Sen\nChiều: BSCKII Vũ Thị Trang",
+          "thu_6": "BS Đinh Hải Nam",
+          "thu_7": "Nghỉ",
+          "chu_nhat": "Nghỉ"
+        },
+        {
+          "phong_kham": "Phòng khám số 7",
+          "thoi_gian": "6.30 - 16.30",
+          "thu_2": "ThS.BS Phạm Văn Tùng",
+          "thu_3": "ThS.BS Trần Sinh Cường",
+          "thu_4": "Sáng: ThS.BS Lê Thị Thảo\nChiều: ThS.BS Nguyễn Phương Liên",
+          "thu_5": "ThS.BS Nguyễn Xuân Từ",
+          "thu_6": "ThS.BS Lê Thế Kiên",
+          "thu_7": "Nghỉ",
+          "chu_nhat": "Nghỉ"
+        },
+        {
+          "phong_kham": "Phòng khám số 8",
+          "thoi_gian": "7.30 - 16.30",
+          "thu_2": "Sáng: ThS.BS Hoàng Minh Lợi\nChiều: ThS.BS Nguyễn Mai Hương",
+          "thu_3": "ThS.BS Nguyễn Thị Minh Nguyệt",
+          "thu_4": "Sáng: ThS.BS Phạm Văn Tùng\nChiều: BS Phạm Thị Hoa",
+          "thu_5": "Sáng: ThS.BS Nguyễn Thị Quỳnh Trang\nChiều: ThS.BS Lê Quang Huy",
+          "thu_6": "TS.BS Nguyễn Xuân Tuấn",
+          "thu_7": "Nghỉ",
+          "chu_nhat": "Nghỉ"
+        },
+        {
+          "phong_kham": "Phòng khám số 9",
+          "thoi_gian": "7.30 - 16.30",
+          "thu_2": "Sáng: ThS.BS Nguyễn Phương Liên\nChiều: TS.BS Ngô Văn Thanh",
+          "thu_3": "ThS.BS Nguyễn Mai Hương",
+          "thu_4": "Sáng: ThS.BS Nguyễn Thị Minh Nguyệt\nChiều: ThS.BS Phạm Văn Tùng",
+          "thu_5": "ThS.BS Nguyễn Phương Liên",
+          "thu_6": "Sáng: ThS.BS Nguyễn Thị Minh Nguyệt\nChiều: ThS.BS Trần Sinh Cường",
+          "thu_7": "Nghỉ",
+          "chu_nhat": "Nghỉ"
+        },
+        {
+          "phong_kham": "Phòng khám tăng cường 1 (HC)",
+          "thoi_gian": "7.30 - 16.30",
+          "thu_2": "Sáng: ThS.BS Nguyễn Đình Hồng Phúc",
+          "thu_3": "Sáng: ThS.BS Phạm Văn Tùng",
+          "thu_4": "Sáng: BS Đinh Hải Nam",
+          "thu_5": "ThS.BS Đỗ Thị Vân Anh",
+          "thu_6": "Sáng: BSCKI Nguyễn Trung Hiếu",
+          "thu_7": "Nghỉ",
+          "chu_nhat": "Nghỉ"
+        },
+        {
+          "phong_kham": "Phòng khám tăng cường 2 (PK 4)",
+          "thoi_gian": "7.30 - 16.30",
+          "thu_2": "",
+          "thu_3": "Sáng: BSCKI Nguyễn Trung Hiếu",
+          "thu_4": "",
+          "thu_5": "",
+          "thu_6": "",
+          "thu_7": "Nghỉ",
+          "chu_nhat": "Nghỉ"
+        }
+      ]
+    }
+  ]
+}

@@ -4,6 +4,7 @@ __pycache__/
 .pytest_cache/
 .ruff_cache/
 .mypy_cache/
+.tmp/
 .coverage
 htmlcov/
 .venv/
@@ -18,11 +19,16 @@ coverage/
 .env
 .env.*
 !.env.example
+.release*.env
+.hera-deploy.lock
 
 # Build and editor artifacts
 .DS_Store
 *.log
 *.tsbuildinfo
+*.db-journal
+*.db-shm
+*.db-wal
 .idea/
 .vscode/
 

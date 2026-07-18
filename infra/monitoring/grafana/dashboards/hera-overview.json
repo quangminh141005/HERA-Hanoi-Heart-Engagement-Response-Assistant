@@ -1,0 +1,259 @@
+{
+  "annotations": {"list": []},
+  "editable": false,
+  "graphTooltip": 1,
+  "panels": [
+    {
+      "type": "stat",
+      "title": "API up",
+      "id": 1,
+      "gridPos": {"h": 5, "w": 4, "x": 0, "y": 0},
+      "targets": [{"expr": "up{job=\u0022hera-api\u0022}", "refId": "A"}],
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [
+            {"type": "value", "options": {"0": {"text": "DOWN"}, "1": {"text": "UP"}}}
+          ],
+          "thresholds": {"mode": "absolute", "steps": [{"color": "red"}, {"color": "green", "value": 1}]}
+        },
+        "overrides": []
+      },
+      "options": {"reduceOptions": {"calcs": ["lastNotNull"]}}
+    },
+    {
+      "type": "stat",
+      "title": "Requests / second",
+      "id": 2,
+      "gridPos": {"h": 5, "w": 5, "x": 4, "y": 0},
+      "targets": [{"expr": "sum(rate(hera_http_requests_total[5m]))", "refId": "A"}],
+      "fieldConfig": {"defaults": {"unit": "reqps"}, "overrides": []},
+      "options": {"reduceOptions": {"calcs": ["lastNotNull"]}}
+    },
+    {
+      "type": "stat",
+      "title": "5xx rate",
+      "id": 3,
+      "gridPos": {"h": 5, "w": 5, "x": 9, "y": 0},
+      "targets": [{"expr": "sum(rate(hera_http_requests_total{status_code=~\u00225..\u0022}[5m]))", "refId": "A"}],
+      "fieldConfig": {"defaults": {"unit": "reqps"}, "overrides": []},
+      "options": {"reduceOptions": {"calcs": ["lastNotNull"]}}
+    },
+    {
+      "type": "stat",
+      "title": "p95 latency",
+      "id": 4,
+      "gridPos": {"h": 5, "w": 5, "x": 14, "y": 0},
+      "targets": [{"expr": "histogram_quantile(0.95, sum by (le) (rate(hera_http_request_duration_seconds_bucket[5m])))", "refId": "A"}],
+      "fieldConfig": {"defaults": {"unit": "s"}, "overrides": []},
+      "options": {"reduceOptions": {"calcs": ["lastNotNull"]}}
+    },
+    {
+      "type": "stat",
+      "title": "Emergency handoffs",
+      "id": 5,
+      "gridPos": {"h": 5, "w": 5, "x": 19, "y": 0},
+      "targets": [{"expr": "sum(hera_emergency_handoffs_total)", "refId": "A"}],
+      "fieldConfig": {"defaults": {}, "overrides": []},
+      "options": {"reduceOptions": {"calcs": ["lastNotNull"]}}
+    },
+    {
+      "type": "timeseries",
+      "title": "Requests by route and status",
+      "id": 6,
+      "gridPos": {"h": 9, "w": 12, "x": 0, "y": 5},
+      "targets": [{"expr": "sum by (path, status_code) (rate(hera_http_requests_total[5m]))", "legendFormat": "{{path}} {{status_code}}", "refId": "A"}],
+      "fieldConfig": {"defaults": {"unit": "reqps"}, "overrides": []},
+      "options": {"legend": {"displayMode": "table", "placement": "bottom"}}
+    },
+    {
+      "type": "timeseries",
+      "title": "Booking hold outcomes",
+      "id": 7,
+      "gridPos": {"h": 9, "w": 12, "x": 12, "y": 5},
+      "targets": [{"expr": "sum by (result) (rate(hera_booking_holds_total[5m]))", "legendFormat": "{{result}}", "refId": "A"}],
+      "fieldConfig": {"defaults": {"unit": "ops"}, "overrides": []},
+      "options": {"legend": {"displayMode": "table", "placement": "bottom"}}
+    },
+    {
+      "type": "stat",
+      "title": "Readiness gate",
+      "id": 8,
+      "gridPos": {"h": 5, "w": 4, "x": 0, "y": 14},
+      "targets": [{"expr": "hera_readiness_status", "refId": "A"}],
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [{"type": "value", "options": {"0": {"text": "BLOCKED"}, "1": {"text": "READY"}}}],
+          "thresholds": {"mode": "absolute", "steps": [{"color": "red"}, {"color": "green", "value": 1}]}
+        },
+        "overrides": []
+      },
+      "options": {"reduceOptions": {"calcs": ["lastNotNull"]}}
+    },
+    {
+      "type": "stat",
+      "title": "Release gates",
+      "id": 9,
+      "gridPos": {"h": 5, "w": 4, "x": 4, "y": 14},
+      "targets": [{"expr": "min(hera_release_gate)", "refId": "A"}],
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [{"type": "value", "options": {"0": {"text": "FAILED"}, "1": {"text": "PASS"}}}],
+          "thresholds": {"mode": "absolute", "steps": [{"color": "red"}, {"color": "green", "value": 1}]}
+        },
+        "overrides": []
+      },
+      "options": {"reduceOptions": {"calcs": ["lastNotNull"]}}
+    },
+    {
+      "type": "stat",
+      "title": "Next-week schedule",
+      "id": 10,
+      "gridPos": {"h": 5, "w": 4, "x": 8, "y": 14},
+      "targets": [{"expr": "hera_schedule_horizon_ready{horizon=\u0022next_week\u0022}", "refId": "A"}],
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [{"type": "value", "options": {"0": {"text": "MISSING"}, "1": {"text": "READY"}}}],
+          "thresholds": {"mode": "absolute", "steps": [{"color": "red"}, {"color": "green", "value": 1}]}
+        },
+        "overrides": []
+      },
+      "options": {"reduceOptions": {"calcs": ["lastNotNull"]}}
+    },
+    {
+      "type": "stat",
+      "title": "Capacity violations",
+      "id": 11,
+      "gridPos": {"h": 5, "w": 4, "x": 12, "y": 14},
+      "targets": [{"expr": "sum(max by (session_id) (hera_booking_occupied) > bool on (session_id) max by (session_id) (hera_booking_capacity_limit))", "refId": "A"}],
+      "fieldConfig": {
+        "defaults": {"thresholds": {"mode": "absolute", "steps": [{"color": "green"}, {"color": "red", "value": 1}]}},
+        "overrides": []
+      },
+      "options": {"reduceOptions": {"calcs": ["lastNotNull"]}}
+    },
+    {
+      "type": "stat",
+      "title": "Redis dependency",
+      "id": 12,
+      "gridPos": {"h": 5, "w": 4, "x": 16, "y": 14},
+      "targets": [{"expr": "hera_dependency_up{dependency=\u0022rate_limit_store\u0022}", "refId": "A"}],
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [{"type": "value", "options": {"0": {"text": "DOWN"}, "1": {"text": "UP"}}}],
+          "thresholds": {"mode": "absolute", "steps": [{"color": "red"}, {"color": "green", "value": 1}]}
+        },
+        "overrides": []
+      },
+      "options": {"reduceOptions": {"calcs": ["lastNotNull"]}}
+    },
+    {
+      "type": "stat",
+      "title": "Active alerts",
+      "id": 13,
+      "gridPos": {"h": 5, "w": 4, "x": 20, "y": 14},
+      "targets": [{"expr": "count(ALERTS{alertstate=\u0022firing\u0022}) or vector(0)", "refId": "A"}],
+      "fieldConfig": {
+        "defaults": {"thresholds": {"mode": "absolute", "steps": [{"color": "green"}, {"color": "red", "value": 1}]}},
+        "overrides": []
+      },
+      "options": {"reduceOptions": {"calcs": ["lastNotNull"]}}
+    },
+    {
+      "type": "timeseries",
+      "title": "Chat outcomes and grounding failures",
+      "id": 14,
+      "gridPos": {"h": 9, "w": 12, "x": 0, "y": 19},
+      "targets": [
+        {"expr": "sum by (intent, result) (rate(hera_requests_total[5m]))", "legendFormat": "chat {{intent}} / {{result}}", "refId": "A"},
+        {"expr": "sum by (reason) (rate(hera_grounding_failures_total[5m]))", "legendFormat": "grounding {{reason}}", "refId": "B"}
+      ],
+      "fieldConfig": {"defaults": {"unit": "ops"}, "overrides": []},
+      "options": {"legend": {"displayMode": "table", "placement": "bottom"}}
+    },
+    {
+      "type": "timeseries",
+      "title": "Upstream failures and timeouts",
+      "id": 15,
+      "gridPos": {"h": 9, "w": 12, "x": 12, "y": 19},
+      "targets": [
+        {"expr": "sum by (provider) (rate(hera_upstream_failures_total[5m]))", "legendFormat": "failure {{provider}}", "refId": "A"},
+        {"expr": "sum by (provider) (rate(hera_upstream_timeouts_total[5m]))", "legendFormat": "timeout {{provider}}", "refId": "B"}
+      ],
+      "fieldConfig": {"defaults": {"unit": "ops"}, "overrides": []},
+      "options": {"legend": {"displayMode": "table", "placement": "bottom"}}
+    },
+    {
+      "type": "timeseries",
+      "title": "Schedule coverage by facility and week",
+      "id": 16,
+      "gridPos": {"h": 8, "w": 24, "x": 0, "y": 28},
+      "targets": [{"expr": "hera_schedule_coverage", "legendFormat": "{{facility}} {{week}}", "refId": "A"}],
+      "fieldConfig": {"defaults": {"unit": "percentunit", "min": 0, "max": 1}, "overrides": []},
+      "options": {"legend": {"displayMode": "table", "placement": "bottom"}}
+    },
+    {
+      "type": "timeseries",
+      "title": "Assistant safety and grounding outcomes",
+      "id": 17,
+      "gridPos": {"h": 9, "w": 12, "x": 0, "y": 36},
+      "targets": [
+        {
+          "expr": "sum by (response_type, grounded) (rate(hera_ai_responses_total[5m]))",
+          "legendFormat": "{{response_type}} grounded={{grounded}}",
+          "refId": "A"
+        }
+      ],
+      "fieldConfig": {"defaults": {"unit": "ops"}, "overrides": []},
+      "options": {"legend": {"displayMode": "table", "placement": "bottom"}}
+    },
+    {
+      "type": "timeseries",
+      "title": "Guardrail and freshness rejections",
+      "id": 18,
+      "gridPos": {"h": 9, "w": 12, "x": 12, "y": 36},
+      "targets": [
+        {
+          "expr": "sum by (violation_type) (rate(hera_guardrail_blocks_total[5m]))",
+          "legendFormat": "guardrail {{violation_type}}",
+          "refId": "A"
+        },
+        {
+          "expr": "sum by (dataset) (rate(hera_data_freshness_rejections_total[5m]))",
+          "legendFormat": "freshness {{dataset}}",
+          "refId": "B"
+        }
+      ],
+      "fieldConfig": {"defaults": {"unit": "ops"}, "overrides": []},
+      "options": {"legend": {"displayMode": "table", "placement": "bottom"}}
+    },
+    {
+      "type": "timeseries",
+      "title": "Route tail latency",
+      "id": 19,
+      "gridPos": {"h": 9, "w": 24, "x": 0, "y": 45},
+      "targets": [
+        {
+          "expr": "histogram_quantile(0.95, sum by (le, route) (rate(hera_latency_seconds_bucket[5m])))",
+          "legendFormat": "p95 {{route}}",
+          "refId": "A"
+        },
+        {
+          "expr": "histogram_quantile(0.99, sum by (le, route) (rate(hera_latency_seconds_bucket[5m])))",
+          "legendFormat": "p99 {{route}}",
+          "refId": "B"
+        }
+      ],
+      "fieldConfig": {"defaults": {"unit": "s"}, "overrides": []},
+      "options": {"legend": {"displayMode": "table", "placement": "bottom"}}
+    }
+  ],
+  "refresh": "15s",
+  "schemaVersion": 41,
+  "tags": ["hera", "hackathon"],
+  "templating": {"list": []},
+  "time": {"from": "now-1h", "to": "now"},
+  "timezone": "browser",
+  "title": "HERA Overview",
+  "uid": "hera-overview",
+  "version": 1
+}

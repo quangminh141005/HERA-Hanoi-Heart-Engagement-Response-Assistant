@@ -1,0 +1,311 @@
+{
+  "dataset": "official_sources_and_facts",
+  "bundle_version": "2.0.0",
+  "spec_version": "3.0.0",
+  "job_id": "hera-structured-data-2026-07-v2",
+  "generated": false,
+  "normalized_at": "2026-07-17T23:45:00+07:00",
+  "normalization_method": "structured_json_direct_import_and_curated_metadata",
+  "reference_date": "2026-07-17",
+  "sources": [
+    {
+      "source_id": "SRC-BHYT-HOUSEHOLD-2026",
+      "title": "Một số mức đóng, mức hưởng BHXH, BHYT thay đổi từ ngày 01/7/2026",
+      "publisher": "Bảo hiểm xã hội Việt Nam",
+      "url": "https://baohiemxahoi.gov.vn/tintuc/Pages/cai-cach-thu-tuc-hanh-chinh.aspx?CateID=0&ItemID=26780&OtItem=date",
+      "authority": "official_bhxh_vietnam",
+      "published_at": "2026-07-09T09:09:00+07:00",
+      "valid_from": "2026-07-01",
+      "retrieved_at": "2026-07-17T00:00:00+07:00",
+      "verification_status": "official_structured_extract_pending_hospital_review",
+      "retrieval_eligible": true,
+      "allowed_intents": [
+        "insurance_general"
+      ],
+      "allowed_scope": "household_contribution_only",
+      "notes": "Chỉ hỗ trợ mức đóng BHYT hộ gia đình; không hỗ trợ quyền lợi cá nhân, tỷ lệ thanh toán dịch vụ hoặc số tiền người bệnh phải trả."
+    },
+    {
+      "source_id": "SRC-BHYT-SECONDARY-2024",
+      "title": "Snapshot thứ cấp về mức đóng BHYT hộ gia đình từ 01/07/2024",
+      "publisher": "ebh.vn theo trường nguon_tham_khao của file người dùng cung cấp",
+      "url": null,
+      "authority": "secondary_reference",
+      "valid_from": "2024-07-01",
+      "valid_to": "2026-06-30",
+      "retrieved_at": "2026-07-17T00:00:00+07:00",
+      "verification_status": "historical_secondary_disabled",
+      "retrieval_eligible": false,
+      "content_file": "data/BHYT.json",
+      "content_hash": "2b61f41efe1d9855688ca2946baf12d8ca9ed420273496981c759353b210e844",
+      "notes": "Giữ nguyên để audit lịch sử; không dùng cho câu trả lời hiện hành."
+    },
+    {
+      "source_id": "SRC-BOOKING-GUIDE",
+      "title": "Hướng dẫn liên hệ đặt lịch khám",
+      "publisher": "Bệnh viện Tim Hà Nội",
+      "url": "https://benhvientimhanoi.vn/vn/cong/thong-tin/huong-dan-lien-he-dat-lich-kham",
+      "authority": "official_hospital",
+      "retrieved_at": "2026-07-17T00:00:00+07:00",
+      "verification_status": "human_verified_summary",
+      "retrieval_eligible": true,
+      "notes": "Nguồn chính cho quy tắc đặt lịch, địa chỉ, giờ điện thoại đặt lịch, contact và hành động khi cấp cứu."
+    },
+    {
+      "source_id": "SRC-PDPL-2025",
+      "title": "Luật Bảo vệ dữ liệu cá nhân số 91/2025/QH15",
+      "publisher": "Quốc hội, đăng tại Công báo Chính phủ",
+      "url": "https://congbao.chinhphu.vn/van-ban/luat-so-91-2025-qh15-45578.htm",
+      "authority": "official_government",
+      "published_at": "2025-06-26",
+      "valid_from": "2026-01-01",
+      "retrieved_at": "2026-07-17T00:00:00+07:00",
+      "verification_status": "metadata_verified",
+      "retrieval_eligible": false,
+      "notes": "Chỉ dùng cho checklist compliance nội bộ, không thay tư vấn pháp lý."
+    },
+    {
+      "source_id": "SRC-PRICE-2025",
+      "title": "Giá dịch vụ kỹ thuật áp dụng tại Bệnh viện Tim Hà Nội 2025",
+      "publisher": "Bệnh viện Tim Hà Nội",
+      "url": "https://benhvientimhanoi.vn/vi/chi-tiet-lich-kham/bang-gia-dich-vu/gia-dich-vu-ky-thuat-ap-dung-tai-benh-vien-tim-ha-noi-2025",
+      "authority": "official_hospital",
+      "published_at": "2025-01-20",
+      "retrieved_at": "2026-07-17T00:00:00+07:00",
+      "verification_status": "structured_local_file_pending_source_match_review",
+      "retrieval_eligible": false,
+      "structured_historical_lookup_eligible": true,
+      "retrieval_eligible_for_current_price": false,
+      "content_file": "data/gia_dich_vu_ky_thuat_2025.json",
+      "content_hash": "1af310c0fb7f502de06cca82771d7ae88a58ad4083da597c221ce2d7b960e440",
+      "is_current": false,
+      "superseded_by_source_id": "SRC-PRICE-NQ91-2026",
+      "notes": "Chỉ dùng để tra cứu lịch sử với nhãn bảng giá 2025. Không dùng để trả lời giá hiện hành hoặc tính số tiền người bệnh phải trả."
+    },
+    {
+      "source_id": "SRC-PRICE-NQ91-2026",
+      "title": "Nghị quyết 91/2026/NQ-HĐND sửa đổi Nghị quyết 45/2024/NQ-HĐND",
+      "publisher": "Hội đồng nhân dân Thành phố Hà Nội; CSDL quốc gia về văn bản pháp luật",
+      "url": "https://vbpl.vn/hanoi/Pages/ivbpq-toanvan.aspx?ItemID=186826",
+      "authority": "official_government",
+      "published_at": "2026-01-27",
+      "valid_from": "2026-01-27",
+      "retrieved_at": "2026-07-17T00:00:00+07:00",
+      "verification_status": "official_metadata_verified",
+      "retrieval_eligible": false,
+      "notes": "Nguồn xác nhận các phụ lục của Nghị quyết 45/2024 bị bãi bỏ và giá mới áp dụng từ thời điểm cơ sở được phê duyệt danh mục. Bundle không chứa phụ lục giá mới đã được bệnh viện đối chiếu."
+    },
+    {
+      "source_id": "SRC-SCHEDULE-WEEK-2026-06-08",
+      "title": "Bộ file lịch khám bác sĩ tuần 08/06/2026–14/06/2026",
+      "publisher": "Bệnh viện Tim Hà Nội theo metadata trong file JSON cục bộ",
+      "url": null,
+      "authority": "hospital_local_artifact_pending_source_match",
+      "valid_from": "2026-06-08",
+      "valid_to": "2026-06-14",
+      "retrieved_at": "2026-07-17T00:00:00+07:00",
+      "verification_status": "3_structured_documents_accepted_0_review_required",
+      "retrieval_eligible": false,
+      "structured_lookup_only": true,
+      "notes": "Validation cấu trúc không phải approval. Chỉ được bật runtime sau khi data owner đối chiếu nguồn, duyệt tài liệu và xác nhận phạm vi ngày."
+    },
+    {
+      "source_id": "SRC-SCHEDULE-WEEK-2026-06-15",
+      "title": "Bộ file lịch khám bác sĩ tuần 15/06/2026–21/06/2026",
+      "publisher": "Bệnh viện Tim Hà Nội theo metadata trong file JSON cục bộ",
+      "url": null,
+      "authority": "hospital_local_artifact_pending_source_match",
+      "valid_from": "2026-06-15",
+      "valid_to": "2026-06-21",
+      "retrieved_at": "2026-07-17T00:00:00+07:00",
+      "verification_status": "3_structured_documents_accepted_0_review_required",
+      "retrieval_eligible": false,
+      "structured_lookup_only": true,
+      "notes": "Validation cấu trúc không phải approval. Chỉ được bật runtime sau khi data owner đối chiếu nguồn, duyệt tài liệu và xác nhận phạm vi ngày."
+    },
+    {
+      "source_id": "SRC-SCHEDULE-WEEK-2026-06-22",
+      "title": "Bộ file lịch khám bác sĩ tuần 22/06/2026–28/06/2026",
+      "publisher": "Bệnh viện Tim Hà Nội theo metadata trong file JSON cục bộ",
+      "url": null,
+      "authority": "hospital_local_artifact_pending_source_match",
+      "valid_from": "2026-06-22",
+      "valid_to": "2026-06-28",
+      "retrieved_at": "2026-07-17T00:00:00+07:00",
+      "verification_status": "3_structured_documents_accepted_0_review_required",
+      "retrieval_eligible": false,
+      "structured_lookup_only": true,
+      "notes": "Validation cấu trúc không phải approval. Chỉ được bật runtime sau khi data owner đối chiếu nguồn, duyệt tài liệu và xác nhận phạm vi ngày."
+    },
+    {
+      "source_id": "SRC-SCHEDULE-WEEK-2026-06-29",
+      "title": "Bộ file lịch khám bác sĩ tuần 29/06/2026–05/07/2026",
+      "publisher": "Bệnh viện Tim Hà Nội theo metadata trong file JSON cục bộ",
+      "url": null,
+      "authority": "hospital_local_artifact_pending_source_match",
+      "valid_from": "2026-06-29",
+      "valid_to": "2026-07-05",
+      "retrieved_at": "2026-07-17T00:00:00+07:00",
+      "verification_status": "3_structured_documents_accepted_0_review_required",
+      "retrieval_eligible": false,
+      "structured_lookup_only": true,
+      "notes": "Validation cấu trúc không phải approval. Chỉ được bật runtime sau khi data owner đối chiếu nguồn, duyệt tài liệu và xác nhận phạm vi ngày."
+    },
+    {
+      "source_id": "SRC-SCHEDULE-WEEK-2026-07-06",
+      "title": "Bộ file lịch khám bác sĩ tuần 06/07/2026–12/07/2026",
+      "publisher": "Bệnh viện Tim Hà Nội theo metadata trong file JSON cục bộ",
+      "url": null,
+      "authority": "hospital_local_artifact_pending_source_match",
+      "valid_from": "2026-07-06",
+      "valid_to": "2026-07-12",
+      "retrieved_at": "2026-07-17T00:00:00+07:00",
+      "verification_status": "3_structured_documents_accepted_0_review_required",
+      "retrieval_eligible": false,
+      "structured_lookup_only": true,
+      "notes": "Validation cấu trúc không phải approval. Chỉ được bật runtime sau khi data owner đối chiếu nguồn, duyệt tài liệu và xác nhận phạm vi ngày."
+    },
+    {
+      "source_id": "SRC-SCHEDULE-WEEK-2026-07-13",
+      "title": "Lịch khám bác sĩ tuần 13/07/2026–19/07/2026",
+      "publisher": "Bệnh viện Tim Hà Nội",
+      "url": "https://benhvientimhanoi.vn/vi/chi-tiet-lich-kham/lich-lam-viec-cua-bac-sy/lich-kham-benh-cua-cac-bac-si-benh-vien-tim-ha-noi-tuan-tu-13d07d2026-19d07d2026",
+      "authority": "official_hospital",
+      "valid_from": "2026-07-13",
+      "valid_to": "2026-07-19",
+      "retrieved_at": "2026-07-17T00:00:00+07:00",
+      "verification_status": "3_active_structured_documents_accepted_0_review_required",
+      "retrieval_eligible": false,
+      "structured_lookup_only": true,
+      "notes": "Có 3 file trong vùng active đã qua validation cấu trúc và vẫn chờ data owner duyệt. Đây là lịch làm việc, không phải slot hay trạng thái còn chỗ."
+    },
+    {
+      "source_id": "SRC-VOLUNTARY-CLINIC",
+      "title": "Khoa Khám bệnh tự nguyện",
+      "publisher": "Bệnh viện Tim Hà Nội",
+      "url": "https://benhvientimhanoi.vn/vn/cong/thong-tin/khoa-kham-benh-tu-nguyen",
+      "authority": "official_hospital",
+      "retrieved_at": "2026-07-17T00:00:00+07:00",
+      "verification_status": "pending_human_fact_selection",
+      "retrieval_eligible": false,
+      "notes": "Chỉ bật retrieval sau khi data owner chọn và duyệt fact."
+    }
+  ],
+  "facts": [
+    {
+      "fact_id": "FACT-BOOKING-NONEMERGENCY",
+      "claim_vi": "Đặt hẹn khám chỉ dành cho các trường hợp không cấp cứu, không khẩn cấp.",
+      "source_id": "SRC-BOOKING-GUIDE",
+      "allowed_intents": [
+        "booking",
+        "emergency"
+      ],
+      "verified_at": "2026-07-17T00:00:00+07:00"
+    },
+    {
+      "fact_id": "FACT-EMERGENCY-ACTION",
+      "claim_vi": "Trong trường hợp cấp cứu, hướng dẫn chính thức yêu cầu gọi số cấp cứu theo tỉnh/thành của người dùng (mã vùng + 115) hoặc đến thẳng cơ sở cấp cứu gần nhất.",
+      "source_id": "SRC-BOOKING-GUIDE",
+      "allowed_intents": [
+        "emergency"
+      ],
+      "verified_at": "2026-07-17T00:00:00+07:00"
+    },
+    {
+      "fact_id": "FACT-BOOKING-LEAD-TIME",
+      "claim_vi": "Người dùng được hướng dẫn đặt hẹn trước ít nhất 24 giờ so với giờ dự định khám.",
+      "source_id": "SRC-BOOKING-GUIDE",
+      "allowed_intents": [
+        "booking"
+      ],
+      "verified_at": "2026-07-17T00:00:00+07:00"
+    },
+    {
+      "fact_id": "FACT-BOOKING-CONFIRMATION",
+      "claim_vi": "Lịch hẹn chỉ có giá trị sau khi Bệnh viện xác nhận.",
+      "source_id": "SRC-BOOKING-GUIDE",
+      "allowed_intents": [
+        "booking"
+      ],
+      "verified_at": "2026-07-17T00:00:00+07:00"
+    },
+    {
+      "fact_id": "FACT-BOOKING-ARRIVAL",
+      "claim_vi": "Người dùng được hướng dẫn có mặt trước giờ dự định khám ít nhất 15 phút để làm thủ tục và đo các chỉ số ban đầu.",
+      "source_id": "SRC-BOOKING-GUIDE",
+      "allowed_intents": [
+        "booking",
+        "procedure"
+      ],
+      "verified_at": "2026-07-17T00:00:00+07:00"
+    },
+    {
+      "fact_id": "FACT-PHONE-BOOKING-HOURS",
+      "claim_vi": "Giờ nhận đặt lịch qua điện thoại được công bố là thứ Hai đến thứ Bảy, từ 08:00 đến 16:00; nghỉ Chủ nhật và các ngày Lễ, Tết.",
+      "source_id": "SRC-BOOKING-GUIDE",
+      "allowed_intents": [
+        "booking",
+        "working_hours"
+      ],
+      "verified_at": "2026-07-17T00:00:00+07:00"
+    },
+    {
+      "fact_id": "FACT-HOTLINE",
+      "claim_vi": "Số liên hệ đăng ký khám và giải đáp thủ tục/BHYT được công bố là 19001082; footer của website hiển thị hotline này là 24h/7.",
+      "source_id": "SRC-BOOKING-GUIDE",
+      "allowed_intents": [
+        "booking",
+        "insurance_general",
+        "hospital_contact"
+      ],
+      "verified_at": "2026-07-17T00:00:00+07:00",
+      "usage_note": "Không gọi đây là số cấp cứu; khi nói về đặt lịch qua điện thoại phải đồng thời áp dụng FACT-PHONE-BOOKING-HOURS."
+    },
+    {
+      "fact_id": "FACT-FACILITY-1",
+      "claim_vi": "Cơ sở 1: Số 92 Trần Hưng Đạo, phường Cửa Nam, Hà Nội.",
+      "source_id": "SRC-BOOKING-GUIDE",
+      "allowed_intents": [
+        "hospital_contact"
+      ],
+      "verified_at": "2026-07-17T00:00:00+07:00"
+    },
+    {
+      "fact_id": "FACT-FACILITY-2",
+      "claim_vi": "Cơ sở 2: Số 695 Lạc Long Quân, phường Tây Hồ, Hà Nội.",
+      "source_id": "SRC-BOOKING-GUIDE",
+      "allowed_intents": [
+        "hospital_contact"
+      ],
+      "verified_at": "2026-07-17T00:00:00+07:00"
+    },
+    {
+      "fact_id": "FACT-BOOKING-URL",
+      "claim_vi": "Link đặt khám được công bố là https://benhvientimhanoi.vn/he-thong/hen-kham/index.html.",
+      "source_id": "SRC-BOOKING-GUIDE",
+      "allowed_intents": [
+        "booking"
+      ],
+      "verified_at": "2026-07-17T00:00:00+07:00"
+    },
+    {
+      "fact_id": "FACT-PRICE-PAGE-METADATA",
+      "claim_vi": "Trang giá dịch vụ kỹ thuật 2025 được đăng ngày 20/01/2025 và dẫn chiếu Phụ lục số 06 Nghị quyết số 45/2024/NQ-HĐND ngày 10/12/2024; trang nêu phạm vi cho người có và không có thẻ BHYT.",
+      "source_id": "SRC-PRICE-2025",
+      "allowed_intents": [
+        "service_price",
+        "insurance_general"
+      ],
+      "verified_at": "2026-07-17T00:00:00+07:00",
+      "usage_note": "Có thể tra đúng dòng giá trong snapshot 2025 bằng structured lookup và phải nói rõ đây là dữ liệu lịch sử. Không dùng để khẳng định giá hiện hành hoặc tính phần bệnh nhân phải trả."
+    }
+  ],
+  "fixed_response_templates": {
+    "unsupported": "Hiện tôi chưa tìm thấy thông tin đủ tin cậy trong nguồn chính thức đã được xác minh. Tôi sẽ không đoán. Bạn có thể xem nguồn chính thức hoặc liên hệ 19001082 để được hỗ trợ.",
+    "expired_source": "Thông tin tôi có đã hết thời hạn hiệu lực nên tôi chưa thể xác nhận. Vui lòng xem nguồn mới nhất của Bệnh viện hoặc liên hệ 19001082.",
+    "emergency": "Thông tin bạn mô tả có thể cần được đánh giá cấp cứu ngay. Tôi không thể chẩn đoán hoặc hướng dẫn dùng thuốc qua chat. Vui lòng gọi số cấp cứu tại nơi bạn đang ở (mã vùng + 115 theo hướng dẫn của Bệnh viện Tim Hà Nội) hoặc đến cơ sở cấp cứu gần nhất. Không chờ lịch khám trực tuyến.",
+    "historical_price_notice": "Kết quả dưới đây chỉ phản ánh bảng giá năm 2025 và không phải xác nhận giá hiện hành. Vui lòng liên hệ Bệnh viện để xác nhận mức đang áp dụng.",
+    "schedule_snapshot_notice": "Đây là lịch làm việc theo tuần đã công bố, không phải slot còn chỗ. Lịch hẹn chỉ có giá trị sau khi Bệnh viện xác nhận.",
+    "bhyt_household_scope_notice": "Thông tin này chỉ là mức đóng BHYT hộ gia đình, không phải tỷ lệ quyền lợi cá nhân hoặc số tiền khám chữa bệnh được thanh toán."
+  }
+}

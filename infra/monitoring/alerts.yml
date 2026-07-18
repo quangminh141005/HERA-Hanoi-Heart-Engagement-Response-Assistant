@@ -1,0 +1,155 @@
+groups:
+  - name: hera-runtime
+    rules:
+      - alert: HeraApiDown
+        expr: up{job="hera-api"} == 0
+        for: 2m
+        labels:
+          severity: critical
+        annotations:
+          summary: HERA API is not scrapeable
+          description: Prometheus could not scrape HERA API for two minutes.
+
+      - alert: HeraRateLimitStoreDown
+        expr: hera_dependency_up{dependency="rate_limit_store"} == 0
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: HERA Redis rate-limit store is unavailable
+          description: Readiness is degraded; restore Redis before accepting traffic.
+
+      - alert: HeraReadinessFailed
+        expr: hera_readiness_status == 0
+        for: 2m
+        labels:
+          severity: critical
+        annotations:
+          summary: HERA readiness gate is failing
+          description: Inspect release gates, PostgreSQL, Redis and the structured bundle.
+
+      - alert: HeraReleaseGateFailed
+        expr: hera_release_gate == 0
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: A HERA immutable release or safety gate failed
+          description: Gate {{ $labels.gate }} is zero; do not bypass readiness.
+
+      - alert: HeraNextWeekScheduleMissing
+        expr: hera_schedule_horizon_ready{horizon="next_week"} == 0
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: Next-week schedule coverage is incomplete
+          description: Add and validate the required weekly schedule files before booking.
+
+      - alert: HeraBookingCapacityInvariantViolated
+        expr: |
+          max by (session_id) (hera_booking_occupied)
+          > on (session_id)
+          max by (session_id) (hera_booking_capacity_limit)
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: Booking occupancy exceeds the configured session capacity
+          description: Stop new holds for session {{ $labels.session_id }} and reconcile state.
+
+      - alert: HeraGroundingFailureSpike
+        expr: |
+          (
+            sum(rate(hera_grounding_failures_total[10m]))
+            /
+            clamp_min(sum(rate(hera_requests_total[10m])), 0.001)
+          ) > 0.10
+          and sum(rate(hera_requests_total[10m])) > 0
+        for: 10m
+        labels:
+          severity: warning
+        annotations:
+          summary: More than 10 percent of recent chat turns failed grounding
+          description: Inspect source coverage and bounded failure reasons; do not lower the gate blindly.
+
+      - alert: HeraDataFreshnessRejectionDetected
+        expr: sum by (dataset) (increase(hera_data_freshness_rejections_total[10m])) > 0
+        labels:
+          severity: warning
+        annotations:
+          summary: A structured request was rejected by a freshness gate
+          description: Dataset {{ $labels.dataset }} rejected at least one request; inspect data publication state.
+
+      - alert: HeraGuardrailBlockSpike
+        expr: |
+          (
+            sum(rate(hera_guardrail_blocks_total[10m]))
+            /
+            clamp_min(sum(rate(hera_requests_total[10m])), 0.001)
+          ) > 0.25
+          and sum(rate(hera_requests_total[10m])) > 0
+        for: 10m
+        labels:
+          severity: warning
+        annotations:
+          summary: More than 25 percent of recent chat turns hit a guardrail
+          description: Inspect bounded violation types and traffic patterns without exposing message content.
+
+      - alert: HeraUpstreamTimeoutSpike
+        expr: sum by (provider) (rate(hera_upstream_timeouts_total[5m])) > 0.01
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: HERA upstream timeout rate is elevated
+          description: Provider {{ $labels.provider }} exceeded roughly three timeouts per five minutes.
+
+      - alert: HeraUpstreamFailureSpike
+        expr: sum by (provider) (rate(hera_upstream_failures_total[5m])) > 0.01
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: HERA upstream failure rate is elevated
+          description: Check credentials, provider availability and outbound connectivity for {{ $labels.provider }}.
+
+      - alert: HeraHighServerErrorRate
+        expr: |
+          (
+            sum(rate(hera_http_requests_total{status_code=~"5.."}[5m]))
+            /
+            clamp_min(sum(rate(hera_http_requests_total[5m])), 0.001)
+          ) > 0.05
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: HERA 5xx rate is above 5 percent
+          description: More than 5 percent of API requests failed for five minutes.
+
+      - alert: HeraHighP95Latency
+        expr: |
+          histogram_quantile(
+            0.95,
+            sum by (le) (rate(hera_http_request_duration_seconds_bucket[5m]))
+          ) > 10
+        for: 10m
+        labels:
+          severity: warning
+        annotations:
+          summary: HERA p95 latency is above 10 seconds
+          description: Check model latency, database readiness and upstream health.
+
+      - alert: HeraHighP99RouteLatency
+        expr: |
+          histogram_quantile(
+            0.99,
+            sum by (le) (rate(hera_latency_seconds_bucket[5m]))
+          ) > 35
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: HERA p99 route latency is above 35 seconds
+          description: The slow tail reached the overall chat budget and is near the 40-second proxy deadline; inspect upstream latency by request ID.

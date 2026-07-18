@@ -1,0 +1,132 @@
+{
+  "tieu_de": "LỊCH LÀM VIỆC CỦA CÁC BÁC SỸ PHÒNG KHÁM ĐA KHOA",
+  "dia_diem": "TẠI BỆNH VIỆN TIM HÀ NỘI - CƠ SỞ 2 - 695 LẠC LONG QUÂN, TÂY HỒ, HÀ NỘI",
+  "thoi_gian": "Tuần từ ngày 13/7/2026 đến ngày 19/7/2026",
+  "thong_tin_lien_he": {
+    "so_dien_thoai": "0961.972.097",
+    "ghi_chu": "(Giờ hành chính các ngày trong tuần từ thứ 2 đến thứ 6)"
+  },
+  "lich_kham": [
+    {
+      "phong": "RHM (P401)",
+      "thoi_gian": "7.30 - 16.30",
+      "thu_2": "BS Nguyễn Thanh Trà",
+      "thu_3": "BS Nguyễn Thanh Trà\nkhám tại CS1(15H)",
+      "thu_4": "BS Nguyễn Thanh Trà",
+      "thu_5": "BS Nguyễn Thanh Trà\nkhám tại CS1(15H)",
+      "thu_6": "BS Nguyễn Thanh Trà",
+      "thu_7": "Nghỉ",
+      "chu_nhat": "Nghỉ"
+    },
+    {
+      "phong": "PHCN (P401)",
+      "thoi_gian": "7.30 - 16.30",
+      "thu_2": "BSNT. Trần Thị Quỳnh Nga",
+      "thu_3": "BSNT. Trần Thị Quỳnh Nga",
+      "thu_4": "BSNT. Trần Thị Quỳnh Nga",
+      "thu_5": "BSNT. Trần Thị Quỳnh Nga",
+      "thu_6": "Sáng\nBSNT. Trần Thị Quỳnh Nga\nChiều nghỉ",
+      "thu_7": "Nghỉ",
+      "chu_nhat": "Nghỉ"
+    },
+    {
+      "phong": "TMH (P402)",
+      "thoi_gian": "7.30 - 16.30",
+      "thu_2": "Ths.Bs Linh Thế Cường",
+      "thu_3": "Ths.Bs Linh Thế Cường",
+      "thu_4": "Ths.Bs Linh Thế Cường",
+      "thu_5": "Ths.Bs Linh Thế Cường",
+      "thu_6": "Ths.Bs Linh Thế Cường",
+      "thu_7": "Nghỉ",
+      "chu_nhat": "Nghỉ"
+    },
+    {
+      "phong": "PK NHI (P402)",
+      "thoi_gian": "7.30 - 16.30",
+      "thu_2": "Ths.Bs Dương Thị Thúy Nga",
+      "thu_3": "Ths.Bs Dương Thị Thúy Nga",
+      "thu_4": "Ths.Bs Dương Thị Thúy Nga",
+      "thu_5": "Ths.Bs Dương Thị Thúy Nga",
+      "thu_6": "Ths.Bs Dương Thị Thúy Nga",
+      "thu_7": "Nghỉ",
+      "chu_nhat": "Nghỉ"
+    },
+    {
+      "phong": "DA LIỄU (P403)",
+      "thoi_gian": "7.30 - 16.30",
+      "thu_2": "ThsBs Nguyễn Thị Minh Hoa",
+      "thu_3": "ThsBs Nguyễn Thị Minh Hoa",
+      "thu_4": "ThsBs Nguyễn Thị Minh Hoa",
+      "thu_5": "ThsBs Nguyễn Thị Minh Hoa",
+      "thu_6": "ThsBs Nguyễn Thị Minh Hoa",
+      "thu_7": "Nghỉ",
+      "chu_nhat": "Nghỉ"
+    },
+    {
+      "phong": "Sản- phụ khoa (P403)",
+      "thoi_gian": "7.30 - 16.30",
+      "thu_2": "Sáng\nBSCK II Nguyễn Thị Tuyết Mai\nChiều Nghỉ",
+      "thu_3": "Sáng\nBSCK II Nguyễn Thị Tuyết Mai\nChiều Nghỉ",
+      "thu_4": "Sáng\nBSCK II Nguyễn Thị Tuyết Mai\nChiều Nghỉ",
+      "thu_5": "Sáng\nBSCK II Nguyễn Thị Tuyết Mai\nChiều Nghỉ",
+      "thu_6": "Nghỉ",
+      "thu_7": "Nghỉ",
+      "chu_nhat": "Nghỉ"
+    },
+    {
+      "phong": "YHCT (P404)",
+      "thoi_gian": "7.30 - 16.30",
+      "thu_2": "BSNT. Nguyễn Thị Thuận",
+      "thu_3": "BSNT. Nguyễn Thị Thuận",
+      "thu_4": "BSNT. Nguyễn Thị Thuận",
+      "thu_5": "BSNT. Nguyễn Thị Thuận",
+      "thu_6": "BSNT. Nguyễn Thị Thuận",
+      "thu_7": "Nghỉ",
+      "chu_nhat": "Nghỉ"
+    },
+    {
+      "phong": "Nội chung - Hô Hấp (P405.A)",
+      "thoi_gian": "7.30 - 16.30",
+      "thu_2": "Ths.BS Lại Thị Bạch Yến",
+      "thu_3": "Ths.BS Lại Thị Bạch Yến",
+      "thu_4": "Ths.BS Lại Thị Bạch Yến",
+      "thu_5": "Ths.BS Lại Thị Bạch Yến",
+      "thu_6": "Ths.BS Lại Thị Bạch Yến",
+      "thu_7": "Nghỉ",
+      "chu_nhat": "Nghỉ"
+    },
+    {
+      "phong": "Nội chung - CXK (P405.B)",
+      "thoi_gian": "7.30 - 16.30",
+      "thu_2": "Ths.BSNT Phạm Thị Oanh",
+      "thu_3": "Ths.BSNT Phạm Thị Oanh",
+      "thu_4": "Ths.BSNT Phạm Thị Oanh",
+      "thu_5": "Ths.BSNT Phạm Thị Oanh",
+      "thu_6": "Ths.BSNT Phạm Thị Oanh",
+      "thu_7": "Nghỉ",
+      "chu_nhat": "Nghỉ"
+    },
+    {
+      "phong": "PK NTM - NT (P405.C)",
+      "thoi_gian": "7.30 - 16.30",
+      "thu_2": "BS TMCH",
+      "thu_3": "BS TMCH",
+      "thu_4": "BS TMCH",
+      "thu_5": "BS TMCH",
+      "thu_6": "BS TMCH",
+      "thu_7": "Nghỉ",
+      "chu_nhat": "Nghỉ"
+    },
+    {
+      "phong": "MẮT (P405.D)",
+      "thoi_gian": "7.30 - 16.30",
+      "thu_2": "BSCKI.Nguyễn Thị Huyền",
+      "thu_3": "BSCKI.Nguyễn Thị Huyền",
+      "thu_4": "BSCKI.Nguyễn Thị Huyền",
+      "thu_5": "BSCKI.Nguyễn Thị Huyền",
+      "thu_6": "BSCKI.Nguyễn Thị Huyền",
+      "thu_7": "Nghỉ",
+      "chu_nhat": "Nghỉ"
+    }
+  ]
+}

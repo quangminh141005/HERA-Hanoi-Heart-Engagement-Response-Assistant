@@ -1,0 +1,70 @@
+{
+  "tieu_de": "LỊCH LÀM VIỆC CỦA CÁC BÁC SỸ KHU KHÁM BỆNH TỰ NGUYỆN",
+  "dia_diem": "TẠI BỆNH VIỆN TIM HÀ NỘI - CƠ SỞ 2 - 695 LẠC LONG QUÂN - PHƯỜNG TÂY HỒ - HÀ NỘI",
+  "thoi_gian": "Tuần từ ngày 22/06/2026 đến ngày 28/06/2026",
+  "thong_tin_lien_he": {
+    "dat_lich": "19001082",
+    "tu_van_hanh_chinh": "02439427791",
+    "tu_van_24_24h": "0969655335",
+    "website": "benhvientimhanoi.vn",
+    "fanpage": "fb.com/BenhVienTimHaNoi.vn"
+  },
+  "dich_vu": "Dịch vụ khám bệnh theo yêu cầu",
+  "lich_kham": [
+    {
+      "phong_kham": "Phòng khám số 306",
+      "thoi_gian": "7.00 - 16.30",
+      "thu_2": "BS.CKII Lê Thị Hoài Thu",
+      "thu_3": "BS.CKII Lê Thị Hoài Thu",
+      "thu_4": "BS.CKII Lê Thị Hoài Thu",
+      "thu_5": "BS.CKII Lê Thị Hoài Thu",
+      "thu_6": "BS.CKII Lê Thị Hoài Thu",
+      "thu_7_tn_muc_3": "Bs Nguyễn Gia Phong",
+      "chu_nhat": "NGHỈ"
+    },
+    {
+      "phong_kham": "Phòng khám số 309",
+      "thoi_gian": "7.00 - 16.30",
+      "thu_2": "Ths.Bs Nguyễn Duy Chinh",
+      "thu_3": "Ths.Bs Nguyễn Duy Chinh",
+      "thu_4": "Ths.Bs Nguyễn Duy Chinh",
+      "thu_5": "Ths.Bs Nguyễn Duy Chinh",
+      "thu_6": "Ths.Bs Nguyễn Duy Chinh",
+      "thu_7_tn_muc_3": "Bs Nguyễn Gia Phong",
+      "chu_nhat": "NGHỈ"
+    },
+    {
+      "phong_kham": "Phòng khám số 308",
+      "thoi_gian": "7.00 - 16.30",
+      "thu_2": "Ts.Bs Trần Thị Linh Tú",
+      "thu_3": "Ts.Bs Trần Thị Linh Tú",
+      "thu_4": "Ts.Bs Trần Thị Linh Tú",
+      "thu_5": "Ts.Bs Trần Thị Linh Tú",
+      "thu_6": "Ts.Bs Trần Thị Linh Tú",
+      "thu_7_tn_muc_3": "Bs Nguyễn Gia Phong",
+      "chu_nhat": "NGHỈ"
+    },
+    {
+      "phong_kham": "Phòng khám số 310",
+      "thoi_gian": "7.00 - 16.30",
+      "thu_2": "TC",
+      "thu_3": "TC",
+      "thu_4": "TC",
+      "thu_5": "TC",
+      "thu_6": "TC",
+      "thu_7_tn_muc_3": "Bs Nguyễn Gia Phong",
+      "chu_nhat": "NGHỈ"
+    },
+    {
+      "phong_kham": "Phòng khám số 311",
+      "thoi_gian": "7.30 - 16.30",
+      "thu_2": "Ths.Bs Lê Thùy Ngọc",
+      "thu_3": "Ths.Bs Lê Thùy Ngọc",
+      "thu_4": "Ths.Bs Lê Thùy Ngọc",
+      "thu_5": "Ths.Bs Lê Thùy Ngọc",
+      "thu_6": "Ths.Bs Lê Thùy Ngọc",
+      "thu_7_tn_muc_3": "Bs Nguyễn Gia Phong",
+      "chu_nhat": "NGHỈ"
+    }
+  ]
+}

@@ -1,0 +1,1120 @@
+{
+  "dataset": "schedule_document_registry",
+  "bundle_version": "2.0.0",
+  "generated_at": "2026-07-17T23:45:00+07:00",
+  "coverage": [
+    {
+      "week_start": "2026-06-08",
+      "week_end": "2026-06-14",
+      "documents_discovered": 3,
+      "documents_validation_accepted": 3,
+      "documents_review_required": 0,
+      "entries_published_to_review_dataset": 223,
+      "named_assignments": 168,
+      "generic_assignments": 10,
+      "closed_entries": 37,
+      "runtime_eligible_entries": 0
+    },
+    {
+      "week_start": "2026-06-15",
+      "week_end": "2026-06-21",
+      "documents_discovered": 3,
+      "documents_validation_accepted": 3,
+      "documents_review_required": 0,
+      "entries_published_to_review_dataset": 223,
+      "named_assignments": 165,
+      "generic_assignments": 10,
+      "closed_entries": 37,
+      "runtime_eligible_entries": 0
+    },
+    {
+      "week_start": "2026-06-22",
+      "week_end": "2026-06-28",
+      "documents_discovered": 3,
+      "documents_validation_accepted": 3,
+      "documents_review_required": 0,
+      "entries_published_to_review_dataset": 245,
+      "named_assignments": 165,
+      "generic_assignments": 10,
+      "closed_entries": 57,
+      "runtime_eligible_entries": 0
+    },
+    {
+      "week_start": "2026-06-29",
+      "week_end": "2026-07-05",
+      "documents_discovered": 3,
+      "documents_validation_accepted": 3,
+      "documents_review_required": 0,
+      "entries_published_to_review_dataset": 223,
+      "named_assignments": 170,
+      "generic_assignments": 10,
+      "closed_entries": 37,
+      "runtime_eligible_entries": 0
+    },
+    {
+      "week_start": "2026-07-06",
+      "week_end": "2026-07-12",
+      "documents_discovered": 3,
+      "documents_validation_accepted": 3,
+      "documents_review_required": 0,
+      "entries_published_to_review_dataset": 223,
+      "named_assignments": 168,
+      "generic_assignments": 10,
+      "closed_entries": 43,
+      "runtime_eligible_entries": 0
+    },
+    {
+      "week_start": "2026-07-13",
+      "week_end": "2026-07-19",
+      "documents_discovered": 3,
+      "documents_validation_accepted": 3,
+      "documents_review_required": 0,
+      "entries_published_to_review_dataset": 245,
+      "named_assignments": 172,
+      "generic_assignments": 10,
+      "closed_entries": 60,
+      "runtime_eligible_entries": 0
+    }
+  ],
+  "records": [
+    {
+      "document_id": "SCDOC-20260608-CS2-DK",
+      "parent_source_id": "SRC-SCHEDULE-WEEK-2026-06-08",
+      "source_path": "data/schedules/2026/2026-06-08_to_2026-06-14/Lịch khám bệnh Bác sĩ Đa Khoa Cơ Sở 2.json",
+      "source_file_name": "Lịch khám bệnh Bác sĩ Đa Khoa Cơ Sở 2.json",
+      "source_bytes": 4515,
+      "source_sha256": "09ab211084571599e0853a8127c5430baa4e27af8e38d8e946153d604acdb9d7",
+      "facility_code": "CS2",
+      "schedule_kind": "general_clinic",
+      "folder_week": {
+        "week_start": "2026-06-08",
+        "week_end": "2026-06-14",
+        "path_format": "canonical",
+        "path_prefix": "schedules/2026/2026-06-08_to_2026-06-14"
+      },
+      "internal_week": {
+        "week_start": "2026-06-08",
+        "week_end": "2026-06-12"
+      },
+      "validation_status": "accepted",
+      "coverage_status": "partial_range",
+      "review_reason": null,
+      "needs_review": true,
+      "assignments_outside_source_range_count": 0,
+      "assignments_outside_source_range": [],
+      "runtime_eligible": false,
+      "review_scope": [
+        "staging_review"
+      ],
+      "runtime_scope_after_owner_approval": [
+        "local_prototype",
+        "staging"
+      ],
+      "production_eligible": false,
+      "approval_status": "pending",
+      "row_count": 11,
+      "day_cell_count": 77,
+      "raw_metadata": {
+        "tieu_de": "LỊCH LÀM VIỆC CỦA CÁC BÁC SỸ PHÒNG KHÁM ĐA KHOA",
+        "dia_diem": "TẠI BỆNH VIỆN TIM HÀ NỘI - CƠ SỞ 2 - 695 LẠC LONG QUÂN, TÂY HỒ, HÀ NỘI",
+        "thoi_gian": "Tuần từ ngày 8/6/2026 đến ngày 12/6/2026",
+        "thong_tin_lien_he": {
+          "so_dien_thoai": "0961.972.097",
+          "ghi_chu": "(Giờ hành chính các ngày trong tuần từ thứ 2 đến thứ 6)"
+        },
+        "dich_vu": null
+      },
+      "runtime_exposable_metadata_fields": [
+        "tieu_de",
+        "dia_diem",
+        "thoi_gian",
+        "dich_vu"
+      ],
+      "runtime_contact_fields_enabled": false
+    },
+    {
+      "document_id": "SCDOC-20260608-CS2-TN",
+      "parent_source_id": "SRC-SCHEDULE-WEEK-2026-06-08",
+      "source_path": "data/schedules/2026/2026-06-08_to_2026-06-14/Lịch khám bệnh Bác sĩ khu TN Cơ Sở 2.json",
+      "source_file_name": "Lịch khám bệnh Bác sĩ khu TN Cơ Sở 2.json",
+      "source_bytes": 2425,
+      "source_sha256": "124e750fa1cb206e64de2e1cef78ff75f4948d22d917dd7e9a2a529e269678e4",
+      "facility_code": "CS2",
+      "schedule_kind": "voluntary_clinic",
+      "folder_week": {
+        "week_start": "2026-06-08",
+        "week_end": "2026-06-14",
+        "path_format": "canonical",
+        "path_prefix": "schedules/2026/2026-06-08_to_2026-06-14"
+      },
+      "internal_week": {
+        "week_start": "2026-06-08",
+        "week_end": "2026-06-14"
+      },
+      "validation_status": "accepted",
+      "coverage_status": "full_range",
+      "review_reason": null,
+      "needs_review": false,
+      "assignments_outside_source_range_count": 0,
+      "assignments_outside_source_range": [],
+      "runtime_eligible": false,
+      "review_scope": [
+        "staging_review"
+      ],
+      "runtime_scope_after_owner_approval": [
+        "local_prototype",
+        "staging"
+      ],
+      "production_eligible": false,
+      "approval_status": "pending",
+      "row_count": 5,
+      "day_cell_count": 35,
+      "raw_metadata": {
+        "tieu_de": "LỊCH LÀM VIỆC CỦA CÁC BÁC SỸ KHU KHÁM BỆNH TỰ NGUYỆN",
+        "dia_diem": "TẠI BỆNH VIỆN TIM HÀ NỘI - CƠ SỞ 2 - 695 LẠC LONG QUÂN - PHƯỜNG TÂY HỒ - HÀ NỘI",
+        "thoi_gian": "Tuần từ ngày 08/06/2026 đến ngày 14/06/2026",
+        "thong_tin_lien_he": {
+          "dat_lich": "19001082",
+          "tu_van_hanh_chinh": "02439427791",
+          "tu_van_24_24h": "0969655335",
+          "website": "benhvientimhanoi.vn",
+          "fanpage": "fb.com/BenhVienTimHaNoi.vn"
+        },
+        "dich_vu": "Dịch vụ khám bệnh theo yêu cầu"
+      },
+      "runtime_exposable_metadata_fields": [
+        "tieu_de",
+        "dia_diem",
+        "thoi_gian",
+        "dich_vu"
+      ],
+      "runtime_contact_fields_enabled": false
+    },
+    {
+      "document_id": "SCDOC-20260608-CS1-TN1",
+      "parent_source_id": "SRC-SCHEDULE-WEEK-2026-06-08",
+      "source_path": "data/schedules/2026/2026-06-08_to_2026-06-14/Lịch khám bệnh Bác sĩ khu TN1 Cơ Sở 1.json",
+      "source_file_name": "Lịch khám bệnh Bác sĩ khu TN1 Cơ Sở 1.json",
+      "source_bytes": 9626,
+      "source_sha256": "7ad852e0d8754174725ac482b7d7613411aa586a30842305c0a3a218f14b21b3",
+      "facility_code": "CS1",
+      "schedule_kind": "voluntary_clinic_1",
+      "folder_week": {
+        "week_start": "2026-06-08",
+        "week_end": "2026-06-14",
+        "path_format": "canonical",
+        "path_prefix": "schedules/2026/2026-06-08_to_2026-06-14"
+      },
+      "internal_week": {
+        "week_start": "2026-06-08",
+        "week_end": "2026-06-14"
+      },
+      "validation_status": "accepted",
+      "coverage_status": "full_range",
+      "review_reason": null,
+      "needs_review": false,
+      "assignments_outside_source_range_count": 0,
+      "assignments_outside_source_range": [],
+      "runtime_eligible": false,
+      "review_scope": [
+        "staging_review"
+      ],
+      "runtime_scope_after_owner_approval": [
+        "local_prototype",
+        "staging"
+      ],
+      "production_eligible": false,
+      "approval_status": "pending",
+      "row_count": 19,
+      "day_cell_count": 133,
+      "raw_metadata": {
+        "tieu_de": "LỊCH KHÁM BỆNH CỦA CÁC BÁC SỸ KHOA KHÁM BỆNH TỰ NGUYỆN",
+        "dia_diem": "TẠI BỆNH VIỆN TIM HÀ NỘI - CƠ SỞ 1 - 92 TRẦN HƯNG ĐẠO, HOÀN KIẾM, HÀ NỘI",
+        "thoi_gian": "Tuần từ ngày 8-14.6.2026",
+        "thong_tin_lien_he": {
+          "dat_lich_va_tu_van_24_24": "1900.1082",
+          "tu_van_hanh_chinh": "0869032338",
+          "website": [
+            "benhvientimhanoi.vn",
+            "benhvientimhanoi.com.vn"
+          ],
+          "fanpage": "fb.com/BenhVienTimHaNoi.vn"
+        },
+        "dich_vu": null
+      },
+      "runtime_exposable_metadata_fields": [
+        "tieu_de",
+        "dia_diem",
+        "thoi_gian",
+        "dich_vu"
+      ],
+      "runtime_contact_fields_enabled": false
+    },
+    {
+      "document_id": "SCDOC-20260615-CS2-DK",
+      "parent_source_id": "SRC-SCHEDULE-WEEK-2026-06-15",
+      "source_path": "data/schedules/2026/2026-06-15_to_2026-06-21/Lịch khám bệnh Bác sĩ Đa Khoa Cơ Sở 2.json",
+      "source_file_name": "Lịch khám bệnh Bác sĩ Đa Khoa Cơ Sở 2.json",
+      "source_bytes": 4467,
+      "source_sha256": "ca7fed7f24e1caeb87ef72921717cfad7fd316a893339b6020d8cc50fed30669",
+      "facility_code": "CS2",
+      "schedule_kind": "general_clinic",
+      "folder_week": {
+        "week_start": "2026-06-15",
+        "week_end": "2026-06-21",
+        "path_format": "canonical",
+        "path_prefix": "schedules/2026/2026-06-15_to_2026-06-21"
+      },
+      "internal_week": {
+        "week_start": "2026-06-15",
+        "week_end": "2026-06-19"
+      },
+      "validation_status": "accepted",
+      "coverage_status": "partial_range",
+      "review_reason": null,
+      "needs_review": true,
+      "assignments_outside_source_range_count": 0,
+      "assignments_outside_source_range": [],
+      "runtime_eligible": false,
+      "review_scope": [
+        "staging_review"
+      ],
+      "runtime_scope_after_owner_approval": [
+        "local_prototype",
+        "staging"
+      ],
+      "production_eligible": false,
+      "approval_status": "pending",
+      "row_count": 11,
+      "day_cell_count": 77,
+      "raw_metadata": {
+        "tieu_de": "LỊCH LÀM VIỆC CỦA CÁC BÁC SỸ PHÒNG KHÁM ĐA KHOA",
+        "dia_diem": "TẠI BỆNH VIỆN TIM HÀ NỘI - CƠ SỞ 2 - 695 LẠC LONG QUÂN, TÂY HỒ, HÀ NỘI",
+        "thoi_gian": "Tuần từ ngày 15/6/2026 đến ngày 19/6/2026",
+        "thong_tin_lien_he": {
+          "so_dien_thoai": "0961.972.097",
+          "ghi_chu": "(Giờ hành chính các ngày trong tuần từ thứ 2 đến thứ 6)"
+        },
+        "dich_vu": null
+      },
+      "runtime_exposable_metadata_fields": [
+        "tieu_de",
+        "dia_diem",
+        "thoi_gian",
+        "dich_vu"
+      ],
+      "runtime_contact_fields_enabled": false
+    },
+    {
+      "document_id": "SCDOC-20260615-CS2-TN",
+      "parent_source_id": "SRC-SCHEDULE-WEEK-2026-06-15",
+      "source_path": "data/schedules/2026/2026-06-15_to_2026-06-21/Lịch khám bệnh Bác sĩ khu TN Cơ Sở 2.json",
+      "source_file_name": "Lịch khám bệnh Bác sĩ khu TN Cơ Sở 2.json",
+      "source_bytes": 2405,
+      "source_sha256": "48a6ac775e0935be497709fb40cd0a215ffae41b7b663ee5a74db9bf8e015463",
+      "facility_code": "CS2",
+      "schedule_kind": "voluntary_clinic",
+      "folder_week": {
+        "week_start": "2026-06-15",
+        "week_end": "2026-06-21",
+        "path_format": "canonical",
+        "path_prefix": "schedules/2026/2026-06-15_to_2026-06-21"
+      },
+      "internal_week": {
+        "week_start": "2026-06-15",
+        "week_end": "2026-06-21"
+      },
+      "validation_status": "accepted",
+      "coverage_status": "full_range",
+      "review_reason": null,
+      "needs_review": false,
+      "assignments_outside_source_range_count": 0,
+      "assignments_outside_source_range": [],
+      "runtime_eligible": false,
+      "review_scope": [
+        "staging_review"
+      ],
+      "runtime_scope_after_owner_approval": [
+        "local_prototype",
+        "staging"
+      ],
+      "production_eligible": false,
+      "approval_status": "pending",
+      "row_count": 5,
+      "day_cell_count": 35,
+      "raw_metadata": {
+        "tieu_de": "LỊCH LÀM VIỆC CỦA CÁC BÁC SỸ KHU KHÁM BỆNH TỰ NGUYỆN",
+        "dia_diem": "TẠI BỆNH VIỆN TIM HÀ NỘI - CƠ SỞ 2 - 695 LẠC LONG QUÂN - PHƯỜNG TÂY HỒ - HÀ NỘI",
+        "thoi_gian": "Tuần từ ngày 15/06/2026 đến ngày 21/06/2026",
+        "thong_tin_lien_he": {
+          "dat_lich": "19001082",
+          "tu_van_hanh_chinh": "02439427791",
+          "tu_van_24_24h": "0969655335",
+          "website": "benhvientimhanoi.vn",
+          "fanpage": "fb.com/BenhVienTimHaNoi.vn"
+        },
+        "dich_vu": "Dịch vụ khám bệnh theo yêu cầu"
+      },
+      "runtime_exposable_metadata_fields": [
+        "tieu_de",
+        "dia_diem",
+        "thoi_gian",
+        "dich_vu"
+      ],
+      "runtime_contact_fields_enabled": false
+    },
+    {
+      "document_id": "SCDOC-20260615-CS1-TN1",
+      "parent_source_id": "SRC-SCHEDULE-WEEK-2026-06-15",
+      "source_path": "data/schedules/2026/2026-06-15_to_2026-06-21/Lịch khám bệnh Bác sĩ khu TN1 Cơ Sở 1.json",
+      "source_file_name": "Lịch khám bệnh Bác sĩ khu TN1 Cơ Sở 1.json",
+      "source_bytes": 9633,
+      "source_sha256": "9483818b0214cdcb17eda6cbae1c4ddc302d7b7a768042b7a5eb4957f1e70f0e",
+      "facility_code": "CS1",
+      "schedule_kind": "voluntary_clinic_1",
+      "folder_week": {
+        "week_start": "2026-06-15",
+        "week_end": "2026-06-21",
+        "path_format": "canonical",
+        "path_prefix": "schedules/2026/2026-06-15_to_2026-06-21"
+      },
+      "internal_week": {
+        "week_start": "2026-06-15",
+        "week_end": "2026-06-21"
+      },
+      "validation_status": "accepted",
+      "coverage_status": "full_range",
+      "review_reason": null,
+      "needs_review": false,
+      "assignments_outside_source_range_count": 0,
+      "assignments_outside_source_range": [],
+      "runtime_eligible": false,
+      "review_scope": [
+        "staging_review"
+      ],
+      "runtime_scope_after_owner_approval": [
+        "local_prototype",
+        "staging"
+      ],
+      "production_eligible": false,
+      "approval_status": "pending",
+      "row_count": 19,
+      "day_cell_count": 133,
+      "raw_metadata": {
+        "tieu_de": "LỊCH KHÁM BỆNH CỦA CÁC BÁC SỸ KHOA KHÁM BỆNH TỰ NGUYỆN",
+        "dia_diem": "TẠI BỆNH VIỆN TIM HÀ NỘI - CƠ SỞ 1 - 92 TRẦN HƯNG ĐẠO, HOÀN KIẾM, HÀ NỘI",
+        "thoi_gian": "Tuần từ ngày 15-21.6.2026",
+        "thong_tin_lien_he": {
+          "dat_lich_va_tu_van_24_24": "1900.1082",
+          "tu_van_hanh_chinh": "0869032338",
+          "website": [
+            "benhvientimhanoi.vn",
+            "benhvientimhanoi.com.vn"
+          ],
+          "fanpage": "fb.com/BenhVienTimHaNoi.vn"
+        },
+        "dich_vu": null
+      },
+      "runtime_exposable_metadata_fields": [
+        "tieu_de",
+        "dia_diem",
+        "thoi_gian",
+        "dich_vu"
+      ],
+      "runtime_contact_fields_enabled": false
+    },
+    {
+      "document_id": "SCDOC-20260622-CS2-DK",
+      "parent_source_id": "SRC-SCHEDULE-WEEK-2026-06-22",
+      "source_path": "data/schedules/2026/2026-06-22_to_2026-06-28/Lịch khám bệnh Bác sĩ Đa Khoa Cơ Sở 2.json",
+      "source_file_name": "Lịch khám bệnh Bác sĩ Đa Khoa Cơ Sở 2.json",
+      "source_bytes": 4486,
+      "source_sha256": "468d77ae583a72d178c06e62ef57944360e8a41a45e48f6be13b7bf1ba3ee0f7",
+      "facility_code": "CS2",
+      "schedule_kind": "general_clinic",
+      "folder_week": {
+        "week_start": "2026-06-22",
+        "week_end": "2026-06-28",
+        "path_format": "canonical",
+        "path_prefix": "schedules/2026/2026-06-22_to_2026-06-28"
+      },
+      "internal_week": {
+        "week_start": "2026-06-22",
+        "week_end": "2026-06-28"
+      },
+      "validation_status": "accepted",
+      "coverage_status": "full_range",
+      "review_reason": null,
+      "needs_review": false,
+      "assignments_outside_source_range_count": 0,
+      "assignments_outside_source_range": [],
+      "runtime_eligible": false,
+      "review_scope": [
+        "staging_review"
+      ],
+      "runtime_scope_after_owner_approval": [
+        "local_prototype",
+        "staging"
+      ],
+      "production_eligible": false,
+      "approval_status": "pending",
+      "row_count": 11,
+      "day_cell_count": 77,
+      "raw_metadata": {
+        "tieu_de": "LỊCH LÀM VIỆC CỦA CÁC BÁC SỸ PHÒNG KHÁM ĐA KHOA",
+        "dia_diem": "TẠI BỆNH VIỆN TIM HÀ NỘI - CƠ SỞ 2 - 695 LẠC LONG QUÂN, TÂY HỒ, HÀ NỘI",
+        "thoi_gian": "Tuần từ ngày 22/6/2026 đến ngày 28/6/2026",
+        "thong_tin_lien_he": {
+          "so_dien_thoai": "0961.972.097",
+          "ghi_chu": "(Giờ hành chính các ngày trong tuần từ thứ 2 đến thứ 6)"
+        },
+        "dich_vu": null
+      },
+      "runtime_exposable_metadata_fields": [
+        "tieu_de",
+        "dia_diem",
+        "thoi_gian",
+        "dich_vu"
+      ],
+      "runtime_contact_fields_enabled": false
+    },
+    {
+      "document_id": "SCDOC-20260622-CS2-TN",
+      "parent_source_id": "SRC-SCHEDULE-WEEK-2026-06-22",
+      "source_path": "data/schedules/2026/2026-06-22_to_2026-06-28/Lịch khám bệnh Bác sĩ khu TN Cơ Sở 2.json",
+      "source_file_name": "Lịch khám bệnh Bác sĩ khu TN Cơ Sở 2.json",
+      "source_bytes": 2415,
+      "source_sha256": "0e9e57e78d8c39e395aa32f6d8e8868b51431d130fe3cc417b489e24a6a21ddb",
+      "facility_code": "CS2",
+      "schedule_kind": "voluntary_clinic",
+      "folder_week": {
+        "week_start": "2026-06-22",
+        "week_end": "2026-06-28",
+        "path_format": "canonical",
+        "path_prefix": "schedules/2026/2026-06-22_to_2026-06-28"
+      },
+      "internal_week": {
+        "week_start": "2026-06-22",
+        "week_end": "2026-06-28"
+      },
+      "validation_status": "accepted",
+      "coverage_status": "full_range",
+      "review_reason": null,
+      "needs_review": false,
+      "assignments_outside_source_range_count": 0,
+      "assignments_outside_source_range": [],
+      "runtime_eligible": false,
+      "review_scope": [
+        "staging_review"
+      ],
+      "runtime_scope_after_owner_approval": [
+        "local_prototype",
+        "staging"
+      ],
+      "production_eligible": false,
+      "approval_status": "pending",
+      "row_count": 5,
+      "day_cell_count": 35,
+      "raw_metadata": {
+        "tieu_de": "LỊCH LÀM VIỆC CỦA CÁC BÁC SỸ KHU KHÁM BỆNH TỰ NGUYỆN",
+        "dia_diem": "TẠI BỆNH VIỆN TIM HÀ NỘI - CƠ SỞ 2 - 695 LẠC LONG QUÂN - PHƯỜNG TÂY HỒ - HÀ NỘI",
+        "thoi_gian": "Tuần từ ngày 22/06/2026 đến ngày 28/06/2026",
+        "thong_tin_lien_he": {
+          "dat_lich": "19001082",
+          "tu_van_hanh_chinh": "02439427791",
+          "tu_van_24_24h": "0969655335",
+          "website": "benhvientimhanoi.vn",
+          "fanpage": "fb.com/BenhVienTimHaNoi.vn"
+        },
+        "dich_vu": "Dịch vụ khám bệnh theo yêu cầu"
+      },
+      "runtime_exposable_metadata_fields": [
+        "tieu_de",
+        "dia_diem",
+        "thoi_gian",
+        "dich_vu"
+      ],
+      "runtime_contact_fields_enabled": false
+    },
+    {
+      "document_id": "SCDOC-20260622-CS1-TN1",
+      "parent_source_id": "SRC-SCHEDULE-WEEK-2026-06-22",
+      "source_path": "data/schedules/2026/2026-06-22_to_2026-06-28/Lịch khám bệnh Bác sĩ khu TN1 Cơ Sở 1.json",
+      "source_file_name": "Lịch khám bệnh Bác sĩ khu TN1 Cơ Sở 1.json",
+      "source_bytes": 9459,
+      "source_sha256": "3040a0d1abfc0da56dae392bab48dfceac2a3ebd6946b4bc8aa12366de5ad934",
+      "facility_code": "CS1",
+      "schedule_kind": "voluntary_clinic_1",
+      "folder_week": {
+        "week_start": "2026-06-22",
+        "week_end": "2026-06-28",
+        "path_format": "canonical",
+        "path_prefix": "schedules/2026/2026-06-22_to_2026-06-28"
+      },
+      "internal_week": {
+        "week_start": "2026-06-22",
+        "week_end": "2026-06-28"
+      },
+      "validation_status": "accepted",
+      "coverage_status": "full_range",
+      "review_reason": null,
+      "needs_review": false,
+      "assignments_outside_source_range_count": 0,
+      "assignments_outside_source_range": [],
+      "runtime_eligible": false,
+      "review_scope": [
+        "staging_review"
+      ],
+      "runtime_scope_after_owner_approval": [
+        "local_prototype",
+        "staging"
+      ],
+      "production_eligible": false,
+      "approval_status": "pending",
+      "row_count": 19,
+      "day_cell_count": 133,
+      "raw_metadata": {
+        "tieu_de": "LỊCH KHÁM BỆNH CỦA CÁC BÁC SỸ KHOA KHÁM BỆNH TỰ NGUYỆN",
+        "dia_diem": "TẠI BỆNH VIỆN TIM HÀ NỘI - CƠ SỞ 1 - 92 TRẦN HƯNG ĐẠO, HOÀN KIẾM, HÀ NỘI",
+        "thoi_gian": "Tuần từ ngày 22-28.6.2026",
+        "thong_tin_lien_he": {
+          "dat_lich_va_tu_van_24_24": "1900.1082",
+          "tu_van_hanh_chinh": "0869032338",
+          "website": [
+            "benhvientimhanoi.vn",
+            "benhvientimhanoi.com.vn"
+          ],
+          "fanpage": "fb.com/BenhVienTimHaNoi.vn"
+        },
+        "dich_vu": null
+      },
+      "runtime_exposable_metadata_fields": [
+        "tieu_de",
+        "dia_diem",
+        "thoi_gian",
+        "dich_vu"
+      ],
+      "runtime_contact_fields_enabled": false
+    },
+    {
+      "document_id": "SCDOC-20260629-CS2-DK",
+      "parent_source_id": "SRC-SCHEDULE-WEEK-2026-06-29",
+      "source_path": "data/schedules/2026/2026-06-29_to_2026-07-05/Lịch khám bệnh Bác sĩ Đa Khoa Cơ Sở 2.json",
+      "source_file_name": "Lịch khám bệnh Bác sĩ Đa Khoa Cơ Sở 2.json",
+      "source_bytes": 4565,
+      "source_sha256": "ad52f4926c5eb807cd11705e5f45fdbc7690149b7b1f34165f56d7abdcfe7152",
+      "facility_code": "CS2",
+      "schedule_kind": "general_clinic",
+      "folder_week": {
+        "week_start": "2026-06-29",
+        "week_end": "2026-07-05",
+        "path_format": "canonical",
+        "path_prefix": "schedules/2026/2026-06-29_to_2026-07-05"
+      },
+      "internal_week": {
+        "week_start": "2026-06-29",
+        "week_end": "2026-07-03"
+      },
+      "validation_status": "accepted",
+      "coverage_status": "partial_range",
+      "review_reason": null,
+      "needs_review": true,
+      "assignments_outside_source_range_count": 0,
+      "assignments_outside_source_range": [],
+      "runtime_eligible": false,
+      "review_scope": [
+        "staging_review"
+      ],
+      "runtime_scope_after_owner_approval": [
+        "local_prototype",
+        "staging"
+      ],
+      "production_eligible": false,
+      "approval_status": "pending",
+      "row_count": 11,
+      "day_cell_count": 77,
+      "raw_metadata": {
+        "tieu_de": "LỊCH LÀM VIỆC CỦA CÁC BÁC SỸ PHÒNG KHÁM ĐA KHOA",
+        "dia_diem": "TẠI BỆNH VIỆN TIM HÀ NỘI - CƠ SỞ 2 - 695 LẠC LONG QUÂN, TÂY HỒ, HÀ NỘI",
+        "thoi_gian": "Tuần từ ngày 29/6/2026 đến ngày 03/7/2026",
+        "thong_tin_lien_he": {
+          "so_dien_thoai": "0961.972.097",
+          "ghi_chu": "(Giờ hành chính các ngày trong tuần từ thứ 2 đến thứ 6)"
+        },
+        "dich_vu": null
+      },
+      "runtime_exposable_metadata_fields": [
+        "tieu_de",
+        "dia_diem",
+        "thoi_gian",
+        "dich_vu"
+      ],
+      "runtime_contact_fields_enabled": false
+    },
+    {
+      "document_id": "SCDOC-20260629-CS2-TN",
+      "parent_source_id": "SRC-SCHEDULE-WEEK-2026-06-29",
+      "source_path": "data/schedules/2026/2026-06-29_to_2026-07-05/Lịch khám bệnh Bác sĩ khu TN Cơ Sở 2.json",
+      "source_file_name": "Lịch khám bệnh Bác sĩ khu TN Cơ Sở 2.json",
+      "source_bytes": 2430,
+      "source_sha256": "396714b8cb688f15dbb42aa5255e7884b34ceb121498d2d82bdb5e74dc315bbe",
+      "facility_code": "CS2",
+      "schedule_kind": "voluntary_clinic",
+      "folder_week": {
+        "week_start": "2026-06-29",
+        "week_end": "2026-07-05",
+        "path_format": "canonical",
+        "path_prefix": "schedules/2026/2026-06-29_to_2026-07-05"
+      },
+      "internal_week": {
+        "week_start": "2026-06-29",
+        "week_end": "2026-07-05"
+      },
+      "validation_status": "accepted",
+      "coverage_status": "full_range",
+      "review_reason": null,
+      "needs_review": false,
+      "assignments_outside_source_range_count": 0,
+      "assignments_outside_source_range": [],
+      "runtime_eligible": false,
+      "review_scope": [
+        "staging_review"
+      ],
+      "runtime_scope_after_owner_approval": [
+        "local_prototype",
+        "staging"
+      ],
+      "production_eligible": false,
+      "approval_status": "pending",
+      "row_count": 5,
+      "day_cell_count": 35,
+      "raw_metadata": {
+        "tieu_de": "LỊCH LÀM VIỆC CỦA CÁC BÁC SỸ KHU KHÁM BỆNH TỰ NGUYỆN",
+        "dia_diem": "TẠI BỆNH VIỆN TIM HÀ NỘI - CƠ SỞ 2 - 695 LẠC LONG QUÂN - PHƯỜNG TÂY HỒ - HÀ NỘI",
+        "thoi_gian": "Tuần từ ngày 29/06/2026 đến ngày 05/07/2026",
+        "thong_tin_lien_he": {
+          "dat_lich": "19001082",
+          "tu_van_hanh_chinh": "02439427791",
+          "tu_van_24_24h": "0969655335",
+          "website": "benhvientimhanoi.vn",
+          "fanpage": "fb.com/BenhVienTimHaNoi.vn"
+        },
+        "dich_vu": "Dịch vụ khám bệnh theo yêu cầu"
+      },
+      "runtime_exposable_metadata_fields": [
+        "tieu_de",
+        "dia_diem",
+        "thoi_gian",
+        "dich_vu"
+      ],
+      "runtime_contact_fields_enabled": false
+    },
+    {
+      "document_id": "SCDOC-20260629-CS1-TN1",
+      "parent_source_id": "SRC-SCHEDULE-WEEK-2026-06-29",
+      "source_path": "data/schedules/2026/2026-06-29_to_2026-07-05/Lịch khám bệnh Bác sĩ khu TN1 Cơ Sở 1.json",
+      "source_file_name": "Lịch khám bệnh Bác sĩ khu TN1 Cơ Sở 1.json",
+      "source_bytes": 9631,
+      "source_sha256": "cbffe822b111e9b3465b5ed998a3f1e1a4cfdbf2f4fabab0d7605887c6b4508a",
+      "facility_code": "CS1",
+      "schedule_kind": "voluntary_clinic_1",
+      "folder_week": {
+        "week_start": "2026-06-29",
+        "week_end": "2026-07-05",
+        "path_format": "canonical",
+        "path_prefix": "schedules/2026/2026-06-29_to_2026-07-05"
+      },
+      "internal_week": {
+        "week_start": "2026-06-29",
+        "week_end": "2026-07-05"
+      },
+      "validation_status": "accepted",
+      "coverage_status": "full_range",
+      "review_reason": null,
+      "needs_review": false,
+      "assignments_outside_source_range_count": 0,
+      "assignments_outside_source_range": [],
+      "runtime_eligible": false,
+      "review_scope": [
+        "staging_review"
+      ],
+      "runtime_scope_after_owner_approval": [
+        "local_prototype",
+        "staging"
+      ],
+      "production_eligible": false,
+      "approval_status": "pending",
+      "row_count": 19,
+      "day_cell_count": 133,
+      "raw_metadata": {
+        "tieu_de": "LỊCH KHÁM BỆNH CỦA CÁC BÁC SỸ KHOA KHÁM BỆNH TỰ NGUYỆN",
+        "dia_diem": "TẠI BỆNH VIỆN TIM HÀ NỘI - CƠ SỞ 1 - 92 TRẦN HƯNG ĐẠO, HOÀN KIẾM, HÀ NỘI",
+        "thoi_gian": "Tuần từ ngày 29.6-5.7.2026",
+        "thong_tin_lien_he": {
+          "dat_lich_va_tu_van_24_24": "1900.1082",
+          "tu_van_hanh_chinh": "0869032338",
+          "website": [
+            "benhvientimhanoi.vn",
+            "benhvientimhanoi.com.vn"
+          ],
+          "fanpage": "fb.com/BenhVienTimHaNoi.vn"
+        },
+        "dich_vu": null
+      },
+      "runtime_exposable_metadata_fields": [
+        "tieu_de",
+        "dia_diem",
+        "thoi_gian",
+        "dich_vu"
+      ],
+      "runtime_contact_fields_enabled": false
+    },
+    {
+      "document_id": "SCDOC-20260706-CS2-DK",
+      "parent_source_id": "SRC-SCHEDULE-WEEK-2026-07-06",
+      "source_path": "data/schedules/2026/2026-07-06_to_2026-07-12/Lịch khám bệnh Bác sĩ Đa Khoa Cơ Sở 2.json",
+      "source_file_name": "Lịch khám bệnh Bác sĩ Đa Khoa Cơ Sở 2.json",
+      "source_bytes": 4489,
+      "source_sha256": "0d058da495cf228c19b9652f3cbbb634c3c343b8800f699892858e960509ddb2",
+      "facility_code": "CS2",
+      "schedule_kind": "general_clinic",
+      "folder_week": {
+        "week_start": "2026-07-06",
+        "week_end": "2026-07-12",
+        "path_format": "canonical",
+        "path_prefix": "schedules/2026/2026-07-06_to_2026-07-12"
+      },
+      "internal_week": {
+        "week_start": "2026-07-06",
+        "week_end": "2026-07-10"
+      },
+      "validation_status": "accepted",
+      "coverage_status": "partial_range",
+      "review_reason": null,
+      "needs_review": true,
+      "assignments_outside_source_range_count": 0,
+      "assignments_outside_source_range": [],
+      "runtime_eligible": false,
+      "review_scope": [
+        "staging_review"
+      ],
+      "runtime_scope_after_owner_approval": [
+        "local_prototype",
+        "staging"
+      ],
+      "production_eligible": false,
+      "approval_status": "pending",
+      "row_count": 11,
+      "day_cell_count": 77,
+      "raw_metadata": {
+        "tieu_de": "LỊCH LÀM VIỆC CỦA CÁC BÁC SỸ PHÒNG KHÁM ĐA KHOA",
+        "dia_diem": "TẠI BỆNH VIỆN TIM HÀ NỘI - CƠ SỞ 2 - 695 LẠC LONG QUÂN, TÂY HỒ, HÀ NỘI",
+        "thoi_gian": "Tuần từ ngày 6/7/2026 đến ngày 10/7/2026",
+        "thong_tin_lien_he": {
+          "so_dien_thoai": "0961.972.097",
+          "ghi_chu": "(Giờ hành chính các ngày trong tuần từ thứ 2 đến thứ 6)"
+        },
+        "dich_vu": null
+      },
+      "runtime_exposable_metadata_fields": [
+        "tieu_de",
+        "dia_diem",
+        "thoi_gian",
+        "dich_vu"
+      ],
+      "runtime_contact_fields_enabled": false
+    },
+    {
+      "document_id": "SCDOC-20260706-CS2-TN",
+      "parent_source_id": "SRC-SCHEDULE-WEEK-2026-07-06",
+      "source_path": "data/schedules/2026/2026-07-06_to_2026-07-12/Lịch khám bệnh Bác sĩ khu TN Cơ Sở 2.json",
+      "source_file_name": "Lịch khám bệnh Bác sĩ khu TN Cơ Sở 2.json",
+      "source_bytes": 2400,
+      "source_sha256": "420118a6c188e3b1177d71831678a0b759abf7a518758a337345d2fd634cbc1a",
+      "facility_code": "CS2",
+      "schedule_kind": "voluntary_clinic",
+      "folder_week": {
+        "week_start": "2026-07-06",
+        "week_end": "2026-07-12",
+        "path_format": "canonical",
+        "path_prefix": "schedules/2026/2026-07-06_to_2026-07-12"
+      },
+      "internal_week": {
+        "week_start": "2026-07-06",
+        "week_end": "2026-07-12"
+      },
+      "validation_status": "accepted",
+      "coverage_status": "full_range",
+      "review_reason": null,
+      "needs_review": false,
+      "assignments_outside_source_range_count": 0,
+      "assignments_outside_source_range": [],
+      "runtime_eligible": false,
+      "review_scope": [
+        "staging_review"
+      ],
+      "runtime_scope_after_owner_approval": [
+        "local_prototype",
+        "staging"
+      ],
+      "production_eligible": false,
+      "approval_status": "pending",
+      "row_count": 5,
+      "day_cell_count": 35,
+      "raw_metadata": {
+        "tieu_de": "LỊCH LÀM VIỆC CỦA CÁC BÁC SỸ KHU KHÁM BỆNH TỰ NGUYỆN",
+        "dia_diem": "TẠI BỆNH VIỆN TIM HÀ NỘI - CƠ SỞ 2 - 695 LẠC LONG QUÂN - PHƯỜNG TÂY HỒ - HÀ NỘI",
+        "thoi_gian": "Tuần từ ngày 06/07/2026 đến ngày 12/07/2026",
+        "thong_tin_lien_he": {
+          "dat_lich": "19001082",
+          "tu_van_hanh_chinh": "02439427791",
+          "tu_van_24_24h": "0969655335",
+          "website": "benhvientimhanoi.vn",
+          "fanpage": "fb.com/BenhVienTimHaNoi.vn"
+        },
+        "dich_vu": "Dịch vụ khám bệnh theo yêu cầu"
+      },
+      "runtime_exposable_metadata_fields": [
+        "tieu_de",
+        "dia_diem",
+        "thoi_gian",
+        "dich_vu"
+      ],
+      "runtime_contact_fields_enabled": false
+    },
+    {
+      "document_id": "SCDOC-20260706-CS1-TN1",
+      "parent_source_id": "SRC-SCHEDULE-WEEK-2026-07-06",
+      "source_path": "data/schedules/2026/2026-07-06_to_2026-07-12/Lịch khám bệnh Bác sĩ khu TN1 Cơ Sở 1.json",
+      "source_file_name": "Lịch khám bệnh Bác sĩ khu TN1 Cơ Sở 1.json",
+      "source_bytes": 9589,
+      "source_sha256": "448eb957f87ddb382fcfbdb815e43e40d2faf2df1fe3035b2003b85556ec884c",
+      "facility_code": "CS1",
+      "schedule_kind": "voluntary_clinic_1",
+      "folder_week": {
+        "week_start": "2026-07-06",
+        "week_end": "2026-07-12",
+        "path_format": "canonical",
+        "path_prefix": "schedules/2026/2026-07-06_to_2026-07-12"
+      },
+      "internal_week": {
+        "week_start": "2026-07-06",
+        "week_end": "2026-07-12"
+      },
+      "validation_status": "accepted",
+      "coverage_status": "full_range",
+      "review_reason": null,
+      "needs_review": false,
+      "assignments_outside_source_range_count": 0,
+      "assignments_outside_source_range": [],
+      "runtime_eligible": false,
+      "review_scope": [
+        "staging_review"
+      ],
+      "runtime_scope_after_owner_approval": [
+        "local_prototype",
+        "staging"
+      ],
+      "production_eligible": false,
+      "approval_status": "pending",
+      "row_count": 19,
+      "day_cell_count": 133,
+      "raw_metadata": {
+        "tieu_de": "LỊCH KHÁM BỆNH CỦA CÁC BÁC SỸ KHOA KHÁM BỆNH TỰ NGUYỆN",
+        "dia_diem": "TẠI BỆNH VIỆN TIM HÀ NỘI - CƠ SỞ 1 - 92 TRẦN HƯNG ĐẠO, HOÀN KIẾM, HÀ NỘI",
+        "thoi_gian": "Tuần từ ngày 6.7-12.7.2026",
+        "thong_tin_lien_he": {
+          "dat_lich_va_tu_van_24_24": "1900.1082",
+          "tu_van_hanh_chinh": "0869032338",
+          "website": [
+            "benhvientimhanoi.vn",
+            "benhvientimhanoi.com.vn"
+          ],
+          "fanpage": "fb.com/BenhVienTimHaNoi.vn"
+        },
+        "dich_vu": null
+      },
+      "runtime_exposable_metadata_fields": [
+        "tieu_de",
+        "dia_diem",
+        "thoi_gian",
+        "dich_vu"
+      ],
+      "runtime_contact_fields_enabled": false
+    },
+    {
+      "document_id": "SCDOC-20260713-CS2-DK",
+      "parent_source_id": "SRC-SCHEDULE-WEEK-2026-07-13",
+      "source_path": "data/schedules/2026/2026-07-13_to_2026-07-19/Lịch khám bệnh Bác sĩ Đa Khoa Cơ Sở 2.json",
+      "source_file_name": "Lịch khám bệnh Bác sĩ Đa Khoa Cơ Sở 2.json",
+      "source_bytes": 4694,
+      "source_sha256": "79562ae8d0b88132b53703cdb1bbbb2a78abc4b0764c7fa071e7942a305a1cb2",
+      "facility_code": "CS2",
+      "schedule_kind": "general_clinic",
+      "folder_week": {
+        "week_start": "2026-07-13",
+        "week_end": "2026-07-19",
+        "path_format": "canonical",
+        "path_prefix": "schedules/2026/2026-07-13_to_2026-07-19"
+      },
+      "internal_week": {
+        "week_start": "2026-07-13",
+        "week_end": "2026-07-19"
+      },
+      "validation_status": "accepted",
+      "coverage_status": "full_range",
+      "review_reason": null,
+      "needs_review": false,
+      "assignments_outside_source_range_count": 0,
+      "assignments_outside_source_range": [],
+      "runtime_eligible": false,
+      "review_scope": [
+        "staging_review"
+      ],
+      "runtime_scope_after_owner_approval": [
+        "local_prototype",
+        "staging"
+      ],
+      "production_eligible": false,
+      "approval_status": "pending",
+      "row_count": 11,
+      "day_cell_count": 77,
+      "raw_metadata": {
+        "tieu_de": "LỊCH LÀM VIỆC CỦA CÁC BÁC SỸ PHÒNG KHÁM ĐA KHOA",
+        "dia_diem": "TẠI BỆNH VIỆN TIM HÀ NỘI - CƠ SỞ 2 - 695 LẠC LONG QUÂN, TÂY HỒ, HÀ NỘI",
+        "thoi_gian": "Tuần từ ngày 13/7/2026 đến ngày 19/7/2026",
+        "thong_tin_lien_he": {
+          "so_dien_thoai": "0961.972.097",
+          "ghi_chu": "(Giờ hành chính các ngày trong tuần từ thứ 2 đến thứ 6)"
+        },
+        "dich_vu": null
+      },
+      "runtime_exposable_metadata_fields": [
+        "tieu_de",
+        "dia_diem",
+        "thoi_gian",
+        "dich_vu"
+      ],
+      "runtime_contact_fields_enabled": false
+    },
+    {
+      "document_id": "SCDOC-20260713-CS2-TN",
+      "parent_source_id": "SRC-SCHEDULE-WEEK-2026-07-13",
+      "source_path": "data/schedules/2026/2026-07-13_to_2026-07-19/Lịch khám bệnh Bác sĩ khu TN Cơ Sở 2.json",
+      "source_file_name": "Lịch khám bệnh Bác sĩ khu TN Cơ Sở 2.json",
+      "source_bytes": 2458,
+      "source_sha256": "aa64066200b67e4205cbb8b0789f2e369dbc87ee85e6579326e91c6d2010d985",
+      "facility_code": "CS2",
+      "schedule_kind": "voluntary_clinic",
+      "folder_week": {
+        "week_start": "2026-07-13",
+        "week_end": "2026-07-19",
+        "path_format": "canonical",
+        "path_prefix": "schedules/2026/2026-07-13_to_2026-07-19"
+      },
+      "internal_week": {
+        "week_start": "2026-07-13",
+        "week_end": "2026-07-19"
+      },
+      "validation_status": "accepted",
+      "coverage_status": "full_range",
+      "review_reason": null,
+      "needs_review": false,
+      "assignments_outside_source_range_count": 0,
+      "assignments_outside_source_range": [],
+      "runtime_eligible": false,
+      "review_scope": [
+        "staging_review"
+      ],
+      "runtime_scope_after_owner_approval": [
+        "local_prototype",
+        "staging"
+      ],
+      "production_eligible": false,
+      "approval_status": "pending",
+      "row_count": 5,
+      "day_cell_count": 35,
+      "raw_metadata": {
+        "tieu_de": "LỊCH LÀM VIỆC CỦA CÁC BÁC SỸ KHU KHÁM BỆNH TỰ NGUYỆN",
+        "dia_diem": "TẠI BỆNH VIỆN TIM HÀ NỘI - CƠ SỞ 2 - 695 LẠC LONG QUÂN - PHƯỜNG TÂY HỒ - HÀ NỘI",
+        "thoi_gian": "Tuần từ ngày 13/07/2026 đến ngày 19/07/2026",
+        "thong_tin_lien_he": {
+          "dat_lich": "19001082",
+          "tu_van_hanh_chinh": "02439427791",
+          "tu_van_24_24h": "0969655335",
+          "website": "benhvientimhanoi.vn",
+          "fanpage": "fb.com/BenhVienTimHaNoi.vn"
+        },
+        "dich_vu": "Dịch vụ khám bệnh theo yêu cầu"
+      },
+      "runtime_exposable_metadata_fields": [
+        "tieu_de",
+        "dia_diem",
+        "thoi_gian",
+        "dich_vu"
+      ],
+      "runtime_contact_fields_enabled": false
+    },
+    {
+      "document_id": "SCDOC-20260713-CS1-TN1",
+      "parent_source_id": "SRC-SCHEDULE-WEEK-2026-07-13",
+      "source_path": "data/schedules/2026/2026-07-13_to_2026-07-19/Lịch khám bệnh Bác sĩ khu TN1 Cơ Sở 1.json",
+      "source_file_name": "Lịch khám bệnh Bác sĩ khu TN1 Cơ Sở 1.json",
+      "source_bytes": 9736,
+      "source_sha256": "61e34678d950c938cbc860f57495ad3c307856e3bc87016d06bff8689177a358",
+      "facility_code": "CS1",
+      "schedule_kind": "voluntary_clinic_1",
+      "folder_week": {
+        "week_start": "2026-07-13",
+        "week_end": "2026-07-19",
+        "path_format": "canonical",
+        "path_prefix": "schedules/2026/2026-07-13_to_2026-07-19"
+      },
+      "internal_week": {
+        "week_start": "2026-07-13",
+        "week_end": "2026-07-19"
+      },
+      "validation_status": "accepted",
+      "coverage_status": "full_range",
+      "review_reason": null,
+      "needs_review": false,
+      "assignments_outside_source_range_count": 0,
+      "assignments_outside_source_range": [],
+      "runtime_eligible": false,
+      "review_scope": [
+        "staging_review"
+      ],
+      "runtime_scope_after_owner_approval": [
+        "local_prototype",
+        "staging"
+      ],
+      "production_eligible": false,
+      "approval_status": "pending",
+      "row_count": 19,
+      "day_cell_count": 133,
+      "raw_metadata": {
+        "tieu_de": "LỊCH KHÁM BỆNH CỦA CÁC BÁC SỸ KHOA KHÁM BỆNH TỰ NGUYỆN",
+        "dia_diem": "TẠI BỆNH VIỆN TIM HÀ NỘI - CƠ SỞ 1 - 92 TRẦN HƯNG ĐẠO, HOÀN KIẾM, HÀ NỘI",
+        "thoi_gian": "Tuần từ ngày 13-19.7.2026",
+        "thong_tin_lien_he": {
+          "dat_lich_va_tu_van_24_24": "1900.1082",
+          "tu_van_hanh_chinh": "0869032338",
+          "website": [
+            "benhvientimhanoi.vn",
+            "benhvientimhanoi.com.vn"
+          ],
+          "fanpage": "fb.com/BenhVienTimHaNoi.vn"
+        },
+        "dich_vu": null
+      },
+      "runtime_exposable_metadata_fields": [
+        "tieu_de",
+        "dia_diem",
+        "thoi_gian",
+        "dich_vu"
+      ],
+      "runtime_contact_fields_enabled": false
+    }
+  ],
+  "non_active_artifacts": []
+}
