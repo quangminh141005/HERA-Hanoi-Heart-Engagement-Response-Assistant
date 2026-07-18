@@ -213,7 +213,7 @@ def test_chat_service_records_trace_input_and_output_when_capture_enabled(
     assert trace["start"]["input"] == {
         "message": "Xin chào HERA",
         "conversation_id": None,
-        "locale": "vi",
+        "locale": "vi-VN",
         "channel": "hospital_web",
         "consent_to_store": False,
     }
