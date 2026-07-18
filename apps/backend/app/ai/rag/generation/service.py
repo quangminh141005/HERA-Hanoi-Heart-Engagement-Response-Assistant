@@ -138,6 +138,15 @@ class GenerationService:
                 max_tokens=max_tokens,
             )
 
+        trace_kwargs = {
+            "model": self.settings.FPT_LLM_MODEL,
+            "model_parameters": {
+                "temperature": temperature,
+                "max_tokens": max_tokens,
+            },
+        }
+        if self.settings.LANGFUSE_CAPTURE_CONTENT:
+            trace_kwargs["input"] = messages
         with start_observation(
             "hera.rag.generation_stage",
             settings=self.settings,
@@ -147,8 +156,11 @@ class GenerationService:
                 "model": self.settings.FPT_LLM_MODEL,
                 "max_tokens": max_tokens,
                 "model_generation_requested": True,
-                "content_capture": False,
+                "content_capture": self.settings.LANGFUSE_CAPTURE_CONTENT,
+                "streaming": False,
+                "ttft_available": False,
             },
+            **trace_kwargs,
         ) as observation:
             try:
                 result = await self.llm_client.generate(
@@ -164,7 +176,10 @@ class GenerationService:
                     }
                 )
                 raise
-            observation.update(metadata={"result": "success"})
+            trace_update = {"metadata": {"result": "success"}}
+            if self.settings.LANGFUSE_CAPTURE_CONTENT:
+                trace_update["output"] = result
+            observation.update(**trace_update)
             return result
 
 

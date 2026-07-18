@@ -86,3 +86,39 @@ def test_tracing_drops_input_and_output_when_content_capture_is_disabled(
     assert "user_id" not in client.start_kwargs
     assert client.start_kwargs["metadata"] == {"request_id": "request-1"}
     assert client.observation.updates == [{"metadata": {"intent": "booking"}}]
+
+
+def test_tracing_forwards_input_and_output_when_content_capture_is_enabled(
+    monkeypatch,
+) -> None:
+    client = CapturedClient()
+    monkeypatch.setattr(tracing, "_client_for", lambda settings: client)
+    settings = Settings(
+        LANGFUSE_ENABLED=True,
+        LANGFUSE_PUBLIC_KEY="public",
+        LANGFUSE_SECRET_KEY="secret",
+        LANGFUSE_CAPTURE_CONTENT=True,
+        _env_file=None,
+    )
+
+    with tracing.start_observation(
+        "hera.chat",
+        settings=settings,
+        input={"message": "raw patient message"},
+        metadata={"request_id": "request-1", "nested": {"raw": "blocked"}},
+    ) as observation:
+        observation.update(
+            output={"response": "raw assistant answer"},
+            usage_details={"input": 10, "output": 5},
+            metadata={"intent": "booking"},
+        )
+
+    assert client.start_kwargs["input"] == {"message": "raw patient message"}
+    assert client.start_kwargs["metadata"] == {"request_id": "request-1"}
+    assert client.observation.updates == [
+        {
+            "output": {"response": "raw assistant answer"},
+            "usage_details": {"input": 10, "output": 5},
+            "metadata": {"intent": "booking"},
+        }
+    ]
