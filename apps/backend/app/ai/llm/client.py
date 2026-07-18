@@ -119,6 +119,15 @@ class OpenAILLMClient:
                 observation=None,
             )
 
+        trace_kwargs = {
+            "model": self.model,
+            "model_parameters": {
+                "temperature": temperature,
+                "max_tokens": max_tokens,
+            },
+        }
+        if self.settings.LANGFUSE_CAPTURE_CONTENT:
+            trace_kwargs["input"] = messages
         with start_observation(
             "hera.llm.provider_call",
             settings=self.settings,
@@ -127,8 +136,11 @@ class OpenAILLMClient:
                 "provider": self.provider_label,
                 "model": self.model,
                 "max_tokens": max_tokens,
-                "content_capture": False,
+                "content_capture": self.settings.LANGFUSE_CAPTURE_CONTENT,
+                "streaming": False,
+                "ttft_available": False,
             },
+            **trace_kwargs,
         ) as observation:
             try:
                 result = await self._generate_provider_response(
@@ -179,14 +191,18 @@ class OpenAILLMClient:
             input_tokens=usage.input_tokens,
             output_tokens=usage.output_tokens,
         )
+        content = _coerce_text(response.choices[0].message.content)
         if observation is not None:
-            observation.update(
-                metadata={
+            trace_update = {
+                "metadata": {
                     "input_tokens": usage.input_tokens,
                     "output_tokens": usage.output_tokens,
-                }
-            )
-        content = _coerce_text(response.choices[0].message.content)
+                },
+                "usage_details": _langfuse_usage_details(usage),
+            }
+            if self.settings is not None and self.settings.LANGFUSE_CAPTURE_CONTENT:
+                trace_update["output"] = content.strip()
+            observation.update(**trace_update)
         if not content.strip():
             error = RuntimeError("OpenAI returned an empty response.")
             record_upstream_failure(self.provider_label, error)
@@ -508,3 +524,15 @@ def _cacheable_response(value: str) -> bool:
     if stripped.startswith(SAFE_LLM_FALLBACK_PREFIX):
         return False
     return bool(stripped)
+
+
+def _langfuse_usage_details(usage) -> dict[str, int]:
+    details: dict[str, int] = {}
+    if usage.input_tokens > 0:
+        details["input"] = usage.input_tokens
+    if usage.output_tokens > 0:
+        details["output"] = usage.output_tokens
+    total_tokens = usage.input_tokens + usage.output_tokens
+    if total_tokens > 0:
+        details["total"] = total_tokens
+    return details

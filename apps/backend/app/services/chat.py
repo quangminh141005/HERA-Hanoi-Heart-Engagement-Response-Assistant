@@ -42,11 +42,15 @@ class ChatService:
             "configured_llm_model": self.settings.FPT_LLM_MODEL,
             "configured_embedding_model": self.settings.FPT_EMBEDDING_MODEL,
         }
+        trace_kwargs = {}
+        if self.settings.LANGFUSE_CAPTURE_CONTENT:
+            trace_kwargs["input"] = _chat_trace_input(request)
         with start_observation(
             "hera.chat_turn",
             settings=self.settings,
             as_type="agent",
             metadata=trace_metadata,
+            **trace_kwargs,
         ) as observation:
             result = await self.orchestrator.handle(
                 message=request.message,
@@ -115,8 +119,8 @@ class ChatService:
                     "emergency": bool(result.emergency),
                 },
             )
-            observation.update(
-                metadata={
+            trace_update = {
+                "metadata": {
                     **trace_metadata,
                     "intent": result.intent,
                     "response_type": result.response_type,
@@ -130,7 +134,10 @@ class ChatService:
                         result.metadata.get("decision_source", "unknown")
                     )[:64],
                 }
-            )
+            }
+            if self.settings.LANGFUSE_CAPTURE_CONTENT:
+                trace_update["output"] = _chat_trace_output(result)
+            observation.update(**trace_update)
             return response
 
     async def close(self) -> None:
@@ -152,6 +159,37 @@ def _safe_trace_channel(value: object) -> str:
     if isinstance(value, str) and value in _TRACE_CHANNELS:
         return value
     return "unknown"
+
+
+def _chat_trace_input(request: ChatRequest) -> dict[str, object]:
+    """Capture the user-visible chat request when trace content capture is enabled."""
+
+    return {
+        "message": request.message,
+        "conversation_id": request.conversation_id,
+        "locale": request.locale,
+        "channel": _safe_trace_channel(request.client_context.get("channel")),
+        "consent_to_store": request.consent_to_store,
+    }
+
+
+def _chat_trace_output(result) -> dict[str, object]:
+    """Capture the user-visible assistant result when explicitly enabled."""
+
+    return {
+        "response": result.response,
+        "conversation_id": result.conversation_id,
+        "response_type": result.response_type,
+        "intent": result.intent,
+        "grounded": bool(result.grounded),
+        "emergency": bool(result.emergency),
+        "data_classification": result.data_classification,
+        "citations": result.citations,
+        "warnings": result.warnings,
+        "structured_record_ids": result.structured_record_ids,
+        "actions": result.actions,
+        "requires_handoff": result.requires_handoff,
+    }
 
 
 _SAFE_INTENTS = frozenset(intent.value for intent in HospitalIntent)
@@ -196,4 +234,3 @@ def _execution_path(result) -> str:
     if result.response_type == "refusal_and_handoff":
         return "guardrail_or_handoff"
     return "deterministic_control_message"
-

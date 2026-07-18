@@ -198,6 +198,13 @@ class RetrievalService:
         if self.settings is None:
             return _rrf_fuse(lexical, semantic, top_k=top_k)
 
+        trace_kwargs = {}
+        if self.settings.LANGFUSE_CAPTURE_CONTENT:
+            trace_kwargs["input"] = {
+                "lexical_candidates": _chunk_trace_summary(lexical),
+                "semantic_candidates": _chunk_trace_summary(semantic),
+                "top_k": top_k,
+            }
         with start_observation(
             "hera.rag.rrf_fusion",
             settings=self.settings,
@@ -208,9 +215,13 @@ class RetrievalService:
                 "semantic_candidates": len(semantic),
                 "top_k": top_k,
             },
+            **trace_kwargs,
         ) as observation:
             fused = _rrf_fuse(lexical, semantic, top_k=top_k)
-            observation.update(metadata={"fused_candidates": len(fused)})
+            trace_update = {"metadata": {"fused_candidates": len(fused)}}
+            if self.settings.LANGFUSE_CAPTURE_CONTENT:
+                trace_update["output"] = {"fused_candidates": _chunk_trace_summary(fused)}
+            observation.update(**trace_update)
             return fused
 
     async def _embed_query(self, query: str) -> list[float]:
@@ -267,6 +278,15 @@ class RetrievalService:
         if self.settings is None:
             return await self.embedder.embed([query])
 
+        trace_kwargs = {
+            "model": self.embedding_model,
+            "model_parameters": {
+                "batch_size": 1,
+                "expected_dimensions": self.expected_embedding_dimensions,
+            },
+        }
+        if self.settings.LANGFUSE_CAPTURE_CONTENT:
+            trace_kwargs["input"] = [query]
         with start_observation(
             "hera.rag.embedding_query",
             settings=self.settings,
@@ -276,8 +296,9 @@ class RetrievalService:
                 "model": self.embedding_model,
                 "expected_dimensions": self.expected_embedding_dimensions,
                 "batch_size": 1,
-                "content_capture": False,
+                "content_capture": self.settings.LANGFUSE_CAPTURE_CONTENT,
             },
+            **trace_kwargs,
         ) as observation:
             try:
                 vectors = await self.embedder.embed([query])
@@ -290,6 +311,12 @@ class RetrievalService:
                 )
                 raise
             observation.update(
+                output={
+                    "batch_size": len(vectors),
+                    "dimensions": len(vectors[0]) if vectors and vectors[0] else 0,
+                }
+                if self.settings.LANGFUSE_CAPTURE_CONTENT
+                else None,
                 metadata={
                     "result": "success",
                     "dimensions": len(vectors[0]) if vectors and vectors[0] else 0,
@@ -336,6 +363,19 @@ def _ordered_chunks(ranked: dict[str, RetrievedChunk]) -> list[RetrievedChunk]:
         ranked.values(),
         key=lambda chunk: (-chunk.score, chunk.chunk_id),
     )
+
+
+def _chunk_trace_summary(chunks: list[RetrievedChunk]) -> list[dict[str, object]]:
+    return [
+        {
+            "chunk_id": chunk.chunk_id,
+            "score": round(chunk.score, 4),
+            "source_id": chunk.source.source_id,
+            "document_type": chunk.source.document_type,
+            "text": chunk.text,
+        }
+        for chunk in chunks
+    ]
 
 
 def _rrf_fuse(
@@ -403,4 +443,3 @@ def _normalize_exact_text(value: str) -> str:
 
     normalized = unicodedata.normalize("NFKC", value).casefold()
     return re.sub(r"[^\w]+", " ", normalized, flags=re.UNICODE).strip()
-
