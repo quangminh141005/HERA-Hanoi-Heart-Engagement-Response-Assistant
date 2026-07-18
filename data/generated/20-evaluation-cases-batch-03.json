@@ -9,7 +9,7 @@
     {
       "case_id": "EVAL-0041",
       "category": "structured_historical_service_price",
-      "query": "Theo bảng giá năm 2025, Loại 2: Các Khoa: Cơ-Xương-Khớp, Da liễu, Dị ứng, Tai-Mũi-Họng, Mắt, Răng Hàm Mặt, Ngoại, Phụ -Sản không mổ; YHDT/ PHCN cho nhóm người bệnh tổn thương tủy sống, tai biến mạch máu não, chấn thương sọ não. tại CS1 được ghi bao nhiêu?",
+      "query": "Theo bảng giá năm 2025, Ngày giường bệnh Nội khoa: Loại 2: Các Khoa: Cơ-Xương-Khớp, Da liễu, Dị ứng, Tai-Mũi-Họng, Mắt, Răng Hàm Mặt, Ngoại, Phụ -Sản không mổ; YHDT/ PHCN cho nhóm người bệnh tổn thương tủy sống, tai biến mạch máu não, chấn thương sọ não. tại CS1 được ghi bao nhiêu?",
       "expected_response_type": "structured_action",
       "expected_intent": "service_price",
       "required_source_fact_ids": [],
@@ -18,7 +18,7 @@
         "PRICE-2025-000007-CS1"
       ],
       "must_include": [
-        "Loại 2: Các Khoa: Cơ-Xương-Khớp, Da liễu, Dị ứng, Tai-Mũi-Họng, Mắt, Răng Hàm Mặt, Ngoại, Phụ -Sản không mổ; YHDT/ PHCN cho nhóm người bệnh tổn thương tủy sống, tai biến mạch máu não, chấn thương sọ não.",
+        "Ngày giường bệnh Nội khoa: Loại 2: Các Khoa: Cơ-Xương-Khớp, Da liễu, Dị ứng, Tai-Mũi-Họng, Mắt, Răng Hàm Mặt, Ngoại, Phụ -Sản không mổ; YHDT/ PHCN cho nhóm người bệnh tổn thương tủy sống, tai biến mạch máu não, chấn thương sọ não.",
         "273.800",
         "bảng giá năm 2025",
         "không phải xác nhận giá hiện hành"
@@ -41,7 +41,7 @@
     {
       "case_id": "EVAL-0042",
       "category": "structured_historical_service_price",
-      "query": "Theo bảng giá năm 2025, Loại 1 : Sau các phẫu thuật loại đặc biệt; Bỏng độ 3-4 trên 70% diện tích cơ thể tại CS1 được ghi bao nhiêu?",
+      "query": "Theo bảng giá năm 2025, Ngày giường bệnh ngoại khoa, bỏng; - Loại 1 : Sau các phẫu thuật loại đặc biệt; Bỏng độ 3-4 trên 70% diện tích cơ thể tại CS1 được ghi bao nhiêu?",
       "expected_response_type": "structured_action",
       "expected_intent": "service_price",
       "required_source_fact_ids": [],
@@ -50,7 +50,7 @@
         "PRICE-2025-000009-CS1"
       ],
       "must_include": [
-        "Loại 1 : Sau các phẫu thuật loại đặc biệt; Bỏng độ 3-4 trên 70% diện tích cơ thể",
+        "Ngày giường bệnh ngoại khoa, bỏng; - Loại 1 : Sau các phẫu thuật loại đặc biệt; Bỏng độ 3-4 trên 70% diện tích cơ thể",
         "400.400",
         "bảng giá năm 2025",
         "không phải xác nhận giá hiện hành"

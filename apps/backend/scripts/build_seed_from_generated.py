@@ -345,9 +345,7 @@ def _map_prices(
                 "dataset_label": label,
                 "display_name_folded": _fold(display),
                 "display_name_raw": display,
-                "display_name_search": " ".join(
-                    str(raw.get("display_name_search") or display).split()
-                ),
+                "display_name_search": _fold(raw.get("display_name_search") or display),
                 "equivalent_code": str(raw.get("ma_tuong_duong") or ""),
                 "historical": not bool(raw.get("is_current")),
                 "historical_lookup_eligible": bool(

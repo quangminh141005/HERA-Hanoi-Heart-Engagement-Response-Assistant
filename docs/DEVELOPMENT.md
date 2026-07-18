@@ -24,7 +24,7 @@ Giới hạn cố định:
 
 - PostgreSQL + pgvector là database duy nhất;
 - Redis là shared cache/rate-limit/ephemeral memory;
-- LLM `gpt-oss-120b`, embedding `Vietnamese_Embedding` 1024 chiều;
+- LLM generation `gpt-oss-120b`, guard/routing `gpt-oss-20b`, embedding `Vietnamese_Embedding` 1024 chiều, rerank `bge-reranker-v2-m3`;
 - không OCR, không ASR/TTS;
 - booking chỉ là hold prototype, không phải HIS confirmation;
 - không chẩn đoán hoặc tư vấn điều trị;
@@ -168,10 +168,16 @@ sync I/O trực tiếp trên event loop.
 FAQ/thông tin chung:
 
 ```text
-input guardrail -> emergency gate -> intent
--> embedding -> pgvector retrieval -> evidence validator
--> gpt-oss-120b -> output guardrail -> citation/handoff
+gpt-oss-20b guard/routing -> input guardrail if non-emergency
+-> embedding -> pgvector retrieval -> RRF -> bge-reranker-v2-m3
+-> evidence validator -> gpt-oss-120b -> output guardrail -> citation/handoff
 ```
+
+Giá dịch vụ, BHYT hộ gia đình và lịch bác sĩ không đi qua RAG text path ở trên.
+`gpt-oss-20b` chỉ route intent và trích slot; phần trả lời lấy từ PostgreSQL. Riêng
+bảng giá dùng candidate widening theo token đã normalize, BM25-style scoring trên
+tập candidate nhỏ, phrase/bigram continuity và trigram similarity. Cách này tránh
+hardcode danh sách chuyên khoa/dịch vụ nhưng vẫn không để model tự bịa số tiền.
 
 Không gọi LLM nếu exact structured/template path đã đủ. Không trả factual answer khi
 evidence validator không chấp nhận nguồn.

@@ -280,10 +280,15 @@ class StructuredDataService:
             coverage=coverage,
         )
 
-    def chat_service_price(self, message: str) -> StructuredChatResult:
-        facility_code = _extract_facility_code(message)
+    def chat_service_price(
+        self,
+        message: str,
+        query_override: str | None = None,
+        facility_code_override: str | None = None,
+    ) -> StructuredChatResult:
+        facility_code = facility_code_override or _extract_facility_code(message)
         rows = self.lookup_service_prices(
-            query=_extract_search_phrase(message),
+            query=query_override or _extract_search_phrase(message),
             facility_code=facility_code,
             as_of_date=None,
         )
@@ -301,14 +306,21 @@ class StructuredDataService:
                 data_classification="official_current",
                 warnings=(rows.warning,),
             )
-        if rows.requires_clarification:
+        if rows.requires_clarification and not _top_price_record_is_safe(rows.records):
             relevant = [record for record in rows.records if record.exact_match]
             relevant = relevant or rows.records
+            summary = _summarize_price_choices(relevant)
+            choices_text = (
+                f" Các dòng gần nhất trong dữ liệu gồm: {summary}."
+                if summary
+                else ""
+            )
             return StructuredChatResult(
                 intent="service_price_current",
                 response=(
                     "HERA tìm thấy nhiều dòng giá phù hợp nhưng không thể chọn an toàn "
-                    "một mức duy nhất. Vui lòng chọn đúng cơ sở hoặc đối chiếu các "
+                    "một mức duy nhất."
+                    f"{choices_text} Vui lòng chọn đúng cơ sở hoặc đối chiếu các "
                     "dòng dịch vụ trong bảng kết quả."
                 ),
                 citations=rows.citations,
@@ -519,8 +531,55 @@ def _price_records_require_clarification(
         choices = {
             (record.facility_code, record.amount_vnd) for record in exact_records
         }
-        return len(choices) > 1
+        return len(choices) > 1 and len({amount for _, amount in choices}) > 1
+    if not exact_records:
+        service_choices = {
+            (_fold_text(record.display_name), record.amount_vnd)
+            for record in candidates
+        }
+        return len({name for name, _ in service_choices}) > 1 and len(
+            {amount for _, amount in service_choices}
+        ) > 1
     return False
+
+
+def _top_price_record_is_safe(records: list[ServicePriceRecord]) -> bool:
+    """Allow a clear top service even when SQL returned lower-ranked neighbors."""
+
+    if not records:
+        return False
+    top = records[0]
+    if top.name_similarity < 0.65 and not top.exact_match:
+        return False
+    same_service = [
+        record for record in records if record.service_record_id == top.service_record_id
+    ]
+    if not same_service:
+        return False
+    top_amounts = {record.amount_vnd for record in same_service}
+    if len(top_amounts) != 1:
+        return False
+    competing = [
+        record
+        for record in records
+        if record.service_record_id != top.service_record_id
+        and record.name_similarity >= top.name_similarity - 0.05
+    ]
+    return not competing
+
+
+def _summarize_price_choices(records: list[ServicePriceRecord], *, limit: int = 4) -> str:
+    """Create a concise grounded summary of candidate price rows."""
+
+    choices: dict[tuple[str, int], set[str]] = {}
+    for record in records:
+        key = (record.display_name, record.amount_vnd)
+        choices.setdefault(key, set()).add(record.facility_code)
+    parts: list[str] = []
+    for (display_name, amount_vnd), facilities in list(choices.items())[:limit]:
+        facility_text = "/".join(sorted(facilities))
+        parts.append(f"{display_name} ({facility_text}: {_format_vnd(amount_vnd)} VND)")
+    return "; ".join(parts)
 
 
 def _extract_facility_code(message: str) -> str | None:
@@ -537,43 +596,100 @@ def _format_vnd(value: int) -> str:
 
 
 def _extract_search_phrase(message: str) -> str:
-    lowered = message.lower()
+    folded = _fold_text(message)
+    price_focused = _focus_price_query_region(folded)
+    if price_focused:
+        folded = price_focused
     canonical_pairs = (
-        ("khám bệnh", "khám bệnh"),
-        ("kham benh", "khám bệnh"),
-        ("bảo hiểm y tế", "bảo hiểm y tế"),
-        ("bao hiem y te", "bảo hiểm y tế"),
+        ("kham benh", "kham benh"),
+        ("bao hiem y te", "bao hiem y te"),
     )
     for needle, result in canonical_pairs:
-        if needle in lowered:
+        if needle in folded:
             return result
 
     cleanup_terms = (
-        "giá",
-        "gia",
-        "tra giá",
+        "ban co",
+        "ban cho minh",
+        "cho minh",
+        "minh can biet",
+        "neu lam",
+        "theo du lieu",
+        "bang gia ghi muc nao",
+        "bang gia",
+        "muc nao",
+        "khoang",
+        "gia tien",
         "tra gia",
-        "chi phí",
         "chi phi",
-        "cơ sở 1",
+        "bao nhieu tien",
+        "bao nhieu",
         "co so 1",
-        "cơ sở 2",
         "co so 2",
-        "là bao nhiêu",
+        "cs1",
+        "cs2",
+        "tai cs1",
+        "tai cs2",
+        "o cs1",
+        "o cs2",
         "la bao nhieu",
-        "còn",
-        "con",
-        "thì sao",
         "thi sao",
-        "dịch vụ đó",
+        "thi",
         "dich vu do",
+        "dich vu",
+        "gia",
+        "tien",
+        "cho",
+        "khong",
+        "nhe",
     )
-    cleaned = lowered
+    cleaned = folded
     for term in cleanup_terms:
-        cleaned = cleaned.replace(term, " ")
+        cleaned = re.sub(rf"\b{re.escape(term)}\b", " ", cleaned)
+    cleaned = re.sub(r"[^0-9a-zA-Z]+", " ", cleaned)
     collapsed = " ".join(cleaned.split())
     return collapsed or message.strip()
 
+
+def _focus_price_query_region(folded_message: str) -> str | None:
+    """Extract the probable service-name span from a price question."""
+
+    markers = (
+        "muon biet gia",
+        "can biet gia",
+        "gia tien",
+        "chi phi",
+        "muc gia",
+        "don gia",
+        "gia",
+    )
+    candidates: list[tuple[int, str]] = []
+    for marker in markers:
+        index = folded_message.find(marker)
+        if index < 0:
+            continue
+        prefix = folded_message[:index].strip()
+        if len(prefix) > 20 and marker not in {"muon biet gia", "can biet gia"}:
+            continue
+        candidates.append((index + len(marker), marker))
+    if not candidates:
+        return None
+    region = folded_message[min(start for start, _ in candidates) :]
+    tail_markers = (
+        " nhung ",
+        " dong thoi ",
+        " truoc het ",
+        " sau do ",
+        " va me ",
+        " va toi ",
+    )
+    cut_at = len(region)
+    for marker in tail_markers:
+        index = region.find(marker)
+        if index >= 0:
+            cut_at = min(cut_at, index)
+    region = region[:cut_at].strip()
+    return region or None
 
 def _extract_as_of_date(message: str) -> date | None:
     iso = re.search(r"\b(20\d{2})[-/](\d{1,2})[-/](\d{1,2})\b", message)
@@ -625,22 +741,47 @@ def _fold_text(value: str) -> str:
 
 def _extract_doctor_query(message: str) -> str | None:
     patterns = (
-        r"bác sĩ\s+([^,.0-9]+)",
-        r"bac si\s+([^,.0-9]+)",
-        r"\bbs\.?\s*([^,.0-9]+)",
+        r"bác sĩ\s+(?:bsnt\.?|bs\.?|ths\.?\s*bs\.?|ts\.?\s*bs\.?)?\s*([^,.]+)",
+        r"bac si\s+(?:bsnt\.?|bs\.?|ths\.?\s*bs\.?|ts\.?\s*bs\.?)?\s*([^,.]+)",
+        r"bác sĩ\s+([^,.]+)",
+        r"bac si\s+([^,.]+)",
+        r"\bbs(?:nt|cki|ckii)?\.?\s*([^,.]+)",
+        r"\bths\.?\s*bs\.?\s*([^,.]+)",
     )
     rejected_prefixes = ("cơ sở", "co so", "ngày", "ngay", "tuần", "tuan")
     for pattern in patterns:
         match = re.search(pattern, message, re.IGNORECASE)
         if match:
-            candidate = match.group(1).strip()
-            folded = candidate.lower()
+            candidate = _trim_doctor_candidate(match.group(1).strip())
+            folded = _fold_text(candidate)
             if any(folded.startswith(prefix) for prefix in rejected_prefixes):
                 return None
             if len(candidate.split()) < 2:
                 return None
             return candidate
     return None
+
+
+def _trim_doctor_candidate(value: str) -> str:
+    folded = _fold_text(value)
+    cut_markers = (
+        " co lich",
+        " kham tai",
+        " co kham",
+        " ngay ",
+        " o cs",
+        " o co so",
+        " tai cs",
+        " tai co so",
+    )
+    cut_at = len(value)
+    for marker in cut_markers:
+        index = folded.find(marker)
+        if index >= 0:
+            cut_at = min(cut_at, index)
+    candidate = value[:cut_at].strip(" -:;()")
+    candidate = re.sub(r"\s+", " ", candidate)
+    return candidate
 
 
 def _extract_room_query(message: str) -> str | None:

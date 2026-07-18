@@ -18,7 +18,11 @@ const PRICE_SUPERSEDING_URL = "https://vbpl.vn/hanoi/Pages/ivbpq-toanvan.aspx?It
 const BHXH_2026_URL = "https://baohiemxahoi.gov.vn/tintuc/Pages/cai-cach-thu-tuc-hanh-chinh.aspx?CateID=0&ItemID=26780&OtItem=date";
 const SCHEDULE_2026_07_13_URL = "https://benhvientimhanoi.vn/vi/chi-tiet-lich-kham/lich-lam-viec-cua-bac-sy/lich-kham-benh-cua-cac-bac-si-benh-vien-tim-ha-noi-tuan-tu-13d07d2026-19d07d2026";
 
-const PRICE_SOURCE_FILE = path.join(DATA_DIR, "gia_dich_vu_ky_thuat_2025.json");
+const PRICE_LEGACY_SOURCE_FILE = path.join(DATA_DIR, "gia_dich_vu_ky_thuat_2025.json");
+const PRICE_RAG_SOURCE_FILE = path.join(DATA_DIR, "gia_dich_vu_ky_thuat_2025_rag.json");
+const PRICE_SOURCE_FILE = fs.existsSync(PRICE_RAG_SOURCE_FILE)
+  ? PRICE_RAG_SOURCE_FILE
+  : PRICE_LEGACY_SOURCE_FILE;
 const BHYT_SOURCE_FILE = path.join(DATA_DIR, "BHYT.json");
 const OFFICIAL_KNOWLEDGE_FILE = path.join(DATA_DIR, "source", "official-knowledge.json");
 const TEST_FIXTURE_DIR = path.join(DATA_DIR, "test-fixtures");
@@ -548,8 +552,41 @@ assert(previousSourcePack, "Cannot find the reusable official source/fact seed p
 const generationSpec = readJson(GENERATION_SPEC_FILE);
 assert(typeof generationSpec.spec_version === "string", "data-generation-spec.json must declare spec_version");
 
-const priceRaw = readJson(PRICE_SOURCE_FILE);
+const priceInputRaw = readJson(PRICE_SOURCE_FILE);
 const bhytRaw = readJson(BHYT_SOURCE_FILE);
+function priceAmountDisplayFromRag(value) {
+  if (!value || value.amount_vnd === null || value.amount_vnd === undefined) return "";
+  return String(value.display || value.amount_vnd);
+}
+
+function normalizePriceRows(rawRows) {
+  assert(Array.isArray(rawRows), "Price source must contain an array");
+  return rawRows.map((row) => {
+    if (row && row.service && row.prices && row.metadata) {
+      const serviceName = normalizeWhitespace(row.service.full_name || row.service.name || "");
+      return {
+        page: row.source?.page ?? "",
+        section: row.metadata.section || "",
+        stt: row.metadata.stt || "",
+        ma_tuong_duong: row.metadata.ma_tuong_duong || "",
+        dich_vu_ky_thuat: serviceName,
+        co_so_1: priceAmountDisplayFromRag(row.prices.co_so_1),
+        co_so_2: priceAmountDisplayFromRag(row.prices.co_so_2),
+        ghi_chu: normalizeWhitespace(row.service.note || ""),
+        display_name_search: normalizeWhitespace([
+          serviceName,
+          row.metadata.parent_name || "",
+          ...(Array.isArray(row.query_variants) ? row.query_variants : []),
+        ].join(" ")),
+        source_rag_id: row.rag_id || "",
+        item_type: row.metadata.item_type || "",
+      };
+    }
+    return row;
+  });
+}
+
+const priceRaw = normalizePriceRows(priceInputRaw);
 assert(Array.isArray(priceRaw) && priceRaw.length === 2946, "Expected 2,946 price rows");
 
 const priceSourceHash = sha256File(PRICE_SOURCE_FILE);
@@ -584,7 +621,7 @@ const priceRecords = priceRaw.map((rawRow, index) => {
     co_so_1: rawRow.co_so_1,
     co_so_2: rawRow.co_so_2,
     ghi_chu: rawRow.ghi_chu,
-    display_name_search: normalizeWhitespace(rawRow.dich_vu_ky_thuat),
+    display_name_search: normalizeWhitespace(rawRow.display_name_search || rawRow.dich_vu_ky_thuat),
     note_search: normalizeWhitespace(rawRow.ghi_chu),
     facility_prices: facilityPrices,
     missing_facility_price_codes: [["CS1", "co_so_1"], ["CS2", "co_so_2"]]

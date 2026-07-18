@@ -83,6 +83,7 @@ jobs:
           python -m pip install -r apps/backend/requirements.txt -r requirements-dev.txt
       - name: Static checks
         run: |
+          python scripts/check_text_encoding.py --root .
           python -m compileall -q apps/backend/app apps/backend/scripts
           python -m ruff check apps/backend/app apps/backend/tests apps/backend/scripts scripts
       - name: Verify checksum-pinned PostgreSQL seed archive

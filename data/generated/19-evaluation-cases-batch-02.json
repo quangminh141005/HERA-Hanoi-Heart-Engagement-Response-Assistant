@@ -621,7 +621,7 @@
     {
       "case_id": "EVAL-0040",
       "category": "structured_historical_service_price",
-      "query": "Theo bảng giá năm 2025, Loại 1: Các khoa: Truyền nhiễm, Hô hấp, Huyết học, Ung thư, Tim mạch, Tâm thần, Thần kinh, Lão, Nhi, Tiêu hoá, Thận học; Nội tiết; Dị ứng (đối với bệnh nhân dị ứng thuốc nặng: Stevens Jonhson/ Lyell) tại CS1 được ghi bao nhiêu?",
+      "query": "Theo bảng giá năm 2025, Ngày giường bệnh Nội khoa: Loại 1: Các khoa: Truyền nhiễm, Hô hấp, Huyết học, Ung thư, Tim mạch, Tâm thần, Thần kinh, Lão, Nhi, Tiêu hoá, Thận học; Nội tiết; Dị ứng (đối với bệnh nhân dị ứng thuốc nặng: Stevens Jonhson/ Lyell) tại CS1 được ghi bao nhiêu?",
       "expected_response_type": "structured_action",
       "expected_intent": "service_price",
       "required_source_fact_ids": [],
@@ -630,7 +630,7 @@
         "PRICE-2025-000006-CS1"
       ],
       "must_include": [
-        "Loại 1: Các khoa: Truyền nhiễm, Hô hấp, Huyết học, Ung thư, Tim mạch, Tâm thần, Thần kinh, Lão, Nhi, Tiêu hoá, Thận học; Nội tiết; Dị ứng (đối với bệnh nhân dị ứng thuốc nặng: Stevens Jonhson/ Lyell)",
+        "Ngày giường bệnh Nội khoa: Loại 1: Các khoa: Truyền nhiễm, Hô hấp, Huyết học, Ung thư, Tim mạch, Tâm thần, Thần kinh, Lão, Nhi, Tiêu hoá, Thận học; Nội tiết; Dị ứng (đối với bệnh nhân dị ứng thuốc nặng: Stevens Jonhson/ Lyell)",
         "305.500",
         "bảng giá năm 2025",
         "không phải xác nhận giá hiện hành"

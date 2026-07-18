@@ -76,8 +76,8 @@
       "retrieval_eligible": false,
       "structured_historical_lookup_eligible": true,
       "retrieval_eligible_for_current_price": false,
-      "content_file": "data/gia_dich_vu_ky_thuat_2025.json",
-      "content_hash": "1af310c0fb7f502de06cca82771d7ae88a58ad4083da597c221ce2d7b960e440",
+      "content_file": "data/gia_dich_vu_ky_thuat_2025_rag.json",
+      "content_hash": "437c1600965249f65bbce341869cdea0fdd65d55e7f47a9d1df43188e43550c9",
       "is_current": false,
       "superseded_by_source_id": "SRC-PRICE-NQ91-2026",
       "notes": "Chỉ dùng để tra cứu lịch sử với nhãn bảng giá 2025. Không dùng để trả lời giá hiện hành hoặc tính số tiền người bệnh phải trả."
