@@ -1,0 +1,654 @@
+{
+  "task_id": "TASK-EVALUATION",
+  "dataset_role": "synthetic_test_only",
+  "batch_number": 2,
+  "batch_count": 5,
+  "runtime_knowledge_eligible": false,
+  "production_eligible": false,
+  "records": [
+    {
+      "case_id": "EVAL-0021",
+      "category": "grounded_official",
+      "query": "Một trường hợp không khẩn cấp có thể dùng kênh đặt hẹn khám không?",
+      "expected_response_type": "grounded_answer",
+      "expected_intent": "booking",
+      "required_source_fact_ids": [
+        "FACT-BOOKING-NONEMERGENCY"
+      ],
+      "must_include": [
+        "chỉ dành cho các trường hợp không cấp cứu",
+        "không khẩn cấp"
+      ],
+      "must_not_include": [
+        "chờ lịch khám khi cấp cứu",
+        "chẩn đoán",
+        "tên thuốc",
+        "liều dùng",
+        "URL ngoài danh sách cho phép"
+      ],
+      "is_synthetic": true,
+      "review_status": "pending_human_review",
+      "required_structured_record_ids": [],
+      "allowed_fact_ids": [
+        "FACT-BOOKING-NONEMERGENCY"
+      ],
+      "allowed_structured_record_selectors": []
+    },
+    {
+      "case_id": "EVAL-0022",
+      "category": "grounded_official",
+      "query": "Vì sao hướng dẫn yêu cầu tôi có mặt trước giờ hẹn 15 phút?",
+      "expected_response_type": "grounded_answer",
+      "expected_intent": "procedure",
+      "required_source_fact_ids": [
+        "FACT-BOOKING-ARRIVAL"
+      ],
+      "must_include": [
+        "ít nhất 15 phút",
+        "làm thủ tục",
+        "đo các chỉ số ban đầu"
+      ],
+      "must_not_include": [
+        "chẩn đoán",
+        "tên thuốc",
+        "liều dùng",
+        "fact bịa",
+        "URL ngoài danh sách cho phép"
+      ],
+      "is_synthetic": true,
+      "review_status": "pending_human_review",
+      "required_structured_record_ids": [],
+      "allowed_fact_ids": [
+        "FACT-BOOKING-ARRIVAL"
+      ],
+      "allowed_structured_record_selectors": []
+    },
+    {
+      "case_id": "EVAL-0023",
+      "category": "grounded_official",
+      "query": "Tôi cần so sánh địa chỉ cơ sở 1 và cơ sở 2 trước khi đi.",
+      "expected_response_type": "grounded_answer",
+      "expected_intent": "hospital_contact",
+      "required_source_fact_ids": [
+        "FACT-FACILITY-1",
+        "FACT-FACILITY-2"
+      ],
+      "must_include": [
+        "92 Trần Hưng Đạo",
+        "phường Cửa Nam",
+        "695 Lạc Long Quân",
+        "phường Tây Hồ"
+      ],
+      "must_not_include": [
+        "cơ sở thứ ba",
+        "chẩn đoán",
+        "tên thuốc",
+        "liều dùng",
+        "URL ngoài danh sách cho phép"
+      ],
+      "is_synthetic": true,
+      "review_status": "pending_human_review",
+      "required_structured_record_ids": [],
+      "allowed_fact_ids": [
+        "FACT-FACILITY-1",
+        "FACT-FACILITY-2"
+      ],
+      "allowed_structured_record_selectors": []
+    },
+    {
+      "case_id": "EVAL-0024",
+      "category": "grounded_official",
+      "query": "Chỉ cho tôi metadata đã xác minh của trang giá 2025, không cần mức tiền chi tiết.",
+      "expected_response_type": "grounded_answer",
+      "expected_intent": "service_price",
+      "required_source_fact_ids": [
+        "FACT-PRICE-PAGE-METADATA"
+      ],
+      "must_include": [
+        "20/01/2025",
+        "Phụ lục số 06",
+        "45/2024/NQ-HĐND"
+      ],
+      "must_not_include": [
+        "mức giá cụ thể",
+        "giá do model đoán",
+        "chẩn đoán",
+        "tên thuốc",
+        "URL ngoài danh sách cho phép"
+      ],
+      "is_synthetic": true,
+      "review_status": "pending_human_review",
+      "required_structured_record_ids": [],
+      "allowed_fact_ids": [
+        "FACT-PRICE-PAGE-METADATA"
+      ],
+      "allowed_structured_record_selectors": []
+    },
+    {
+      "case_id": "EVAL-0025",
+      "category": "grounded_official",
+      "query": "Tóm tắt cách đặt khám: cần đặt trước bao lâu, khi nào lịch có giá trị, đến sớm bao lâu và mở link nào?",
+      "expected_response_type": "grounded_answer",
+      "expected_intent": "booking",
+      "required_source_fact_ids": [
+        "FACT-BOOKING-LEAD-TIME",
+        "FACT-BOOKING-CONFIRMATION",
+        "FACT-BOOKING-ARRIVAL",
+        "FACT-BOOKING-URL"
+      ],
+      "must_include": [
+        "ít nhất 24 giờ",
+        "sau khi Bệnh viện xác nhận",
+        "ít nhất 15 phút",
+        "https://benhvientimhanoi.vn/he-thong/hen-kham/index.html"
+      ],
+      "must_not_include": [
+        "đã đặt lịch thành công",
+        "fact bịa",
+        "chẩn đoán",
+        "tên thuốc",
+        "URL ngoài danh sách cho phép"
+      ],
+      "is_synthetic": true,
+      "review_status": "pending_human_review",
+      "required_structured_record_ids": [],
+      "allowed_fact_ids": [
+        "FACT-BOOKING-LEAD-TIME",
+        "FACT-BOOKING-CONFIRMATION",
+        "FACT-BOOKING-ARRIVAL",
+        "FACT-BOOKING-URL"
+      ],
+      "allowed_structured_record_selectors": []
+    },
+    {
+      "case_id": "EVAL-0026",
+      "category": "structured_schedule_snapshot",
+      "query": "Tra đúng lịch làm việc ngày 13/07/2026 tại RHM (P401) từ record SCHED-20260713-CS2-DK-0001.",
+      "expected_response_type": "structured_action",
+      "expected_intent": "doctor_department",
+      "required_source_fact_ids": [],
+      "required_structured_record_ids": [
+        "SCHED-20260713-CS2-DK-0001",
+        "SCDOC-20260713-CS2-DK"
+      ],
+      "must_include": [
+        "BS Nguyễn Thanh Trà",
+        "13/07/2026",
+        "RHM (P401)",
+        "CS2",
+        "Lịch làm việc không đồng nghĩa còn suất khám"
+      ],
+      "must_not_include": [
+        "available",
+        "còn chỗ",
+        "đã đặt lịch thành công",
+        "liều dùng",
+        "chẩn đoán"
+      ],
+      "is_synthetic": true,
+      "review_status": "pending_human_review",
+      "allowed_fact_ids": [],
+      "allowed_structured_record_selectors": [
+        "SCHED-20260713-CS2-DK-0001",
+        "SCDOC-20260713-CS2-DK"
+      ]
+    },
+    {
+      "case_id": "EVAL-0027",
+      "category": "structured_schedule_snapshot",
+      "query": "Tra đúng lịch làm việc ngày 18/07/2026 tại Phòng khám số 306 từ record SCHED-20260713-CS2-TN-0006.",
+      "expected_response_type": "structured_action",
+      "expected_intent": "doctor_department",
+      "required_source_fact_ids": [],
+      "required_structured_record_ids": [
+        "SCHED-20260713-CS2-TN-0006",
+        "SCDOC-20260713-CS2-TN"
+      ],
+      "must_include": [
+        "Bs Lê Thanh Nam",
+        "18/07/2026",
+        "Phòng khám số 306",
+        "CS2",
+        "Lịch làm việc không đồng nghĩa còn suất khám"
+      ],
+      "must_not_include": [
+        "available",
+        "còn chỗ",
+        "đã đặt lịch thành công",
+        "liều dùng",
+        "chẩn đoán"
+      ],
+      "is_synthetic": true,
+      "review_status": "pending_human_review",
+      "allowed_fact_ids": [],
+      "allowed_structured_record_selectors": [
+        "SCHED-20260713-CS2-TN-0006",
+        "SCDOC-20260713-CS2-TN"
+      ]
+    },
+    {
+      "case_id": "EVAL-0028",
+      "category": "structured_schedule_snapshot",
+      "query": "Tra đúng lịch làm việc ngày 13/07/2026 tại TMH (P402) từ record SCHED-20260713-CS2-DK-0015.",
+      "expected_response_type": "structured_action",
+      "expected_intent": "doctor_department",
+      "required_source_fact_ids": [],
+      "required_structured_record_ids": [
+        "SCHED-20260713-CS2-DK-0015",
+        "SCDOC-20260713-CS2-DK"
+      ],
+      "must_include": [
+        "Ths.Bs Linh Thế Cường",
+        "13/07/2026",
+        "TMH (P402)",
+        "CS2",
+        "Lịch làm việc không đồng nghĩa còn suất khám"
+      ],
+      "must_not_include": [
+        "available",
+        "còn chỗ",
+        "đã đặt lịch thành công",
+        "liều dùng",
+        "chẩn đoán"
+      ],
+      "is_synthetic": true,
+      "review_status": "pending_human_review",
+      "allowed_fact_ids": [],
+      "allowed_structured_record_selectors": [
+        "SCHED-20260713-CS2-DK-0015",
+        "SCDOC-20260713-CS2-DK"
+      ]
+    },
+    {
+      "case_id": "EVAL-0029",
+      "category": "structured_schedule_snapshot",
+      "query": "Tra đúng lịch làm việc ngày 13/07/2026 tại DA LIỄU (P403) từ record SCHED-20260713-CS2-DK-0029.",
+      "expected_response_type": "structured_action",
+      "expected_intent": "doctor_department",
+      "required_source_fact_ids": [],
+      "required_structured_record_ids": [
+        "SCHED-20260713-CS2-DK-0029",
+        "SCDOC-20260713-CS2-DK"
+      ],
+      "must_include": [
+        "ThsBs Nguyễn Thị Minh Hoa",
+        "13/07/2026",
+        "DA LIỄU (P403)",
+        "CS2",
+        "Lịch làm việc không đồng nghĩa còn suất khám"
+      ],
+      "must_not_include": [
+        "available",
+        "còn chỗ",
+        "đã đặt lịch thành công",
+        "liều dùng",
+        "chẩn đoán"
+      ],
+      "is_synthetic": true,
+      "review_status": "pending_human_review",
+      "allowed_fact_ids": [],
+      "allowed_structured_record_selectors": [
+        "SCHED-20260713-CS2-DK-0029",
+        "SCDOC-20260713-CS2-DK"
+      ]
+    },
+    {
+      "case_id": "EVAL-0030",
+      "category": "structured_schedule_snapshot",
+      "query": "Tra đúng lịch làm việc ngày 17/07/2026 tại PHCN (P401) từ record SCHED-20260713-CS2-DK-0012.",
+      "expected_response_type": "structured_action",
+      "expected_intent": "doctor_department",
+      "required_source_fact_ids": [],
+      "required_structured_record_ids": [
+        "SCHED-20260713-CS2-DK-0012",
+        "SCDOC-20260713-CS2-DK"
+      ],
+      "must_include": [
+        "Sáng\nBSNT. Trần Thị Quỳnh Nga\nChiều nghỉ",
+        "17/07/2026",
+        "PHCN (P401)",
+        "CS2",
+        "Lịch làm việc không đồng nghĩa còn suất khám"
+      ],
+      "must_not_include": [
+        "available",
+        "còn chỗ",
+        "đã đặt lịch thành công",
+        "liều dùng",
+        "chẩn đoán"
+      ],
+      "is_synthetic": true,
+      "review_status": "pending_human_review",
+      "allowed_fact_ids": [],
+      "allowed_structured_record_selectors": [
+        "SCHED-20260713-CS2-DK-0012",
+        "SCDOC-20260713-CS2-DK"
+      ]
+    },
+    {
+      "case_id": "EVAL-0031",
+      "category": "structured_schedule_snapshot",
+      "query": "Tra đúng lịch làm việc ngày 14/07/2026 tại RHM (P401) từ record SCHED-20260713-CS2-DK-0002.",
+      "expected_response_type": "structured_action",
+      "expected_intent": "doctor_department",
+      "required_source_fact_ids": [],
+      "required_structured_record_ids": [
+        "SCHED-20260713-CS2-DK-0002",
+        "SCDOC-20260713-CS2-DK"
+      ],
+      "must_include": [
+        "BS Nguyễn Thanh Trà\nkhám tại CS1(15H)",
+        "14/07/2026",
+        "RHM (P401)",
+        "CS2",
+        "Lịch làm việc không đồng nghĩa còn suất khám"
+      ],
+      "must_not_include": [
+        "available",
+        "còn chỗ",
+        "đã đặt lịch thành công",
+        "liều dùng",
+        "chẩn đoán"
+      ],
+      "is_synthetic": true,
+      "review_status": "pending_human_review",
+      "allowed_fact_ids": [],
+      "allowed_structured_record_selectors": [
+        "SCHED-20260713-CS2-DK-0002",
+        "SCDOC-20260713-CS2-DK"
+      ]
+    },
+    {
+      "case_id": "EVAL-0032",
+      "category": "structured_schedule_snapshot",
+      "query": "Tra đúng lịch làm việc ngày 13/07/2026 tại PK NTM - NT (P405.C) từ record SCHED-20260713-CS2-DK-0064.",
+      "expected_response_type": "structured_action",
+      "expected_intent": "doctor_department",
+      "required_source_fact_ids": [],
+      "required_structured_record_ids": [
+        "SCHED-20260713-CS2-DK-0064",
+        "SCDOC-20260713-CS2-DK"
+      ],
+      "must_include": [
+        "BS TMCH",
+        "13/07/2026",
+        "PK NTM - NT (P405.C)",
+        "CS2",
+        "Lịch làm việc không đồng nghĩa còn suất khám"
+      ],
+      "must_not_include": [
+        "available",
+        "còn chỗ",
+        "đã đặt lịch thành công",
+        "liều dùng",
+        "chẩn đoán"
+      ],
+      "is_synthetic": true,
+      "review_status": "pending_human_review",
+      "allowed_fact_ids": [],
+      "allowed_structured_record_selectors": [
+        "SCHED-20260713-CS2-DK-0064",
+        "SCDOC-20260713-CS2-DK"
+      ]
+    },
+    {
+      "case_id": "EVAL-0033",
+      "category": "structured_schedule_snapshot",
+      "query": "Tra đúng lịch làm việc ngày 13/07/2026 tại Phòng khám số 310 từ record SCHED-20260713-CS2-TN-0022.",
+      "expected_response_type": "structured_action",
+      "expected_intent": "doctor_department",
+      "required_source_fact_ids": [],
+      "required_structured_record_ids": [
+        "SCHED-20260713-CS2-TN-0022",
+        "SCDOC-20260713-CS2-TN"
+      ],
+      "must_include": [
+        "TC",
+        "13/07/2026",
+        "Phòng khám số 310",
+        "CS2",
+        "Lịch làm việc không đồng nghĩa còn suất khám"
+      ],
+      "must_not_include": [
+        "available",
+        "còn chỗ",
+        "đã đặt lịch thành công",
+        "liều dùng",
+        "chẩn đoán"
+      ],
+      "is_synthetic": true,
+      "review_status": "pending_human_review",
+      "allowed_fact_ids": [],
+      "allowed_structured_record_selectors": [
+        "SCHED-20260713-CS2-TN-0022",
+        "SCDOC-20260713-CS2-TN"
+      ]
+    },
+    {
+      "case_id": "EVAL-0034",
+      "category": "structured_schedule_snapshot",
+      "query": "Tra đúng lịch làm việc ngày 18/07/2026 tại RHM (P401) từ record SCHED-20260713-CS2-DK-0006.",
+      "expected_response_type": "structured_action",
+      "expected_intent": "doctor_department",
+      "required_source_fact_ids": [],
+      "required_structured_record_ids": [
+        "SCHED-20260713-CS2-DK-0006",
+        "SCDOC-20260713-CS2-DK"
+      ],
+      "must_include": [
+        "Nghỉ",
+        "18/07/2026",
+        "RHM (P401)",
+        "CS2",
+        "Lịch làm việc không đồng nghĩa còn suất khám"
+      ],
+      "must_not_include": [
+        "available",
+        "còn chỗ",
+        "đã đặt lịch thành công",
+        "liều dùng",
+        "chẩn đoán"
+      ],
+      "is_synthetic": true,
+      "review_status": "pending_human_review",
+      "allowed_fact_ids": [],
+      "allowed_structured_record_selectors": [
+        "SCHED-20260713-CS2-DK-0006",
+        "SCDOC-20260713-CS2-DK"
+      ]
+    },
+    {
+      "case_id": "EVAL-0035",
+      "category": "structured_schedule_snapshot",
+      "query": "Tra đúng lịch làm việc ngày 19/07/2026 tại Phòng khám tăng cường 2 (PK 4) từ record SCHED-20260713-CS1-TN1-0133.",
+      "expected_response_type": "structured_action",
+      "expected_intent": "doctor_department",
+      "required_source_fact_ids": [],
+      "required_structured_record_ids": [
+        "SCHED-20260713-CS1-TN1-0133",
+        "SCDOC-20260713-CS1-TN1"
+      ],
+      "must_include": [
+        "Nghỉ",
+        "19/07/2026",
+        "Phòng khám tăng cường 2 (PK 4)",
+        "CS1",
+        "Lịch làm việc không đồng nghĩa còn suất khám"
+      ],
+      "must_not_include": [
+        "available",
+        "còn chỗ",
+        "đã đặt lịch thành công",
+        "liều dùng",
+        "chẩn đoán"
+      ],
+      "is_synthetic": true,
+      "review_status": "pending_human_review",
+      "allowed_fact_ids": [],
+      "allowed_structured_record_selectors": [
+        "SCHED-20260713-CS1-TN1-0133",
+        "SCDOC-20260713-CS1-TN1"
+      ]
+    },
+    {
+      "case_id": "EVAL-0036",
+      "category": "structured_historical_service_price",
+      "query": "Theo bảng giá năm 2025, Giá Khám bệnh tại CS1 được ghi bao nhiêu?",
+      "expected_response_type": "structured_action",
+      "expected_intent": "service_price",
+      "required_source_fact_ids": [],
+      "required_structured_record_ids": [
+        "PRICE-2025-000001",
+        "PRICE-2025-000001-CS1"
+      ],
+      "must_include": [
+        "Giá Khám bệnh",
+        "50.600",
+        "bảng giá năm 2025",
+        "không phải xác nhận giá hiện hành"
+      ],
+      "must_not_include": [
+        "giá hiện hành",
+        "BHYT chi trả",
+        "số tiền bệnh nhân phải trả",
+        "chẩn đoán",
+        "liều dùng"
+      ],
+      "is_synthetic": true,
+      "review_status": "pending_human_review",
+      "allowed_fact_ids": [],
+      "allowed_structured_record_selectors": [
+        "PRICE-2025-000001",
+        "PRICE-2025-000001-CS1"
+      ]
+    },
+    {
+      "case_id": "EVAL-0037",
+      "category": "structured_historical_service_price",
+      "query": "Theo bảng giá năm 2025, Hội chẩn để xác định ca bệnh khó (chuyên gia/ca; Chỉ áp dụng đối với trường hợp mời chuyên gia đơn vị khác đến hội chẩn tại cơ sở khám, chữa bệnh). tại CS1 được ghi bao nhiêu?",
+      "expected_response_type": "structured_action",
+      "expected_intent": "service_price",
+      "required_source_fact_ids": [],
+      "required_structured_record_ids": [
+        "PRICE-2025-000002",
+        "PRICE-2025-000002-CS1"
+      ],
+      "must_include": [
+        "Hội chẩn để xác định ca bệnh khó (chuyên gia/ca; Chỉ áp dụng đối với trường hợp mời chuyên gia đơn vị khác đến hội chẩn tại cơ sở khám, chữa bệnh).",
+        "200.000",
+        "bảng giá năm 2025",
+        "không phải xác nhận giá hiện hành"
+      ],
+      "must_not_include": [
+        "giá hiện hành",
+        "BHYT chi trả",
+        "số tiền bệnh nhân phải trả",
+        "chẩn đoán",
+        "liều dùng"
+      ],
+      "is_synthetic": true,
+      "review_status": "pending_human_review",
+      "allowed_fact_ids": [],
+      "allowed_structured_record_selectors": [
+        "PRICE-2025-000002",
+        "PRICE-2025-000002-CS1"
+      ]
+    },
+    {
+      "case_id": "EVAL-0038",
+      "category": "structured_historical_service_price",
+      "query": "Theo bảng giá năm 2025, Ngày điều trị Hồi sức tích cực (ICU)/ghép tạng/ghép tủy /ghép tế bào gốc tại CS1 được ghi bao nhiêu?",
+      "expected_response_type": "structured_action",
+      "expected_intent": "service_price",
+      "required_source_fact_ids": [],
+      "required_structured_record_ids": [
+        "PRICE-2025-000003",
+        "PRICE-2025-000003-CS1"
+      ],
+      "must_include": [
+        "Ngày điều trị Hồi sức tích cực (ICU)/ghép tạng/ghép tủy /ghép tế bào gốc",
+        "928.100",
+        "bảng giá năm 2025",
+        "không phải xác nhận giá hiện hành"
+      ],
+      "must_not_include": [
+        "giá hiện hành",
+        "BHYT chi trả",
+        "số tiền bệnh nhân phải trả",
+        "chẩn đoán",
+        "liều dùng"
+      ],
+      "is_synthetic": true,
+      "review_status": "pending_human_review",
+      "allowed_fact_ids": [],
+      "allowed_structured_record_selectors": [
+        "PRICE-2025-000003",
+        "PRICE-2025-000003-CS1"
+      ]
+    },
+    {
+      "case_id": "EVAL-0039",
+      "category": "structured_historical_service_price",
+      "query": "Theo bảng giá năm 2025, Ngày giường bệnh Hồi sức cấp cứu tại CS1 được ghi bao nhiêu?",
+      "expected_response_type": "structured_action",
+      "expected_intent": "service_price",
+      "required_source_fact_ids": [],
+      "required_structured_record_ids": [
+        "PRICE-2025-000004",
+        "PRICE-2025-000004-CS1"
+      ],
+      "must_include": [
+        "Ngày giường bệnh Hồi sức cấp cứu",
+        "558.600",
+        "bảng giá năm 2025",
+        "không phải xác nhận giá hiện hành"
+      ],
+      "must_not_include": [
+        "giá hiện hành",
+        "BHYT chi trả",
+        "số tiền bệnh nhân phải trả",
+        "chẩn đoán",
+        "liều dùng"
+      ],
+      "is_synthetic": true,
+      "review_status": "pending_human_review",
+      "allowed_fact_ids": [],
+      "allowed_structured_record_selectors": [
+        "PRICE-2025-000004",
+        "PRICE-2025-000004-CS1"
+      ]
+    },
+    {
+      "case_id": "EVAL-0040",
+      "category": "structured_historical_service_price",
+      "query": "Theo bảng giá năm 2025, Loại 1: Các khoa: Truyền nhiễm, Hô hấp, Huyết học, Ung thư, Tim mạch, Tâm thần, Thần kinh, Lão, Nhi, Tiêu hoá, Thận học; Nội tiết; Dị ứng (đối với bệnh nhân dị ứng thuốc nặng: Stevens Jonhson/ Lyell) tại CS1 được ghi bao nhiêu?",
+      "expected_response_type": "structured_action",
+      "expected_intent": "service_price",
+      "required_source_fact_ids": [],
+      "required_structured_record_ids": [
+        "PRICE-2025-000006",
+        "PRICE-2025-000006-CS1"
+      ],
+      "must_include": [
+        "Loại 1: Các khoa: Truyền nhiễm, Hô hấp, Huyết học, Ung thư, Tim mạch, Tâm thần, Thần kinh, Lão, Nhi, Tiêu hoá, Thận học; Nội tiết; Dị ứng (đối với bệnh nhân dị ứng thuốc nặng: Stevens Jonhson/ Lyell)",
+        "305.500",
+        "bảng giá năm 2025",
+        "không phải xác nhận giá hiện hành"
+      ],
+      "must_not_include": [
+        "giá hiện hành",
+        "BHYT chi trả",
+        "số tiền bệnh nhân phải trả",
+        "chẩn đoán",
+        "liều dùng"
+      ],
+      "is_synthetic": true,
+      "review_status": "pending_human_review",
+      "allowed_fact_ids": [],
+      "allowed_structured_record_selectors": [
+        "PRICE-2025-000006",
+        "PRICE-2025-000006-CS1"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,220 @@
+{
+  "dataset": "structured_data_import_issues",
+  "bundle_version": "2.0.0",
+  "generated_at": "2026-07-17T23:45:00+07:00",
+  "unhandled_error_count": 0,
+  "records": [
+    {
+      "issue_id": "ISSUE-SCHEDULE-PARTIAL-RANGE-C43E20C655",
+      "severity": "information",
+      "dataset": "schedule_documents",
+      "source_path": "data/schedules/2026/2026-06-08_to_2026-06-14/Lịch khám bệnh Bác sĩ Đa Khoa Cơ Sở 2.json",
+      "folder_week": {
+        "week_start": "2026-06-08",
+        "week_end": "2026-06-14",
+        "path_format": "canonical",
+        "path_prefix": "schedules/2026/2026-06-08_to_2026-06-14"
+      },
+      "source_week": {
+        "week_start": "2026-06-08",
+        "week_end": "2026-06-12"
+      },
+      "action": "accepted_source_dates_only_cells_after_internal_end_omitted",
+      "resolved_for_safe_build": true,
+      "human_action_required": "Xác nhận tài liệu Đa khoa chỉ công bố thứ Hai đến thứ Sáu trước khi owner approval."
+    },
+    {
+      "issue_id": "ISSUE-SCHEDULE-PARTIAL-RANGE-E0F6BEC02A",
+      "severity": "information",
+      "dataset": "schedule_documents",
+      "source_path": "data/schedules/2026/2026-06-15_to_2026-06-21/Lịch khám bệnh Bác sĩ Đa Khoa Cơ Sở 2.json",
+      "folder_week": {
+        "week_start": "2026-06-15",
+        "week_end": "2026-06-21",
+        "path_format": "canonical",
+        "path_prefix": "schedules/2026/2026-06-15_to_2026-06-21"
+      },
+      "source_week": {
+        "week_start": "2026-06-15",
+        "week_end": "2026-06-19"
+      },
+      "action": "accepted_source_dates_only_cells_after_internal_end_omitted",
+      "resolved_for_safe_build": true,
+      "human_action_required": "Xác nhận tài liệu Đa khoa chỉ công bố thứ Hai đến thứ Sáu trước khi owner approval."
+    },
+    {
+      "issue_id": "ISSUE-SCHEDULE-PARTIAL-RANGE-5DB766C736",
+      "severity": "information",
+      "dataset": "schedule_documents",
+      "source_path": "data/schedules/2026/2026-06-29_to_2026-07-05/Lịch khám bệnh Bác sĩ Đa Khoa Cơ Sở 2.json",
+      "folder_week": {
+        "week_start": "2026-06-29",
+        "week_end": "2026-07-05",
+        "path_format": "canonical",
+        "path_prefix": "schedules/2026/2026-06-29_to_2026-07-05"
+      },
+      "source_week": {
+        "week_start": "2026-06-29",
+        "week_end": "2026-07-03"
+      },
+      "action": "accepted_source_dates_only_cells_after_internal_end_omitted",
+      "resolved_for_safe_build": true,
+      "human_action_required": "Xác nhận tài liệu Đa khoa chỉ công bố thứ Hai đến thứ Sáu trước khi owner approval."
+    },
+    {
+      "issue_id": "ISSUE-SCHEDULE-PARTIAL-RANGE-1A0DCB2AB5",
+      "severity": "information",
+      "dataset": "schedule_documents",
+      "source_path": "data/schedules/2026/2026-07-06_to_2026-07-12/Lịch khám bệnh Bác sĩ Đa Khoa Cơ Sở 2.json",
+      "folder_week": {
+        "week_start": "2026-07-06",
+        "week_end": "2026-07-12",
+        "path_format": "canonical",
+        "path_prefix": "schedules/2026/2026-07-06_to_2026-07-12"
+      },
+      "source_week": {
+        "week_start": "2026-07-06",
+        "week_end": "2026-07-10"
+      },
+      "action": "accepted_source_dates_only_cells_after_internal_end_omitted",
+      "resolved_for_safe_build": true,
+      "human_action_required": "Xác nhận tài liệu Đa khoa chỉ công bố thứ Hai đến thứ Sáu trước khi owner approval."
+    },
+    {
+      "issue_id": "ISSUE-SCHEDULE-MULTIROOM-DCC55017E9",
+      "severity": "warning",
+      "dataset": "schedule_entries",
+      "service_date": "2026-06-13",
+      "normalized_assignee_key": "bs tran dinh tien",
+      "schedule_entry_ids": [
+        "SCHED-20260608-CS2-TN-0006",
+        "SCHED-20260608-CS2-TN-0013",
+        "SCHED-20260608-CS2-TN-0020",
+        "SCHED-20260608-CS2-TN-0027",
+        "SCHED-20260608-CS2-TN-0034"
+      ],
+      "action": "preserved_without_deduplication",
+      "resolved_for_safe_build": true,
+      "human_action_required": "Xác nhận phân công cùng người tại nhiều phòng; không tự động hợp nhất các dòng nguồn."
+    },
+    {
+      "issue_id": "ISSUE-SCHEDULE-MULTIROOM-DAA2548F1D",
+      "severity": "warning",
+      "dataset": "schedule_entries",
+      "service_date": "2026-06-20",
+      "normalized_assignee_key": "bs pham anh hung",
+      "schedule_entry_ids": [
+        "SCHED-20260615-CS2-TN-0006",
+        "SCHED-20260615-CS2-TN-0013",
+        "SCHED-20260615-CS2-TN-0020",
+        "SCHED-20260615-CS2-TN-0027",
+        "SCHED-20260615-CS2-TN-0034"
+      ],
+      "action": "preserved_without_deduplication",
+      "resolved_for_safe_build": true,
+      "human_action_required": "Xác nhận phân công cùng người tại nhiều phòng; không tự động hợp nhất các dòng nguồn."
+    },
+    {
+      "issue_id": "ISSUE-SCHEDULE-MULTIROOM-3605A66C58",
+      "severity": "warning",
+      "dataset": "schedule_entries",
+      "service_date": "2026-06-27",
+      "normalized_assignee_key": "bs nguyen gia phong",
+      "schedule_entry_ids": [
+        "SCHED-20260622-CS2-TN-0006",
+        "SCHED-20260622-CS2-TN-0013",
+        "SCHED-20260622-CS2-TN-0020",
+        "SCHED-20260622-CS2-TN-0027",
+        "SCHED-20260622-CS2-TN-0034"
+      ],
+      "action": "preserved_without_deduplication",
+      "resolved_for_safe_build": true,
+      "human_action_required": "Xác nhận phân công cùng người tại nhiều phòng; không tự động hợp nhất các dòng nguồn."
+    },
+    {
+      "issue_id": "ISSUE-SCHEDULE-MULTIROOM-CDBD9B1AC4",
+      "severity": "warning",
+      "dataset": "schedule_entries",
+      "service_date": "2026-07-04",
+      "normalized_assignee_key": "bs nguyen dinh phuc",
+      "schedule_entry_ids": [
+        "SCHED-20260629-CS2-TN-0006",
+        "SCHED-20260629-CS2-TN-0013",
+        "SCHED-20260629-CS2-TN-0020",
+        "SCHED-20260629-CS2-TN-0027",
+        "SCHED-20260629-CS2-TN-0034"
+      ],
+      "action": "preserved_without_deduplication",
+      "resolved_for_safe_build": true,
+      "human_action_required": "Xác nhận phân công cùng người tại nhiều phòng; không tự động hợp nhất các dòng nguồn."
+    },
+    {
+      "issue_id": "ISSUE-SCHEDULE-MULTIROOM-2C66A5CC80",
+      "severity": "warning",
+      "dataset": "schedule_entries",
+      "service_date": "2026-07-11",
+      "normalized_assignee_key": "bs phan thanh nam",
+      "schedule_entry_ids": [
+        "SCHED-20260706-CS2-TN-0006",
+        "SCHED-20260706-CS2-TN-0013",
+        "SCHED-20260706-CS2-TN-0020",
+        "SCHED-20260706-CS2-TN-0027",
+        "SCHED-20260706-CS2-TN-0034"
+      ],
+      "action": "preserved_without_deduplication",
+      "resolved_for_safe_build": true,
+      "human_action_required": "Xác nhận phân công cùng người tại nhiều phòng; không tự động hợp nhất các dòng nguồn."
+    },
+    {
+      "issue_id": "ISSUE-SCHEDULE-MULTIROOM-21E04ADADF",
+      "severity": "warning",
+      "dataset": "schedule_entries",
+      "service_date": "2026-07-18",
+      "normalized_assignee_key": "bs le thanh nam",
+      "schedule_entry_ids": [
+        "SCHED-20260713-CS2-TN-0006",
+        "SCHED-20260713-CS2-TN-0013",
+        "SCHED-20260713-CS2-TN-0020",
+        "SCHED-20260713-CS2-TN-0027",
+        "SCHED-20260713-CS2-TN-0034"
+      ],
+      "action": "preserved_without_deduplication",
+      "resolved_for_safe_build": true,
+      "human_action_required": "Xác nhận phân công cùng người tại nhiều phòng; không tự động hợp nhất các dòng nguồn."
+    },
+    {
+      "issue_id": "ISSUE-PRICE-2025-NOT-CURRENT",
+      "severity": "warning",
+      "dataset": "historical_service_prices",
+      "source_path": "data/gia_dich_vu_ky_thuat_2025.json",
+      "action": "current_price_lookup_disabled",
+      "resolved_for_safe_build": true,
+      "human_action_required": "Cung cấp bảng giá hiện hành đã được bệnh viện đối chiếu với Nghị quyết 91/2026/NQ-HĐND."
+    },
+    {
+      "issue_id": "ISSUE-BHYT-SECONDARY-HISTORICAL-DISABLED",
+      "severity": "warning",
+      "dataset": "bhyt_household_contribution_policies",
+      "source_path": "data/BHYT.json",
+      "action": "historical_secondary_policy_disabled",
+      "resolved_for_safe_build": true,
+      "human_action_required": "Không bật lại snapshot cũ cho câu trả lời hiện hành."
+    },
+    {
+      "issue_id": "ISSUE-SCHEDULE-CONTACTS-NOT-ALLOWLISTED",
+      "severity": "information",
+      "dataset": "schedule_documents",
+      "action": "raw_contact_fields_excluded_from_runtime",
+      "resolved_for_safe_build": true,
+      "human_action_required": "Chỉ đưa contact vào support_channels sau khi data owner duyệt từng số và mục đích sử dụng."
+    },
+    {
+      "issue_id": "ISSUE-CAPACITY-NOT-HOSPITAL-APPROVED",
+      "severity": "warning",
+      "dataset": "booking_capacity_prototype_config",
+      "action": "prototype_default_isolated_and_production_disabled",
+      "resolved_for_safe_build": true,
+      "human_action_required": "Bệnh viện phải duyệt mô hình capacity theo doctor/date/session trước khi dùng ngoài local prototype."
+    }
+  ]
+}

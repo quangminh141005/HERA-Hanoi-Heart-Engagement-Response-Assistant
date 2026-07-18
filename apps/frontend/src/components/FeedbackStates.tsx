@@ -1,4 +1,4 @@
-export function LoadingState({ label = 'Loading' }: { label?: string }) {
+export function LoadingState({ label = 'Đang tải...' }: { label?: string }) {
   return (
     <div className="feedback-state" role="status">
       <span className="loader" aria-hidden="true" />

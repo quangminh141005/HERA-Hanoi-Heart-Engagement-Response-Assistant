@@ -24,11 +24,17 @@ class RAGPipeline:
         *,
         locale: str = "vi",
         top_k: int = 5,
+        allowed_intents: set[str] | None = None,
     ) -> GroundedAnswer:
         """Run retrieval and grounded generation."""
 
         retrieval = await self.retrieval_service.retrieve(
-            RetrievalRequest(query=query, locale=locale, top_k=top_k)
+            RetrievalRequest(
+                query=query,
+                locale=locale,
+                top_k=top_k,
+                allowed_intents=sorted(allowed_intents or set()),
+            )
         )
         return await self.generation_service.generate(
             query,

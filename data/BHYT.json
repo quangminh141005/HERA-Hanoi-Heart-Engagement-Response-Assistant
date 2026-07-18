@@ -1,0 +1,46 @@
+{
+  "nguon_tham_khao": "ebh.vn",
+  "chu_de": "Giá bảo hiểm y tế hộ gia đình cập nhật mới nhất",
+  "muc_luong_co_so_hien_tai": {
+    "so_tien_vnd": 2340000,
+    "ngay_ap_dung": "01/07/2024",
+    "can_cu_phap_ly": "Nghị định 73/2024/NĐ-CP"
+  },
+  "quy_tac_tinh_phi": "Người thứ nhất đóng 4,5% mức lương cơ sở. Các thành viên tiếp theo đóng giảm dần theo tỷ lệ % của người thứ nhất.",
+  "bang_gia_chi_tiet": [
+    {
+      "thanh_vien_ho_gia_dinh": "Người thứ nhất",
+      "ty_le_dong_bhyt": "4,5% mức lương cơ sở",
+      "muc_dong_thang_vnd": 105300,
+      "muc_dong_nam_vnd": 1263600
+    },
+    {
+      "thanh_vien_ho_gia_dinh": "Người thứ hai",
+      "ty_le_dong_bhyt": "70% mức đóng của người thứ nhất",
+      "muc_dong_thang_vnd": 73710,
+      "muc_dong_nam_vnd": 884520
+    },
+    {
+      "thanh_vien_ho_gia_dinh": "Người thứ ba",
+      "ty_le_dong_bhyt": "60% mức đóng của người thứ nhất",
+      "muc_dong_thang_vnd": 63180,
+      "muc_dong_nam_vnd": 758160
+    },
+    {
+      "thanh_vien_ho_gia_dinh": "Người thứ tư",
+      "ty_le_dong_bhyt": "50% mức đóng của người thứ nhất",
+      "muc_dong_thang_vnd": 52650,
+      "muc_dong_nam_vnd": 631800
+    },
+    {
+      "thanh_vien_ho_gia_dinh": "Người thứ năm trở đi",
+      "ty_le_dong_bhyt": "40% mức đóng của người thứ nhất",
+      "muc_dong_thang_vnd": 42120,
+      "muc_dong_nam_vnd": 505440
+    }
+  ],
+  "dieu_kien_tham_gia": [
+    "Phải tham gia theo hình thức hộ gia đình (bao gồm toàn bộ người có tên trong cùng một hộ gia đình đăng ký thường trú hoặc tạm trú).",
+    "Ngoại trừ những cá nhân đã được cấp thẻ BHYT thuộc các nhóm đối tượng khác (người lao động, hưu trí, trẻ em dưới 6 tuổi, v.v.)."
+  ]
+}

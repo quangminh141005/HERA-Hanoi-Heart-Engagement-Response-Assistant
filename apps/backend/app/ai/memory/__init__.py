@@ -1,6 +1,16 @@
 """Conversation memory package."""
 
-from app.ai.memory.store import ConversationMemoryStore, MemoryMessage
+from app.ai.memory.store import (
+    ConversationEntities,
+    EntityMemoryStore,
+    EphemeralEntityMemoryStore,
+    RedisEntityMemoryStore,
+)
 
-__all__ = ["ConversationMemoryStore", "MemoryMessage"]
+__all__ = [
+    "ConversationEntities",
+    "EntityMemoryStore",
+    "EphemeralEntityMemoryStore",
+    "RedisEntityMemoryStore",
+]
 

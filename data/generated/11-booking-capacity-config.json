@@ -1,0 +1,1460 @@
+{
+  "dataset": "booking_capacity_prototype_config",
+  "config_id": "CAPACITY-PROTOTYPE-DEFAULT-V1",
+  "config_source": "project_mvp_default",
+  "default_patients_per_named_doctor_per_session": 20,
+  "overridable": true,
+  "hospital_approved": false,
+  "production_eligible": false,
+  "runtime_scope": [
+    "explicit_local_prototype_only"
+  ],
+  "applies_to_assignment_type": "named_doctor",
+  "canonical_unique_key": [
+    "doctor_id",
+    "service_date",
+    "session_key"
+  ],
+  "canonical_scope_key": [
+    "doctor_id",
+    "service_date",
+    "session_key"
+  ],
+  "canonical_capacity_scope_key": [
+    "doctor_id",
+    "service_date",
+    "session_key"
+  ],
+  "capacity_scope_is_across_all_rooms": true,
+  "room_is_not_part_of_capacity_key": true,
+  "room_id_is_not_part_of_capacity_scope": true,
+  "requires_explicit_session": true,
+  "session_key_must_come_from_reviewed_explicit_input": true,
+  "excluded_assignment_types": [
+    "generic_assignment",
+    "none"
+  ],
+  "excluded_duty_statuses": [
+    "closed",
+    "not_published"
+  ],
+  "session_generation_enabled": false,
+  "roster_to_capacity_record_generation_enabled": false,
+  "roster_to_booking_state_generation_enabled": false,
+  "generated_capacity_records": 0,
+  "generated_session_records": 0,
+  "doctor_candidates": [
+    {
+      "doctor_id": "DOCTOR-CAND-4B5FC3D3439C",
+      "doctor_candidate_id": "DOCTOR-CAND-4B5FC3D3439C",
+      "display_name_candidate": "Bùi Thị Thanh Hà",
+      "normalized_match_key": "bui thi thanh ha",
+      "raw_aliases": [
+        "TS.BS Bùi Thị Thanh Hà"
+      ],
+      "source_schedule_entry_ids": [
+        "SCHED-20260713-CS1-TN1-0015",
+        "SCHED-20260713-CS1-TN1-0017",
+        "SCHED-20260713-CS1-TN1-0019"
+      ],
+      "review_status": "pending_review",
+      "candidate_grouping_method": "exact_normalized_display_name_only_no_fuzzy_identity_merge",
+      "merge_status": "unreviewed_no_automatic_merge",
+      "bookable": false,
+      "hospital_approved": false,
+      "production_eligible": false
+    },
+    {
+      "doctor_id": "DOCTOR-CAND-1FE06DF4529A",
+      "doctor_candidate_id": "DOCTOR-CAND-1FE06DF4529A",
+      "display_name_candidate": "Chiều: BS CKII Trần Thị Thanh Hà",
+      "normalized_match_key": "chieu: bs ckii tran thi thanh ha",
+      "raw_aliases": [
+        "Sáng: ThS.BS Trần Sinh Cường\nChiều: BS CKII Trần Thị Thanh Hà"
+      ],
+      "source_schedule_entry_ids": [
+        "SCHED-20260713-CS1-TN1-0064"
+      ],
+      "review_status": "pending_review",
+      "candidate_grouping_method": "exact_normalized_display_name_only_no_fuzzy_identity_merge",
+      "merge_status": "unreviewed_no_automatic_merge",
+      "bookable": false,
+      "hospital_approved": false,
+      "production_eligible": false
+    },
+    {
+      "doctor_id": "DOCTOR-CAND-C4C6277A06DB",
+      "doctor_candidate_id": "DOCTOR-CAND-C4C6277A06DB",
+      "display_name_candidate": "Chiều: BS Đinh Hải Nam",
+      "normalized_match_key": "chieu: bs dinh hai nam",
+      "raw_aliases": [
+        "Sáng: ThS.BS Phạm Văn Tùng\nChiều: BS Đinh Hải Nam"
+      ],
+      "source_schedule_entry_ids": [
+        "SCHED-20260713-CS1-TN1-0096"
+      ],
+      "review_status": "pending_review",
+      "candidate_grouping_method": "exact_normalized_display_name_only_no_fuzzy_identity_merge",
+      "merge_status": "unreviewed_no_automatic_merge",
+      "bookable": false,
+      "hospital_approved": false,
+      "production_eligible": false
+    },
+    {
+      "doctor_id": "DOCTOR-CAND-DC3FD124165B",
+      "doctor_candidate_id": "DOCTOR-CAND-DC3FD124165B",
+      "display_name_candidate": "Chiều: BS Trần Thanh Hoa",
+      "normalized_match_key": "chieu: bs tran thanh hoa",
+      "raw_aliases": [
+        "Sáng: BSCKII Phạm Thị An\nChiều: BS Trần Thanh Hoa",
+        "Sáng: ThS.BS Lê Quang Huy\nChiều: BS Trần Thanh Hoa",
+        "Sáng: ThS.BS Nguyễn Thị Minh Nguyệt\nChiều: BS Trần Thanh Hoa"
+      ],
+      "source_schedule_entry_ids": [
+        "SCHED-20260713-CS1-TN1-0067",
+        "SCHED-20260713-CS1-TN1-0082",
+        "SCHED-20260713-CS1-TN1-0108"
+      ],
+      "review_status": "pending_review",
+      "candidate_grouping_method": "exact_normalized_display_name_only_no_fuzzy_identity_merge",
+      "merge_status": "unreviewed_no_automatic_merge",
+      "bookable": false,
+      "hospital_approved": false,
+      "production_eligible": false
+    },
+    {
+      "doctor_id": "DOCTOR-CAND-DEB7C98149A1",
+      "doctor_candidate_id": "DOCTOR-CAND-DEB7C98149A1",
+      "display_name_candidate": "Chiều: BS. Nguyễn Ngọc Tân",
+      "normalized_match_key": "chieu: bs. nguyen ngoc tan",
+      "raw_aliases": [
+        "Sáng: ThS.BS Lê Thị Thảo\nChiều: BS. Nguyễn Ngọc Tân",
+        "Sáng: ThS.BS Nguyễn Mai Hương\nChiều: BS. Nguyễn Ngọc Tân"
+      ],
+      "source_schedule_entry_ids": [
+        "SCHED-20260713-CS1-TN1-0088",
+        "SCHED-20260713-CS1-TN1-0094"
+      ],
+      "review_status": "pending_review",
+      "candidate_grouping_method": "exact_normalized_display_name_only_no_fuzzy_identity_merge",
+      "merge_status": "unreviewed_no_automatic_merge",
+      "bookable": false,
+      "hospital_approved": false,
+      "production_eligible": false
+    },
+    {
+      "doctor_id": "DOCTOR-CAND-AE8070A6F873",
+      "doctor_candidate_id": "DOCTOR-CAND-AE8070A6F873",
+      "display_name_candidate": "Chiều: BSCKII Nguyễn Văn Dần",
+      "normalized_match_key": "chieu: bsckii nguyen van dan",
+      "raw_aliases": [
+        "Sáng: TS.BS Hoàng Văn\nChiều: BSCKII Nguyễn Văn Dần"
+      ],
+      "source_schedule_entry_ids": [
+        "SCHED-20260713-CS1-TN1-0022"
+      ],
+      "review_status": "pending_review",
+      "candidate_grouping_method": "exact_normalized_display_name_only_no_fuzzy_identity_merge",
+      "merge_status": "unreviewed_no_automatic_merge",
+      "bookable": false,
+      "hospital_approved": false,
+      "production_eligible": false
+    },
+    {
+      "doctor_id": "DOCTOR-CAND-04060FD3C993",
+      "doctor_candidate_id": "DOCTOR-CAND-04060FD3C993",
+      "display_name_candidate": "Chiều: BSCKII Phạm Thị An",
+      "normalized_match_key": "chieu: bsckii pham thi an",
+      "raw_aliases": [
+        "Sáng: BSCKII Vũ Thị Trang\nChiều: BSCKII Phạm Thị An"
+      ],
+      "source_schedule_entry_ids": [
+        "SCHED-20260713-CS1-TN1-0109"
+      ],
+      "review_status": "pending_review",
+      "candidate_grouping_method": "exact_normalized_display_name_only_no_fuzzy_identity_merge",
+      "merge_status": "unreviewed_no_automatic_merge",
+      "bookable": false,
+      "hospital_approved": false,
+      "production_eligible": false
+    },
+    {
+      "doctor_id": "DOCTOR-CAND-533D8D1FBEA8",
+      "doctor_candidate_id": "DOCTOR-CAND-533D8D1FBEA8",
+      "display_name_candidate": "Chiều: BSCKII Vũ Thị Trang",
+      "normalized_match_key": "chieu: bsckii vu thi trang",
+      "raw_aliases": [
+        "Sáng: TS.BS Nguyễn Thị Thu Thủy\nChiều: BSCKII Vũ Thị Trang"
+      ],
+      "source_schedule_entry_ids": [
+        "SCHED-20260713-CS1-TN1-0038"
+      ],
+      "review_status": "pending_review",
+      "candidate_grouping_method": "exact_normalized_display_name_only_no_fuzzy_identity_merge",
+      "merge_status": "unreviewed_no_automatic_merge",
+      "bookable": false,
+      "hospital_approved": false,
+      "production_eligible": false
+    },
+    {
+      "doctor_id": "DOCTOR-CAND-ADE17D28DDD4",
+      "doctor_candidate_id": "DOCTOR-CAND-ADE17D28DDD4",
+      "display_name_candidate": "Chiều: ThS.BS Lê Quang Huy",
+      "normalized_match_key": "chieu: ths.bs le quang huy",
+      "raw_aliases": [
+        "Sáng: ThS.BS Hoàng Minh Lợi\nChiều: ThS.BS Lê Quang Huy"
+      ],
+      "source_schedule_entry_ids": [
+        "SCHED-20260713-CS1-TN1-0114"
+      ],
+      "review_status": "pending_review",
+      "candidate_grouping_method": "exact_normalized_display_name_only_no_fuzzy_identity_merge",
+      "merge_status": "unreviewed_no_automatic_merge",
+      "bookable": false,
+      "hospital_approved": false,
+      "production_eligible": false
+    },
+    {
+      "doctor_id": "DOCTOR-CAND-70947634D0A8",
+      "doctor_candidate_id": "DOCTOR-CAND-70947634D0A8",
+      "display_name_candidate": "Chiều: ThS.BS Lê Thị Thảo",
+      "normalized_match_key": "chieu: ths.bs le thi thao",
+      "raw_aliases": [
+        "Sáng: ThS.BS Lê Quang Huy\nChiều: ThS.BS Lê Thị Thảo",
+        "Sáng: ThS.BS Nguyễn Mai Hương\nChiều: ThS.BS Lê Thị Thảo"
+      ],
+      "source_schedule_entry_ids": [
+        "SCHED-20260713-CS1-TN1-0078",
+        "SCHED-20260713-CS1-TN1-0079"
+      ],
+      "review_status": "pending_review",
+      "candidate_grouping_method": "exact_normalized_display_name_only_no_fuzzy_identity_merge",
+      "merge_status": "unreviewed_no_automatic_merge",
+      "bookable": false,
+      "hospital_approved": false,
+      "production_eligible": false
+    },
+    {
+      "doctor_id": "DOCTOR-CAND-4127DF242B05",
+      "doctor_candidate_id": "DOCTOR-CAND-4127DF242B05",
+      "display_name_candidate": "Chiều: ThS.BS Nguyễn Đình Hồng Phúc",
+      "normalized_match_key": "chieu: ths.bs nguyen dinh hong phuc",
+      "raw_aliases": [
+        "Sáng: ThS.BS Lê Thế Kiên\nChiều: ThS.BS Nguyễn Đình Hồng Phúc",
+        "Sáng: ThS.BS Nguyễn Danh Sen\nChiều: ThS.BS Nguyễn Đình Hồng Phúc",
+        "Sáng: ThS.BS Nguyễn Phương Liên\nChiều: ThS.BS Nguyễn Đình Hồng Phúc"
+      ],
+      "source_schedule_entry_ids": [
+        "SCHED-20260713-CS1-TN1-0061",
+        "SCHED-20260713-CS1-TN1-0080",
+        "SCHED-20260713-CS1-TN1-0099"
+      ],
+      "review_status": "pending_review",
+      "candidate_grouping_method": "exact_normalized_display_name_only_no_fuzzy_identity_merge",
+      "merge_status": "unreviewed_no_automatic_merge",
+      "bookable": false,
+      "hospital_approved": false,
+      "production_eligible": false
+    },
+    {
+      "doctor_id": "DOCTOR-CAND-9379D3281674",
+      "doctor_candidate_id": "DOCTOR-CAND-9379D3281674",
+      "display_name_candidate": "Chiều: ThS.BS Nguyễn Phương Liên",
+      "normalized_match_key": "chieu: ths.bs nguyen phuong lien",
+      "raw_aliases": [
+        "Sáng: ThS.BS Lê Thế Kiên\nChiều: ThS.BS Nguyễn Phương Liên",
+        "Sáng: ThS.BS Nguyễn Thị Minh Nguyệt\nChiều: ThS.BS Nguyễn Phương Liên"
+      ],
+      "source_schedule_entry_ids": [
+        "SCHED-20260713-CS1-TN1-0113",
+        "SCHED-20260713-CS1-TN1-0116"
+      ],
+      "review_status": "pending_review",
+      "candidate_grouping_method": "exact_normalized_display_name_only_no_fuzzy_identity_merge",
+      "merge_status": "unreviewed_no_automatic_merge",
+      "bookable": false,
+      "hospital_approved": false,
+      "production_eligible": false
+    },
+    {
+      "doctor_id": "DOCTOR-CAND-59A0CFD3FE79",
+      "doctor_candidate_id": "DOCTOR-CAND-59A0CFD3FE79",
+      "display_name_candidate": "Chiều: ThS.BS Nguyễn Thị Quỳnh Trang",
+      "normalized_match_key": "chieu: ths.bs nguyen thi quynh trang",
+      "raw_aliases": [
+        "Sáng: TS.BS Hoàng Văn\nChiều: ThS.BS Nguyễn Thị Quỳnh Trang"
+      ],
+      "source_schedule_entry_ids": [
+        "SCHED-20260713-CS1-TN1-0024"
+      ],
+      "review_status": "pending_review",
+      "candidate_grouping_method": "exact_normalized_display_name_only_no_fuzzy_identity_merge",
+      "merge_status": "unreviewed_no_automatic_merge",
+      "bookable": false,
+      "hospital_approved": false,
+      "production_eligible": false
+    },
+    {
+      "doctor_id": "DOCTOR-CAND-486349E954D3",
+      "doctor_candidate_id": "DOCTOR-CAND-486349E954D3",
+      "display_name_candidate": "Chiều: ThS.BS Trần Sinh Cường",
+      "normalized_match_key": "chieu: ths.bs tran sinh cuong",
+      "raw_aliases": [
+        "Sáng: BSCKII Nguyễn Văn Dần\nChiều: ThS.BS Trần Sinh Cường"
+      ],
+      "source_schedule_entry_ids": [
+        "SCHED-20260713-CS1-TN1-0065"
+      ],
+      "review_status": "pending_review",
+      "candidate_grouping_method": "exact_normalized_display_name_only_no_fuzzy_identity_merge",
+      "merge_status": "unreviewed_no_automatic_merge",
+      "bookable": false,
+      "hospital_approved": false,
+      "production_eligible": false
+    },
+    {
+      "doctor_id": "DOCTOR-CAND-EC5BB4F06594",
+      "doctor_candidate_id": "DOCTOR-CAND-EC5BB4F06594",
+      "display_name_candidate": "Chiều: ThS.BS. Phạm Đăng Anh",
+      "normalized_match_key": "chieu: ths.bs. pham dang anh",
+      "raw_aliases": [
+        "Sáng: BSCKI Nguyễn Trung Hiếu\nChiều: ThS.BS. Phạm Đăng Anh"
+      ],
+      "source_schedule_entry_ids": [
+        "SCHED-20260713-CS1-TN1-0066"
+      ],
+      "review_status": "pending_review",
+      "candidate_grouping_method": "exact_normalized_display_name_only_no_fuzzy_identity_merge",
+      "merge_status": "unreviewed_no_automatic_merge",
+      "bookable": false,
+      "hospital_approved": false,
+      "production_eligible": false
+    },
+    {
+      "doctor_id": "DOCTOR-CAND-C4A87AABD453",
+      "doctor_candidate_id": "DOCTOR-CAND-C4A87AABD453",
+      "display_name_candidate": "Chiều: TS.BS Ngọ Văn Thanh",
+      "normalized_match_key": "chieu: ts.bs ngo van thanh",
+      "raw_aliases": [
+        "Sáng: ThS.BS Đỗ Thị Vân Anh\nChiều: TS.BS Ngọ Văn Thanh",
+        "Sáng: ThS.BS Nguyễn Thị Việt Nga\nChiều: TS.BS Ngọ Văn Thanh"
+      ],
+      "source_schedule_entry_ids": [
+        "SCHED-20260713-CS1-TN1-0032",
+        "SCHED-20260713-CS1-TN1-0092"
+      ],
+      "review_status": "pending_review",
+      "candidate_grouping_method": "exact_normalized_display_name_only_no_fuzzy_identity_merge",
+      "merge_status": "unreviewed_no_automatic_merge",
+      "bookable": false,
+      "hospital_approved": false,
+      "production_eligible": false
+    },
+    {
+      "doctor_id": "DOCTOR-CAND-ECE79483CD14",
+      "doctor_candidate_id": "DOCTOR-CAND-ECE79483CD14",
+      "display_name_candidate": "Chiều: TS.BS Nguyễn Thị Thu Thủy",
+      "normalized_match_key": "chieu: ts.bs nguyen thi thu thuy",
+      "raw_aliases": [
+        "Sáng: TS.BS Hoàng Văn\nChiều: TS.BS Nguyễn Thị Thu Thủy"
+      ],
+      "source_schedule_entry_ids": [
+        "SCHED-20260713-CS1-TN1-0026"
+      ],
+      "review_status": "pending_review",
+      "candidate_grouping_method": "exact_normalized_display_name_only_no_fuzzy_identity_merge",
+      "merge_status": "unreviewed_no_automatic_merge",
+      "bookable": false,
+      "hospital_approved": false,
+      "production_eligible": false
+    },
+    {
+      "doctor_id": "DOCTOR-CAND-B8B1191E3564",
+      "doctor_candidate_id": "DOCTOR-CAND-B8B1191E3564",
+      "display_name_candidate": "Chiều: TS.BS Trần Thị Ngọc Lan",
+      "normalized_match_key": "chieu: ts.bs tran thi ngoc lan",
+      "raw_aliases": [
+        "Sáng: TS.BS Trần Thị An\nChiều: TS.BS Trần Thị Ngọc Lan"
+      ],
+      "source_schedule_entry_ids": [
+        "SCHED-20260713-CS1-TN1-0052"
+      ],
+      "review_status": "pending_review",
+      "candidate_grouping_method": "exact_normalized_display_name_only_no_fuzzy_identity_merge",
+      "merge_status": "unreviewed_no_automatic_merge",
+      "bookable": false,
+      "hospital_approved": false,
+      "production_eligible": false
+    },
+    {
+      "doctor_id": "DOCTOR-CAND-25AC19ABF565",
+      "doctor_candidate_id": "DOCTOR-CAND-25AC19ABF565",
+      "display_name_candidate": "Dương Thị Thúy Nga",
+      "normalized_match_key": "duong thi thuy nga",
+      "raw_aliases": [
+        "Ths.Bs Dương Thị Thúy Nga"
+      ],
+      "source_schedule_entry_ids": [
+        "SCHED-20260713-CS2-DK-0022",
+        "SCHED-20260713-CS2-DK-0023",
+        "SCHED-20260713-CS2-DK-0024",
+        "SCHED-20260713-CS2-DK-0025",
+        "SCHED-20260713-CS2-DK-0026"
+      ],
+      "review_status": "pending_review",
+      "candidate_grouping_method": "exact_normalized_display_name_only_no_fuzzy_identity_merge",
+      "merge_status": "unreviewed_no_automatic_merge",
+      "bookable": false,
+      "hospital_approved": false,
+      "production_eligible": false
+    },
+    {
+      "doctor_id": "DOCTOR-CAND-6F3658ADB9FA",
+      "doctor_candidate_id": "DOCTOR-CAND-6F3658ADB9FA",
+      "display_name_candidate": "Đào Thị Thu Hà",
+      "normalized_match_key": "dao thi thu ha",
+      "raw_aliases": [
+        "BSCKI Đào Thị Thu Hà"
+      ],
+      "source_schedule_entry_ids": [
+        "SCHED-20260713-CS1-TN1-0075"
+      ],
+      "review_status": "pending_review",
+      "candidate_grouping_method": "exact_normalized_display_name_only_no_fuzzy_identity_merge",
+      "merge_status": "unreviewed_no_automatic_merge",
+      "bookable": false,
+      "hospital_approved": false,
+      "production_eligible": false
+    },
+    {
+      "doctor_id": "DOCTOR-CAND-4B625972D545",
+      "doctor_candidate_id": "DOCTOR-CAND-4B625972D545",
+      "display_name_candidate": "Đinh Hải Nam",
+      "normalized_match_key": "dinh hai nam",
+      "raw_aliases": [
+        "BS Đinh Hải Nam"
+      ],
+      "source_schedule_entry_ids": [
+        "SCHED-20260713-CS1-TN1-0101",
+        "SCHED-20260713-CS1-TN1-0107"
+      ],
+      "review_status": "pending_review",
+      "candidate_grouping_method": "exact_normalized_display_name_only_no_fuzzy_identity_merge",
+      "merge_status": "unreviewed_no_automatic_merge",
+      "bookable": false,
+      "hospital_approved": false,
+      "production_eligible": false
+    },
+    {
+      "doctor_id": "DOCTOR-CAND-10CF9E6D5F3B",
+      "doctor_candidate_id": "DOCTOR-CAND-10CF9E6D5F3B",
+      "display_name_candidate": "Đinh Quang Huy",
+      "normalized_match_key": "dinh quang huy",
+      "raw_aliases": [
+        "TS.BS Đinh Quang Huy"
+      ],
+      "source_schedule_entry_ids": [
+        "SCHED-20260713-CS1-TN1-0018",
+        "SCHED-20260713-CS1-TN1-0050"
+      ],
+      "review_status": "pending_review",
+      "candidate_grouping_method": "exact_normalized_display_name_only_no_fuzzy_identity_merge",
+      "merge_status": "unreviewed_no_automatic_merge",
+      "bookable": false,
+      "hospital_approved": false,
+      "production_eligible": false
+    },
+    {
+      "doctor_id": "DOCTOR-CAND-F116832185E6",
+      "doctor_candidate_id": "DOCTOR-CAND-F116832185E6",
+      "display_name_candidate": "Đỗ Thị Vân Anh",
+      "normalized_match_key": "do thi van anh",
+      "raw_aliases": [
+        "ThS.BS Đỗ Thị Vân Anh"
+      ],
+      "source_schedule_entry_ids": [
+        "SCHED-20260713-CS1-TN1-0122",
+        "SCHED-20260713-CS1-TN1-0123"
+      ],
+      "review_status": "pending_review",
+      "candidate_grouping_method": "exact_normalized_display_name_only_no_fuzzy_identity_merge",
+      "merge_status": "unreviewed_no_automatic_merge",
+      "bookable": false,
+      "hospital_approved": false,
+      "production_eligible": false
+    },
+    {
+      "doctor_id": "DOCTOR-CAND-B8A686852C9B",
+      "doctor_candidate_id": "DOCTOR-CAND-B8A686852C9B",
+      "display_name_candidate": "Hà Mai Hương",
+      "normalized_match_key": "ha mai huong",
+      "raw_aliases": [
+        "TS.BS Hà Mai Hương"
+      ],
+      "source_schedule_entry_ids": [
+        "SCHED-20260713-CS1-TN1-0023",
+        "SCHED-20260713-CS1-TN1-0025"
+      ],
+      "review_status": "pending_review",
+      "candidate_grouping_method": "exact_normalized_display_name_only_no_fuzzy_identity_merge",
+      "merge_status": "unreviewed_no_automatic_merge",
+      "bookable": false,
+      "hospital_approved": false,
+      "production_eligible": false
+    },
+    {
+      "doctor_id": "DOCTOR-CAND-83314D969B7F",
+      "doctor_candidate_id": "DOCTOR-CAND-83314D969B7F",
+      "display_name_candidate": "Hoàng Minh Lợi",
+      "normalized_match_key": "hoang minh loi",
+      "raw_aliases": [
+        "ThS.BS Hoàng Minh Lợi"
+      ],
+      "source_schedule_entry_ids": [
+        "SCHED-20260713-CS1-TN1-0081",
+        "SCHED-20260713-CS1-TN1-0087"
+      ],
+      "review_status": "pending_review",
+      "candidate_grouping_method": "exact_normalized_display_name_only_no_fuzzy_identity_merge",
+      "merge_status": "unreviewed_no_automatic_merge",
+      "bookable": false,
+      "hospital_approved": false,
+      "production_eligible": false
+    },
+    {
+      "doctor_id": "DOCTOR-CAND-2897469EB63B",
+      "doctor_candidate_id": "DOCTOR-CAND-2897469EB63B",
+      "display_name_candidate": "Khám TC",
+      "normalized_match_key": "kham tc",
+      "raw_aliases": [
+        "Khám TC\nThS.BS Lê Quang Huy"
+      ],
+      "source_schedule_entry_ids": [
+        "SCHED-20260713-CS1-TN1-0083"
+      ],
+      "review_status": "pending_review",
+      "candidate_grouping_method": "exact_normalized_display_name_only_no_fuzzy_identity_merge",
+      "merge_status": "unreviewed_no_automatic_merge",
+      "bookable": false,
+      "hospital_approved": false,
+      "production_eligible": false
+    },
+    {
+      "doctor_id": "DOCTOR-CAND-BC41B62AC272",
+      "doctor_candidate_id": "DOCTOR-CAND-BC41B62AC272",
+      "display_name_candidate": "Lại Thị Bạch Yến",
+      "normalized_match_key": "lai thi bach yen",
+      "raw_aliases": [
+        "Ths.BS Lại Thị Bạch Yến"
+      ],
+      "source_schedule_entry_ids": [
+        "SCHED-20260713-CS2-DK-0050",
+        "SCHED-20260713-CS2-DK-0051",
+        "SCHED-20260713-CS2-DK-0052",
+        "SCHED-20260713-CS2-DK-0053",
+        "SCHED-20260713-CS2-DK-0054"
+      ],
+      "review_status": "pending_review",
+      "candidate_grouping_method": "exact_normalized_display_name_only_no_fuzzy_identity_merge",
+      "merge_status": "unreviewed_no_automatic_merge",
+      "bookable": false,
+      "hospital_approved": false,
+      "production_eligible": false
+    },
+    {
+      "doctor_id": "DOCTOR-CAND-B7BAF5262F03",
+      "doctor_candidate_id": "DOCTOR-CAND-B7BAF5262F03",
+      "display_name_candidate": "Lê Thanh Nam",
+      "normalized_match_key": "le thanh nam",
+      "raw_aliases": [
+        "Bs Lê Thanh Nam"
+      ],
+      "source_schedule_entry_ids": [
+        "SCHED-20260713-CS2-TN-0006",
+        "SCHED-20260713-CS2-TN-0013",
+        "SCHED-20260713-CS2-TN-0020",
+        "SCHED-20260713-CS2-TN-0027",
+        "SCHED-20260713-CS2-TN-0034"
+      ],
+      "review_status": "pending_review",
+      "candidate_grouping_method": "exact_normalized_display_name_only_no_fuzzy_identity_merge",
+      "merge_status": "unreviewed_no_automatic_merge",
+      "bookable": false,
+      "hospital_approved": false,
+      "production_eligible": false
+    },
+    {
+      "doctor_id": "DOCTOR-CAND-57DF0D0DAB9B",
+      "doctor_candidate_id": "DOCTOR-CAND-57DF0D0DAB9B",
+      "display_name_candidate": "Lê Thị Hoài Thu",
+      "normalized_match_key": "le thi hoai thu",
+      "raw_aliases": [
+        "BS.CKII Lê Thị Hoài Thu"
+      ],
+      "source_schedule_entry_ids": [
+        "SCHED-20260713-CS2-TN-0001",
+        "SCHED-20260713-CS2-TN-0002",
+        "SCHED-20260713-CS2-TN-0003",
+        "SCHED-20260713-CS2-TN-0004",
+        "SCHED-20260713-CS2-TN-0005"
+      ],
+      "review_status": "pending_review",
+      "candidate_grouping_method": "exact_normalized_display_name_only_no_fuzzy_identity_merge",
+      "merge_status": "unreviewed_no_automatic_merge",
+      "bookable": false,
+      "hospital_approved": false,
+      "production_eligible": false
+    },
+    {
+      "doctor_id": "DOCTOR-CAND-C14DBD1F2FD4",
+      "doctor_candidate_id": "DOCTOR-CAND-C14DBD1F2FD4",
+      "display_name_candidate": "Lê Thuý Ngọc",
+      "normalized_match_key": "le thuy ngoc",
+      "raw_aliases": [
+        "Ths.Bs Lê Thuý Ngọc"
+      ],
+      "source_schedule_entry_ids": [
+        "SCHED-20260713-CS2-TN-0029",
+        "SCHED-20260713-CS2-TN-0030",
+        "SCHED-20260713-CS2-TN-0031",
+        "SCHED-20260713-CS2-TN-0032",
+        "SCHED-20260713-CS2-TN-0033"
+      ],
+      "review_status": "pending_review",
+      "candidate_grouping_method": "exact_normalized_display_name_only_no_fuzzy_identity_merge",
+      "merge_status": "unreviewed_no_automatic_merge",
+      "bookable": false,
+      "hospital_approved": false,
+      "production_eligible": false
+    },
+    {
+      "doctor_id": "DOCTOR-CAND-80D1F934129C",
+      "doctor_candidate_id": "DOCTOR-CAND-80D1F934129C",
+      "display_name_candidate": "Linh Thế Cường",
+      "normalized_match_key": "linh the cuong",
+      "raw_aliases": [
+        "Ths.Bs Linh Thế Cường"
+      ],
+      "source_schedule_entry_ids": [
+        "SCHED-20260713-CS2-DK-0015",
+        "SCHED-20260713-CS2-DK-0016",
+        "SCHED-20260713-CS2-DK-0017",
+        "SCHED-20260713-CS2-DK-0018",
+        "SCHED-20260713-CS2-DK-0019"
+      ],
+      "review_status": "pending_review",
+      "candidate_grouping_method": "exact_normalized_display_name_only_no_fuzzy_identity_merge",
+      "merge_status": "unreviewed_no_automatic_merge",
+      "bookable": false,
+      "hospital_approved": false,
+      "production_eligible": false
+    },
+    {
+      "doctor_id": "DOCTOR-CAND-760FA294A218",
+      "doctor_candidate_id": "DOCTOR-CAND-760FA294A218",
+      "display_name_candidate": "Nguyễn Danh Sen",
+      "normalized_match_key": "nguyen danh sen",
+      "raw_aliases": [
+        "ThS.BS Nguyễn Danh Sen"
+      ],
+      "source_schedule_entry_ids": [
+        "SCHED-20260713-CS1-TN1-0058"
+      ],
+      "review_status": "pending_review",
+      "candidate_grouping_method": "exact_normalized_display_name_only_no_fuzzy_identity_merge",
+      "merge_status": "unreviewed_no_automatic_merge",
+      "bookable": false,
+      "hospital_approved": false,
+      "production_eligible": false
+    },
+    {
+      "doctor_id": "DOCTOR-CAND-F2939CCE1EA4",
+      "doctor_candidate_id": "DOCTOR-CAND-F2939CCE1EA4",
+      "display_name_candidate": "Nguyễn Duy Chinh",
+      "normalized_match_key": "nguyen duy chinh",
+      "raw_aliases": [
+        "Ths.Bs Nguyễn Duy Chinh"
+      ],
+      "source_schedule_entry_ids": [
+        "SCHED-20260713-CS2-TN-0008",
+        "SCHED-20260713-CS2-TN-0009",
+        "SCHED-20260713-CS2-TN-0010",
+        "SCHED-20260713-CS2-TN-0011",
+        "SCHED-20260713-CS2-TN-0012"
+      ],
+      "review_status": "pending_review",
+      "candidate_grouping_method": "exact_normalized_display_name_only_no_fuzzy_identity_merge",
+      "merge_status": "unreviewed_no_automatic_merge",
+      "bookable": false,
+      "hospital_approved": false,
+      "production_eligible": false
+    },
+    {
+      "doctor_id": "DOCTOR-CAND-A702FEB3EFCD",
+      "doctor_candidate_id": "DOCTOR-CAND-A702FEB3EFCD",
+      "display_name_candidate": "Nguyễn Đăng Dương",
+      "normalized_match_key": "nguyen dang duong",
+      "raw_aliases": [
+        "ThS.BS Nguyễn Đăng Dương"
+      ],
+      "source_schedule_entry_ids": [
+        "SCHED-20260713-CS1-TN1-0007"
+      ],
+      "review_status": "pending_review",
+      "candidate_grouping_method": "exact_normalized_display_name_only_no_fuzzy_identity_merge",
+      "merge_status": "unreviewed_no_automatic_merge",
+      "bookable": false,
+      "hospital_approved": false,
+      "production_eligible": false
+    },
+    {
+      "doctor_id": "DOCTOR-CAND-758923C38C5C",
+      "doctor_candidate_id": "DOCTOR-CAND-758923C38C5C",
+      "display_name_candidate": "Nguyễn Đình Hồng Phúc",
+      "normalized_match_key": "nguyen dinh hong phuc",
+      "raw_aliases": [
+        "ThS.BS Nguyễn Đình Hồng Phúc"
+      ],
+      "source_schedule_entry_ids": [
+        "SCHED-20260713-CS1-TN1-0062",
+        "SCHED-20260713-CS1-TN1-0100",
+        "SCHED-20260713-CS1-TN1-0120",
+        "SCHED-20260713-CS1-TN1-0131"
+      ],
+      "review_status": "pending_review",
+      "candidate_grouping_method": "exact_normalized_display_name_only_no_fuzzy_identity_merge",
+      "merge_status": "unreviewed_no_automatic_merge",
+      "bookable": false,
+      "hospital_approved": false,
+      "production_eligible": false
+    },
+    {
+      "doctor_id": "DOCTOR-CAND-18203F9123C7",
+      "doctor_candidate_id": "DOCTOR-CAND-18203F9123C7",
+      "display_name_candidate": "Nguyễn Quốc Hùng",
+      "normalized_match_key": "nguyen quoc hung",
+      "raw_aliases": [
+        "ThS.BS Nguyễn Quốc Hùng"
+      ],
+      "source_schedule_entry_ids": [
+        "SCHED-20260713-CS1-TN1-0073"
+      ],
+      "review_status": "pending_review",
+      "candidate_grouping_method": "exact_normalized_display_name_only_no_fuzzy_identity_merge",
+      "merge_status": "unreviewed_no_automatic_merge",
+      "bookable": false,
+      "hospital_approved": false,
+      "production_eligible": false
+    },
+    {
+      "doctor_id": "DOCTOR-CAND-C13F717142D9",
+      "doctor_candidate_id": "DOCTOR-CAND-C13F717142D9",
+      "display_name_candidate": "Nguyễn Thanh Trà",
+      "normalized_match_key": "nguyen thanh tra",
+      "raw_aliases": [
+        "BS Nguyễn Thanh Trà",
+        "BS Nguyễn Thanh Trà\nkhám tại CS1(15H)"
+      ],
+      "source_schedule_entry_ids": [
+        "SCHED-20260713-CS2-DK-0001",
+        "SCHED-20260713-CS2-DK-0002",
+        "SCHED-20260713-CS2-DK-0003",
+        "SCHED-20260713-CS2-DK-0004",
+        "SCHED-20260713-CS2-DK-0005"
+      ],
+      "review_status": "pending_review",
+      "candidate_grouping_method": "exact_normalized_display_name_only_no_fuzzy_identity_merge",
+      "merge_status": "unreviewed_no_automatic_merge",
+      "bookable": false,
+      "hospital_approved": false,
+      "production_eligible": false
+    },
+    {
+      "doctor_id": "DOCTOR-CAND-117C35C5434F",
+      "doctor_candidate_id": "DOCTOR-CAND-117C35C5434F",
+      "display_name_candidate": "Nguyễn Thế Nam Huy",
+      "normalized_match_key": "nguyen the nam huy",
+      "raw_aliases": [
+        "ThS.BS Nguyễn Thế Nam Huy"
+      ],
+      "source_schedule_entry_ids": [
+        "SCHED-20260713-CS1-TN1-0086",
+        "SCHED-20260713-CS1-TN1-0089"
+      ],
+      "review_status": "pending_review",
+      "candidate_grouping_method": "exact_normalized_display_name_only_no_fuzzy_identity_merge",
+      "merge_status": "unreviewed_no_automatic_merge",
+      "bookable": false,
+      "hospital_approved": false,
+      "production_eligible": false
+    },
+    {
+      "doctor_id": "DOCTOR-CAND-526F778768F2",
+      "doctor_candidate_id": "DOCTOR-CAND-526F778768F2",
+      "display_name_candidate": "Nguyễn Thị Huyền",
+      "normalized_match_key": "nguyen thi huyen",
+      "raw_aliases": [
+        "BSCKI.Nguyễn Thị Huyền"
+      ],
+      "source_schedule_entry_ids": [
+        "SCHED-20260713-CS2-DK-0071",
+        "SCHED-20260713-CS2-DK-0072",
+        "SCHED-20260713-CS2-DK-0073",
+        "SCHED-20260713-CS2-DK-0074",
+        "SCHED-20260713-CS2-DK-0075"
+      ],
+      "review_status": "pending_review",
+      "candidate_grouping_method": "exact_normalized_display_name_only_no_fuzzy_identity_merge",
+      "merge_status": "unreviewed_no_automatic_merge",
+      "bookable": false,
+      "hospital_approved": false,
+      "production_eligible": false
+    },
+    {
+      "doctor_id": "DOCTOR-CAND-8D0AE8F5B92E",
+      "doctor_candidate_id": "DOCTOR-CAND-8D0AE8F5B92E",
+      "display_name_candidate": "Nguyễn Thị Minh Hoa",
+      "normalized_match_key": "nguyen thi minh hoa",
+      "raw_aliases": [
+        "ThsBs Nguyễn Thị Minh Hoa"
+      ],
+      "source_schedule_entry_ids": [
+        "SCHED-20260713-CS2-DK-0029",
+        "SCHED-20260713-CS2-DK-0030",
+        "SCHED-20260713-CS2-DK-0031",
+        "SCHED-20260713-CS2-DK-0032",
+        "SCHED-20260713-CS2-DK-0033"
+      ],
+      "review_status": "pending_review",
+      "candidate_grouping_method": "exact_normalized_display_name_only_no_fuzzy_identity_merge",
+      "merge_status": "unreviewed_no_automatic_merge",
+      "bookable": false,
+      "hospital_approved": false,
+      "production_eligible": false
+    },
+    {
+      "doctor_id": "DOCTOR-CAND-B9F15A4C117A",
+      "doctor_candidate_id": "DOCTOR-CAND-B9F15A4C117A",
+      "display_name_candidate": "Nguyễn Thị Quỳnh Trang",
+      "normalized_match_key": "nguyen thi quynh trang",
+      "raw_aliases": [
+        "ThS.BS Nguyễn Thị Quỳnh Trang"
+      ],
+      "source_schedule_entry_ids": [
+        "SCHED-20260713-CS1-TN1-0047",
+        "SCHED-20260713-CS1-TN1-0106"
+      ],
+      "review_status": "pending_review",
+      "candidate_grouping_method": "exact_normalized_display_name_only_no_fuzzy_identity_merge",
+      "merge_status": "unreviewed_no_automatic_merge",
+      "bookable": false,
+      "hospital_approved": false,
+      "production_eligible": false
+    },
+    {
+      "doctor_id": "DOCTOR-CAND-7EEA0B08C9CC",
+      "doctor_candidate_id": "DOCTOR-CAND-7EEA0B08C9CC",
+      "display_name_candidate": "Nguyễn Thị Thu Thủy",
+      "normalized_match_key": "nguyen thi thu thuy",
+      "raw_aliases": [
+        "TS.BS Nguyễn Thị Thu Thủy"
+      ],
+      "source_schedule_entry_ids": [
+        "SCHED-20260713-CS1-TN1-0004",
+        "SCHED-20260713-CS1-TN1-0051"
+      ],
+      "review_status": "pending_review",
+      "candidate_grouping_method": "exact_normalized_display_name_only_no_fuzzy_identity_merge",
+      "merge_status": "unreviewed_no_automatic_merge",
+      "bookable": false,
+      "hospital_approved": false,
+      "production_eligible": false
+    },
+    {
+      "doctor_id": "DOCTOR-CAND-E1D398823B8A",
+      "doctor_candidate_id": "DOCTOR-CAND-E1D398823B8A",
+      "display_name_candidate": "Nguyễn Thị Thuận",
+      "normalized_match_key": "nguyen thi thuan",
+      "raw_aliases": [
+        "BSNT. Nguyễn Thị Thuận"
+      ],
+      "source_schedule_entry_ids": [
+        "SCHED-20260713-CS2-DK-0043",
+        "SCHED-20260713-CS2-DK-0044",
+        "SCHED-20260713-CS2-DK-0045",
+        "SCHED-20260713-CS2-DK-0046",
+        "SCHED-20260713-CS2-DK-0047"
+      ],
+      "review_status": "pending_review",
+      "candidate_grouping_method": "exact_normalized_display_name_only_no_fuzzy_identity_merge",
+      "merge_status": "unreviewed_no_automatic_merge",
+      "bookable": false,
+      "hospital_approved": false,
+      "production_eligible": false
+    },
+    {
+      "doctor_id": "DOCTOR-CAND-2E2CB8EBBE87",
+      "doctor_candidate_id": "DOCTOR-CAND-2E2CB8EBBE87",
+      "display_name_candidate": "Nguyễn Thị Tuyết Mai",
+      "normalized_match_key": "nguyen thi tuyet mai",
+      "raw_aliases": [
+        "Sáng\nBSCK II Nguyễn Thị Tuyết Mai\nChiều Nghỉ"
+      ],
+      "source_schedule_entry_ids": [
+        "SCHED-20260713-CS2-DK-0036",
+        "SCHED-20260713-CS2-DK-0037",
+        "SCHED-20260713-CS2-DK-0038",
+        "SCHED-20260713-CS2-DK-0039"
+      ],
+      "review_status": "pending_review",
+      "candidate_grouping_method": "exact_normalized_display_name_only_no_fuzzy_identity_merge",
+      "merge_status": "unreviewed_no_automatic_merge",
+      "bookable": false,
+      "hospital_approved": false,
+      "production_eligible": false
+    },
+    {
+      "doctor_id": "DOCTOR-CAND-BF8770995B7A",
+      "doctor_candidate_id": "DOCTOR-CAND-BF8770995B7A",
+      "display_name_candidate": "Nguyễn Thị Việt Nga",
+      "normalized_match_key": "nguyen thi viet nga",
+      "raw_aliases": [
+        "ThS.BS Nguyễn Thị Việt Nga"
+      ],
+      "source_schedule_entry_ids": [
+        "SCHED-20260713-CS1-TN1-0036",
+        "SCHED-20260713-CS1-TN1-0054"
+      ],
+      "review_status": "pending_review",
+      "candidate_grouping_method": "exact_normalized_display_name_only_no_fuzzy_identity_merge",
+      "merge_status": "unreviewed_no_automatic_merge",
+      "bookable": false,
+      "hospital_approved": false,
+      "production_eligible": false
+    },
+    {
+      "doctor_id": "DOCTOR-CAND-ED598702185B",
+      "doctor_candidate_id": "DOCTOR-CAND-ED598702185B",
+      "display_name_candidate": "Nguyễn Toàn Thắng",
+      "normalized_match_key": "nguyen toan thang",
+      "raw_aliases": [
+        "ThS.BS Nguyễn Toàn Thắng"
+      ],
+      "source_schedule_entry_ids": [
+        "SCHED-20260713-CS1-TN1-0071",
+        "SCHED-20260713-CS1-TN1-0074"
+      ],
+      "review_status": "pending_review",
+      "candidate_grouping_method": "exact_normalized_display_name_only_no_fuzzy_identity_merge",
+      "merge_status": "unreviewed_no_automatic_merge",
+      "bookable": false,
+      "hospital_approved": false,
+      "production_eligible": false
+    },
+    {
+      "doctor_id": "DOCTOR-CAND-2213B2448DE5",
+      "doctor_candidate_id": "DOCTOR-CAND-2213B2448DE5",
+      "display_name_candidate": "Nguyễn Văn Dần",
+      "normalized_match_key": "nguyen van dan",
+      "raw_aliases": [
+        "BSCKII Nguyễn Văn Dần"
+      ],
+      "source_schedule_entry_ids": [
+        "SCHED-20260713-CS1-TN1-0031",
+        "SCHED-20260713-CS1-TN1-0103"
+      ],
+      "review_status": "pending_review",
+      "candidate_grouping_method": "exact_normalized_display_name_only_no_fuzzy_identity_merge",
+      "merge_status": "unreviewed_no_automatic_merge",
+      "bookable": false,
+      "hospital_approved": false,
+      "production_eligible": false
+    },
+    {
+      "doctor_id": "DOCTOR-CAND-33D4CEB40DE7",
+      "doctor_candidate_id": "DOCTOR-CAND-33D4CEB40DE7",
+      "display_name_candidate": "Nguyễn Văn Thực",
+      "normalized_match_key": "nguyen van thuc",
+      "raw_aliases": [
+        "BSCKII Nguyễn Văn Thực"
+      ],
+      "source_schedule_entry_ids": [
+        "SCHED-20260713-CS1-TN1-0005",
+        "SCHED-20260713-CS1-TN1-0039",
+        "SCHED-20260713-CS1-TN1-0085"
+      ],
+      "review_status": "pending_review",
+      "candidate_grouping_method": "exact_normalized_display_name_only_no_fuzzy_identity_merge",
+      "merge_status": "unreviewed_no_automatic_merge",
+      "bookable": false,
+      "hospital_approved": false,
+      "production_eligible": false
+    },
+    {
+      "doctor_id": "DOCTOR-CAND-F6E53ACD10FF",
+      "doctor_candidate_id": "DOCTOR-CAND-F6E53ACD10FF",
+      "display_name_candidate": "Nguyễn Xuân Tuấn",
+      "normalized_match_key": "nguyen xuan tuan",
+      "raw_aliases": [
+        "TS.BS Nguyễn Xuân Tuấn"
+      ],
+      "source_schedule_entry_ids": [
+        "SCHED-20260713-CS1-TN1-0016",
+        "SCHED-20260713-CS1-TN1-0043",
+        "SCHED-20260713-CS1-TN1-0110"
+      ],
+      "review_status": "pending_review",
+      "candidate_grouping_method": "exact_normalized_display_name_only_no_fuzzy_identity_merge",
+      "merge_status": "unreviewed_no_automatic_merge",
+      "bookable": false,
+      "hospital_approved": false,
+      "production_eligible": false
+    },
+    {
+      "doctor_id": "DOCTOR-CAND-BFB112BCD8CE",
+      "doctor_candidate_id": "DOCTOR-CAND-BFB112BCD8CE",
+      "display_name_candidate": "Nguyễn Xuân Từ",
+      "normalized_match_key": "nguyen xuan tu",
+      "raw_aliases": [
+        "ThS.BS Nguyễn Xuân Từ"
+      ],
+      "source_schedule_entry_ids": [
+        "SCHED-20260713-CS1-TN1-0030",
+        "SCHED-20260713-CS1-TN1-0045",
+        "SCHED-20260713-CS1-TN1-0102"
+      ],
+      "review_status": "pending_review",
+      "candidate_grouping_method": "exact_normalized_display_name_only_no_fuzzy_identity_merge",
+      "merge_status": "unreviewed_no_automatic_merge",
+      "bookable": false,
+      "hospital_approved": false,
+      "production_eligible": false
+    },
+    {
+      "doctor_id": "DOCTOR-CAND-B3B4211F980B",
+      "doctor_candidate_id": "DOCTOR-CAND-B3B4211F980B",
+      "display_name_candidate": "Phạm Như Hùng",
+      "normalized_match_key": "pham nhu hung",
+      "raw_aliases": [
+        "TS.BS Phạm Như Hùng"
+      ],
+      "source_schedule_entry_ids": [
+        "SCHED-20260713-CS1-TN1-0001",
+        "SCHED-20260713-CS1-TN1-0002",
+        "SCHED-20260713-CS1-TN1-0003"
+      ],
+      "review_status": "pending_review",
+      "candidate_grouping_method": "exact_normalized_display_name_only_no_fuzzy_identity_merge",
+      "merge_status": "unreviewed_no_automatic_merge",
+      "bookable": false,
+      "hospital_approved": false,
+      "production_eligible": false
+    },
+    {
+      "doctor_id": "DOCTOR-CAND-7098973D8131",
+      "doctor_candidate_id": "DOCTOR-CAND-7098973D8131",
+      "display_name_candidate": "Phạm Quang Huy",
+      "normalized_match_key": "pham quang huy",
+      "raw_aliases": [
+        "BS CKII Phạm Quang Huy"
+      ],
+      "source_schedule_entry_ids": [
+        "SCHED-20260713-CS1-TN1-0053",
+        "SCHED-20260713-CS1-TN1-0068"
+      ],
+      "review_status": "pending_review",
+      "candidate_grouping_method": "exact_normalized_display_name_only_no_fuzzy_identity_merge",
+      "merge_status": "unreviewed_no_automatic_merge",
+      "bookable": false,
+      "hospital_approved": false,
+      "production_eligible": false
+    },
+    {
+      "doctor_id": "DOCTOR-CAND-4F0A8BFD5941",
+      "doctor_candidate_id": "DOCTOR-CAND-4F0A8BFD5941",
+      "display_name_candidate": "Phạm Thị An",
+      "normalized_match_key": "pham thi an",
+      "raw_aliases": [
+        "BSCKII Phạm Thị An"
+      ],
+      "source_schedule_entry_ids": [
+        "SCHED-20260713-CS1-TN1-0037"
+      ],
+      "review_status": "pending_review",
+      "candidate_grouping_method": "exact_normalized_display_name_only_no_fuzzy_identity_merge",
+      "merge_status": "unreviewed_no_automatic_merge",
+      "bookable": false,
+      "hospital_approved": false,
+      "production_eligible": false
+    },
+    {
+      "doctor_id": "DOCTOR-CAND-A2028BFBC4C0",
+      "doctor_candidate_id": "DOCTOR-CAND-A2028BFBC4C0",
+      "display_name_candidate": "Phạm Thị Oanh",
+      "normalized_match_key": "pham thi oanh",
+      "raw_aliases": [
+        "Ths.BSNT Phạm Thị Oanh"
+      ],
+      "source_schedule_entry_ids": [
+        "SCHED-20260713-CS2-DK-0057",
+        "SCHED-20260713-CS2-DK-0058",
+        "SCHED-20260713-CS2-DK-0059",
+        "SCHED-20260713-CS2-DK-0060",
+        "SCHED-20260713-CS2-DK-0061"
+      ],
+      "review_status": "pending_review",
+      "candidate_grouping_method": "exact_normalized_display_name_only_no_fuzzy_identity_merge",
+      "merge_status": "unreviewed_no_automatic_merge",
+      "bookable": false,
+      "hospital_approved": false,
+      "production_eligible": false
+    },
+    {
+      "doctor_id": "DOCTOR-CAND-D9C6637F38E2",
+      "doctor_candidate_id": "DOCTOR-CAND-D9C6637F38E2",
+      "display_name_candidate": "Phạm Văn Tùng",
+      "normalized_match_key": "pham van tung",
+      "raw_aliases": [
+        "ThS.BS Phạm Văn Tùng"
+      ],
+      "source_schedule_entry_ids": [
+        "SCHED-20260713-CS1-TN1-0069",
+        "SCHED-20260713-CS1-TN1-0093",
+        "SCHED-20260713-CS1-TN1-0115"
+      ],
+      "review_status": "pending_review",
+      "candidate_grouping_method": "exact_normalized_display_name_only_no_fuzzy_identity_merge",
+      "merge_status": "unreviewed_no_automatic_merge",
+      "bookable": false,
+      "hospital_approved": false,
+      "production_eligible": false
+    },
+    {
+      "doctor_id": "DOCTOR-CAND-68403E34A305",
+      "doctor_candidate_id": "DOCTOR-CAND-68403E34A305",
+      "display_name_candidate": "Sáng: BS Trần Thanh Hoa",
+      "normalized_match_key": "sang: bs tran thanh hoa",
+      "raw_aliases": [
+        "Sáng: BS Trần Thanh Hoa"
+      ],
+      "source_schedule_entry_ids": [
+        "SCHED-20260713-CS1-TN1-0121"
+      ],
+      "review_status": "pending_review",
+      "candidate_grouping_method": "exact_normalized_display_name_only_no_fuzzy_identity_merge",
+      "merge_status": "unreviewed_no_automatic_merge",
+      "bookable": false,
+      "hospital_approved": false,
+      "production_eligible": false
+    },
+    {
+      "doctor_id": "DOCTOR-CAND-9B6180A9B6C1",
+      "doctor_candidate_id": "DOCTOR-CAND-9B6180A9B6C1",
+      "display_name_candidate": "Sáng: BSCKI Nguyễn Trung Hiếu",
+      "normalized_match_key": "sang: bscki nguyen trung hieu",
+      "raw_aliases": [
+        "Sáng: BSCKI Nguyễn Trung Hiếu"
+      ],
+      "source_schedule_entry_ids": [
+        "SCHED-20260713-CS1-TN1-0130"
+      ],
+      "review_status": "pending_review",
+      "candidate_grouping_method": "exact_normalized_display_name_only_no_fuzzy_identity_merge",
+      "merge_status": "unreviewed_no_automatic_merge",
+      "bookable": false,
+      "hospital_approved": false,
+      "production_eligible": false
+    },
+    {
+      "doctor_id": "DOCTOR-CAND-B6152334C3E8",
+      "doctor_candidate_id": "DOCTOR-CAND-B6152334C3E8",
+      "display_name_candidate": "Sáng: ThS.BS Lê Thế Kiên",
+      "normalized_match_key": "sang: ths.bs le the kien",
+      "raw_aliases": [
+        "Sáng: ThS.BS Lê Thế Kiên"
+      ],
+      "source_schedule_entry_ids": [
+        "SCHED-20260713-CS1-TN1-0117"
+      ],
+      "review_status": "pending_review",
+      "candidate_grouping_method": "exact_normalized_display_name_only_no_fuzzy_identity_merge",
+      "merge_status": "unreviewed_no_automatic_merge",
+      "bookable": false,
+      "hospital_approved": false,
+      "production_eligible": false
+    },
+    {
+      "doctor_id": "DOCTOR-CAND-A5B73B7F057B",
+      "doctor_candidate_id": "DOCTOR-CAND-A5B73B7F057B",
+      "display_name_candidate": "Sáng: ThS.BS Trần Sinh Cường",
+      "normalized_match_key": "sang: ths.bs tran sinh cuong",
+      "raw_aliases": [
+        "Sáng: ThS.BS Trần Sinh Cường"
+      ],
+      "source_schedule_entry_ids": [
+        "SCHED-20260713-CS1-TN1-0124"
+      ],
+      "review_status": "pending_review",
+      "candidate_grouping_method": "exact_normalized_display_name_only_no_fuzzy_identity_merge",
+      "merge_status": "unreviewed_no_automatic_merge",
+      "bookable": false,
+      "hospital_approved": false,
+      "production_eligible": false
+    },
+    {
+      "doctor_id": "DOCTOR-CAND-3E37615997A7",
+      "doctor_candidate_id": "DOCTOR-CAND-3E37615997A7",
+      "display_name_candidate": "Sáng: TS.BS Hà Mai Hương",
+      "normalized_match_key": "sang: ts.bs ha mai huong",
+      "raw_aliases": [
+        "Sáng: TS.BS Hà Mai Hương"
+      ],
+      "source_schedule_entry_ids": [
+        "SCHED-20260713-CS1-TN1-0033"
+      ],
+      "review_status": "pending_review",
+      "candidate_grouping_method": "exact_normalized_display_name_only_no_fuzzy_identity_merge",
+      "merge_status": "unreviewed_no_automatic_merge",
+      "bookable": false,
+      "hospital_approved": false,
+      "production_eligible": false
+    },
+    {
+      "doctor_id": "DOCTOR-CAND-3291B7C3B907",
+      "doctor_candidate_id": "DOCTOR-CAND-3291B7C3B907",
+      "display_name_candidate": "SAT: ThS.BS Nguyễn Mai Hương",
+      "normalized_match_key": "sat: ths.bs nguyen mai huong",
+      "raw_aliases": [
+        "SAT: ThS.BS Nguyễn Mai Hương"
+      ],
+      "source_schedule_entry_ids": [
+        "SCHED-20260713-CS1-TN1-0014"
+      ],
+      "review_status": "pending_review",
+      "candidate_grouping_method": "exact_normalized_display_name_only_no_fuzzy_identity_merge",
+      "merge_status": "unreviewed_no_automatic_merge",
+      "bookable": false,
+      "hospital_approved": false,
+      "production_eligible": false
+    },
+    {
+      "doctor_id": "DOCTOR-CAND-F7A0308EDFA3",
+      "doctor_candidate_id": "DOCTOR-CAND-F7A0308EDFA3",
+      "display_name_candidate": "SAT: ThS.BS Nguyễn Phương Liên",
+      "normalized_match_key": "sat: ths.bs nguyen phuong lien",
+      "raw_aliases": [
+        "SAT: ThS.BS Nguyễn Phương Liên"
+      ],
+      "source_schedule_entry_ids": [
+        "SCHED-20260713-CS1-TN1-0076"
+      ],
+      "review_status": "pending_review",
+      "candidate_grouping_method": "exact_normalized_display_name_only_no_fuzzy_identity_merge",
+      "merge_status": "unreviewed_no_automatic_merge",
+      "bookable": false,
+      "hospital_approved": false,
+      "production_eligible": false
+    },
+    {
+      "doctor_id": "DOCTOR-CAND-D46C2333377C",
+      "doctor_candidate_id": "DOCTOR-CAND-D46C2333377C",
+      "display_name_candidate": "Trần Đắc Long",
+      "normalized_match_key": "tran dac long",
+      "raw_aliases": [
+        "ThS. Bs Trần Đắc Long"
+      ],
+      "source_schedule_entry_ids": [
+        "SCHED-20260713-CS1-TN1-0072"
+      ],
+      "review_status": "pending_review",
+      "candidate_grouping_method": "exact_normalized_display_name_only_no_fuzzy_identity_merge",
+      "merge_status": "unreviewed_no_automatic_merge",
+      "bookable": false,
+      "hospital_approved": false,
+      "production_eligible": false
+    },
+    {
+      "doctor_id": "DOCTOR-CAND-050E5BEB3D0B",
+      "doctor_candidate_id": "DOCTOR-CAND-050E5BEB3D0B",
+      "display_name_candidate": "Trần Sinh Cường",
+      "normalized_match_key": "tran sinh cuong",
+      "raw_aliases": [
+        "ThS.BS Trần Sinh Cường"
+      ],
+      "source_schedule_entry_ids": [
+        "SCHED-20260713-CS1-TN1-0095"
+      ],
+      "review_status": "pending_review",
+      "candidate_grouping_method": "exact_normalized_display_name_only_no_fuzzy_identity_merge",
+      "merge_status": "unreviewed_no_automatic_merge",
+      "bookable": false,
+      "hospital_approved": false,
+      "production_eligible": false
+    },
+    {
+      "doctor_id": "DOCTOR-CAND-EB90171F1B6A",
+      "doctor_candidate_id": "DOCTOR-CAND-EB90171F1B6A",
+      "display_name_candidate": "Trần Thị An",
+      "normalized_match_key": "tran thi an",
+      "raw_aliases": [
+        "TS.BS Trần Thị An"
+      ],
+      "source_schedule_entry_ids": [
+        "SCHED-20260713-CS1-TN1-0044"
+      ],
+      "review_status": "pending_review",
+      "candidate_grouping_method": "exact_normalized_display_name_only_no_fuzzy_identity_merge",
+      "merge_status": "unreviewed_no_automatic_merge",
+      "bookable": false,
+      "hospital_approved": false,
+      "production_eligible": false
+    },
+    {
+      "doctor_id": "DOCTOR-CAND-6F007185D311",
+      "doctor_candidate_id": "DOCTOR-CAND-6F007185D311",
+      "display_name_candidate": "Trần Thị Linh Tú",
+      "normalized_match_key": "tran thi linh tu",
+      "raw_aliases": [
+        "Ts.Bs Trần Thị Linh Tú"
+      ],
+      "source_schedule_entry_ids": [
+        "SCHED-20260713-CS2-TN-0015",
+        "SCHED-20260713-CS2-TN-0016",
+        "SCHED-20260713-CS2-TN-0017",
+        "SCHED-20260713-CS2-TN-0018",
+        "SCHED-20260713-CS2-TN-0019"
+      ],
+      "review_status": "pending_review",
+      "candidate_grouping_method": "exact_normalized_display_name_only_no_fuzzy_identity_merge",
+      "merge_status": "unreviewed_no_automatic_merge",
+      "bookable": false,
+      "hospital_approved": false,
+      "production_eligible": false
+    },
+    {
+      "doctor_id": "DOCTOR-CAND-6D59A8C3405C",
+      "doctor_candidate_id": "DOCTOR-CAND-6D59A8C3405C",
+      "display_name_candidate": "Trần Thị Ngọc Lan",
+      "normalized_match_key": "tran thi ngoc lan",
+      "raw_aliases": [
+        "TS.BS Trần Thị Ngọc Lan"
+      ],
+      "source_schedule_entry_ids": [
+        "SCHED-20260713-CS1-TN1-0029",
+        "SCHED-20260713-CS1-TN1-0046"
+      ],
+      "review_status": "pending_review",
+      "candidate_grouping_method": "exact_normalized_display_name_only_no_fuzzy_identity_merge",
+      "merge_status": "unreviewed_no_automatic_merge",
+      "bookable": false,
+      "hospital_approved": false,
+      "production_eligible": false
+    },
+    {
+      "doctor_id": "DOCTOR-CAND-B7DE15DF04F2",
+      "doctor_candidate_id": "DOCTOR-CAND-B7DE15DF04F2",
+      "display_name_candidate": "Trần Thị Quỳnh Nga",
+      "normalized_match_key": "tran thi quynh nga",
+      "raw_aliases": [
+        "BSNT. Trần Thị Quỳnh Nga",
+        "Sáng\nBSNT. Trần Thị Quỳnh Nga\nChiều nghỉ"
+      ],
+      "source_schedule_entry_ids": [
+        "SCHED-20260713-CS2-DK-0008",
+        "SCHED-20260713-CS2-DK-0009",
+        "SCHED-20260713-CS2-DK-0010",
+        "SCHED-20260713-CS2-DK-0011",
+        "SCHED-20260713-CS2-DK-0012"
+      ],
+      "review_status": "pending_review",
+      "candidate_grouping_method": "exact_normalized_display_name_only_no_fuzzy_identity_merge",
+      "merge_status": "unreviewed_no_automatic_merge",
+      "bookable": false,
+      "hospital_approved": false,
+      "production_eligible": false
+    },
+    {
+      "doctor_id": "DOCTOR-CAND-01EE5A67E006",
+      "doctor_candidate_id": "DOCTOR-CAND-01EE5A67E006",
+      "display_name_candidate": "Trần Thị Thanh Hà",
+      "normalized_match_key": "tran thi thanh ha",
+      "raw_aliases": [
+        "BS CKII Trần Thị Thanh Hà"
+      ],
+      "source_schedule_entry_ids": [
+        "SCHED-20260713-CS1-TN1-0060"
+      ],
+      "review_status": "pending_review",
+      "candidate_grouping_method": "exact_normalized_display_name_only_no_fuzzy_identity_merge",
+      "merge_status": "unreviewed_no_automatic_merge",
+      "bookable": false,
+      "hospital_approved": false,
+      "production_eligible": false
+    },
+    {
+      "doctor_id": "DOCTOR-CAND-8E98D6BD67A4",
+      "doctor_candidate_id": "DOCTOR-CAND-8E98D6BD67A4",
+      "display_name_candidate": "Võ Thị Ngọc Anh",
+      "normalized_match_key": "vo thi ngoc anh",
+      "raw_aliases": [
+        "ThS.BS Võ Thị Ngọc Anh"
+      ],
+      "source_schedule_entry_ids": [
+        "SCHED-20260713-CS1-TN1-0057",
+        "SCHED-20260713-CS1-TN1-0059"
+      ],
+      "review_status": "pending_review",
+      "candidate_grouping_method": "exact_normalized_display_name_only_no_fuzzy_identity_merge",
+      "merge_status": "unreviewed_no_automatic_merge",
+      "bookable": false,
+      "hospital_approved": false,
+      "production_eligible": false
+    },
+    {
+      "doctor_id": "DOCTOR-CAND-B6B521BA44C6",
+      "doctor_candidate_id": "DOCTOR-CAND-B6B521BA44C6",
+      "display_name_candidate": "Vũ Quỳnh Nga",
+      "normalized_match_key": "vu quynh nga",
+      "raw_aliases": [
+        "TS.BS Vũ Quỳnh Nga"
+      ],
+      "source_schedule_entry_ids": [
+        "SCHED-20260713-CS1-TN1-0008",
+        "SCHED-20260713-CS1-TN1-0009",
+        "SCHED-20260713-CS1-TN1-0010",
+        "SCHED-20260713-CS1-TN1-0011",
+        "SCHED-20260713-CS1-TN1-0012"
+      ],
+      "review_status": "pending_review",
+      "candidate_grouping_method": "exact_normalized_display_name_only_no_fuzzy_identity_merge",
+      "merge_status": "unreviewed_no_automatic_merge",
+      "bookable": false,
+      "hospital_approved": false,
+      "production_eligible": false
+    },
+    {
+      "doctor_id": "DOCTOR-CAND-A08E95A5671C",
+      "doctor_candidate_id": "DOCTOR-CAND-A08E95A5671C",
+      "display_name_candidate": "Vũ Thị Trang",
+      "normalized_match_key": "vu thi trang",
+      "raw_aliases": [
+        "BSCKII Vũ Thị Trang"
+      ],
+      "source_schedule_entry_ids": [
+        "SCHED-20260713-CS1-TN1-0040"
+      ],
+      "review_status": "pending_review",
+      "candidate_grouping_method": "exact_normalized_display_name_only_no_fuzzy_identity_merge",
+      "merge_status": "unreviewed_no_automatic_merge",
+      "bookable": false,
+      "hospital_approved": false,
+      "production_eligible": false
+    }
+  ],
+  "safety_rules": [
+    "Đây là cấu hình prototype tách biệt, không phải dữ liệu do bệnh viện cung cấp.",
+    "Không suy ra khả năng đặt khám từ lịch làm việc.",
+    "Chỉ tạo capacity trong mô phỏng riêng khi đã xác định chắc chắn named doctor và session.",
+    "Mọi override phải lưu người thay đổi, thời điểm, lý do và môi trường; production luôn bị chặn cho đến khi bệnh viện phê duyệt."
+  ]
+}

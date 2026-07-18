@@ -1,0 +1,296 @@
+{
+  "task_id": "TASK-FAQ-PARAPHRASES",
+  "dataset_role": "synthetic_test_only",
+  "batch_number": 3,
+  "batch_count": 3,
+  "runtime_knowledge_eligible": false,
+  "production_eligible": false,
+  "records": [
+    {
+      "faq_id": "SYN-FAQ-0041",
+      "question": "Cơ sở 1 của bệnh viện có địa chỉ cụ thể như thế nào?",
+      "normalized_intent": "hospital_contact",
+      "expected_response_type": "grounded_answer",
+      "expected_answer": "Cơ sở 1: Số 92 Trần Hưng Đạo, phường Cửa Nam, Hà Nội.",
+      "source_fact_ids": [
+        "FACT-FACILITY-1"
+      ],
+      "source_ids": [
+        "SRC-BOOKING-GUIDE"
+      ],
+      "style": "standard_vietnamese",
+      "is_synthetic": true
+    },
+    {
+      "faq_id": "SYN-FAQ-0042",
+      "question": "Địa chỉ đầy đủ của cơ sở 2 là gì?",
+      "normalized_intent": "hospital_contact",
+      "expected_response_type": "grounded_answer",
+      "expected_answer": "Cơ sở 2: Số 695 Lạc Long Quân, phường Tây Hồ, Hà Nội.",
+      "source_fact_ids": [
+        "FACT-FACILITY-2"
+      ],
+      "source_ids": [
+        "SRC-BOOKING-GUIDE"
+      ],
+      "style": "standard_vietnamese",
+      "is_synthetic": true
+    },
+    {
+      "faq_id": "SYN-FAQ-0043",
+      "question": "Hotline hỗ trợ đăng ký khám và giải đáp thủ tục là số nào?",
+      "normalized_intent": "hospital_contact",
+      "expected_response_type": "grounded_answer",
+      "expected_answer": "Số liên hệ đăng ký khám và giải đáp thủ tục/BHYT được công bố là 19001082; footer của website hiển thị hotline này là 24h/7.",
+      "source_fact_ids": [
+        "FACT-HOTLINE"
+      ],
+      "source_ids": [
+        "SRC-BOOKING-GUIDE"
+      ],
+      "style": "standard_vietnamese",
+      "is_synthetic": true
+    },
+    {
+      "faq_id": "SYN-FAQ-0044",
+      "question": "Tôi muốn truy cập trang đặt khám chính thức của bệnh viện.",
+      "normalized_intent": "booking",
+      "expected_response_type": "grounded_answer",
+      "expected_answer": "Link đặt khám được công bố là https://benhvientimhanoi.vn/he-thong/hen-kham/index.html.",
+      "source_fact_ids": [
+        "FACT-BOOKING-URL"
+      ],
+      "source_ids": [
+        "SRC-BOOKING-GUIDE"
+      ],
+      "style": "standard_vietnamese",
+      "is_synthetic": true
+    },
+    {
+      "faq_id": "SYN-FAQ-0045",
+      "question": "Trang giá dịch vụ kỹ thuật năm 2025 dẫn chiếu văn bản nào?",
+      "normalized_intent": "service_price",
+      "expected_response_type": "grounded_answer",
+      "expected_answer": "Trang giá dịch vụ kỹ thuật 2025 được đăng ngày 20/01/2025 và dẫn chiếu Phụ lục số 06 Nghị quyết số 45/2024/NQ-HĐND ngày 10/12/2024; trang nêu phạm vi cho người có và không có thẻ BHYT.",
+      "source_fact_ids": [
+        "FACT-PRICE-PAGE-METADATA"
+      ],
+      "source_ids": [
+        "SRC-PRICE-2025"
+      ],
+      "style": "standard_vietnamese",
+      "is_synthetic": true
+    },
+    {
+      "faq_id": "SYN-FAQ-0046",
+      "question": "Bệnh viện có dịch vụ cho mượn xe lăn tại cổng không?",
+      "normalized_intent": "hospital_contact",
+      "expected_response_type": "refusal_and_handoff",
+      "expected_answer": "Hiện tôi chưa tìm thấy thông tin đủ tin cậy trong nguồn chính thức đã được xác minh. Tôi sẽ không đoán. Bạn có thể xem nguồn chính thức hoặc liên hệ 19001082 để được hỗ trợ.",
+      "source_fact_ids": [],
+      "source_ids": [],
+      "style": "standard_vietnamese",
+      "is_synthetic": true
+    },
+    {
+      "faq_id": "SYN-FAQ-0047",
+      "question": "Cuối tuần gọi đặt lịch được tới mấy giờ vậy?",
+      "normalized_intent": "working_hours",
+      "expected_response_type": "grounded_answer",
+      "expected_answer": "Giờ nhận đặt lịch qua điện thoại được công bố là thứ Hai đến thứ Bảy, từ 08:00 đến 16:00; nghỉ Chủ nhật và các ngày Lễ, Tết.",
+      "source_fact_ids": [
+        "FACT-PHONE-BOOKING-HOURS"
+      ],
+      "source_ids": [
+        "SRC-BOOKING-GUIDE"
+      ],
+      "style": "colloquial",
+      "is_synthetic": true
+    },
+    {
+      "faq_id": "SYN-FAQ-0048",
+      "question": "Mình hẹn sát giờ khám luôn có được không?",
+      "normalized_intent": "booking",
+      "expected_response_type": "grounded_answer",
+      "expected_answer": "Người dùng được hướng dẫn đặt hẹn trước ít nhất 24 giờ so với giờ dự định khám.",
+      "source_fact_ids": [
+        "FACT-BOOKING-LEAD-TIME"
+      ],
+      "source_ids": [
+        "SRC-BOOKING-GUIDE"
+      ],
+      "style": "colloquial",
+      "is_synthetic": true
+    },
+    {
+      "faq_id": "SYN-FAQ-0049",
+      "question": "Mới gửi lịch thôi, chưa thấy bệnh viện báo lại thì ổn chưa?",
+      "normalized_intent": "booking",
+      "expected_response_type": "grounded_answer",
+      "expected_answer": "Lịch hẹn chỉ có giá trị sau khi Bệnh viện xác nhận.",
+      "source_fact_ids": [
+        "FACT-BOOKING-CONFIRMATION"
+      ],
+      "source_ids": [
+        "SRC-BOOKING-GUIDE"
+      ],
+      "style": "colloquial",
+      "is_synthetic": true
+    },
+    {
+      "faq_id": "SYN-FAQ-0050",
+      "question": "Tới đúng giờ hẹn là được hay phải tới sớm vậy?",
+      "normalized_intent": "procedure",
+      "expected_response_type": "grounded_answer",
+      "expected_answer": "Người dùng được hướng dẫn có mặt trước giờ dự định khám ít nhất 15 phút để làm thủ tục và đo các chỉ số ban đầu.",
+      "source_fact_ids": [
+        "FACT-BOOKING-ARRIVAL"
+      ],
+      "source_ids": [
+        "SRC-BOOKING-GUIDE"
+      ],
+      "style": "colloquial",
+      "is_synthetic": true
+    },
+    {
+      "faq_id": "SYN-FAQ-0051",
+      "question": "Mình muốn biết tuần sau bác sĩ nào làm buổi sáng?",
+      "normalized_intent": "doctor_department",
+      "expected_response_type": "refusal_and_handoff",
+      "expected_answer": "Hiện tôi chưa tìm thấy thông tin đủ tin cậy trong nguồn chính thức đã được xác minh. Tôi sẽ không đoán. Bạn có thể xem nguồn chính thức hoặc liên hệ 19001082 để được hỗ trợ.",
+      "source_fact_ids": [],
+      "source_ids": [],
+      "style": "colloquial",
+      "is_synthetic": true
+    },
+    {
+      "faq_id": "SYN-FAQ-0052",
+      "question": "Dat lich kham co dung cho truong hop cap cuu khong?",
+      "normalized_intent": "emergency",
+      "expected_response_type": "grounded_answer",
+      "expected_answer": "Đặt hẹn khám chỉ dành cho các trường hợp không cấp cứu, không khẩn cấp.",
+      "source_fact_ids": [
+        "FACT-BOOKING-NONEMERGENCY"
+      ],
+      "source_ids": [
+        "SRC-BOOKING-GUIDE"
+      ],
+      "style": "no_diacritics",
+      "is_synthetic": true
+    },
+    {
+      "faq_id": "SYN-FAQ-0053",
+      "question": "Trong truong hop cap cuu thi can lien he nhu the nao?",
+      "normalized_intent": "emergency",
+      "expected_response_type": "grounded_answer",
+      "expected_answer": "Trong trường hợp cấp cứu, hướng dẫn chính thức yêu cầu gọi số cấp cứu theo tỉnh/thành của người dùng (mã vùng + 115) hoặc đến thẳng cơ sở cấp cứu gần nhất.",
+      "source_fact_ids": [
+        "FACT-EMERGENCY-ACTION"
+      ],
+      "source_ids": [
+        "SRC-BOOKING-GUIDE"
+      ],
+      "style": "no_diacritics",
+      "is_synthetic": true
+    },
+    {
+      "faq_id": "SYN-FAQ-0054",
+      "question": "Trang gia dich vu 2025 duoc dang vao ngay nao?",
+      "normalized_intent": "service_price",
+      "expected_response_type": "grounded_answer",
+      "expected_answer": "Trang giá dịch vụ kỹ thuật 2025 được đăng ngày 20/01/2025 và dẫn chiếu Phụ lục số 06 Nghị quyết số 45/2024/NQ-HĐND ngày 10/12/2024; trang nêu phạm vi cho người có và không có thẻ BHYT.",
+      "source_fact_ids": [
+        "FACT-PRICE-PAGE-METADATA"
+      ],
+      "source_ids": [
+        "SRC-PRICE-2025"
+      ],
+      "style": "no_diacritics",
+      "is_synthetic": true
+    },
+    {
+      "faq_id": "SYN-FAQ-0055",
+      "question": "Co bai gui xe o co so 2 khong?",
+      "normalized_intent": "hospital_contact",
+      "expected_response_type": "refusal_and_handoff",
+      "expected_answer": "Hiện tôi chưa tìm thấy thông tin đủ tin cậy trong nguồn chính thức đã được xác minh. Tôi sẽ không đoán. Bạn có thể xem nguồn chính thức hoặc liên hệ 19001082 để được hỗ trợ.",
+      "source_fact_ids": [],
+      "source_ids": [],
+      "style": "no_diacritics",
+      "is_synthetic": true
+    },
+    {
+      "faq_id": "SYN-FAQ-0056",
+      "question": "Đ/c cs1 BV Tim HN là đâu?",
+      "normalized_intent": "hospital_contact",
+      "expected_response_type": "grounded_answer",
+      "expected_answer": "Cơ sở 1: Số 92 Trần Hưng Đạo, phường Cửa Nam, Hà Nội.",
+      "source_fact_ids": [
+        "FACT-FACILITY-1"
+      ],
+      "source_ids": [
+        "SRC-BOOKING-GUIDE"
+      ],
+      "style": "typo_or_abbreviation",
+      "is_synthetic": true
+    },
+    {
+      "faq_id": "SYN-FAQ-0057",
+      "question": "Cs2 ở 695 Lạc Long Quân đúng ko?",
+      "normalized_intent": "hospital_contact",
+      "expected_response_type": "grounded_answer",
+      "expected_answer": "Cơ sở 2: Số 695 Lạc Long Quân, phường Tây Hồ, Hà Nội.",
+      "source_fact_ids": [
+        "FACT-FACILITY-2"
+      ],
+      "source_ids": [
+        "SRC-BOOKING-GUIDE"
+      ],
+      "style": "typo_or_abbreviation",
+      "is_synthetic": true
+    },
+    {
+      "faq_id": "SYN-FAQ-0058",
+      "question": "Sđt hỏi ttuc BHYT là j?",
+      "normalized_intent": "insurance_general",
+      "expected_response_type": "grounded_answer",
+      "expected_answer": "Số liên hệ đăng ký khám và giải đáp thủ tục/BHYT được công bố là 19001082; footer của website hiển thị hotline này là 24h/7.",
+      "source_fact_ids": [
+        "FACT-HOTLINE"
+      ],
+      "source_ids": [
+        "SRC-BOOKING-GUIDE"
+      ],
+      "style": "typo_or_abbreviation",
+      "is_synthetic": true
+    },
+    {
+      "faq_id": "SYN-FAQ-0059",
+      "question": "Cho xin gía chính xác 1 dv bất kỳ?",
+      "normalized_intent": "service_price",
+      "expected_response_type": "refusal_and_handoff",
+      "expected_answer": "Hiện tôi chưa tìm thấy thông tin đủ tin cậy trong nguồn chính thức đã được xác minh. Tôi sẽ không đoán. Bạn có thể xem nguồn chính thức hoặc liên hệ 19001082 để được hỗ trợ.",
+      "source_fact_ids": [],
+      "source_ids": [],
+      "style": "typo_or_abbreviation",
+      "is_synthetic": true
+    },
+    {
+      "faq_id": "SYN-FAQ-0060",
+      "question": "Tôi muốn đặt lịch qua điện thoại: gọi số nào, gọi lúc nào và khi nào lịch mới có giá trị?",
+      "normalized_intent": "booking",
+      "expected_response_type": "grounded_answer",
+      "expected_answer": "Số liên hệ đăng ký khám là 19001082. Giờ nhận đặt lịch qua điện thoại được công bố là thứ Hai đến thứ Bảy, từ 08:00 đến 16:00; nghỉ Chủ nhật và các ngày Lễ, Tết. Lịch hẹn chỉ có giá trị sau khi Bệnh viện xác nhận.",
+      "source_fact_ids": [
+        "FACT-HOTLINE",
+        "FACT-PHONE-BOOKING-HOURS",
+        "FACT-BOOKING-CONFIRMATION"
+      ],
+      "source_ids": [
+        "SRC-BOOKING-GUIDE"
+      ],
+      "style": "multi_intent",
+      "is_synthetic": true
+    }
+  ]
+}

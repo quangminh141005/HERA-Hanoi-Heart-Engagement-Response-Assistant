@@ -1,0 +1,606 @@
+{
+  "bundle_name": "hera-generated-data",
+  "bundle_version": "2.0.0",
+  "spec_file": "../../data-generation-spec.json",
+  "spec_version": "3.0.0",
+  "generation_note": "Structured domain records are deterministically normalized from local JSON; synthetic fixtures are reused and rewritten under the v2 contracts.",
+  "job_id": "hera-structured-data-2026-07-v2",
+  "generated_at": "2026-07-17T23:45:00+07:00",
+  "generator": "scripts/build-generated-data.mjs",
+  "locale": "vi-VN",
+  "timezone": "Asia/Ho_Chi_Minh",
+  "status": "automated_validation_completed_with_review_required_gate",
+  "ready_to_seed_local_prototype": true,
+  "ready_to_seed_staging": true,
+  "ready_for_production": false,
+  "human_reviewer": null,
+  "reviewed_at": null,
+  "counts": {
+    "sources": 13,
+    "seed_facts": 11,
+    "historical_price_rows": 2946,
+    "historical_price_group_headers": 2,
+    "nested_facility_prices": 4051,
+    "bhyt_policies": 2,
+    "current_bhyt_household_tiers": 5,
+    "schedule_documents": 18,
+    "schedule_documents_accepted": 18,
+    "schedule_documents_review_required": 0,
+    "schedule_duplicate_sources_excluded": 0,
+    "schedule_entries": 1382,
+    "schedule_named_assignments": 1008,
+    "schedule_generic_assignments": 60,
+    "schedule_closed_entries": 271,
+    "generated_capacity_records": 0,
+    "import_issues": 14,
+    "faq_paraphrases": 60,
+    "conversation_scenarios": 24,
+    "evaluation_cases": 100
+  },
+  "schedule_week_summaries": [
+    {
+      "week_start": "2026-06-08",
+      "week_end": "2026-06-14",
+      "documents_discovered": 3,
+      "documents_validation_accepted": 3,
+      "documents_review_required": 0,
+      "entries_published_to_review_dataset": 223,
+      "named_assignments": 168,
+      "generic_assignments": 10,
+      "closed_entries": 37,
+      "runtime_eligible_entries": 0
+    },
+    {
+      "week_start": "2026-06-15",
+      "week_end": "2026-06-21",
+      "documents_discovered": 3,
+      "documents_validation_accepted": 3,
+      "documents_review_required": 0,
+      "entries_published_to_review_dataset": 223,
+      "named_assignments": 165,
+      "generic_assignments": 10,
+      "closed_entries": 37,
+      "runtime_eligible_entries": 0
+    },
+    {
+      "week_start": "2026-06-22",
+      "week_end": "2026-06-28",
+      "documents_discovered": 3,
+      "documents_validation_accepted": 3,
+      "documents_review_required": 0,
+      "entries_published_to_review_dataset": 245,
+      "named_assignments": 165,
+      "generic_assignments": 10,
+      "closed_entries": 57,
+      "runtime_eligible_entries": 0
+    },
+    {
+      "week_start": "2026-06-29",
+      "week_end": "2026-07-05",
+      "documents_discovered": 3,
+      "documents_validation_accepted": 3,
+      "documents_review_required": 0,
+      "entries_published_to_review_dataset": 223,
+      "named_assignments": 170,
+      "generic_assignments": 10,
+      "closed_entries": 37,
+      "runtime_eligible_entries": 0
+    },
+    {
+      "week_start": "2026-07-06",
+      "week_end": "2026-07-12",
+      "documents_discovered": 3,
+      "documents_validation_accepted": 3,
+      "documents_review_required": 0,
+      "entries_published_to_review_dataset": 223,
+      "named_assignments": 168,
+      "generic_assignments": 10,
+      "closed_entries": 43,
+      "runtime_eligible_entries": 0
+    },
+    {
+      "week_start": "2026-07-13",
+      "week_end": "2026-07-19",
+      "documents_discovered": 3,
+      "documents_validation_accepted": 3,
+      "documents_review_required": 0,
+      "entries_published_to_review_dataset": 245,
+      "named_assignments": 172,
+      "generic_assignments": 10,
+      "closed_entries": 60,
+      "runtime_eligible_entries": 0
+    }
+  ],
+  "raw_inputs": [
+    {
+      "path": "data/BHYT.json",
+      "bytes": 1945,
+      "sha256": "2b61f41efe1d9855688ca2946baf12d8ca9ed420273496981c759353b210e844",
+      "status": "accepted_historical_secondary_disabled"
+    },
+    {
+      "path": "data/gia_dich_vu_ky_thuat_2025.json",
+      "bytes": 1090944,
+      "sha256": "1af310c0fb7f502de06cca82771d7ae88a58ad4083da597c221ce2d7b960e440",
+      "status": "accepted_historical_snapshot"
+    },
+    {
+      "path": "data/schedules/2026/2026-06-08_to_2026-06-14/Lịch khám bệnh Bác sĩ Đa Khoa Cơ Sở 2.json",
+      "bytes": 4515,
+      "sha256": "09ab211084571599e0853a8127c5430baa4e27af8e38d8e946153d604acdb9d7",
+      "status": "active_accepted"
+    },
+    {
+      "path": "data/schedules/2026/2026-06-08_to_2026-06-14/Lịch khám bệnh Bác sĩ khu TN Cơ Sở 2.json",
+      "bytes": 2425,
+      "sha256": "124e750fa1cb206e64de2e1cef78ff75f4948d22d917dd7e9a2a529e269678e4",
+      "status": "active_accepted"
+    },
+    {
+      "path": "data/schedules/2026/2026-06-08_to_2026-06-14/Lịch khám bệnh Bác sĩ khu TN1 Cơ Sở 1.json",
+      "bytes": 9626,
+      "sha256": "7ad852e0d8754174725ac482b7d7613411aa586a30842305c0a3a218f14b21b3",
+      "status": "active_accepted"
+    },
+    {
+      "path": "data/schedules/2026/2026-06-15_to_2026-06-21/Lịch khám bệnh Bác sĩ Đa Khoa Cơ Sở 2.json",
+      "bytes": 4467,
+      "sha256": "ca7fed7f24e1caeb87ef72921717cfad7fd316a893339b6020d8cc50fed30669",
+      "status": "active_accepted"
+    },
+    {
+      "path": "data/schedules/2026/2026-06-15_to_2026-06-21/Lịch khám bệnh Bác sĩ khu TN Cơ Sở 2.json",
+      "bytes": 2405,
+      "sha256": "48a6ac775e0935be497709fb40cd0a215ffae41b7b663ee5a74db9bf8e015463",
+      "status": "active_accepted"
+    },
+    {
+      "path": "data/schedules/2026/2026-06-15_to_2026-06-21/Lịch khám bệnh Bác sĩ khu TN1 Cơ Sở 1.json",
+      "bytes": 9633,
+      "sha256": "9483818b0214cdcb17eda6cbae1c4ddc302d7b7a768042b7a5eb4957f1e70f0e",
+      "status": "active_accepted"
+    },
+    {
+      "path": "data/schedules/2026/2026-06-22_to_2026-06-28/Lịch khám bệnh Bác sĩ Đa Khoa Cơ Sở 2.json",
+      "bytes": 4486,
+      "sha256": "468d77ae583a72d178c06e62ef57944360e8a41a45e48f6be13b7bf1ba3ee0f7",
+      "status": "active_accepted"
+    },
+    {
+      "path": "data/schedules/2026/2026-06-22_to_2026-06-28/Lịch khám bệnh Bác sĩ khu TN Cơ Sở 2.json",
+      "bytes": 2415,
+      "sha256": "0e9e57e78d8c39e395aa32f6d8e8868b51431d130fe3cc417b489e24a6a21ddb",
+      "status": "active_accepted"
+    },
+    {
+      "path": "data/schedules/2026/2026-06-22_to_2026-06-28/Lịch khám bệnh Bác sĩ khu TN1 Cơ Sở 1.json",
+      "bytes": 9459,
+      "sha256": "3040a0d1abfc0da56dae392bab48dfceac2a3ebd6946b4bc8aa12366de5ad934",
+      "status": "active_accepted"
+    },
+    {
+      "path": "data/schedules/2026/2026-06-29_to_2026-07-05/Lịch khám bệnh Bác sĩ Đa Khoa Cơ Sở 2.json",
+      "bytes": 4565,
+      "sha256": "ad52f4926c5eb807cd11705e5f45fdbc7690149b7b1f34165f56d7abdcfe7152",
+      "status": "active_accepted"
+    },
+    {
+      "path": "data/schedules/2026/2026-06-29_to_2026-07-05/Lịch khám bệnh Bác sĩ khu TN Cơ Sở 2.json",
+      "bytes": 2430,
+      "sha256": "396714b8cb688f15dbb42aa5255e7884b34ceb121498d2d82bdb5e74dc315bbe",
+      "status": "active_accepted"
+    },
+    {
+      "path": "data/schedules/2026/2026-06-29_to_2026-07-05/Lịch khám bệnh Bác sĩ khu TN1 Cơ Sở 1.json",
+      "bytes": 9631,
+      "sha256": "cbffe822b111e9b3465b5ed998a3f1e1a4cfdbf2f4fabab0d7605887c6b4508a",
+      "status": "active_accepted"
+    },
+    {
+      "path": "data/schedules/2026/2026-07-06_to_2026-07-12/Lịch khám bệnh Bác sĩ Đa Khoa Cơ Sở 2.json",
+      "bytes": 4489,
+      "sha256": "0d058da495cf228c19b9652f3cbbb634c3c343b8800f699892858e960509ddb2",
+      "status": "active_accepted"
+    },
+    {
+      "path": "data/schedules/2026/2026-07-06_to_2026-07-12/Lịch khám bệnh Bác sĩ khu TN Cơ Sở 2.json",
+      "bytes": 2400,
+      "sha256": "420118a6c188e3b1177d71831678a0b759abf7a518758a337345d2fd634cbc1a",
+      "status": "active_accepted"
+    },
+    {
+      "path": "data/schedules/2026/2026-07-06_to_2026-07-12/Lịch khám bệnh Bác sĩ khu TN1 Cơ Sở 1.json",
+      "bytes": 9589,
+      "sha256": "448eb957f87ddb382fcfbdb815e43e40d2faf2df1fe3035b2003b85556ec884c",
+      "status": "active_accepted"
+    },
+    {
+      "path": "data/schedules/2026/2026-07-13_to_2026-07-19/Lịch khám bệnh Bác sĩ Đa Khoa Cơ Sở 2.json",
+      "bytes": 4694,
+      "sha256": "79562ae8d0b88132b53703cdb1bbbb2a78abc4b0764c7fa071e7942a305a1cb2",
+      "status": "active_accepted"
+    },
+    {
+      "path": "data/schedules/2026/2026-07-13_to_2026-07-19/Lịch khám bệnh Bác sĩ khu TN Cơ Sở 2.json",
+      "bytes": 2458,
+      "sha256": "aa64066200b67e4205cbb8b0789f2e369dbc87ee85e6579326e91c6d2010d985",
+      "status": "active_accepted"
+    },
+    {
+      "path": "data/schedules/2026/2026-07-13_to_2026-07-19/Lịch khám bệnh Bác sĩ khu TN1 Cơ Sở 1.json",
+      "bytes": 9736,
+      "sha256": "61e34678d950c938cbc860f57495ad3c307856e3bc87016d06bff8689177a358",
+      "status": "active_accepted"
+    }
+  ],
+  "input_sources": [
+    {
+      "path": "data/BHYT.json",
+      "bytes": 1945,
+      "sha256": "2b61f41efe1d9855688ca2946baf12d8ca9ed420273496981c759353b210e844",
+      "status": "accepted_historical_secondary_disabled"
+    },
+    {
+      "path": "data/gia_dich_vu_ky_thuat_2025.json",
+      "bytes": 1090944,
+      "sha256": "1af310c0fb7f502de06cca82771d7ae88a58ad4083da597c221ce2d7b960e440",
+      "status": "accepted_historical_snapshot"
+    },
+    {
+      "path": "data/schedules/2026/2026-06-08_to_2026-06-14/Lịch khám bệnh Bác sĩ Đa Khoa Cơ Sở 2.json",
+      "bytes": 4515,
+      "sha256": "09ab211084571599e0853a8127c5430baa4e27af8e38d8e946153d604acdb9d7",
+      "status": "active_accepted"
+    },
+    {
+      "path": "data/schedules/2026/2026-06-08_to_2026-06-14/Lịch khám bệnh Bác sĩ khu TN Cơ Sở 2.json",
+      "bytes": 2425,
+      "sha256": "124e750fa1cb206e64de2e1cef78ff75f4948d22d917dd7e9a2a529e269678e4",
+      "status": "active_accepted"
+    },
+    {
+      "path": "data/schedules/2026/2026-06-08_to_2026-06-14/Lịch khám bệnh Bác sĩ khu TN1 Cơ Sở 1.json",
+      "bytes": 9626,
+      "sha256": "7ad852e0d8754174725ac482b7d7613411aa586a30842305c0a3a218f14b21b3",
+      "status": "active_accepted"
+    },
+    {
+      "path": "data/schedules/2026/2026-06-15_to_2026-06-21/Lịch khám bệnh Bác sĩ Đa Khoa Cơ Sở 2.json",
+      "bytes": 4467,
+      "sha256": "ca7fed7f24e1caeb87ef72921717cfad7fd316a893339b6020d8cc50fed30669",
+      "status": "active_accepted"
+    },
+    {
+      "path": "data/schedules/2026/2026-06-15_to_2026-06-21/Lịch khám bệnh Bác sĩ khu TN Cơ Sở 2.json",
+      "bytes": 2405,
+      "sha256": "48a6ac775e0935be497709fb40cd0a215ffae41b7b663ee5a74db9bf8e015463",
+      "status": "active_accepted"
+    },
+    {
+      "path": "data/schedules/2026/2026-06-15_to_2026-06-21/Lịch khám bệnh Bác sĩ khu TN1 Cơ Sở 1.json",
+      "bytes": 9633,
+      "sha256": "9483818b0214cdcb17eda6cbae1c4ddc302d7b7a768042b7a5eb4957f1e70f0e",
+      "status": "active_accepted"
+    },
+    {
+      "path": "data/schedules/2026/2026-06-22_to_2026-06-28/Lịch khám bệnh Bác sĩ Đa Khoa Cơ Sở 2.json",
+      "bytes": 4486,
+      "sha256": "468d77ae583a72d178c06e62ef57944360e8a41a45e48f6be13b7bf1ba3ee0f7",
+      "status": "active_accepted"
+    },
+    {
+      "path": "data/schedules/2026/2026-06-22_to_2026-06-28/Lịch khám bệnh Bác sĩ khu TN Cơ Sở 2.json",
+      "bytes": 2415,
+      "sha256": "0e9e57e78d8c39e395aa32f6d8e8868b51431d130fe3cc417b489e24a6a21ddb",
+      "status": "active_accepted"
+    },
+    {
+      "path": "data/schedules/2026/2026-06-22_to_2026-06-28/Lịch khám bệnh Bác sĩ khu TN1 Cơ Sở 1.json",
+      "bytes": 9459,
+      "sha256": "3040a0d1abfc0da56dae392bab48dfceac2a3ebd6946b4bc8aa12366de5ad934",
+      "status": "active_accepted"
+    },
+    {
+      "path": "data/schedules/2026/2026-06-29_to_2026-07-05/Lịch khám bệnh Bác sĩ Đa Khoa Cơ Sở 2.json",
+      "bytes": 4565,
+      "sha256": "ad52f4926c5eb807cd11705e5f45fdbc7690149b7b1f34165f56d7abdcfe7152",
+      "status": "active_accepted"
+    },
+    {
+      "path": "data/schedules/2026/2026-06-29_to_2026-07-05/Lịch khám bệnh Bác sĩ khu TN Cơ Sở 2.json",
+      "bytes": 2430,
+      "sha256": "396714b8cb688f15dbb42aa5255e7884b34ceb121498d2d82bdb5e74dc315bbe",
+      "status": "active_accepted"
+    },
+    {
+      "path": "data/schedules/2026/2026-06-29_to_2026-07-05/Lịch khám bệnh Bác sĩ khu TN1 Cơ Sở 1.json",
+      "bytes": 9631,
+      "sha256": "cbffe822b111e9b3465b5ed998a3f1e1a4cfdbf2f4fabab0d7605887c6b4508a",
+      "status": "active_accepted"
+    },
+    {
+      "path": "data/schedules/2026/2026-07-06_to_2026-07-12/Lịch khám bệnh Bác sĩ Đa Khoa Cơ Sở 2.json",
+      "bytes": 4489,
+      "sha256": "0d058da495cf228c19b9652f3cbbb634c3c343b8800f699892858e960509ddb2",
+      "status": "active_accepted"
+    },
+    {
+      "path": "data/schedules/2026/2026-07-06_to_2026-07-12/Lịch khám bệnh Bác sĩ khu TN Cơ Sở 2.json",
+      "bytes": 2400,
+      "sha256": "420118a6c188e3b1177d71831678a0b759abf7a518758a337345d2fd634cbc1a",
+      "status": "active_accepted"
+    },
+    {
+      "path": "data/schedules/2026/2026-07-06_to_2026-07-12/Lịch khám bệnh Bác sĩ khu TN1 Cơ Sở 1.json",
+      "bytes": 9589,
+      "sha256": "448eb957f87ddb382fcfbdb815e43e40d2faf2df1fe3035b2003b85556ec884c",
+      "status": "active_accepted"
+    },
+    {
+      "path": "data/schedules/2026/2026-07-13_to_2026-07-19/Lịch khám bệnh Bác sĩ Đa Khoa Cơ Sở 2.json",
+      "bytes": 4694,
+      "sha256": "79562ae8d0b88132b53703cdb1bbbb2a78abc4b0764c7fa071e7942a305a1cb2",
+      "status": "active_accepted"
+    },
+    {
+      "path": "data/schedules/2026/2026-07-13_to_2026-07-19/Lịch khám bệnh Bác sĩ khu TN Cơ Sở 2.json",
+      "bytes": 2458,
+      "sha256": "aa64066200b67e4205cbb8b0789f2e369dbc87ee85e6579326e91c6d2010d985",
+      "status": "active_accepted"
+    },
+    {
+      "path": "data/schedules/2026/2026-07-13_to_2026-07-19/Lịch khám bệnh Bác sĩ khu TN1 Cơ Sở 1.json",
+      "bytes": 9736,
+      "sha256": "61e34678d950c938cbc860f57495ad3c307856e3bc87016d06bff8689177a358",
+      "status": "active_accepted"
+    }
+  ],
+  "lanes": {
+    "runtime_structured_load_order": [
+      "01-sources-facts-and-templates.json",
+      "02-service-prices-2025-batch-01.json",
+      "03-service-prices-2025-batch-02.json",
+      "04-service-prices-2025-batch-03.json",
+      "05-service-prices-2025-batch-04.json",
+      "06-service-prices-2025-batch-05.json",
+      "07-service-prices-2025-batch-06.json",
+      "08-bhyt-household-contributions.json",
+      "09-schedule-document-registry.json",
+      "10-schedule-entries.json"
+    ],
+    "prototype_configuration_order": [
+      "11-booking-capacity-config.json"
+    ],
+    "review_only_order": [
+      "12-import-issues.json"
+    ],
+    "test_fixture_order": [
+      "13-faq-paraphrases-batch-01.json",
+      "14-faq-paraphrases-batch-02.json",
+      "15-faq-paraphrases-batch-03.json",
+      "16-conversation-scenarios-batch-01.json",
+      "17-conversation-scenarios-batch-02.json",
+      "18-evaluation-cases-batch-01.json",
+      "19-evaluation-cases-batch-02.json",
+      "20-evaluation-cases-batch-03.json",
+      "21-evaluation-cases-batch-04.json",
+      "22-evaluation-cases-batch-05.json"
+    ]
+  },
+  "load_order": [
+    "01-sources-facts-and-templates.json",
+    "02-service-prices-2025-batch-01.json",
+    "03-service-prices-2025-batch-02.json",
+    "04-service-prices-2025-batch-03.json",
+    "05-service-prices-2025-batch-04.json",
+    "06-service-prices-2025-batch-05.json",
+    "07-service-prices-2025-batch-06.json",
+    "08-bhyt-household-contributions.json",
+    "09-schedule-document-registry.json",
+    "10-schedule-entries.json"
+  ],
+  "test_only_files": [
+    "13-faq-paraphrases-batch-01.json",
+    "14-faq-paraphrases-batch-02.json",
+    "15-faq-paraphrases-batch-03.json",
+    "16-conversation-scenarios-batch-01.json",
+    "17-conversation-scenarios-batch-02.json",
+    "18-evaluation-cases-batch-01.json",
+    "19-evaluation-cases-batch-02.json",
+    "20-evaluation-cases-batch-03.json",
+    "21-evaluation-cases-batch-04.json",
+    "22-evaluation-cases-batch-05.json"
+  ],
+  "files": [
+    {
+      "file": "01-sources-facts-and-templates.json",
+      "kind": "sources_facts_templates",
+      "lane": "reviewable_runtime_seed",
+      "record_count": 30,
+      "bytes": 16575,
+      "sha256": "546825c4bfddee91cfe7cd5121416a59e3d08a46cf64088726930171ed59d1bd"
+    },
+    {
+      "file": "02-service-prices-2025-batch-01.json",
+      "kind": "historical_service_prices_2025",
+      "lane": "historical_structured",
+      "record_count": 500,
+      "nested_facility_price_count": 838,
+      "bytes": 985823,
+      "sha256": "9e866fda35a71cd1ede66823ec96fcdbc6e220c240c86b6da3c36a96a2ca4e2d"
+    },
+    {
+      "file": "03-service-prices-2025-batch-02.json",
+      "kind": "historical_service_prices_2025",
+      "lane": "historical_structured",
+      "record_count": 500,
+      "nested_facility_price_count": 667,
+      "bytes": 931695,
+      "sha256": "45124882ab1153e79804388c5d3c3327c752b3aadba3102959d891dc52316724"
+    },
+    {
+      "file": "04-service-prices-2025-batch-03.json",
+      "kind": "historical_service_prices_2025",
+      "lane": "historical_structured",
+      "record_count": 500,
+      "nested_facility_price_count": 638,
+      "bytes": 828518,
+      "sha256": "7c84aa9d2c469446ded5df53a31841a6caef3c657cdfa806fc979c4e7cc07367"
+    },
+    {
+      "file": "05-service-prices-2025-batch-04.json",
+      "kind": "historical_service_prices_2025",
+      "lane": "historical_structured",
+      "record_count": 500,
+      "nested_facility_price_count": 554,
+      "bytes": 924939,
+      "sha256": "426bd48d1231c704a93bf79e1b96f6a1af48d35053acfe3f792ace23355be977"
+    },
+    {
+      "file": "06-service-prices-2025-batch-05.json",
+      "kind": "historical_service_prices_2025",
+      "lane": "historical_structured",
+      "record_count": 500,
+      "nested_facility_price_count": 731,
+      "bytes": 838009,
+      "sha256": "108816e924b77f4c38905498d7e798012aebb17a80397b00081ac1cf018e607b"
+    },
+    {
+      "file": "07-service-prices-2025-batch-06.json",
+      "kind": "historical_service_prices_2025",
+      "lane": "historical_structured",
+      "record_count": 446,
+      "nested_facility_price_count": 623,
+      "bytes": 749616,
+      "sha256": "75f927e01d64940f0cc55a2b5adb93210e08ee3d4c0cba688a55bf65fe34034b"
+    },
+    {
+      "file": "08-bhyt-household-contributions.json",
+      "kind": "bhyt_household_policies",
+      "lane": "versioned_structured",
+      "record_count": 2,
+      "bytes": 6632,
+      "sha256": "1aac569b608fd2348f1dd24365ac70296d1132bbd3b56f452fc5b0a02739af25"
+    },
+    {
+      "file": "09-schedule-document-registry.json",
+      "kind": "schedule_documents",
+      "lane": "schedule_provenance",
+      "record_count": 18,
+      "bytes": 40932,
+      "sha256": "502574a203926dd7ef1f6674555e0269ae28c73882a2624525b9a6cc5731a429"
+    },
+    {
+      "file": "10-schedule-entries.json",
+      "kind": "schedule_entries",
+      "lane": "partial_schedule_snapshot",
+      "record_count": 1382,
+      "bytes": 1986024,
+      "sha256": "afc92706e625b4786b59b060089d0414b4f9a4d614be5a56ef37e8ab3454f5a3"
+    },
+    {
+      "file": "11-booking-capacity-config.json",
+      "kind": "prototype_capacity_config",
+      "lane": "local_prototype_config",
+      "record_count": 1,
+      "bytes": 55464,
+      "sha256": "da2447b58b4223f03acaf715bbb5e56b255606831c1ff8341d851c79d739e717"
+    },
+    {
+      "file": "12-import-issues.json",
+      "kind": "import_issues",
+      "lane": "data_owner_workflow",
+      "record_count": 14,
+      "bytes": 9278,
+      "sha256": "5e62a13ba3341f348383c4dbe3f4f30edd550a5b067d4e21355e9fcf41a56e66"
+    },
+    {
+      "file": "13-faq-paraphrases-batch-01.json",
+      "kind": "faq_paraphrases",
+      "lane": "synthetic_test",
+      "record_count": 20,
+      "bytes": 11861,
+      "sha256": "a04fbea96609404d4576fe0a3eec0d89283be9ecb826dc34c65555d67345fd34"
+    },
+    {
+      "file": "14-faq-paraphrases-batch-02.json",
+      "kind": "faq_paraphrases",
+      "lane": "synthetic_test",
+      "record_count": 20,
+      "bytes": 12315,
+      "sha256": "12662bd7c3254cb831579f0dfdaec7a4f2f2e0d0d3ee5b99ad1254cffe2c92df"
+    },
+    {
+      "file": "15-faq-paraphrases-batch-03.json",
+      "kind": "faq_paraphrases",
+      "lane": "synthetic_test",
+      "record_count": 20,
+      "bytes": 11932,
+      "sha256": "f5adad0f9c9b63330114335a43d90e0c6c3bf28d949d0a475aef0926fd9c27f2"
+    },
+    {
+      "file": "16-conversation-scenarios-batch-01.json",
+      "kind": "conversation_scenarios",
+      "lane": "synthetic_test",
+      "record_count": 12,
+      "bytes": 17916,
+      "sha256": "ff056bf5055e7178420c434c629927df1c777839fef3c791ad70de801480b952"
+    },
+    {
+      "file": "17-conversation-scenarios-batch-02.json",
+      "kind": "conversation_scenarios",
+      "lane": "synthetic_test",
+      "record_count": 12,
+      "bytes": 16808,
+      "sha256": "63f0565eeb0dafe2cd886b5ba5abad58b38e87c8bf6e7445d520f53e017dcd1a"
+    },
+    {
+      "file": "18-evaluation-cases-batch-01.json",
+      "kind": "evaluation_cases",
+      "lane": "synthetic_test",
+      "record_count": 20,
+      "bytes": 17994,
+      "sha256": "561924d491ed01bcbb07fb713abd68bbf2ef85d3bb66f15586cefabd1c91302b"
+    },
+    {
+      "file": "19-evaluation-cases-batch-02.json",
+      "kind": "evaluation_cases",
+      "lane": "synthetic_test",
+      "record_count": 20,
+      "bytes": 22124,
+      "sha256": "3aad74ee8a7548668da76f205be182309e8a0773244ca2c6f49497ba489708f9"
+    },
+    {
+      "file": "20-evaluation-cases-batch-03.json",
+      "kind": "evaluation_cases",
+      "lane": "synthetic_test",
+      "record_count": 20,
+      "bytes": 19378,
+      "sha256": "ca9c304161bba52b57ae6def56b124098c396fb4ac69d38b8164727439f9ba09"
+    },
+    {
+      "file": "21-evaluation-cases-batch-04.json",
+      "kind": "evaluation_cases",
+      "lane": "synthetic_test",
+      "record_count": 20,
+      "bytes": 20460,
+      "sha256": "cee60f54c38fdb902fe69f080aebc618bc6fb4727f8738b77c58acb809951514"
+    },
+    {
+      "file": "22-evaluation-cases-batch-05.json",
+      "kind": "evaluation_cases",
+      "lane": "synthetic_test",
+      "record_count": 20,
+      "bytes": 15809,
+      "sha256": "3de880a4efb7e131ba92be46ce87414dec1bdb676e4df4f07e749ea1f1e88a18"
+    }
+  ],
+  "validation_report_file": "23-validation-report.json",
+  "usage": {
+    "historical_prices": "Exact structured lookup only; always label as the 2025 historical table and never claim it is current.",
+    "bhyt": "Use only the official 2026 household contribution policy for that narrow scope; the local secondary snapshot is disabled.",
+    "schedules": "Validation status accepted is not approval. Use a document only inside its date window and only after the data owner changes approval_status from pending; entries are working rosters, never remaining appointment slots.",
+    "capacity": "The value 20 is a separate local prototype default, not hospital data, and creates no capacity or booking-state records.",
+    "tests": "Files 13 through 22 are test fixtures and must not enter runtime knowledge or production chat logs."
+  }
+}

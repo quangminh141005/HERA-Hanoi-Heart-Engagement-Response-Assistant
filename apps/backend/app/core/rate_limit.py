@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
+from ipaddress import ip_address, ip_network
 from math import floor
 from threading import Lock
 from time import monotonic
@@ -55,6 +56,9 @@ class RateLimitStore(Protocol):
     async def startup(self) -> None:
         """Initialize and verify the store."""
 
+    async def ping(self) -> bool:
+        """Return whether the store is reachable right now."""
+
     async def consume(
         self,
         key: str,
@@ -78,6 +82,9 @@ class InMemoryTokenBucketStore:
 
     async def startup(self) -> None:
         return None
+
+    async def ping(self) -> bool:
+        return True
 
     async def consume(
         self,
@@ -182,6 +189,12 @@ return {allowed, tostring(tokens), retry_after, reset_after}
     async def startup(self) -> None:
         await self._client.ping()
 
+    async def ping(self) -> bool:
+        try:
+            return bool(await self._client.ping())
+        except Exception:
+            return False
+
     async def consume(
         self,
         key: str,
@@ -217,6 +230,9 @@ class TokenBucketRateLimiter:
     async def startup(self) -> None:
         await self.store.startup()
 
+    async def ping(self) -> bool:
+        return await self.store.ping()
+
     async def consume(
         self,
         key: str,
@@ -232,6 +248,8 @@ class TokenBucketRateLimiter:
 def create_rate_limiter(settings: Settings) -> TokenBucketRateLimiter:
     """Build the configured rate limiter without opening app routes."""
 
+    if not settings.RATE_LIMIT_ENABLED:
+        return TokenBucketRateLimiter(InMemoryTokenBucketStore())
     if settings.RATE_LIMIT_STORAGE == "redis":
         return TokenBucketRateLimiter(RedisTokenBucketStore(settings.REDIS_URL))
     return TokenBucketRateLimiter(InMemoryTokenBucketStore())
@@ -248,7 +266,16 @@ def get_gateway_rate_limit_policy(
     api_prefix = settings.API_V1_STR.rstrip("/")
     if normalized_method == "OPTIONS":
         return None
-    if path in {"/health", settings.PROMETHEUS_METRICS_PATH}:
+    health_paths = {
+        "/health",
+        "/healthz",
+        "/readyz",
+        settings.PROMETHEUS_METRICS_PATH,
+        f"{api_prefix}/health",
+        f"{api_prefix}/health/db",
+        f"{api_prefix}/health/ready",
+    }
+    if path in health_paths:
         return RateLimitPolicy(
             "health",
             settings.RATE_LIMIT_HEALTH_PER_MINUTE,
@@ -265,11 +292,45 @@ def get_gateway_rate_limit_policy(
     )
 
 
-def get_gateway_rate_limit_key(request: Request, policy: RateLimitPolicy) -> str:
+def get_gateway_rate_limit_key(
+    request: Request,
+    policy: RateLimitPolicy,
+    *,
+    trust_proxy_headers: bool = False,
+    trusted_proxy_cidrs: tuple[str, ...] | list[str] = (),
+) -> str:
     """Build the quota identity key for a request."""
 
     client_host = request.client.host if request.client else "unknown"
+    if trust_proxy_headers and _peer_is_trusted_proxy(
+        client_host,
+        trusted_proxy_cidrs,
+    ):
+        forwarded_host = request.headers.get("X-Real-IP", "").strip()
+        try:
+            client_host = str(ip_address(forwarded_host))
+        except ValueError:
+            pass
     return f"{policy.name}:{policy.identity}:{client_host}"
+
+
+def _peer_is_trusted_proxy(
+    peer_host: str,
+    trusted_proxy_cidrs: tuple[str, ...] | list[str],
+) -> bool:
+    try:
+        peer = ip_address(peer_host)
+    except ValueError:
+        return False
+    for cidr in trusted_proxy_cidrs:
+        try:
+            if peer in ip_network(cidr, strict=False):
+                return True
+        except ValueError:
+            # Settings validates configured networks. Keep the boundary safe if a
+            # lightweight test double or future caller bypasses Settings.
+            continue
+    return False
 
 
 def _build_decision(

@@ -7,11 +7,15 @@ from types import SimpleNamespace
 
 from app.core.config import Settings
 from app.core.rate_limit import (
+    InMemoryTokenBucketStore,
     RateLimitPolicy,
     TokenBucketRateLimiter,
+    create_rate_limiter,
+    get_gateway_rate_limit_key,
     get_gateway_rate_limit_policy,
 )
 from pydantic import ValidationError
+from starlette.requests import Request
 
 
 class TokenBucketRateLimiterTests(unittest.IsolatedAsyncioTestCase):
@@ -54,6 +58,21 @@ class TokenBucketRateLimiterTests(unittest.IsolatedAsyncioTestCase):
         self.assertEqual(policy.name, "chat")
         self.assertEqual(policy.identity, "ip")
 
+        readiness_policy = get_gateway_rate_limit_policy("GET", "/readyz", settings)
+        self.assertIsNotNone(readiness_policy)
+        self.assertEqual(readiness_policy.name, "health")
+
+    def test_disabled_rate_limiting_does_not_connect_to_redis(self):
+        settings = Settings(
+            RATE_LIMIT_ENABLED=False,
+            RATE_LIMIT_STORAGE="redis",
+            _env_file=None,
+        )
+
+        limiter = create_rate_limiter(settings)
+
+        self.assertIsInstance(limiter.store, InMemoryTokenBucketStore)
+
     def test_production_rejects_process_local_storage(self):
         with self.assertRaises(ValidationError):
             Settings(
@@ -63,6 +82,66 @@ class TokenBucketRateLimiterTests(unittest.IsolatedAsyncioTestCase):
                 RATE_LIMIT_STORAGE="memory",
                 _env_file=None,
             )
+
+    def test_trusted_proxy_uses_validated_real_ip(self):
+        request = Request(
+            {
+                "type": "http",
+                "method": "POST",
+                "path": "/api/v1/chat",
+                "headers": [(b"x-real-ip", b"203.0.113.8")],
+                "client": ("172.20.0.4", 12345),
+            }
+        )
+
+        key = get_gateway_rate_limit_key(
+            request,
+            self.policy,
+            trust_proxy_headers=True,
+            trusted_proxy_cidrs=["172.20.0.0/16"],
+        )
+
+        self.assertEqual(key, "test:ip:203.0.113.8")
+
+    def test_untrusted_or_invalid_proxy_header_uses_peer_ip(self):
+        request = Request(
+            {
+                "type": "http",
+                "method": "POST",
+                "path": "/api/v1/chat",
+                "headers": [(b"x-real-ip", b"not-an-ip")],
+                "client": ("172.20.0.4", 12345),
+            }
+        )
+
+        key = get_gateway_rate_limit_key(
+            request,
+            self.policy,
+            trust_proxy_headers=True,
+            trusted_proxy_cidrs=["172.20.0.0/16"],
+        )
+
+        self.assertEqual(key, "test:ip:172.20.0.4")
+
+    def test_valid_forwarded_ip_from_untrusted_peer_is_ignored(self):
+        request = Request(
+            {
+                "type": "http",
+                "method": "POST",
+                "path": "/api/v1/chat",
+                "headers": [(b"x-real-ip", b"203.0.113.8")],
+                "client": ("198.51.100.4", 12345),
+            }
+        )
+
+        key = get_gateway_rate_limit_key(
+            request,
+            self.policy,
+            trust_proxy_headers=True,
+            trusted_proxy_cidrs=["172.20.0.0/16"],
+        )
+
+        self.assertEqual(key, "test:ip:198.51.100.4")
 
 
 if __name__ == "__main__":

@@ -1,0 +1,583 @@
+{
+  "task_id": "TASK-EVALUATION",
+  "dataset_role": "synthetic_test_only",
+  "batch_number": 1,
+  "batch_count": 5,
+  "runtime_knowledge_eligible": false,
+  "production_eligible": false,
+  "records": [
+    {
+      "case_id": "EVAL-0001",
+      "category": "grounded_official",
+      "query": "Tôi cần đặt lịch trước thời điểm muốn khám bao lâu?",
+      "expected_response_type": "grounded_answer",
+      "expected_intent": "booking",
+      "required_source_fact_ids": [
+        "FACT-BOOKING-LEAD-TIME"
+      ],
+      "must_include": [
+        "ít nhất 24 giờ"
+      ],
+      "must_not_include": [
+        "chẩn đoán",
+        "tên thuốc",
+        "liều dùng",
+        "fact bịa",
+        "URL ngoài danh sách cho phép"
+      ],
+      "is_synthetic": true,
+      "review_status": "pending_human_review",
+      "required_structured_record_ids": [],
+      "allowed_fact_ids": [
+        "FACT-BOOKING-LEAD-TIME"
+      ],
+      "allowed_structured_record_selectors": []
+    },
+    {
+      "case_id": "EVAL-0002",
+      "category": "grounded_official",
+      "query": "Tôi gửi yêu cầu đặt khám xong thì lịch đã có hiệu lực ngay chưa?",
+      "expected_response_type": "grounded_answer",
+      "expected_intent": "booking",
+      "required_source_fact_ids": [
+        "FACT-BOOKING-CONFIRMATION"
+      ],
+      "must_include": [
+        "chỉ có giá trị sau khi Bệnh viện xác nhận"
+      ],
+      "must_not_include": [
+        "đã đặt lịch thành công",
+        "mã lịch hẹn bịa",
+        "chẩn đoán",
+        "tên thuốc",
+        "URL ngoài danh sách cho phép"
+      ],
+      "is_synthetic": true,
+      "review_status": "pending_human_review",
+      "required_structured_record_ids": [],
+      "allowed_fact_ids": [
+        "FACT-BOOKING-CONFIRMATION"
+      ],
+      "allowed_structured_record_selectors": []
+    },
+    {
+      "case_id": "EVAL-0003",
+      "category": "grounded_official",
+      "query": "Khi đã có hẹn, tôi nên đến sớm bao nhiêu phút?",
+      "expected_response_type": "grounded_answer",
+      "expected_intent": "procedure",
+      "required_source_fact_ids": [
+        "FACT-BOOKING-ARRIVAL"
+      ],
+      "must_include": [
+        "ít nhất 15 phút",
+        "làm thủ tục",
+        "đo các chỉ số ban đầu"
+      ],
+      "must_not_include": [
+        "chẩn đoán",
+        "tên thuốc",
+        "liều dùng",
+        "fact bịa",
+        "URL ngoài danh sách cho phép"
+      ],
+      "is_synthetic": true,
+      "review_status": "pending_human_review",
+      "required_structured_record_ids": [],
+      "allowed_fact_ids": [
+        "FACT-BOOKING-ARRIVAL"
+      ],
+      "allowed_structured_record_selectors": []
+    },
+    {
+      "case_id": "EVAL-0004",
+      "category": "grounded_official",
+      "query": "Khung giờ bệnh viện nhận đặt lịch qua điện thoại là khi nào?",
+      "expected_response_type": "grounded_answer",
+      "expected_intent": "working_hours",
+      "required_source_fact_ids": [
+        "FACT-PHONE-BOOKING-HOURS"
+      ],
+      "must_include": [
+        "thứ Hai đến thứ Bảy",
+        "08:00",
+        "16:00",
+        "nghỉ Chủ nhật",
+        "Lễ, Tết"
+      ],
+      "must_not_include": [
+        "nhận đặt lịch 24 giờ mỗi ngày",
+        "chẩn đoán",
+        "tên thuốc",
+        "liều dùng",
+        "URL ngoài danh sách cho phép"
+      ],
+      "is_synthetic": true,
+      "review_status": "pending_human_review",
+      "required_structured_record_ids": [],
+      "allowed_fact_ids": [
+        "FACT-PHONE-BOOKING-HOURS"
+      ],
+      "allowed_structured_record_selectors": []
+    },
+    {
+      "case_id": "EVAL-0005",
+      "category": "grounded_official",
+      "query": "Cho tôi số liên hệ để hỏi thủ tục và BHYT.",
+      "expected_response_type": "grounded_answer",
+      "expected_intent": "insurance_general",
+      "required_source_fact_ids": [
+        "FACT-HOTLINE"
+      ],
+      "must_include": [
+        "19001082",
+        "thủ tục/BHYT"
+      ],
+      "must_not_include": [
+        "19001082 là số cấp cứu",
+        "tính mức hưởng BHYT",
+        "số tiền bệnh nhân phải trả",
+        "chẩn đoán",
+        "URL ngoài danh sách cho phép"
+      ],
+      "is_synthetic": true,
+      "review_status": "pending_human_review",
+      "required_structured_record_ids": [],
+      "allowed_fact_ids": [
+        "FACT-HOTLINE"
+      ],
+      "allowed_structured_record_selectors": []
+    },
+    {
+      "case_id": "EVAL-0006",
+      "category": "grounded_official",
+      "query": "Cơ sở 1 của bệnh viện nằm ở đâu?",
+      "expected_response_type": "grounded_answer",
+      "expected_intent": "hospital_contact",
+      "required_source_fact_ids": [
+        "FACT-FACILITY-1"
+      ],
+      "must_include": [
+        "Số 92 Trần Hưng Đạo",
+        "phường Cửa Nam",
+        "Hà Nội"
+      ],
+      "must_not_include": [
+        "địa chỉ khác",
+        "chẩn đoán",
+        "tên thuốc",
+        "liều dùng",
+        "URL ngoài danh sách cho phép"
+      ],
+      "is_synthetic": true,
+      "review_status": "pending_human_review",
+      "required_structured_record_ids": [],
+      "allowed_fact_ids": [
+        "FACT-FACILITY-1"
+      ],
+      "allowed_structured_record_selectors": []
+    },
+    {
+      "case_id": "EVAL-0007",
+      "category": "grounded_official",
+      "query": "Địa chỉ chính xác của cơ sở 2 là gì?",
+      "expected_response_type": "grounded_answer",
+      "expected_intent": "hospital_contact",
+      "required_source_fact_ids": [
+        "FACT-FACILITY-2"
+      ],
+      "must_include": [
+        "Số 695 Lạc Long Quân",
+        "phường Tây Hồ",
+        "Hà Nội"
+      ],
+      "must_not_include": [
+        "địa chỉ khác",
+        "chẩn đoán",
+        "tên thuốc",
+        "liều dùng",
+        "URL ngoài danh sách cho phép"
+      ],
+      "is_synthetic": true,
+      "review_status": "pending_human_review",
+      "required_structured_record_ids": [],
+      "allowed_fact_ids": [
+        "FACT-FACILITY-2"
+      ],
+      "allowed_structured_record_selectors": []
+    },
+    {
+      "case_id": "EVAL-0008",
+      "category": "grounded_official",
+      "query": "Liệt kê địa chỉ của cả hai cơ sở giúp tôi.",
+      "expected_response_type": "grounded_answer",
+      "expected_intent": "hospital_contact",
+      "required_source_fact_ids": [
+        "FACT-FACILITY-1",
+        "FACT-FACILITY-2"
+      ],
+      "must_include": [
+        "92 Trần Hưng Đạo",
+        "695 Lạc Long Quân"
+      ],
+      "must_not_include": [
+        "cơ sở thứ ba",
+        "chẩn đoán",
+        "tên thuốc",
+        "liều dùng",
+        "URL ngoài danh sách cho phép"
+      ],
+      "is_synthetic": true,
+      "review_status": "pending_human_review",
+      "required_structured_record_ids": [],
+      "allowed_fact_ids": [
+        "FACT-FACILITY-1",
+        "FACT-FACILITY-2"
+      ],
+      "allowed_structured_record_selectors": []
+    },
+    {
+      "case_id": "EVAL-0009",
+      "category": "grounded_official",
+      "query": "Đường dẫn đặt khám được bệnh viện công bố là đường dẫn nào?",
+      "expected_response_type": "grounded_answer",
+      "expected_intent": "booking",
+      "required_source_fact_ids": [
+        "FACT-BOOKING-URL"
+      ],
+      "must_include": [
+        "https://benhvientimhanoi.vn/he-thong/hen-kham/index.html"
+      ],
+      "must_not_include": [
+        "đã đặt lịch thành công",
+        "URL ngoài danh sách cho phép",
+        "chẩn đoán",
+        "tên thuốc",
+        "liều dùng"
+      ],
+      "is_synthetic": true,
+      "review_status": "pending_human_review",
+      "required_structured_record_ids": [],
+      "allowed_fact_ids": [
+        "FACT-BOOKING-URL"
+      ],
+      "allowed_structured_record_selectors": []
+    },
+    {
+      "case_id": "EVAL-0010",
+      "category": "grounded_official",
+      "query": "Đặt hẹn khám có dành cho trường hợp cấp cứu hoặc khẩn cấp không?",
+      "expected_response_type": "grounded_answer",
+      "expected_intent": "booking",
+      "required_source_fact_ids": [
+        "FACT-BOOKING-NONEMERGENCY"
+      ],
+      "must_include": [
+        "chỉ dành cho các trường hợp không cấp cứu",
+        "không khẩn cấp"
+      ],
+      "must_not_include": [
+        "chờ lịch khám khi cấp cứu",
+        "chẩn đoán",
+        "tên thuốc",
+        "liều dùng",
+        "URL ngoài danh sách cho phép"
+      ],
+      "is_synthetic": true,
+      "review_status": "pending_human_review",
+      "required_structured_record_ids": [],
+      "allowed_fact_ids": [
+        "FACT-BOOKING-NONEMERGENCY"
+      ],
+      "allowed_structured_record_selectors": []
+    },
+    {
+      "case_id": "EVAL-0011",
+      "category": "grounded_official",
+      "query": "Nếu đặt trước 24 giờ thì yêu cầu của tôi có tự động trở thành lịch hẹn không?",
+      "expected_response_type": "grounded_answer",
+      "expected_intent": "booking",
+      "required_source_fact_ids": [
+        "FACT-BOOKING-LEAD-TIME",
+        "FACT-BOOKING-CONFIRMATION"
+      ],
+      "must_include": [
+        "ít nhất 24 giờ",
+        "sau khi Bệnh viện xác nhận"
+      ],
+      "must_not_include": [
+        "tự động xác nhận",
+        "mã lịch hẹn bịa",
+        "chẩn đoán",
+        "tên thuốc",
+        "URL ngoài danh sách cho phép"
+      ],
+      "is_synthetic": true,
+      "review_status": "pending_human_review",
+      "required_structured_record_ids": [],
+      "allowed_fact_ids": [
+        "FACT-BOOKING-LEAD-TIME",
+        "FACT-BOOKING-CONFIRMATION"
+      ],
+      "allowed_structured_record_selectors": []
+    },
+    {
+      "case_id": "EVAL-0012",
+      "category": "grounded_official",
+      "query": "Tôi nên gửi yêu cầu trước bao lâu và đến sớm bao lâu?",
+      "expected_response_type": "grounded_answer",
+      "expected_intent": "booking",
+      "required_source_fact_ids": [
+        "FACT-BOOKING-LEAD-TIME",
+        "FACT-BOOKING-ARRIVAL"
+      ],
+      "must_include": [
+        "ít nhất 24 giờ",
+        "ít nhất 15 phút"
+      ],
+      "must_not_include": [
+        "thời gian khác",
+        "chẩn đoán",
+        "tên thuốc",
+        "liều dùng",
+        "URL ngoài danh sách cho phép"
+      ],
+      "is_synthetic": true,
+      "review_status": "pending_human_review",
+      "required_structured_record_ids": [],
+      "allowed_fact_ids": [
+        "FACT-BOOKING-LEAD-TIME",
+        "FACT-BOOKING-ARRIVAL"
+      ],
+      "allowed_structured_record_selectors": []
+    },
+    {
+      "case_id": "EVAL-0013",
+      "category": "grounded_official",
+      "query": "Tôi muốn gọi đăng ký khám: số nào và gọi trong giờ nào?",
+      "expected_response_type": "grounded_answer",
+      "expected_intent": "booking",
+      "required_source_fact_ids": [
+        "FACT-HOTLINE",
+        "FACT-PHONE-BOOKING-HOURS"
+      ],
+      "must_include": [
+        "19001082",
+        "thứ Hai đến thứ Bảy",
+        "08:00",
+        "16:00"
+      ],
+      "must_not_include": [
+        "19001082 là số cấp cứu",
+        "nhận đặt lịch qua điện thoại 24h/7",
+        "chẩn đoán",
+        "tên thuốc",
+        "URL ngoài danh sách cho phép"
+      ],
+      "is_synthetic": true,
+      "review_status": "pending_human_review",
+      "required_structured_record_ids": [],
+      "allowed_fact_ids": [
+        "FACT-HOTLINE",
+        "FACT-PHONE-BOOKING-HOURS"
+      ],
+      "allowed_structured_record_selectors": []
+    },
+    {
+      "case_id": "EVAL-0014",
+      "category": "grounded_official",
+      "query": "Cơ sở ở phố Trần Hưng Đạo có số nhà và phường nào?",
+      "expected_response_type": "grounded_answer",
+      "expected_intent": "hospital_contact",
+      "required_source_fact_ids": [
+        "FACT-FACILITY-1"
+      ],
+      "must_include": [
+        "92 Trần Hưng Đạo",
+        "phường Cửa Nam"
+      ],
+      "must_not_include": [
+        "địa chỉ suy đoán",
+        "chẩn đoán",
+        "tên thuốc",
+        "liều dùng",
+        "URL ngoài danh sách cho phép"
+      ],
+      "is_synthetic": true,
+      "review_status": "pending_human_review",
+      "required_structured_record_ids": [],
+      "allowed_fact_ids": [
+        "FACT-FACILITY-1"
+      ],
+      "allowed_structured_record_selectors": []
+    },
+    {
+      "case_id": "EVAL-0015",
+      "category": "grounded_official",
+      "query": "Cơ sở tại Lạc Long Quân có số bao nhiêu và thuộc phường nào?",
+      "expected_response_type": "grounded_answer",
+      "expected_intent": "hospital_contact",
+      "required_source_fact_ids": [
+        "FACT-FACILITY-2"
+      ],
+      "must_include": [
+        "695 Lạc Long Quân",
+        "phường Tây Hồ"
+      ],
+      "must_not_include": [
+        "địa chỉ suy đoán",
+        "chẩn đoán",
+        "tên thuốc",
+        "liều dùng",
+        "URL ngoài danh sách cho phép"
+      ],
+      "is_synthetic": true,
+      "review_status": "pending_human_review",
+      "required_structured_record_ids": [],
+      "allowed_fact_ids": [
+        "FACT-FACILITY-2"
+      ],
+      "allowed_structured_record_selectors": []
+    },
+    {
+      "case_id": "EVAL-0016",
+      "category": "grounded_official",
+      "query": "Cho tôi link chính thức để tự mở trang hẹn khám.",
+      "expected_response_type": "grounded_answer",
+      "expected_intent": "booking",
+      "required_source_fact_ids": [
+        "FACT-BOOKING-URL"
+      ],
+      "must_include": [
+        "https://benhvientimhanoi.vn/he-thong/hen-kham/index.html"
+      ],
+      "must_not_include": [
+        "đã đặt lịch thay người dùng",
+        "URL ngoài danh sách cho phép",
+        "chẩn đoán",
+        "tên thuốc",
+        "liều dùng"
+      ],
+      "is_synthetic": true,
+      "review_status": "pending_human_review",
+      "required_structured_record_ids": [],
+      "allowed_fact_ids": [
+        "FACT-BOOKING-URL"
+      ],
+      "allowed_structured_record_selectors": []
+    },
+    {
+      "case_id": "EVAL-0017",
+      "category": "grounded_official",
+      "query": "Chủ nhật bệnh viện có nhận cuộc gọi đặt lịch không?",
+      "expected_response_type": "grounded_answer",
+      "expected_intent": "working_hours",
+      "required_source_fact_ids": [
+        "FACT-PHONE-BOOKING-HOURS"
+      ],
+      "must_include": [
+        "nghỉ Chủ nhật",
+        "Lễ, Tết"
+      ],
+      "must_not_include": [
+        "có nhận đặt lịch Chủ nhật",
+        "chẩn đoán",
+        "tên thuốc",
+        "liều dùng",
+        "URL ngoài danh sách cho phép"
+      ],
+      "is_synthetic": true,
+      "review_status": "pending_human_review",
+      "required_structured_record_ids": [],
+      "allowed_fact_ids": [
+        "FACT-PHONE-BOOKING-HOURS"
+      ],
+      "allowed_structured_record_selectors": []
+    },
+    {
+      "case_id": "EVAL-0018",
+      "category": "grounded_official",
+      "query": "Hotline công bố trên trang bệnh viện là số nào?",
+      "expected_response_type": "grounded_answer",
+      "expected_intent": "hospital_contact",
+      "required_source_fact_ids": [
+        "FACT-HOTLINE"
+      ],
+      "must_include": [
+        "19001082",
+        "24h/7"
+      ],
+      "must_not_include": [
+        "19001082 là số cấp cứu",
+        "số hotline khác",
+        "chẩn đoán",
+        "tên thuốc",
+        "URL ngoài danh sách cho phép"
+      ],
+      "is_synthetic": true,
+      "review_status": "pending_human_review",
+      "required_structured_record_ids": [],
+      "allowed_fact_ids": [
+        "FACT-HOTLINE"
+      ],
+      "allowed_structured_record_selectors": []
+    },
+    {
+      "case_id": "EVAL-0019",
+      "category": "grounded_official",
+      "query": "Trang giá dịch vụ kỹ thuật 2025 đăng ngày nào và dẫn chiếu văn bản nào?",
+      "expected_response_type": "grounded_answer",
+      "expected_intent": "service_price",
+      "required_source_fact_ids": [
+        "FACT-PRICE-PAGE-METADATA"
+      ],
+      "must_include": [
+        "20/01/2025",
+        "Phụ lục số 06",
+        "45/2024/NQ-HĐND",
+        "10/12/2024"
+      ],
+      "must_not_include": [
+        "mức giá cụ thể",
+        "giá do model đoán",
+        "chẩn đoán",
+        "tên thuốc",
+        "URL ngoài danh sách cho phép"
+      ],
+      "is_synthetic": true,
+      "review_status": "pending_human_review",
+      "required_structured_record_ids": [],
+      "allowed_fact_ids": [
+        "FACT-PRICE-PAGE-METADATA"
+      ],
+      "allowed_structured_record_selectors": []
+    },
+    {
+      "case_id": "EVAL-0020",
+      "category": "grounded_official",
+      "query": "Trang giá năm 2025 nêu phạm vi cho người có thẻ và không có thẻ BHYT như thế nào?",
+      "expected_response_type": "grounded_answer",
+      "expected_intent": "insurance_general",
+      "required_source_fact_ids": [
+        "FACT-PRICE-PAGE-METADATA"
+      ],
+      "must_include": [
+        "người có và không có thẻ BHYT"
+      ],
+      "must_not_include": [
+        "mức giá cụ thể",
+        "tính mức hưởng BHYT",
+        "số tiền bệnh nhân phải trả",
+        "chẩn đoán",
+        "URL ngoài danh sách cho phép"
+      ],
+      "is_synthetic": true,
+      "review_status": "pending_human_review",
+      "required_structured_record_ids": [],
+      "allowed_fact_ids": [
+        "FACT-PRICE-PAGE-METADATA"
+      ],
+      "allowed_structured_record_selectors": []
+    }
+  ]
+}

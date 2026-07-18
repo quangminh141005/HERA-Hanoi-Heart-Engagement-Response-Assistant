@@ -10,14 +10,19 @@ from fastapi.exceptions import RequestValidationError
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 
+from app.ai.observability.tracing import flush_tracing
 from app.api_gateway import register_api_gateway
 from app.core.config import get_settings
+from app.core.errors import HeraApiError
 from app.core.gateway import GatewayMiddleware
 from app.core.logging import configure_logging
 from app.core.rate_limit import create_rate_limiter
 from app.middleware.logging import RequestLoggingMiddleware
-from app.observability.prometheus import configure_prometheus
-from app.services.health import HealthService
+from app.middleware.utf8_json import Utf8JsonContentTypeMiddleware
+from app.observability.prometheus import READINESS_STATUS
+from app.routers.chat import close_chat_service
+from app.routers.structured import close_structured_service
+from app.services.health import HealthService, collect_runtime_readiness
 
 settings = get_settings()
 configure_logging(settings)
@@ -43,7 +48,10 @@ async def lifespan(application: FastAPI):
     try:
         yield
     finally:
+        await close_chat_service()
+        close_structured_service()
         await rate_limiter.close()
+        flush_tracing(settings)
         logger.info("backend stopped", extra={"event": "application_shutdown"})
 
 
@@ -58,6 +66,7 @@ app = FastAPI(
 )
 app.state.rate_limiter = rate_limiter
 
+app.add_middleware(Utf8JsonContentTypeMiddleware)
 app.add_middleware(GatewayMiddleware)
 app.add_middleware(
     CORSMiddleware,
@@ -69,13 +78,21 @@ app.add_middleware(
 app.add_middleware(RequestLoggingMiddleware)
 
 if settings.PROMETHEUS_METRICS_ENABLED:
-    configure_prometheus(
-        app,
-        service_name=settings.SERVICE_NAME,
-        version=settings.APP_VERSION,
-        environment=settings.ENVIRONMENT,
-        metrics_path=settings.PROMETHEUS_METRICS_PATH,
-    )
+    try:
+        from app.observability.prometheus import configure_prometheus
+
+        configure_prometheus(
+            app,
+            service_name=settings.SERVICE_NAME,
+            version=settings.APP_VERSION,
+            environment=settings.ENVIRONMENT,
+            metrics_path=settings.PROMETHEUS_METRICS_PATH,
+        )
+    except ModuleNotFoundError:
+        logger.warning(
+            "prometheus metrics disabled because dependency is missing",
+            extra={"event": "prometheus_dependency_missing"},
+        )
 
 
 @app.get("/health")
@@ -85,15 +102,64 @@ async def root_health_check():
     return HealthService(settings=settings).application_health()
 
 
+@app.get("/healthz")
+async def healthz():
+    """Preferred liveness endpoint for deployment probes."""
+
+    return HealthService(settings=settings).application_health()
+
+
+@app.get("/readyz")
+async def readyz():
+    """Preferred readiness endpoint for deployment probes."""
+
+    READINESS_STATUS.set(0)
+    runtime_checks = await collect_runtime_readiness(
+        settings,
+        rate_limiter,
+    )
+    result = HealthService(settings=settings).readiness_health(runtime_checks)
+    if result.status != "ok":
+        return JSONResponse(status_code=503, content=result.model_dump())
+    READINESS_STATUS.set(1)
+    return result
+
+
 register_api_gateway(app)
 
 
+@app.exception_handler(HeraApiError)
+async def hera_api_error_handler(request: Request, exc: HeraApiError):
+    request_id = getattr(request.state, "request_id", "unknown")
+    logger.info(
+        "expected API decision",
+        extra={
+            **_request_error_extra(request, exc.status_code),
+            "event": "api_decision",
+            "result_code": exc.code,
+            "retryable": exc.retryable,
+        },
+    )
+    return JSONResponse(
+        status_code=exc.status_code,
+        content={
+            "error": {
+                "code": exc.code,
+                "message_vi": exc.message_vi,
+                "request_id": request_id,
+                "retryable": exc.retryable,
+            }
+        },
+    )
+
+
 def _request_error_extra(request: Request, status_code: int) -> dict[str, object]:
+    route = request.scope.get("route")
+    route_path = getattr(route, "path", None) or "unmatched"
     return {
         "event": "http_exception",
         "method": request.method,
-        "path": request.url.path,
-        "route": f"{request.method} {request.url.path}",
+        "route": f"{request.method} {route_path}",
         "status_code": status_code,
     }
 
@@ -106,7 +172,7 @@ async def http_exception_handler(request: Request, exc: HTTPException):
         "http exception",
         extra={
             **_request_error_extra(request, exc.status_code),
-            "detail": exc.detail,
+            "detail_type": type(exc.detail).__name__,
         },
     )
     return JSONResponse(
@@ -123,26 +189,46 @@ async def request_validation_exception_handler(
 ):
     """Log request validation errors without dumping request bodies."""
 
+    safe_errors = [
+        {
+            "type": item.get("type"),
+            "loc": item.get("loc"),
+            "msg": item.get("msg"),
+        }
+        for item in exc.errors()
+    ]
     logger.warning(
         "request validation failed",
         extra={
             **_request_error_extra(request, 422),
             "event": "request_validation_error",
-            "errors": exc.errors(),
+            "errors": safe_errors,
         },
     )
-    return JSONResponse(status_code=422, content={"detail": exc.errors()})
+    return JSONResponse(
+        status_code=422,
+        content={
+            "error": {
+                "code": "VALIDATION_FAILED",
+                "message_vi": "Dữ liệu gửi lên không hợp lệ.",
+                "request_id": getattr(request.state, "request_id", "unknown"),
+                "retryable": False,
+                "fields": safe_errors,
+            }
+        },
+    )
 
 
 @app.exception_handler(Exception)
 async def unhandled_exception_handler(request: Request, exc: Exception):
-    """Log unexpected exceptions with stack traces."""
+    """Log an opaque error type without serializing exception/user content."""
 
-    logger.exception(
+    logger.error(
         "unhandled exception",
         extra={
             **_request_error_extra(request, 500),
             "event": "unhandled_exception",
+            "error_type": exc.__class__.__name__,
         },
     )
     return JSONResponse(

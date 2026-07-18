@@ -1,26 +1,31 @@
 import { HeartPulse, ShieldCheck } from 'lucide-react';
 import { ReactNode } from 'react';
 
-export function AppShell({ children }: { children: ReactNode }) {
+export function AppShell({
+  children,
+  compact = false,
+}: {
+  children: ReactNode;
+  compact?: boolean;
+}) {
   return (
-    <div className="app-shell">
+    <div className={`app-shell${compact ? ' app-shell-compact' : ''}`}>
       <header className="topbar">
-        <a className="brand" href="/">
+        <a className="brand" href={compact ? '/widget/v1' : '/'} aria-label="HERA - trang chính">
           <span className="brand-mark" aria-hidden="true">
             <HeartPulse size={22} />
           </span>
           <span>
             <strong>HERA</strong>
-            <small>Hanoi Heart Hospital assistant</small>
+            <small>Trợ lý thông tin Bệnh viện Tim Hà Nội</small>
           </span>
         </a>
         <div className="trust-note">
           <ShieldCheck size={18} aria-hidden="true" />
-          <span>Official-source ready</span>
+          <span>Không thay thế tư vấn y tế</span>
         </div>
       </header>
       <main className="main-content">{children}</main>
     </div>
   );
 }
-

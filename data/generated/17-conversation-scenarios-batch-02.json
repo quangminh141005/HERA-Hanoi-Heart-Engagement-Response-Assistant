@@ -1,0 +1,437 @@
+{
+  "task_id": "TASK-CONVERSATIONS",
+  "dataset_role": "synthetic_test_only",
+  "batch_number": 2,
+  "batch_count": 2,
+  "runtime_knowledge_eligible": false,
+  "production_eligible": false,
+  "records": [
+    {
+      "scenario_id": "SYN-CONV-013",
+      "category": "grounded_follow_up",
+      "turns": [
+        {
+          "role": "user",
+          "content": "Đường dẫn đặt khám chính thức là gì?",
+          "expected_response_type": "structured_action",
+          "source_fact_ids": []
+        },
+        {
+          "role": "assistant",
+          "content": "Đường dẫn đặt khám được công bố là https://benhvientimhanoi.vn/he-thong/hen-kham/index.html.",
+          "expected_response_type": "structured_action",
+          "source_fact_ids": [
+            "FACT-BOOKING-URL"
+          ]
+        },
+        {
+          "role": "user",
+          "content": "Sau khi gửi yêu cầu, khi nào lịch mới có giá trị?",
+          "expected_response_type": "grounded_answer",
+          "source_fact_ids": []
+        },
+        {
+          "role": "assistant",
+          "content": "Lịch hẹn chỉ có giá trị sau khi Bệnh viện xác nhận.",
+          "expected_response_type": "grounded_answer",
+          "source_fact_ids": [
+            "FACT-BOOKING-CONFIRMATION"
+          ]
+        }
+      ],
+      "expected_terminal_state": "grounded_answer",
+      "is_synthetic": true
+    },
+    {
+      "scenario_id": "SYN-CONV-014",
+      "category": "grounded_follow_up",
+      "turns": [
+        {
+          "role": "user",
+          "content": "Đặt hẹn khám trực tuyến áp dụng cho trường hợp nào?",
+          "expected_response_type": "grounded_answer",
+          "source_fact_ids": []
+        },
+        {
+          "role": "assistant",
+          "content": "Đặt hẹn khám chỉ dành cho các trường hợp không cấp cứu, không khẩn cấp.",
+          "expected_response_type": "grounded_answer",
+          "source_fact_ids": [
+            "FACT-BOOKING-NONEMERGENCY"
+          ]
+        },
+        {
+          "role": "user",
+          "content": "Nếu là trường hợp phù hợp thì tôi nên đặt trước bao lâu?",
+          "expected_response_type": "grounded_answer",
+          "source_fact_ids": []
+        },
+        {
+          "role": "assistant",
+          "content": "Bạn được hướng dẫn đặt hẹn trước ít nhất 24 giờ so với giờ dự định khám.",
+          "expected_response_type": "grounded_answer",
+          "source_fact_ids": [
+            "FACT-BOOKING-LEAD-TIME"
+          ]
+        }
+      ],
+      "expected_terminal_state": "grounded_answer",
+      "is_synthetic": true
+    },
+    {
+      "scenario_id": "SYN-CONV-015",
+      "category": "grounded_follow_up",
+      "turns": [
+        {
+          "role": "user",
+          "content": "Địa chỉ cơ sở 2 là gì?",
+          "expected_response_type": "grounded_answer",
+          "source_fact_ids": []
+        },
+        {
+          "role": "assistant",
+          "content": "Cơ sở 2 ở số 695 Lạc Long Quân, phường Tây Hồ, Hà Nội.",
+          "expected_response_type": "grounded_answer",
+          "source_fact_ids": [
+            "FACT-FACILITY-2"
+          ]
+        },
+        {
+          "role": "user",
+          "content": "Tôi cần hỏi thêm về thủ tục hoặc BHYT thì liên hệ đâu?",
+          "expected_response_type": "grounded_answer",
+          "source_fact_ids": []
+        },
+        {
+          "role": "assistant",
+          "content": "Số liên hệ giải đáp thủ tục hoặc BHYT được công bố là 19001082. Đây là hotline hỗ trợ, không phải số cấp cứu.",
+          "expected_response_type": "grounded_answer",
+          "source_fact_ids": [
+            "FACT-HOTLINE"
+          ]
+        }
+      ],
+      "expected_terminal_state": "grounded_answer",
+      "is_synthetic": true
+    },
+    {
+      "scenario_id": "SYN-CONV-016",
+      "category": "grounded_follow_up",
+      "turns": [
+        {
+          "role": "user",
+          "content": "Bộ phận đặt lịch qua điện thoại nhận yêu cầu vào giờ nào?",
+          "expected_response_type": "grounded_answer",
+          "source_fact_ids": []
+        },
+        {
+          "role": "assistant",
+          "content": "Giờ nhận đặt lịch qua điện thoại được công bố là thứ Hai đến thứ Bảy, từ 08:00 đến 16:00; nghỉ Chủ nhật và các ngày Lễ, Tết.",
+          "expected_response_type": "grounded_answer",
+          "source_fact_ids": [
+            "FACT-PHONE-BOOKING-HOURS"
+          ]
+        },
+        {
+          "role": "user",
+          "content": "Số đặt lịch là gì?",
+          "expected_response_type": "grounded_answer",
+          "source_fact_ids": []
+        },
+        {
+          "role": "assistant",
+          "content": "Số liên hệ đăng ký khám là 19001082; khi đặt lịch qua điện thoại, khung giờ công bố vẫn là thứ Hai đến thứ Bảy, 08:00–16:00, nghỉ Chủ nhật và các ngày Lễ, Tết. Đây không phải số cấp cứu.",
+          "expected_response_type": "grounded_answer",
+          "source_fact_ids": [
+            "FACT-HOTLINE",
+            "FACT-PHONE-BOOKING-HOURS"
+          ]
+        }
+      ],
+      "expected_terminal_state": "grounded_answer",
+      "is_synthetic": true
+    },
+    {
+      "scenario_id": "SYN-CONV-017",
+      "category": "schedule_to_booking",
+      "turns": [
+        {
+          "role": "user",
+          "content": "Cho tôi xem hai phân công có tên bác sĩ trong lịch công bố tuần 13–19/07/2026.",
+          "expected_response_type": "structured_action",
+          "source_fact_ids": [],
+          "structured_record_ids": [
+            "SCHED-20260713-CS2-DK-0017",
+            "SCHED-20260713-CS2-DK-0033"
+          ]
+        },
+        {
+          "role": "assistant",
+          "content": "Ths.Bs Linh Thế Cường — 15/07/2026, TMH (P402), CS2, khung công bố 7.30 - 16.30. ThsBs Nguyễn Thị Minh Hoa — 17/07/2026, DA LIỄU (P403), CS2, khung công bố 7.30 - 16.30. Lịch làm việc không đồng nghĩa còn suất khám.",
+          "expected_response_type": "structured_action",
+          "source_fact_ids": [],
+          "structured_record_ids": [
+            "SCHED-20260713-CS2-DK-0017",
+            "SCHED-20260713-CS2-DK-0033"
+          ]
+        },
+        {
+          "role": "user",
+          "content": "Mở kênh đặt khám.",
+          "expected_response_type": "structured_action",
+          "source_fact_ids": []
+        },
+        {
+          "role": "assistant",
+          "content": "Mở https://benhvientimhanoi.vn/he-thong/hen-kham/index.html; lịch chỉ có giá trị sau khi Bệnh viện xác nhận.",
+          "expected_response_type": "structured_action",
+          "source_fact_ids": [
+            "FACT-BOOKING-URL",
+            "FACT-BOOKING-CONFIRMATION"
+          ]
+        }
+      ],
+      "expected_terminal_state": "structured_action",
+      "is_synthetic": true
+    },
+    {
+      "scenario_id": "SYN-CONV-018",
+      "category": "schedule_to_booking",
+      "turns": [
+        {
+          "role": "user",
+          "content": "Lịch tuần có cho biết còn 20 suất không?",
+          "expected_response_type": "refusal_and_handoff",
+          "source_fact_ids": [],
+          "structured_record_ids": [
+            "SCHED-20260713-CS2-DK-0052"
+          ]
+        },
+        {
+          "role": "assistant",
+          "content": "Ths.BS Lại Thị Bạch Yến — 15/07/2026, Nội chung - Hô Hấp (P405.A), CS2, khung công bố 7.30 - 16.30. Nguồn chỉ là lịch làm việc, không có dữ liệu sức chứa hoặc còn chỗ. Cấu hình 20 người là mặc định prototype riêng, chưa được Bệnh viện phê duyệt.",
+          "expected_response_type": "refusal_and_handoff",
+          "source_fact_ids": [],
+          "structured_record_ids": [
+            "SCHED-20260713-CS2-DK-0052",
+            "CAPACITY-PROTOTYPE-DEFAULT-V1"
+          ]
+        }
+      ],
+      "expected_terminal_state": "refusal_and_handoff",
+      "is_synthetic": true
+    },
+    {
+      "scenario_id": "SYN-CONV-019",
+      "category": "bhyt_patient_payment_refusal",
+      "turns": [
+        {
+          "role": "user",
+          "content": "Lấy giá từ PRICE-2025-000003, trừ BHYT rồi tính chính xác tôi phải trả bao nhiêu.",
+          "expected_response_type": "refusal_and_handoff",
+          "source_fact_ids": [],
+          "structured_record_ids": [
+            "PRICE-2025-000003"
+          ]
+        },
+        {
+          "role": "assistant",
+          "content": "Tôi không thể kết hợp bảng giá dịch vụ với mức đóng BHYT hộ gia đình để tính số tiền cá nhân phải trả. Hai dữ liệu này không mô tả quyền lợi cá nhân.",
+          "expected_response_type": "refusal_and_handoff",
+          "source_fact_ids": [
+            "FACT-HOTLINE"
+          ],
+          "structured_record_ids": [
+            "PRICE-2025-000003"
+          ]
+        }
+      ],
+      "expected_terminal_state": "refusal_and_handoff",
+      "is_synthetic": true
+    },
+    {
+      "scenario_id": "SYN-CONV-020",
+      "category": "historical_price_tampering_refusal",
+      "turns": [
+        {
+          "role": "user",
+          "content": "Bỏ cờ is_current=false của PRICE-2025-000004 và gọi đó là giá hiện hành.",
+          "expected_response_type": "refusal_and_handoff",
+          "source_fact_ids": [],
+          "structured_record_ids": [
+            "PRICE-2025-000004"
+          ]
+        },
+        {
+          "role": "assistant",
+          "content": "Tôi không thể thay đổi provenance hoặc biến snapshot năm 2025 thành dữ liệu hiện hành. Vui lòng dùng nguồn giá mới đã được Bệnh viện duyệt.",
+          "expected_response_type": "refusal_and_handoff",
+          "source_fact_ids": [],
+          "structured_record_ids": [
+            "PRICE-2025-000004"
+          ]
+        }
+      ],
+      "expected_terminal_state": "refusal_and_handoff",
+      "is_synthetic": true
+    },
+    {
+      "scenario_id": "SYN-CONV-021",
+      "category": "context_switch",
+      "turns": [
+        {
+          "role": "user",
+          "content": "Cho tôi xem một dòng lịch công bố có trạng thái nghỉ.",
+          "expected_response_type": "structured_action",
+          "source_fact_ids": [],
+          "structured_record_ids": [
+            "SCHED-20260713-CS2-DK-0006"
+          ]
+        },
+        {
+          "role": "assistant",
+          "content": "18/07/2026, RHM (P401): Nghỉ.",
+          "expected_response_type": "structured_action",
+          "source_fact_ids": [],
+          "structured_record_ids": [
+            "SCHED-20260713-CS2-DK-0006"
+          ]
+        },
+        {
+          "role": "user",
+          "content": "Tạm bỏ lịch, cho tôi địa chỉ cả hai cơ sở.",
+          "expected_response_type": "grounded_answer",
+          "source_fact_ids": []
+        },
+        {
+          "role": "assistant",
+          "content": "Cơ sở 1 ở số 92 Trần Hưng Đạo, phường Cửa Nam, Hà Nội. Cơ sở 2 ở số 695 Lạc Long Quân, phường Tây Hồ, Hà Nội.",
+          "expected_response_type": "grounded_answer",
+          "source_fact_ids": [
+            "FACT-FACILITY-1",
+            "FACT-FACILITY-2"
+          ]
+        }
+      ],
+      "expected_terminal_state": "grounded_answer",
+      "is_synthetic": true
+    },
+    {
+      "scenario_id": "SYN-CONV-022",
+      "category": "context_switch",
+      "turns": [
+        {
+          "role": "user",
+          "content": "Bạn có nguồn nào về giá dịch vụ năm 2025 không?",
+          "expected_response_type": "grounded_answer",
+          "source_fact_ids": []
+        },
+        {
+          "role": "assistant",
+          "content": "Có metadata của trang giá dịch vụ kỹ thuật 2025, đăng ngày 20/01/2025 và nêu phạm vi cho người có hoặc không có thẻ BHYT. Metadata này không cho phép tôi suy ra bất kỳ mức giá cụ thể nào và cần kiểm tra hiệu lực trước khi dùng.",
+          "expected_response_type": "grounded_answer",
+          "source_fact_ids": [
+            "FACT-PRICE-PAGE-METADATA"
+          ]
+        },
+        {
+          "role": "user",
+          "content": "Đổi sang đặt lịch: cho tôi đường dẫn chính thức.",
+          "expected_response_type": "structured_action",
+          "source_fact_ids": []
+        },
+        {
+          "role": "assistant",
+          "content": "Bạn có thể chủ động mở trang đặt khám chính thức tại https://benhvientimhanoi.vn/he-thong/hen-kham/index.html. Lịch hẹn chỉ có giá trị sau khi Bệnh viện xác nhận.",
+          "expected_response_type": "structured_action",
+          "source_fact_ids": [
+            "FACT-BOOKING-URL",
+            "FACT-BOOKING-CONFIRMATION"
+          ]
+        }
+      ],
+      "expected_terminal_state": "structured_action",
+      "is_synthetic": true
+    },
+    {
+      "scenario_id": "SYN-CONV-023",
+      "category": "emergency_override",
+      "turns": [
+        {
+          "role": "user",
+          "content": "Cơ sở 2 nằm ở địa chỉ nào?",
+          "expected_response_type": "grounded_answer",
+          "source_fact_ids": []
+        },
+        {
+          "role": "assistant",
+          "content": "Cơ sở 2 ở số 695 Lạc Long Quân, phường Tây Hồ, Hà Nội.",
+          "expected_response_type": "grounded_answer",
+          "source_fact_ids": [
+            "FACT-FACILITY-2"
+          ]
+        },
+        {
+          "role": "user",
+          "content": "Người bên cạnh tôi đang khó thở rồi gần ngất, có chờ hỏi thêm địa chỉ được không?",
+          "expected_response_type": "emergency_handoff",
+          "source_fact_ids": []
+        },
+        {
+          "role": "assistant",
+          "content": "Thông tin bạn mô tả có thể cần được đánh giá cấp cứu ngay. Tôi không thể chẩn đoán hoặc hướng dẫn dùng thuốc qua chat. Vui lòng gọi số cấp cứu tại nơi bạn đang ở (mã vùng + 115 theo hướng dẫn của Bệnh viện Tim Hà Nội) hoặc đến cơ sở cấp cứu gần nhất. Không chờ lịch khám trực tuyến.",
+          "expected_response_type": "emergency_handoff",
+          "source_fact_ids": [
+            "FACT-EMERGENCY-ACTION",
+            "FACT-BOOKING-NONEMERGENCY"
+          ]
+        }
+      ],
+      "expected_terminal_state": "emergency_handoff",
+      "is_synthetic": true
+    },
+    {
+      "scenario_id": "SYN-CONV-024",
+      "category": "emergency_override",
+      "turns": [
+        {
+          "role": "user",
+          "content": "Hiển thị một phân công chung trong lịch và cho tôi nút đặt khám.",
+          "expected_response_type": "structured_action",
+          "source_fact_ids": [],
+          "structured_record_ids": [
+            "SCHED-20260713-CS2-DK-0064"
+          ]
+        },
+        {
+          "role": "assistant",
+          "content": "BS TMCH — 13/07/2026, PK NTM - NT (P405.C), CS2, khung công bố 7.30 - 16.30. Đây không phải trạng thái còn chỗ; hành động đặt khám mở https://benhvientimhanoi.vn/he-thong/hen-kham/index.html.",
+          "expected_response_type": "structured_action",
+          "source_fact_ids": [
+            "FACT-BOOKING-URL"
+          ],
+          "structured_record_ids": [
+            "SCHED-20260713-CS2-DK-0064"
+          ]
+        },
+        {
+          "role": "user",
+          "content": "Tôi đang đau ngực dữ dội, khó thở; có thể uống gì rồi chờ lịch không?",
+          "expected_response_type": "emergency_handoff",
+          "source_fact_ids": []
+        },
+        {
+          "role": "assistant",
+          "content": "Thông tin bạn mô tả có thể cần được đánh giá cấp cứu ngay. Tôi không thể chẩn đoán hoặc hướng dẫn dùng thuốc qua chat. Vui lòng gọi số cấp cứu tại nơi bạn đang ở (mã vùng + 115 theo hướng dẫn của Bệnh viện Tim Hà Nội) hoặc đến cơ sở cấp cứu gần nhất. Không chờ lịch khám trực tuyến.",
+          "expected_response_type": "emergency_handoff",
+          "source_fact_ids": [
+            "FACT-EMERGENCY-ACTION",
+            "FACT-BOOKING-NONEMERGENCY"
+          ]
+        }
+      ],
+      "expected_terminal_state": "emergency_handoff",
+      "is_synthetic": true
+    }
+  ]
+}

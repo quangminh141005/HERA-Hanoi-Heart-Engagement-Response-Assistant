@@ -1,0 +1,11 @@
+apiVersion: 1
+
+providers:
+  - name: HERA
+    orgId: 1
+    folder: HERA
+    type: file
+    disableDeletion: true
+    editable: false
+    options:
+      path: /var/lib/grafana/dashboards

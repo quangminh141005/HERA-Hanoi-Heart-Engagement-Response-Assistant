@@ -27,11 +27,10 @@ class EmergencyDetector:
         """Return a conservative emergency assessment."""
 
         normalized = _normalize(text)
-        matched = [
-            label
-            for label, patterns in _EMERGENCY_PATTERNS.items()
-            if any(re.search(pattern, normalized) for pattern in patterns)
-        ]
+        matched = []
+        for label, patterns in _EMERGENCY_PATTERNS.items():
+            if any(_has_non_negated_match(pattern, normalized) for pattern in patterns):
+                matched.append(label)
         if not matched:
             return EmergencyAssessment(False, 0.0, [])
         confidence = min(0.99, 0.72 + (0.08 * len(matched)))
@@ -52,8 +51,7 @@ def build_emergency_response(
         f"Hãy gọi cấp cứu {emergency_hotline}{contact}, hoặc đến cơ sở y tế "
         "gần nhất ngay. "
         "Nếu có hướng dẫn cấp cứu chính thức của Bệnh viện Tim Hà Nội, "
-        "hệ thống cần hiển thị "
-        "đúng nội dung đó tại đây."
+        "hệ thống cần hiển thị đúng nội dung đó tại đây."
     )
 
 
@@ -66,15 +64,34 @@ def _normalize(text: str) -> str:
     return re.sub(r"\s+", " ", without_marks).strip()
 
 
+def _has_non_negated_match(pattern: str, text: str) -> bool:
+    for match in re.finditer(pattern, text):
+        prefix = text[max(0, match.start() - 40) : match.start()]
+        if re.search(
+            r"\b(?:khong|chua|het|khong con)(?:\s+[a-z]+){0,3}\s+$",
+            prefix,
+        ):
+            continue
+        return True
+    return False
+
+
 _EMERGENCY_PATTERNS = {
+    "explicit_emergency_request": (
+        r"\b(cap cuu|khan cap|nguy cap|nguy kich|goi 115|goi cap cuu)\b",
+        r"\b(emergency|urgent|critical condition)\b",
+    ),
     "severe_chest_pain": (
-        r"\bdau nguc (du doi|rat nang|khong chiu noi|keo dai)\b",
+        r"\bdau nguc\b.*\b(kho tho|ngat|choang|xiu|vung tim|lan ra tay|lan ra vai|lan ra ham)\b",
+        r"\bdau nguc (du doi|rat nang|khong chiu noi|keo dai|that chat|de nang)\b",
         r"\bsevere chest pain\b",
         r"\bcrushing chest pain\b",
     ),
     "shortness_of_breath": (
         r"\bkho tho\b",
         r"\bnghet tho\b",
+        r"\btho gap\b",
+        r"\bkhong tho duoc\b",
         r"\bshort(ness)? of breath\b",
         r"\bcan'?t breathe\b",
     ),
@@ -82,6 +99,9 @@ _EMERGENCY_PATTERNS = {
         r"\bngat\b",
         r"\bchoang\b",
         r"\bxiu\b",
+        r"\bmat y thuc\b",
+        r"\bli bi\b",
+        r"\bsoc\b",
         r"\bfaint(ed|ing)?\b",
         r"\bcollapse(d)?\b",
     ),
@@ -91,7 +111,13 @@ _EMERGENCY_PATTERNS = {
         r"\bblue lips\b",
     ),
     "dangerous_palpitations": (
-        r"\btim dap (bat thuong|nhanh|loạn|loan).*(met|kho chiu|dau nguc|kho tho)\b",
+        r"\btim dap (bat thuong|nhanh|loan).*(met|kho chiu|dau nguc|kho tho)\b",
+        r"\bhoi hop trong nguc\b.*\b(kho tho|dau nguc|choang|ngat|xiu)\b",
         r"\bpalpitation(s)?.*(chest pain|shortness|faint|dizzy)\b",
+    ),
+    "suspected_heart_attack_or_stroke": (
+        r"\b(nhoi mau co tim|dau tim|ngung tim|tim ngung dap)\b",
+        r"\b(dot quy|tai bien mach mau nao|meo mieng|yeu liet nua nguoi|noi kho)\b",
+        r"\b(heart attack|cardiac arrest|stroke)\b",
     ),
 }
