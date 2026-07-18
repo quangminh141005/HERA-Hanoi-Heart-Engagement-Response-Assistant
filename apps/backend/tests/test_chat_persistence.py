@@ -146,6 +146,81 @@ def test_chat_service_instruments_safety_metrics_without_content(
     assert "Nội dung an toàn" not in repr(trace)
 
 
+def test_chat_service_records_trace_input_and_output_when_capture_enabled(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    trace: dict[str, object] = {}
+
+    class FakeObservation:
+        def update(self, **kwargs):
+            trace["update"] = kwargs
+
+    @contextmanager
+    def fake_start_observation(name, **kwargs):
+        trace["name"] = name
+        trace["start"] = kwargs
+        yield FakeObservation()
+
+    monkeypatch.setattr(
+        "app.services.chat.start_observation",
+        fake_start_observation,
+    )
+
+    class FakeOrchestrator:
+        async def handle(self, **_kwargs):
+            return SimpleNamespace(
+                conversation_id="trace-conversation-001",
+                response="Chào bạn, HERA có thể hỗ trợ thông tin bệnh viện.",
+                response_type="non_factual",
+                intent="greeting",
+                grounded=False,
+                data_classification="general",
+                citations=[],
+                warnings=[],
+                structured_record_ids=[],
+                actions=[],
+                requires_handoff=False,
+                emergency=False,
+                metadata={"decision_source": "deterministic"},
+            )
+
+    class FakePersistence:
+        def record_chat_turn(self, **kwargs):
+            assert kwargs["user_content"] == "Xin chào HERA"
+
+    service = ChatService.__new__(ChatService)
+    service.settings = Settings(
+        RATE_LIMIT_ENABLED=False,
+        LANGFUSE_ENABLED=False,
+        LANGFUSE_CAPTURE_CONTENT=True,
+        _env_file=None,
+    )
+    service.orchestrator = FakeOrchestrator()
+    service.persistence = FakePersistence()
+
+    result = asyncio.run(
+        service.respond(
+            ChatRequest(
+                message="Xin chào HERA",
+                client_context={"channel": "hospital_web"},
+            ),
+            request_id="trace-request-001",
+        )
+    )
+
+    assert result.response == "Chào bạn, HERA có thể hỗ trợ thông tin bệnh viện."
+    assert trace["name"] == "hera.chat_turn"
+    assert trace["start"]["input"] == {
+        "message": "Xin chào HERA",
+        "conversation_id": None,
+        "locale": "vi",
+        "channel": "hospital_web",
+        "consent_to_store": False,
+    }
+    assert trace["update"]["output"]["response"] == result.response
+    assert trace["update"]["output"]["intent"] == "greeting"
+
+
 class FakeFeedbackRepository:
     def __init__(self, *, failure: HeraApiError | None = None) -> None:
         self.failure = failure

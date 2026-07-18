@@ -45,13 +45,25 @@ class ModelRoutingAssessor:
         metadata = {
             "model": self.settings.FPT_GUARD_MODEL,
             "max_tokens": self.max_tokens,
-            "content_captured": False,
+            "content_capture": self.settings.LANGFUSE_CAPTURE_CONTENT,
+            "streaming": False,
+            "ttft_available": False,
         }
+        trace_kwargs = {
+            "model": self.settings.FPT_GUARD_MODEL,
+            "model_parameters": {
+                "temperature": 0.0,
+                "max_tokens": self.max_tokens,
+            },
+        }
+        if self.settings.LANGFUSE_CAPTURE_CONTENT:
+            trace_kwargs["input"] = {"message": safe_message}
         with start_observation(
             "hera.routing.model_assessment",
             settings=self.settings,
             as_type="generation",
             metadata=metadata,
+            **trace_kwargs,
         ) as observation:
             try:
                 response = await asyncio.wait_for(
@@ -77,8 +89,8 @@ class ModelRoutingAssessor:
                 )
                 raise
 
-            observation.update(
-                metadata={
+            trace_update = {
+                "metadata": {
                     **metadata,
                     "decision_source": (
                         "model"
@@ -96,7 +108,10 @@ class ModelRoutingAssessor:
                     ),
                     "intent_confidence": assessment.intent_confidence,
                 }
-            )
+            }
+            if self.settings.LANGFUSE_CAPTURE_CONTENT:
+                trace_update["output"] = _trace_assessment_output(assessment)
+            observation.update(**trace_update)
             return assessment
 
     def _parse(self, response: str) -> ModelRoutingAssessment:
@@ -259,3 +274,17 @@ def _bounded_slots(value: object) -> dict[str, str | None]:
         normalized = facility.upper().replace(" ", "")
         slots["facility_code"] = normalized if normalized in {"CS1", "CS2"} else None
     return slots
+
+
+def _trace_assessment_output(assessment: ModelRoutingAssessment) -> dict[str, object]:
+    return {
+        "emergency": assessment.emergency.is_emergency,
+        "emergency_confidence": assessment.emergency_confidence,
+        "intent": (
+            assessment.classification.intent.value
+            if assessment.classification is not None
+            else "low_confidence"
+        ),
+        "intent_confidence": assessment.intent_confidence,
+        "slots": assessment.slots,
+    }

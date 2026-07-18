@@ -143,7 +143,9 @@ class FPTReranker:
             "model": self.model,
             "candidate_count": len(chunks),
             "top_n": top_n,
-            "content_capture": False,
+            "content_capture": bool(
+                self.settings and self.settings.LANGFUSE_CAPTURE_CONTENT
+            ),
         }
         if self.settings is None:
             return await self._rerank_provider(
@@ -152,11 +154,28 @@ class FPTReranker:
                 top_n=top_n,
             )
 
+        trace_kwargs = {}
+        if self.settings.LANGFUSE_CAPTURE_CONTENT:
+            trace_kwargs["input"] = {
+                "query": query,
+                "documents": [
+                    {
+                        "chunk_id": chunk.chunk_id,
+                        "score": round(chunk.score, 4),
+                        "source_id": chunk.source.source_id,
+                        "document_type": chunk.source.document_type,
+                        "text": chunk.text,
+                    }
+                    for chunk in chunks
+                ],
+                "top_n": top_n,
+            }
         with start_observation(
             "hera.rag.rerank",
             settings=self.settings,
             as_type="retriever",
             metadata=metadata,
+            **trace_kwargs,
         ) as observation:
             try:
                 ranked = await self._rerank_provider(
@@ -181,7 +200,21 @@ class FPTReranker:
                     },
                 )
                 return chunks[:top_n]
-            observation.update(metadata={**metadata, "result": "success"})
+            trace_update = {"metadata": {**metadata, "result": "success"}}
+            if self.settings.LANGFUSE_CAPTURE_CONTENT:
+                trace_update["output"] = {
+                    "ranked_documents": [
+                        {
+                            "chunk_id": chunk.chunk_id,
+                            "score": round(chunk.score, 4),
+                            "source_id": chunk.source.source_id,
+                            "document_type": chunk.source.document_type,
+                            "text": chunk.text,
+                        }
+                        for chunk in ranked
+                    ]
+                }
+            observation.update(**trace_update)
             return ranked
 
     async def _rerank_provider(
