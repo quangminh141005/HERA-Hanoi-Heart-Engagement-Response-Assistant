@@ -85,7 +85,7 @@ def test_postgres_readiness_snapshot_passes_every_release_gate(
     assert health.issues == []
     assert all(health.checks.values())
     assert health.counts['service_prices'] == 2_946
-    assert health.counts['schedule_entries'] == 1_382
+    assert health.counts['schedule_entries'] == 1_558
     assert health.structured_bundle_path == 'postgresql'
 
 
@@ -225,4 +225,4 @@ def test_readiness_capacity_snapshot_is_safe(
 
     assert snapshot.capacity_stats['over_capacity_sessions'] == 0
     assert snapshot.capacity_stats['unsafe_sessions'] == 0
-    assert snapshot.counts['booking_sessions'] == 771
+    assert snapshot.counts['booking_sessions'] == 1_072
