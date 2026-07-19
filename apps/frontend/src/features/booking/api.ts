@@ -1,6 +1,8 @@
 import { API_BASE_URL, ApiClientError, normalizeApiError } from '../../lib/api';
 import { isRecord } from '../../lib/structured';
 import {
+  BookingDoctorListResponse,
+  BookingDoctorOption,
   BookingHoldRequest,
   BookingHoldResponse,
   BookingHoldStateResponse,
@@ -137,6 +139,25 @@ function isSession(value: unknown): value is BookingSessionSummary {
   );
 }
 
+function isStringArray(value: unknown): value is string[] {
+  return Array.isArray(value) && value.every((item) => typeof item === 'string');
+}
+
+function isDoctor(value: unknown): value is BookingDoctorOption {
+  return (
+    isRecord(value)
+    && typeof value.doctor_id === 'string'
+    && typeof value.doctor_name === 'string'
+    && isStringArray(value.facility_codes)
+    && isStringArray(value.room_labels)
+    && isStringArray(value.unit_labels)
+    && isIsoDate(value.next_service_date)
+    && isStringArray(value.session_keys)
+    && isIntegerAtLeast(value.open_session_count, 0)
+    && isIntegerAtLeast(value.remaining_count, 0)
+  );
+}
+
 function parseSessionList(value: unknown): BookingSessionListResponse {
   if (
     !isRecord(value)
@@ -156,6 +177,26 @@ function parseSessionList(value: unknown): BookingSessionListResponse {
     );
   }
   return value as unknown as BookingSessionListResponse;
+}
+
+function parseDoctorList(value: unknown): BookingDoctorListResponse {
+  if (
+    !isRecord(value)
+    || !isIsoDate(value.reference_date)
+    || typeof value.capacity_source !== 'string'
+    || value.capacity_source.length === 0
+    || typeof value.warning !== 'string'
+    || !Array.isArray(value.records)
+    || !value.records.every(isDoctor)
+  ) {
+    throw new ApiClientError(
+      'Dịch vụ giữ chỗ trả về danh sách bác sĩ không đúng định dạng an toàn.',
+      200,
+      'INVALID_RESPONSE',
+      true,
+    );
+  }
+  return value as unknown as BookingDoctorListResponse;
 }
 
 function parseHold(value: unknown): BookingHoldResponse {
@@ -191,7 +232,7 @@ function parseHoldState(value: unknown): BookingHoldStateResponse {
   if (
     !isRecord(value)
     || typeof value.hold_id !== 'string'
-    || (value.status !== 'released' && value.status !== 'expired')
+    || (value.status !== 'released' && value.status !== 'expired' && value.status !== 'confirmed')
     || !isIsoDateTime(value.expires_at)
     || typeof value.warning !== 'string'
     || value.hospital_appointment_confirmed !== false
@@ -204,6 +245,17 @@ function parseHoldState(value: unknown): BookingHoldStateResponse {
     );
   }
   return value as unknown as BookingHoldStateResponse;
+}
+
+export async function listBookingDoctors(
+  doctorQuery = '',
+  options: { signal?: AbortSignal } = {},
+): Promise<BookingDoctorListResponse> {
+  const query = new URLSearchParams();
+  if (doctorQuery.trim()) query.set('doctor_query', doctorQuery.trim());
+  const suffix = query.size ? `?${query.toString()}` : '';
+  const value = await requestJson(`/booking-doctors${suffix}`, { method: 'GET' }, options);
+  return parseDoctorList(value);
 }
 
 export async function listBookingSessions(
@@ -234,6 +286,17 @@ export async function createBookingHold(
     body: JSON.stringify(request),
   });
   return parseHold(value);
+}
+
+export async function confirmBookingHold(
+  holdId: string,
+  bearerToken: string,
+): Promise<BookingHoldStateResponse> {
+  const value = await requestJson(`/booking-holds/${encodeURIComponent(holdId)}/confirm`, {
+    method: 'POST',
+    headers: { Authorization: `Bearer ${bearerToken}` },
+  });
+  return parseHoldState(value);
 }
 
 export async function releaseBookingHold(

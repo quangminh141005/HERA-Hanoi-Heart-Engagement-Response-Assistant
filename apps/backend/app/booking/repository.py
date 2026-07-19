@@ -159,6 +159,97 @@ class BookingRepository:
             )
         return records
 
+    def list_doctors(self, *, doctor_query: str | None = None) -> list[dict[str, Any]]:
+        now = _utc_now()
+        filters = [
+            "bs.status = 'open'",
+            "bs.prototype_only = TRUE",
+            "(bs.booking_opens_at IS NULL OR bs.booking_opens_at <= :now)",
+            "(bs.booking_closes_at IS NULL OR bs.booking_closes_at > :now)",
+        ]
+        params: dict[str, Any] = {"now": now, "limit": 120}
+        if self.require_approved_doctor:
+            filters.append(
+                "d.approval_status IN "
+                "('approved_for_hackathon', 'approved_for_production')"
+            )
+        if self.require_approved_capacity_rule:
+            filters.append("bcr.hospital_approved = TRUE")
+        if doctor_query:
+            filters.append("d.normalized_name LIKE :doctor_query")
+            params["doctor_query"] = f"%{_fold_text(doctor_query)}%"
+
+        statement = text(
+            f"""
+            WITH session_capacity AS (
+                SELECT bs.booking_session_id,
+                       bs.doctor_id,
+                       bs.service_date,
+                       bs.session_key,
+                       bs.facility_code,
+                       bs.room_label,
+                       bs.capacity_limit,
+                       COUNT(bh.hold_id) FILTER (
+                           WHERE bh.status = 'confirmed'
+                              OR (bh.status = 'held' AND bh.expires_at > :now)
+                       ) AS occupied_count
+                FROM booking_sessions bs
+                JOIN doctors d ON d.doctor_id = bs.doctor_id
+                JOIN booking_capacity_rules bcr
+                  ON bcr.capacity_rule_id = bs.capacity_rule_id
+                LEFT JOIN booking_holds bh
+                  ON bh.booking_session_id = bs.booking_session_id
+                WHERE {" AND ".join(filters)}
+                GROUP BY bs.booking_session_id
+            )
+            SELECT d.doctor_id,
+                   d.display_name AS doctor_name,
+                   MIN(sc.service_date) AS next_service_date,
+                   COUNT(sc.booking_session_id) AS open_session_count,
+                   SUM(GREATEST(sc.capacity_limit - sc.occupied_count, 0)) AS remaining_count,
+                   ARRAY_AGG(DISTINCT sc.facility_code) FILTER (
+                       WHERE sc.facility_code IS NOT NULL
+                   ) AS facility_codes,
+                   ARRAY_AGG(DISTINCT sc.room_label) FILTER (
+                       WHERE sc.room_label IS NOT NULL
+                   ) AS room_labels,
+                   ARRAY_AGG(DISTINCT sc.session_key) AS session_keys,
+                   ARRAY_AGG(DISTINCT se.unit_label) FILTER (
+                       WHERE se.unit_label IS NOT NULL
+                   ) AS unit_labels
+            FROM session_capacity sc
+            JOIN doctors d ON d.doctor_id = sc.doctor_id
+            LEFT JOIN booking_session_schedule_entries bsse
+              ON bsse.booking_session_id = sc.booking_session_id
+            LEFT JOIN schedule_entries se
+              ON se.schedule_entry_id = bsse.entry_id
+            GROUP BY d.doctor_id, d.display_name
+            HAVING SUM(GREATEST(sc.capacity_limit - sc.occupied_count, 0)) > 0
+            ORDER BY MIN(sc.service_date), d.display_name
+            LIMIT :limit
+            """
+        )
+        try:
+            with self.session_factory() as db:
+                rows = db.execute(statement, params).mappings().all()
+        except SQLAlchemyError as exc:
+            raise _booking_unavailable() from exc
+
+        return [
+            {
+                "doctor_id": row["doctor_id"],
+                "doctor_name": row["doctor_name"],
+                "next_service_date": row["next_service_date"].isoformat(),
+                "open_session_count": int(row["open_session_count"] or 0),
+                "remaining_count": int(row["remaining_count"] or 0),
+                "facility_codes": list(row["facility_codes"] or []),
+                "room_labels": list(row["room_labels"] or []),
+                "session_keys": list(row["session_keys"] or []),
+                "unit_labels": list(row["unit_labels"] or []),
+            }
+            for row in rows
+        ]
+
     def create_hold(
         self,
         *,
@@ -413,6 +504,42 @@ class BookingRepository:
         except SQLAlchemyError as exc:
             raise _booking_unavailable() from exc
 
+    def confirm_hold_for_demo(self, *, hold_id: str, token: str) -> dict[str, Any]:
+        now = _utc_now()
+        try:
+            with self.session_factory() as db, db.begin():
+                row = self._get_owned_hold(db, hold_id, token, lock=True)
+                if row["status"] == "held" and row["expires_at"] <= now:
+                    row = db.execute(
+                        text(
+                            """
+                            UPDATE booking_holds
+                            SET status = 'expired'
+                            WHERE hold_id = :hold_id
+                            RETURNING *
+                            """
+                        ),
+                        {"hold_id": hold_id},
+                    ).mappings().one()
+                elif row["status"] == "held":
+                    row = db.execute(
+                        text(
+                            """
+                            UPDATE booking_holds
+                            SET status = 'confirmed',
+                                confirmed_at = :now
+                            WHERE hold_id = :hold_id
+                            RETURNING *
+                            """
+                        ),
+                        {"hold_id": hold_id, "now": now},
+                    ).mappings().one()
+                return self._hold_state_payload(row)
+        except HeraApiError:
+            raise
+        except SQLAlchemyError as exc:
+            raise _booking_unavailable() from exc
+
     def _validate_open_session(self, session: Any, *, now: datetime) -> None:
         if session["status"] != "open" or not session["prototype_only"]:
             raise HeraApiError(
@@ -597,12 +724,27 @@ def _hash_patient_identity(
     phone = _digits(patient_identity.get("phone_number"))
     cccd = _digits(patient_identity.get("cccd_number"))
     bhyt = _normalize_identifier(patient_identity.get("bhyt_card_number"))
+    extras = "|".join(
+        f"{key}:{_normalize_identifier(str(patient_identity.get(key) or ''))}"
+        for key in (
+            "date_of_birth",
+            "gender",
+            "address",
+            "visit_reason",
+            "height_cm",
+            "weight_kg",
+            "blood_pressure",
+            "heart_rate_bpm",
+            "spo2_percent",
+        )
+    )
     identity_basis = "|".join(
         (
             f"name:{name}",
             f"phone:{phone}",
             f"cccd:{cccd or ''}",
             f"bhyt:{bhyt or ''}",
+            extras,
         )
     )
     return {

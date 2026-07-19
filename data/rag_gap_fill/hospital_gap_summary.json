@@ -1,12 +1,12 @@
 {
   "bundle": "hera-rag-gap-fill",
   "generated_at": "2026-07-18T00:00:00+07:00",
-  "source_count": 3,
-  "fact_count": 8,
-  "rag_record_count": 8,
+  "source_count": 6,
+  "fact_count": 16,
+  "rag_record_count": 16,
   "approval_status_counts": {
-    "approved_for_hackathon": 5,
-    "review_only": 3
+    "approved_for_hackathon": 7,
+    "review_only": 9
   },
   "recommended_embedding_field": "retrieval_text",
   "price_pdf_sources_moved_to": [

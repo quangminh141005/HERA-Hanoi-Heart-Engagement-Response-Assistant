@@ -1,5 +1,7 @@
 import {
   CalendarDays,
+  CheckCircle2,
+  ClipboardList,
   Clock3,
   FlaskConical,
   MapPin,
@@ -8,7 +10,9 @@ import {
   Stethoscope,
   TicketCheck,
   Trash2,
+  UserRound,
   Users,
+  X,
 } from 'lucide-react';
 import { FormEvent, useEffect, useMemo, useRef, useState } from 'react';
 
@@ -17,19 +21,25 @@ import { ApiClientError } from '../../lib/api';
 import { formatDate } from '../../lib/structured';
 import {
   BookingSessionFilters,
+  confirmBookingHold,
   createBookingHold,
   createIdempotencyKey,
   getAnonymousSessionId,
+  listBookingDoctors,
   listBookingSessions,
   releaseBookingHold,
 } from './api';
 import {
   ActiveBookingHold,
+  BookingDoctorOption,
   BookingSessionListResponse,
   BookingSessionSummary,
 } from './contracts';
 
 const INITIAL_VISIBLE_COUNT = 12;
+const DEMO_AUTO_APPROVE_SECONDS = 10;
+const DEMO_EXAM_FEE_VND = 200_000;
+const DEMO_SERVICE_FEE_VND = 300_000;
 
 const SESSION_LABELS: Record<string, string> = {
   morning: 'Buổi sáng',
@@ -54,6 +64,26 @@ function addDays(isoDate: string, days: number): string {
 function weekdayLabel(isoDate: string): string {
   return new Intl.DateTimeFormat('vi-VN', { weekday: 'short' })
     .format(new Date(`${isoDate}T00:00:00`));
+}
+
+function formatVnd(value: number): string {
+  return new Intl.NumberFormat('vi-VN', {
+    currency: 'VND',
+    maximumFractionDigits: 0,
+    style: 'currency',
+  }).format(value);
+}
+
+function parseOptionalNumber(value: string): number | null {
+  if (!value.trim()) return null;
+  const parsed = Number(value.replace(',', '.'));
+  return Number.isFinite(parsed) ? parsed : null;
+}
+
+function parseOptionalInteger(value: string): number | null {
+  if (!value.trim()) return null;
+  const parsed = Number.parseInt(value, 10);
+  return Number.isFinite(parsed) ? parsed : null;
 }
 
 export function secondsUntil(expiresAt: string, nowMs = Date.now()): number {
@@ -156,7 +186,7 @@ function ActiveHoldCard({
   hold: ActiveBookingHold;
   onRelease: () => void;
   releasing: boolean;
-  status: 'held' | 'released' | 'expired';
+  status: 'held' | 'confirmed' | 'released' | 'expired';
   secondsLeft: number;
 }) {
   const isHeld = status === 'held' && secondsLeft > 0;
@@ -169,13 +199,21 @@ function ActiveHoldCard({
             ? 'Đã hủy giữ chỗ'
             : status === 'expired'
               ? 'Chỗ giữ tạm đã hết hạn'
-              : 'Đang giữ chỗ tạm'}
+              : status === 'confirmed'
+                ? 'Đã duyệt trong bản demo'
+                : 'Đang giữ chỗ tạm'}
         </h3>
         <p>
           {hold.booking_session.doctor_name} · {formatDate(hold.booking_session.service_date)} ·{' '}
           {sessionLabel(hold.booking_session.session_key)}
         </p>
       </div>
+      {status === 'confirmed' ? (
+        <div className="hold-countdown hold-approved">
+          <CheckCircle2 size={19} aria-hidden="true" />
+          <span>Demo approved</span>
+        </div>
+      ) : null}
       {isHeld ? (
         <div className="hold-countdown">
           <Clock3 size={19} aria-hidden="true" />
@@ -186,7 +224,9 @@ function ActiveHoldCard({
       ) : null}
       <p className="prototype-warning">
         <FlaskConical size={16} aria-hidden="true" />
-        Đây chỉ là giữ chỗ của bản demo HERA, chưa phải lịch hẹn được Bệnh viện xác nhận.
+        {status === 'confirmed'
+          ? 'HERA tự duyệt sau 10 giây để trình diễn demo; chưa phải lịch hẹn được Bệnh viện xác nhận.'
+          : 'Đây chỉ là giữ chỗ của bản demo HERA, chưa phải lịch hẹn được Bệnh viện xác nhận.'}
       </p>
       {isHeld ? (
         <button
@@ -203,6 +243,200 @@ function ActiveHoldCard({
   );
 }
 
+function BookingPatientModal({
+  holding,
+  onClose,
+  onSubmit,
+  patientAddress,
+  patientBhyt,
+  patientBloodPressure,
+  patientCccd,
+  patientDob,
+  patientGender,
+  patientHeartRate,
+  patientHeight,
+  patientName,
+  patientPhone,
+  patientReason,
+  patientSpo2,
+  patientWeight,
+  selectedSession,
+  setPatientAddress,
+  setPatientBhyt,
+  setPatientBloodPressure,
+  setPatientCccd,
+  setPatientDob,
+  setPatientGender,
+  setPatientHeartRate,
+  setPatientHeight,
+  setPatientName,
+  setPatientPhone,
+  setPatientReason,
+  setPatientSpo2,
+  setPatientWeight,
+}: {
+  holding: boolean;
+  onClose: () => void;
+  onSubmit: () => void;
+  patientAddress: string;
+  patientBhyt: string;
+  patientBloodPressure: string;
+  patientCccd: string;
+  patientDob: string;
+  patientGender: string;
+  patientHeartRate: string;
+  patientHeight: string;
+  patientName: string;
+  patientPhone: string;
+  patientReason: string;
+  patientSpo2: string;
+  patientWeight: string;
+  selectedSession: BookingSessionSummary;
+  setPatientAddress: (value: string) => void;
+  setPatientBhyt: (value: string) => void;
+  setPatientBloodPressure: (value: string) => void;
+  setPatientCccd: (value: string) => void;
+  setPatientDob: (value: string) => void;
+  setPatientGender: (value: string) => void;
+  setPatientHeartRate: (value: string) => void;
+  setPatientHeight: (value: string) => void;
+  setPatientName: (value: string) => void;
+  setPatientPhone: (value: string) => void;
+  setPatientReason: (value: string) => void;
+  setPatientSpo2: (value: string) => void;
+  setPatientWeight: (value: string) => void;
+}) {
+  const estimatedTotal = DEMO_EXAM_FEE_VND + DEMO_SERVICE_FEE_VND;
+  return (
+    <div className="booking-modal-backdrop" role="presentation">
+      <section
+        aria-labelledby="booking-modal-title"
+        aria-modal="true"
+        className="booking-modal"
+        role="dialog"
+      >
+        <header className="booking-modal-header">
+          <div>
+            <span className="eyebrow">Xác nhận thông tin khám</span>
+            <h3 id="booking-modal-title">Xác nhận giữ chỗ</h3>
+          </div>
+          <button aria-label="Đóng form đặt lịch" type="button" onClick={onClose}>
+            <X size={18} aria-hidden="true" />
+          </button>
+        </header>
+
+        <form
+          className="booking-modal-grid"
+          onSubmit={(event) => {
+            event.preventDefault();
+            onSubmit();
+          }}
+        >
+          <aside className="booking-appointment-summary">
+            <h4><ClipboardList size={17} aria-hidden="true" /> Thông tin phòng khám</h4>
+            <dl>
+              <div><dt>Bác sĩ</dt><dd>{selectedSession.doctor_name}</dd></div>
+              <div><dt>Ngày</dt><dd>{formatDate(selectedSession.service_date)}</dd></div>
+              <div><dt>Ca</dt><dd>{sessionLabel(selectedSession.session_key)}</dd></div>
+              <div><dt>Cơ sở</dt><dd>{selectedSession.facility_code ?? 'Theo lịch công bố'}</dd></div>
+              <div><dt>Phòng</dt><dd>{selectedSession.room_label ?? 'Cập nhật tại quầy'}</dd></div>
+              <div><dt>Sức chứa</dt><dd>Còn {selectedSession.remaining_count}/{selectedSession.capacity_limit}</dd></div>
+            </dl>
+            <p>
+              Bệnh nhân cần đến trước giờ hẹn tối thiểu 15 phút để đăng ký và đo
+              mạch, huyết áp, chiều cao, cân nặng.
+            </p>
+          </aside>
+
+          <div className="booking-modal-fields">
+            <label>
+              <span>Họ tên *</span>
+              <input autoComplete="name" value={patientName} onChange={(event) => setPatientName(event.target.value)} />
+            </label>
+            <label>
+              <span>Số điện thoại *</span>
+              <input autoComplete="tel" inputMode="tel" value={patientPhone} onChange={(event) => setPatientPhone(event.target.value)} />
+            </label>
+            <label>
+              <span>Ngày sinh</span>
+              <input type="date" value={patientDob} onChange={(event) => setPatientDob(event.target.value)} />
+            </label>
+            <label>
+              <span>Giới tính</span>
+              <select value={patientGender} onChange={(event) => setPatientGender(event.target.value)}>
+                <option value="">Chưa chọn</option>
+                <option value="female">Nữ</option>
+                <option value="male">Nam</option>
+                <option value="other">Khác</option>
+              </select>
+            </label>
+            <label>
+              <span>CCCD</span>
+              <input autoComplete="off" inputMode="numeric" value={patientCccd} onChange={(event) => setPatientCccd(event.target.value)} />
+            </label>
+            <label>
+              <span>Mã thẻ BHYT</span>
+              <input autoComplete="off" value={patientBhyt} onChange={(event) => setPatientBhyt(event.target.value.toUpperCase())} />
+            </label>
+            <label className="booking-field-wide">
+              <span>Địa chỉ liên hệ</span>
+              <input autoComplete="street-address" value={patientAddress} onChange={(event) => setPatientAddress(event.target.value)} />
+            </label>
+            <label className="booking-field-wide">
+              <span>Lý do khám / triệu chứng chính</span>
+              <textarea value={patientReason} onChange={(event) => setPatientReason(event.target.value)} />
+            </label>
+            <label>
+              <span>Chiều cao cm</span>
+              <input inputMode="numeric" value={patientHeight} onChange={(event) => setPatientHeight(event.target.value)} />
+            </label>
+            <label>
+              <span>Cân nặng kg</span>
+              <input inputMode="decimal" value={patientWeight} onChange={(event) => setPatientWeight(event.target.value)} />
+            </label>
+            <label>
+              <span>Huyết áp</span>
+              <input placeholder="120/80" value={patientBloodPressure} onChange={(event) => setPatientBloodPressure(event.target.value)} />
+            </label>
+            <label>
+              <span>Mạch lần/phút</span>
+              <input inputMode="numeric" value={patientHeartRate} onChange={(event) => setPatientHeartRate(event.target.value)} />
+            </label>
+            <label>
+              <span>SpO2 %</span>
+              <input inputMode="numeric" value={patientSpo2} onChange={(event) => setPatientSpo2(event.target.value)} />
+            </label>
+          </div>
+
+          <div className="booking-demo-invoice">
+            <div>
+              <span>Khám theo yêu cầu demo</span>
+              <strong>{formatVnd(DEMO_EXAM_FEE_VND)}</strong>
+            </div>
+            <div>
+              <span>Phí dịch vụ theo yêu cầu demo</span>
+              <strong>{formatVnd(DEMO_SERVICE_FEE_VND)}</strong>
+            </div>
+            <div className="booking-demo-total">
+              <span>Tạm tính</span>
+              <strong>{formatVnd(estimatedTotal)}</strong>
+            </div>
+            <p>Phiếu này chỉ phục vụ mô phỏng hackathon, chưa phải hóa đơn hoặc xác nhận của Bệnh viện.</p>
+          </div>
+
+          <footer className="booking-modal-actions">
+            <button className="release-button" type="button" onClick={onClose}>Bỏ chọn</button>
+            <button className="hold-button" disabled={holding} type="submit">
+              {holding ? <RefreshCw className="spin-icon" size={17} aria-hidden="true" /> : <TicketCheck size={17} aria-hidden="true" />}
+              {holding ? 'Đang giữ chỗ...' : 'Xác nhận giữ chỗ 5 phút'}
+            </button>
+          </footer>
+        </form>
+      </section>
+    </div>
+  );
+}
+
 export function BookingPanel({ compact = false }: { compact?: boolean }) {
   const [response, setResponse] = useState<BookingSessionListResponse | null>(null);
   const [doctorQuery, setDoctorQuery] = useState('');
@@ -212,7 +446,17 @@ export function BookingPanel({ compact = false }: { compact?: boolean }) {
   const [patientPhone, setPatientPhone] = useState('');
   const [patientCccd, setPatientCccd] = useState('');
   const [patientBhyt, setPatientBhyt] = useState('');
+  const [patientDob, setPatientDob] = useState('');
+  const [patientGender, setPatientGender] = useState('');
+  const [patientAddress, setPatientAddress] = useState('');
+  const [patientReason, setPatientReason] = useState('');
+  const [patientHeight, setPatientHeight] = useState('');
+  const [patientWeight, setPatientWeight] = useState('');
+  const [patientBloodPressure, setPatientBloodPressure] = useState('');
+  const [patientHeartRate, setPatientHeartRate] = useState('');
+  const [patientSpo2, setPatientSpo2] = useState('');
   const [selectedSession, setSelectedSession] = useState<BookingSessionSummary | null>(null);
+  const [doctorOptions, setDoctorOptions] = useState<BookingDoctorOption[]>([]);
   const [appliedFilters, setAppliedFilters] = useState<BookingSessionFilters>({});
   const [refreshVersion, setRefreshVersion] = useState(0);
   const [visibleCount, setVisibleCount] = useState(INITIAL_VISIBLE_COUNT);
@@ -221,8 +465,9 @@ export function BookingPanel({ compact = false }: { compact?: boolean }) {
   const [actionError, setActionError] = useState<ApiClientError | null>(null);
   const [holdingSessionId, setHoldingSessionId] = useState<string | null>(null);
   const [activeHold, setActiveHold] = useState<ActiveBookingHold | null>(null);
-  const [holdStatus, setHoldStatus] = useState<'held' | 'released' | 'expired'>('held');
+  const [holdStatus, setHoldStatus] = useState<'held' | 'confirmed' | 'released' | 'expired'>('held');
   const [releasing, setReleasing] = useState(false);
+  const [confirming, setConfirming] = useState(false);
   const [nowMs, setNowMs] = useState(Date.now());
   const idempotencyKeys = useRef(new Map<string, string>());
   const anonymousSessionId = useMemo(() => getAnonymousSessionId(), []);
@@ -250,6 +495,18 @@ export function BookingPanel({ compact = false }: { compact?: boolean }) {
     return () => controller.abort();
   }, [appliedFilters, refreshVersion]);
 
+  useEffect(() => {
+    const controller = new AbortController();
+    void listBookingDoctors(doctorQuery, { signal: controller.signal })
+      .then((result) => setDoctorOptions(result.records))
+      .catch((error) => {
+        if (!(error instanceof ApiClientError) || error.code !== 'REQUEST_CANCELLED') {
+          setDoctorOptions([]);
+        }
+      });
+    return () => controller.abort();
+  }, [doctorQuery, refreshVersion]);
+
   const secondsLeft = activeHold && holdStatus === 'held'
     ? secondsUntil(activeHold.expires_at, nowMs)
     : 0;
@@ -267,6 +524,25 @@ export function BookingPanel({ compact = false }: { compact?: boolean }) {
       setRefreshVersion((value) => value + 1);
     }
   }, [activeHold, holdStatus, secondsLeft]);
+
+  useEffect(() => {
+    if (!activeHold?.hold_token || holdStatus !== 'held') return undefined;
+    const timeoutId = globalThis.setTimeout(() => {
+      setConfirming(true);
+      void confirmBookingHold(activeHold.hold_id, activeHold.hold_token as string)
+        .then((result) => {
+          setHoldStatus(result.status === 'confirmed' ? 'confirmed' : result.status);
+          setRefreshVersion((value) => value + 1);
+        })
+        .catch((error) => {
+          setActionError(error instanceof ApiClientError
+            ? error
+            : new ApiClientError('Không thể tự duyệt giữ chỗ demo.'));
+        })
+        .finally(() => setConfirming(false));
+    }, DEMO_AUTO_APPROVE_SECONDS * 1000);
+    return () => globalThis.clearTimeout(timeoutId);
+  }, [activeHold, holdStatus]);
 
   function applyFilters(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -302,6 +578,15 @@ export function BookingPanel({ compact = false }: { compact?: boolean }) {
             phone_number: phoneNumber,
             cccd_number: patientCccd.trim() || null,
             bhyt_card_number: patientBhyt.trim() || null,
+            date_of_birth: patientDob || null,
+            gender: patientGender || null,
+            address: patientAddress.trim() || null,
+            visit_reason: patientReason.trim() || null,
+            height_cm: parseOptionalInteger(patientHeight),
+            weight_kg: parseOptionalNumber(patientWeight),
+            blood_pressure: patientBloodPressure.trim() || null,
+            heart_rate_bpm: parseOptionalInteger(patientHeartRate),
+            spo2_percent: parseOptionalInteger(patientSpo2),
           },
         },
         anonymousSessionId,
@@ -325,6 +610,15 @@ export function BookingPanel({ compact = false }: { compact?: boolean }) {
     if (activeHoldBlocksNew) return;
     setActionError(null);
     setSelectedSession(session);
+  }
+
+  function resetFilters() {
+    setDoctorQuery('');
+    setServiceDate('');
+    setSessionKey('');
+    setSelectedSession(null);
+    setActionError(null);
+    setAppliedFilters({});
   }
 
   async function releaseHold() {
@@ -400,13 +694,21 @@ export function BookingPanel({ compact = false }: { compact?: boolean }) {
       </div>
 
       {activeHold ? (
-        <ActiveHoldCard
-          hold={activeHold}
-          onRelease={() => void releaseHold()}
-          releasing={releasing}
-          secondsLeft={secondsLeft}
-          status={holdStatus}
-        />
+        <>
+          <ActiveHoldCard
+            hold={activeHold}
+            onRelease={() => void releaseHold()}
+            releasing={releasing}
+            secondsLeft={secondsLeft}
+            status={holdStatus}
+          />
+          {confirming ? (
+            <p className="booking-auto-approve-note">
+              <RefreshCw className="spin-icon" size={15} aria-hidden="true" />
+              HERA đang tự duyệt giữ chỗ demo sau {DEMO_AUTO_APPROVE_SECONDS} giây.
+            </p>
+          ) : null}
+        </>
       ) : null}
 
       {actionError ? (
@@ -420,11 +722,22 @@ export function BookingPanel({ compact = false }: { compact?: boolean }) {
         <label>
           <span>Tên bác sĩ</span>
           <input
+            list="booking-doctor-options"
             type="search"
             value={doctorQuery}
-            placeholder="Ví dụ: Nguyễn Văn..."
+            placeholder="Chọn hoặc gõ tên bác sĩ..."
             onChange={(event) => setDoctorQuery(event.target.value)}
           />
+          <datalist id="booking-doctor-options">
+            {doctorOptions.map((doctor) => (
+              <option
+                key={doctor.doctor_id}
+                value={doctor.doctor_name}
+              >
+                {doctor.facility_codes.join(', ') || 'Theo lịch'} · {doctor.remaining_count} chỗ
+              </option>
+            ))}
+          </datalist>
         </label>
         <label>
           <span>Ngày khám</span>
@@ -447,7 +760,34 @@ export function BookingPanel({ compact = false }: { compact?: boolean }) {
         <button type="submit" disabled={loading}>
           <Search size={17} aria-hidden="true" /> Tìm ca
         </button>
+        <button className="booking-reset-button" type="button" onClick={resetFilters}>
+          <X size={17} aria-hidden="true" /> Xóa lọc
+        </button>
       </form>
+
+      {doctorOptions.length > 0 ? (
+        <div className="booking-doctor-list" aria-label="Danh sách bác sĩ có lịch">
+          <span><UserRound size={15} aria-hidden="true" /> Bác sĩ có lịch từ thời khóa biểu</span>
+          {doctorOptions.slice(0, 8).map((doctor) => (
+            <button
+              key={doctor.doctor_id}
+              type="button"
+              onClick={() => {
+                setDoctorQuery(doctor.doctor_name);
+                setAppliedFilters({
+                  doctorQuery: doctor.doctor_name,
+                  fromDate: serviceDate || undefined,
+                  toDate: serviceDate || undefined,
+                  sessionKey: sessionKey || undefined,
+                });
+              }}
+            >
+              <strong>{doctor.doctor_name}</strong>
+              <small>{doctor.facility_codes.join(', ') || 'Theo lịch'} · {doctor.open_session_count} ca · còn {doctor.remaining_count}</small>
+            </button>
+          ))}
+        </div>
+      ) : null}
 
       {timelineDates.length > 0 ? (
         <div className="booking-date-strip" aria-label="Chọn nhanh ngày khám">
@@ -467,77 +807,38 @@ export function BookingPanel({ compact = false }: { compact?: boolean }) {
       ) : null}
 
       {selectedSession && !activeHoldBlocksNew ? (
-        <form
-          className="booking-patient-form"
-          onSubmit={(event) => {
-            event.preventDefault();
-            void holdSession(selectedSession);
-          }}
-        >
-          <div>
-            <span className="eyebrow">Xác nhận giữ chỗ</span>
-            <p>
-              Ca đã chọn: {selectedSession.doctor_name} · {formatDate(selectedSession.service_date)} ·{' '}
-              {sessionLabel(selectedSession.session_key)}. Tìm ca không lưu thông tin; chỉ bấm
-              xác nhận dưới đây mới ghi bản hash vào PostgreSQL.
-            </p>
-          </div>
-          <label>
-            <span>Họ tên *</span>
-            <input
-              autoComplete="name"
-              value={patientName}
-              onChange={(event) => setPatientName(event.target.value)}
-            />
-          </label>
-          <label>
-            <span>Số điện thoại *</span>
-            <input
-              autoComplete="tel"
-              inputMode="tel"
-              value={patientPhone}
-              onChange={(event) => setPatientPhone(event.target.value)}
-            />
-          </label>
-          <label>
-            <span>CCCD</span>
-            <input
-              autoComplete="off"
-              inputMode="numeric"
-              value={patientCccd}
-              onChange={(event) => setPatientCccd(event.target.value)}
-            />
-          </label>
-          <label>
-            <span>Mã thẻ BHYT</span>
-            <input
-              autoComplete="off"
-              value={patientBhyt}
-              onChange={(event) => setPatientBhyt(event.target.value.toUpperCase())}
-            />
-          </label>
-          <div className="booking-patient-actions">
-            <button
-              className="hold-button"
-              disabled={holdingSessionId === selectedSession.booking_session_id}
-              type="submit"
-            >
-              {holdingSessionId === selectedSession.booking_session_id
-                ? <RefreshCw className="spin-icon" size={17} aria-hidden="true" />
-                : <TicketCheck size={17} aria-hidden="true" />}
-              {holdingSessionId === selectedSession.booking_session_id
-                ? 'Đang giữ chỗ...'
-                : 'Xác nhận giữ chỗ 5 phút'}
-            </button>
-            <button
-              className="release-button"
-              type="button"
-              onClick={() => setSelectedSession(null)}
-            >
-              Bỏ chọn
-            </button>
-          </div>
-        </form>
+        <BookingPatientModal
+          holding={holdingSessionId === selectedSession.booking_session_id}
+          onClose={() => setSelectedSession(null)}
+          onSubmit={() => void holdSession(selectedSession)}
+          patientAddress={patientAddress}
+          patientBhyt={patientBhyt}
+          patientBloodPressure={patientBloodPressure}
+          patientCccd={patientCccd}
+          patientDob={patientDob}
+          patientGender={patientGender}
+          patientHeartRate={patientHeartRate}
+          patientHeight={patientHeight}
+          patientName={patientName}
+          patientPhone={patientPhone}
+          patientReason={patientReason}
+          patientSpo2={patientSpo2}
+          patientWeight={patientWeight}
+          selectedSession={selectedSession}
+          setPatientAddress={setPatientAddress}
+          setPatientBhyt={setPatientBhyt}
+          setPatientBloodPressure={setPatientBloodPressure}
+          setPatientCccd={setPatientCccd}
+          setPatientDob={setPatientDob}
+          setPatientGender={setPatientGender}
+          setPatientHeartRate={setPatientHeartRate}
+          setPatientHeight={setPatientHeight}
+          setPatientName={setPatientName}
+          setPatientPhone={setPatientPhone}
+          setPatientReason={setPatientReason}
+          setPatientSpo2={setPatientSpo2}
+          setPatientWeight={setPatientWeight}
+        />
       ) : null}
 
       {response ? (

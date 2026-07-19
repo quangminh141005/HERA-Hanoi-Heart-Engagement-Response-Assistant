@@ -103,6 +103,13 @@ class StructuredReadRepository(Protocol):
         limit: int = 10,
     ) -> list[dict[str, Any]]: ...
 
+    def search_service_price_groups(
+        self,
+        *,
+        query: str,
+        limit: int = 3,
+    ) -> list[dict[str, Any]]: ...
+
     def find_bhyt_policy(
         self,
         *,
@@ -299,6 +306,52 @@ class PostgresStructuredRepository:
             },
         )
         return _rerank_service_price_rows(query, rows, limit=limit)
+
+    def search_service_price_groups(
+        self,
+        *,
+        query: str,
+        limit: int = 3,
+    ) -> list[dict[str, Any]]:
+        query_folded = _fold_text(query)
+        rows = self._all(
+            """
+            SELECT
+                sp.service_record_id,
+                sp.display_name_raw AS display_name,
+                sp.source_section AS section,
+                sp.source_id,
+                sp.raw_json,
+                sp.display_name_folded = :query_folded AS exact_match,
+                GREATEST(
+                    similarity(sp.display_name_folded, :query_folded),
+                    similarity(sp.display_name_search, :query_folded)
+                ) AS name_similarity,
+                src.title,
+                src.canonical_url AS url
+            FROM service_catalog_records sp
+            JOIN official_sources src ON src.source_id = sp.source_id
+            WHERE sp.record_type = 'group_header'
+              AND sp.historical_lookup_eligible IS TRUE
+              AND sp.approval_status = ANY(CAST(:approval_statuses AS TEXT[]))
+              AND (
+                    sp.display_name_folded = :query_folded
+                    OR sp.display_name_search LIKE :query_pattern
+                    OR similarity(sp.display_name_folded, :query_folded) >= 0.35
+                    OR similarity(sp.display_name_search, :query_folded) >= 0.35
+                  )
+            ORDER BY exact_match DESC, name_similarity DESC,
+                     LENGTH(sp.display_name_search), sp.service_record_id
+            LIMIT :row_limit
+            """,
+            {
+                "query_pattern": f"%{query_folded}%",
+                "query_folded": query_folded,
+                "approval_statuses": self._approval_statuses,
+                "row_limit": _bounded_limit(limit, maximum=10),
+            },
+        )
+        return rows
 
     def find_bhyt_policy(
         self,

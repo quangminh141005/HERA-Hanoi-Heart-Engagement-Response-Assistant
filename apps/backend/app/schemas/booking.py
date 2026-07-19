@@ -23,6 +23,25 @@ class BookingSessionRecord(BaseModel):
     hospital_appointment_confirmed: bool = False
 
 
+class BookingDoctorOption(BaseModel):
+    doctor_id: str
+    doctor_name: str
+    facility_codes: list[str] = Field(default_factory=list)
+    room_labels: list[str] = Field(default_factory=list)
+    unit_labels: list[str] = Field(default_factory=list)
+    next_service_date: str
+    session_keys: list[str] = Field(default_factory=list)
+    open_session_count: int
+    remaining_count: int
+
+
+class BookingDoctorListResponse(BaseModel):
+    reference_date: str
+    capacity_source: str = "project_mvp_default"
+    warning: str
+    records: list[BookingDoctorOption] = Field(default_factory=list)
+
+
 class BookingSessionListResponse(BaseModel):
     reference_date: str
     capacity_scope: str = "doctor_date_session"
@@ -36,6 +55,15 @@ class BookingPatientIdentity(BaseModel):
     phone_number: str = Field(min_length=8, max_length=32)
     cccd_number: str | None = Field(default=None, min_length=9, max_length=20)
     bhyt_card_number: str | None = Field(default=None, min_length=8, max_length=32)
+    date_of_birth: str | None = Field(default=None, max_length=20)
+    gender: str | None = Field(default=None, max_length=24)
+    address: str | None = Field(default=None, max_length=240)
+    visit_reason: str | None = Field(default=None, max_length=500)
+    height_cm: int | None = Field(default=None, ge=30, le=250)
+    weight_kg: float | None = Field(default=None, ge=1, le=300)
+    blood_pressure: str | None = Field(default=None, max_length=32)
+    heart_rate_bpm: int | None = Field(default=None, ge=20, le=250)
+    spo2_percent: int | None = Field(default=None, ge=50, le=100)
 
     @field_validator("full_name")
     @classmethod
@@ -69,6 +97,13 @@ class BookingPatientIdentity(BaseModel):
         if len(normalized) < 8 or len(normalized) > 20:
             raise ValueError("bhyt_card_number must contain 8-20 characters")
         return normalized
+
+    @field_validator("date_of_birth", "gender", "address", "visit_reason", "blood_pressure")
+    @classmethod
+    def normalize_optional_text(cls, value: str | None) -> str | None:
+        if value is None or not str(value).strip():
+            return None
+        return " ".join(str(value).split())
 
 
 class BookingHoldRequest(BaseModel):

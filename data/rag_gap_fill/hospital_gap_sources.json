@@ -32,5 +32,39 @@
     "raw_file": "data/source/raw/bhxh-bhyt-outpatient-crosstier-2026-06-26.html",
     "raw_sha256": "29bd6a33ce2b293e89e129e2f6ac65ec6b6cf37dc8a6b2cb668ada381d9b5ce8",
     "usable_for_runtime": true
+  },
+  {
+    "source_id": "SRC-HHH-GENERAL-INTRODUCTION-2026-07-18",
+    "source_title": "Giới thiệu chung",
+    "publisher": "Bệnh viện Tim Hà Nội",
+    "authority": "official_hospital",
+    "source_url": "https://benhvientimhanoi.vn/vn/cong/thong-tin/gioi-thieu-chung",
+    "retrieved_at": "2026-07-18T00:00:00+07:00",
+    "raw_file": "data/source/raw/hanoi-heart-hospital-general-introduction-2026-07-18.html",
+    "raw_sha256": "cc38b03af179dc55b62d2a9408338a60b194be9f6ea0dec52d5c15166b0edc0c",
+    "usable_for_runtime": true
+  },
+  {
+    "source_id": "SRC-HHH-LEADERSHIP-2026-07-18",
+    "source_title": "Ban lãnh đạo bệnh viện",
+    "publisher": "Bệnh viện Tim Hà Nội",
+    "authority": "official_hospital",
+    "source_url": "https://benhvientimhanoi.vn/vn/cong/thong-tin/ban-lanh-dao",
+    "retrieved_at": "2026-07-18T00:00:00+07:00",
+    "raw_file": "data/source/raw/hanoi-heart-hospital-leadership-2026-07-18.html",
+    "raw_sha256": "2216c513518a79d53edae1e695822cfcbd41b2f6a1aaaba524e619ad5b486b8b",
+    "usable_for_runtime": true
+  },
+  {
+    "source_id": "SRC-HHH-ZALO-GUIDE-2026-07-18",
+    "source_title": "Hướng dẫn truy cập và đặt lịch hẹn trên Zalo Bệnh viện Tim Hà Nội",
+    "publisher": "Bệnh viện Tim Hà Nội",
+    "authority": "official_hospital",
+    "source_url": "https://www.benhvientimhanoi.vn/vi/thu-vien-video/chi-tiet/huong-dan-truy-cap-zalo-benh-vien-tim-ha-noi",
+    "published_at": "2026-01-27",
+    "retrieved_at": "2026-07-18T00:00:00+07:00",
+    "raw_file": "data/source/raw/hanoi-heart-hospital-zalo-guide-2026-07-18.html",
+    "raw_sha256": "9a0f9467b7d8f9a41c0698fdd14fe0e9322bfe438e41a8463a85b2215034f876",
+    "usable_for_runtime": true
   }
 ]

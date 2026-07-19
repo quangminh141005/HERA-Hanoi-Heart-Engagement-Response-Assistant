@@ -124,5 +124,131 @@
     "effective_to": null,
     "approval_status": "review_only",
     "safety_warning_vi": "Không tính quyền lợi cá nhân hoặc số tiền phải trả; cần xác nhận tại bệnh viện hoặc cơ quan BHXH."
+  },
+  {
+    "fact_id": "GAP-EXAM-FLOW-CS1-CS2-LINKED",
+    "document_type": "hospital_procedure_fact",
+    "topic": "exam_flow",
+    "facility_scope": "CS1 | CS2",
+    "question_patterns_vi": [
+      "quy trình khám chữa bệnh cơ sở 1",
+      "quy trình khám chữa bệnh cơ sở 2",
+      "bệnh viện tim hà nội có flow khám bệnh không"
+    ],
+    "answer_vi": "Trang Khoa Khám bệnh tự nguyện của Bệnh viện Tim Hà Nội có mục Quy trình khám chữa bệnh và liên kết tới hai sơ đồ: Quy trình khám chữa bệnh tại Bệnh viện Tim Hà Nội cơ sở 1 và Quy trình khám chữa bệnh tại Bệnh viện Tim Hà Nội cơ sở II. Nội dung sơ đồ hiện nằm trong ảnh/link nguồn; dataset này chưa OCR được các bước chi tiết, nên khi trả lời không được tự dựng thứ tự bước nếu chưa có bản text đã kiểm chứng.",
+    "source_id": "SRC-HHH-VOLUNTARY-CLINIC-2026-07-18",
+    "verified_at": "2026-07-18T00:00:00+07:00",
+    "approval_status": "review_only",
+    "safety_warning_vi": "Chỉ dùng như chỉ dẫn nguồn quy trình; chưa đủ để trả lời chi tiết từng bước khám."
+  },
+  {
+    "fact_id": "GAP-ZALO-BOOKING-GUIDE-VIDEO",
+    "document_type": "hospital_booking_channel",
+    "topic": "zalo_booking",
+    "facility_scope": "all",
+    "question_patterns_vi": [
+      "đặt lịch qua zalo bệnh viện tim hà nội",
+      "zalo mini app bệnh viện tim hà nội",
+      "hướng dẫn truy cập zalo bệnh viện tim hà nội"
+    ],
+    "answer_vi": "Bệnh viện Tim Hà Nội có trang video chính thức tên 'Hướng dẫn truy cập và đặt lịch hẹn trên Zalo Bệnh viện Tim Hà Nội', ngày đăng 27/01/2026. Trang website cũng đặt link Zalo công khai dạng https://zalo.me/s/2972821668579995579/ trong khu vực đăng ký lịch khám online.",
+    "source_id": "SRC-HHH-ZALO-GUIDE-2026-07-18",
+    "verified_at": "2026-07-18T00:00:00+07:00",
+    "approval_status": "approved_for_hackathon"
+  },
+  {
+    "fact_id": "GAP-HOSPITAL-FACILITY-MASTER",
+    "document_type": "hospital_department_service",
+    "topic": "department_master",
+    "facility_scope": "all",
+    "question_patterns_vi": [
+      "bệnh viện tim hà nội có mấy cơ sở",
+      "cơ cấu khoa phòng bệnh viện tim hà nội",
+      "các khoa lâm sàng bệnh viện tim hà nội"
+    ],
+    "answer_vi": "Trang Giới thiệu chung nêu Bệnh viện Tim Hà Nội có hai cơ sở: số 92 Trần Hưng Đạo, phường Cửa Nam, Hà Nội và số 695 Lạc Long Quân, phường Tây Hồ, Hà Nội. Trang này nêu bệnh viện có 30 khoa/phòng/ban, gồm 16 khoa lâm sàng, 3 khoa cận lâm sàng, 11 khoa/phòng/ban chức năng và hậu cần; phần liệt kê hiện có 11 khoa lâm sàng: Khám bệnh, Nội, Nội Nhi, Tim mạch chuyển hóa, Hồi sức tích cực nhi, Gây mê hồi sức, Hồi sức tích cực, Ngoại, Tim mạch can thiệp, Cấp cứu, Các bệnh mạch máu; 5 khoa cận lâm sàng: Xét nghiệm, Dược, Kiểm soát nhiễm khuẩn, Chẩn đoán hình ảnh, Dinh dưỡng; và 6 đơn nguyên: Khám và điều trị tự nguyện, Thăm dò điện sinh lý và rối loạn nhịp, Sơ sinh, Tim mạch can thiệp cơ sở 2, Can thiệp tĩnh mạch, chẩn đoán hình ảnh kỹ thuật cao.",
+    "source_id": "SRC-HHH-GENERAL-INTRODUCTION-2026-07-18",
+    "verified_at": "2026-07-18T00:00:00+07:00",
+    "approval_status": "review_only",
+    "safety_warning_vi": "Trang nguồn có chênh giữa số tổng hợp và danh sách chi tiết, nên giữ review_only trước khi dùng như master production."
+  },
+  {
+    "fact_id": "GAP-HOSPITAL-LEADERSHIP-MASTER",
+    "document_type": "hospital_person_master",
+    "topic": "doctor_department_master",
+    "facility_scope": "all",
+    "question_patterns_vi": [
+      "ban lãnh đạo bệnh viện tim hà nội",
+      "lãnh đạo bệnh viện tim hà nội gồm ai",
+      "giám đốc phó giám đốc bệnh viện tim hà nội"
+    ],
+    "answer_vi": "Trang Ban lãnh đạo bệnh viện liệt kê bốn tên: PGS.TS.BS Nguyễn Sinh Hiền, TS.BS Vũ Quỳnh Nga, TS.BS Phạm Như Hùng và TS.Bs Hoàng Văn. Trang nguồn không hiển thị chức vụ dạng text trong phần đã extract, nên dataset không gán chức danh cụ thể cho từng người.",
+    "source_id": "SRC-HHH-LEADERSHIP-2026-07-18",
+    "verified_at": "2026-07-18T00:00:00+07:00",
+    "approval_status": "review_only",
+    "safety_warning_vi": "Không suy luận chức danh từ thứ tự ảnh hoặc kiến thức ngoài trang nguồn."
+  },
+  {
+    "fact_id": "GAP-SPECIALIZED-SERVICES-GENERAL",
+    "document_type": "hospital_department_service",
+    "topic": "specialized_services",
+    "facility_scope": "all",
+    "question_patterns_vi": [
+      "dịch vụ chuyên khoa bệnh viện tim hà nội",
+      "bệnh viện tim hà nội mạnh về kỹ thuật gì",
+      "các mũi nhọn chuyên môn bệnh viện tim hà nội"
+    ],
+    "answer_vi": "Trang Giới thiệu chung nêu Bệnh viện Tim Hà Nội là trung tâm tim mạch với 5 mũi nhọn: nội khoa, ngoại khoa, nhi khoa, tim mạch can thiệp và tim mạch chuyển hóa. Trang liệt kê các nhóm kỹ thuật như chẩn đoán và điều trị nội khoa tim mạch - chuyển hóa, siêu âm tim Doppler 2D/4D, siêu âm tim qua thực quản, siêu âm tim cản âm, siêu âm Dobutamin, siêu âm tim thai, Holter điện tim, Holter huyết áp, nghiệm pháp gắng sức, MSCT 128 dãy, cộng hưởng từ 1.5 Tesla, can thiệp động mạch vành, nong van hai lá, stent graft, thay van động mạch chủ qua da, điện sinh lý tim, phẫu thuật tim nhi khoa, phẫu thuật sửa/thay van tim và bắc cầu động mạch vành.",
+    "source_id": "SRC-HHH-GENERAL-INTRODUCTION-2026-07-18",
+    "verified_at": "2026-07-18T00:00:00+07:00",
+    "approval_status": "approved_for_hackathon"
+  },
+  {
+    "fact_id": "GAP-EMERGENCY-HOSPITAL-NOTE",
+    "document_type": "hospital_emergency_note",
+    "topic": "emergency_official_procedure",
+    "facility_scope": "all",
+    "question_patterns_vi": [
+      "cấp cứu bệnh viện tim hà nội",
+      "quy trình cấp cứu bệnh viện tim hà nội",
+      "can thiệp cấp cứu mất bao lâu"
+    ],
+    "answer_vi": "Nguồn hiện có của Bệnh viện Tim Hà Nội chỉ cho phép trả lời an toàn rằng đặt hẹn khám không dành cho trường hợp cấp cứu, không khẩn cấp; khi cấp cứu cần gọi số cấp cứu theo tỉnh/thành dạng mã vùng + 115 hoặc đến thẳng cơ sở cấp cứu gần nhất. Trang Giới thiệu chung có nêu bệnh viện có Khoa Cấp cứu và các bệnh nhân cần can thiệp cấp cứu sẽ được thực hiện trong vòng 1 tiếng từ khi đến bệnh viện, nhưng chưa có trang quy trình cấp cứu chi tiết để hướng dẫn luồng xử trí.",
+    "source_id": "SRC-HHH-GENERAL-INTRODUCTION-2026-07-18",
+    "verified_at": "2026-07-18T00:00:00+07:00",
+    "approval_status": "review_only",
+    "safety_warning_vi": "Không thay thế gọi cấp cứu hoặc đánh giá trực tiếp; không hướng dẫn tự xử trí triệu chứng cấp cứu qua chat."
+  },
+  {
+    "fact_id": "GAP-ADMISSION-PROCEDURE-UNRESOLVED",
+    "document_type": "unresolved_data_gap",
+    "topic": "admission",
+    "facility_scope": "unknown",
+    "question_patterns_vi": [
+      "thủ tục nhập viện bệnh viện tim hà nội",
+      "vào viện cần giấy tờ gì",
+      "quy trình nhập viện bệnh viện tim hà nội"
+    ],
+    "answer_vi": "Chưa có nguồn chính thức đã extract trong dataset này về thủ tục nhập viện chi tiết của Bệnh viện Tim Hà Nội. Nếu người dùng hỏi thủ tục nhập viện, hệ thống nên nói chưa có dữ liệu xác thực và chuyển sang kênh chính thức: hotline 19001082 hoặc quầy bệnh viện; không tự suy luận giấy tờ, bước làm thủ tục hoặc điều kiện nhập viện.",
+    "source_id": "SRC-HHH-BOOKING-GUIDE-2026-07-18",
+    "verified_at": "2026-07-18T00:00:00+07:00",
+    "approval_status": "review_only",
+    "safety_warning_vi": "Record này là gap guardrail, không phải quy trình nhập viện."
+  },
+  {
+    "fact_id": "GAP-FOLLOW-UP-GUIDANCE-UNRESOLVED",
+    "document_type": "unresolved_data_gap",
+    "topic": "follow_up",
+    "facility_scope": "unknown",
+    "question_patterns_vi": [
+      "hướng dẫn tái khám bệnh viện tim hà nội",
+      "hẹn tái khám như thế nào",
+      "số bệnh nhân hẹn tái khám có nghĩa gì"
+    ],
+    "answer_vi": "Dataset hiện chỉ thấy widget thống kê 'Số bệnh nhân hẹn tái khám' trên website Bệnh viện Tim Hà Nội, chưa có policy/hướng dẫn tái khám chi tiết đã extract. Nếu người dùng hỏi hướng dẫn tái khám, hệ thống nên nói chưa có dữ liệu xác thực và khuyến nghị liên hệ hotline 19001082, kiểm tra giấy hẹn/phiếu ra viện hoặc hỏi quầy bệnh viện.",
+    "source_id": "SRC-HHH-BOOKING-GUIDE-2026-07-18",
+    "verified_at": "2026-07-18T00:00:00+07:00",
+    "approval_status": "review_only",
+    "safety_warning_vi": "Không dùng widget thống kê để suy ra quy trình tái khám."
   }
 ]

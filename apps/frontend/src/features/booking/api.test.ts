@@ -2,7 +2,9 @@ import { afterEach, describe, expect, it, vi } from 'vitest';
 
 import {
   createBookingHold,
+  confirmBookingHold,
   getAnonymousSessionId,
+  listBookingDoctors,
   listBookingSessions,
   releaseBookingHold,
 } from './api';
@@ -72,6 +74,33 @@ describe('booking API', () => {
     expect(init.method).toBe('GET');
   });
 
+  it('loads doctor options from booking sessions', async () => {
+    const fetchMock = vi.fn().mockResolvedValue(response({
+      reference_date: '2026-06-08',
+      capacity_source: 'project_mvp_default',
+      warning: 'Chỉ là bản demo.',
+      records: [{
+        doctor_id: 'DOCTOR-1',
+        doctor_name: 'BS. Nguyễn An',
+        facility_codes: ['CS1'],
+        room_labels: ['P.101'],
+        unit_labels: ['Khoa khám bệnh Tự nguyện 1'],
+        next_service_date: '2026-06-08',
+        session_keys: ['morning'],
+        open_session_count: 2,
+        remaining_count: 18,
+      }],
+    }));
+    vi.stubGlobal('fetch', fetchMock);
+
+    const result = await listBookingDoctors('Nguyễn');
+
+    expect(result.records[0]?.doctor_name).toBe('BS. Nguyễn An');
+    const [url, init] = fetchMock.mock.calls[0] as [string, RequestInit];
+    expect(url).toContain('/api/v1/booking-doctors?doctor_query=Nguy%E1%BB%85n');
+    expect(init.method).toBe('GET');
+  });
+
   it('creates a hold with the anonymous-session header', async () => {
     const fetchMock = vi.fn().mockResolvedValue(response({
       hold_id: 'HOLD-1',
@@ -135,6 +164,24 @@ describe('booking API', () => {
     const [url, init] = fetchMock.mock.calls[0] as [string, RequestInit];
     expect(url).toContain('/api/v1/booking-holds/HOLD-1');
     expect(init.method).toBe('DELETE');
+    expect(init.headers).toMatchObject({ Authorization: 'Bearer secret-token' });
+  });
+
+  it('confirms a demo hold with the hold bearer token', async () => {
+    const fetchMock = vi.fn().mockResolvedValue(response({
+      hold_id: 'HOLD-1',
+      status: 'confirmed',
+      expires_at: '2099-01-01T00:05:00Z',
+      hospital_appointment_confirmed: false,
+      warning: 'Tự duyệt demo.',
+    }));
+    vi.stubGlobal('fetch', fetchMock);
+
+    await confirmBookingHold('HOLD-1', 'secret-token');
+
+    const [url, init] = fetchMock.mock.calls[0] as [string, RequestInit];
+    expect(url).toContain('/api/v1/booking-holds/HOLD-1/confirm');
+    expect(init.method).toBe('POST');
     expect(init.headers).toMatchObject({ Authorization: 'Bearer secret-token' });
   });
 

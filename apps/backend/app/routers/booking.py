@@ -10,6 +10,7 @@ from fastapi import APIRouter, Depends, Header, Query
 from app.core.config import get_settings
 from app.core.errors import HeraApiError
 from app.schemas.booking import (
+    BookingDoctorListResponse,
     BookingHoldRequest,
     BookingHoldResponse,
     BookingHoldStateResponse,
@@ -41,6 +42,14 @@ def list_booking_sessions(
         facility_code=facility_code,
         session_key=session_key,
     )
+
+
+@router.get("/booking-doctors", response_model=BookingDoctorListResponse)
+def list_booking_doctors(
+    doctor_query: str | None = Query(default=None),
+    service: BookingService = Depends(get_booking_service),
+) -> BookingDoctorListResponse:
+    return service.list_doctors(doctor_query=doctor_query)
 
 
 @router.post("/booking-holds", response_model=BookingHoldResponse, status_code=201)

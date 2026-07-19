@@ -23,6 +23,25 @@ export interface BookingSessionListResponse {
   records: BookingSessionSummary[];
 }
 
+export interface BookingDoctorOption {
+  doctor_id: string;
+  doctor_name: string;
+  facility_codes: string[];
+  room_labels: string[];
+  unit_labels: string[];
+  next_service_date: string;
+  session_keys: string[];
+  open_session_count: number;
+  remaining_count: number;
+}
+
+export interface BookingDoctorListResponse {
+  reference_date: string;
+  capacity_source: string;
+  warning: string;
+  records: BookingDoctorOption[];
+}
+
 export interface BookingHoldRequest {
   booking_session_id: string;
   idempotency_key: string;
@@ -34,6 +53,15 @@ export interface BookingPatientIdentity {
   phone_number: string;
   cccd_number?: string | null;
   bhyt_card_number?: string | null;
+  date_of_birth?: string | null;
+  gender?: string | null;
+  address?: string | null;
+  visit_reason?: string | null;
+  height_cm?: number | null;
+  weight_kg?: number | null;
+  blood_pressure?: string | null;
+  heart_rate_bpm?: number | null;
+  spo2_percent?: number | null;
 }
 
 export interface BookingHoldResponse {
@@ -52,7 +80,7 @@ export interface BookingHoldResponse {
 
 export interface BookingHoldStateResponse {
   hold_id: string;
-  status: 'released' | 'expired';
+  status: 'released' | 'expired' | 'confirmed';
   expires_at: string;
   hospital_appointment_confirmed: false;
   warning: string;

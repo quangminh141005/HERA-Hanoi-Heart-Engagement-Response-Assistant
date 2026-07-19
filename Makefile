@@ -35,7 +35,7 @@ ENV_ARGS = $(if $(wildcard $(ENV_FILE)),--env-file $(ENV_FILE),)
 COMPOSE = docker compose $(ENV_ARGS) -p $(PROJECT_NAME) -f docker-compose.yml
 MONITORING_COMPOSE = $(COMPOSE) -f docker-compose.monitoring.yml
 
-.PHONY: help setup config-check encoding-check lint unit integration test test-full data-generate generated-validate data-validate harder-testset db-bootstrap migrate seed data-import data-export data-rebind-export data-reset-dev up down restart status logs scale smoke model-preflight rag-live-check hard-live-eval harder-live-eval langfuse-check stress stress-ci stress-extreme monitoring-up monitoring-down monitoring-status monitoring-logs package deploy release-check backup restore rollback
+.PHONY: help setup config-check encoding-check lint unit integration test test-full data-generate generated-validate data-validate harder-testset db-bootstrap migrate seed data-import data-export data-rebind-export data-reset-dev up down restart status logs scale smoke model-preflight rag-live-check hard-live-eval harder-live-eval super-rag-audit super-rag-audit-quick langfuse-check stress stress-ci stress-extreme monitoring-up monitoring-down monitoring-status monitoring-logs package deploy release-check backup restore rollback
 
 help: ## Show every supported target and its purpose.
 	@awk 'BEGIN {FS = ":.*##"; printf "HERA commands:\n\n"} /^[a-zA-Z0-9_-]+:.*##/ {printf "  %-20s %s\n", $$1, $$2}' $(MAKEFILE_LIST)
@@ -165,6 +165,12 @@ harder-testset: ## Rebuild and verify the disjoint second 500-case fixture from 
 harder-live-eval: harder-testset ## Run the second disjoint 500-case live evaluation.
 	@if [[ "$(CONFIRM_HARD_LIVE_EVAL)" != "YES" ]]; then echo "Refusing paid eval: set CONFIRM_HARD_LIVE_EVAL=YES."; exit 2; fi
 	@$(PYTHON) scripts/hard_live_eval.py --confirm YES --base-url "$(HARD_EVAL_BASE_URL)" --case-file "$(HARDER_EVAL_CASE_FILE)" --limit "$(HARD_EVAL_LIMIT)" --output "$(HARDER_EVAL_OUTPUT)" --judge-max-tokens "$(HARD_EVAL_JUDGE_MAX_TOKENS)" --delay-seconds "$(HARD_EVAL_DELAY_SECONDS)" $(if $(filter 1 true TRUE yes YES,$(HARD_EVAL_LIVE_JUDGE)),--live-judge,) $(if $(filter 1 true TRUE yes YES,$(HARD_EVAL_JUDGE_ALL)),--judge-all,)
+
+super-rag-audit: ## Run golden + hard500 + harder500 and write thong_tin_sai.md.
+	@$(PYTHON) scripts/super_rag_accuracy_audit.py --base-url http://127.0.0.1:8080
+
+super-rag-audit-quick: ## Run a quick 100-case hard/harder sample and write thong_tin_sai.md.
+	@$(PYTHON) scripts/super_rag_accuracy_audit.py --base-url http://127.0.0.1:8080 --hard-limit 50
 
 langfuse-check: ## Verify Langfuse auth and trace ingestion with zero model calls.
 	@$(COMPOSE) exec -T backend python scripts/verify_langfuse.py

@@ -1,0 +1,1349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta property="og:url" content="https://benhvientimhanoi.vn/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Bệnh viện Tim Hà Nội" />
+    <meta property="og:description" content="Trang chủ" />
+    <title>Chi ti&#x1EBF;t - Gi&#x1EDB;i thi&#x1EC7;u chung</title>
+    <meta name="google-site-verification" content="gVV4qJ7E5Kr71QYRZFNZj0iGK_uQYmSoktsDn1A4QB4" />
+    <!-- Favicons -->
+    <link href="/assets/img/favicon.png" rel="icon">
+    <link href="/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    <link href="/assets/css/owl.carousel.css" rel="stylesheet" />
+    <link href="/assets/css/owl.carousel.min.css" rel="stylesheet" />
+    <!-- Vendor CSS Files -->
+    <link href="/assets/vendor/animate.css/animate.min.css" rel="stylesheet">
+    <link href="/assets/css/owl.carousel.min.css" rel="stylesheet" />
+
+    <link href="/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="/assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+    <link href="/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <link href="/assets/css/font-awesome.css" rel="stylesheet" />
+    <link href="/assets/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="/assets/css/font-awesome.css" rel="stylesheet" />
+    <link href="/assets/css/font-awesome.min.css" rel="stylesheet" />
+    <!-- Template Main CSS File -->
+    <link href="/assets/css/style.css" rel="stylesheet" />
+    <link href="/assets/css/all.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    
+    <script src="/assets/lib_bootstrap/bootstrap.min.js"></script>
+    <script src="/assets/lib_bootstrap/jquery.min.js"></script>
+
+    <script src="/lib/jqueryui/jquery-ui.min.js"></script>
+    <script src="/elfinder/elfinder/js/elfinder.min.js"></script>
+    <script src="/ckeditor/ckeditor.js"></script>
+    <style>
+        .carousel {
+            width: 100%;
+            /*padding: 90px 0;*/
+            text-align: center;
+            background-color: white;
+        }
+
+        .carousel-inner {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+        }
+
+            .carousel-inner > .item {
+                position: relative;
+                display: none;
+                animation: 0.5s ease-in-out;
+            }
+
+            .carousel-inner > .active,
+            .carousel-inner > .next {
+                display: block;
+            }
+
+            .carousel-inner > .next {
+                position: absolute;
+                top: 0;
+                width: 100%;
+            }
+
+            .carousel-inner > .to-left {
+                animation-name: left;
+            }
+
+            .carousel-inner > .from-right {
+                animation-name: right;
+            }
+
+            .carousel-inner > .to-right {
+                animation-name: right;
+                animation-direction: reverse;
+            }
+
+            .carousel-inner > .from-left {
+                animation-name: left;
+                animation-direction: reverse;
+            }
+
+
+
+        blockquote {
+            padding: 10px 20px;
+            margin: 30px 90px;
+            font-size: 32px;
+        }
+
+        .author {
+            margin: 0;
+            opacity: 0.5;
+        }
+
+        .carousel-control {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            width: 15%;
+            cursor: pointer;
+        }
+
+            .carousel-control.right {
+                right: 0;
+                left: auto;
+            }
+
+            .carousel-control > .arrow {
+                position: absolute;
+                top: 50%;
+                display: inline-block;
+                width: 30px;
+                height: 30px;
+                background: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjYiIGhlaWdodD0iMjAiIHZpZXdCb3g9IjAgMCAyNiAyMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48dGl0bGU+QXJyb3c8L3RpdGxlPjxwYXRoIGQ9Ik0yNS42IDEwLjk3NGwtOC41MyA4LjYyYTEuMzYgMS4zNiAwIDAgMS0xLjkzNS4wMDMgMS4zODcgMS4zODcgMCAwIDEtLjAwMi0xLjk1bDYuMjAxLTYuMjY4SDEuMzY4QTEuMzc0IDEuMzc0IDAgMCAxIDAgMTBjMC0uNzYyLjYxMy0xLjM4IDEuMzY4LTEuMzhoMTkuOTY2bC02LjItNi4yNjdhMS4zODcgMS4zODcgMCAwIDEgLjAwMS0xLjk1IDEuMzYgMS4zNiAwIDAgMSAxLjkzNi4wMDJsOC41MyA4LjYyMWMuNTMyLjUzOC41MzIgMS40MSAwIDEuOTQ4IiBmaWxsPSIjRkZGRkZGIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiLz48L3N2Zz4=") center center no-repeat;
+                background-size: 26px 20px;
+                opacity: 0.6;
+                transform: translateY(-50%);
+            }
+
+                .carousel-control > .arrow:hover {
+                    opacity: 0.8;
+                }
+
+                .carousel-control > .arrow.left {
+                    transform: translateY(-50%) rotate(180deg);
+                }
+
+                .carousel-control > .arrow.right {
+                    right: 50%;
+                }
+
+        .carousel-indicators {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            padding-left: 0;
+            margin: 0;
+            list-style: none;
+            transform: translateX(-50%);
+        }
+
+            .carousel-indicators li {
+                display: inline-block;
+                width: 10px;
+                height: 10px;
+                cursor: pointer;
+                border: 1px solid #FFFFFF;
+                border-radius: 10px;
+            }
+
+                .carousel-indicators li.active {
+                    background-color: #FFFFFF;
+                }
+
+
+
+
+
+
+        /* width */
+        ::-webkit-scrollbar {
+            width: 3px;
+        }
+
+        /* Track */
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        /* Handle */
+        ::-webkit-scrollbar-thumb {
+            background: orange;
+        }
+
+            /* Handle on hover */
+            ::-webkit-scrollbar-thumb:hover {
+                background: lightorange;
+            }
+
+        .navbar {
+            margin-bottom: 0px !important;
+            background-color: #3d6889;
+            min-height: 36px !important;
+            border-radius: 0px !important;
+        }
+
+        .navbar-mobile ul {
+            background-color: #0392ce !important;
+        }
+
+        #navbar > ul > li > a {
+            color: white;
+            font-family: Arial !important;
+        }
+
+        .me-auto {
+            margin-right: 0px !important;
+        }
+
+        .header_row1 {
+            font-family: Roboto Condensed;
+            font-size: 24px;
+            font-weight: 500;
+            color: #3d6889;
+            padding-left: 20px;
+            padding-top: 7px;
+            text-shadow: 1px 1px 1px #ccc;
+            text-transform: uppercase;
+            text-align: left;
+        }
+
+        .header_row2 {
+            font-family: Roboto Condensed;
+            font-size: 20px;
+            font-weight: 700;
+            color: #3d6889;
+            padding-left: 20px;
+            line-height: 32px;
+            text-shadow: 1px 1px 1px #ccc;
+            /*  text-transform: uppercase; */
+            text-align: left;
+        }
+
+        .header_right {
+            /*  background-image: url('assets/img/bn_right1.png'); */
+            background-repeat: no-repeat;
+            background-position: right;
+            text-align: right;
+        }
+
+        .flag_logo {
+            width: 30px;
+        }
+
+        .hot_line {
+            display: flex;
+            padding-left: 20%;
+            font-size: 18px;
+            font-weight: bold;
+            color: darkred;
+            padding-top: 10px;
+        }
+    </style>
+    <style>
+        .carousel {
+            width: 100%;
+            /*padding: 90px 0;*/
+            text-align: center;
+            /* background-color: #1E88E5;*/
+        }
+
+        .carousel-inner {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+        }
+
+            .carousel-inner > .item {
+                position: relative;
+                display: none;
+                animation: 1s ease-in-out;
+            }
+
+            .carousel-inner > .active,
+            .carousel-inner > .next {
+                display: block;
+            }
+
+            .carousel-inner > .next {
+                position: absolute;
+                top: 0;
+                width: 100%;
+            }
+
+            .carousel-inner > .to-left {
+                animation-name: left;
+            }
+
+            .carousel-inner > .from-right {
+                animation-name: right;
+            }
+
+            .carousel-inner > .to-right {
+                animation-name: right;
+                animation-direction: reverse;
+            }
+
+            .carousel-inner > .from-left {
+                animation-name: left;
+                animation-direction: reverse;
+            }
+
+
+
+        blockquote {
+            padding: 10px 20px;
+            margin: 30px 90px;
+            font-size: 32px;
+        }
+
+        .author {
+            margin: 0;
+            opacity: 0.5;
+        }
+
+        .carousel-control {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            width: 15%;
+            cursor: pointer;
+        }
+
+            .carousel-control.right {
+                right: 0;
+                left: auto;
+            }
+
+            .carousel-control > .arrow {
+                position: absolute;
+                top: 50%;
+                display: inline-block;
+                width: 30px;
+                height: 30px;
+                background: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjYiIGhlaWdodD0iMjAiIHZpZXdCb3g9IjAgMCAyNiAyMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48dGl0bGU+QXJyb3c8L3RpdGxlPjxwYXRoIGQ9Ik0yNS42IDEwLjk3NGwtOC41MyA4LjYyYTEuMzYgMS4zNiAwIDAgMS0xLjkzNS4wMDMgMS4zODcgMS4zODcgMCAwIDEtLjAwMi0xLjk1bDYuMjAxLTYuMjY4SDEuMzY4QTEuMzc0IDEuMzc0IDAgMCAxIDAgMTBjMC0uNzYyLjYxMy0xLjM4IDEuMzY4LTEuMzhoMTkuOTY2bC02LjItNi4yNjdhMS4zODcgMS4zODcgMCAwIDEgLjAwMS0xLjk1IDEuMzYgMS4zNiAwIDAgMSAxLjkzNi4wMDJsOC41MyA4LjYyMWMuNTMyLjUzOC41MzIgMS40MSAwIDEuOTQ4IiBmaWxsPSIjRkZGRkZGIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiLz48L3N2Zz4=") center center no-repeat;
+                background-size: 26px 20px;
+                opacity: 0.6;
+                transform: translateY(-50%);
+            }
+
+                .carousel-control > .arrow:hover {
+                    opacity: 0.8;
+                }
+
+                .carousel-control > .arrow.left {
+                    transform: translateY(-50%) rotate(180deg);
+                }
+
+                .carousel-control > .arrow.right {
+                    right: 50%;
+                }
+
+        .carousel-indicators {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            padding-left: 0;
+            margin: 0;
+            list-style: none;
+            transform: translateX(-50%);
+        }
+
+            .carousel-indicators li {
+                display: inline-block;
+                width: 10px;
+                height: 10px;
+                cursor: pointer;
+                border: 1px solid #FFFFFF;
+                border-radius: 10px;
+            }
+
+                .carousel-indicators li.active {
+                    background-color: #FFFFFF;
+                }
+
+        .logoBtn {
+            width: 100%;
+        }
+
+        .owl-dots {
+            display: none;
+        }
+
+        #menu_bar {
+            overflow-x: clip;
+        }
+
+        .menu_bar_fixed {
+            position: fixed;
+            top: 0;
+            z-index: 999;
+        }
+
+        .modal-backdrop {
+            --bs-backdrop-bg: rgba(0,0,0,0.5) !important;
+            background-color: rgba(0,0,0,0.5) !important
+        }
+
+        #curDay {
+            padding-right: 15px;
+            width: 50%;
+            text-align: right;
+            font-style: italic;
+            color: #4d4c4d;
+        }
+
+        #gohome, #gogroup {
+            color: #4d4c4d;
+        }
+
+        .padding_zero {
+            padding: 0px !important;
+        }
+
+        .img_border {
+            width: -webkit-fill-available;
+            border: solid 1px #d0d0d0;
+            border-radius: 3px;
+        }
+
+        .title_news_group > a {
+            color: #0392ce !important;
+        }
+
+        .cate_normal_title {
+            width: 100%;
+            font-size: 16px;
+            text-transform: uppercase;
+            font-weight: 600;
+            margin: 16px 0px 10px 0px;
+            font-family: Roboto Condensed;
+            border-bottom: solid 1px #0392ce;
+            color: #0392ce;
+        }
+    </style>
+
+</head>
+<body>
+    <header id="header">
+        <div class="container header_right">
+            <div class="d-flex align-items-center row">
+                <div class="col-md-6 col-md-6 col-sm-12" style="display:flex">
+                    <a href="https://benhvientimhanoi.vn/" class="logo me-auto"><img src="/assets/img/bvtim_logo.png" alt="" class="img-fluid"></a>
+                    <div>
+                        <div class="header_row1">Bệnh viện Tim Hà Nội</div>
+                        <div class="header_row2">Thân thiện - Thuận tiện - Thanh lịch</div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-12" id="right-pnl">
+                    <div>
+
+                        <a><img src="/assets/img/flag_vn.png" class="flag_logo" /></a> <a><img src="/assets/img/flag_uk.png" class="flag_logo" /></a>
+                                <a href="https://benhvientimhanoi.vn/he-thong/dang-nhap/index.html"> Đăng nhập </a>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <marquee style="width: 100%;color: red; text-transform:uppercase; font-weight:bold; padding-top:7px;" direction="left">
+                            </marquee>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </header>
+    <div id="page_menubar">
+        <nav id="navbar" class="navbar order-last order-lg-0" style="z-index:999;">
+            <ul>
+                        <li class="dropdown">
+                                    <a class="active" href="https://benhvientimhanoi.vn">Trang chủ</a>
+                        </li>
+                        <li class="dropdown">
+                                        <a class="active" href="#">Giới thiệu <i class="fa fa-caret-down" aria-hidden="true"></i></a>
+                                    <ul>
+                                                <li><a href="https://benhvientimhanoi.vn/vn/cong/thong-tin/gioi-thieu-chung">Giới thiệu chung</a></li>
+                                                <li><a href="https://benhvientimhanoi.vn/vn/cong/thong-tin/ban-lanh-dao">Ban lãnh đạo</a></li>
+                                                <li><a href="https://benhvientimhanoi.vn/vn/cong/thong-tin/co-cau-to-chuc">Cơ cấu tổ chức</a></li>
+                                                <li><a href="https://benhvientimhanoi.vn/vn/cong/thong-tin/qua-trinh-phat-trien">Quá trình phát triển</a></li>
+                                    </ul>
+                        </li>
+                        <li class="dropdown">
+                                        <a class="active" href="#">Dịch vụ <i class="fa fa-caret-down" aria-hidden="true"></i></a>
+                                    <ul>
+                                                <li><a href="https://benhvientimhanoi.vn/	vn/cong/thong-tin/khoa-kham-benh-tu-nguyen">Khoa khám bệnh tự nguyện</a></li>
+                                                <li><a href="https://benhvientimhanoi.vn/vn/cong/thong-tin/cham-soc-mach-vanh">Chăm sóc mạch vành</a></li>
+                                                <li><a href="https://benhvientimhanoi.vn/vn/cong/thong-tin/khoa-duoc-va-hieu-thuoc">Khoa dược và hiệu thuốc</a></li>
+                                                <li><a href="https://benhvientimhanoi.vn/vn/cong/thong-tin/kham-suc-khoe-ca-nhan-va-to-chuc">Khám sức khỏe cá nhân - tổ chức</a></li>
+                                                <li><a href="https://benhvientimhanoi.vn/vn/cong/thong-tin/cham-soc-tai-nha">Chăm sóc tại nhà</a></li>
+                                    </ul>
+                        </li>
+                        <li class="dropdown">
+                                        <a class="active" href="#">Hướng dẫn khám bệnh <i class="fa fa-caret-down" aria-hidden="true"></i></a>
+                                    <ul>
+                                                <li><a href="https://benhvientimhanoi.vn/vn/cong/thong-tin/huong-dan-kham-benh">Quy trình khám chữa bệnh</a></li>
+                                                <li><a href="https://benhvientimhanoi.vn/vi/chuyen-de/bang-gia-dich-vu/trang-1">Bảng giá dịch vụ</a></li>
+                                                <li><a href="https://benhvientimhanoi.vn/vn/cong/thong-tin/huong-dan-lien-he-dat-lich-kham">Hướng dẫn liên hệ đặt lịch khám</a></li>
+                                                <li><a href="https://benhvientimhanoi.vn/vi/chuyen-de/lich-lam-viec-cua-bac-sy/trang-1">Lịch làm việc của Bác sỹ</a></li>
+                                    </ul>
+                        </li>
+                        <li class="dropdown">
+                                        <a class="active" href="#">Phổ biến kiến thức <i class="fa fa-caret-down" aria-hidden="true"></i></a>
+                                    <ul>
+                                                <li><a href="https://benhvientimhanoi.vn/vi/chuyen-muc/thong-tin-y-hoc/trang-1">Thông tin y học</a></li>
+                                                <li><a href="https://benhvientimhanoi.vn/vi/chuyen-muc/hieu-ve-tim-mach/trang-1">Hiểu về Tim mạch</a></li>
+                                                <li><a href="https://benhvientimhanoi.vn/vi/chuyen-muc/danh-cho-nguoi-benh/trang-1">Dành cho người bệnh</a></li>
+                                                <li><a href="https://benhvientimhanoi.vn/vi/chuyen-muc/kien-thuc-cho-sinh-vien-y-khoa/trang-1">Kiến thức cho sinh viên Y Khoa</a></li>
+                                                <li><a href="https://benhvientimhanoi.vn/vi/chuyen-muc/kien-thuc-chuyen-mon/trang-1">Kiến thức chuyên môn</a></li>
+                                    </ul>
+                        </li>
+                        <li class="dropdown">
+                                        <a class="active" href="#">Đào tạo - Chỉ đạo tuyến <i class="fa fa-caret-down" aria-hidden="true"></i></a>
+                                    <ul>
+                                                <li><a href="https://benhvientimhanoi.vn/vi/chuyen-muc/video-daotao/trang-1">Video đào tạo</a></li>
+                                                <li><a href="https://benhvientimhanoi.vn/vi/chuyen-muc/dao-tao/trang-1">Đào tạo</a></li>
+                                                <li><a href="https://benhvientimhanoi.vn/vi/chuyen-muc/chi-dao-tuyen/trang-1">Chỉ đạo tuyến</a></li>
+                                    </ul>
+                        </li>
+                        <li class="dropdown">
+                                        <a class="active" href="https://benhvientimhanoi.vn/vi/chuyen-muc/quan-ly-chat-luong/trang-1">Quản lý chất lượng</a>
+                        </li>
+                        <li class="dropdown">
+                                        <a class="active" href="#">Công tác xã hội <i class="fa fa-caret-down" aria-hidden="true"></i></a>
+                                    <ul>
+                                                <li><a href="https://benhvientimhanoi.vn/vi/chuyen-muc/vi-mot-trai-tim-khoe/trang-1">Vì một trái tim khỏe</a></li>
+                                                <li><a href="https://benhvientimhanoi.vn/vi/chuyen-muc/trai-tim-nhan-ai/trang-1">Trái tim nhân ái</a></li>
+                                    </ul>
+                        </li>
+                        <li class="dropdown">
+                                        <a class="active" href="#">Nghiên cứu khoa học <i class="fa fa-caret-down" aria-hidden="true"></i></a>
+                                    <ul>
+                                                <li><a href="https://benhvientimhanoi.vn/vi/chuyen-muc/de-tai-sang-kien-cai-tien-ky-thuat-bai-bao-khoa-hoc/trang-1">Bài viết chuyên đề, bài báo khoa học</a></li>
+                                                <li><a href="https://benhvientimhanoi.vn/vi/chuyen-muc/bai-viet-chuyen-de/trang-1">Đề tài nghiên cứu khoa học, sáng kiến, cải tiến kỹ thuật</a></li>
+                                                <li><a href="https://benhvientimhanoi.vn/vi/chuyen-muc/sinh-hoat-khoa-hoc-hoi-thao-hoi-nghi/trang-1">Sinh hoạt, hội thảo, hội nghị khoa học</a></li>
+                                                <li><a href="https://benhvientimhanoi.vn/vi/chuyen-muc/hoi-dong-dao-duc-trong-nghien-cuu-y-sinh-cap-co-so/trang-1">Hội đồng đạo đức trong nghiên cứu khoa học</a></li>
+                                    </ul>
+                        </li>
+                        <li class="dropdown">
+                                        <a class="active" href="#">Thông báo <i class="fa fa-caret-down" aria-hidden="true"></i></a>
+                                    <ul>
+                                                <li><a href="https://benhvientimhanoi.vn/vi/chuyen-de/thu-moi/trang-1">Thư mời</a></li>
+                                    </ul>
+                        </li>
+            </ul>
+            <i class="bi bi-list mobile-nav-toggle" style="margin-left:90%;"></i>
+        </nav><!-- .navbar -->
+    </div>
+    <div class="img_left">
+        <img class="anh_left" src="/assets/img/anh_left.png" />
+        <img class="anh_left" src="/assets/img/anh_left.jpg" />
+        <div style="padding-top:20px;"><a id="btn-henkham" href="https://benhvientimhanoi.vn/he-thong/hen-kham/index.html">Đặt lịch khám!</a></div>
+    </div>
+    <div class="img_right">
+        <img class="anh_right" src="/assets/img/anh_right.png" />
+        <div style="padding-top:20px;"><a id="btn-dienthoai4" class="btn-dienthoai" href="tel:19001082">19001082</a></div>
+        <div style="padding-top:20px;">
+            <div id="btn-facebook">
+                <a href="https://www.facebook.com/BenhVienTimHaNoi.vn/?locale=vi_VN">Facebook</a>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="mainContent" style="width:100%; ">
+        <div class="container" style="background-color:white; padding-bottom:20px;">
+            <div class="col-md-8">
+                <style>
+    #cate_title {
+        width: 100%;
+        font-size: 16px;
+        text-transform: uppercase;
+        font-weight: 600;
+        margin: 16px 0px 10px 0px;
+        font-family: Roboto Condensed;
+        border-bottom: solid 3px #0392ce;
+        color: #0392ce;
+    }
+
+    .firstItem_title {
+        font-size: 1.75rem;
+        color: #0392ce;
+        font-weight: 600;
+        text-transform: uppercase;
+        padding-top: 12px;
+        padding-bottom: 5px;
+        font-family: Roboto Condensed;
+    }
+
+    .abstract {
+        text-align: justify;
+    }
+
+    .ngaydang {
+        font-size: 10px;
+        padding-left: 21px;
+        font-style: italic;
+        color: #808080;
+        text-align: right;
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+
+    .mainContent {
+        background-color: #ccc;
+    }
+
+    .page_navigator {
+        border-bottom: solid 1px #ccc;
+        line-height: 32px;
+        display: flex;
+    }
+
+    #headline {
+        border-right: solid 1px #d1d1d1;
+    }
+
+    .row_new {
+        padding-bottom: 15px;
+    }
+
+    .top3_title {
+        text-align: justify;
+        font-weight: 600;
+    }
+
+    .top20_title {
+        text-align: justify;
+        font-weight: bold;
+        font-size: 1.75rem;
+    }
+
+    .md_left {
+        padding-left: 0px;
+    }
+
+    .title-chart {
+        width: 100%;
+        font-size: 16px;
+        text-transform: uppercase;
+        font-weight: 600;
+        margin: 10px 0px 10px 0px;
+        font-family: Roboto Condensed;
+        border-bottom: solid 1px #ccc;
+        color: #0392ce;
+        text-align: center;
+    }
+
+    .highcharts-title {
+        display: none;
+    }
+
+    .highcharts-axis-title {
+        font-size: 1.25rem !important;
+        font-family: 'FontAwesome';
+    }
+
+    .box-dichvu {
+        margin-top: 15px;
+        width: 100%;
+        padding: 15px;
+        background-color: #0392ce;
+        color: white !important;
+        font-weight: bold;
+        text-align: left;
+        font-size: 1.5rem;
+        border-radius: 3px;
+    }
+
+        .box-dichvu:hover {
+            background-color: orange;
+        }
+
+        .box-dichvu > a {
+            color: white !important;
+            font-size: 1.5rem;
+        }
+
+</style>
+<link href="/assets/css/style.css" rel="stylesheet" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="/assets/js/lib/app.js"></script>
+<script src="/assets/js/lib/jq-paginator.js"></script>
+
+<div class="page_navigator">
+    <div id="pagenavigator">
+        <a id="gohome" href="https://benhvientimhanoi.vn"><i class="fa fa-home" aria-hidden="true"></i> Trang chủ</a> <i class="fa fa-angle-right" aria-hidden="true"></i> <a href="https://benhvientimhanoi.vn/vn/cong/thong-tin/gioi-thieu-chung" id="gogroup">Giới thiệu chung</a>
+    </div>
+    <div id="curDay"></div>
+</div>
+<style>
+    #new_title {
+        font-size: 22px;
+        color: #0392ce;
+        font-weight: 600;
+        text-transform: uppercase;
+        padding-top: 12px;
+        padding-bottom: 5px;
+        font-family: Arial;
+    }
+
+    #new_abstract {
+        font-weight: bold;
+        font-family: arial;
+        font-size: 13pt;
+        background-color: #d1d1d1;
+        padding: 10px;
+        text-align: justify;
+        border-radius: 5px;
+    }
+
+    #new_content {
+        padding-top: 15px;
+        text-align: justify;
+    }
+
+    #publicdate {
+        text-align: right;
+    }
+</style>
+<div id="new_title">Giới thiệu chung</div>
+<div id="new_content"><div style="text-align: center;">
+	<p>
+		<span style="font-family:times new roman,times,serif;"><img alt="" src="https://benhvientimhanoi.vn/files/logo/logo%20final.png" style="width: 400px; height: 267px;" /></span></p>
+	<h3 style="text-align: justify;">
+		<span style="font-size:14px;"><span style="font-family:times new roman,times,serif;"><strong>Bệnh viện Tim Hà Nội</strong></span></span></h3>
+</div>
+<h3>
+	<span style="font-size:14px;"><span style="font-family:times new roman,times,serif;"><strong>Hanoi Heart Hospital</strong></span></span></h3>
+<p>
+	<span style="font-size:14px;"><span style="font-family:times new roman,times,serif;"><strong>Slogan: VÌ MỘT TRÁI TIM KHỎE</strong></span></span></p>
+<p>
+	<span style="font-size:14px;"><span style="font-family:times new roman,times,serif;">Website: benhvientimhanoi.vn</span></span></p>
+<p>
+	<span style="font-size:14px;"><span style="font-family:times new roman,times,serif;">Bài hát truyền thống “Bệnh viện Tim Hà Nội niềm tự hào”</span></span></p>
+<ul>
+	<li>
+		<span style="font-size:14px;"><span style="font-family:times new roman,times,serif;">MỘT mục tiêu: VÌ MỘT TRÁI TIM KHỎE</span></span></li>
+</ul>
+<ul>
+	<li>
+		<span style="font-size:14px;"><span style="font-family:times new roman,times,serif;">HAI cơ sở:</span></span></li>
+</ul>
+<p>
+	<span style="font-size:14px;"><span style="font-family:times new roman,times,serif;">1. </span></span><span style="background-color: rgb(249, 250, 249); font-family: Arial; font-size: 14px;">Số 92 Trần Hưng Đạo, phường Cửa Nam, Hà Nội</span></p>
+<p>
+	<span style="font-size:14px;"><span style="font-family:times new roman,times,serif;">2. </span></span><span style="background-color: rgb(249, 250, 249); font-family: Arial; font-size: 14px;">Số 695 Lạc Long Quân, phường Tây Hồ, Hà Nội</span></p>
+<ul>
+	<li>
+		<span style="font-size:14px;"><span style="font-family:times new roman,times,serif;">BA tiêu chí (tiêu chí 3 Th):</span></span></li>
+</ul>
+<p style="margin-left:.5in;">
+	<span style="font-size:14px;"><span style="font-family:times new roman,times,serif;">+ Bệnh viện Thân thiện</span></span></p>
+<p style="margin-left:.5in;">
+	<span style="font-size:14px;"><span style="font-family:times new roman,times,serif;">+ Dịch vụ Thuận tiện</span></span></p>
+<p style="margin-left:.5in;">
+	<span style="font-size:14px;"><span style="font-family:times new roman,times,serif;">+ Nhân viên Thanh lịch</span></span></p>
+<ul>
+	<li>
+		<span style="font-size:14px;"><span style="font-family:times new roman,times,serif;">BA phương châm làm việc: 3H:</span></span></li>
+</ul>
+<p style="margin-left:.5in;">
+	<span style="font-size:14px;"><span style="font-family:times new roman,times,serif;">+ Head (trí tuệ)</span></span></p>
+<p style="margin-left:.5in;">
+	<span style="font-size:14px;"><span style="font-family:times new roman,times,serif;">+ Hand (kỹ năng)</span></span></p>
+<p style="margin-left:.5in;">
+	<span style="font-size:14px;"><span style="font-family:times new roman,times,serif;">+ Heart (lương tâm, trách nhiệm và y đức)</span></span></p>
+<ul>
+	<li>
+		<span style="font-size:14px;"><span style="font-family:times new roman,times,serif;">BỐN trụ cột:</span></span></li>
+</ul>
+<p style="margin-left:.5in;">
+	<span style="font-size:14px;"><span style="font-family:times new roman,times,serif;">+ Chuyên môn kỹ thuật đạt trình độ cao</span></span></p>
+<p style="margin-left:.5in;">
+	<span style="font-size:14px;"><span style="font-family:times new roman,times,serif;">+ Dịch vụ chất lượng tốt</span></span></p>
+<p style="margin-left:.5in;">
+	<span style="font-size:14px;"><span style="font-family:times new roman,times,serif;">+ Công tác đào tạo, chỉ đạo tuyến  </span></span></p>
+<p style="margin-left:.5in;">
+	<span style="font-size:14px;"><span style="font-family:times new roman,times,serif;">+ Công tác xã hội.</span></span></p>
+<ul>
+	<li>
+		<span style="font-size:14px;"><span style="font-family:times new roman,times,serif;">NĂM mũi nhọn: </span></span></li>
+</ul>
+<p style="margin-left:.5in;">
+	<span style="font-size:14px;"><span style="font-family:times new roman,times,serif;">+ Tim mạch nội khoa </span></span></p>
+<p style="margin-left:.5in;">
+	<span style="font-size:14px;"><span style="font-family:times new roman,times,serif;">+ Tim mạch nhi khoa</span></span></p>
+<p style="margin-left:.5in;">
+	<span style="font-size:14px;"><span style="font-family:times new roman,times,serif;">+ Tim mạch can thiệp</span></span></p>
+<p style="margin-left:.5in;">
+	<span style="font-size:14px;"><span style="font-family:times new roman,times,serif;">+ Phẫu thuật tim mạch</span></span></p>
+<p style="margin-left:.5in;">
+	<span style="font-size:14px;"><span style="font-family:times new roman,times,serif;">+Tim mạch chuyển hóa.</span></span></p>
+<p>
+	<span style="font-size:14px;"><span style="font-family:times new roman,times,serif;">Bệnh viện Tim Hà Nội là bệnh viện chuyên khoa hạng I trực thuộc Sở Y tế Hà Nội được thành lập theo Quyết định số 6863/QĐ-UB ngày 15/11/2001 của UBND Thành phố Hà Nội. Là đơn vị sự nghiệp có thu, tự hạch toán toàn bộ chi phí hoạt động, hoạt động theo Quy chế hoạt động được ban hành theo Quyết định số 3251/QĐ-UBND ngày 20/5/2005 của UBND Thành phố Hà Nội. Ngày 3/12/2014, UNND Thành phố Hà Nội ban hành quyết định số 6438/QĐ-UBND về việc tổ chức lại Bệnh viện Tim Hà Nội trên cơ sở sáp nhập Trung tâm Y tế công nghiệp Hà Nội vào Bệnh viện Tim Hà Nội.</span></span></p>
+<p>
+	<span style="font-size:14px;"><span style="font-family:times new roman,times,serif;">Là Bệnh viện chuyên khoa đầu ngành Tim mạch của Thủ đô Hà Nội; Bệnh viện chuyên khoa Tim mạch tuyến cuối của cả nước.</span></span></p>
+<p>
+	<span style="font-size:14px;"><span style="font-family:times new roman,times,serif;">1. Sứ mệnh:</span></span></p>
+<p>
+	<span style="font-size:14px;"><span style="font-family:times new roman,times,serif;">- Khám và điều trị bệnh tim mạch cho nhân dân Thủ đô Hà Nội và cả nước trên cả 5 lĩnh vực tim mạch: nội khoa, ngoại khoa, nhi khoa, tim mạch can thiệp, tim mạch chuyển hóa. Khám chữa bệnh đa khoa tại cơ sở 2 của Bệnh viện.</span></span></p>
+<p>
+	<span style="font-size:14px;"><span style="font-family:times new roman,times,serif;">- Chỉ đạo tuyến các Bệnh viện trực thuộc Sở Y tế Hà Nội.</span></span></p>
+<p>
+	<span style="font-size:14px;"><span style="font-family:times new roman,times,serif;">- Đào tạo và chuyển giao kỹ thuật cho 10 tỉnh thành phố trong cả nước trong đề án Bệnh viện vệ tinh và đề án NORRED (hỗ trợ y tế các tỉnh Bắc bộ và đồng bằng sông Hồng) của Bộ Y tế; Hợp tác đào tạo – chuyển giao kỹ thuật với 26 tỉnh thành trong cả nước (từ tỉnh biên giới địa đầu Tổ quốc Hà Giang đến tỉnh miền trung Quảng Bình và tỉnh Tây nguyên Gia Lai).</span></span></p>
+<p>
+	<span style="font-size:14px;"><span style="font-family:times new roman,times,serif;">- Phòng chống các bệnh lý tim mạch và chuyển hóa.</span></span></p>
+<p>
+	<span style="font-size:14px;"><span style="font-family:times new roman,times,serif;">- Nghiên cứu khoa học.</span></span></p>
+<p>
+	<span style="font-size:14px;"><span style="font-family:times new roman,times,serif;">- Làm tốt công tác xã hội – thiện nguyện.</span></span></p>
+<p>
+	<span style="font-size:14px;"><span style="font-family:times new roman,times,serif;">- Hợp tác quốc tế.</span></span></p>
+<p>
+	<span style="font-size:14px;"><span style="font-family:times new roman,times,serif;">2. Cơ cấu tổ chức và nhân lực</span></span></p>
+<p>
+	<span style="font-size:14px;"><span style="font-family:times new roman,times,serif;">2.1. Cơ cấu tổ chức</span></span></p>
+<p>
+	<span style="font-size:14px;"><span style="font-family:times new roman,times,serif;">- Đảng ủy Bệnh viện</span></span></p>
+<p>
+	<span style="font-size:14px;"><span style="font-family:times new roman,times,serif;">- Ban Giám đốc Bệnh viện </span></span></p>
+<p>
+	<span style="font-size:14px;"><span style="font-family:times new roman,times,serif;">- 30 Khoa phòng ban, trong đó có 16 khoa lâm sàng, 3 khoa cận lâm sàng, 11 khoa phòng ban chức năng và hậu cần.</span></span></p>
+<p>
+	<span style="font-size:14px;"><span style="font-family:times new roman,times,serif;">- Các tổ chức Đoàn thể: Công đoàn, Đoàn thanh niên.</span></span></p>
+<p>
+	 </p>
+<p>
+	<span style="font-size:14px;"><span style="font-family:times new roman,times,serif;">2.2. Nhân lực: Tổng số cán bộ viên chức, người lao động đang làm việc bệnh viện là 589 người bao gồm 161 biên chế, 03 lao động hợp đồng theo nghị định 68/NĐ-CP và 425 hợp đồng lao động của bệnh viện </span></span></p>
+<p>
+	<span style="font-size:14px;"><span style="font-family:times new roman,times,serif;">Cụ thể:</span></span></p>
+<p>
+	<span style="font-size:14px;"><span style="font-family:times new roman,times,serif;">+ Ban giám đốc: 01 giám đốc và 03 phó giám đốc</span></span></p>
+<p>
+	<span style="font-size:14px;"><span style="font-family:times new roman,times,serif;">+ 09 phòng chức năng: Kế hoạch tổng hợp, Tổ chức cán bộ, Hành chính quản trị, Vật tư - Thiết bị y tế, Công nghệ thông tin, Tài chính kế toán, Công tác xã hội, Điều dưỡng, Quản lý chất lượng Bệnh viện.</span></span></p>
+<p>
+	<span style="font-size:14px;"><span style="font-family:times new roman,times,serif;">+ 01 phòng khám đa khoa.</span></span></p>
+<p>
+	<span style="font-size:14px;"><span style="font-family:times new roman,times,serif;">+ 01 trung tâm: Trung tâm Đào tạo và chỉ đạo tuyến.</span></span></p>
+<p>
+	<span style="font-size:14px;"><span style="font-family:times new roman,times,serif;">+ 11 khoa lâm sàng: Khám bệnh, Nội, Nội Nhi, Tim mạch chuyển hóa, Hồi sức tíc cực nhi, Gây mê hồi sức, Hồi sức tích cực, Ngoại, Tim mạch can thiệp, Cấp cứu, Các bệnh mạch máu.</span></span></p>
+<p>
+	<span style="font-size:14px;"><span style="font-family:times new roman,times,serif;">+ 05 khoa cận lâm sàng: Xét nghiệm, Dược, Kiểm soát nhiễm khuẩn, Chẩn đoán hình ảnh, Dinh dưỡng.</span></span></p>
+<p>
+	<span style="font-size:14px;"><span style="font-family:times new roman,times,serif;">+ 06 đơn nguyên: Khám và điều trị tự nguyện, Thăm dò điện sinh lý và rối loạn nhịp, Sơ sinh, Tim mạch can thiệp cơ sở 2, Can thiệp tĩnh mạch, chẩn đoán hình ảnh kỹ thuật cao.</span></span></p>
+<p>
+	<span style="font-size:14px;"><span style="font-family:times new roman,times,serif;">3. Cơ sở hạ tầng và trang thiết bị:</span></span></p>
+<p>
+	<span style="font-size:14px;"><span style="font-family:times new roman,times,serif;">- Cơ sở hạ tầng khang trang, đồng bộ, thân thiện. Khu vực tiếp đón và phòng khám theo tiêu chuẩn Bệnh viện khách sạn.</span></span></p>
+<p>
+	<span style="font-size:14px;"><span style="font-family:times new roman,times,serif;">- Trang thiết bị hiện đại, ngang tầm các nước trong khu vực và thế giới: 2 máy chụp mạch DSA hãng Philips, máy CEC, cộng hưởng từ 1.5 Tesla, CT 128 dãy, 25 máy siêu âm tim trong đó có nhiều máy siêu âm 4D thế hệ mới nhất, siêu âm và điện tim gắng sức, hệ thống máy và thiết bị hiện đại trong phòng mổ và hồi sức cấp cứu…</span></span></p>
+<p>
+	<span style="font-size:14px;"><span style="font-family:times new roman,times,serif;">- 300 Giường nội trú.</span></span></p>
+<p>
+	<span style="font-size:14px;"><span style="font-family:times new roman,times,serif;">- 50 phòng khám.</span></span></p>
+<p>
+	<span style="font-size:14px;"><span style="font-family:times new roman,times,serif;">- 3 Phòng tim mạch can thiệp (Cathlab).</span></span></p>
+<p>
+	<span style="font-size:14px;"><span style="font-family:times new roman,times,serif;">- 4 phòng mổ tim mở…</span></span></p>
+<p>
+	<span style="font-size:14px;"><span style="font-family:times new roman,times,serif;">4. Các kỹ thuật trong khám, điều trị:</span></span></p>
+<p>
+	<span style="font-size:14px;"><span style="font-family:times new roman,times,serif;">Bệnh viện Tim Hà Nội là một trong số ít các trung tâm tim mạch thực sự hoàn chỉnh với 5 mũi nhọn: nội khoa, ngoại khoa, nhi khoa, tim mạch can thiệp, tim mạch chuyển hóa.</span></span></p>
+<p>
+	<span style="font-size:14px;"><span style="font-family:times new roman,times,serif;">* Nội khoa: Được thực hiện bởi đội ngũ Bác sỹ nội trú giỏi, nhiều kinh nghiệm và nhiệt huyết.</span></span></p>
+<p>
+	<span style="font-size:14px;"><span style="font-family:times new roman,times,serif;">- Chẩn đoán, điều trị nội khoa Tim mạch – chuyển hóa.</span></span></p>
+<p>
+	<span style="font-size:14px;"><span style="font-family:times new roman,times,serif;">- Siêu âm tim: Siêu âm Tim Doppler 2D, 4D, Siêu âm tim qua thực quản, Siêu âm tim cản âm, Siêu âm Dobutamin, Siêu âm tim thai. </span></span></p>
+<p>
+	<span style="font-size:14px;"><span style="font-family:times new roman,times,serif;">- Holter điện tim, Holter huyết áp, Nghiệm pháp gắng sức…</span></span></p>
+<p>
+	<span style="font-size:14px;"><span style="font-family:times new roman,times,serif;">- Khám và quản lý tăng huyết áp, đái tháo đường, tư vấn sử dụng thuốc chống đông máu…</span></span></p>
+<p>
+	<span style="font-size:14px;"><span style="font-family:times new roman,times,serif;">- Chụp MSCT 128 dãy, Cộng hưởng từ 1.5 Tesla…</span></span></p>
+<p>
+	<span style="font-size:14px;"><span style="font-family:times new roman,times,serif;">* Can thiệp tim mạch, đơn vị chăm sóc mạch vành:</span></span></p>
+<p>
+	<span style="font-size:14px;"><span style="font-family:times new roman,times,serif;">Đây là lĩnh vực mạnh nhất của Bệnh viện Tim Hà Nội. TS.BS Hoàng Văn – Phó Giám đốc Bệnh viện, chuyên gia hàng đầu về can thiệp tim mạch cùng đội ngũ chuyên gia giỏi nhất trong lĩnh vực tim mạch can thiệp thực hiện.</span></span></p>
+<p>
+	<span style="font-size:14px;"><span style="font-family:times new roman,times,serif;">Với cơ sở vật chất và trang thiết bị hiện đại, đồng bộ, đảm bảo thực hiện được nhiều kỹ thuật chuyên sâu, khó, phức tạp:</span></span></p>
+<p>
+	<span style="font-size:14px;"><span style="font-family:times new roman,times,serif;">- Tim mạch người lớn: Can thiệp động mạch vành, nong van hai lá, stent graft trong điều trị bệnh ĐMC, thay van ĐMC qua da, bệnh mạch ngoại vi, mạch não...</span></span></p>
+<p>
+	<span style="font-size:14px;"><span style="font-family:times new roman,times,serif;">- Tim mạch trẻ em: Đặt Stent ống động mạch, đặt Stent ĐMP, mở van ĐMP trong bệnh teo van ĐMP, thay van ĐMP qua da...</span></span></p>
+<p>
+	<span style="font-size:14px;"><span style="font-family:times new roman,times,serif;">- Điện sinh lý tim: đặt máy tạo nhịp tim, CRT, ICD, điều trị các bệnh loạn nhịp tim phức tạp bằng RF...</span></span></p>
+<p>
+	<span style="font-size:14px;"><span style="font-family:times new roman,times,serif;">- Đặc biệt, ngày 23/3/2015, Bệnh viện đã đưa vào sử dụng hệ thống máy lập bản đồ nội mạc 3 chiều (3D mapping) có tên Ensite Velocity của hãng St.Jude Medical. Đây là hệ thống máy hiện đại nhất và được áp dụng đầu tiên tại Việt Nam hiện nay, dùng trong  chẩn đoán và điều trị rối loạn nhịp tim.</span></span></p>
+<p>
+	<span style="font-size:14px;"><span style="font-family:times new roman,times,serif;">- Điều trị THA kháng trị bằng sóng cao tần.</span></span></p>
+<p>
+	<span style="font-size:14px;"><span style="font-family:times new roman,times,serif;">* Phẫu thuật tim hở: Năm 2014, Bệnh viện phẫu thuật 1.422 ca, đứng đầu cả nước về số lượng bệnh nhân phẫu thuật tim hở.</span></span></p>
+<p>
+	<span style="font-size:14px;"><span style="font-family:times new roman,times,serif;">- Phẫu thuật tim nhi khoa:</span></span></p>
+<p>
+	<span style="font-size:14px;"><span style="font-family:times new roman,times,serif;">+ Là một trong ít trung tâm của Việt nam có thể phẫu thuật hầu hết các bệnh tim bẩm sinh phức tạp và phẫu thuật tim bẩm sinh ở trẻ sơ sinh.</span></span></p>
+<p>
+	<span style="font-size:14px;"><span style="font-family:times new roman,times,serif;">+ Các bệnh lý tim bẩm sinh phức tạp nhất: đảo gốc động mạch, thất phải hai đường  ra được thực hiện thường xuyên tại Bệnh viện.</span></span></p>
+<p>
+	<span style="font-size:14px;"><span style="font-family:times new roman,times,serif;">+ Cân nặng: Bệnh viện có thể phẫu thuật cho bệnh nhi từ 2 kg trở lên.</span></span></p>
+<p>
+	<span style="font-size:14px;"><span style="font-family:times new roman,times,serif;">- Các phẫu thuật tim mắc phải: sửa van tim, thay van tim, phẫu thuât bắc cầu động mạch vành, phẫu thuât điều trị phồng, phồng lóc động mạch chủ…</span></span></p>
+<p>
+	<span style="font-size:14px;"><span style="font-family:times new roman,times,serif;">- Các bệnh lý mạch máu ngoại vi: như phồng động mạch chủ bụng, hẹp động mạch cảnh, bệnh lý mạch máu các chi…</span></span></p>
+<p>
+	<span style="font-size:14px;"><span style="font-family:times new roman,times,serif;">* Nhi khoa:</span></span></p>
+<p>
+	<span style="font-size:14px;"><span style="font-family:times new roman,times,serif;">          Là đơn vị tim mạch nhi khoa hoàn chỉnh với khoa khám bệnh, khoa nội nhi, khoa ngoại nhi, khoa hồi sức tích cực nhi.</span></span></p>
+<p>
+	<span style="font-size:14px;"><span style="font-family:times new roman,times,serif;">- Khám bệnh nhân ngoại trú: chăm sóc bệnh nhi tại nhà.</span></span></p>
+<p>
+	<span style="font-size:14px;"><span style="font-family:times new roman,times,serif;">- 3 phòng khám chuyên khoa nhi.</span></span></p>
+<p>
+	<span style="font-size:14px;"><span style="font-family:times new roman,times,serif;">- Điều trị bệnh nhân nội trú: có 1 đơn vị hồi sức tích cực với 12 giường bệnh, 1 khoa nội nhi với 20 giường điều trị.</span></span></p>
+<p>
+	<span style="font-size:14px;"><span style="font-family:times new roman,times,serif;">- 1 phòng chơi cho bệnh nhi tại khoa nội nhi.</span></span></p>
+<p>
+	<span style="font-size:14px;"><span style="font-family:times new roman,times,serif;">- Điều trị các mặt bệnh bao gồm hầu hết các loại bệnh tim bẩm sinh, các bệnh lý tim mạch khác ở trẻ em.</span></span></p>
+<p>
+	<span style="font-size:14px;"><span style="font-family:times new roman,times,serif;">- Chăm sóc toàn diện bệnh nhân có các bệnh lý khác kèm theo như suy dinh dưỡng, viêm phổi, tiêu chảy, các bệnh nhiễm trùng…</span></span></p>
+<p>
+	<span style="font-size:14px;"><span style="font-family:times new roman,times,serif;">* Tim mạch chuyển hóa:</span></span></p>
+<p>
+	<span style="font-size:14px;"><span style="font-family:times new roman,times,serif;">- Khám và điều trị các bệnh lý chuyển hóa như đái tháo đường, rối loạn mỡ máu … theo các chương trình quản lý và điều trị bệnh mạn tính.</span></span></p>
+<p>
+	<span style="font-size:14px;"><span style="font-family:times new roman,times,serif;">- Có phòng khám và điều trị bàn chân đái tháo đường.</span></span></p>
+<p>
+	<span style="font-size:14px;"><span style="font-family:times new roman,times,serif;">5. Chất lượng dịch vụ: Tiêu chí 3 Th</span></span></p>
+<p>
+	<span style="font-size:14px;"><span style="font-family:times new roman,times,serif;">Với quan điểm người bệnh là trung tâm, Bệnh viện không ngừng cải tiến quy trình chuyên môn để mang đến cho người bệnh những dịch vụ y tế tốt nhất với thời gian chờ đợi ngắn nhất, chi phí y tế thấp nhất.</span></span></p>
+<p>
+	<span style="font-size:14px;"><span style="font-family:times new roman,times,serif;">Đặc biệt, Bệnh viện đang áp dụng các quy trình chuyên môn theo tiêu chuẩn Châu Âu và Hoa Kỳ. Tất cả bệnh nhân đến bệnh viện khám đều được khám hết trong ngày. Các bệnh nhân cần can thiệp cấp cứu sẽ được thực hiện trong vòng 1 tiếng từ khi đến Bệnh viện.</span></span></p>
+<p>
+	<span style="font-size:14px;"><span style="font-family:times new roman,times,serif;">Bệnh viện cam kết sẽ xây dựng hệ thống quản lý chất lượng phù hợp tiêu chuẩn quốc tế ISO 9001:2008 cho toàn bộ khoa phòng cho các hoạt động của bệnh viện, nhằm ổn định và nâng cao chất lượng dịch vụ khám chữa bệnh trong năm 2015.</span></span></p>
+<p>
+	<span style="font-size:14px;"><span style="font-family:times new roman,times,serif;">6. Chỉ đạo tuyến, đào tạo, chuyển giao kỹ thuật:</span></span></p>
+<p>
+	<span style="font-size:14px;"><span style="font-family:times new roman,times,serif;"> Đây là nhiệm vụ trọng tâm, thế mạnh và trách nhiệm của Bệnh viện Tim Hà Nội với mạng lưới tim mạch trong cả nước.</span></span></p>
+<p>
+	<span style="font-size:14px;"><span style="font-family:times new roman,times,serif;">- Giai đoạn 2004 – 2012:</span></span></p>
+<p>
+	<span style="font-size:14px;"><span style="font-family:times new roman,times,serif;">Ngay từ khi thành lập, Bệnh viện đã chú trọng công tác đào tạo và chuyển giao kỹ thuật. Đến năm 2011, Bệnh viện đã tổ chức nhiều lớp đào tạo tại Bệnh viện và đã chuyển giao thành công kỹ thuật mổ tim hở cho Bệnh viện Đa khoa Tỉnh Nghệ An, Bệnh viện Nhi Tỉnh Nghệ An, Bệnh viện Quân Y 103.</span></span></p>
+<p>
+	<span style="font-size:14px;"><span style="font-family:times new roman,times,serif;">- Giai đoạn 2013 – đến nay:</span></span></p>
+<p>
+	<span style="font-size:14px;"><span style="font-family:times new roman,times,serif;">Nguyên tắc đào tạo của Bệnh viện Tim Hà Nội: đào tạo thực sự, trách nhiệm cao.</span></span></p>
+<p>
+	<span style="font-size:14px;"><span style="font-family:times new roman,times,serif;">Hình thức đào tạo: linh hoạt: tập trung, không tập trung, đào tạo theo nhu cầu, đào tạo cầm tay chỉ việc.</span></span></p>
+<p>
+	<span style="font-size:14px;"><span style="font-family:times new roman,times,serif;">Kinh phí đào tạo: phù hợp với tất cả các tuyến. Sẵn sang miễn phí cho các đơn vị có khó khăn về kinh phí.</span></span></p>
+<p>
+	<span style="font-size:14px;"><span style="font-family:times new roman,times,serif;">Hiện tại, mạng lưới đào tạo – chỉ đạo tuyến – chuyển giao kỹ thuật của Bệnh viện Tim Hà Nội như sau:</span></span></p>
+<p>
+	<span style="font-size:14px;"><span style="font-family:times new roman,times,serif;">- Chỉ đạo tuyến, đào tạo, chuyển giao kỹ thuật cho các đơn vị tại 30 quận huyện trong Thành phố Hà Nội.</span></span></p>
+<p>
+	<span style="font-size:14px;"><span style="font-family:times new roman,times,serif;">- 10 tỉnh thành phố trong dự án Bệnh viện vệ tinh và dự án NORRED của Bộ Y tế, với tinh thần “Hà Nội vì cả nước, cả nước vì Hà Nội”.</span></span></p>
+<p>
+	<span style="font-size:14px;"><span style="font-family:times new roman,times,serif;">- Hợp tác đào tạo – chuyển giao kỹ thuật với 26 tỉnh thành trong cả nước.</span></span></p>
+<p>
+	<span style="font-size:14px;"><span style="font-family:times new roman,times,serif;">- Đào tạo, tổ chức, vận hành, chuyển giao “Trung tâm tim mạch hữu nghị Hà Nội – Xiêng Khoảng” tại tỉnh Xiêng Khoảng, CHDCND Lào vào tháng 12/2014.</span></span></p>
+<p>
+	<span style="font-size:14px;"><span style="font-family:times new roman,times,serif;">Một số ví dụ tiêu biểu về công tác đào tạo – chuyển giao kỹ thuật:</span></span></p>
+<p>
+	<span style="font-size:14px;"><span style="font-family:times new roman,times,serif;">Năm 2011:</span></span></p>
+<p>
+	<span style="font-size:14px;"><span style="font-family:times new roman,times,serif;">- Chuyển giao phẫu thuật tim hở cho Bệnh viện đa khoa Tỉnh Nghệ An.</span></span></p>
+<p>
+	<span style="font-size:14px;"><span style="font-family:times new roman,times,serif;">- Chuyển giao phẫu thuật tim hở cho Bệnh viện Nhi Nghệ An.</span></span></p>
+<p>
+	<span style="font-size:14px;"><span style="font-family:times new roman,times,serif;">Năm 2013:</span></span></p>
+<p>
+	<span style="font-size:14px;"><span style="font-family:times new roman,times,serif;">- Chuyển giao kỹ thuật phẫu thuật tim hở cho Bệnh viện Hữu Nghị (tháng 3).</span></span></p>
+<p>
+	<span style="font-size:14px;"><span style="font-family:times new roman,times,serif;">- Chuyển giao kỹ thuật Can thiệp tim bẩm sinh cho Bệnh viện đa khoa Xanh pôn (tháng 6).</span></span></p>
+<p>
+	<span style="font-size:14px;"><span style="font-family:times new roman,times,serif;">- Khai trương Khoa Tim mạch Bệnh viện đa khoa Phố Nối (tháng 10).</span></span></p>
+<p>
+	<span style="font-size:14px;"><span style="font-family:times new roman,times,serif;">- Chuyển giao kỹ thuật phẫu thuật tim hở cho Bệnh viện Bãi Cháy (tháng 12).</span></span></p>
+<p>
+	<span style="font-size:14px;"><span style="font-family:times new roman,times,serif;">Năm 2014:</span></span></p>
+<p>
+	<span style="font-size:14px;"><span style="font-family:times new roman,times,serif;">          - Khai trương Khoa cấp cứu Bệnh viện đa khoa Hà Đông (tháng 10).</span></span></p>
+<p>
+	<span style="font-size:14px;"><span style="font-family:times new roman,times,serif;">          - Chuyển giao “Trung tâm tim mạch hữu nghị Hà Nội – Xiêng Khoảng” tại tỉnh Xiêng Khoảng, CHDCND Lào (tháng 12).</span></span></p>
+<p>
+	<span style="font-size:14px;"><span style="font-family:times new roman,times,serif;">Năm 2015:</span></span></p>
+<p>
+	<span style="font-size:14px;"><span style="font-family:times new roman,times,serif;">- Chuyển giao kỹ thuật can thiệp tim mạch cho Bệnh viện Bãi Cháy (tháng 3).</span></span></p>
+<p>
+	<span style="font-size:14px;"><span style="font-family:times new roman,times,serif;">- Chuyển giao kỹ thuật PTTH cho Bệnh viện Sản Nhi Bắc Giang (dự kiến tháng 4).</span></span></p>
+<p>
+	<span style="font-size:14px;"><span style="font-family:times new roman,times,serif;">- Chuyển giao kỹ thuật can thiệp tim mạch cho Bệnh viện đa khoa tỉnh Gia Lai (dự kiến tháng 12).</span></span></p>
+<p>
+	<span style="font-size:14px;"><span style="font-family:times new roman,times,serif;">7. Hợp tác đào tạo quốc tế:</span></span></p>
+<p>
+	<span style="font-size:14px;"><span style="font-family:times new roman,times,serif;">- Ký thỏa thuận hợp tác toàn diện với Trung tâm Viện trường Đại học Toulouse - Cộng hòa Pháp;  hợp tác với Viện Tim mạch Quốc gia Singapore…</span></span></p>
+<p>
+	<span style="font-size:14px;"><span style="font-family:times new roman,times,serif;">- Làm việc với tổ chức MD1 World – Hoa Kỳ; Project Vietnam Foundation.</span></span></p>
+<p>
+	<span style="font-size:14px;"><span style="font-family:times new roman,times,serif;">- Thường xuyên mời các Giáo sư, chuyên gia đầu ngành Tim mạch trên thế giới đến thăm, làm việc và trực tiếp can thiệp, phẫu thuật tại Bệnh viện.</span></span></p>
+<p>
+	<span style="font-size:14px;"><span style="font-family:times new roman,times,serif;">8. Công tác xã hội – thiện nguyện:</span></span></p>
+<p>
+	<span style="font-size:14px;"><span style="font-family:times new roman,times,serif;">- Hành trình “Vì một trái tim khỏe” đã đi tới mọi miền Tổ quốc, từ biên giới (tỉnh Hà Giang, Điện Biên, Cao Bằng…) đến hải đảo (đảo Lý Sơn), đến miền cao nguyên Gia Lai…</span></span></p>
+<p>
+	<span style="font-size:14px;"><span style="font-family:times new roman,times,serif;">- Khám chữa bệnh miễn phí cho hàng trăm nghìn người. </span></span></p>
+<p>
+	<span style="font-size:14px;"><span style="font-family:times new roman,times,serif;">- Phẫu thuật miễn phí cho hàng nghìn trẻ bị tim bẩm sinh. </span></span></p>
+<p>
+	<span style="font-size:14px;"><span style="font-family:times new roman,times,serif;">9. Tầm nhìn 2015 – 2020 Xây dựng Bệnh viện Tim Hà Nội đạt tiêu chuẩn khu vực và quốc tế: 500 giường bệnh, 1.000 cán bộ nhân viên, với 3 cơ sở.</span></span></p>
+<p>
+	<span style="font-size:14px;"><span style="font-family:times new roman,times,serif;">Trở thành Bệnh viện hạng đặc biệt của BYT.</span></span></p>
+<p>
+	<span style="font-size:14px;"><span style="font-family:times new roman,times,serif;">Xây dựng trung tâm đào tạo lớn của cả nước.</span></span></p>
+<p>
+	<span style="font-size:14px;"><span style="font-family:times new roman,times,serif;">10. Cam kết:</span></span></p>
+<p>
+	<span style="font-size:14px;"><span style="font-family:times new roman,times,serif;">Tất cả vì người bệnh.</span></span></p>
+<p>
+	<span style="font-size:14px;"><span style="font-family:times new roman,times,serif;">Tất cả vì cộng đồng.</span></span></p>
+<p>
+	<span style="font-size:14px;"><span style="font-family:times new roman,times,serif;">Tất cả vì sự phát triển chuyên ngành trong toàn quốc.</span></span></p>
+<p>
+	 </p>
+<p style="text-align: justify;">
+	 </p>
+<div id="CCF462F4_E15C_2C05_5D36_FF93AB2E2414">
+	 </div>
+</div>
+
+
+<script>
+    var today = new Date();
+    var dayIndex = today.getDay();
+    var curDay = 'Chủ nhật';
+    if (dayIndex == 0) {
+        curDay = 'Chủ nhật';
+    } else if (dayIndex == 1) {
+        curDay = 'Thứ 2';
+    } else if (dayIndex == 2) {
+        curDay = 'Thứ 3';
+    } else if (dayIndex == 3) {
+        curDay = 'Thứ 4';
+    } else if (dayIndex == 4) {
+        curDay = 'Thứ 5';
+    } else if (dayIndex == 5) {
+        curDay = 'Thứ 6';
+    } else if (dayIndex == 6) {
+        curDay = 'Thứ 7';
+    }
+    var today = new Date();
+    var yyyy = today.getFullYear();
+    let mm = today.getMonth() + 1;
+    let dd = today.getDate();
+
+    if (dd < 10) dd = '0' + dd;
+    if (mm < 10) mm = '0' + mm;
+
+    var formattedToday = curDay + ', ngày ' + dd + '/' + mm + '/' + yyyy;
+    $("#curDay").html(formattedToday);
+</script>
+
+            </div>
+            <div class="col-md-4">
+                <div>
+                    <script src="https://code.highcharts.com/highcharts.js"></script>
+                    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+                    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+                    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+                    <div class="title-chart">Số bệnh nhân hẹn tái khám</div>
+                    <figure class="highcharts-figure">
+                        <div id="henkham"></div>
+                    </figure>
+                </div>
+
+                <div class="box-dichvu">
+                    <a href="https://traketqua.benhvientimhanoi.vn"><i class="fa fa-file-text-o fa-2x" aria-hidden="true"></i> Trả kết quả online</a>
+                </div>
+                <div class="box-dichvu">
+                    <a href="https://benhvientimhanoi.vn/vi/chuyen-de/lich-lam-viec-cua-bac-sy/trang-1"><i class="fa fa-file-text-o fa-2x" aria-hidden="true"></i> Lịch làm việc của Bác sỹ</a>
+                </div>
+                <div class="box-dichvu">
+                    <a href="https://benhvientimhanoi.vn/he-thong/hen-kham/index.html"><i class="fa fa-file-text-o fa-2x" aria-hidden="true"></i> Đăng ký khám bệnh</a>
+                </div>
+                <div class="cate_normal_title">Thư viện video</div>
+                <div>
+                    <iframe width="100%" height="auto" src="https://www.youtube.com/embed/BsHQt98PLWA" title="Bệnh nhồi máu cơ tim cấp ngày càng gia tăng | VTC14" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                </div>
+                <div>
+                    <div class="cate_normal_title">Thư viện ảnh</div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <img style="width:100%; height:auto" src="/files/2023/tintuc/2023_07_19_03_44_171.jpg" />
+                        </div>
+                        <div class="col-md-6">
+                            <img style="width:100%; height:auto" src="/files/2023/tintuc/2023_12_06_03_33_571.jpg" />
+                        </div>
+
+                    </div>
+                    <div class="row" style="margin-top:25px;">
+                        <div class="col-md-6">
+                            <img style="width:100%; height:auto" src="/files/2023/tintuc/2024_01_18_03_52_1510.png" />
+                        </div>
+                        <div class="col-md-6">
+                            <img style="width:100%; height:auto" src="/files/2023/tintuc/img_daidien.jpg" />
+                        </div>
+                    </div>
+                </div>
+                <a href="https://benhvientimhanoi.vn/vi/chuyen-muc/danh-cho-nguoi-benh/trang-1" style="align-items:stretch; display: flex;">
+                    <div class="box1">
+                        Dành cho người bệnh
+                    </div>
+                </a>
+                <a href="https://benhvientimhanoi.vn/vi/chuyen-muc/kien-thuc-cho-sinh-vien-y-khoa/trang-1" style="align-items:stretch; display: flex;">
+                    <div class="box2">
+                        Dành cho học viên
+                    </div>
+                </a>
+                <a href="https://benhvientimhanoi.vn/vi/chuyen-muc/trai-tim-nhan-ai/trang-1" style="align-items:stretch; display: flex;">
+                    <div class="box3">
+                        Dành cho nhà tài trợ
+                    </div>
+                </a>
+
+            </div>
+        </div>
+
+    </div>
+    <div class="bar_danhkykham">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8" style="display:flex">
+                    <div>
+                        <img src="data:image/png;base64,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2rhcG20s1UYbSW20cbk22khSxhcM0UeZ1EYbl2ujjaQ22khqo42k19AbJL2G3iCpjTaWaqONy7XRxlJttJHURhuXa6ONJGV8wRB9lElttHG5NtpIaqONpDbaSHoNvUHSa+gNktpoY6k22rhcG20s1UYbSW20cbk22khSxhcM0UeZ1EYbl2ujjaQ22khqo42k19AbJL2G3iCpjTaWaqONy7XRxlJttJHURhuXa6ONJGV8wRB9lElttHG5NtpIaqONpDbaSHoNvUHSa+gNktpoY6k22rhcG20s1UYbSW20cbk22khSxhcM0UeZ1EYbl2ujjaQ22khqo42k19AbJL2G3iCpjTaWaqONy7XRxlJttJHURhuXa6ONJGV8wRB9lElttHG5NtpIaqONpDbaSHoNvUHSa+gNktpoY6k22rhcG20s1UYbSW20cbk22khSxhcM0UeZ1EYbl2ujjaQ22khqo42k19AbJL2G3iCpjTaWaqONy7XRxlJttJHURhuXa6ONJGV8wRB9lElttHG5NtpIaqONpDbaSHoNvUHSa+gNktpoY6k22rhcG20s1UYbSW20cbk22khSxhcM0UeZ1EYbl2ujjaQ22khqo42k19AbJL2G3iCpjTaWaqONy7XRxlJttJHURhuXa6ONJGV8wRB9lElttHG5NtpIaqONpDbaSHoNvUHSa+gNktpoY6k22rhcG20s1UYbSW20cbk22khSxhcM0UeZ1EYbl2ujjaQ22khqo42k19AbJL2G3iCpjTaWaqONy7XRxlJttJHURhuXa6ONJGV8wRB9lElttHG5NtpIaqONpDbaMPuvaqONpdpoI2kd3bzUa+gNktpo43JttJGkjC8Yoo8yqY02LtdGG0lttJHURhtm/1VttLFUG20kraObl3oNvUFSG21cro02kpTxBUP0USa10cbl2mgjqY02ktpow+y/qo02lmqjjaR1dPNSr6E3SGqjjcu10UaSMr5giD7KpDbauFwbbSS10UZSG22Y/Ve10cZSbbSRtI5uXuo19AZJbbRxuTbaSFLGFwzRR5nURhuXa6ONpDbaSGqjDbP/qjbaWKqNNpLW0c1LvYbeIKmNNi7XRhtJyviCIfook9po43JttJHURhtJbbRh9l/VRhtLtdFG0jq6eanX0BsktdHG5dpoI0kZXzBEH2VSG21cro02ktpoI6mNNsz+q9po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" style="width:100px; height:100px;" />
+                    </div>
+                    <div>
+                        <div class="div_register_1">ĐĂNG KÝ LỊCH KHÁM ONLINE</div>
+                        <div class="div_register_2">Đặt lịch dễ dàng, thăm khám tiện lợi</div>
+                    </div>
+                </div>
+                <div class="col-md-4 div_register_3">
+                    <a href="https://zalo.me/s/2972821668579995579/">
+                        <input type="button" value="Đăng ký khám" class="btn_register" />
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container" style="background-color:white">
+        <div class="site-section bg-left-half">
+            <div class="container owl-2-style" style="margin-top:20px;">
+                <div class="owl-carousel owl-2">
+                    <div class="media-29101">
+                        <a href="#"><img src="/images/logo/logo1.png" alt="Image" class="img-fluid"></a>
+                    </div>
+                    <div class="media-29101">
+                        <a href="#"><img src="/images/logo/logo2.png" alt="Image" class="img-fluid"></a>
+                    </div>
+                    <div class="media-29101">
+                        <a href="#"><img src="/images/logo/logo3.png" alt="Image" class="img-fluid"></a>
+                    </div>
+                    <div class="media-29101">
+                        <a href="#"><img src="/images/logo/logo4.png" alt="Image" class="img-fluid"></a>
+                    </div>
+                    <div class="media-29101">
+                        <a href="#"><img src="/images/logo/logo5.png" alt="Image" class="img-fluid"></a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="row" style="display:none">
+            <div class="col-md-12">
+                <div id="carousel" class="carousel slide" data-ride="carousel" data-type="multi" data-interval="2500">
+                    <div class="carousel-inner">
+                    </div>
+                    <div class="left carousel-control">
+                        <a href="#carousel" role="button" data-slide="prev">
+                            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                    </div>
+                    <div class="right carousel-control">
+                        <a href="#carousel" role="button" data-slide="next">
+                            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+    <footer class="border-top footer text-muted" style="background-color:#f9faf9">
+
+        <div class="container" style="padding-top:10px;padding-bottom:10px;">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="title-1">BỆNH VIỆN TIM HÀ NỘI</div>
+                    <div><i class="fa fa-map-marker" aria-hidden="true"></i> Cơ sở 1: 92 Trần Hưng Đạo, phường Cửa Nam Hà Nội</div>
+                    <div>
+                        <i class="fa fa-map-marker" aria-hidden="true"></i> Cơ sở 2: Số 695 Lạc Long Quân, phường Tây Hồ, Hà Nội
+                    </div>
+                    <div style="display:flex">
+                        <div>
+                            <a href="https://tinnhiemmang.vn/danh-ba-tin-nhiem/benhvientimhanoivn-1730973366" title="Chung nhan Tin Nhiem Mang" target="_blank"><img src="https://tinnhiemmang.vn/handle_cert?id=benhvientimhanoi.vn" style="width:160px; height:auto" alt="Chung nhan Tin Nhiem Mang"></a>
+                        </div>
+                        <div style="margin-top:-15px">
+                            <p>
+                                <script language="JavaScript" src="http://dunsregistered.dnb.com" type="text/javascript"></script>
+
+                            </p>
+                            <p>
+                                <script src="https://dunsregistered.dnb.com/QRcode.js?QRW=70&QRH=70" type="text/javascript"></script>
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="title-1">LIÊN HỆ</div>
+                    <div><i class="fa fa-envelope-o" aria-hidden="true"></i> Email: cskh@timhanoi.vn</div>
+                    <div><i class="fa fa-phone" aria-hidden="true"></i> Hotline: 19001082 (24h/7)</div>
+                </div>
+                <div class="col-md-4">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3724.2265681995227!2d105.84129337467961!3d21.023618580624376!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ab911e785029%3A0x90e43f2936ff4db1!2sHanoi%20Heart%20Hospital!5e0!3m2!1sen!2s!4v1708304451845!5m2!1sen!2s" width="100%" height="auto" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bar">
+
+            <div class="container" style="text-align:center">
+                &copy; 2025 - Bệnh viện Tim Hà Nội
+            </div>
+            
+        </div>
+
+    </footer>
+    <script src="/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/site.js?v=BxFAw9RUJ1E4NycpKEjCNDeoSvr4RPHixdBq5wDnkeY"></script>
+    
+<script src="/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+<script src="/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+
+    <!-- Vendor JS Files -->
+    <script src="/assets/js/lib/bootstrap-datetimepicker.min.js"></script>
+    <script src="/assets/vendor/purecounter/purecounter_vanilla.js"></script>
+    <script src="/assets/vendor/aos/aos.js"></script>
+    <script src="/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/vendor/swiper/swiper-bundle.min.js"></script>
+    <script src="/assets/vendor/php-email-form/validate.js"></script>
+    <script src="/assets/js/lib/app.js"></script>
+    <script src="/assets/js/lib/jq-paginator.js"></script>
+    <!-- Template Main JS File -->
+    <script src="/assets/js/main.js"></script>
+</body>
+</html>
+<script>
+  
+    $(document).ready(function () {
+        var bw = $(window).width();
+        if (bw < 600) {
+            $(".khoa_border").attr("style", "border-right: solid 0px #777777 !important;");
+        }
+
+    })
+</script>
+
+<script>
+
+    var showStaticMenuBar = false;
+
+    //when scrolling...
+    $(window).scroll(function () {
+
+        //if the static menu is not yet visible...
+        if (showStaticMenuBar == false) {
+            //if I scroll more than 200px, I show it
+            if ($(window).scrollTop() >= 70) {
+                //showing the static menu
+                $('#menu_bar').addClass('menu_bar_fixed');
+
+                showStaticMenuBar = true;
+
+            }
+
+        }
+        //if the static menu is already visible...
+        else {
+            if ($(window).scrollTop() < 70) {
+                $('#menu_bar').removeClass('menu_bar_fixed');
+
+                //I define it as hidden
+                showStaticMenuBar = false;
+            }
+        }
+    });
+</script>
+<script>
+    Highcharts.chart('henkham', {
+        chart: {
+            type: 'column'
+        },
+        title: {
+            text: 'Số bệnh nhân hẹn tái khám',
+            align: 'center'
+        },
+
+        xAxis: {
+            categories: ['28/06', '29/06', '30/06', '01/07', '02/07', '03/07', '04/07'],
+            crosshair: true,
+            accessibility: {
+                description: 'Countries'
+            }
+        },
+        yAxis: {
+            min: 0,
+            title: {
+                text: 'Số bệnh nhân hẹn tái khám'
+            }
+        },
+        tooltip: {
+            valueSuffix: ' (bệnh nhân)'
+        },
+        plotOptions: {
+            column: {
+                pointPadding: 0.2,
+                borderWidth: 0
+            }
+        },
+        series: [
+            {
+                name: 'Cơ sở 1',
+                data: [695, 179, 42, 128, 216, 152, 141]
+            }, {
+                name: 'Cơ sở 2',
+                data: [830, 30, 6, 36, 41, 24, 30]
+            }
+
+        ]
+    });
+</script>
+

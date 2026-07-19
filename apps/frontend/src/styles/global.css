@@ -1128,7 +1128,7 @@ select:focus-visible,
 
 .booking-filters {
   display: grid;
-  grid-template-columns: minmax(180px, 1.3fr) minmax(155px, 0.8fr) minmax(145px, 0.7fr) auto;
+  grid-template-columns: minmax(180px, 1.3fr) minmax(155px, 0.8fr) minmax(145px, 0.7fr) auto auto;
   gap: 11px;
   align-items: end;
 }
@@ -1191,6 +1191,55 @@ select:focus-visible,
   border: 0;
   color: #ffffff;
   background: #1f5b49;
+}
+
+.booking-reset-button {
+  border: 1px solid #cbd8d4 !important;
+  color: #285b4b !important;
+  background: #ffffff !important;
+}
+
+.booking-doctor-list {
+  display: flex;
+  gap: 8px;
+  align-items: stretch;
+  overflow-x: auto;
+  padding: 4px 2px 10px;
+}
+
+.booking-doctor-list > span,
+.booking-doctor-list button {
+  flex: 0 0 auto;
+}
+
+.booking-doctor-list > span {
+  display: inline-flex;
+  gap: 6px;
+  align-items: center;
+  color: #52665f;
+  font-size: 0.76rem;
+  font-weight: 850;
+}
+
+.booking-doctor-list button {
+  display: grid;
+  min-width: 190px;
+  gap: 2px;
+  padding: 8px 10px;
+  border: 1px solid #d3dfdc;
+  border-radius: 8px;
+  color: #254f43;
+  background: #ffffff;
+  text-align: left;
+}
+
+.booking-doctor-list strong {
+  font-size: 0.78rem;
+}
+
+.booking-doctor-list small {
+  color: #63756f;
+  font-size: 0.68rem;
 }
 
 .booking-data-note {
@@ -1436,6 +1485,15 @@ select:focus-visible,
   color: #687a74;
 }
 
+.booking-auto-approve-note {
+  display: inline-flex;
+  gap: 7px;
+  align-items: center;
+  color: #2a604f;
+  font-size: 0.78rem;
+  font-weight: 800;
+}
+
 .booking-load-error button {
   width: fit-content;
   padding: 7px 12px;
@@ -1470,6 +1528,191 @@ select:focus-visible,
   color: #674b1b;
   background: #fff9ed;
   font-size: 0.78rem;
+}
+
+.booking-modal-backdrop {
+  position: fixed;
+  z-index: 80;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 18px;
+  background: rgba(10, 24, 20, 0.45);
+}
+
+.booking-modal {
+  display: grid;
+  width: min(980px, 100%);
+  max-height: min(86vh, 820px);
+  overflow: auto;
+  border: 1px solid #cbd8d4;
+  border-radius: 10px;
+  background: #ffffff;
+  box-shadow: 0 24px 70px rgba(20, 40, 35, 0.22);
+}
+
+.booking-modal-header {
+  position: sticky;
+  z-index: 1;
+  top: 0;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 18px;
+  border-bottom: 1px solid #dfe8e5;
+  background: #ffffff;
+}
+
+.booking-modal-header h3 {
+  margin: 2px 0 0;
+}
+
+.booking-modal-header button {
+  display: inline-grid;
+  width: 36px;
+  height: 36px;
+  place-items: center;
+  border: 1px solid #cbd8d4;
+  border-radius: 8px;
+  color: #285b4b;
+  background: #ffffff;
+}
+
+.booking-modal-grid {
+  display: grid;
+  grid-template-columns: minmax(260px, 0.85fr) minmax(0, 1.5fr);
+  gap: 14px;
+  padding: 18px;
+}
+
+.booking-appointment-summary,
+.booking-demo-invoice {
+  border: 1px solid #dbe5e2;
+  border-radius: 8px;
+  background: #f8fbfa;
+}
+
+.booking-appointment-summary {
+  display: grid;
+  align-self: start;
+  gap: 12px;
+  padding: 14px;
+}
+
+.booking-appointment-summary h4 {
+  display: inline-flex;
+  gap: 7px;
+  align-items: center;
+  margin: 0;
+  color: #244c40;
+}
+
+.booking-appointment-summary dl {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+}
+
+.booking-appointment-summary dl div {
+  display: grid;
+  grid-template-columns: 80px minmax(0, 1fr);
+  gap: 8px;
+}
+
+.booking-appointment-summary dt {
+  color: #61746e;
+  font-size: 0.74rem;
+}
+
+.booking-appointment-summary dd {
+  margin: 0;
+  overflow-wrap: anywhere;
+  color: #173027;
+  font-size: 0.8rem;
+  font-weight: 800;
+}
+
+.booking-appointment-summary p,
+.booking-demo-invoice p {
+  margin: 0;
+  color: #5f716b;
+  font-size: 0.76rem;
+}
+
+.booking-modal-fields {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 11px;
+}
+
+.booking-modal-fields label {
+  display: grid;
+  gap: 5px;
+  color: #435b53;
+  font-size: 0.78rem;
+  font-weight: 800;
+}
+
+.booking-modal-fields input,
+.booking-modal-fields select,
+.booking-modal-fields textarea {
+  width: 100%;
+  min-height: 42px;
+  padding: 8px 10px;
+  border: 1px solid #cbd8d4;
+  border-radius: 8px;
+  color: #13201b;
+  background: #ffffff;
+}
+
+.booking-modal-fields textarea {
+  min-height: 76px;
+  resize: vertical;
+}
+
+.booking-field-wide {
+  grid-column: 1 / -1;
+}
+
+.booking-demo-invoice {
+  display: grid;
+  grid-column: 1 / -1;
+  gap: 8px;
+  padding: 13px;
+}
+
+.booking-demo-invoice div {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: space-between;
+  color: #435b53;
+  font-size: 0.82rem;
+}
+
+.booking-demo-total {
+  padding-top: 8px;
+  border-top: 1px solid #d7e2df;
+  color: #173027 !important;
+}
+
+.booking-modal-actions {
+  display: flex;
+  grid-column: 1 / -1;
+  gap: 10px;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+}
+
+.active-hold-confirmed {
+  border-color: #297355;
+  background: #ecf8f1;
+}
+
+.hold-approved {
+  background: #297355;
 }
 
 .spin-icon {
@@ -1624,6 +1867,28 @@ select:focus-visible,
     grid-template-columns: 1fr;
   }
 
+  .booking-modal-backdrop {
+    align-items: start;
+    padding: 10px;
+  }
+
+  .booking-modal {
+    max-height: calc(100vh - 20px);
+  }
+
+  .booking-modal-grid,
+  .booking-modal-fields {
+    grid-template-columns: 1fr;
+  }
+
+  .booking-modal-actions {
+    justify-content: stretch;
+  }
+
+  .booking-modal-actions button {
+    width: 100%;
+  }
+
   .booking-filters button {
     width: 100%;
   }
@@ -1687,4 +1952,3 @@ select:focus-visible,
   color: #b4232a;
   flex-basis: 100%;
 }
-

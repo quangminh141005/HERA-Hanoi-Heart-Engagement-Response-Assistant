@@ -16,6 +16,8 @@ from app.observability.prometheus import (
     BOOKING_OCCUPIED,
 )
 from app.schemas.booking import (
+    BookingDoctorListResponse,
+    BookingDoctorOption,
     BookingHoldResponse,
     BookingHoldStateResponse,
     BookingSessionListResponse,
@@ -98,6 +100,16 @@ class BookingService:
             reference_date=reference.isoformat(),
             warning=PROTOTYPE_WARNING,
             records=[BookingSessionRecord(**row) for row in rows],
+        )
+
+    def list_doctors(self, *, doctor_query: str | None) -> BookingDoctorListResponse:
+        self._require_local_prototype()
+        reference = self.repository.reference_date()
+        rows = self.repository.list_doctors(doctor_query=doctor_query)
+        return BookingDoctorListResponse(
+            reference_date=reference.isoformat(),
+            warning=PROTOTYPE_WARNING,
+            records=[BookingDoctorOption(**row) for row in rows],
         )
 
     def create_hold(
@@ -195,7 +207,18 @@ class BookingService:
         token: str,
     ) -> BookingHoldStateResponse:
         self._require_local_prototype()
-        result = self.repository.validate_hold_owner(hold_id=hold_id, token=token)
+        result = self.repository.confirm_hold_for_demo(hold_id=hold_id, token=token)
+        if result["status"] == "confirmed":
+            BOOKING_HOLDS_TOTAL.labels(result="success").inc()
+            return BookingHoldStateResponse(
+                hold_id=hold_id,
+                status=result["status"],
+                expires_at=result["expires_at"],
+                warning=(
+                    "HERA đã tự duyệt giữ chỗ trong chế độ demo; "
+                    "đây vẫn chưa phải xác nhận lịch hẹn chính thức của Bệnh viện."
+                ),
+            )
         if result["status"] != "held":
             if result["status"] == "expired":
                 BOOKING_HOLDS_TOTAL.labels(result="expired").inc()

@@ -44,14 +44,30 @@ for command_name in docker openssl; do
 done
 docker compose version >/dev/null
 
+restrict_secret_file() {
+  local file=$1 filesystem_type
+  if chmod 600 "$file"; then
+    return 0
+  fi
+
+  filesystem_type=$(stat -f -c %T "$file" 2>/dev/null || true)
+  case "$filesystem_type" in
+    9p|v9fs|drvfs)
+      echo "Warning: could not enforce mode 600 on $file because this appears to be a WSL/Windows mount ($filesystem_type)." >&2
+      echo "Keep this local env file private and avoid committing or sharing it." >&2
+      ;;
+    *)
+      echo "Could not restrict $file to mode 600; refusing to continue." >&2
+      exit 1
+      ;;
+  esac
+}
+
 if [[ ! -f "$env_file" ]]; then
   cp .env.example "$env_file"
   echo "Created $env_file from .env.example."
 fi
-chmod 600 "$env_file" || {
-  echo "Could not restrict $env_file to mode 600; refusing to continue." >&2
-  exit 1
-}
+restrict_secret_file "$env_file"
 
 get_env() {
   local file=$1 name=$2
@@ -87,7 +103,7 @@ set_env() {
     {print}
     END {if (!found) print replacement}
   ' "$file" > "$temporary"
-  chmod 600 "$temporary"
+  restrict_secret_file "$temporary"
   mv "$temporary" "$file"
 }
 

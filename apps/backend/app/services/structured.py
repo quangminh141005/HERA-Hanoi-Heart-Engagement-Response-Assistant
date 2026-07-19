@@ -295,6 +295,15 @@ class StructuredDataService:
             if query_override
             else _extract_search_phrase(message)
         )
+        group_answer = self._service_price_group_answer(
+            query=(
+                _extract_service_group_phrase(query_override or message)
+                if not query_override
+                else query_override
+            )
+        )
+        if group_answer is not None:
+            return group_answer
         rows = self.lookup_service_prices(
             query=search_query,
             facility_code=facility_code,
@@ -515,6 +524,48 @@ class StructuredDataService:
         self.cache.set('sources', {'source_ids': unique_ids}, sources)
         return sources
 
+    def _service_price_group_answer(
+        self,
+        *,
+        query: str,
+    ) -> StructuredChatResult | None:
+        if not query.strip():
+            return None
+        rows = self.repository.search_service_price_groups(query=query, limit=3)
+        if not rows:
+            return None
+        top = rows[0]
+        exact_match = bool(top.get("exact_match"))
+        similarity = float(top.get("name_similarity") or 0)
+        if not exact_match and similarity < 0.92:
+            return None
+        raw_json = top.get("raw_json")
+        payload = json.loads(raw_json) if isinstance(raw_json, str) else raw_json
+        if not isinstance(payload, dict):
+            return None
+        rag_payload = payload.get("raw_rag_payload")
+        if not isinstance(rag_payload, dict):
+            return None
+        canonical_answer = rag_payload.get("canonical_answer_vi")
+        if not isinstance(canonical_answer, str) or not canonical_answer.strip():
+            return None
+        source_id = str(top.get("source_id") or "")
+        title = str(top.get("title") or "")
+        url = str(top.get("url") or "")
+        citations = []
+        if source_id and title and url:
+            citations.append(
+                StructuredCitation(source_id=source_id, title=title, url=url)
+            )
+        return StructuredChatResult(
+            intent="service_price_current",
+            response=canonical_answer,
+            citations=citations,
+            metadata={"structured_group_answer": top},
+            data_classification="official_current",
+            structured_record_ids=(str(top["service_record_id"]),),
+        )
+
     def close(self) -> None:
         self.cache.close()
 
@@ -690,6 +741,20 @@ def _extract_search_phrase(message: str) -> str:
     cleaned = re.sub(r"[^0-9a-zA-Z]+", " ", cleaned)
     collapsed = " ".join(cleaned.split())
     return collapsed or message.strip()
+
+
+def _extract_service_group_phrase(message: str) -> str:
+    cleaned = " ".join(message.strip().strip("?.!。").split())
+    cleaned = re.sub(r"(?i)^\s*giá\s+", "", cleaned)
+    cleanup_patterns = (
+        r"\s+là\s+bao\s+nhiêu\s*$",
+        r"\s+bao\s+nhiêu\s*$",
+        r"\s+giá\s+bao\s+nhiêu\s*$",
+        r"\s+là\s+gì\s*$",
+    )
+    for pattern in cleanup_patterns:
+        cleaned = re.sub(pattern, "", cleaned, flags=re.IGNORECASE)
+    return cleaned.strip().lower()
 
 
 def _focus_price_query_region(folded_message: str) -> str | None:

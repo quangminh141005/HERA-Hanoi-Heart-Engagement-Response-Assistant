@@ -8,6 +8,7 @@ that was decoded or saved with the wrong codepage.
 from __future__ import annotations
 
 import argparse
+import os
 import sys
 from collections.abc import Iterable
 from pathlib import Path
@@ -123,22 +124,24 @@ def _parse_args(argv: list[str] | None) -> argparse.Namespace:
 
 
 def _iter_text_files(root: Path) -> Iterable[Path]:
-    for path in root.rglob("*"):
-        if path.is_dir():
-            continue
-        relative_parts = path.relative_to(root).parts
-        if any(part in SKIP_DIR_NAMES for part in relative_parts):
-            continue
-        if tuple(relative_parts) in SKIP_PATH_PARTS:
-            continue
-        if path.suffix.lower() in TEXT_SUFFIXES or path.name in {
-            ".env.example",
-            ".gitattributes",
-            ".gitignore",
-            "Dockerfile",
-            "Makefile",
-        }:
-            yield path
+    for current_root, dir_names, file_names in os.walk(root):
+        dir_names[:] = [
+            name for name in dir_names if name not in SKIP_DIR_NAMES
+        ]
+        current_path = Path(current_root)
+        for file_name in file_names:
+            path = current_path / file_name
+            relative_parts = path.relative_to(root).parts
+            if tuple(relative_parts) in SKIP_PATH_PARTS:
+                continue
+            if path.suffix.lower() in TEXT_SUFFIXES or path.name in {
+                ".env.example",
+                ".gitattributes",
+                ".gitignore",
+                "Dockerfile",
+                "Makefile",
+            }:
+                yield path
 
 
 def _first_mojibake_marker(line: str) -> str | None:

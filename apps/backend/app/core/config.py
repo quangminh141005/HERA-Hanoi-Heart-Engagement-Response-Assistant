@@ -170,6 +170,7 @@ class Settings(BaseSettings):
     BOOKING_REQUIRE_APPROVED_CAPACITY_RULE: bool = False
     BOOKING_ALLOW_PROJECT_MVP_RULE: bool = True
     BOOKING_MAX_ACTIVE_HOLDS_PER_ANONYMOUS_SESSION: int = Field(default=2, ge=1)
+    BOOKING_DEMO_AUTO_APPROVE_SECONDS: int = Field(default=10, ge=1, le=300)
     HOLD_TOKEN_SECRET: str = "development-only-change-me"
     BOOKING_PII_HASH_SECRET: str | None = None
 
