@@ -62,7 +62,7 @@ export function AssistantMessage({ message }: { message: ChatMessage }) {
       {message.emergency ? <EmergencyCard /> : null}
       {visibleContent ? <p>{visibleContent}</p> : null}
       {message.structuredAction ? <StructuredResult action={message.structuredAction} /> : null}
-      <WarningList warnings={visibleWarnings} />
+      {!message.structuredAction ? <WarningList warnings={visibleWarnings} /> : null}
       {!message.emergency && (message.requiresHandoff || refusal || Boolean(message.actions?.length)) ? (
         <HandoffCard actions={message.actions ?? []} refusal={refusal} />
       ) : null}

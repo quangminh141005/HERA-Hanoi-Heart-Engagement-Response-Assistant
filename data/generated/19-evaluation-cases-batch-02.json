@@ -295,16 +295,16 @@
     {
       "case_id": "EVAL-0030",
       "category": "structured_schedule_snapshot",
-      "query": "Tra đúng lịch làm việc ngày 17/07/2026 tại PHCN (P401) từ record SCHED-20260713-CS2-DK-0012.",
+      "query": "Tra đúng lịch làm việc ngày 17/07/2026 tại PHCN (P401) từ record SCHED-20260713-CS2-DK-0012-01.",
       "expected_response_type": "structured_action",
       "expected_intent": "doctor_department",
       "required_source_fact_ids": [],
       "required_structured_record_ids": [
-        "SCHED-20260713-CS2-DK-0012",
+        "SCHED-20260713-CS2-DK-0012-01",
         "SCDOC-20260713-CS2-DK"
       ],
       "must_include": [
-        "Sáng\nBSNT. Trần Thị Quỳnh Nga\nChiều nghỉ",
+        "BSNT. Trần Thị Quỳnh Nga",
         "17/07/2026",
         "PHCN (P401)",
         "CS2",
@@ -321,7 +321,7 @@
       "review_status": "pending_human_review",
       "allowed_fact_ids": [],
       "allowed_structured_record_selectors": [
-        "SCHED-20260713-CS2-DK-0012",
+        "SCHED-20260713-CS2-DK-0012-01",
         "SCDOC-20260713-CS2-DK"
       ]
     },

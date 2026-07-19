@@ -3,7 +3,10 @@
 from __future__ import annotations
 
 from app.schemas.structured import ServicePriceRecord
-from app.services.structured import _price_records_require_clarification
+from app.services.structured import (
+    _preserve_bracketed_service_qualifiers,
+    _price_records_require_clarification,
+)
 from app.structured.postgres_repository import _rerank_service_price_rows
 
 
@@ -157,6 +160,27 @@ def test_price_rerank_accepts_short_query_when_terms_are_covered() -> None:
     ranked = _rerank_service_price_rows("đặt stent", rows, limit=5)
 
     assert [row["service_record_id"] for row in ranked] == ["PRICE-2025-001964"]
+
+
+def test_model_price_query_keeps_exact_bracket_discriminator() -> None:
+    query = _preserve_bracketed_service_qualifiers(
+        "Chup cat lop vi tinh tam soat toan than (tu 64-128 day)",
+        (
+            "Gia Chup cat lop vi tinh tam soat toan than (tu 64-128 day) "
+            "[khong co thuoc can quang]?"
+        ),
+    )
+
+    assert query.endswith("[khong co thuoc can quang]")
+
+
+def test_model_price_query_does_not_append_redaction_placeholder() -> None:
+    query = _preserve_bracketed_service_qualifiers(
+        "01.0222.0211",
+        "Tra [PHONE_REDACTED] tại CS2.",
+    )
+
+    assert query == "01.0222.0211"
 
 
 def _price_row(

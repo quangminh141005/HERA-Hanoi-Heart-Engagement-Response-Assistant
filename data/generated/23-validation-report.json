@@ -14,7 +14,7 @@
   "manifest": {
     "file": "00-manifest.json",
     "bytes": 23319,
-    "sha256": "32b98f54e9d130a47ae9d9bed4b31eac3443d7825e1f247841adc71bbad1d5dc"
+    "sha256": "f6c18d382f4516ff294f1dd7756a77eadcc3fc439062664b54c6c95e459fc5c6"
   },
   "summary": {
     "data_files_checked": 22,
@@ -22,8 +22,8 @@
     "unhandled_errors": 0,
     "review_required_documents": 0,
     "warnings_and_information": 14,
-    "sources": 13,
-    "seed_facts": 11,
+    "sources": 24,
+    "seed_facts": 34,
     "historical_price_rows": 2946,
     "historical_price_group_headers": 2,
     "nested_facility_prices": 4051,
@@ -33,10 +33,10 @@
     "schedule_documents_accepted": 18,
     "schedule_documents_review_required": 0,
     "schedule_duplicate_sources_excluded": 0,
-    "schedule_entries": 1382,
-    "schedule_named_assignments": 1008,
+    "schedule_entries": 1558,
+    "schedule_named_assignments": 1150,
     "schedule_generic_assignments": 60,
-    "schedule_closed_entries": 271,
+    "schedule_closed_entries": 305,
     "generated_capacity_records": 0,
     "import_issues": 14,
     "faq_paraphrases": 60,
@@ -50,10 +50,10 @@
       "documents_discovered": 3,
       "documents_validation_accepted": 3,
       "documents_review_required": 0,
-      "entries_published_to_review_dataset": 223,
-      "named_assignments": 168,
+      "entries_published_to_review_dataset": 253,
+      "named_assignments": 191,
       "generic_assignments": 10,
-      "closed_entries": 37,
+      "closed_entries": 44,
       "runtime_eligible_entries": 0
     },
     {
@@ -62,10 +62,10 @@
       "documents_discovered": 3,
       "documents_validation_accepted": 3,
       "documents_review_required": 0,
-      "entries_published_to_review_dataset": 223,
-      "named_assignments": 165,
+      "entries_published_to_review_dataset": 254,
+      "named_assignments": 191,
       "generic_assignments": 10,
-      "closed_entries": 37,
+      "closed_entries": 42,
       "runtime_eligible_entries": 0
     },
     {
@@ -74,10 +74,10 @@
       "documents_discovered": 3,
       "documents_validation_accepted": 3,
       "documents_review_required": 0,
-      "entries_published_to_review_dataset": 245,
-      "named_assignments": 165,
+      "entries_published_to_review_dataset": 274,
+      "named_assignments": 189,
       "generic_assignments": 10,
-      "closed_entries": 57,
+      "closed_entries": 62,
       "runtime_eligible_entries": 0
     },
     {
@@ -86,10 +86,10 @@
       "documents_discovered": 3,
       "documents_validation_accepted": 3,
       "documents_review_required": 0,
-      "entries_published_to_review_dataset": 223,
-      "named_assignments": 170,
+      "entries_published_to_review_dataset": 253,
+      "named_assignments": 194,
       "generic_assignments": 10,
-      "closed_entries": 37,
+      "closed_entries": 43,
       "runtime_eligible_entries": 0
     },
     {
@@ -98,10 +98,10 @@
       "documents_discovered": 3,
       "documents_validation_accepted": 3,
       "documents_review_required": 0,
-      "entries_published_to_review_dataset": 223,
-      "named_assignments": 168,
+      "entries_published_to_review_dataset": 249,
+      "named_assignments": 188,
       "generic_assignments": 10,
-      "closed_entries": 43,
+      "closed_entries": 49,
       "runtime_eligible_entries": 0
     },
     {
@@ -110,10 +110,10 @@
       "documents_discovered": 3,
       "documents_validation_accepted": 3,
       "documents_review_required": 0,
-      "entries_published_to_review_dataset": 245,
-      "named_assignments": 172,
+      "entries_published_to_review_dataset": 275,
+      "named_assignments": 197,
       "generic_assignments": 10,
-      "closed_entries": 60,
+      "closed_entries": 65,
       "runtime_eligible_entries": 0
     }
   ],
@@ -123,10 +123,10 @@
     "documents_discovered": 3,
     "documents_validation_accepted": 3,
     "documents_review_required": 0,
-    "entries": 245,
-    "named_assignments": 172,
+    "entries": 275,
+    "named_assignments": 197,
     "generic_assignments": 10,
-    "closed_entries": 60,
+    "closed_entries": 65,
     "runtime_eligible_entries": 0
   },
   "automated_checks": [
@@ -183,7 +183,7 @@
     {
       "check_id": "CHK-SCHEDULE-ENTRIES",
       "status": "pass",
-      "result": "The accepted week has 245 entries: 172 named, 10 generic and 60 closed."
+      "result": "The accepted week has 275 entries: 197 named, 10 generic and 65 closed."
     },
     {
       "check_id": "CHK-NO-BOOKING-INFERENCE",
@@ -254,7 +254,7 @@
     "The official BHXH extract covers household contribution amounts only, not personal medical benefit entitlement.",
     "Automated structure validation does not replace hospital, clinical, legal, privacy or security approval."
   ],
-  "manifest_sha256": "32b98f54e9d130a47ae9d9bed4b31eac3443d7825e1f247841adc71bbad1d5dc",
+  "manifest_sha256": "f6c18d382f4516ff294f1dd7756a77eadcc3fc439062664b54c6c95e459fc5c6",
   "checks": [
     {
       "check_id": "CHK-EXACT-FILE-SET",
@@ -309,7 +309,7 @@
     {
       "check_id": "CHK-SCHEDULE-ENTRIES",
       "status": "pass",
-      "result": "The accepted week has 245 entries: 172 named, 10 generic and 60 closed."
+      "result": "The accepted week has 275 entries: 197 named, 10 generic and 65 closed."
     },
     {
       "check_id": "CHK-NO-BOOKING-INFERENCE",

@@ -40,7 +40,7 @@ class ChatService:
             "channel": _safe_trace_channel(request.client_context.get("channel")),
             "consent_to_store": request.consent_to_store,
             "configured_llm_model": self.settings.FPT_LLM_MODEL,
-            "configured_embedding_model": self.settings.FPT_EMBEDDING_MODEL,
+            "configured_embedding_model": self.settings.EMBEDDING_MODEL,
         }
         trace_kwargs = {}
         if self.settings.LANGFUSE_CAPTURE_CONTENT:

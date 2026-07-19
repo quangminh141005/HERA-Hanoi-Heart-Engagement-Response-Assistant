@@ -8,6 +8,11 @@ from datetime import date
 from typing import Any
 
 import pytest
+from app.services.structured import (
+    _deduplicate_schedule_rows,
+    _extract_room_query,
+    _resolve_schedule_date,
+)
 from app.structured.postgres_repository import PostgresStructuredRepository
 
 
@@ -183,12 +188,60 @@ def test_schedule_lookup_uses_typed_dates_and_returns_api_compatible_iso_date() 
         doctor_query="Nguyễn Văn A",
     )
 
-    _, params = factory.calls[0]
+    sql, params = factory.calls[0]
+    assert "se.duty_status = 'scheduled'" in sql
     assert params["week_start"] == target_week
     assert params["service_date"] == target_week
     assert params["doctor_pattern"].startswith("%")
+    assert params["doctor_folded"]
+    assert params["doctor_match_min_score"] == 0.6
+    assert "schedule_entry_doctors" in sql
+    assert "word_similarity" in sql
     assert rows[0]["service_date"] == "2026-07-20"
     assert rows[0]["week_end"] == "2026-07-26"
+
+
+def test_schedule_date_parser_accepts_day_month_without_year() -> None:
+    reference = date(2026, 6, 8)
+
+    assert _resolve_schedule_date("Bác sĩ nào khám ngày 09/06 ở CS1?", reference) == date(2026, 6, 9)
+    assert _resolve_schedule_date("Cho tôi lịch 15-06 cơ sở 2", reference) == date(2026, 6, 15)
+    assert _resolve_schedule_date("Lịch ngày 15/06/2026 ở cơ sở 1", reference) == date(2026, 6, 15)
+
+
+def test_schedule_date_parser_does_not_flip_day_month_order() -> None:
+    reference = date(2026, 6, 8)
+
+    assert _resolve_schedule_date("Ngày 06/08 có bác sĩ nào?", reference) == date(2026, 8, 6)
+    assert _resolve_schedule_date("Ngày 08/06 có bác sĩ nào?", reference) == date(2026, 6, 8)
+
+
+def test_schedule_date_parser_accepts_single_digit_month() -> None:
+    reference = date(2026, 6, 8)
+
+    assert _resolve_schedule_date("cac ca kham ngay 19/7", reference) == date(2026, 7, 19)
+
+
+def test_schedule_rows_are_deduplicated_by_published_slot() -> None:
+    row = {
+        "schedule_entry_id": "SCHEDULE-1",
+        "service_date": "2026-07-19",
+        "facility_code": "CS1",
+        "room_label": "Phong 1",
+        "unit_label": "Kham benh",
+        "assignee_text_raw": "Bac si A",
+        "published_hours_raw": "7.30 - 16.30",
+    }
+    duplicate = {**row, "schedule_entry_id": "SCHEDULE-2"}
+
+    assert _deduplicate_schedule_rows([row, duplicate]) == [row]
+
+
+def test_schedule_room_parser_extracts_only_room_identifier() -> None:
+    assert _extract_room_query(
+        "Ngày 09/06, phòng PK NHI (P402) tại CS2 có bác sĩ nào?"
+    ) == "P402"
+    assert _extract_room_query("Lịch phòng Nội chung tại cơ sở 2") == "noi chung"
 
 
 def test_fact_ranking_filters_disallowed_intents_after_jsonb_read() -> None:

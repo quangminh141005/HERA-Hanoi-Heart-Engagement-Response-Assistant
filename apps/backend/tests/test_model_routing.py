@@ -5,6 +5,7 @@ from __future__ import annotations
 import asyncio
 import json
 from contextlib import contextmanager
+from types import SimpleNamespace
 
 import app.ai.routing.model_assessor as routing_module
 from app.ai.agent.orchestrator import build_default_orchestrator
@@ -37,10 +38,22 @@ class FakeLLM:
 class FakeStructuredDataService:
     def __init__(self) -> None:
         self.price_calls: list[str] = []
+        self.price_slot_calls: list[tuple[str | None, str | None]] = []
+        self.schedule_slot_calls: list[
+            tuple[str | None, str | None, str | None, str | None]
+        ] = []
+        self.bhyt_slot_calls: list[str | None] = []
+        self.reference_lookups: list[str] = []
         self.repository = FakeStructuredRepository()
 
-    def chat_service_price(self, message: str) -> StructuredChatResult:
+    def chat_service_price(
+        self,
+        message: str,
+        query_override: str | None = None,
+        facility_code_override: str | None = None,
+    ) -> StructuredChatResult:
         self.price_calls.append(message)
+        self.price_slot_calls.append((query_override, facility_code_override))
         return StructuredChatResult(
             intent="service_price_current",
             response="Kết quả giá từ dữ liệu có cấu trúc.",
@@ -49,8 +62,54 @@ class FakeStructuredDataService:
             grounded=False,
         )
 
+    def chat_schedule(
+        self,
+        message: str,
+        date_override: str | None = None,
+        facility_code_override: str | None = None,
+        doctor_query_override: str | None = None,
+        room_query_override: str | None = None,
+    ) -> StructuredChatResult:
+        del message
+        self.schedule_slot_calls.append(
+            (
+                date_override,
+                facility_code_override,
+                doctor_query_override,
+                room_query_override,
+            )
+        )
+        return StructuredChatResult(
+            intent="schedule",
+            response="Kết quả lịch từ dữ liệu có cấu trúc.",
+            citations=[],
+            metadata={"structured_action": {"records": []}},
+            grounded=False,
+        )
+
+    def chat_bhyt(
+        self,
+        message: str,
+        tier_override: str | None = None,
+    ) -> StructuredChatResult:
+        del message
+        self.bhyt_slot_calls.append(tier_override)
+        return StructuredChatResult(
+            intent="bhyt_household_contribution",
+            response="Kết quả mức đóng BHYT.",
+            citations=[],
+            metadata={"structured_action": {"records": []}},
+            grounded=False,
+        )
+
     def support_actions(self) -> tuple[dict, ...]:
         return ()
+
+    def lookup_service_prices(self, *, query, facility_code, as_of_date):
+        del facility_code, as_of_date
+        self.reference_lookups.append(query)
+        records = [SimpleNamespace()] if query == "01.0222.0211" else []
+        return SimpleNamespace(records=records)
 
     def active_template(self, template_type: str) -> None:
         del template_type
@@ -215,6 +274,42 @@ def test_orchestrator_uses_model_route_then_structured_service_once() -> None:
     assert structured.price_calls == ["Tôi muốn biết khoản này"]
 
 
+def test_orchestrator_preserves_model_slots_for_structured_tools() -> None:
+    settings = _settings()
+    fake_llm = FakeLLM(
+        {
+            "emergency": False,
+            "emergency_confidence": 0.01,
+            "intent": "schedule",
+            "intent_confidence": 0.96,
+            "reason": "schedule_lookup",
+            "slots": {
+                "service_query": None,
+                "facility_code": "CS2",
+                "date": "2026-06-09",
+                "doctor_query": None,
+                "room_query": "P402",
+            },
+        }
+    )
+    orchestrator = build_default_orchestrator(settings)
+    orchestrator.routing_model_assessor = _assessor(fake_llm, settings)
+    structured = FakeStructuredDataService()
+    orchestrator.structured_data_service = structured
+
+    result = asyncio.run(
+        orchestrator.handle(
+            message="Ngày 09/06, phòng P402 tại CS2 có bác sĩ nào?",
+            conversation_id="conversation-routing-slots-001",
+            locale="vi",
+            user_context={},
+        )
+    )
+
+    assert result.metadata["routing_slots_present"] is True
+    assert structured.schedule_slot_calls == [(None, "CS2", None, "P402")]
+
+
 def test_prompt_injection_is_blocked_before_model_routing() -> None:
     settings = _settings()
     fake_llm = FakeLLM(
@@ -341,3 +436,237 @@ def test_model_routing_parses_outer_json_when_slots_are_nested() -> None:
     assert result.classification.intent is HospitalIntent.SERVICE_PRICE
     assert result.slots["service_query"] == "ngày giường bệnh nội khoa loại 1"
     assert result.slots["facility_code"] == "CS1"
+
+
+def test_model_routing_never_accepts_an_invented_schedule_year() -> None:
+    settings = _settings()
+    assessor = _assessor(
+        FakeLLM(
+            {
+                "emergency": False,
+                "emergency_confidence": 0,
+                "intent": "schedule",
+                "intent_confidence": 0.95,
+                "reason": "schedule_lookup",
+                "slots": {
+                    "service_query": None,
+                    "facility_code": "CS1",
+                    "date": "2023-06-09",
+                    "doctor_query": None,
+                    "room_query": None,
+                },
+            }
+        ),
+        settings,
+    )
+
+    short_date = asyncio.run(assessor.assess("Lich kham ngay 09/06 o CS1"))
+    explicit_year = asyncio.run(
+        assessor.assess("Lich kham ngay 09/06/2026 o CS1")
+    )
+
+    assert short_date.slots["date"] is None
+    assert explicit_year.slots["date"] == "2026-06-09"
+
+
+def test_model_policy_action_and_bhyt_tier_are_bounded() -> None:
+    result = asyncio.run(
+        _assessor(
+            FakeLLM(
+                {
+                    "emergency": False,
+                    "emergency_confidence": 0,
+                    "intent": "bhyt_household_contribution",
+                    "intent_confidence": 0.97,
+                    "reason": "household_tier",
+                    "policy_action": "none",
+                    "slots": {"bhyt_tier": "4"},
+                }
+            ),
+            _settings(),
+        ).assess("BHYT hộ: người 4, năm?")
+    )
+
+    assert result.slots["bhyt_tier"] == "4"
+    assert result.policy_action == "none"
+
+
+def test_model_schema_consistency_routes_doctor_date_to_schedule() -> None:
+    settings = _settings()
+    assessor = _assessor(
+        FakeLLM(
+            {
+                "emergency": False,
+                "emergency_confidence": 0,
+                "intent": "booking",
+                "intent_confidence": 0.94,
+                "reason": "appointment",
+                "policy_action": "none",
+                "slots": {
+                    "facility_code": "CS1",
+                    "doctor_query": "ThS.BS Nguyễn Danh Sen",
+                },
+            }
+        ),
+        settings,
+    )
+    orchestrator = build_default_orchestrator(settings)
+    orchestrator.routing_model_assessor = assessor
+    structured = FakeStructuredDataService()
+    orchestrator.structured_data_service = structured
+
+    result = asyncio.run(
+        orchestrator.handle(
+            message="ThS.BS Nguyễn Danh Sen @ 18/6, CS1?",
+            conversation_id="schema-consistency-schedule",
+            locale="vi",
+            user_context={},
+        )
+    )
+
+    assert result.intent == "schedule"
+    assert structured.schedule_slot_calls == [
+        (None, "CS1", "ThS.BS Nguyễn Danh Sen", None)
+    ]
+
+
+def test_model_policy_refusal_prevents_irrelevant_rag_answer() -> None:
+    settings = _settings()
+    orchestrator = build_default_orchestrator(settings)
+    orchestrator.routing_model_assessor = _assessor(
+        FakeLLM(
+            {
+                "emergency": False,
+                "emergency_confidence": 0,
+                "intent": "unsupported",
+                "intent_confidence": 0.99,
+                "reason": "unsupported_capability",
+                "policy_action": "ocr_unavailable",
+                "slots": {},
+            }
+        ),
+        settings,
+    )
+    orchestrator.structured_data_service = FakeStructuredDataService()
+
+    result = asyncio.run(
+        orchestrator.handle(
+            message="OCR đơn thuốc giúp tôi.",
+            conversation_id="policy-ocr",
+            locale="vi",
+            user_context={},
+        )
+    )
+
+    assert result.intent == "unsupported"
+    assert "không có OCR" in result.response
+    assert result.metadata["policy_action"] == "ocr_unavailable"
+
+
+def test_model_bhyt_tier_slot_reaches_structured_service() -> None:
+    settings = _settings()
+    orchestrator = build_default_orchestrator(settings)
+    orchestrator.routing_model_assessor = _assessor(
+        FakeLLM(
+            {
+                "emergency": False,
+                "emergency_confidence": 0,
+                "intent": "bhyt_household_contribution",
+                "intent_confidence": 0.98,
+                "reason": "household_tier",
+                "policy_action": "none",
+                "slots": {"bhyt_tier": "5"},
+            }
+        ),
+        settings,
+    )
+    structured = FakeStructuredDataService()
+    orchestrator.structured_data_service = structured
+
+    asyncio.run(
+        orchestrator.handle(
+            message="BHYT năm, bậc 5?",
+            conversation_id="bhyt-tier-slot",
+            locale="vi",
+            user_context={},
+        )
+    )
+
+    assert structured.bhyt_slot_calls == ["5"]
+
+
+def test_postgres_reference_reconciles_opaque_service_code_route() -> None:
+    settings = _settings()
+    orchestrator = build_default_orchestrator(settings)
+    orchestrator.routing_model_assessor = _assessor(
+        FakeLLM(
+            {
+                "emergency": False,
+                "emergency_confidence": 0,
+                "intent": "general_support",
+                "intent_confidence": 0.91,
+                "reason": "opaque_identifier",
+                "policy_action": "none",
+                "slots": {"facility_code": "CS2"},
+            }
+        ),
+        settings,
+    )
+    structured = FakeStructuredDataService()
+    orchestrator.structured_data_service = structured
+
+    result = asyncio.run(
+        orchestrator.handle(
+            message="Tra 01.0222.0211 tại CS2.",
+            conversation_id="service-reference-route",
+            locale="vi",
+            user_context={},
+        )
+    )
+
+    assert result.intent == "service_price_current"
+    assert result.metadata["decision_source"] == "model+postgres_reference"
+    assert structured.reference_lookups == ["01.0222.0211"]
+    assert structured.price_slot_calls == [("01.0222.0211", "CS2")]
+
+
+def test_administrative_intent_cannot_be_emergency_without_active_symptoms() -> None:
+    result = asyncio.run(
+        _assessor(
+            FakeLLM(
+                {
+                    "emergency": True,
+                    "urgent_symptoms_present": False,
+                    "emergency_confidence": 0.95,
+                    "intent": "bhyt_personal_benefit",
+                    "intent_confidence": 0.94,
+                    "reason": "insurance_out_of_network",
+                }
+            ),
+            _settings(),
+        ).assess("Tôi trái tuyến, chắc chắn trả bao nhiêu?")
+    )
+
+    assert result.emergency.is_emergency is False
+    assert result.classification is not None
+    assert result.classification.intent is HospitalIntent.INSURANCE_PERSONAL_BENEFIT
+
+
+def test_active_symptoms_can_raise_emergency_from_non_emergency_intent() -> None:
+    result = asyncio.run(
+        _assessor(
+            FakeLLM(
+                {
+                    "emergency": True,
+                    "urgent_symptoms_present": True,
+                    "emergency_confidence": 0.96,
+                    "intent": "emergency",
+                    "intent_confidence": 0.8,
+                    "reason": "active_urgent_symptoms",
+                }
+            ),
+            _settings(),
+        ).assess("Tôi đau ngực dữ dội và khó thở")
+    )
+
+    assert result.emergency.is_emergency is True

@@ -36,6 +36,8 @@ class Case:
     expected_emergency: bool | None = None
     expected_grounded: bool | None = None
     require_citation: bool = False
+    required_source_fact_ids: tuple[str, ...] = ()
+    required_structured_record_ids: tuple[str, ...] = ()
     max_latency_ms: int = 15_000
     notes: str = ""
 
@@ -198,7 +200,7 @@ def main() -> int:
             "make hard-live-eval CONFIRM_HARD_LIVE_EVAL=YES."
         )
 
-    selected = _build_case_bank(args.case_count)
+    selected = _load_case_file(args.case_file) if args.case_file else _build_case_bank(args.case_count)
     if args.case_id:
         wanted = set(args.case_id)
         selected = [case for case in selected if case.case_id in wanted]
@@ -241,7 +243,7 @@ def main() -> int:
                             f"{str(exc)[:180]}"
                         ),
                     }
-            if judge and not bool(judge.get("pass", False)):
+            if judge and _judge_completed(judge) and not bool(judge.get("pass", False)):
                 failures.append(f"judge_failed:{judge.get('reason', 'unknown')}")
             results.append(
                 CaseResult(
@@ -293,6 +295,7 @@ def _parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--base-url", default=os.getenv("HARD_EVAL_BASE_URL", "http://127.0.0.1:18080"))
     parser.add_argument("--case-count", type=int, default=int(os.getenv("HARD_EVAL_CASE_COUNT", "100")))
+    parser.add_argument("--case-file", default=os.getenv("HARD_EVAL_CASE_FILE"))
     parser.add_argument("--limit", type=int, default=int(os.getenv("HARD_EVAL_LIMIT", "8")))
     parser.add_argument("--timeout-seconds", type=float, default=float(os.getenv("HARD_EVAL_TIMEOUT_SECONDS", "45")))
     parser.add_argument("--output", default=os.getenv("HARD_EVAL_OUTPUT", "reports/hard-live-eval-report.json"))
@@ -306,6 +309,58 @@ def _parse_args() -> argparse.Namespace:
     parser.add_argument("--http-retries", type=int, default=int(os.getenv("HARD_EVAL_HTTP_RETRIES", "4")))
     parser.add_argument("--retry-backoff-seconds", type=float, default=float(os.getenv("HARD_EVAL_RETRY_BACKOFF_SECONDS", "2.5")))
     return parser.parse_args()
+
+
+def _load_case_file(case_file: str) -> list[Case]:
+    path = Path(case_file)
+    if not path.is_absolute():
+        path = Path(__file__).resolve().parents[1] / path
+    payload = json.loads(path.read_text(encoding="utf-8"))
+    records = payload.get("records")
+    if not isinstance(records, list) or not records:
+        raise ValueError(f"Case file has no records: {path}")
+    cases: list[Case] = []
+    for record in records:
+        if not isinstance(record, dict):
+            continue
+        cases.append(
+            Case(
+                case_id=str(record["case_id"]),
+                category=str(record.get("category") or "case_file"),
+                message=str(record["query"]),
+                must_contain=tuple(str(item) for item in record.get("must_include", [])),
+                must_not_contain=tuple(str(item) for item in record.get("must_not_include", [])),
+                expected_intents=(
+                    tuple(str(item) for item in record["expected_intents"])
+                    if isinstance(record.get("expected_intents"), list)
+                    else ((str(record["expected_intent"]),) if record.get("expected_intent") else ())
+                ),
+                expected_response_types=(
+                    tuple(str(item) for item in record["expected_response_types"])
+                    if isinstance(record.get("expected_response_types"), list)
+                    else ()
+                ),
+                expected_grounded=(
+                    record.get("expected_grounded")
+                    if "expected_grounded" in record
+                    else None
+                ),
+                expected_emergency=(
+                    record.get("expected_emergency")
+                    if "expected_emergency" in record
+                    else None
+                ),
+                require_citation=bool(record.get("required_source_fact_ids") or record.get("required_structured_record_ids")),
+                required_source_fact_ids=tuple(
+                    str(item) for item in record.get("required_source_fact_ids", [])
+                ),
+                required_structured_record_ids=tuple(
+                    str(item) for item in record.get("required_structured_record_ids", [])
+                ),
+                notes=str(record.get("notes") or ""),
+            )
+        )
+    return cases
 
 
 def _build_case_bank(case_count: int) -> list[Case]:
@@ -629,8 +684,13 @@ def _post_json(
                 return json.loads(raw)
         except urllib.error.HTTPError as exc:
             body = exc.read().decode("utf-8", errors="replace")
-            if exc.code != 429 or attempt >= attempts:
+            if exc.code not in {429, 502, 503, 504} or attempt >= attempts:
                 raise RuntimeError(f"HTTP {exc.code}: {body[:500]}") from exc
+            last_error = exc
+            time.sleep(retry_backoff_seconds * attempt)
+        except urllib.error.URLError as exc:
+            if attempt >= attempts:
+                raise RuntimeError(f"HTTP connection failed: {exc.reason}") from exc
             last_error = exc
             time.sleep(retry_backoff_seconds * attempt)
     raise RuntimeError(f"HTTP retry exhausted: {last_error}")
@@ -638,14 +698,17 @@ def _post_json(
 
 def _validate_case(case: Case, payload: dict[str, Any], *, latency_ms: float) -> list[str]:
     failures: list[str] = []
-    answer = str(payload.get("answer_vi") or payload.get("response") or "")
-    answer_folded = _fold(answer)
+    visible_payload_folded = _fold(json.dumps(payload, ensure_ascii=False))
+    answer_folded = _fold(str(payload.get("answer_vi") or ""))
     if latency_ms > case.max_latency_ms:
         failures.append(f"latency>{case.max_latency_ms}ms")
     for token in case.must_contain:
-        if _fold(token) not in answer_folded:
+        if _fold(token) not in visible_payload_folded:
             failures.append(f"missing:{token}")
     for token in case.must_not_contain:
+        # Internal metadata may legitimately name a policy such as
+        # ``secret_refusal``. Forbidden-output assertions concern user-visible
+        # answer text, not implementation labels.
         if _fold(token) in answer_folded:
             failures.append(f"forbidden:{token}")
     if case.expected_intents and payload.get("intent") not in case.expected_intents:
@@ -661,6 +724,23 @@ def _validate_case(case: Case, payload: dict[str, Any], *, latency_ms: float) ->
         failures.append(f"grounded:{payload.get('grounded')}")
     if case.require_citation and not payload.get("citations"):
         failures.append("missing_citation")
+    actual_record_ids = {
+        str(item) for item in payload.get("structured_record_ids", [])
+    }
+    for record_id in case.required_structured_record_ids:
+        if record_id not in actual_record_ids:
+            failures.append(f"missing_record:{record_id}")
+    citation_ids = {
+        str(citation.get(key))
+        for citation in payload.get("citations", [])
+        if isinstance(citation, dict)
+        for key in ("source_id", "fact_id", "record_id")
+        if citation.get(key)
+    }
+    evidence_ids = actual_record_ids | citation_ids
+    for fact_id in case.required_source_fact_ids:
+        if fact_id not in evidence_ids:
+            failures.append(f"missing_fact:{fact_id}")
     if _has_mojibake(json.dumps(payload, ensure_ascii=False)):
         failures.append("mojibake")
     return failures
@@ -668,6 +748,17 @@ def _validate_case(case: Case, payload: dict[str, Any], *, latency_ms: float) ->
 
 def _should_judge(case: Case, failures: list[str]) -> bool:
     return bool(failures) or case.category in {"rag", "routing", "security"}
+
+
+def _judge_completed(judge: dict[str, Any]) -> bool:
+    reason = str(judge.get("reason", ""))
+    unavailable_prefixes = (
+        "judge_error:",
+        "judge_api_key_missing",
+        "judge_http_",
+        "invalid_judge_json:",
+    )
+    return not reason.startswith(unavailable_prefixes)
 
 
 def _judge_case(case: Case, payload: dict[str, Any], *, args: argparse.Namespace) -> dict[str, Any]:
@@ -687,6 +778,8 @@ def _judge_case(case: Case, payload: dict[str, Any], *, args: argparse.Namespace
         f"Câu hỏi: {case.message}\n"
         f"Kỳ vọng chứa: {list(case.must_contain)}\n"
         f"Kỳ vọng không chứa: {list(case.must_not_contain)}\n"
+        f"Record bắt buộc: {list(case.required_structured_record_ids)}\n"
+        f"Fact bắt buộc: {list(case.required_source_fact_ids)}\n"
         f"Response JSON: {json.dumps(_compact_payload(payload), ensure_ascii=False)}"
     )
     request = urllib.request.Request(
@@ -763,6 +856,19 @@ def _compact_payload(payload: dict[str, Any]) -> dict[str, Any]:
 
 def _build_report(results: list[CaseResult], *, args: argparse.Namespace) -> dict[str, Any]:
     failed = [result for result in results if not result.passed]
+    judged = [result for result in results if result.judge is not None]
+    completed_judges = [
+        result for result in judged if _judge_completed(result.judge or {})
+    ]
+    unavailable_judges = [
+        result for result in judged if not _judge_completed(result.judge or {})
+    ]
+    judge_passed = [
+        result for result in completed_judges if bool(result.judge.get("pass"))
+    ]
+    judge_scores = [
+        float(result.judge.get("score", 0)) for result in completed_judges
+    ]
     by_category: dict[str, dict[str, int]] = {}
     for result in results:
         entry = by_category.setdefault(result.case.category, {"passed": 0, "failed": 0})
@@ -776,6 +882,14 @@ def _build_report(results: list[CaseResult], *, args: argparse.Namespace) -> dic
             "failed": len(failed),
             "pass_rate": round((len(results) - len(failed)) / max(1, len(results)), 4),
             "live_judge": bool(args.live_judge),
+            "judge_cases": len(judged),
+            "judge_completed": len(completed_judges),
+            "judge_unavailable": len(unavailable_judges),
+            "judge_passed": len(judge_passed),
+            "judge_pass_rate": round(
+                len(judge_passed) / max(1, len(completed_judges)), 4
+            ),
+            "judge_mean_score": round(sum(judge_scores) / max(1, len(judge_scores)), 4),
             "by_category": by_category,
         },
         "failures": [
@@ -797,6 +911,7 @@ def _build_report(results: list[CaseResult], *, args: argparse.Namespace) -> dic
             {
                 "case_id": result.case.case_id,
                 "category": result.case.category,
+                "message": result.case.message,
                 "passed": result.passed,
                 "failures": result.failures,
                 "latency_ms": result.latency_ms,
@@ -806,7 +921,10 @@ def _build_report(results: list[CaseResult], *, args: argparse.Namespace) -> dic
                 "emergency": result.payload.get("emergency"),
                 "answer_vi": result.payload.get("answer_vi"),
                 "structured_record_ids": result.payload.get("structured_record_ids"),
+                "citations": result.payload.get("citations"),
+                "metadata": result.payload.get("metadata"),
                 "judge": result.judge,
+                "error": result.error,
             }
             for result in results
         ],

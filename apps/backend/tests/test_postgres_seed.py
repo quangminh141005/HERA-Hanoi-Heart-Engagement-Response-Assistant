@@ -50,8 +50,8 @@ def test_real_postgres_archive_passes_seed_preflight() -> None:
     assert len(archive.manifest_sha256) == 64
     assert archive.table_counts["service_catalog_records"] == 2_946
     assert archive.table_counts["service_price_snapshots"] == 4_051
-    assert archive.table_counts["schedule_entries"] == 1_382
-    assert archive.table_counts["booking_sessions"] == 771
+    assert archive.table_counts["schedule_entries"] == 1_558
+    assert archive.table_counts["booking_sessions"] == 1_072
 
 
 def test_seed_rejects_integrity_metadata_for_another_bundle() -> None:
@@ -100,7 +100,7 @@ def test_knowledge_embedding_maps_to_pgvector_contract() -> None:
     )
 
     assert "embedding" in columns
-    assert len(rows) == 11
+    assert len(rows) == 34
     assert rows[0]["embedding_model"] == "Vietnamese_Embedding"
     assert rows[0]["embedding_dimension"] == 1024
     assert len(json.loads(rows[0]["embedding"])) == 1024

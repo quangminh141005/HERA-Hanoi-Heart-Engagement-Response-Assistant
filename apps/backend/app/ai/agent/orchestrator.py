@@ -64,6 +64,7 @@ class _RoutingDecision:
     model_emergency_confidence: float | None = None
     model_intent_confidence: float | None = None
     slots: dict[str, str | None] = field(default_factory=dict)
+    policy_action: str = "none"
 
 
 class ConversationOrchestrator:
@@ -108,9 +109,21 @@ class ConversationOrchestrator:
         # Redaction is the boundary before any safety check or external model call.
         # The model-assisted guard decides emergency risk and intent first; prompt
         # injection is blocked immediately after non-emergency routing.
+        structured_reference = _extract_structured_reference(message)
         redaction = redact_pii(message)
         sanitized = redaction.text
         routing = await self._assess_routing(sanitized)
+        routing = await self._reconcile_structured_reference(
+            structured_reference,
+            routing,
+        )
+
+        def finish(result: OrchestratorResult) -> OrchestratorResult:
+            return _mark_routing_decision(result, routing)
+
+        if not routing.emergency.is_emergency and routing.policy_action != "none":
+            return finish(self._policy_refusal(cid, routing.policy_action))
+
         if not routing.emergency.is_emergency:
             input_check = self.guardrails.validate_input(redaction.text)
             if not input_check.allowed:
@@ -130,9 +143,6 @@ class ConversationOrchestrator:
             sanitized = input_check.text
 
         emergency = routing.emergency
-
-        def finish(result: OrchestratorResult) -> OrchestratorResult:
-            return _mark_routing_decision(result, routing)
 
         if emergency.is_emergency:
             await self.memory_store.clear(cid)
@@ -184,6 +194,7 @@ class ConversationOrchestrator:
             sanitized,
             classification,
             context,
+            routing.slots,
         )
         if (
             context is not None
@@ -256,7 +267,7 @@ class ConversationOrchestrator:
 
         if classification.intent is HospitalIntent.SERVICE_PRICE:
             price_slots = (
-                None,
+                routing.slots.get("service_query"),
                 routing.slots.get("facility_code"),
             )
             if any(price_slots):
@@ -278,15 +289,49 @@ class ConversationOrchestrator:
             result = await asyncio.to_thread(
                 self.structured_data_service.chat_bhyt,
                 sanitized,
+                routing.slots.get("bhyt_tier"),
             )
             response = self._structured_result(cid, result, redaction.categories)
             await self._remember_structured(cid, result)
             return finish(_mark_context_applied(response, context_applied))
 
         if classification.intent is HospitalIntent.DOCTOR_SCHEDULE:
+            context_doctor = (
+                context.doctor_name
+                if (
+                    context_applied
+                    and context is not None
+                    and not routing.slots.get('doctor_query')
+                    and not _has_explicit_doctor(message)
+                )
+                else None
+            )
+            schedule_slots = (
+                routing.slots.get("date"),
+                routing.slots.get("facility_code"),
+                routing.slots.get("doctor_query") or context_doctor,
+                routing.slots.get("room_query"),
+            )
+            if any(schedule_slots):
+                result = await asyncio.to_thread(
+                    self.structured_data_service.chat_schedule,
+                    sanitized,
+                    *schedule_slots,
+                )
+            else:
+                result = await asyncio.to_thread(
+                    self.structured_data_service.chat_schedule,
+                    sanitized,
+                )
+            response = self._structured_result(cid, result, redaction.categories)
+            await self._remember_structured(cid, result)
+            return finish(_mark_context_applied(response, context_applied))
+
+        if classification.intent is HospitalIntent.DOCTOR_DEPARTMENT:
             result = await asyncio.to_thread(
-                self.structured_data_service.chat_schedule,
+                self.structured_data_service.chat_doctor_information,
                 sanitized,
+                routing.slots.get('doctor_query'),
             )
             response = self._structured_result(cid, result, redaction.categories)
             await self._remember_structured(cid, result)
@@ -329,14 +374,16 @@ class ConversationOrchestrator:
                 )
             )
         citations = []
-        seen_source_ids: set[str] = set()
+        seen_evidence_ids: set[tuple[str, str | None]] = set()
         for source in answer.citations:
-            if source.source_id in seen_source_ids:
+            evidence_id = (source.source_id, source.fact_id)
+            if evidence_id in seen_evidence_ids:
                 continue
-            seen_source_ids.add(source.source_id)
+            seen_evidence_ids.add(evidence_id)
             citations.append(
                 {
                     "source_id": source.source_id,
+                    "fact_id": source.fact_id,
                     "title": source.title,
                     "url": source.url,
                     "excerpt": None,
@@ -444,6 +491,7 @@ class ConversationOrchestrator:
                 classification=classification,
                 decision_source="model",
                 slots=model_assessment.slots,
+                policy_action=model_assessment.policy_action,
                 **confidence_kwargs,
             )
 
@@ -458,10 +506,18 @@ class ConversationOrchestrator:
             )
 
         if model_assessment.classification is not None:
+            classification = _coherent_model_classification(
+                message,
+                model_assessment.classification,
+                model_assessment.slots,
+                model_assessment.policy_action,
+            )
             return _RoutingDecision(
                 emergency=model_assessment.emergency,
-                classification=model_assessment.classification,
+                classification=classification,
                 decision_source="model",
+                slots=model_assessment.slots,
+                policy_action=model_assessment.policy_action,
                 **confidence_kwargs,
             )
         return _RoutingDecision(
@@ -469,6 +525,48 @@ class ConversationOrchestrator:
             classification=deterministic_classification,
             decision_source="deterministic_fallback",
             **confidence_kwargs,
+        )
+
+    async def _reconcile_structured_reference(
+        self,
+        reference: str | None,
+        routing: _RoutingDecision,
+    ) -> _RoutingDecision:
+        """Resolve opaque identifiers against PostgreSQL before generic RAG.
+
+        The identifier shape is generic; the database decides whether it is a real
+        HERA service code. This avoids a growing hardcoded code or keyword list.
+        """
+
+        if routing.emergency.is_emergency or routing.policy_action != "none":
+            return routing
+        if reference is None:
+            return routing
+        try:
+            result = await asyncio.to_thread(
+                self.structured_data_service.lookup_service_prices,
+                query=reference,
+                facility_code=routing.slots.get("facility_code"),
+                as_of_date=None,
+            )
+        except Exception as exc:
+            record_upstream_failure("structured_reference_lookup", exc)
+            return routing
+        if not result.records:
+            return routing
+        slots = {**routing.slots, "service_query": reference}
+        return replace(
+            routing,
+            classification=IntentClassification(
+                intent=HospitalIntent.SERVICE_PRICE,
+                confidence=max(0.99, routing.classification.confidence),
+                reasons=[
+                    *routing.classification.reasons,
+                    "postgres:structured_reference",
+                ],
+            ),
+            decision_source="model+postgres_reference",
+            slots=slots,
         )
 
     async def close(self) -> None:
@@ -496,9 +594,17 @@ class ConversationOrchestrator:
         if not isinstance(payload, dict):
             payload = {}
         rows = payload.get("records", [])
-        first = rows[0] if rows and isinstance(rows[0], dict) else {}
+        approved_rows = [row for row in rows if isinstance(row, dict)]
+        first = approved_rows[0] if approved_rows else {}
         intent = result.intent
-        facility = first.get("facility_code") or payload.get("facility_code")
+        facilities = {
+            str(row["facility_code"])
+            for row in approved_rows
+            if row.get("facility_code")
+        }
+        facility = payload.get("facility_code") or (
+            next(iter(facilities)) if len(facilities) == 1 else None
+        )
         service_name = None
         service_date = None
         doctor_name = None
@@ -507,8 +613,22 @@ class ConversationOrchestrator:
         if intent == HospitalIntent.SERVICE_PRICE.value:
             service_name = first.get("display_name")
         elif intent == HospitalIntent.DOCTOR_SCHEDULE.value:
-            service_date = first.get("service_date") or payload.get("service_date")
-            doctor_name = first.get("provider_text")
+            service_dates = {
+                str(row["service_date"])
+                for row in approved_rows
+                if row.get("service_date")
+            }
+            provider_names = {
+                str(row["provider_text"])
+                for row in approved_rows
+                if row.get("provider_text")
+            }
+            service_date = payload.get("service_date") or (
+                next(iter(service_dates)) if len(service_dates) == 1 else None
+            )
+            doctor_name = (
+                next(iter(provider_names)) if len(provider_names) == 1 else None
+            )
         elif intent == HospitalIntent.INSURANCE.value:
             selected_ids = set(result.structured_record_ids)
             for tier in payload.get("tiers", []):
@@ -581,6 +701,28 @@ class ConversationOrchestrator:
             metadata=metadata or {},
         )
 
+    def _policy_refusal(self, cid: str, policy_action: str) -> OrchestratorResult:
+        responses = {
+            "ocr_unavailable": (
+                "HERA không có OCR và không đọc được nội dung trong ảnh, bản scan "
+                "hoặc file đính kèm. Bạn có thể nhập lại phần chữ cần tra cứu."
+            ),
+            "medical_interpretation_refusal": (
+                "HERA không thể phân tích ảnh y khoa, chỉ số xét nghiệm hoặc đưa ra "
+                "chẩn đoán. Bạn nên trao đổi trực tiếp với nhân viên y tế."
+            ),
+            "secret_refusal": (
+                "HERA không thể cung cấp khóa API, mật khẩu, token, system prompt, "
+                "biến môi trường hoặc cấu hình riêng tư."
+            ),
+        }
+        return self._refusal(
+            cid,
+            intent=HospitalIntent.UNSUPPORTED.value,
+            response=responses[policy_action],
+            metadata={"policy_action": policy_action},
+        )
+
     @staticmethod
     def _pii_warnings(categories) -> list[str]:
         if not categories:
@@ -613,7 +755,7 @@ def build_default_orchestrator(settings: Settings) -> ConversationOrchestrator:
                 embedder=build_embedder(settings),
                 minimum_semantic_score=settings.RAG_MIN_CONFIDENCE,
                 shared_cache=structured_service.cache,
-                embedding_model=settings.FPT_EMBEDDING_MODEL,
+                embedding_model=settings.EMBEDDING_MODEL,
                 expected_embedding_dimensions=settings.EMBEDDING_DIMENSIONS,
                 reranker=build_reranker(settings),
                 rerank_top_n=settings.RERANK_TOP_N,
@@ -693,14 +835,58 @@ _STRUCTURED_CONTEXT_INTENTS = {
 }
 
 
+def _coherent_model_classification(
+    message: str,
+    classification: IntentClassification,
+    slots: dict[str, str | None],
+    policy_action: str,
+) -> IntentClassification:
+    """Enforce consistency within the model's own typed decision.
+
+    This does not classify Vietnamese keywords. It only reconciles a route with
+    structured fields the same model emitted, preventing a populated schedule or
+    price payload from being sent to generic RAG.
+    """
+
+    target = classification.intent
+    if policy_action != "none":
+        target = HospitalIntent.UNSUPPORTED
+    elif slots.get("doctor_query") and (
+        _has_date_reference(message) or slots.get("facility_code")
+    ):
+        target = HospitalIntent.DOCTOR_SCHEDULE
+    elif slots.get("service_query"):
+        target = HospitalIntent.SERVICE_PRICE
+    elif slots.get("bhyt_tier") and target not in {
+        HospitalIntent.INSURANCE_PERSONAL_BENEFIT,
+        HospitalIntent.PRICE_BHYT_CALCULATION,
+    }:
+        target = HospitalIntent.INSURANCE
+    if target is classification.intent:
+        return classification
+    return IntentClassification(
+        intent=target,
+        confidence=classification.confidence,
+        reasons=[*classification.reasons, "model:schema_consistency"],
+    )
+
+
 def _apply_safe_context(
     message: str,
     classification: IntentClassification,
     context: ConversationEntities | None,
+    routing_slots: dict[str, str | None] | None = None,
 ) -> tuple[str, IntentClassification, bool]:
     """Resolve elliptical follow-ups using only approved canonical entities."""
 
-    if context is None or not _looks_like_follow_up(message):
+    same_structured_intent_without_new_slots = bool(
+        context is not None
+        and classification.intent.value == context.intent
+        and not any((routing_slots or {}).values())
+    )
+    if context is None or not (
+        _looks_like_follow_up(message) or same_structured_intent_without_new_slots
+    ):
         return message, classification, False
     try:
         previous_intent = HospitalIntent(context.intent)
@@ -735,6 +921,12 @@ def _apply_safe_context(
             parts.append(f"ngày {context.service_date}")
     if context.facility_code and not _has_facility(message):
         parts.append(context.facility_code)
+    if previous_intent is HospitalIntent.DOCTOR_SCHEDULE:
+        parts = [
+            part
+            for part in parts
+            if part not in {'lịch bác sĩ', context.doctor_name}
+        ]
     parts.append(message)
     return " ".join(parts), classification, True
 
@@ -771,6 +963,7 @@ def _has_date_reference(message: str) -> bool:
     return bool(
         re.search(r"\b20\d{2}[-/]\d{1,2}[-/]\d{1,2}\b", folded)
         or re.search(r"\b\d{1,2}[-/]\d{1,2}[-/]20\d{2}\b", folded)
+        or re.search(r"\b\d{1,2}[-/]\d{1,2}\b", folded)
         or any(term in folded for term in ("hom nay", "ngay mai", "ngay kia", "tuan"))
     )
 
@@ -802,6 +995,11 @@ def _has_explicit_service(message: str) -> bool:
 def _has_explicit_doctor(message: str) -> bool:
     folded = _fold_text(message)
     return bool(re.search(r"\b(?:bac si|bs)\s+\w+\s+\w+", folded))
+
+
+def _extract_structured_reference(message: str) -> str | None:
+    match = re.search(r"\b[0-9A-Za-z]+(?:\.[0-9A-Za-z]+){2,}\b", message)
+    return match.group(0) if match else None
 
 
 def _looks_like_image_or_ocr_request(message: str) -> bool:

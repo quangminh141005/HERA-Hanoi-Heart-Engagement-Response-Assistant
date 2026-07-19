@@ -73,15 +73,29 @@ class RetrievalService:
         if expanded_query:
             retrieval_queries.append(expanded_query)
         lexical_rows = []
+        allowed_intents = set(request.allowed_intents) or None
         for retrieval_query in retrieval_queries:
             lexical_rows.extend(
                 await asyncio.to_thread(
                     self.repository.search_facts,
                     query=retrieval_query,
-                    allowed_intents=set(request.allowed_intents) or None,
+                    allowed_intents=allowed_intents,
                     limit=max(request.top_k * 3, request.top_k),
                 )
             )
+            if (
+                allowed_intents
+                and self.settings is not None
+                and self.settings.RAG_CROSS_INTENT_RETRIEVAL_ENABLED
+            ):
+                lexical_rows.extend(
+                    await asyncio.to_thread(
+                        self.repository.search_facts,
+                        query=retrieval_query,
+                        allowed_intents=None,
+                        limit=max(request.top_k * 3, request.top_k),
+                    )
+                )
         lexical_ranked: dict[str, RetrievedChunk] = {}
         for row in lexical_rows:
             chunk_id = f"CHUNK-{row['fact_id']}-001"
@@ -91,6 +105,7 @@ class RetrievalService:
                 score=min(1.0, 0.55 + (0.08 * int(row["score"]))),
                 source=KnowledgeSource(
                     source_id=row["source_id"],
+                    fact_id=row["fact_id"],
                     title=row["title"],
                     url=row["url"],
                     document_type="official_fact",
@@ -129,10 +144,24 @@ class RetrievalService:
                 semantic_rows = await asyncio.to_thread(
                     self.repository.search_embedded_knowledge_chunks,
                     query_vector=query_vector,
-                    allowed_intents=set(request.allowed_intents) or None,
+                    allowed_intents=allowed_intents,
                     limit=max(request.top_k * 3, request.top_k),
                     minimum_score=self.minimum_semantic_score,
                 )
+                if (
+                    allowed_intents
+                    and self.settings is not None
+                    and self.settings.RAG_CROSS_INTENT_RETRIEVAL_ENABLED
+                ):
+                    semantic_rows.extend(
+                        await asyncio.to_thread(
+                            self.repository.search_embedded_knowledge_chunks,
+                            query_vector=query_vector,
+                            allowed_intents=None,
+                            limit=max(request.top_k * 3, request.top_k),
+                            minimum_score=self.minimum_semantic_score,
+                        )
+                    )
                 for row in semantic_rows:
                     score = float(row["score"])
                     semantic_ranked[row["chunk_id"]] = RetrievedChunk(
@@ -141,6 +170,7 @@ class RetrievalService:
                         score=score * 0.85,
                         source=KnowledgeSource(
                             source_id=row["source_id"],
+                            fact_id=row["fact_id"],
                             title=row["title"],
                             url=row["url"],
                             document_type="official_fact_embedding",

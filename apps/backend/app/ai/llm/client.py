@@ -7,6 +7,7 @@ import hashlib
 import json
 import logging
 import time
+import uuid
 from collections import OrderedDict
 from typing import Any, Protocol
 
@@ -295,6 +296,7 @@ class GuardedLLMClient:
         cache_ttl_seconds: int,
         cache_max_entries: int,
         settings: Settings | None = None,
+        distributed_gate: RedisModelConcurrencyGate | None = None,
     ) -> None:
         self.client = client
         self._semaphore = asyncio.Semaphore(max_concurrent_requests)
@@ -307,6 +309,7 @@ class GuardedLLMClient:
         self._lock = asyncio.Lock()
         self._safe_client = NoopLLMClient()
         self.settings = settings
+        self._distributed_gate = distributed_gate
 
     async def generate(
         self,
@@ -362,6 +365,7 @@ class GuardedLLMClient:
         temperature: float,
         max_tokens: int,
     ) -> str:
+        lease_token: str | None = None
         try:
             await asyncio.wait_for(
                 self._semaphore.acquire(),
@@ -379,12 +383,26 @@ class GuardedLLMClient:
             )
 
         try:
+            if self._distributed_gate is not None:
+                lease_token = await self._distributed_gate.acquire(
+                    timeout_seconds=self._queue_timeout_seconds
+                )
+                if lease_token is None:
+                    logger.warning(
+                        "distributed model queue timeout; returning safe fallback",
+                        extra={"event": "llm_distributed_queue_timeout"},
+                    )
+                    return await self._safe_client.generate(
+                        messages, temperature=temperature, max_tokens=max_tokens
+                    )
             return await self.client.generate(
                 messages,
                 temperature=temperature,
                 max_tokens=max_tokens,
             )
         finally:
+            if lease_token is not None and self._distributed_gate is not None:
+                await self._distributed_gate.release(lease_token)
             self._semaphore.release()
 
     async def _get_cached(self, key: str) -> str | None:
@@ -414,6 +432,60 @@ class GuardedLLMClient:
             result = close()
             if hasattr(result, "__await__"):
                 await result
+        if self._distributed_gate is not None:
+            await self._distributed_gate.close()
+
+
+class RedisModelConcurrencyGate:
+    """Atomic cross-replica concurrency gate with expiring leases."""
+
+    _ACQUIRE_SCRIPT = """
+local key = KEYS[1]
+local now = tonumber(ARGV[1])
+local expires = tonumber(ARGV[2])
+local limit = tonumber(ARGV[3])
+local token = ARGV[4]
+redis.call('ZREMRANGEBYSCORE', key, '-inf', now)
+if redis.call('ZCARD', key) >= limit then return 0 end
+redis.call('ZADD', key, expires, token)
+redis.call('PEXPIRE', key, math.max(expires - now, 1000))
+return 1
+"""
+
+    def __init__(self, *, redis_url: str, gate_name: str, limit: int, lease_seconds: int) -> None:
+        from redis.asyncio import Redis
+
+        self._client = Redis.from_url(redis_url, decode_responses=True)
+        self._key = f"hera:model-gate:{gate_name}"
+        self._limit = limit
+        self._lease_ms = lease_seconds * 1000
+
+    async def acquire(self, *, timeout_seconds: float) -> str | None:
+        deadline = time.monotonic() + timeout_seconds
+        token = uuid.uuid4().hex
+        while True:
+            now_ms = int(time.time() * 1000)
+            acquired = await self._client.eval(
+                self._ACQUIRE_SCRIPT,
+                1,
+                self._key,
+                now_ms,
+                now_ms + self._lease_ms,
+                self._limit,
+                token,
+            )
+            if int(acquired) == 1:
+                return token
+            remaining = deadline - time.monotonic()
+            if remaining <= 0:
+                return None
+            await asyncio.sleep(min(0.05, remaining))
+
+    async def release(self, token: str) -> None:
+        await self._client.zrem(self._key, token)
+
+    async def close(self) -> None:
+        await self._client.aclose()
 
 
 def build_llm_client(
@@ -435,6 +507,14 @@ def build_llm_client(
     if client is None:
         return NoopLLMClient()
     fallback_client: LLMClient = FallbackLLMClient([client])
+    gate = None
+    if settings.LLM_DISTRIBUTED_GATE_ENABLED:
+        gate = RedisModelConcurrencyGate(
+            redis_url=settings.REDIS_URL,
+            gate_name=model_override or settings.FPT_LLM_MODEL,
+            limit=settings.LLM_GLOBAL_MAX_CONCURRENT_REQUESTS,
+            lease_seconds=settings.LLM_DISTRIBUTED_LEASE_SECONDS,
+        )
     return GuardedLLMClient(
         fallback_client,
         max_concurrent_requests=settings.LLM_MAX_CONCURRENT_REQUESTS,
@@ -443,6 +523,7 @@ def build_llm_client(
         cache_ttl_seconds=settings.LLM_RESPONSE_CACHE_TTL_SECONDS,
         cache_max_entries=settings.LLM_RESPONSE_CACHE_MAX_ENTRIES,
         settings=settings,
+        distributed_gate=gate,
     )
 
 

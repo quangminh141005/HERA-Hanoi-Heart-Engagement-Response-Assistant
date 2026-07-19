@@ -1,4 +1,4 @@
-"""Verify the configured FPT LLM and embedding endpoints with synthetic input."""
+"""Verify the configured FPT LLM, embedding and rerank endpoints."""
 
 from __future__ import annotations
 
@@ -15,7 +15,7 @@ if str(BACKEND_ROOT) not in sys.path:
     sys.path.insert(0, str(BACKEND_ROOT))
 
 from app.ai.llm.client import OpenAILLMClient  # noqa: E402
-from app.ai.rag.embeddings.embedder import OpenAICompatibleEmbedder  # noqa: E402
+from app.ai.rag.embeddings.embedder import build_embedder  # noqa: E402
 from app.ai.rag.rerank import FPTReranker  # noqa: E402
 from app.ai.rag.schemas import KnowledgeSource, RetrievedChunk  # noqa: E402
 from app.core.config import Settings, get_settings  # noqa: E402
@@ -42,9 +42,7 @@ async def verify_model_gateway(
     if settings.FPT_GUARD_MODEL != "gpt-oss-20b":
         raise ModelGatewayProbeError("FPT_GUARD_MODEL must be gpt-oss-20b")
     if settings.FPT_EMBEDDING_MODEL != "Vietnamese_Embedding":
-        raise ModelGatewayProbeError(
-            "FPT_EMBEDDING_MODEL must be Vietnamese_Embedding"
-        )
+        raise ModelGatewayProbeError("FPT_EMBEDDING_MODEL must be Vietnamese_Embedding")
     if settings.EMBEDDING_DIMENSIONS != 1024:
         raise ModelGatewayProbeError("EMBEDDING_DIMENSIONS must be 1024")
     if settings.RERANK_ENABLED and settings.RERANK_MODEL != "bge-reranker-v2-m3":
@@ -57,14 +55,7 @@ async def verify_model_gateway(
         timeout_seconds=settings.MODEL_TIMEOUT_SECONDS,
         provider_label="fpt_llm",
     )
-    active_embedder = embedder or OpenAICompatibleEmbedder(
-        api_key=settings.API_KEY,
-        model=settings.FPT_EMBEDDING_MODEL,
-        base_url=settings.EMBEDDING_BASE_URL or settings.FPT_API_BASE_URL,
-        timeout_seconds=settings.MODEL_TIMEOUT_SECONDS,
-        provider_label="fpt_embedding",
-        expected_dimensions=settings.EMBEDDING_DIMENSIONS,
-    )
+    active_embedder = embedder or build_embedder(settings)
     active_guard = guard_client or OpenAILLMClient(
         api_key=settings.API_KEY,
         model=settings.FPT_GUARD_MODEL,

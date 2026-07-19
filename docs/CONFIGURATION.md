@@ -163,11 +163,13 @@ restart có thể làm mất context/cache/counter, không làm mất giá/BHYT/
 | `MODEL_ROUTING_MAX_TOKENS` | `1024` | Ngân sách output cho model guard trả JSON routing; không phải số token luôn bị sử dụng |
 | `MODEL_ROUTING_EMERGENCY_CONFIDENCE_THRESHOLD` | `0.62` | Ngưỡng kích hoạt emergency handoff từ model |
 | `MODEL_ROUTING_INTENT_CONFIDENCE_THRESHOLD` | `0.60` | Ngưỡng chấp nhận intent do model chọn |
+| `SCHEDULE_DOCTOR_MATCH_MIN_SCORE` | `0.60` | Ngưỡng `word_similarity` khi đối chiếu tên bác sĩ/phân ca với doctor index |
 | `MODEL_TIMEOUT_SECONDS` | `45` | Chỉ dùng model gateway probe |
 | `MODEL_PROBE_LLM_MAX_TOKENS` | `1024` | Token output tối đa cho live LLM probe; tối thiểu 1024, prompt vẫn ép trả lời ngắn |
 | `HARD_EVAL_JUDGE_MAX_TOKENS` | `1024` | Token output tối đa cho live judge `gpt-oss-20b`; không dùng giá trị 8 vì judge phải trả JSON có lý do |
 | `HARD_EVAL_DELAY_SECONDS` | `2.1` | Delay giữa các case hard eval để không đụng rate limit chat 30/phút |
 | `RAG_TOP_K` | `3` | Giới hạn evidence ở ba chunk phù hợp nhất để giảm prompt và latency |
+| `RAG_CROSS_INTENT_RETRIEVAL_ENABLED` | `true` | Bổ sung candidate không khóa intent trước RRF/rerank, tránh mất fact khi router chọn intent lân cận |
 | `RAG_MIN_CONFIDENCE` | `0.55` | Ngưỡng evidence; không hạ để “cố trả lời” |
 | `RAG_GENERATION_MAX_TOKENS` | `1024` | Trần output cho lượt diễn đạt grounded; tối thiểu 1024, provider chỉ tính token thực dùng |
 | `RERANK_ENABLED` | `true` | Bật rerank sau lexical + pgvector + RRF |

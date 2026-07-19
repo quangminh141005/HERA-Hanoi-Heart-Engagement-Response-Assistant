@@ -22,6 +22,8 @@ COPY --chown=hera:hera alembic ./alembic
 COPY --chown=hera:hera app ./app
 COPY --chown=hera:hera scripts/export_postgres_seed.py scripts/seed_postgres.py scripts/smoke_deploy.py scripts/verify_generated_data.py scripts/verify_model_gateway.py scripts/verify_release_assets.py ./scripts/
 COPY --chown=hera:hera scripts/verify_langfuse.py scripts/verify_live_rag.py ./scripts/
+COPY --chown=hera:hera scripts/rebuild_seed_with_fact_embeddings.py ./scripts/
+COPY --chown=hera:hera scripts/verify_model_router_load.py ./scripts/
 COPY --chown=hera:hera data/hera_postgres_seed.json.gz data/hera_postgres_seed.json.gz.sha256 ./data/
 
 USER hera

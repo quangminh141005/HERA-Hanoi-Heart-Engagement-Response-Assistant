@@ -16,8 +16,8 @@
   "human_reviewer": null,
   "reviewed_at": null,
   "counts": {
-    "sources": 13,
-    "seed_facts": 11,
+    "sources": 24,
+    "seed_facts": 34,
     "historical_price_rows": 2946,
     "historical_price_group_headers": 2,
     "nested_facility_prices": 4051,
@@ -27,10 +27,10 @@
     "schedule_documents_accepted": 18,
     "schedule_documents_review_required": 0,
     "schedule_duplicate_sources_excluded": 0,
-    "schedule_entries": 1382,
-    "schedule_named_assignments": 1008,
+    "schedule_entries": 1558,
+    "schedule_named_assignments": 1150,
     "schedule_generic_assignments": 60,
-    "schedule_closed_entries": 271,
+    "schedule_closed_entries": 305,
     "generated_capacity_records": 0,
     "import_issues": 14,
     "faq_paraphrases": 60,
@@ -44,10 +44,10 @@
       "documents_discovered": 3,
       "documents_validation_accepted": 3,
       "documents_review_required": 0,
-      "entries_published_to_review_dataset": 223,
-      "named_assignments": 168,
+      "entries_published_to_review_dataset": 253,
+      "named_assignments": 191,
       "generic_assignments": 10,
-      "closed_entries": 37,
+      "closed_entries": 44,
       "runtime_eligible_entries": 0
     },
     {
@@ -56,10 +56,10 @@
       "documents_discovered": 3,
       "documents_validation_accepted": 3,
       "documents_review_required": 0,
-      "entries_published_to_review_dataset": 223,
-      "named_assignments": 165,
+      "entries_published_to_review_dataset": 254,
+      "named_assignments": 191,
       "generic_assignments": 10,
-      "closed_entries": 37,
+      "closed_entries": 42,
       "runtime_eligible_entries": 0
     },
     {
@@ -68,10 +68,10 @@
       "documents_discovered": 3,
       "documents_validation_accepted": 3,
       "documents_review_required": 0,
-      "entries_published_to_review_dataset": 245,
-      "named_assignments": 165,
+      "entries_published_to_review_dataset": 274,
+      "named_assignments": 189,
       "generic_assignments": 10,
-      "closed_entries": 57,
+      "closed_entries": 62,
       "runtime_eligible_entries": 0
     },
     {
@@ -80,10 +80,10 @@
       "documents_discovered": 3,
       "documents_validation_accepted": 3,
       "documents_review_required": 0,
-      "entries_published_to_review_dataset": 223,
-      "named_assignments": 170,
+      "entries_published_to_review_dataset": 253,
+      "named_assignments": 194,
       "generic_assignments": 10,
-      "closed_entries": 37,
+      "closed_entries": 43,
       "runtime_eligible_entries": 0
     },
     {
@@ -92,10 +92,10 @@
       "documents_discovered": 3,
       "documents_validation_accepted": 3,
       "documents_review_required": 0,
-      "entries_published_to_review_dataset": 223,
-      "named_assignments": 168,
+      "entries_published_to_review_dataset": 249,
+      "named_assignments": 188,
       "generic_assignments": 10,
-      "closed_entries": 43,
+      "closed_entries": 49,
       "runtime_eligible_entries": 0
     },
     {
@@ -104,10 +104,10 @@
       "documents_discovered": 3,
       "documents_validation_accepted": 3,
       "documents_review_required": 0,
-      "entries_published_to_review_dataset": 245,
-      "named_assignments": 172,
+      "entries_published_to_review_dataset": 275,
+      "named_assignments": 197,
       "generic_assignments": 10,
-      "closed_entries": 60,
+      "closed_entries": 65,
       "runtime_eligible_entries": 0
     }
   ],
@@ -416,9 +416,9 @@
       "file": "01-sources-facts-and-templates.json",
       "kind": "sources_facts_templates",
       "lane": "reviewable_runtime_seed",
-      "record_count": 30,
-      "bytes": 16579,
-      "sha256": "4eaab2077759d4cf36e16dbb4f844f66bc986c324254d59a0d2c5e40eb89e3a4"
+      "record_count": 64,
+      "bytes": 47200,
+      "sha256": "72667d7c899acfe8992942b56171c1848f68a9780672906c3ccc82277f7de053"
     },
     {
       "file": "02-service-prices-2025-batch-01.json",
@@ -488,23 +488,23 @@
       "lane": "schedule_provenance",
       "record_count": 18,
       "bytes": 40932,
-      "sha256": "502574a203926dd7ef1f6674555e0269ae28c73882a2624525b9a6cc5731a429"
+      "sha256": "7afe1fee69d638249e484abe4ffa4bf0da6796cfd9b1455f11e251f020065fe7"
     },
     {
       "file": "10-schedule-entries.json",
       "kind": "schedule_entries",
       "lane": "partial_schedule_snapshot",
-      "record_count": 1382,
-      "bytes": 1986024,
-      "sha256": "afc92706e625b4786b59b060089d0414b4f9a4d614be5a56ef37e8ab3454f5a3"
+      "record_count": 1558,
+      "bytes": 2220232,
+      "sha256": "68583ad5a11423f9fd584fb4966af501845ca769188d3280869d48f63b2baee6"
     },
     {
       "file": "11-booking-capacity-config.json",
       "kind": "prototype_capacity_config",
       "lane": "local_prototype_config",
       "record_count": 1,
-      "bytes": 55464,
-      "sha256": "da2447b58b4223f03acaf715bbb5e56b255606831c1ff8341d851c79d739e717"
+      "bytes": 48261,
+      "sha256": "15a92f70abff94b78c67da80b478c027b8be302086e4a99413585c6f9b11d6a3"
     },
     {
       "file": "12-import-issues.json",
@@ -567,8 +567,8 @@
       "kind": "evaluation_cases",
       "lane": "synthetic_test",
       "record_count": 20,
-      "bytes": 22194,
-      "sha256": "4cd8bde12c8f7ef7ddfa75633f66a33edba7835ed11af373bca7346b82837d72"
+      "bytes": 22180,
+      "sha256": "bb50bd3051f653008d0970dc234591f14de720384e0f9d5754fdc72f99b6802d"
     },
     {
       "file": "20-evaluation-cases-batch-03.json",

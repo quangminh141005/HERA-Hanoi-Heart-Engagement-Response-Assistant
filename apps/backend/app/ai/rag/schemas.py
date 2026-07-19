@@ -9,6 +9,7 @@ class KnowledgeSource(BaseModel):
     """Metadata for an official hospital knowledge source."""
 
     source_id: str
+    fact_id: str | None = None
     title: str
     url: str | None = None
     document_type: str | None = None

@@ -171,7 +171,7 @@ class OpenAICompatibleEmbedder:
 
 
 def build_embedder(settings: Settings) -> Embedder:
-    """Build Vietnamese_Embedding only when the shared FPT key is available."""
+    """Build Vietnamese_Embedding through the configured API gateway."""
 
     if settings.EMBEDDING_PROVIDER == "noop":
         return NoopEmbedder()

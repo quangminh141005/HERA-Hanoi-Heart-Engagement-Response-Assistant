@@ -9,10 +9,10 @@
       "documents_discovered": 3,
       "documents_validation_accepted": 3,
       "documents_review_required": 0,
-      "entries_published_to_review_dataset": 223,
-      "named_assignments": 168,
+      "entries_published_to_review_dataset": 253,
+      "named_assignments": 191,
       "generic_assignments": 10,
-      "closed_entries": 37,
+      "closed_entries": 44,
       "runtime_eligible_entries": 0
     },
     {
@@ -21,10 +21,10 @@
       "documents_discovered": 3,
       "documents_validation_accepted": 3,
       "documents_review_required": 0,
-      "entries_published_to_review_dataset": 223,
-      "named_assignments": 165,
+      "entries_published_to_review_dataset": 254,
+      "named_assignments": 191,
       "generic_assignments": 10,
-      "closed_entries": 37,
+      "closed_entries": 42,
       "runtime_eligible_entries": 0
     },
     {
@@ -33,10 +33,10 @@
       "documents_discovered": 3,
       "documents_validation_accepted": 3,
       "documents_review_required": 0,
-      "entries_published_to_review_dataset": 245,
-      "named_assignments": 165,
+      "entries_published_to_review_dataset": 274,
+      "named_assignments": 189,
       "generic_assignments": 10,
-      "closed_entries": 57,
+      "closed_entries": 62,
       "runtime_eligible_entries": 0
     },
     {
@@ -45,10 +45,10 @@
       "documents_discovered": 3,
       "documents_validation_accepted": 3,
       "documents_review_required": 0,
-      "entries_published_to_review_dataset": 223,
-      "named_assignments": 170,
+      "entries_published_to_review_dataset": 253,
+      "named_assignments": 194,
       "generic_assignments": 10,
-      "closed_entries": 37,
+      "closed_entries": 43,
       "runtime_eligible_entries": 0
     },
     {
@@ -57,10 +57,10 @@
       "documents_discovered": 3,
       "documents_validation_accepted": 3,
       "documents_review_required": 0,
-      "entries_published_to_review_dataset": 223,
-      "named_assignments": 168,
+      "entries_published_to_review_dataset": 249,
+      "named_assignments": 188,
       "generic_assignments": 10,
-      "closed_entries": 43,
+      "closed_entries": 49,
       "runtime_eligible_entries": 0
     },
     {
@@ -69,10 +69,10 @@
       "documents_discovered": 3,
       "documents_validation_accepted": 3,
       "documents_review_required": 0,
-      "entries_published_to_review_dataset": 245,
-      "named_assignments": 172,
+      "entries_published_to_review_dataset": 275,
+      "named_assignments": 197,
       "generic_assignments": 10,
-      "closed_entries": 60,
+      "closed_entries": 65,
       "runtime_eligible_entries": 0
     }
   ],
