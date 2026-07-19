@@ -40,7 +40,7 @@ class ChatService:
             "channel": _safe_trace_channel(request.client_context.get("channel")),
             "consent_to_store": request.consent_to_store,
             "configured_llm_model": self.settings.FPT_LLM_MODEL,
-            "configured_embedding_model": self.settings.FPT_EMBEDDING_MODEL,
+            "configured_embedding_model": self.settings.EMBEDDING_MODEL,
         }
         with start_observation(
             "hera.chat_turn",
@@ -196,4 +196,3 @@ def _execution_path(result) -> str:
     if result.response_type == "refusal_and_handoff":
         return "guardrail_or_handoff"
     return "deterministic_control_message"
-

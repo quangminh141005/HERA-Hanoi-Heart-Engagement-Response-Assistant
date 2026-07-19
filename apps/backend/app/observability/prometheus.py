@@ -130,7 +130,9 @@ AI_TOKENS_TOTAL = Counter(
 _UPSTREAM_PROVIDER_LABELS: Final = frozenset(
     {
         "fpt_llm",
+        "fpt_guard",
         "fpt_embedding",
+        "fpt_rerank",
         "hospital_booking",
         "hospital_search",
         "openai",
@@ -162,7 +164,7 @@ for _gate in (
 READINESS_STATUS.set(0)
 for _result in ("hit", "miss", "write", "skipped", "error"):
     STRUCTURED_CACHE_OPERATIONS_TOTAL.labels(result=_result)
-for _provider in ("fpt_llm", "fpt_embedding", "openai", "unknown"):
+for _provider in ("fpt_llm", "fpt_guard", "fpt_embedding", "fpt_rerank", "openai", "unknown"):
     for _kind in ("input", "output"):
         AI_TOKENS_TOTAL.labels(provider=_provider, kind=_kind)
 

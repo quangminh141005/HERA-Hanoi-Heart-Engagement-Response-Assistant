@@ -29,9 +29,9 @@ def test_current_generated_bundle_builds_complete_staged_seed() -> None:
     assert counts["service_price_snapshots"] == 4_051
     assert counts["bhyt_contribution_tiers"] == 10
     assert counts["schedule_documents"] == 18
-    assert counts["schedule_entries"] == 1_382
-    assert counts["doctors"] == 82
-    assert counts["booking_sessions"] == 771
+    assert counts["schedule_entries"] == 1_558
+    assert counts["doctors"] == 78
+    assert counts["booking_sessions"] == 1_072
     assert counts["support_channels"] == 2
     chunks = next(
         table["rows"]
@@ -39,7 +39,10 @@ def test_current_generated_bundle_builds_complete_staged_seed() -> None:
         if table["name"] == "knowledge_chunks"
     )
     assert len(chunks) == 34
-    assert all(row["embedding_model"] == "Vietnamese_Embedding" for row in chunks)
+    assert all(
+        row["embedding_model"] == "Vietnamese_Embedding"
+        for row in chunks
+    )
     assert all(row["embedding_dimension"] == 1024 for row in chunks)
 
 

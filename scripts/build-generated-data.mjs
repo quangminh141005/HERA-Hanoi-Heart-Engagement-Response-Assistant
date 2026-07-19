@@ -229,7 +229,7 @@ function flattenScheduleRows(raw) {
     } else {
       rows.push({
         ...item,
-        unit_label: raw.dich_vu || raw.tieu_de,
+        unit_label: item.unit_label || raw.dich_vu || raw.tieu_de,
         source_group_index: rows.length + 1,
         source_room_index: rows.length + 1,
       });
@@ -297,6 +297,39 @@ function classifyScheduleCell(rawValue) {
       ...(missingSecondSessionLabel ? ["missing_second_session_label_no_session_inferred"] : []),
     ],
   };
+}
+
+function splitExplicitSessions(rawValue) {
+  const value = String(rawValue ?? "").replaceAll("\r", "").trim();
+  if (!value) return [{ session: null, value }];
+  const lines = value.split("\n").map((line) => line.trim()).filter(Boolean);
+  const segments = [];
+  let active = null;
+  for (const line of lines) {
+    const folded = foldVietnamese(line);
+    const morning = folded.match(/^sang\s*:?(.*)$/u);
+    const afternoon = folded.match(/^chieu\s*:?(.*)$/u);
+    if (morning) {
+      active = { session: "morning", lines: [] };
+      segments.push(active);
+      const originalTail = line.replace(/^Sáng\s*:?/iu, "").trim();
+      if (originalTail) active.lines.push(originalTail);
+      continue;
+    }
+    if (afternoon) {
+      active = { session: "afternoon", lines: [] };
+      segments.push(active);
+      const originalTail = line.replace(/^Chiều\s*:?/iu, "").trim();
+      if (originalTail) active.lines.push(originalTail);
+      continue;
+    }
+    if (active) active.lines.push(line);
+  }
+  if (!segments.length) return [{ session: null, value }];
+  return segments.map((segment) => ({
+    session: segment.session,
+    value: segment.lines.join("\n").trim(),
+  }));
 }
 
 function classifyPublishedHours(rawValue) {
@@ -462,17 +495,22 @@ function buildScheduleData() {
         if (!Object.hasOwn(row, dayField)) continue;
         if (dayOffset > lastPublishedDayOffset) continue;
         const ordinal = ((row.source_group_index - 1) * 7) + dayOffset + 1;
-        const assigneeTextRaw = String(row[dayField] ?? "");
-        const cellClass = classifyScheduleCell(assigneeTextRaw);
-        const publishedHoursClass = classifyPublishedHours(row.thoi_gian);
-        const hasCrossFacilityNote = foldVietnamese(assigneeTextRaw).includes("kham tai");
-        const reviewReasons = [
-          ...cellClass.review_reasons,
-          ...publishedHoursClass.review_reasons,
-          ...(hasCrossFacilityNote ? ["cross_facility_note_requires_review"] : []),
-        ];
-        entries.push({
-          schedule_entry_id: `SCHED-${folderWeek.week_start.replaceAll("-", "")}-${classification.document_suffix}-${String(ordinal).padStart(4, "0")}`,
+        const rawCell = String(row[dayField] ?? "");
+        const sessions = splitExplicitSessions(rawCell);
+        for (const [sessionIndex, split] of sessions.entries()) {
+          const assigneeTextRaw = split.value;
+          const cellClass = classifyScheduleCell(assigneeTextRaw);
+          const explicitSession = split.session;
+          const publishedHoursClass = classifyPublishedHours(row.thoi_gian);
+          const hasCrossFacilityNote = foldVietnamese(assigneeTextRaw).includes("kham tai");
+          const reviewReasons = [
+            ...cellClass.review_reasons,
+            ...publishedHoursClass.review_reasons,
+            ...(hasCrossFacilityNote ? ["cross_facility_note_requires_review"] : []),
+          ];
+          const suffix = sessions.length > 1 ? `-${String(sessionIndex + 1).padStart(2, "0")}` : "";
+          entries.push({
+          schedule_entry_id: `SCHED-${folderWeek.week_start.replaceAll("-", "")}-${classification.document_suffix}-${String(ordinal).padStart(4, "0")}${suffix}`,
           document_id: documentId,
           source_id: scheduleSourceId,
           source_path: relativeFromRoot(filePath),
@@ -490,7 +528,7 @@ function buildScheduleData() {
           source_day_key: dayField,
           duty_status: cellClass.duty_status,
           assignee_type: cellClass.assignee_type,
-          session: cellClass.session,
+          session: explicitSession || cellClass.session,
           assignee_text_raw: assigneeTextRaw,
           assignee_text_search: normalizeWhitespace(assigneeTextRaw),
           doctor_id: null,
@@ -504,19 +542,20 @@ function buildScheduleData() {
           runtime_eligible: false,
           production_eligible: false,
         });
+        }
       }
     }
   }
 
   const sameNamedDoctorAndDate = new Map();
   for (const entry of entries.filter((item) => item.assignee_type === "named_doctor")) {
-    const key = `${entry.service_date}|${foldVietnamese(entry.assignee_text_raw)}`;
+    const key = `${entry.service_date}|${entry.session}|${foldVietnamese(entry.assignee_text_raw)}`;
     const group = sameNamedDoctorAndDate.get(key) || [];
     group.push(entry);
     sameNamedDoctorAndDate.set(key, group);
   }
   for (const group of sameNamedDoctorAndDate.values()) {
-    if (group.length < 2) continue;
+    if (new Set(group.map((entry) => foldVietnamese(entry.room_label))).size < 2) continue;
     for (const entry of group) {
       entry.needs_review = true;
       entry.review_reasons.push("same_named_assignment_in_multiple_rooms_on_same_date");

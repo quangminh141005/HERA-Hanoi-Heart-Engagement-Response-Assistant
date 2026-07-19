@@ -109,9 +109,7 @@ def _validate_model_configuration(settings: Settings) -> None:
     if settings.FPT_GUARD_MODEL != "gpt-oss-20b":
         raise LiveRagProbeError("FPT_GUARD_MODEL must be gpt-oss-20b")
     if settings.FPT_EMBEDDING_MODEL != "Vietnamese_Embedding":
-        raise LiveRagProbeError(
-            "FPT_EMBEDDING_MODEL must be Vietnamese_Embedding"
-        )
+        raise LiveRagProbeError("FPT_EMBEDDING_MODEL must be Vietnamese_Embedding")
     if settings.EMBEDDING_DIMENSIONS != 1024:
         raise LiveRagProbeError("EMBEDDING_DIMENSIONS must be 1024")
     if settings.RERANK_ENABLED and settings.RERANK_MODEL != "bge-reranker-v2-m3":

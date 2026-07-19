@@ -110,6 +110,9 @@ class Settings(BaseSettings):
     AI_PROVIDER_RETRY_MAX_DELAY_SECONDS: float = Field(default=2.0, ge=0.0, le=30.0)
     LLM_MAX_CONCURRENT_REQUESTS: int = Field(default=2, ge=1, le=100)
     LLM_QUEUE_TIMEOUT_SECONDS: float = Field(default=2.0, gt=0)
+    LLM_DISTRIBUTED_GATE_ENABLED: bool = True
+    LLM_GLOBAL_MAX_CONCURRENT_REQUESTS: int = Field(default=4, ge=1, le=100)
+    LLM_DISTRIBUTED_LEASE_SECONDS: int = Field(default=90, ge=10, le=600)
     LLM_RESPONSE_CACHE_ENABLED: bool = True
     LLM_RESPONSE_CACHE_TTL_SECONDS: int = Field(default=300, ge=1, le=86_400)
     LLM_RESPONSE_CACHE_MAX_ENTRIES: int = Field(default=512, ge=1, le=100_000)

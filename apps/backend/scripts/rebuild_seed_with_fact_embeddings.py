@@ -8,6 +8,7 @@ Vietnamese_Embedding provider.
 
 from __future__ import annotations
 
+import argparse
 import asyncio
 import gzip
 import hashlib
@@ -18,7 +19,11 @@ from pathlib import Path
 from typing import Any
 
 BACKEND_ROOT = Path(__file__).resolve().parents[1]
-REPOSITORY_ROOT = BACKEND_ROOT.parents[1]
+REPOSITORY_ROOT = (
+    BACKEND_ROOT.parents[1]
+    if len(BACKEND_ROOT.parents) > 1
+    else BACKEND_ROOT.parent
+)
 for candidate in (BACKEND_ROOT, BACKEND_ROOT / "scripts"):
     if str(candidate) not in sys.path:
         sys.path.insert(0, str(candidate))
@@ -32,11 +37,16 @@ APPROVED_AT = "2026-07-18T12:00:00+07:00"
 APPROVED_BY = "hackathon-data-owner"
 
 
-async def main() -> int:
-    generated_dir = REPOSITORY_ROOT / "data" / "generated"
+async def main(
+    *,
+    force_all: bool = False,
+    generated_dir: Path | None = None,
+    seed_path: Path | None = None,
+) -> int:
+    generated_dir = generated_dir or REPOSITORY_ROOT / "data" / "generated"
     manifest_path = generated_dir / "00-manifest.json"
     source_pack_path = generated_dir / "01-sources-facts-and-templates.json"
-    seed_path = BACKEND_ROOT / "data" / "hera_postgres_seed.json.gz"
+    seed_path = seed_path or BACKEND_ROOT / "data" / "hera_postgres_seed.json.gz"
 
     manifest = _read_json(manifest_path)
     manifest_sha256 = hashlib.sha256(
@@ -48,7 +58,9 @@ async def main() -> int:
     tables = {table["name"]: table for table in payload["tables"]}
 
     tables["official_sources"]["rows"] = _map_sources(source_pack, tables)
-    facts, chunks, embedded_count = await _map_facts_and_chunks(source_pack, tables)
+    facts, chunks, embedded_count = await _map_facts_and_chunks(
+        source_pack, tables, force_all=force_all
+    )
     tables["official_facts"]["rows"] = facts
     tables["knowledge_chunks"]["rows"] = chunks
     tables["fixed_response_templates"]["rows"] = _map_templates(source_pack)
@@ -143,6 +155,8 @@ def _map_sources(source_pack: dict[str, Any], tables: dict[str, dict[str, Any]])
 async def _map_facts_and_chunks(
     source_pack: dict[str, Any],
     tables: dict[str, dict[str, Any]],
+    *,
+    force_all: bool,
 ) -> tuple[list[dict[str, Any]], list[dict[str, Any]], int]:
     old_vectors = {
         (str(row["fact_id"]), str(row["content_hash"])): row
@@ -169,12 +183,12 @@ async def _map_facts_and_chunks(
                 "verified_at": raw.get("verified_at"),
             }
         )
-        if (fact_id, content_hash) not in old_vectors:
+        if force_all or (fact_id, content_hash) not in old_vectors:
             missing_claims.append((fact_id, claim, content_hash))
 
+    settings = Settings(_env_file=REPOSITORY_ROOT / ".env")
     new_vectors: dict[tuple[str, str], list[float]] = {}
     if missing_claims:
-        settings = Settings(_env_file=REPOSITORY_ROOT / ".env")
         embedder = build_embedder(settings)
         vectors = await embedder.embed([claim for _, claim, _ in missing_claims])
         close = getattr(embedder, "close", None)
@@ -193,7 +207,7 @@ async def _map_facts_and_chunks(
         fact_id = fact["fact_id"]
         claim = fact["claim_vi"]
         content_hash = hashlib.sha256(claim.encode("utf-8")).hexdigest()
-        old = old_vectors.get((fact_id, content_hash))
+        old = None if force_all else old_vectors.get((fact_id, content_hash))
         vector = None if old is not None else new_vectors[(fact_id, content_hash)]
         chunks.append(
             {
@@ -205,7 +219,7 @@ async def _map_facts_and_chunks(
                 "embedded_at": old.get("embedded_at") if old else now,
                 "embedding_dimension": old.get("embedding_dimension") if old else 1024,
                 "embedding_json": old.get("embedding_json") if old else _canonical_json(vector),
-                "embedding_model": old.get("embedding_model") if old else "Vietnamese_Embedding",
+                "embedding_model": old.get("embedding_model") if old else settings.EMBEDDING_MODEL,
                 "fact_id": fact_id,
                 "ordinal": old.get("ordinal") if old else ordinal,
                 "retrieval_eligible": True,
@@ -276,4 +290,17 @@ def _write_gzip_text(path: Path, text: str) -> None:
 
 
 if __name__ == "__main__":
-    raise SystemExit(asyncio.run(main()))
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--force-all", action="store_true")
+    parser.add_argument("--generated-dir", type=Path)
+    parser.add_argument("--seed-path", type=Path)
+    args = parser.parse_args()
+    raise SystemExit(
+        asyncio.run(
+            main(
+                force_all=args.force_all,
+                generated_dir=args.generated_dir,
+                seed_path=args.seed_path,
+            )
+        )
+    )

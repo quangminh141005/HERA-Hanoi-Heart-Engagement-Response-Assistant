@@ -4,7 +4,8 @@ import asyncio
 import json
 
 import app.ai.memory.store as memory_module
-from app.ai.agent.orchestrator import build_default_orchestrator
+from app.ai.agent.orchestrator import _apply_safe_context, build_default_orchestrator
+from app.ai.intent import HospitalIntent, IntentClassification
 from app.ai.memory import (
     ConversationEntities,
     EphemeralEntityMemoryStore,
@@ -37,7 +38,15 @@ class FakeStructuredDataService:
             structured_record_ids=("PRICE-TEST",),
         )
 
-    def chat_schedule(self, message: str) -> StructuredChatResult:
+    def chat_schedule(
+        self,
+        message: str,
+        date_override: str | None = None,
+        facility_override: str | None = None,
+        doctor_override: str | None = None,
+        room_override: str | None = None,
+    ) -> StructuredChatResult:
+        del date_override, facility_override, doctor_override, room_override
         lowered = message.lower()
         facility = "CS2" if "cs2" in lowered or "cơ sở 2" in lowered else "CS1"
         return StructuredChatResult(
@@ -165,6 +174,25 @@ def test_multiturn_uses_approved_entities_and_resets_on_intent_switch() -> None:
         assert schedule_refinement.metadata["ephemeral_context_applied"] is True
 
     asyncio.run(scenario())
+
+
+def test_repeated_full_schedule_query_does_not_invent_doctor_filter() -> None:
+    message = 'Lịch khám cơ sở 1 ngày 13/06/2026'
+    updated, classification, applied = _apply_safe_context(
+        message,
+        IntentClassification(HospitalIntent.DOCTOR_SCHEDULE, 0.95),
+        ConversationEntities(
+            intent='schedule',
+            facility_code='CS1',
+            service_date='2026-06-13',
+        ),
+        {'facility_code': 'CS1', 'date': '2026-06-13'},
+    )
+
+    assert classification.intent is HospitalIntent.DOCTOR_SCHEDULE
+    assert 'lịch bác sĩ' not in updated.lower()
+    assert updated.endswith(message)
+    assert applied is True
 
 
 def test_rag_overall_deadline_returns_safe_handoff() -> None:

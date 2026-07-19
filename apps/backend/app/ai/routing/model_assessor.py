@@ -237,6 +237,9 @@ multiple morning/afternoon doctors, preserve the complete doctor phrase exactly
 instead of rewriting names. facility_code
 must be CS1, CS2 or null. Confidence must be between 0 and 1. Reason must be one
 short category label, never copied PII. Do not output keys outside this schema.
+For doctor_department questions about a named doctor, put that exact name (including
+any supplied professional title) in slots.doctor_query. Do not answer a named-doctor
+question from generic hospital or department descriptions.
 """
 
 
@@ -317,6 +320,9 @@ def _bounded_slots(
     slots["date"] = _explicit_year_date(original_message)
     tier = slots.get("bhyt_tier")
     slots["bhyt_tier"] = tier if tier in {"1", "2", "3", "4", "5"} else None
+    doctor = slots.get('doctor_query')
+    if doctor and doctor.casefold() not in original_message.casefold():
+        slots['doctor_query'] = None
     return slots
 
 

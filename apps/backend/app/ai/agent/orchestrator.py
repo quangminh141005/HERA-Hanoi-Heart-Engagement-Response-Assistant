@@ -296,10 +296,20 @@ class ConversationOrchestrator:
             return finish(_mark_context_applied(response, context_applied))
 
         if classification.intent is HospitalIntent.DOCTOR_SCHEDULE:
+            context_doctor = (
+                context.doctor_name
+                if (
+                    context_applied
+                    and context is not None
+                    and not routing.slots.get('doctor_query')
+                    and not _has_explicit_doctor(message)
+                )
+                else None
+            )
             schedule_slots = (
                 routing.slots.get("date"),
                 routing.slots.get("facility_code"),
-                routing.slots.get("doctor_query"),
+                routing.slots.get("doctor_query") or context_doctor,
                 routing.slots.get("room_query"),
             )
             if any(schedule_slots):
@@ -313,6 +323,16 @@ class ConversationOrchestrator:
                     self.structured_data_service.chat_schedule,
                     sanitized,
                 )
+            response = self._structured_result(cid, result, redaction.categories)
+            await self._remember_structured(cid, result)
+            return finish(_mark_context_applied(response, context_applied))
+
+        if classification.intent is HospitalIntent.DOCTOR_DEPARTMENT:
+            result = await asyncio.to_thread(
+                self.structured_data_service.chat_doctor_information,
+                sanitized,
+                routing.slots.get('doctor_query'),
+            )
             response = self._structured_result(cid, result, redaction.categories)
             await self._remember_structured(cid, result)
             return finish(_mark_context_applied(response, context_applied))
@@ -735,7 +755,7 @@ def build_default_orchestrator(settings: Settings) -> ConversationOrchestrator:
                 embedder=build_embedder(settings),
                 minimum_semantic_score=settings.RAG_MIN_CONFIDENCE,
                 shared_cache=structured_service.cache,
-                embedding_model=settings.FPT_EMBEDDING_MODEL,
+                embedding_model=settings.EMBEDDING_MODEL,
                 expected_embedding_dimensions=settings.EMBEDDING_DIMENSIONS,
                 reranker=build_reranker(settings),
                 rerank_top_n=settings.RERANK_TOP_N,
@@ -901,6 +921,12 @@ def _apply_safe_context(
             parts.append(f"ngày {context.service_date}")
     if context.facility_code and not _has_facility(message):
         parts.append(context.facility_code)
+    if previous_intent is HospitalIntent.DOCTOR_SCHEDULE:
+        parts = [
+            part
+            for part in parts
+            if part not in {'lịch bác sĩ', context.doctor_name}
+        ]
     parts.append(message)
     return " ".join(parts), classification, True
 

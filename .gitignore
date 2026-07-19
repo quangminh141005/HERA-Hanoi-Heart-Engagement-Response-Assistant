@@ -23,6 +23,9 @@ coverage/
 .hera-deploy.lock
 
 # Build and editor artifacts
+artifacts/
+backups/
+reports/
 .DS_Store
 *.log
 *.tsbuildinfo

@@ -50,8 +50,8 @@ def test_real_postgres_archive_passes_seed_preflight() -> None:
     assert len(archive.manifest_sha256) == 64
     assert archive.table_counts["service_catalog_records"] == 2_946
     assert archive.table_counts["service_price_snapshots"] == 4_051
-    assert archive.table_counts["schedule_entries"] == 1_382
-    assert archive.table_counts["booking_sessions"] == 771
+    assert archive.table_counts["schedule_entries"] == 1_558
+    assert archive.table_counts["booking_sessions"] == 1_072
 
 
 def test_seed_rejects_integrity_metadata_for_another_bundle() -> None:

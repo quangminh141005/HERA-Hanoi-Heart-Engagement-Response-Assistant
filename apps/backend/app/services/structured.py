@@ -460,12 +460,25 @@ class StructuredDataService:
             room_query=normalized_room_override or _extract_room_query(message),
         )
         if not schedule.records:
+            first_date, last_date = self.repository.schedule_date_range()
+            outside_coverage = bool(
+                target_date
+                and (target_date < first_date or target_date > last_date)
+            )
+            if outside_coverage:
+                response = (
+                    f"Dữ liệu lịch hiện có từ {first_date.isoformat()} đến "
+                    f"{last_date.isoformat()}; chưa có lịch công bố cho "
+                    f"ngày {target_date.isoformat()}."
+                )
+            else:
+                response = (
+                    "Không có lịch công bố phù hợp với ngày, cơ sở, bác sĩ "
+                    "hoặc phòng khám bạn đã chọn."
+                )
             return StructuredChatResult(
                 intent="schedule",
-                response=(
-                    "Mình chưa tìm thấy lịch phù hợp trong ngày hoặc tuần bạn hỏi. "
-                    "Bạn hãy thử một ngày khác, cơ sở khác hoặc nêu tên bác sĩ."
-                ),
+                response=response,
                 citations=schedule.citations,
                 metadata={"structured_action": schedule.model_dump()},
                 requires_handoff=False,
@@ -478,7 +491,7 @@ class StructuredDataService:
             intent="schedule",
             response=(
                 f"Lịch tìm thấy: ngày {first.service_date}, {first.room_label}, "
-                f"{first.provider_text}. {schedule.warning}"
+                f"{first.provider_text}."
             ),
             citations=schedule.citations,
             metadata={"structured_action": schedule.model_dump()},
@@ -488,6 +501,13 @@ class StructuredDataService:
                 record.schedule_entry_id for record in schedule.records
             ),
         )
+
+    def chat_doctor_information(
+        self,
+        message: str,
+        doctor_query_override: str | None = None,
+    ) -> StructuredChatResult:
+        return _doctor_information_result(self, message, doctor_query_override)
 
     def _cached_rows(
         self,
@@ -823,6 +843,75 @@ def _extract_day_month_date(message: str, *, default_year: int) -> date | None:
         return date(default_year, month, day)
     except ValueError:
         return None
+
+
+def _doctor_information_result(
+    service: StructuredDataService, message: str, override: str | None,
+) -> StructuredChatResult:
+    query = _extract_doctor_query(message) or override
+    if not query:
+        return _render_doctor_information(None, None, [])
+    reference_date = service.reference_date()
+    schedule = service.lookup_schedules(
+        week_start=_monday(reference_date), service_date=None,
+        facility_code=None, doctor_query=query, room_query=None,
+    )
+    folded = _fold_text(query)
+    records = [
+        row for row in schedule.records if row.provider_text
+        and (folded in _fold_text(row.provider_text)
+             or _fold_text(row.provider_text) in folded)
+    ]
+    return _render_doctor_information(query, schedule, records)
+
+
+_DOCTOR_EVIDENCE_WARNING = (
+    'Nguồn hiện có là lịch khám, không phải hồ sơ nhân sự; HERA không suy luận '
+    'khoa, chuyên môn, chức vụ hoặc tiểu sử chưa được công bố.'
+)
+
+
+def _doctor_no_data(query):
+    subject = query or 'tên bác sĩ bạn hỏi'
+    return StructuredChatResult(
+        intent='doctor_department',
+        response=f'HERA chưa tìm thấy thông tin chính thức phù hợp về {subject}.',
+        citations=[],
+        metadata={'doctor_query': query},
+        grounded=False,
+        data_classification='no_data',
+        warnings=(_DOCTOR_EVIDENCE_WARNING,),
+    )
+
+
+def _doctor_roster_result(query, schedule, records):
+    first = records[0]
+    details = ', '.join(value for value in (
+        first.facility_code, first.unit_label, first.room_label
+    ) if value)
+    response = (
+        f'Dữ liệu lịch khám xác nhận {first.provider_text} xuất hiện tại '
+        f'{details}. {_DOCTOR_EVIDENCE_WARNING}'
+    )
+    return StructuredChatResult(
+        intent='doctor_department',
+        response=response,
+        citations=schedule.citations,
+        metadata={'doctor_query': query},
+        data_classification=schedule.classification,
+        warnings=(_DOCTOR_EVIDENCE_WARNING,),
+        structured_record_ids=tuple(row.schedule_entry_id for row in records),
+    )
+
+
+def _render_doctor_information(
+    query: str | None,
+    schedule: ScheduleLookupResponse | None,
+    records: list[ScheduleEntryRecord],
+) -> StructuredChatResult:
+    if not records or schedule is None:
+        return _doctor_no_data(query)
+    return _doctor_roster_result(query, schedule, records)
 
 
 def _fold_text(value: str) -> str:

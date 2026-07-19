@@ -127,6 +127,9 @@ data-reset-dev: data-validate ## Reset only dedicated dev/demo/test DB; CONFIRM_
 up: ## Build and start the base stack, then wait for readiness.
 	@$(COMPOSE) up -d --build --wait --wait-timeout 240
 
+embedding-rebuild: ## Re-embed every RAG fact with the paid API and rebuild the seed; explicit confirmation required.
+	@if [[ "$(CONFIRM_EMBEDDING_REBUILD)" != "YES" ]]; then echo "This calls the paid embedding API. Rerun with CONFIRM_EMBEDDING_REBUILD=YES."; exit 2; fi
+	@$(COMPOSE) run --rm --no-deps -v "$(CURDIR)/data/generated:/source-generated:ro" -v "$(CURDIR)/apps/backend/data:/seed" backend python scripts/rebuild_seed_with_fact_embeddings.py --force-all --generated-dir /source-generated --seed-path /seed/hera_postgres_seed.json.gz
 down: ## Stop/remove containers and networks but preserve every named volume.
 	@$(COMPOSE) down
 
@@ -150,6 +153,10 @@ smoke: ## Run same-origin readiness/structured/booking/emergency smoke checks.
 model-preflight: ## Spend exactly one LLM+embedding probe only with explicit confirmation.
 	@if [[ "$(CONFIRM_MODEL_PREFLIGHT)" != "YES" ]]; then echo "Refusing paid probe: rerun with CONFIRM_MODEL_PREFLIGHT=YES."; exit 2; fi
 	@$(COMPOSE) run --rm --no-deps backend python scripts/verify_model_gateway.py
+
+model-router-load-check: ## Verify cross-replica Redis backpressure; makes zero model calls.
+	@$(COMPOSE) up -d --wait redis
+	@$(COMPOSE) run --rm --no-deps backend python scripts/verify_model_router_load.py
 
 rag-live-check: ## Prove deployed routing, embedding and grounded generation use live models.
 	@if [[ "$(CONFIRM_RAG_LIVE_CHECK)" != "YES" ]]; then echo "Refusing paid RAG check: rerun with CONFIRM_RAG_LIVE_CHECK=YES."; exit 2; fi

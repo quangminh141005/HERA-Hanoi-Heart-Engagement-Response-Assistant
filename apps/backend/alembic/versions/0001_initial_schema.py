@@ -283,7 +283,7 @@ CREATE TABLE schedule_entries (
     assignee_type TEXT NOT NULL
         CHECK (assignee_type IN ('named_doctor', 'generic_assignment', 'none')),
     session TEXT NOT NULL
-        CHECK (session IN ('morning', 'published_window', 'closed', 'unknown')),
+        CHECK (session IN ('morning', 'afternoon', 'published_window', 'closed', 'unknown')),
     assignee_text_raw TEXT,
     assignee_text_search TEXT,
     assignee_text_folded TEXT,
