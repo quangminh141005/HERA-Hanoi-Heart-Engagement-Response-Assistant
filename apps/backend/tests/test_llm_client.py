@@ -54,6 +54,20 @@ class CapturedClient:
         return self.model
 
 
+class ReleaseFailingGate:
+    def __init__(self) -> None:
+        self.release_calls = 0
+
+    async def acquire(self, *, timeout_seconds: float) -> str:
+        del timeout_seconds
+        return "lease-token"
+
+    async def release(self, token: str) -> None:
+        assert token == "lease-token"
+        self.release_calls += 1
+        raise RuntimeError("redis unavailable during release")
+
+
 def test_build_llm_client_without_keys_returns_noop() -> None:
     settings = Settings(
         LLM_PROVIDER="openai",
@@ -175,3 +189,29 @@ def test_guarded_llm_client_queue_timeout_returns_safe_fallback() -> None:
 
     assert first == "slow answer"
     assert second.startswith("HERA chưa được cấu hình LLM")
+
+
+def test_guarded_llm_client_release_failure_keeps_response_and_semaphore() -> None:
+    static = StaticClient()
+    gate = ReleaseFailingGate()
+    client = GuardedLLMClient(
+        static,
+        max_concurrent_requests=1,
+        queue_timeout_seconds=0.01,
+        cache_enabled=False,
+        cache_ttl_seconds=60,
+        cache_max_entries=10,
+        distributed_gate=gate,
+    )
+
+    async def run_sequential_requests() -> tuple[str, str]:
+        first = await client.generate([{"role": "user", "content": "first"}])
+        second = await client.generate([{"role": "user", "content": "second"}])
+        return first, second
+
+    first, second = asyncio.run(run_sequential_requests())
+
+    assert first == "fallback answer"
+    assert second == "fallback answer"
+    assert static.calls == 2
+    assert gate.release_calls == 2

@@ -385,9 +385,20 @@ class GuardedLLMClient:
                 max_tokens=max_tokens,
             )
         finally:
-            if lease_token is not None and self._distributed_gate is not None:
-                await self._distributed_gate.release(lease_token)
-            self._semaphore.release()
+            try:
+                if lease_token is not None and self._distributed_gate is not None:
+                    try:
+                        await self._distributed_gate.release(lease_token)
+                    except Exception:
+                        # The lease expires automatically. A transient Redis failure
+                        # must not discard a successful model response or leak the
+                        # process-local semaphore permit.
+                        logger.exception(
+                            "distributed model gate release failed",
+                            extra={"event": "llm_distributed_gate_release_failed"},
+                        )
+            finally:
+                self._semaphore.release()
 
     async def _get_cached(self, key: str) -> str | None:
         now = time.monotonic()
